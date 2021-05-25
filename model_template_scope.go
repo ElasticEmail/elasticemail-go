@@ -16,70 +16,69 @@ import (
 	"fmt"
 )
 
-// ExportFileFormats Format of the exported file.
-type ExportFileFormats string
+// TemplateScope Visibility of a template
+type TemplateScope string
 
-// List of ExportFileFormats
+// List of TemplateScope
 const (
-	CSV ExportFileFormats = "Csv"
-	XML ExportFileFormats = "Xml"
-	JSON ExportFileFormats = "Json"
+	PERSONAL TemplateScope = "Personal"
+	GLOBAL TemplateScope = "Global"
 )
 
-func (v *ExportFileFormats) UnmarshalJSON(src []byte) error {
+func (v *TemplateScope) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	enumTypeValue := ExportFileFormats(value)
-	for _, existing := range []ExportFileFormats{ "Csv", "Xml", "Json",   } {
+	enumTypeValue := TemplateScope(value)
+	for _, existing := range []TemplateScope{ "Personal", "Global",   } {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid ExportFileFormats", value)
+	return fmt.Errorf("%+v is not a valid TemplateScope", value)
 }
 
-// Ptr returns reference to ExportFileFormats value
-func (v ExportFileFormats) Ptr() *ExportFileFormats {
+// Ptr returns reference to TemplateScope value
+func (v TemplateScope) Ptr() *TemplateScope {
 	return &v
 }
 
-type NullableExportFileFormats struct {
-	value *ExportFileFormats
+type NullableTemplateScope struct {
+	value *TemplateScope
 	isSet bool
 }
 
-func (v NullableExportFileFormats) Get() *ExportFileFormats {
+func (v NullableTemplateScope) Get() *TemplateScope {
 	return v.value
 }
 
-func (v *NullableExportFileFormats) Set(val *ExportFileFormats) {
+func (v *NullableTemplateScope) Set(val *TemplateScope) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableExportFileFormats) IsSet() bool {
+func (v NullableTemplateScope) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableExportFileFormats) Unset() {
+func (v *NullableTemplateScope) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableExportFileFormats(val *ExportFileFormats) *NullableExportFileFormats {
-	return &NullableExportFileFormats{value: val, isSet: true}
+func NewNullableTemplateScope(val *TemplateScope) *NullableTemplateScope {
+	return &NullableTemplateScope{value: val, isSet: true}
 }
 
-func (v NullableExportFileFormats) MarshalJSON() ([]byte, error) {
+func (v NullableTemplateScope) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableExportFileFormats) UnmarshalJSON(src []byte) error {
+func (v *NullableTemplateScope) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -1,7 +1,7 @@
 /*
  * Elastic Email REST API
  *
- * This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    To start using this API, you will need your Access Token (available <a href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    This is the documentation for REST API. If you’d like to read our legacy documentation regarding Web API v2 click <a href=\"https://api.elasticemail.com/public/help\">here</a>.
+ * This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    This is the documentation for REST API. If you’d like to read our legacy documentation regarding Web API v2 click <a target=\"_blank\" href=\"https://api.elasticemail.com/public/help\">here</a>.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
  *
  * API version: 4.0.0
  * Contact: support@elasticemail.com
@@ -27,6 +27,8 @@ type EmailContent struct {
 	Headers *map[string]string `json:"Headers,omitempty"`
 	// Postback header.
 	Postback *string `json:"Postback,omitempty"`
+	// E-mail with an optional name to be used as the envelope from address (e.g.: John Doe <email@domain.com>)
+	EnvelopeFrom *string `json:"EnvelopeFrom,omitempty"`
 	// Your e-mail with an optional name (e.g.: John Doe <email@domain.com>)
 	From *string `json:"From,omitempty"`
 	// To what address should the recipients reply to (e.g. John Doe <email@domain.com>)
@@ -216,6 +218,38 @@ func (o *EmailContent) HasPostback() bool {
 // SetPostback gets a reference to the given string and assigns it to the Postback field.
 func (o *EmailContent) SetPostback(v string) {
 	o.Postback = &v
+}
+
+// GetEnvelopeFrom returns the EnvelopeFrom field value if set, zero value otherwise.
+func (o *EmailContent) GetEnvelopeFrom() string {
+	if o == nil || o.EnvelopeFrom == nil {
+		var ret string
+		return ret
+	}
+	return *o.EnvelopeFrom
+}
+
+// GetEnvelopeFromOk returns a tuple with the EnvelopeFrom field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EmailContent) GetEnvelopeFromOk() (*string, bool) {
+	if o == nil || o.EnvelopeFrom == nil {
+		return nil, false
+	}
+	return o.EnvelopeFrom, true
+}
+
+// HasEnvelopeFrom returns a boolean if a field has been set.
+func (o *EmailContent) HasEnvelopeFrom() bool {
+	if o != nil && o.EnvelopeFrom != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnvelopeFrom gets a reference to the given string and assigns it to the EnvelopeFrom field.
+func (o *EmailContent) SetEnvelopeFrom(v string) {
+	o.EnvelopeFrom = &v
 }
 
 // GetFrom returns the From field value if set, zero value otherwise.
@@ -426,6 +460,9 @@ func (o EmailContent) MarshalJSON() ([]byte, error) {
 	}
 	if o.Postback != nil {
 		toSerialize["Postback"] = o.Postback
+	}
+	if o.EnvelopeFrom != nil {
+		toSerialize["EnvelopeFrom"] = o.EnvelopeFrom
 	}
 	if o.From != nil {
 		toSerialize["From"] = o.From

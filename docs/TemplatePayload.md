@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Template name | [optional] 
 **Subject** | Pointer to **string** | Default subject of email. | [optional] 
 **Body** | Pointer to [**[]BodyPart**](BodyPart.md) | Email content of this template | [optional] 
-**TemplateScope** | Pointer to [**TemplateScopeType**](TemplateScopeType.md) | Visibility of a template | [optional] 
+**TemplateScope** | Pointer to [**TemplateScope**](TemplateScope.md) | Visibility of a template | [optional] 
 
 ## Methods
 
@@ -105,20 +105,20 @@ HasBody returns a boolean if a field has been set.
 
 ### GetTemplateScope
 
-`func (o *TemplatePayload) GetTemplateScope() TemplateScopeType`
+`func (o *TemplatePayload) GetTemplateScope() TemplateScope`
 
 GetTemplateScope returns the TemplateScope field if non-nil, zero value otherwise.
 
 ### GetTemplateScopeOk
 
-`func (o *TemplatePayload) GetTemplateScopeOk() (*TemplateScopeType, bool)`
+`func (o *TemplatePayload) GetTemplateScopeOk() (*TemplateScope, bool)`
 
 GetTemplateScopeOk returns a tuple with the TemplateScope field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTemplateScope
 
-`func (o *TemplatePayload) SetTemplateScope(v TemplateScopeType)`
+`func (o *TemplatePayload) SetTemplateScope(v TemplateScope)`
 
 SetTemplateScope sets TemplateScope field to given value.
 

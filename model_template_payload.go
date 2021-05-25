@@ -1,7 +1,7 @@
 /*
  * Elastic Email REST API
  *
- * This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    To start using this API, you will need your Access Token (available <a href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    This is the documentation for REST API. If you’d like to read our legacy documentation regarding Web API v2 click <a href=\"https://api.elasticemail.com/public/help\">here</a>.
+ * This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    This is the documentation for REST API. If you’d like to read our legacy documentation regarding Web API v2 click <a target=\"_blank\" href=\"https://api.elasticemail.com/public/help\">here</a>.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
  *
  * API version: 4.0.0
  * Contact: support@elasticemail.com
@@ -24,7 +24,7 @@ type TemplatePayload struct {
 	// Email content of this template
 	Body *[]BodyPart `json:"Body,omitempty"`
 	// Visibility of a template
-	TemplateScope *TemplateScopeType `json:"TemplateScope,omitempty"`
+	TemplateScope *TemplateScope `json:"TemplateScope,omitempty"`
 }
 
 // NewTemplatePayload instantiates a new TemplatePayload object
@@ -141,9 +141,9 @@ func (o *TemplatePayload) SetBody(v []BodyPart) {
 }
 
 // GetTemplateScope returns the TemplateScope field value if set, zero value otherwise.
-func (o *TemplatePayload) GetTemplateScope() TemplateScopeType {
+func (o *TemplatePayload) GetTemplateScope() TemplateScope {
 	if o == nil || o.TemplateScope == nil {
-		var ret TemplateScopeType
+		var ret TemplateScope
 		return ret
 	}
 	return *o.TemplateScope
@@ -151,7 +151,7 @@ func (o *TemplatePayload) GetTemplateScope() TemplateScopeType {
 
 // GetTemplateScopeOk returns a tuple with the TemplateScope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TemplatePayload) GetTemplateScopeOk() (*TemplateScopeType, bool) {
+func (o *TemplatePayload) GetTemplateScopeOk() (*TemplateScope, bool) {
 	if o == nil || o.TemplateScope == nil {
 		return nil, false
 	}
@@ -167,8 +167,8 @@ func (o *TemplatePayload) HasTemplateScope() bool {
 	return false
 }
 
-// SetTemplateScope gets a reference to the given TemplateScopeType and assigns it to the TemplateScope field.
-func (o *TemplatePayload) SetTemplateScope(v TemplateScopeType) {
+// SetTemplateScope gets a reference to the given TemplateScope and assigns it to the TemplateScope field.
+func (o *TemplatePayload) SetTemplateScope(v TemplateScope) {
 	o.TemplateScope = &v
 }
 

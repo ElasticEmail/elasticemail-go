@@ -6,11 +6,14 @@ info:
     \ to easily manage their data with this resource-based approach.\r\n\r\nEvery\
     \ API call is established on which specific request type (GET, POST, PUT, DELETE)\
     \ will be used.\r\n\r\nTo start using this API, you will need your Access Token\
-    \ (available <a href=\"https://elasticemail.com/account#/settings/new/manage-api\"\
+    \ (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\"\
     >here</a>). Remember to keep it safe. Required access levels are listed in the\
     \ given request’s description.\r\n\r\nThis is the documentation for REST API.\
     \ If you’d like to read our legacy documentation regarding Web API v2 click <a\
-    \ href=\"https://api.elasticemail.com/public/help\">here</a>."
+    \ target=\"_blank\" href=\"https://api.elasticemail.com/public/help\">here</a>.\r\
+    \n\r\nDownloadable library clients can be found in our Github repository <a target=\"\
+    _blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\"\
+    >here</a>"
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
@@ -2783,7 +2786,7 @@ paths:
         schema:
           description: array
           items:
-            $ref: '#/components/schemas/TemplateScopeType'
+            $ref: '#/components/schemas/TemplateScope'
           type: array
         style: form
       - description: Return templates with specified type only
@@ -3267,6 +3270,8 @@ components:
       - ExtendedLogs
       - VerifyEmails
       - ViewEmailVerifications
+      - ViewMarketing
+      - ViewEmailApi
       type: string
     AccountStatusEnum:
       default: Disabled
@@ -4001,6 +4006,12 @@ components:
           type: object
         Postback:
           description: Postback header.
+          format: string
+          type: string
+        EnvelopeFrom:
+          description: 'E-mail with an optional name to be used as the envelope from
+            address (e.g.: John Doe <email@domain.com>)'
+          example: John Doe <email@domain.com>
           format: string
           type: string
         From:
@@ -5354,7 +5365,7 @@ components:
           type: array
         TemplateScope:
           allOf:
-          - $ref: '#/components/schemas/TemplateScopeType'
+          - $ref: '#/components/schemas/TemplateScope'
           description: Visibility of a template
       type: object
     TemplatePayload:
@@ -5387,16 +5398,15 @@ components:
           type: array
         TemplateScope:
           allOf:
-          - $ref: '#/components/schemas/TemplateScopeType'
+          - $ref: '#/components/schemas/TemplateScope'
           description: Visibility of a template
       type: object
-    TemplateScopeType:
+    TemplateScope:
       default: Personal
       description: Visibility of a template
       enum:
       - Personal
       - Global
-      - Draft
       type: string
     TemplateType:
       default: RawHTML

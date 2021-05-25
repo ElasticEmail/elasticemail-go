@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Attachments** | Pointer to [**[]MessageAttachment**](MessageAttachment.md) | Attachments provided by sending binary data | [optional] 
 **Headers** | Pointer to **map[string]string** | A key-value collection of custom e-mail headers. | [optional] 
 **Postback** | Pointer to **string** | Postback header. | [optional] 
+**EnvelopeFrom** | Pointer to **string** | E-mail with an optional name to be used as the envelope from address (e.g.: John Doe &lt;email@domain.com&gt;) | [optional] 
 **From** | Pointer to **string** | Your e-mail with an optional name (e.g.: John Doe &lt;email@domain.com&gt;) | [optional] 
 **ReplyTo** | Pointer to **string** | To what address should the recipients reply to (e.g. John Doe &lt;email@domain.com&gt;) | [optional] 
 **Subject** | Pointer to **string** | Default subject of email. | [optional] 
@@ -159,6 +160,31 @@ SetPostback sets Postback field to given value.
 `func (o *EmailContent) HasPostback() bool`
 
 HasPostback returns a boolean if a field has been set.
+
+### GetEnvelopeFrom
+
+`func (o *EmailContent) GetEnvelopeFrom() string`
+
+GetEnvelopeFrom returns the EnvelopeFrom field if non-nil, zero value otherwise.
+
+### GetEnvelopeFromOk
+
+`func (o *EmailContent) GetEnvelopeFromOk() (*string, bool)`
+
+GetEnvelopeFromOk returns a tuple with the EnvelopeFrom field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnvelopeFrom
+
+`func (o *EmailContent) SetEnvelopeFrom(v string)`
+
+SetEnvelopeFrom sets EnvelopeFrom field to given value.
+
+### HasEnvelopeFrom
+
+`func (o *EmailContent) HasEnvelopeFrom() bool`
+
+HasEnvelopeFrom returns a boolean if a field has been set.
 
 ### GetFrom
 

@@ -91,6 +91,10 @@
 
 * `VIEW_EMAIL_VERIFICATIONS` (value: `"ViewEmailVerifications"`)
 
+* `VIEW_MARKETING` (value: `"ViewMarketing"`)
+
+* `VIEW_EMAIL_API` (value: `"ViewEmailApi"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

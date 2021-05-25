@@ -243,7 +243,7 @@ import (
 )
 
 func main() {
-    scopeType := []openapiclient.TemplateScopeType{openapiclient.TemplateScopeType("Personal")} // []TemplateScopeType | Return templates with specified scope only
+    scopeType := []openapiclient.TemplateScope{openapiclient.TemplateScope("Personal")} // []TemplateScope | Return templates with specified scope only
     templateTypes := []openapiclient.TemplateType{openapiclient.TemplateType("RawHTML")} // []TemplateType | Return templates with specified type only (optional)
     limit := int32(100) // int32 | Maximum number of returned items. (optional)
     offset := int32(20) // int32 | How many items should be returned ahead. (optional)
@@ -271,7 +271,7 @@ Other parameters are passed through a pointer to a apiTemplatesGetRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **scopeType** | [**[]TemplateScopeType**](TemplateScopeType.md) | Return templates with specified scope only | 
+ **scopeType** | [**[]TemplateScope**](TemplateScope.md) | Return templates with specified scope only | 
  **templateTypes** | [**[]TemplateType**](TemplateType.md) | Return templates with specified type only | 
  **limit** | **int32** | Maximum number of returned items. | 
  **offset** | **int32** | How many items should be returned ahead. | 
