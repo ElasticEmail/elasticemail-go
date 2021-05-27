@@ -3051,8 +3051,9 @@ paths:
       - Verifications
   /verifications/files:
     post:
-      description: 'Uploads a CSV file with list of emails to verify. An ''email''
-        column is required. Required Access Level: VerifyEmails'
+      description: 'Uploads a CSV file with list of emails that can then be triggered
+        for verification. An ''email'' column is required. Required Access Level:
+        VerifyEmails'
       operationId: verificationsFilesPost
       requestBody:
         $ref: '#/components/requestBodies/inline_object_4'
@@ -3074,7 +3075,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/VerificationFileResult'
           description: OK
-      summary: Verify From File
+      summary: Upload File with Emails
       tags:
       - Verifications
   /verifications/files/{id}:
@@ -3173,6 +3174,28 @@ paths:
       summary: Download File Verification Result
       tags:
       - Verifications
+  /verifications/files/{id}/verification:
+    post:
+      description: 'Start a verification of the previously uploaded file with emails.
+        Required Access Level: VerifyEmails'
+      operationId: verificationsFilesByIdVerificationPost
+      parameters:
+      - description: File ID to start verification
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          description: string
+          format: string
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+      summary: Start verification
+      tags:
+      - Verifications
   /verifications/files/result:
     get:
       description: 'Returns a list of uploaded files, their statuses and results.
@@ -3187,7 +3210,7 @@ paths:
                   $ref: '#/components/schemas/VerificationFileResult'
                 type: array
           description: OK
-      summary: Get Simple Files Verification Results
+      summary: Get Files Verification Results
       tags:
       - Verifications
 components:
@@ -4718,14 +4741,15 @@ components:
     MessageAttachment:
       properties:
         BinaryContent:
+          description: File's content as byte array (or a Base64 string)
           format: byte
           type: string
         Name:
-          description: Filename
-          example: attachment.txt
+          description: Display name of the file
           format: string
           type: string
         ContentType:
+          description: MIME content type
           format: string
           type: string
       type: object

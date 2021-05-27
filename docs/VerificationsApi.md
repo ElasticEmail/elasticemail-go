@@ -10,8 +10,9 @@ Method | HTTP request | Description
 [**VerificationsFilesByIdDelete**](VerificationsApi.md#VerificationsFilesByIdDelete) | **Delete** /verifications/files/{id} | Delete File Verification Result
 [**VerificationsFilesByIdResultDownloadGet**](VerificationsApi.md#VerificationsFilesByIdResultDownloadGet) | **Get** /verifications/files/{id}/result/download | Download File Verification Result
 [**VerificationsFilesByIdResultGet**](VerificationsApi.md#VerificationsFilesByIdResultGet) | **Get** /verifications/files/{id}/result | Get Detailed File Verification Result
-[**VerificationsFilesPost**](VerificationsApi.md#VerificationsFilesPost) | **Post** /verifications/files | Verify From File
-[**VerificationsFilesResultGet**](VerificationsApi.md#VerificationsFilesResultGet) | **Get** /verifications/files/result | Get Simple Files Verification Results
+[**VerificationsFilesByIdVerificationPost**](VerificationsApi.md#VerificationsFilesByIdVerificationPost) | **Post** /verifications/files/{id}/verification | Start verification
+[**VerificationsFilesPost**](VerificationsApi.md#VerificationsFilesPost) | **Post** /verifications/files | Upload File with Emails
+[**VerificationsFilesResultGet**](VerificationsApi.md#VerificationsFilesResultGet) | **Get** /verifications/files/result | Get Files Verification Results
 [**VerificationsGet**](VerificationsApi.md#VerificationsGet) | **Get** /verifications | Get Emails Verification Results
 
 
@@ -436,11 +437,79 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## VerificationsFilesByIdVerificationPost
+
+> VerificationsFilesByIdVerificationPost(ctx, id).Execute()
+
+Start verification
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | File ID to start verification
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.VerificationsApi.VerificationsFilesByIdVerificationPost(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VerificationsApi.VerificationsFilesByIdVerificationPost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | File ID to start verification | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiVerificationsFilesByIdVerificationPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apikey](../README.md#apikey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## VerificationsFilesPost
 
 > VerificationFileResult VerificationsFilesPost(ctx).File(file).Execute()
 
-Verify From File
+Upload File with Emails
 
 
 
@@ -506,7 +575,7 @@ Name | Type | Description  | Notes
 
 > []VerificationFileResult VerificationsFilesResultGet(ctx).Execute()
 
-Get Simple Files Verification Results
+Get Files Verification Results
 
 
 

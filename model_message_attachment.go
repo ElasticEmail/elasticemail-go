@@ -17,9 +17,11 @@ import (
 
 // MessageAttachment struct for MessageAttachment
 type MessageAttachment struct {
+	// File's content as byte array (or a Base64 string)
 	BinaryContent *string `json:"BinaryContent,omitempty"`
-	// Filename
+	// Display name of the file
 	Name *string `json:"Name,omitempty"`
+	// MIME content type
 	ContentType *string `json:"ContentType,omitempty"`
 }
 

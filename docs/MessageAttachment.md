@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BinaryContent** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** | Filename | [optional] 
-**ContentType** | Pointer to **string** |  | [optional] 
+**BinaryContent** | Pointer to **string** | File&#39;s content as byte array (or a Base64 string) | [optional] 
+**Name** | Pointer to **string** | Display name of the file | [optional] 
+**ContentType** | Pointer to **string** | MIME content type | [optional] 
 
 ## Methods
 
