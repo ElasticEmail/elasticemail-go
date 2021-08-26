@@ -172,7 +172,7 @@ import (
 
 func main() {
     name := "name_example" // string | Name of Campaign to update
-    campaign := *openapiclient.NewCampaign() // Campaign | JSON representation of a campaign
+    campaign := *openapiclient.NewCampaign("Name_example", *openapiclient.NewCampaignRecipient()) // Campaign | JSON representation of a campaign
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -313,7 +313,7 @@ import (
 )
 
 func main() {
-    campaign := *openapiclient.NewCampaign() // Campaign | JSON representation of a campaign
+    campaign := *openapiclient.NewCampaign("Name_example", *openapiclient.NewCampaignRecipient()) // Campaign | JSON representation of a campaign
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

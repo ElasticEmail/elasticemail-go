@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PublicInboundId** | Pointer to **string** |  | [optional] 
-**SortOrder** | Pointer to **int32** | 1 - route will be used first | [optional] 
+**PublicInboundId** | **string** | ID of the route to change the order of | 
+**SortOrder** | **int32** | 1 - route will be used first | 
 
 ## Methods
 
 ### NewSortOrderItem
 
-`func NewSortOrderItem() *SortOrderItem`
+`func NewSortOrderItem(publicInboundId string, sortOrder int32, ) *SortOrderItem`
 
 NewSortOrderItem instantiates a new SortOrderItem object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetPublicInboundId sets PublicInboundId field to given value.
 
-### HasPublicInboundId
-
-`func (o *SortOrderItem) HasPublicInboundId() bool`
-
-HasPublicInboundId returns a boolean if a field has been set.
 
 ### GetSortOrder
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetSortOrder sets SortOrder field to given value.
 
-### HasSortOrder
-
-`func (o *SortOrderItem) HasSortOrder() bool`
-
-HasSortOrder returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

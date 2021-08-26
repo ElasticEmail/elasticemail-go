@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Credits** | Pointer to **int32** | Positive or negative value; this will be added or subtracted from Subaccount&#39;s current email Credits pool. | [optional] 
+**Credits** | **int32** | Positive or negative value; this will be added or subtracted from Subaccount&#39;s current email Credits pool. | 
 **Notes** | Pointer to **string** | Note to append to this credits change, for history. | [optional] 
 
 ## Methods
 
 ### NewSubaccountEmailCreditsPayload
 
-`func NewSubaccountEmailCreditsPayload() *SubaccountEmailCreditsPayload`
+`func NewSubaccountEmailCreditsPayload(credits int32, ) *SubaccountEmailCreditsPayload`
 
 NewSubaccountEmailCreditsPayload instantiates a new SubaccountEmailCreditsPayload object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetCredits sets Credits field to given value.
 
-### HasCredits
-
-`func (o *SubaccountEmailCreditsPayload) HasCredits() bool`
-
-HasCredits returns a boolean if a field has been set.
 
 ### GetNotes
 

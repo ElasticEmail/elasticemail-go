@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**To** | Pointer to **[]string** | List of recipients (visible to others) | [optional] 
+**To** | **[]string** | List of recipients (visible to others) | 
 **CC** | Pointer to **[]string** | List of Carbon Copy recipients (visible to others) | [optional] 
 **BCC** | Pointer to **[]string** | List of Blind Carbon Copy recipients (hidden from other recipients) | [optional] 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewTransactionalRecipient
 
-`func NewTransactionalRecipient() *TransactionalRecipient`
+`func NewTransactionalRecipient(to []string, ) *TransactionalRecipient`
 
 NewTransactionalRecipient instantiates a new TransactionalRecipient object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetTo sets To field to given value.
 
-### HasTo
-
-`func (o *TransactionalRecipient) HasTo() bool`
-
-HasTo returns a boolean if a field has been set.
 
 ### GetCC
 

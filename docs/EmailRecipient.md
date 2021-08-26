@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | Pointer to **string** | Proper email address. | [optional] 
+**Email** | **string** | Proper email address. | 
 **Fields** | Pointer to **map[string]string** | A key-value collection of merge fields which can be used in e-mail body. | [optional] 
 
 ## Methods
 
 ### NewEmailRecipient
 
-`func NewEmailRecipient() *EmailRecipient`
+`func NewEmailRecipient(email string, ) *EmailRecipient`
 
 NewEmailRecipient instantiates a new EmailRecipient object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetEmail sets Email field to given value.
 
-### HasEmail
-
-`func (o *EmailRecipient) HasEmail() bool`
-
-HasEmail returns a boolean if a field has been set.
 
 ### GetFields
 

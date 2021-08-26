@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | Pointer to **string** | Proper email address. | [optional] 
-**Password** | Pointer to **string** | Current password. | [optional] 
+**Email** | **string** | Proper email address. | 
+**Password** | **string** | Current password. | 
 **SendActivation** | Pointer to **bool** | True, if you want to send activation email to this Account to confirm the creation of a new SubAccount. Otherwise, false (SubAccount will immediately be Active). | [optional] 
 **Settings** | Pointer to [**SubaccountSettingsInfoPayload**](SubaccountSettingsInfoPayload.md) | SubAccount settings | [optional] 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewSubaccountPayload
 
-`func NewSubaccountPayload() *SubaccountPayload`
+`func NewSubaccountPayload(email string, password string, ) *SubaccountPayload`
 
 NewSubaccountPayload instantiates a new SubaccountPayload object
 This constructor will assign default values to properties that have it defined,
@@ -47,11 +47,6 @@ and a boolean to check if the value has been set.
 
 SetEmail sets Email field to given value.
 
-### HasEmail
-
-`func (o *SubaccountPayload) HasEmail() bool`
-
-HasEmail returns a boolean if a field has been set.
 
 ### GetPassword
 
@@ -72,11 +67,6 @@ and a boolean to check if the value has been set.
 
 SetPassword sets Password field to given value.
 
-### HasPassword
-
-`func (o *SubaccountPayload) HasPassword() bool`
-
-HasPassword returns a boolean if a field has been set.
 
 ### GetSendActivation
 

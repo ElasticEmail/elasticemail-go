@@ -172,7 +172,7 @@ import (
 
 func main() {
     name := "Template01" // string | Name of template.
-    templatePayload := *openapiclient.NewTemplatePayload() // TemplatePayload | 
+    templatePayload := *openapiclient.NewTemplatePayload("Name_example") // TemplatePayload | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -315,7 +315,7 @@ import (
 )
 
 func main() {
-    templatePayload := *openapiclient.NewTemplatePayload() // TemplatePayload | 
+    templatePayload := *openapiclient.NewTemplatePayload("Name_example") // TemplatePayload | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

@@ -95,6 +95,8 @@
 
 * `VIEW_EMAIL_API` (value: `"ViewEmailApi"`)
 
+* `VIEW_INBOUND` (value: `"ViewInbound"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

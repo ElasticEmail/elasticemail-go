@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | Name of the Credential for ease of reference. It must be a valid email address. | [optional] 
+**Name** | **string** | Name of the Credential for ease of reference. It must be a valid email address. | 
 **Expires** | Pointer to **NullableTime** | Date this SmtpCredential expires. | [optional] 
 **RestrictAccessToIPRange** | Pointer to **[]string** | Which IPs can use this SmtpCredential | [optional] 
 **Subaccount** | Pointer to **string** | Email of the subaccount for which this SmtpCredential should be created | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewSmtpCredentialsPayload
 
-`func NewSmtpCredentialsPayload() *SmtpCredentialsPayload`
+`func NewSmtpCredentialsPayload(name string, ) *SmtpCredentialsPayload`
 
 NewSmtpCredentialsPayload instantiates a new SmtpCredentialsPayload object
 This constructor will assign default values to properties that have it defined,
@@ -47,11 +47,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *SmtpCredentialsPayload) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetExpires
 

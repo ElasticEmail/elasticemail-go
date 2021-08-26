@@ -455,7 +455,7 @@ import (
 )
 
 func main() {
-    listPayload := *openapiclient.NewListPayload() // ListPayload | 
+    listPayload := *openapiclient.NewListPayload("My List 1") // ListPayload | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

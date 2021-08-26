@@ -35,7 +35,7 @@ import (
 
 func main() {
     email := "mail@example.com" // string | Email address of Sub-Account
-    subaccountEmailCreditsPayload := *openapiclient.NewSubaccountEmailCreditsPayload() // SubaccountEmailCreditsPayload | Amount of email credits to add or subtract from the current SubAccount email credits pool (positive or negative value)
+    subaccountEmailCreditsPayload := *openapiclient.NewSubaccountEmailCreditsPayload(int32(123)) // SubaccountEmailCreditsPayload | Amount of email credits to add or subtract from the current SubAccount email credits pool (positive or negative value)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -382,7 +382,7 @@ import (
 )
 
 func main() {
-    subaccountPayload := *openapiclient.NewSubaccountPayload() // SubaccountPayload | 
+    subaccountPayload := *openapiclient.NewSubaccountPayload("mail@example.com", "********") // SubaccountPayload | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

@@ -102,7 +102,7 @@ import (
 )
 
 func main() {
-    mergeEmailPayload := *openapiclient.NewMergeEmailPayload() // MergeEmailPayload | Email data
+    mergeEmailPayload := *openapiclient.NewMergeEmailPayload(*openapiclient.NewMessageAttachment(string(123))) // MergeEmailPayload | Email data
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -168,7 +168,7 @@ import (
 )
 
 func main() {
-    emailMessageData := *openapiclient.NewEmailMessageData() // EmailMessageData | Email data
+    emailMessageData := *openapiclient.NewEmailMessageData([]openapiclient.EmailRecipient{*openapiclient.NewEmailRecipient("mail@example.com")}) // EmailMessageData | Email data
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -234,7 +234,7 @@ import (
 )
 
 func main() {
-    emailTransactionalMessageData := *openapiclient.NewEmailTransactionalMessageData() // EmailTransactionalMessageData | Email data
+    emailTransactionalMessageData := *openapiclient.NewEmailTransactionalMessageData(*openapiclient.NewTransactionalRecipient([]string{"To_example"})) // EmailTransactionalMessageData | Email data
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

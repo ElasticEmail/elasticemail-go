@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | Pointer to **string** | Proper email address. | [optional] 
+**Email** | **string** | Proper email address. | 
 **Status** | Pointer to [**ContactStatus**](ContactStatus.md) | Status of the given resource | [optional] 
 **FirstName** | Pointer to **string** | First name. | [optional] 
 **LastName** | Pointer to **string** | Last name. | [optional] 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewContactPayload
 
-`func NewContactPayload() *ContactPayload`
+`func NewContactPayload(email string, ) *ContactPayload`
 
 NewContactPayload instantiates a new ContactPayload object
 This constructor will assign default values to properties that have it defined,
@@ -49,11 +49,6 @@ and a boolean to check if the value has been set.
 
 SetEmail sets Email field to given value.
 
-### HasEmail
-
-`func (o *ContactPayload) HasEmail() bool`
-
-HasEmail returns a boolean if a field has been set.
 
 ### GetStatus
 

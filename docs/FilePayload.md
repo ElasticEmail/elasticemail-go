@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BinaryContent** | Pointer to **string** | Content of the file sent as binary data | [optional] 
+**BinaryContent** | **string** | Content of the file sent as binary data | 
 **Name** | Pointer to **string** | Filename | [optional] 
 **ContentType** | Pointer to **string** | Type of file&#39;s content (e.g. image/jpeg) | [optional] 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewFilePayload
 
-`func NewFilePayload() *FilePayload`
+`func NewFilePayload(binaryContent string, ) *FilePayload`
 
 NewFilePayload instantiates a new FilePayload object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetBinaryContent sets BinaryContent field to given value.
 
-### HasBinaryContent
-
-`func (o *FilePayload) HasBinaryContent() bool`
-
-HasBinaryContent returns a boolean if a field has been set.
 
 ### GetName
 

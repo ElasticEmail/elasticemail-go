@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Filter** | Pointer to **string** | Filter of the inbound data | [optional] 
-**Name** | Pointer to **string** | Name of this route | [optional] 
-**FilterType** | Pointer to [**InboundRouteFilterType**](InboundRouteFilterType.md) | Type of the filter | [optional] 
-**ActionType** | Pointer to [**InboundRouteActionType**](InboundRouteActionType.md) | Type of action to take | [optional] 
+**Filter** | **string** | Filter of the inbound data | 
+**Name** | **string** | Name of this route | 
+**FilterType** | [**InboundRouteFilterType**](InboundRouteFilterType.md) | Type of the filter | 
+**ActionType** | [**InboundRouteActionType**](InboundRouteActionType.md) | Type of action to take | 
 **EmailAddress** | Pointer to **string** | Email to forward the inbound to | [optional] 
 **HttpAddress** | Pointer to **string** | Address to notify about the inbound | [optional] 
 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewInboundPayload
 
-`func NewInboundPayload() *InboundPayload`
+`func NewInboundPayload(filter string, name string, filterType InboundRouteFilterType, actionType InboundRouteActionType, ) *InboundPayload`
 
 NewInboundPayload instantiates a new InboundPayload object
 This constructor will assign default values to properties that have it defined,
@@ -49,11 +49,6 @@ and a boolean to check if the value has been set.
 
 SetFilter sets Filter field to given value.
 
-### HasFilter
-
-`func (o *InboundPayload) HasFilter() bool`
-
-HasFilter returns a boolean if a field has been set.
 
 ### GetName
 
@@ -74,11 +69,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *InboundPayload) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetFilterType
 
@@ -99,11 +89,6 @@ and a boolean to check if the value has been set.
 
 SetFilterType sets FilterType field to given value.
 
-### HasFilterType
-
-`func (o *InboundPayload) HasFilterType() bool`
-
-HasFilterType returns a boolean if a field has been set.
 
 ### GetActionType
 
@@ -124,11 +109,6 @@ and a boolean to check if the value has been set.
 
 SetActionType sets ActionType field to given value.
 
-### HasActionType
-
-`func (o *InboundPayload) HasActionType() bool`
-
-HasActionType returns a boolean if a field has been set.
 
 ### GetEmailAddress
 

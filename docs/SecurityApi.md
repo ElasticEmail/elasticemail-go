@@ -181,7 +181,7 @@ import (
 
 func main() {
     name := "name_example" // string | Name of the ApiKey
-    apiKeyPayload := *openapiclient.NewApiKeyPayload() // ApiKeyPayload | 
+    apiKeyPayload := *openapiclient.NewApiKeyPayload("Name_example", []openapiclient.AccessLevel{openapiclient.AccessLevel("None")}) // ApiKeyPayload | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -318,7 +318,7 @@ import (
 )
 
 func main() {
-    apiKeyPayload := *openapiclient.NewApiKeyPayload() // ApiKeyPayload | 
+    apiKeyPayload := *openapiclient.NewApiKeyPayload("Name_example", []openapiclient.AccessLevel{openapiclient.AccessLevel("None")}) // ApiKeyPayload | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -527,7 +527,7 @@ import (
 
 func main() {
     name := "name_example" // string | Name of the SMTP Credential
-    smtpCredentialsPayload := *openapiclient.NewSmtpCredentialsPayload() // SmtpCredentialsPayload | 
+    smtpCredentialsPayload := *openapiclient.NewSmtpCredentialsPayload("Name_example") // SmtpCredentialsPayload | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -664,7 +664,7 @@ import (
 )
 
 func main() {
-    smtpCredentialsPayload := *openapiclient.NewSmtpCredentialsPayload() // SmtpCredentialsPayload | 
+    smtpCredentialsPayload := *openapiclient.NewSmtpCredentialsPayload("Name_example") // SmtpCredentialsPayload | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

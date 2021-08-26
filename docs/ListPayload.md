@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ListName** | Pointer to **string** | Name of your list. | [optional] 
+**ListName** | **string** | Name of your list. | 
 **AllowUnsubscribe** | Pointer to **bool** | True: Allow unsubscribing from this list. Otherwise, false | [optional] 
-**Emails** | Pointer to **[]string** | Comma delimited list of existing contact emails that should be added to this list | [optional] 
+**Emails** | Pointer to **[]string** | Comma delimited list of existing contact emails that should be added to this list. Leave empty for all contacts | [optional] 
 
 ## Methods
 
 ### NewListPayload
 
-`func NewListPayload() *ListPayload`
+`func NewListPayload(listName string, ) *ListPayload`
 
 NewListPayload instantiates a new ListPayload object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetListName sets ListName field to given value.
 
-### HasListName
-
-`func (o *ListPayload) HasListName() bool`
-
-HasListName returns a boolean if a field has been set.
 
 ### GetAllowUnsubscribe
 

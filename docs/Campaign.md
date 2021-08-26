@@ -5,16 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Content** | Pointer to [**[]CampaignTemplate**](CampaignTemplate.md) | Campaign&#39;s email content. Provide multiple items to send an A/X Split Campaign | [optional] 
-**Name** | Pointer to **string** | Campaign name | [optional] 
+**Name** | **string** | Campaign name | 
 **Status** | Pointer to [**CampaignStatus**](CampaignStatus.md) | Campaign status | [optional] 
-**Recipients** | Pointer to [**CampaignRecipient**](CampaignRecipient.md) | Recipients this campaign should be sent to | [optional] 
+**Recipients** | [**CampaignRecipient**](CampaignRecipient.md) | Recipients this campaign should be sent to | 
 **Options** | Pointer to [**CampaignOptions**](CampaignOptions.md) | Campaign sending options | [optional] 
 
 ## Methods
 
 ### NewCampaign
 
-`func NewCampaign() *Campaign`
+`func NewCampaign(name string, recipients CampaignRecipient, ) *Campaign`
 
 NewCampaign instantiates a new Campaign object
 This constructor will assign default values to properties that have it defined,
@@ -73,11 +73,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *Campaign) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetStatus
 
@@ -123,11 +118,6 @@ and a boolean to check if the value has been set.
 
 SetRecipients sets Recipients field to given value.
 
-### HasRecipients
-
-`func (o *Campaign) HasRecipients() bool`
-
-HasRecipients returns a boolean if a field has been set.
 
 ### GetOptions
 

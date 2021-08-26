@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BinaryContent** | Pointer to **string** | File&#39;s content as byte array (or a Base64 string) | [optional] 
+**BinaryContent** | **string** | File&#39;s content as byte array (or a Base64 string) | 
 **Name** | Pointer to **string** | Display name of the file | [optional] 
 **ContentType** | Pointer to **string** | MIME content type | [optional] 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewMessageAttachment
 
-`func NewMessageAttachment() *MessageAttachment`
+`func NewMessageAttachment(binaryContent string, ) *MessageAttachment`
 
 NewMessageAttachment instantiates a new MessageAttachment object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetBinaryContent sets BinaryContent field to given value.
 
-### HasBinaryContent
-
-`func (o *MessageAttachment) HasBinaryContent() bool`
-
-HasBinaryContent returns a boolean if a field has been set.
 
 ### GetName
 

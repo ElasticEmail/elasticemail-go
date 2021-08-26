@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Recipients** | Pointer to [**[]EmailRecipient**](EmailRecipient.md) | List of recipients (visible to others) | [optional] 
+**Recipients** | [**[]EmailRecipient**](EmailRecipient.md) | List of recipients (visible to others) | 
 **Content** | Pointer to [**EmailContent**](EmailContent.md) | Proper e-mail content | [optional] 
 **Options** | Pointer to [**Options**](Options.md) | E-mail configuration | [optional] 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewEmailMessageData
 
-`func NewEmailMessageData() *EmailMessageData`
+`func NewEmailMessageData(recipients []EmailRecipient, ) *EmailMessageData`
 
 NewEmailMessageData instantiates a new EmailMessageData object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetRecipients sets Recipients field to given value.
 
-### HasRecipients
-
-`func (o *EmailMessageData) HasRecipients() bool`
-
-HasRecipients returns a boolean if a field has been set.
 
 ### GetContent
 

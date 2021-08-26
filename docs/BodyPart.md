@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ContentType** | Pointer to [**BodyContentType**](BodyContentType.md) | Type of the body part | [optional] 
+**ContentType** | [**BodyContentType**](BodyContentType.md) | Type of the body part | 
 **Content** | Pointer to **string** | Actual content of the body part | [optional] 
 **Charset** | Pointer to **string** | Text value of charset encoding for example: iso-8859-1, windows-1251, utf-8, us-ascii, windows-1250 and more… | [optional] 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewBodyPart
 
-`func NewBodyPart() *BodyPart`
+`func NewBodyPart(contentType BodyContentType, ) *BodyPart`
 
 NewBodyPart instantiates a new BodyPart object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetContentType sets ContentType field to given value.
 
-### HasContentType
-
-`func (o *BodyPart) HasContentType() bool`
-
-HasContentType returns a boolean if a field has been set.
 
 ### GetContent
 

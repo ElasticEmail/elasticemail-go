@@ -172,7 +172,7 @@ import (
 
 func main() {
     name := "My Segment 1" // string | Name of your segment.
-    segmentPayload := *openapiclient.NewSegmentPayload() // SegmentPayload | 
+    segmentPayload := *openapiclient.NewSegmentPayload("Name_example", "Rule_example") // SegmentPayload | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -311,7 +311,7 @@ import (
 )
 
 func main() {
-    segmentPayload := *openapiclient.NewSegmentPayload() // SegmentPayload | 
+    segmentPayload := *openapiclient.NewSegmentPayload("Name_example", "Rule_example") // SegmentPayload | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

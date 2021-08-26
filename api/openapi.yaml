@@ -5,8 +5,9 @@ info:
   description: "This API is based on the REST API architecture, allowing the user\
     \ to easily manage their data with this resource-based approach.\r\n\r\nEvery\
     \ API call is established on which specific request type (GET, POST, PUT, DELETE)\
-    \ will be used.\r\n\r\nTo start using this API, you will need your Access Token\
-    \ (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\"\
+    \ will be used.\r\n\r\nThe API has a limit of 20 concurrent connections and a\
+    \ hard timeout of 600 seconds per request.\r\n\r\nTo start using this API, you\
+    \ will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\"\
     >here</a>). Remember to keep it safe. Required access levels are listed in the\
     \ given request’s description.\r\n\r\nThis is the documentation for REST API.\
     \ If you’d like to read our legacy documentation regarding Web API v2 click <a\
@@ -465,6 +466,7 @@ paths:
         required: false
         schema:
           description: array
+          example: mail@contact.com,mail1@contact.com,mail2@contact.com
           items:
             format: string
             type: string
@@ -3295,6 +3297,7 @@ components:
       - ViewEmailVerifications
       - ViewMarketing
       - ViewEmailApi
+      - ViewInbound
       type: string
     AccountStatusEnum:
       default: Disabled
@@ -3386,6 +3389,9 @@ components:
           description: Email of the subaccount for which this ApiKey should be created
           format: string
           type: string
+      required:
+      - AccessLevel
+      - Name
       type: object
     BodyContentType:
       default: HTML
@@ -3417,6 +3423,8 @@ components:
             utf-8, us-ascii, windows-1250 and more…'
           format: string
           type: string
+      required:
+      - ContentType
       type: object
     Campaign:
       example:
@@ -3428,18 +3436,14 @@ components:
           Poolname: My Custom Pool
           TemplateName: Template01
           From: John Doe <email@domain.com>
-          AttachFiles:
-          - AttachFiles
-          - AttachFiles
+          AttachFiles: '[ "preuploaded.jpg" ]'
           Subject: Hello!
           Utm: ""
         - ReplyTo: John Doe <email@domain.com>
           Poolname: My Custom Pool
           TemplateName: Template01
           From: John Doe <email@domain.com>
-          AttachFiles:
-          - AttachFiles
-          - AttachFiles
+          AttachFiles: '[ "preuploaded.jpg" ]'
           Subject: Hello!
           Utm: ""
         Name: Name
@@ -3466,6 +3470,9 @@ components:
           allOf:
           - $ref: '#/components/schemas/CampaignOptions'
           description: Campaign sending options
+      required:
+      - Name
+      - Recipients
       type: object
     CampaignOptions:
       description: Different send options for a Campaign
@@ -3535,9 +3542,7 @@ components:
         Poolname: My Custom Pool
         TemplateName: Template01
         From: John Doe <email@domain.com>
-        AttachFiles:
-        - AttachFiles
-        - AttachFiles
+        AttachFiles: '[ "preuploaded.jpg" ]'
         Subject: Hello!
         Utm: ""
       properties:
@@ -3570,6 +3575,7 @@ components:
         AttachFiles:
           description: Names of previously uploaded files that should be sent as downloadable
             attachments
+          example: '[ "preuploaded.jpg" ]'
           items:
             format: string
             type: string
@@ -3935,6 +3941,8 @@ components:
           type: object
         Consent:
           $ref: '#/components/schemas/ConsentData'
+      required:
+      - Email
       type: object
     ContactSource:
       default: DeliveryApi
@@ -4061,6 +4069,7 @@ components:
         AttachFiles:
           description: Names of previously uploaded files that should be sent as downloadable
             attachments
+          example: '[ "preuploaded.jpg" ]'
           items:
             format: string
             type: string
@@ -4128,6 +4137,8 @@ components:
           allOf:
           - $ref: '#/components/schemas/Options'
           description: E-mail configuration
+      required:
+      - Recipients
       type: object
     EmailRecipient:
       description: List of recipients (visible to others)
@@ -4151,6 +4162,8 @@ components:
             city: New York
             age: "34"
           type: object
+      required:
+      - Email
       type: object
     EmailSend:
       example:
@@ -4172,17 +4185,17 @@ components:
       description: Provide either rule or a list of emails, not both.
       example:
         Rule: Rule
-        Emails:
-        - Emails
-        - Emails
+        Emails: '[ "john.doe@sample.com" ]'
       properties:
         Rule:
-          description: SQL-like rule. Sending 'All' as a value loads all resources
-            of the given type.
+          description: 'SQL-like rule. Sending ''All'' as a value loads all resources
+            of the given type. Help for building a segment rule can be found here:
+            https://help.elasticemail.com/en/articles/5162182-segment-rules'
           format: string
           type: string
         Emails:
           description: Comma delimited list of contact emails
+          example: '[ "john.doe@sample.com" ]'
           items:
             format: string
             type: string
@@ -4262,6 +4275,8 @@ components:
           allOf:
           - $ref: '#/components/schemas/Options'
           description: E-mail configuration
+      required:
+      - Recipients
       type: object
     EmailValidationResult:
       example:
@@ -4453,6 +4468,8 @@ components:
           description: Type of file's content (e.g. image/jpeg)
           format: string
           type: string
+      required:
+      - BinaryContent
       type: object
     FileUploadResult:
       properties:
@@ -4498,6 +4515,11 @@ components:
           description: Address to notify about the inbound
           format: string
           type: string
+      required:
+      - ActionType
+      - Filter
+      - FilterType
+      - Name
       type: object
     InboundRoute:
       example:
@@ -4600,11 +4622,13 @@ components:
           type: boolean
         Emails:
           description: Comma delimited list of existing contact emails that should
-            be added to this list
+            be added to this list. Leave empty for all contacts
           items:
             format: string
             type: string
           type: array
+      required:
+      - ListName
       type: object
     ListUpdatePayload:
       example:
@@ -4737,6 +4761,8 @@ components:
           allOf:
           - $ref: '#/components/schemas/Options'
           description: E-mail configuration
+      required:
+      - MergeFile
       type: object
     MessageAttachment:
       properties:
@@ -4752,6 +4778,8 @@ components:
           description: MIME content type
           format: string
           type: string
+      required:
+      - BinaryContent
       type: object
     MessageCategory:
       default: Unknown
@@ -5015,6 +5043,9 @@ components:
             Help for building a segment rule can be found here: https://help.elasticemail.com/en/articles/5162182-segment-rules'
           format: string
           type: string
+      required:
+      - Name
+      - Rule
       type: object
     SmtpCredentials:
       description: SMTP Credentials info
@@ -5088,6 +5119,8 @@ components:
             be created
           format: string
           type: string
+      required:
+      - Name
       type: object
     SortOrderItem:
       description: Change the ordering of this inbound route for when matching the
@@ -5097,12 +5130,16 @@ components:
         SortOrder: 0
       properties:
         PublicInboundId:
+          description: ID of the route to change the order of
           format: guid
           type: string
         SortOrder:
           description: 1 - route will be used first
           format: int32
           type: integer
+      required:
+      - PublicInboundId
+      - SortOrder
       type: object
     SplitOptimizationType:
       default: Opens
@@ -5139,6 +5176,8 @@ components:
           description: Note to append to this credits change, for history.
           format: string
           type: string
+      required:
+      - Credits
       type: object
     SubaccountEmailSettings:
       description: Settings related to sending emails
@@ -5303,6 +5342,9 @@ components:
           allOf:
           - $ref: '#/components/schemas/SubaccountSettingsInfoPayload'
           description: SubAccount settings
+      required:
+      - Email
+      - Password
       type: object
     SubaccountSettingsInfo:
       description: SubAccount settings
@@ -5424,6 +5466,8 @@ components:
           allOf:
           - $ref: '#/components/schemas/TemplateScope'
           description: Visibility of a template
+      required:
+      - Name
       type: object
     TemplateScope:
       default: Personal
@@ -5460,6 +5504,8 @@ components:
             format: string
             type: string
           type: array
+      required:
+      - To
       type: object
     Utm:
       description: Utm marketing data to be attached to every link in this e-mail.

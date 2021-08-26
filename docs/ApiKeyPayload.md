@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | Name of the ApiKey for ease of reference. | [optional] 
-**AccessLevel** | Pointer to [**[]AccessLevel**](AccessLevel.md) | Access level or permission to be assigned to this ApiKey. | [optional] 
+**Name** | **string** | Name of the ApiKey for ease of reference. | 
+**AccessLevel** | [**[]AccessLevel**](AccessLevel.md) | Access level or permission to be assigned to this ApiKey. | 
 **Expires** | Pointer to **NullableTime** | Date this ApiKey expires. | [optional] 
 **RestrictAccessToIPRange** | Pointer to **[]string** | Which IPs can use this ApiKey | [optional] 
 **Subaccount** | Pointer to **string** | Email of the subaccount for which this ApiKey should be created | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewApiKeyPayload
 
-`func NewApiKeyPayload() *ApiKeyPayload`
+`func NewApiKeyPayload(name string, accessLevel []AccessLevel, ) *ApiKeyPayload`
 
 NewApiKeyPayload instantiates a new ApiKeyPayload object
 This constructor will assign default values to properties that have it defined,
@@ -48,11 +48,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *ApiKeyPayload) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetAccessLevel
 
@@ -73,11 +68,6 @@ and a boolean to check if the value has been set.
 
 SetAccessLevel sets AccessLevel field to given value.
 
-### HasAccessLevel
-
-`func (o *ApiKeyPayload) HasAccessLevel() bool`
-
-HasAccessLevel returns a boolean if a field has been set.
 
 ### GetExpires
 

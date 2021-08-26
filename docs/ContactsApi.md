@@ -666,7 +666,7 @@ import (
 )
 
 func main() {
-    contactPayload := []openapiclient.ContactPayload{*openapiclient.NewContactPayload()} // []ContactPayload | 
+    contactPayload := []openapiclient.ContactPayload{*openapiclient.NewContactPayload("mail@example.com")} // []ContactPayload | 
     listnames := []string{"Inner_example"} // []string | Names of lists to which the uploaded contacts should be added to (optional)
 
     configuration := openapiclient.NewConfiguration()

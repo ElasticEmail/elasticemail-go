@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | Segment name | [optional] 
-**Rule** | Pointer to **string** | SQL-like rule to determine which Contacts belong to this Segment. Help for building a segment rule can be found here: https://help.elasticemail.com/en/articles/5162182-segment-rules | [optional] 
+**Name** | **string** | Segment name | 
+**Rule** | **string** | SQL-like rule to determine which Contacts belong to this Segment. Help for building a segment rule can be found here: https://help.elasticemail.com/en/articles/5162182-segment-rules | 
 
 ## Methods
 
 ### NewSegmentPayload
 
-`func NewSegmentPayload() *SegmentPayload`
+`func NewSegmentPayload(name string, rule string, ) *SegmentPayload`
 
 NewSegmentPayload instantiates a new SegmentPayload object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *SegmentPayload) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetRule
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetRule sets Rule field to given value.
 
-### HasRule
-
-`func (o *SegmentPayload) HasRule() bool`
-
-HasRule returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
