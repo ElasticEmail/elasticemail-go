@@ -25,7 +25,8 @@ const (
 	CLICKS SplitOptimizationType = "Clicks"
 )
 
-var allowedSplitOptimizationTypeEnumValues = []SplitOptimizationType{
+// All allowed values of SplitOptimizationType enum
+var AllowedSplitOptimizationTypeEnumValues = []SplitOptimizationType{
 	"Opens",
 	"Clicks",
 }
@@ -37,7 +38,7 @@ func (v *SplitOptimizationType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := SplitOptimizationType(value)
-	for _, existing := range allowedSplitOptimizationTypeEnumValues {
+	for _, existing := range AllowedSplitOptimizationTypeEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -54,13 +55,13 @@ func NewSplitOptimizationTypeFromValue(v string) (*SplitOptimizationType, error)
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for SplitOptimizationType: valid values are %v", v, allowedSplitOptimizationTypeEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for SplitOptimizationType: valid values are %v", v, AllowedSplitOptimizationTypeEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v SplitOptimizationType) IsValid() bool {
-	for _, existing := range allowedSplitOptimizationTypeEnumValues {
+	for _, existing := range AllowedSplitOptimizationTypeEnumValues {
 		if existing == v {
 			return true
 		}

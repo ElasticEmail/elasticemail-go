@@ -17,11 +17,8 @@ import (
 
 // MergeEmailPayload struct for MergeEmailPayload
 type MergeEmailPayload struct {
-	// CSV file containing recipients with optional merge fields
 	MergeFile MessageAttachment `json:"MergeFile"`
-	// Proper e-mail content
 	Content *EmailContent `json:"Content,omitempty"`
-	// E-mail configuration
 	Options *Options `json:"Options,omitempty"`
 }
 

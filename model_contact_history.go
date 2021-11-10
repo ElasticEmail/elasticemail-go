@@ -18,7 +18,6 @@ import (
 
 // ContactHistory struct for ContactHistory
 type ContactHistory struct {
-	// Type of event occured on this Contact.
 	EventType *ContactHistEventType `json:"EventType,omitempty"`
 	// Formatted date of event.
 	EventDate *time.Time `json:"EventDate,omitempty"`
@@ -40,6 +39,8 @@ type ContactHistory struct {
 // will change when the set of required properties is changed
 func NewContactHistory() *ContactHistory {
 	this := ContactHistory{}
+	var eventType ContactHistEventType = OPENED
+	this.EventType = &eventType
 	return &this
 }
 
@@ -48,6 +49,8 @@ func NewContactHistory() *ContactHistory {
 // but it doesn't guarantee that properties required by API are set
 func NewContactHistoryWithDefaults() *ContactHistory {
 	this := ContactHistory{}
+	var eventType ContactHistEventType = OPENED
+	this.EventType = &eventType
 	return &this
 }
 

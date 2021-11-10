@@ -17,7 +17,6 @@ import (
 
 // SubaccountSettingsInfoPayload SubAccount settings
 type SubaccountSettingsInfoPayload struct {
-	// Settings related to sending emails
 	Email *SubaccountEmailSettingsPayload `json:"Email,omitempty"`
 }
 

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MergeFile** | [**MessageAttachment**](MessageAttachment.md) | CSV file containing recipients with optional merge fields | 
-**Content** | Pointer to [**EmailContent**](EmailContent.md) | Proper e-mail content | [optional] 
-**Options** | Pointer to [**Options**](Options.md) | E-mail configuration | [optional] 
+**MergeFile** | [**MessageAttachment**](MessageAttachment.md) |  | 
+**Content** | Pointer to [**EmailContent**](EmailContent.md) |  | [optional] 
+**Options** | Pointer to [**Options**](Options.md) |  | [optional] 
 
 ## Methods
 

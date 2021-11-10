@@ -17,7 +17,6 @@ import (
 
 // SplitOptions Optional A/X split campaign options
 type SplitOptions struct {
-	// Type of results by which to determine the winner template (content)
 	OptimizeFor *SplitOptimizationType `json:"OptimizeFor,omitempty"`
 	// For how long should the results be measured until determining the winner template (content)
 	OptimizePeriodMinutes *int32 `json:"OptimizePeriodMinutes,omitempty"`
@@ -29,6 +28,8 @@ type SplitOptions struct {
 // will change when the set of required properties is changed
 func NewSplitOptions() *SplitOptions {
 	this := SplitOptions{}
+	var optimizeFor SplitOptimizationType = OPENS
+	this.OptimizeFor = &optimizeFor
 	return &this
 }
 
@@ -37,6 +38,8 @@ func NewSplitOptions() *SplitOptions {
 // but it doesn't guarantee that properties required by API are set
 func NewSplitOptionsWithDefaults() *SplitOptions {
 	this := SplitOptions{}
+	var optimizeFor SplitOptimizationType = OPENS
+	this.OptimizeFor = &optimizeFor
 	return &this
 }
 

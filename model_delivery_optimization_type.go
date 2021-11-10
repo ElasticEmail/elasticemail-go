@@ -26,7 +26,8 @@ const (
 	BY_OPEN_TIME DeliveryOptimizationType = "ByOpenTime"
 )
 
-var allowedDeliveryOptimizationTypeEnumValues = []DeliveryOptimizationType{
+// All allowed values of DeliveryOptimizationType enum
+var AllowedDeliveryOptimizationTypeEnumValues = []DeliveryOptimizationType{
 	"None",
 	"ToEngagedFirst",
 	"ByOpenTime",
@@ -39,7 +40,7 @@ func (v *DeliveryOptimizationType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := DeliveryOptimizationType(value)
-	for _, existing := range allowedDeliveryOptimizationTypeEnumValues {
+	for _, existing := range AllowedDeliveryOptimizationTypeEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -56,13 +57,13 @@ func NewDeliveryOptimizationTypeFromValue(v string) (*DeliveryOptimizationType, 
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for DeliveryOptimizationType: valid values are %v", v, allowedDeliveryOptimizationTypeEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for DeliveryOptimizationType: valid values are %v", v, AllowedDeliveryOptimizationTypeEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v DeliveryOptimizationType) IsValid() bool {
-	for _, existing := range allowedDeliveryOptimizationTypeEnumValues {
+	for _, existing := range AllowedDeliveryOptimizationTypeEnumValues {
 		if existing == v {
 			return true
 		}

@@ -21,11 +21,8 @@ type Campaign struct {
 	Content *[]CampaignTemplate `json:"Content,omitempty"`
 	// Campaign name
 	Name string `json:"Name"`
-	// Campaign status
 	Status *CampaignStatus `json:"Status,omitempty"`
-	// Recipients this campaign should be sent to
 	Recipients CampaignRecipient `json:"Recipients"`
-	// Campaign sending options
 	Options *CampaignOptions `json:"Options,omitempty"`
 }
 
@@ -36,6 +33,8 @@ type Campaign struct {
 func NewCampaign(name string, recipients CampaignRecipient) *Campaign {
 	this := Campaign{}
 	this.Name = name
+	var status CampaignStatus = DELETED
+	this.Status = &status
 	this.Recipients = recipients
 	return &this
 }
@@ -45,6 +44,8 @@ func NewCampaign(name string, recipients CampaignRecipient) *Campaign {
 // but it doesn't guarantee that properties required by API are set
 func NewCampaignWithDefaults() *Campaign {
 	this := Campaign{}
+	var status CampaignStatus = DELETED
+	this.Status = &status
 	return &this
 }
 

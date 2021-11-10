@@ -23,7 +23,6 @@ type Options struct {
 	PoolName *string `json:"PoolName,omitempty"`
 	// Name of selected channel.
 	ChannelName *string `json:"ChannelName,omitempty"`
-	// 0 for None, 1 for Raw7Bit, 2 for Raw8Bit, 3 for QuotedPrintable, 4 for Base64 (Default), 5 for Uue note that you can also provide the text version such as \"Raw7Bit\" for value 1. NOTE: Base64 or QuotedPrintable is recommended if you are validating your domain(s) with DKIM.
 	Encoding *EncodingType `json:"Encoding,omitempty"`
 	// Should the opens be tracked? If no value has been provided, Account's default setting will be used.
 	TrackOpens *bool `json:"TrackOpens,omitempty"`
@@ -37,6 +36,8 @@ type Options struct {
 // will change when the set of required properties is changed
 func NewOptions() *Options {
 	this := Options{}
+	var encoding EncodingType = USER_PROVIDED
+	this.Encoding = &encoding
 	return &this
 }
 
@@ -45,6 +46,8 @@ func NewOptions() *Options {
 // but it doesn't guarantee that properties required by API are set
 func NewOptionsWithDefaults() *Options {
 	this := Options{}
+	var encoding EncodingType = USER_PROVIDED
+	this.Encoding = &encoding
 	return &this
 }
 

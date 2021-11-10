@@ -5,16 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Email** | Pointer to **string** | Proper email address. | [optional] 
-**Status** | Pointer to [**ContactStatus**](ContactStatus.md) | Status of the given resource | [optional] 
+**Status** | Pointer to [**ContactStatus**](ContactStatus.md) |  | [optional] [default to TRANSACTIONAL]
 **FirstName** | Pointer to **string** | First name. | [optional] 
 **LastName** | Pointer to **string** | Last name. | [optional] 
 **CustomFields** | Pointer to **map[string]string** | A key-value collection of custom contact fields which can be used in the system. | [optional] 
 **Consent** | Pointer to [**ConsentData**](ConsentData.md) |  | [optional] 
-**Source** | Pointer to [**ContactSource**](ContactSource.md) | From where was this contact added | [optional] 
+**Source** | Pointer to [**ContactSource**](ContactSource.md) |  | [optional] [default to DELIVERY_API]
 **DateAdded** | Pointer to **time.Time** | Date of creation in YYYY-MM-DDThh:ii:ss format | [optional] 
 **DateUpdated** | Pointer to **NullableTime** | Last change date | [optional] 
 **StatusChangeDate** | Pointer to **NullableTime** | Date of last status change. | [optional] 
-**Activity** | Pointer to [**ContactActivity**](ContactActivity.md) | Contact&#39;s email statistics and activity | [optional] 
+**Activity** | Pointer to [**ContactActivity**](ContactActivity.md) |  | [optional] 
 
 ## Methods
 

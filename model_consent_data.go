@@ -22,7 +22,6 @@ type ConsentData struct {
 	ConsentIP *string `json:"ConsentIP,omitempty"`
 	// Date of consent to send this contact(s) your email. If not provided current date is used for consent.
 	ConsentDate NullableTime `json:"ConsentDate,omitempty"`
-	// Does the contant consent to have their tracking data stored.
 	ConsentTracking *ConsentTracking `json:"ConsentTracking,omitempty"`
 }
 
@@ -32,6 +31,8 @@ type ConsentData struct {
 // will change when the set of required properties is changed
 func NewConsentData() *ConsentData {
 	this := ConsentData{}
+	var consentTracking ConsentTracking = UNKNOWN
+	this.ConsentTracking = &consentTracking
 	return &this
 }
 
@@ -40,6 +41,8 @@ func NewConsentData() *ConsentData {
 // but it doesn't guarantee that properties required by API are set
 func NewConsentDataWithDefaults() *ConsentData {
 	this := ConsentData{}
+	var consentTracking ConsentTracking = UNKNOWN
+	this.ConsentTracking = &consentTracking
 	return &this
 }
 

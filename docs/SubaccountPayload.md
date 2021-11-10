@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Email** | **string** | Proper email address. | 
 **Password** | **string** | Current password. | 
 **SendActivation** | Pointer to **bool** | True, if you want to send activation email to this Account to confirm the creation of a new SubAccount. Otherwise, false (SubAccount will immediately be Active). | [optional] 
-**Settings** | Pointer to [**SubaccountSettingsInfoPayload**](SubaccountSettingsInfoPayload.md) | SubAccount settings | [optional] 
+**Settings** | Pointer to [**SubaccountSettingsInfoPayload**](SubaccountSettingsInfoPayload.md) |  | [optional] 
 
 ## Methods
 

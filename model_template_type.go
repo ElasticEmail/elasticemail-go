@@ -26,7 +26,8 @@ const (
 	LANDING_PAGE_EDITOR TemplateType = "LandingPageEditor"
 )
 
-var allowedTemplateTypeEnumValues = []TemplateType{
+// All allowed values of TemplateType enum
+var AllowedTemplateTypeEnumValues = []TemplateType{
 	"RawHTML",
 	"DragDropEditor",
 	"LandingPageEditor",
@@ -39,7 +40,7 @@ func (v *TemplateType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := TemplateType(value)
-	for _, existing := range allowedTemplateTypeEnumValues {
+	for _, existing := range AllowedTemplateTypeEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -56,13 +57,13 @@ func NewTemplateTypeFromValue(v string) (*TemplateType, error) {
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for TemplateType: valid values are %v", v, allowedTemplateTypeEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for TemplateType: valid values are %v", v, AllowedTemplateTypeEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v TemplateType) IsValid() bool {
-	for _, existing := range allowedTemplateTypeEnumValues {
+	for _, existing := range AllowedTemplateTypeEnumValues {
 		if existing == v {
 			return true
 		}

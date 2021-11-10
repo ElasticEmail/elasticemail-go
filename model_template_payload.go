@@ -23,7 +23,6 @@ type TemplatePayload struct {
 	Subject *string `json:"Subject,omitempty"`
 	// Email content of this template
 	Body *[]BodyPart `json:"Body,omitempty"`
-	// Visibility of a template
 	TemplateScope *TemplateScope `json:"TemplateScope,omitempty"`
 }
 
@@ -34,6 +33,8 @@ type TemplatePayload struct {
 func NewTemplatePayload(name string) *TemplatePayload {
 	this := TemplatePayload{}
 	this.Name = name
+	var templateScope TemplateScope = PERSONAL
+	this.TemplateScope = &templateScope
 	return &this
 }
 
@@ -42,6 +43,8 @@ func NewTemplatePayload(name string) *TemplatePayload {
 // but it doesn't guarantee that properties required by API are set
 func NewTemplatePayloadWithDefaults() *TemplatePayload {
 	this := TemplatePayload{}
+	var templateScope TemplateScope = PERSONAL
+	this.TemplateScope = &templateScope
 	return &this
 }
 

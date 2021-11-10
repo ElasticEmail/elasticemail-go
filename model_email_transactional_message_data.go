@@ -17,11 +17,8 @@ import (
 
 // EmailTransactionalMessageData Email data
 type EmailTransactionalMessageData struct {
-	// List of transactional recipients
 	Recipients TransactionalRecipient `json:"Recipients"`
-	// Proper e-mail content
 	Content *EmailContent `json:"Content,omitempty"`
-	// E-mail configuration
 	Options *Options `json:"Options,omitempty"`
 }
 

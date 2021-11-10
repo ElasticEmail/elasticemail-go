@@ -25,7 +25,8 @@ const (
 	ZIP CompressionFormat = "Zip"
 )
 
-var allowedCompressionFormatEnumValues = []CompressionFormat{
+// All allowed values of CompressionFormat enum
+var AllowedCompressionFormatEnumValues = []CompressionFormat{
 	"None",
 	"Zip",
 }
@@ -37,7 +38,7 @@ func (v *CompressionFormat) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := CompressionFormat(value)
-	for _, existing := range allowedCompressionFormatEnumValues {
+	for _, existing := range AllowedCompressionFormatEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -54,13 +55,13 @@ func NewCompressionFormatFromValue(v string) (*CompressionFormat, error) {
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for CompressionFormat: valid values are %v", v, allowedCompressionFormatEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for CompressionFormat: valid values are %v", v, AllowedCompressionFormatEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v CompressionFormat) IsValid() bool {
-	for _, existing := range allowedCompressionFormatEnumValues {
+	for _, existing := range AllowedCompressionFormatEnumValues {
 		if existing == v {
 			return true
 		}

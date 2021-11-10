@@ -23,7 +23,6 @@ type SubaccountPayload struct {
 	Password string `json:"Password"`
 	// True, if you want to send activation email to this Account to confirm the creation of a new SubAccount. Otherwise, false (SubAccount will immediately be Active).
 	SendActivation *bool `json:"SendActivation,omitempty"`
-	// SubAccount settings
 	Settings *SubaccountSettingsInfoPayload `json:"Settings,omitempty"`
 }
 

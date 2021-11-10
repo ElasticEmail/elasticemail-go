@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Preview** | Pointer to [**EmailView**](EmailView.md) | Email details | [optional] 
+**Preview** | Pointer to [**EmailView**](EmailView.md) |  | [optional] 
 **Attachments** | Pointer to [**[]FileInfo**](FileInfo.md) | Attachments sent with the email | [optional] 
-**Status** | Pointer to [**EmailStatus**](EmailStatus.md) | Status of the given resource | [optional] 
+**Status** | Pointer to [**EmailStatus**](EmailStatus.md) |  | [optional] 
 
 ## Methods
 

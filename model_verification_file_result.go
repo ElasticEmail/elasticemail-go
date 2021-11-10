@@ -22,9 +22,7 @@ type VerificationFileResult struct {
 	VerificationID *string `json:"VerificationID,omitempty"`
 	// Origin file name
 	Filename *string `json:"Filename,omitempty"`
-	// In what state does this verification result currently is
 	VerificationStatus *VerificationStatus `json:"VerificationStatus,omitempty"`
-	// How many emails were detected in the file for verification
 	FileUploadResult *FileUploadResult `json:"FileUploadResult,omitempty"`
 	// Date of creation in YYYY-MM-DDThh:ii:ss format
 	DateAdded *time.Time `json:"DateAdded,omitempty"`
@@ -38,6 +36,8 @@ type VerificationFileResult struct {
 // will change when the set of required properties is changed
 func NewVerificationFileResult() *VerificationFileResult {
 	this := VerificationFileResult{}
+	var verificationStatus VerificationStatus = PROCESSING
+	this.VerificationStatus = &verificationStatus
 	return &this
 }
 
@@ -46,6 +46,8 @@ func NewVerificationFileResult() *VerificationFileResult {
 // but it doesn't guarantee that properties required by API are set
 func NewVerificationFileResultWithDefaults() *VerificationFileResult {
 	this := VerificationFileResult{}
+	var verificationStatus VerificationStatus = PROCESSING
+	this.VerificationStatus = &verificationStatus
 	return &this
 }
 

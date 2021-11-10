@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EventType** | Pointer to [**ContactHistEventType**](ContactHistEventType.md) | Type of event occured on this Contact. | [optional] 
+**EventType** | Pointer to [**ContactHistEventType**](ContactHistEventType.md) |  | [optional] [default to OPENED]
 **EventDate** | Pointer to **time.Time** | Formatted date of event. | [optional] 
 **ChannelName** | Pointer to **string** | Name of channel this event occured on | [optional] 
 **TemplateName** | Pointer to **string** | Name of template this event occured on | [optional] 

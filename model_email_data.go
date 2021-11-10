@@ -17,11 +17,9 @@ import (
 
 // EmailData struct for EmailData
 type EmailData struct {
-	// Email details
 	Preview *EmailView `json:"Preview,omitempty"`
 	// Attachments sent with the email
 	Attachments *[]FileInfo `json:"Attachments,omitempty"`
-	// Status of the given resource
 	Status *EmailStatus `json:"Status,omitempty"`
 }
 

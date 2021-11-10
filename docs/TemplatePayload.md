@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Name** | **string** | Template name | 
 **Subject** | Pointer to **string** | Default subject of email. | [optional] 
 **Body** | Pointer to [**[]BodyPart**](BodyPart.md) | Email content of this template | [optional] 
-**TemplateScope** | Pointer to [**TemplateScope**](TemplateScope.md) | Visibility of a template | [optional] 
+**TemplateScope** | Pointer to [**TemplateScope**](TemplateScope.md) |  | [optional] [default to PERSONAL]
 
 ## Methods
 

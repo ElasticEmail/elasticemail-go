@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **VerificationID** | Pointer to **string** | Identifier of this verification result | [optional] 
 **Filename** | Pointer to **string** | Origin file name | [optional] 
-**VerificationStatus** | Pointer to [**VerificationStatus**](VerificationStatus.md) | In what state does this verification result currently is | [optional] 
-**FileUploadResult** | Pointer to [**FileUploadResult**](FileUploadResult.md) | How many emails were detected in the file for verification | [optional] 
+**VerificationStatus** | Pointer to [**VerificationStatus**](VerificationStatus.md) |  | [optional] [default to PROCESSING]
+**FileUploadResult** | Pointer to [**FileUploadResult**](FileUploadResult.md) |  | [optional] 
 **DateAdded** | Pointer to **time.Time** | Date of creation in YYYY-MM-DDThh:ii:ss format | [optional] 
 **Source** | Pointer to **string** | Origin file extension | [optional] 
 

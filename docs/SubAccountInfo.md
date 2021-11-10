@@ -6,12 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PublicAccountID** | Pointer to **string** | Public key for limited access to your Account such as contact/add so you can use it safely on public websites. | [optional] 
 **Email** | Pointer to **string** | Proper email address. | [optional] 
-**Settings** | Pointer to [**SubaccountSettingsInfo**](SubaccountSettingsInfo.md) | SubAccount settings | [optional] 
+**Settings** | Pointer to [**SubaccountSettingsInfo**](SubaccountSettingsInfo.md) |  | [optional] 
 **LastActivity** | Pointer to **time.Time** | Date of last activity on Account | [optional] 
 **EmailCredits** | Pointer to **int32** | Amount of email credits | [optional] 
 **TotalEmailsSent** | Pointer to **int64** | Amount of emails sent from this Account | [optional] 
 **Reputation** | Pointer to **float64** | Numeric reputation | [optional] 
-**Status** | Pointer to [**AccountStatusEnum**](AccountStatusEnum.md) | Account&#39;s current status. | [optional] 
+**Status** | Pointer to [**AccountStatusEnum**](AccountStatusEnum.md) |  | [optional] [default to DISABLED]
 **ContactsCount** | Pointer to **int32** | How many contacts this SubAccount has stored | [optional] 
 
 ## Methods

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ConsentIP** | Pointer to **string** | IP address of consent to send this contact(s) your email. If not provided your current public IP address is used for consent. | [optional] 
 **ConsentDate** | Pointer to **NullableTime** | Date of consent to send this contact(s) your email. If not provided current date is used for consent. | [optional] 
-**ConsentTracking** | Pointer to [**ConsentTracking**](ConsentTracking.md) | Does the contant consent to have their tracking data stored. | [optional] 
+**ConsentTracking** | Pointer to [**ConsentTracking**](ConsentTracking.md) |  | [optional] [default to UNKNOWN]
 
 ## Methods
 

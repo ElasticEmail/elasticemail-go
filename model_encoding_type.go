@@ -30,7 +30,8 @@ const (
 	UUE EncodingType = "Uue"
 )
 
-var allowedEncodingTypeEnumValues = []EncodingType{
+// All allowed values of EncodingType enum
+var AllowedEncodingTypeEnumValues = []EncodingType{
 	"UserProvided",
 	"None",
 	"Raw7bit",
@@ -47,7 +48,7 @@ func (v *EncodingType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := EncodingType(value)
-	for _, existing := range allowedEncodingTypeEnumValues {
+	for _, existing := range AllowedEncodingTypeEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -64,13 +65,13 @@ func NewEncodingTypeFromValue(v string) (*EncodingType, error) {
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for EncodingType: valid values are %v", v, allowedEncodingTypeEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for EncodingType: valid values are %v", v, AllowedEncodingTypeEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v EncodingType) IsValid() bool {
-	for _, existing := range allowedEncodingTypeEnumValues {
+	for _, existing := range AllowedEncodingTypeEnumValues {
 		if existing == v {
 			return true
 		}

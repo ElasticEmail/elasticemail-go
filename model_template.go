@@ -18,7 +18,6 @@ import (
 
 // Template Template info
 type Template struct {
-	// How the template should be edited
 	TemplateType *TemplateType `json:"TemplateType,omitempty"`
 	// Template name
 	Name *string `json:"Name,omitempty"`
@@ -28,7 +27,6 @@ type Template struct {
 	Subject *string `json:"Subject,omitempty"`
 	// Email content of this template
 	Body *[]BodyPart `json:"Body,omitempty"`
-	// Visibility of a template
 	TemplateScope *TemplateScope `json:"TemplateScope,omitempty"`
 }
 
@@ -38,6 +36,10 @@ type Template struct {
 // will change when the set of required properties is changed
 func NewTemplate() *Template {
 	this := Template{}
+	var templateType TemplateType = RAW_HTML
+	this.TemplateType = &templateType
+	var templateScope TemplateScope = PERSONAL
+	this.TemplateScope = &templateScope
 	return &this
 }
 
@@ -46,6 +48,10 @@ func NewTemplate() *Template {
 // but it doesn't guarantee that properties required by API are set
 func NewTemplateWithDefaults() *Template {
 	this := Template{}
+	var templateType TemplateType = RAW_HTML
+	this.TemplateType = &templateType
+	var templateScope TemplateScope = PERSONAL
+	this.TemplateScope = &templateScope
 	return &this
 }
 

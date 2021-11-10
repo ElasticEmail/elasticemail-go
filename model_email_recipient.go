@@ -15,7 +15,7 @@ import (
 	"encoding/json"
 )
 
-// EmailRecipient List of recipients (visible to others)
+// EmailRecipient List of recipients
 type EmailRecipient struct {
 	// Proper email address.
 	Email string `json:"Email"`

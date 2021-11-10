@@ -21,9 +21,7 @@ type InboundPayload struct {
 	Filter string `json:"Filter"`
 	// Name of this route
 	Name string `json:"Name"`
-	// Type of the filter
 	FilterType InboundRouteFilterType `json:"FilterType"`
-	// Type of action to take
 	ActionType InboundRouteActionType `json:"ActionType"`
 	// Email to forward the inbound to
 	EmailAddress *string `json:"EmailAddress,omitempty"`
@@ -49,6 +47,10 @@ func NewInboundPayload(filter string, name string, filterType InboundRouteFilter
 // but it doesn't guarantee that properties required by API are set
 func NewInboundPayloadWithDefaults() *InboundPayload {
 	this := InboundPayload{}
+	var filterType InboundRouteFilterType = EMAIL_ADDRESS
+	this.FilterType = filterType
+	var actionType InboundRouteActionType = FORWARD_TO_EMAIL
+	this.ActionType = actionType
 	return &this
 }
 

@@ -37,7 +37,8 @@ const (
 	DELETED ContactHistEventType = "Deleted"
 )
 
-var allowedContactHistEventTypeEnumValues = []ContactHistEventType{
+// All allowed values of ContactHistEventType enum
+var AllowedContactHistEventTypeEnumValues = []ContactHistEventType{
 	"Opened",
 	"Clicked",
 	"Bounced",
@@ -61,7 +62,7 @@ func (v *ContactHistEventType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := ContactHistEventType(value)
-	for _, existing := range allowedContactHistEventTypeEnumValues {
+	for _, existing := range AllowedContactHistEventTypeEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -78,13 +79,13 @@ func NewContactHistEventTypeFromValue(v string) (*ContactHistEventType, error) {
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for ContactHistEventType: valid values are %v", v, allowedContactHistEventTypeEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for ContactHistEventType: valid values are %v", v, AllowedContactHistEventTypeEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v ContactHistEventType) IsValid() bool {
-	for _, existing := range allowedContactHistEventTypeEnumValues {
+	for _, existing := range AllowedContactHistEventTypeEnumValues {
 		if existing == v {
 			return true
 		}

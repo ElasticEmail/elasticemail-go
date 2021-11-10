@@ -18,7 +18,6 @@ import (
 
 // CampaignOptions Different send options for a Campaign
 type CampaignOptions struct {
-	// How to order email delivery - by recipients' engagement score or by the time they open the most of the emails that were sent to them
 	DeliveryOptimization *DeliveryOptimizationType `json:"DeliveryOptimization,omitempty"`
 	// Should the opens be tracked? If no value has been provided, Account's default setting will be used.
 	TrackOpens NullableBool `json:"TrackOpens,omitempty"`
@@ -26,7 +25,6 @@ type CampaignOptions struct {
 	TrackClicks NullableBool `json:"TrackClicks,omitempty"`
 	// Date when this Campaign is scheduled to be sent on
 	ScheduleFor NullableTime `json:"ScheduleFor,omitempty"`
-	// Optional options for A/X split campaigns. Will be ignored if only one template content was provided
 	SplitOptions *SplitOptions `json:"SplitOptions,omitempty"`
 }
 
@@ -36,6 +34,8 @@ type CampaignOptions struct {
 // will change when the set of required properties is changed
 func NewCampaignOptions() *CampaignOptions {
 	this := CampaignOptions{}
+	var deliveryOptimization DeliveryOptimizationType = NONE
+	this.DeliveryOptimization = &deliveryOptimization
 	return &this
 }
 
@@ -44,6 +44,8 @@ func NewCampaignOptions() *CampaignOptions {
 // but it doesn't guarantee that properties required by API are set
 func NewCampaignOptionsWithDefaults() *CampaignOptions {
 	this := CampaignOptions{}
+	var deliveryOptimization DeliveryOptimizationType = NONE
+	this.DeliveryOptimization = &deliveryOptimization
 	return &this
 }
 

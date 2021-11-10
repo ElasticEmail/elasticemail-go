@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OptimizeFor** | Pointer to [**SplitOptimizationType**](SplitOptimizationType.md) | Type of results by which to determine the winner template (content) | [optional] 
+**OptimizeFor** | Pointer to [**SplitOptimizationType**](SplitOptimizationType.md) |  | [optional] [default to OPENS]
 **OptimizePeriodMinutes** | Pointer to **int32** | For how long should the results be measured until determining the winner template (content) | [optional] 
 
 ## Methods

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Recipients** | [**TransactionalRecipient**](TransactionalRecipient.md) | List of transactional recipients | 
-**Content** | Pointer to [**EmailContent**](EmailContent.md) | Proper e-mail content | [optional] 
-**Options** | Pointer to [**Options**](Options.md) | E-mail configuration | [optional] 
+**Recipients** | [**TransactionalRecipient**](TransactionalRecipient.md) |  | 
+**Content** | Pointer to [**EmailContent**](EmailContent.md) |  | [optional] 
+**Options** | Pointer to [**Options**](Options.md) |  | [optional] 
 
 ## Methods
 

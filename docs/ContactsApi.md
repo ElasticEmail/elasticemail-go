@@ -456,10 +456,10 @@ import (
 )
 
 func main() {
-    fileFormat := openapiclient.ExportFileFormats("Csv") // ExportFileFormats | Format of the exported file (optional)
+    fileFormat := openapiclient.ExportFileFormats("Csv") // ExportFileFormats | Format of the exported file (optional) (default to "Csv")
     rule := "Status%20=%20Engaged" // string | Query used for filtering. (optional)
     emails := []string{"Inner_example"} // []string | Comma delimited list of contact emails (optional)
-    compressionFormat := openapiclient.CompressionFormat("None") // CompressionFormat | FileResponse compression format. None or Zip. (optional)
+    compressionFormat := openapiclient.CompressionFormat("None") // CompressionFormat | FileResponse compression format. None or Zip. (optional) (default to "None")
     fileName := "filename.txt" // string | Name of your file including extension. (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -485,10 +485,10 @@ Other parameters are passed through a pointer to a apiContactsExportPostRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fileFormat** | [**ExportFileFormats**](ExportFileFormats.md) | Format of the exported file | 
+ **fileFormat** | [**ExportFileFormats**](ExportFileFormats.md) | Format of the exported file | [default to &quot;Csv&quot;]
  **rule** | **string** | Query used for filtering. | 
  **emails** | **[]string** | Comma delimited list of contact emails | 
- **compressionFormat** | [**CompressionFormat**](CompressionFormat.md) | FileResponse compression format. None or Zip. | 
+ **compressionFormat** | [**CompressionFormat**](CompressionFormat.md) | FileResponse compression format. None or Zip. | [default to &quot;None&quot;]
  **fileName** | **string** | Name of your file including extension. | 
 
 ### Return type

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Email** | **string** | Proper email address. | 
-**Status** | Pointer to [**ContactStatus**](ContactStatus.md) | Status of the given resource | [optional] 
+**Status** | Pointer to [**ContactStatus**](ContactStatus.md) |  | [optional] [default to TRANSACTIONAL]
 **FirstName** | Pointer to **string** | First name. | [optional] 
 **LastName** | Pointer to **string** | Last name. | [optional] 
 **CustomFields** | Pointer to **map[string]string** | A key-value collection of custom contact fields which can be used in the system. Only already existing custom fields will be saved. | [optional] 

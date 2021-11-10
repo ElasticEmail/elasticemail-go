@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Content** | Pointer to [**[]CampaignTemplate**](CampaignTemplate.md) | Campaign&#39;s email content. Provide multiple items to send an A/X Split Campaign | [optional] 
 **Name** | **string** | Campaign name | 
-**Status** | Pointer to [**CampaignStatus**](CampaignStatus.md) | Campaign status | [optional] 
-**Recipients** | [**CampaignRecipient**](CampaignRecipient.md) | Recipients this campaign should be sent to | 
-**Options** | Pointer to [**CampaignOptions**](CampaignOptions.md) | Campaign sending options | [optional] 
+**Status** | Pointer to [**CampaignStatus**](CampaignStatus.md) |  | [optional] [default to DELETED]
+**Recipients** | [**CampaignRecipient**](CampaignRecipient.md) |  | 
+**Options** | Pointer to [**CampaignOptions**](CampaignOptions.md) |  | [optional] 
 
 ## Methods
 

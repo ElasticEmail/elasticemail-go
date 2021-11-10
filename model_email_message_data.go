@@ -17,11 +17,9 @@ import (
 
 // EmailMessageData Email data
 type EmailMessageData struct {
-	// List of recipients (visible to others)
+	// List of recipients
 	Recipients []EmailRecipient `json:"Recipients"`
-	// Proper e-mail content
 	Content *EmailContent `json:"Content,omitempty"`
-	// E-mail configuration
 	Options *Options `json:"Options,omitempty"`
 }
 

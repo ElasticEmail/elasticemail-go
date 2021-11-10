@@ -27,7 +27,8 @@ const (
 	CSS BodyContentType = "CSS"
 )
 
-var allowedBodyContentTypeEnumValues = []BodyContentType{
+// All allowed values of BodyContentType enum
+var AllowedBodyContentTypeEnumValues = []BodyContentType{
 	"HTML",
 	"PlainText",
 	"AMP",
@@ -41,7 +42,7 @@ func (v *BodyContentType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := BodyContentType(value)
-	for _, existing := range allowedBodyContentTypeEnumValues {
+	for _, existing := range AllowedBodyContentTypeEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -58,13 +59,13 @@ func NewBodyContentTypeFromValue(v string) (*BodyContentType, error) {
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for BodyContentType: valid values are %v", v, allowedBodyContentTypeEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for BodyContentType: valid values are %v", v, AllowedBodyContentTypeEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v BodyContentType) IsValid() bool {
-	for _, existing := range allowedBodyContentTypeEnumValues {
+	for _, existing := range AllowedBodyContentTypeEnumValues {
 		if existing == v {
 			return true
 		}

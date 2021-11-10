@@ -17,7 +17,6 @@ import (
 
 // SubaccountSettingsInfo SubAccount settings
 type SubaccountSettingsInfo struct {
-	// Settings related to sending emails
 	Email *SubaccountEmailSettings `json:"Email,omitempty"`
 }
 

@@ -29,7 +29,6 @@ type CampaignTemplate struct {
 	TemplateName *string `json:"TemplateName,omitempty"`
 	// Names of previously uploaded files that should be sent as downloadable attachments
 	AttachFiles *[]string `json:"AttachFiles,omitempty"`
-	// Utm marketing data to be attached to every link in this e-mail.
 	Utm *Utm `json:"Utm,omitempty"`
 }
 

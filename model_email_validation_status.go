@@ -28,7 +28,8 @@ const (
 	INVALID EmailValidationStatus = "Invalid"
 )
 
-var allowedEmailValidationStatusEnumValues = []EmailValidationStatus{
+// All allowed values of EmailValidationStatus enum
+var AllowedEmailValidationStatusEnumValues = []EmailValidationStatus{
 	"None",
 	"Valid",
 	"Unknown",
@@ -43,7 +44,7 @@ func (v *EmailValidationStatus) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := EmailValidationStatus(value)
-	for _, existing := range allowedEmailValidationStatusEnumValues {
+	for _, existing := range AllowedEmailValidationStatusEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -60,13 +61,13 @@ func NewEmailValidationStatusFromValue(v string) (*EmailValidationStatus, error)
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for EmailValidationStatus: valid values are %v", v, allowedEmailValidationStatusEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for EmailValidationStatus: valid values are %v", v, AllowedEmailValidationStatusEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v EmailValidationStatus) IsValid() bool {
-	for _, existing := range allowedEmailValidationStatusEnumValues {
+	for _, existing := range AllowedEmailValidationStatusEnumValues {
 		if existing == v {
 			return true
 		}

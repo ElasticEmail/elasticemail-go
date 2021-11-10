@@ -40,7 +40,8 @@ const (
 	NOT_DELIVERED MessageCategory = "NotDelivered"
 )
 
-var allowedMessageCategoryEnumValues = []MessageCategory{
+// All allowed values of MessageCategory enum
+var AllowedMessageCategoryEnumValues = []MessageCategory{
 	"Unknown",
 	"Ignore",
 	"Spam",
@@ -67,7 +68,7 @@ func (v *MessageCategory) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := MessageCategory(value)
-	for _, existing := range allowedMessageCategoryEnumValues {
+	for _, existing := range AllowedMessageCategoryEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -84,13 +85,13 @@ func NewMessageCategoryFromValue(v string) (*MessageCategory, error) {
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for MessageCategory: valid values are %v", v, allowedMessageCategoryEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for MessageCategory: valid values are %v", v, AllowedMessageCategoryEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v MessageCategory) IsValid() bool {
-	for _, existing := range allowedMessageCategoryEnumValues {
+	for _, existing := range AllowedMessageCategoryEnumValues {
 		if existing == v {
 			return true
 		}

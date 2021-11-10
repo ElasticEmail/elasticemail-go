@@ -20,7 +20,6 @@ import (
 type NewSmtpCredentials struct {
 	// Unique token to be used in the system
 	Token *string `json:"Token,omitempty"`
-	// Access level of this Smtp Credential.
 	AccessLevel *AccessLevel `json:"AccessLevel,omitempty"`
 	// Name of the key.
 	Name *string `json:"Name,omitempty"`
@@ -40,6 +39,8 @@ type NewSmtpCredentials struct {
 // will change when the set of required properties is changed
 func NewNewSmtpCredentials() *NewSmtpCredentials {
 	this := NewSmtpCredentials{}
+	var accessLevel AccessLevel = NONE
+	this.AccessLevel = &accessLevel
 	return &this
 }
 
@@ -48,6 +49,8 @@ func NewNewSmtpCredentials() *NewSmtpCredentials {
 // but it doesn't guarantee that properties required by API are set
 func NewNewSmtpCredentialsWithDefaults() *NewSmtpCredentials {
 	this := NewSmtpCredentials{}
+	var accessLevel AccessLevel = NONE
+	this.AccessLevel = &accessLevel
 	return &this
 }
 

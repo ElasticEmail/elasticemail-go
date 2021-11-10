@@ -25,7 +25,8 @@ const (
 	DATE_ASCENDING EventsOrderBy = "DateAscending"
 )
 
-var allowedEventsOrderByEnumValues = []EventsOrderBy{
+// All allowed values of EventsOrderBy enum
+var AllowedEventsOrderByEnumValues = []EventsOrderBy{
 	"DateDescending",
 	"DateAscending",
 }
@@ -37,7 +38,7 @@ func (v *EventsOrderBy) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := EventsOrderBy(value)
-	for _, existing := range allowedEventsOrderByEnumValues {
+	for _, existing := range AllowedEventsOrderByEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -54,13 +55,13 @@ func NewEventsOrderByFromValue(v string) (*EventsOrderBy, error) {
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for EventsOrderBy: valid values are %v", v, allowedEventsOrderByEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for EventsOrderBy: valid values are %v", v, AllowedEventsOrderByEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v EventsOrderBy) IsValid() bool {
-	for _, existing := range allowedEventsOrderByEnumValues {
+	for _, existing := range AllowedEventsOrderByEnumValues {
 		if existing == v {
 			return true
 		}

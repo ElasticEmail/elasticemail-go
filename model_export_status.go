@@ -27,7 +27,8 @@ const (
 	EXPIRED ExportStatus = "Expired"
 )
 
-var allowedExportStatusEnumValues = []ExportStatus{
+// All allowed values of ExportStatus enum
+var AllowedExportStatusEnumValues = []ExportStatus{
 	"Error",
 	"Loading",
 	"Ready",
@@ -41,7 +42,7 @@ func (v *ExportStatus) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := ExportStatus(value)
-	for _, existing := range allowedExportStatusEnumValues {
+	for _, existing := range AllowedExportStatusEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -58,13 +59,13 @@ func NewExportStatusFromValue(v string) (*ExportStatus, error) {
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for ExportStatus: valid values are %v", v, allowedExportStatusEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for ExportStatus: valid values are %v", v, AllowedExportStatusEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v ExportStatus) IsValid() bool {
-	for _, existing := range allowedExportStatusEnumValues {
+	for _, existing := range AllowedExportStatusEnumValues {
 		if existing == v {
 			return true
 		}

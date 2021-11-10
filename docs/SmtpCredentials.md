@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccessLevel** | Pointer to [**AccessLevel**](AccessLevel.md) | Access level of this Smtp Credential. | [optional] 
+**AccessLevel** | Pointer to [**AccessLevel**](AccessLevel.md) |  | [optional] [default to NONE]
 **Name** | Pointer to **string** | Name of the key. | [optional] 
 **DateCreated** | Pointer to **time.Time** | Date this SmtpCredential was created. | [optional] 
 **LastUse** | Pointer to **NullableTime** | Date this SmtpCredential was last used. | [optional] 

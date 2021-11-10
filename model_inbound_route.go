@@ -20,11 +20,9 @@ type InboundRoute struct {
 	PublicId *string `json:"PublicId,omitempty"`
 	// Name of this route
 	Name *string `json:"Name,omitempty"`
-	// Type of the filter
 	FilterType *InboundRouteFilterType `json:"FilterType,omitempty"`
 	// Filter of the inbound data
 	Filter *string `json:"Filter,omitempty"`
-	// Type of action to take
 	ActionType *InboundRouteActionType `json:"ActionType,omitempty"`
 	// URL address or Email to notify about the inbound
 	ActionParameter *string `json:"ActionParameter,omitempty"`
@@ -38,6 +36,10 @@ type InboundRoute struct {
 // will change when the set of required properties is changed
 func NewInboundRoute() *InboundRoute {
 	this := InboundRoute{}
+	var filterType InboundRouteFilterType = EMAIL_ADDRESS
+	this.FilterType = &filterType
+	var actionType InboundRouteActionType = FORWARD_TO_EMAIL
+	this.ActionType = &actionType
 	return &this
 }
 
@@ -46,6 +48,10 @@ func NewInboundRoute() *InboundRoute {
 // but it doesn't guarantee that properties required by API are set
 func NewInboundRouteWithDefaults() *InboundRoute {
 	this := InboundRoute{}
+	var filterType InboundRouteFilterType = EMAIL_ADDRESS
+	this.FilterType = &filterType
+	var actionType InboundRouteActionType = FORWARD_TO_EMAIL
+	this.ActionType = &actionType
 	return &this
 }
 

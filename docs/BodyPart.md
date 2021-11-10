@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ContentType** | [**BodyContentType**](BodyContentType.md) | Type of the body part | 
+**ContentType** | [**BodyContentType**](BodyContentType.md) |  | [default to HTML]
 **Content** | Pointer to **string** | Actual content of the body part | [optional] 
 **Charset** | Pointer to **string** | Text value of charset encoding for example: iso-8859-1, windows-1251, utf-8, us-ascii, windows-1250 and more… | [optional] 
 

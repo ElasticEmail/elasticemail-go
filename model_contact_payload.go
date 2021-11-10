@@ -19,7 +19,6 @@ import (
 type ContactPayload struct {
 	// Proper email address.
 	Email string `json:"Email"`
-	// Status of the given resource
 	Status *ContactStatus `json:"Status,omitempty"`
 	// First name.
 	FirstName *string `json:"FirstName,omitempty"`
@@ -37,6 +36,8 @@ type ContactPayload struct {
 func NewContactPayload(email string) *ContactPayload {
 	this := ContactPayload{}
 	this.Email = email
+	var status ContactStatus = TRANSACTIONAL
+	this.Status = &status
 	return &this
 }
 
@@ -45,6 +46,8 @@ func NewContactPayload(email string) *ContactPayload {
 // but it doesn't guarantee that properties required by API are set
 func NewContactPayloadWithDefaults() *ContactPayload {
 	this := ContactPayload{}
+	var status ContactStatus = TRANSACTIONAL
+	this.Status = &status
 	return &this
 }
 

@@ -25,7 +25,8 @@ const (
 	SUBJECT InboundRouteFilterType = "Subject"
 )
 
-var allowedInboundRouteFilterTypeEnumValues = []InboundRouteFilterType{
+// All allowed values of InboundRouteFilterType enum
+var AllowedInboundRouteFilterTypeEnumValues = []InboundRouteFilterType{
 	"EmailAddress",
 	"Subject",
 }
@@ -37,7 +38,7 @@ func (v *InboundRouteFilterType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := InboundRouteFilterType(value)
-	for _, existing := range allowedInboundRouteFilterTypeEnumValues {
+	for _, existing := range AllowedInboundRouteFilterTypeEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -54,13 +55,13 @@ func NewInboundRouteFilterTypeFromValue(v string) (*InboundRouteFilterType, erro
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for InboundRouteFilterType: valid values are %v", v, allowedInboundRouteFilterTypeEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for InboundRouteFilterType: valid values are %v", v, AllowedInboundRouteFilterTypeEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v InboundRouteFilterType) IsValid() bool {
-	for _, existing := range allowedInboundRouteFilterTypeEnumValues {
+	for _, existing := range AllowedInboundRouteFilterTypeEnumValues {
 		if existing == v {
 			return true
 		}

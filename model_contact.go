@@ -20,7 +20,6 @@ import (
 type Contact struct {
 	// Proper email address.
 	Email *string `json:"Email,omitempty"`
-	// Status of the given resource
 	Status *ContactStatus `json:"Status,omitempty"`
 	// First name.
 	FirstName *string `json:"FirstName,omitempty"`
@@ -29,7 +28,6 @@ type Contact struct {
 	// A key-value collection of custom contact fields which can be used in the system.
 	CustomFields *map[string]string `json:"CustomFields,omitempty"`
 	Consent *ConsentData `json:"Consent,omitempty"`
-	// From where was this contact added
 	Source *ContactSource `json:"Source,omitempty"`
 	// Date of creation in YYYY-MM-DDThh:ii:ss format
 	DateAdded *time.Time `json:"DateAdded,omitempty"`
@@ -37,7 +35,6 @@ type Contact struct {
 	DateUpdated NullableTime `json:"DateUpdated,omitempty"`
 	// Date of last status change.
 	StatusChangeDate NullableTime `json:"StatusChangeDate,omitempty"`
-	// Contact's email statistics and activity
 	Activity *ContactActivity `json:"Activity,omitempty"`
 }
 
@@ -47,6 +44,10 @@ type Contact struct {
 // will change when the set of required properties is changed
 func NewContact() *Contact {
 	this := Contact{}
+	var status ContactStatus = TRANSACTIONAL
+	this.Status = &status
+	var source ContactSource = DELIVERY_API
+	this.Source = &source
 	return &this
 }
 
@@ -55,6 +56,10 @@ func NewContact() *Contact {
 // but it doesn't guarantee that properties required by API are set
 func NewContactWithDefaults() *Contact {
 	this := Contact{}
+	var status ContactStatus = TRANSACTIONAL
+	this.Status = &status
+	var source ContactSource = DELIVERY_API
+	this.Source = &source
 	return &this
 }
 

@@ -26,7 +26,8 @@ const (
 	DENY ConsentTracking = "Deny"
 )
 
-var allowedConsentTrackingEnumValues = []ConsentTracking{
+// All allowed values of ConsentTracking enum
+var AllowedConsentTrackingEnumValues = []ConsentTracking{
 	"Unknown",
 	"Allow",
 	"Deny",
@@ -39,7 +40,7 @@ func (v *ConsentTracking) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := ConsentTracking(value)
-	for _, existing := range allowedConsentTrackingEnumValues {
+	for _, existing := range AllowedConsentTrackingEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -56,13 +57,13 @@ func NewConsentTrackingFromValue(v string) (*ConsentTracking, error) {
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for ConsentTracking: valid values are %v", v, allowedConsentTrackingEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for ConsentTracking: valid values are %v", v, AllowedConsentTrackingEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v ConsentTracking) IsValid() bool {
-	for _, existing := range allowedConsentTrackingEnumValues {
+	for _, existing := range AllowedConsentTrackingEnumValues {
 		if existing == v {
 			return true
 		}

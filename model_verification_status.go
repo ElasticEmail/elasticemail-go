@@ -28,7 +28,8 @@ const (
 	ERROR VerificationStatus = "Error"
 )
 
-var allowedVerificationStatusEnumValues = []VerificationStatus{
+// All allowed values of VerificationStatus enum
+var AllowedVerificationStatusEnumValues = []VerificationStatus{
 	"Processing",
 	"Ready",
 	"Expired",
@@ -43,7 +44,7 @@ func (v *VerificationStatus) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := VerificationStatus(value)
-	for _, existing := range allowedVerificationStatusEnumValues {
+	for _, existing := range AllowedVerificationStatusEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -60,13 +61,13 @@ func NewVerificationStatusFromValue(v string) (*VerificationStatus, error) {
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for VerificationStatus: valid values are %v", v, allowedVerificationStatusEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for VerificationStatus: valid values are %v", v, AllowedVerificationStatusEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v VerificationStatus) IsValid() bool {
-	for _, existing := range allowedVerificationStatusEnumValues {
+	for _, existing := range AllowedVerificationStatusEnumValues {
 		if existing == v {
 			return true
 		}

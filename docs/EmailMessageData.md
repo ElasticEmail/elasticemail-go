@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Recipients** | [**[]EmailRecipient**](EmailRecipient.md) | List of recipients (visible to others) | 
-**Content** | Pointer to [**EmailContent**](EmailContent.md) | Proper e-mail content | [optional] 
-**Options** | Pointer to [**Options**](Options.md) | E-mail configuration | [optional] 
+**Recipients** | [**[]EmailRecipient**](EmailRecipient.md) | List of recipients | 
+**Content** | Pointer to [**EmailContent**](EmailContent.md) |  | [optional] 
+**Options** | Pointer to [**Options**](Options.md) |  | [optional] 
 
 ## Methods
 

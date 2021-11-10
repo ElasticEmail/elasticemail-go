@@ -32,7 +32,8 @@ const (
 	NOT_CONFIRMED ContactStatus = "NotConfirmed"
 )
 
-var allowedContactStatusEnumValues = []ContactStatus{
+// All allowed values of ContactStatus enum
+var AllowedContactStatusEnumValues = []ContactStatus{
 	"Transactional",
 	"Engaged",
 	"Active",
@@ -51,7 +52,7 @@ func (v *ContactStatus) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := ContactStatus(value)
-	for _, existing := range allowedContactStatusEnumValues {
+	for _, existing := range AllowedContactStatusEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -68,13 +69,13 @@ func NewContactStatusFromValue(v string) (*ContactStatus, error) {
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for ContactStatus: valid values are %v", v, allowedContactStatusEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for ContactStatus: valid values are %v", v, AllowedContactStatusEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v ContactStatus) IsValid() bool {
-	for _, existing := range allowedContactStatusEnumValues {
+	for _, existing := range AllowedContactStatusEnumValues {
 		if existing == v {
 			return true
 		}

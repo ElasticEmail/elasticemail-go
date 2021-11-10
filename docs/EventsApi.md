@@ -39,7 +39,7 @@ func main() {
     transactionid := "TransactionID" // string | ID number of transaction
     from := time.Now() // time.Time | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
     to := time.Now() // time.Time | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    orderBy := openapiclient.EventsOrderBy("DateDescending") // EventsOrderBy |  (optional)
+    orderBy := openapiclient.EventsOrderBy("DateDescending") // EventsOrderBy |  (optional) (default to "DateDescending")
     limit := int32(100) // int32 | Maximum number of returned items. (optional)
     offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
@@ -73,7 +73,7 @@ Name | Type | Description  | Notes
 
  **from** | **time.Time** | Starting date for search in YYYY-MM-DDThh:mm:ss format. | 
  **to** | **time.Time** | Ending date for search in YYYY-MM-DDThh:mm:ss format. | 
- **orderBy** | [**EventsOrderBy**](EventsOrderBy.md) |  | 
+ **orderBy** | [**EventsOrderBy**](EventsOrderBy.md) |  | [default to &quot;DateDescending&quot;]
  **limit** | **int32** | Maximum number of returned items. | 
  **offset** | **int32** | How many items should be returned ahead. | 
 
@@ -121,8 +121,8 @@ func main() {
     eventTypes := []openapiclient.EventType{openapiclient.EventType("Submission")} // []EventType | Types of Events to return (optional)
     from := time.Now() // time.Time | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
     to := time.Now() // time.Time | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    fileFormat := openapiclient.ExportFileFormats("Csv") // ExportFileFormats | Format of the exported file (optional)
-    compressionFormat := openapiclient.CompressionFormat("None") // CompressionFormat | FileResponse compression format. None or Zip. (optional)
+    fileFormat := openapiclient.ExportFileFormats("Csv") // ExportFileFormats | Format of the exported file (optional) (default to "Csv")
+    compressionFormat := openapiclient.CompressionFormat("None") // CompressionFormat | FileResponse compression format. None or Zip. (optional) (default to "None")
     fileName := "filename.txt" // string | Name of your file including extension. (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -156,8 +156,8 @@ Name | Type | Description  | Notes
  **eventTypes** | [**[]EventType**](EventType.md) | Types of Events to return | 
  **from** | **time.Time** | Starting date for search in YYYY-MM-DDThh:mm:ss format. | 
  **to** | **time.Time** | Ending date for search in YYYY-MM-DDThh:mm:ss format. | 
- **fileFormat** | [**ExportFileFormats**](ExportFileFormats.md) | Format of the exported file | 
- **compressionFormat** | [**CompressionFormat**](CompressionFormat.md) | FileResponse compression format. None or Zip. | 
+ **fileFormat** | [**ExportFileFormats**](ExportFileFormats.md) | Format of the exported file | [default to &quot;Csv&quot;]
+ **compressionFormat** | [**CompressionFormat**](CompressionFormat.md) | FileResponse compression format. None or Zip. | [default to &quot;None&quot;]
  **fileName** | **string** | Name of your file including extension. | 
 
 ### Return type
@@ -204,7 +204,7 @@ func main() {
     eventTypes := []openapiclient.EventType{openapiclient.EventType("Submission")} // []EventType | Types of Events to return (optional)
     from := time.Now() // time.Time | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
     to := time.Now() // time.Time | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    orderBy := openapiclient.EventsOrderBy("DateDescending") // EventsOrderBy |  (optional)
+    orderBy := openapiclient.EventsOrderBy("DateDescending") // EventsOrderBy |  (optional) (default to "DateDescending")
     limit := int32(56) // int32 | How many items to load. Maximum for this request is 1000 items (optional)
     offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
@@ -239,7 +239,7 @@ Name | Type | Description  | Notes
  **eventTypes** | [**[]EventType**](EventType.md) | Types of Events to return | 
  **from** | **time.Time** | Starting date for search in YYYY-MM-DDThh:mm:ss format. | 
  **to** | **time.Time** | Ending date for search in YYYY-MM-DDThh:mm:ss format. | 
- **orderBy** | [**EventsOrderBy**](EventsOrderBy.md) |  | 
+ **orderBy** | [**EventsOrderBy**](EventsOrderBy.md) |  | [default to &quot;DateDescending&quot;]
  **limit** | **int32** | How many items to load. Maximum for this request is 1000 items | 
  **offset** | **int32** | How many items should be returned ahead. | 
 
@@ -426,8 +426,8 @@ func main() {
     eventTypes := []openapiclient.EventType{openapiclient.EventType("Submission")} // []EventType | Types of Events to return (optional)
     from := time.Now() // time.Time | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
     to := time.Now() // time.Time | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    fileFormat := openapiclient.ExportFileFormats("Csv") // ExportFileFormats | Format of the exported file (optional)
-    compressionFormat := openapiclient.CompressionFormat("None") // CompressionFormat | FileResponse compression format. None or Zip. (optional)
+    fileFormat := openapiclient.ExportFileFormats("Csv") // ExportFileFormats | Format of the exported file (optional) (default to "Csv")
+    compressionFormat := openapiclient.CompressionFormat("None") // CompressionFormat | FileResponse compression format. None or Zip. (optional) (default to "None")
     fileName := "filename.txt" // string | Name of your file including extension. (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -456,8 +456,8 @@ Name | Type | Description  | Notes
  **eventTypes** | [**[]EventType**](EventType.md) | Types of Events to return | 
  **from** | **time.Time** | Starting date for search in YYYY-MM-DDThh:mm:ss format. | 
  **to** | **time.Time** | Ending date for search in YYYY-MM-DDThh:mm:ss format. | 
- **fileFormat** | [**ExportFileFormats**](ExportFileFormats.md) | Format of the exported file | 
- **compressionFormat** | [**CompressionFormat**](CompressionFormat.md) | FileResponse compression format. None or Zip. | 
+ **fileFormat** | [**ExportFileFormats**](ExportFileFormats.md) | Format of the exported file | [default to &quot;Csv&quot;]
+ **compressionFormat** | [**CompressionFormat**](CompressionFormat.md) | FileResponse compression format. None or Zip. | [default to &quot;None&quot;]
  **fileName** | **string** | Name of your file including extension. | 
 
 ### Return type
@@ -503,7 +503,7 @@ func main() {
     eventTypes := []openapiclient.EventType{openapiclient.EventType("Submission")} // []EventType | Types of Events to return (optional)
     from := time.Now() // time.Time | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
     to := time.Now() // time.Time | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    orderBy := openapiclient.EventsOrderBy("DateDescending") // EventsOrderBy |  (optional)
+    orderBy := openapiclient.EventsOrderBy("DateDescending") // EventsOrderBy |  (optional) (default to "DateDescending")
     limit := int32(56) // int32 | How many items to load. Maximum for this request is 1000 items (optional)
     offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
@@ -533,7 +533,7 @@ Name | Type | Description  | Notes
  **eventTypes** | [**[]EventType**](EventType.md) | Types of Events to return | 
  **from** | **time.Time** | Starting date for search in YYYY-MM-DDThh:mm:ss format. | 
  **to** | **time.Time** | Ending date for search in YYYY-MM-DDThh:mm:ss format. | 
- **orderBy** | [**EventsOrderBy**](EventsOrderBy.md) |  | 
+ **orderBy** | [**EventsOrderBy**](EventsOrderBy.md) |  | [default to &quot;DateDescending&quot;]
  **limit** | **int32** | How many items to load. Maximum for this request is 1000 items | 
  **offset** | **int32** | How many items should be returned ahead. | 
 

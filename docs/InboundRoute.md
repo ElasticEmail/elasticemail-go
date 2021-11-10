@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PublicId** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** | Name of this route | [optional] 
-**FilterType** | Pointer to [**InboundRouteFilterType**](InboundRouteFilterType.md) | Type of the filter | [optional] 
+**FilterType** | Pointer to [**InboundRouteFilterType**](InboundRouteFilterType.md) |  | [optional] [default to EMAIL_ADDRESS]
 **Filter** | Pointer to **string** | Filter of the inbound data | [optional] 
-**ActionType** | Pointer to [**InboundRouteActionType**](InboundRouteActionType.md) | Type of action to take | [optional] 
+**ActionType** | Pointer to [**InboundRouteActionType**](InboundRouteActionType.md) |  | [optional] [default to FORWARD_TO_EMAIL]
 **ActionParameter** | Pointer to **string** | URL address or Email to notify about the inbound | [optional] 
 **SortOrder** | Pointer to **int32** | Place of this route in your routes queue&#39;s order | [optional] 
 

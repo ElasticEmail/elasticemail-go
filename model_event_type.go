@@ -31,7 +31,8 @@ const (
 	COMPLAINT EventType = "Complaint"
 )
 
-var allowedEventTypeEnumValues = []EventType{
+// All allowed values of EventType enum
+var AllowedEventTypeEnumValues = []EventType{
 	"Submission",
 	"FailedAttempt",
 	"Bounce",
@@ -49,7 +50,7 @@ func (v *EventType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := EventType(value)
-	for _, existing := range allowedEventTypeEnumValues {
+	for _, existing := range AllowedEventTypeEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -66,13 +67,13 @@ func NewEventTypeFromValue(v string) (*EventType, error) {
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for EventType: valid values are %v", v, allowedEventTypeEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for EventType: valid values are %v", v, AllowedEventTypeEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v EventType) IsValid() bool {
-	for _, existing := range allowedEventTypeEnumValues {
+	for _, existing := range AllowedEventTypeEnumValues {
 		if existing == v {
 			return true
 		}

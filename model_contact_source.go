@@ -30,7 +30,8 @@ const (
 	FILE_VERIFICATION_API ContactSource = "FileVerificationApi"
 )
 
-var allowedContactSourceEnumValues = []ContactSource{
+// All allowed values of ContactSource enum
+var AllowedContactSourceEnumValues = []ContactSource{
 	"DeliveryApi",
 	"ManualInput",
 	"FileUpload",
@@ -47,7 +48,7 @@ func (v *ContactSource) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := ContactSource(value)
-	for _, existing := range allowedContactSourceEnumValues {
+	for _, existing := range AllowedContactSourceEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -64,13 +65,13 @@ func NewContactSourceFromValue(v string) (*ContactSource, error) {
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for ContactSource: valid values are %v", v, allowedContactSourceEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for ContactSource: valid values are %v", v, AllowedContactSourceEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v ContactSource) IsValid() bool {
-	for _, existing := range allowedContactSourceEnumValues {
+	for _, existing := range AllowedContactSourceEnumValues {
 		if existing == v {
 			return true
 		}

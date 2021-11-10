@@ -26,7 +26,8 @@ const (
 	JSON ExportFileFormats = "Json"
 )
 
-var allowedExportFileFormatsEnumValues = []ExportFileFormats{
+// All allowed values of ExportFileFormats enum
+var AllowedExportFileFormatsEnumValues = []ExportFileFormats{
 	"Csv",
 	"Xml",
 	"Json",
@@ -39,7 +40,7 @@ func (v *ExportFileFormats) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := ExportFileFormats(value)
-	for _, existing := range allowedExportFileFormatsEnumValues {
+	for _, existing := range AllowedExportFileFormatsEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -56,13 +57,13 @@ func NewExportFileFormatsFromValue(v string) (*ExportFileFormats, error) {
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for ExportFileFormats: valid values are %v", v, allowedExportFileFormatsEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for ExportFileFormats: valid values are %v", v, AllowedExportFileFormatsEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v ExportFileFormats) IsValid() bool {
-	for _, existing := range allowedExportFileFormatsEnumValues {
+	for _, existing := range AllowedExportFileFormatsEnumValues {
 		if existing == v {
 			return true
 		}

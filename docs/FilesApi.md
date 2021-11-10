@@ -309,7 +309,7 @@ import (
 )
 
 func main() {
-    filePayload := *openapiclient.NewFilePayload(string(123)) // FilePayload | 
+    filePayload := *openapiclient.NewFilePayload("BinaryContent_example") // FilePayload | 
     expiresAfterDays := int32(56) // int32 | After how many days should the file be deleted. (optional)
 
     configuration := openapiclient.NewConfiguration()

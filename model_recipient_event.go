@@ -28,13 +28,11 @@ type RecipientEvent struct {
 	To *string `json:"To,omitempty"`
 	// Default subject of email.
 	Subject *string `json:"Subject,omitempty"`
-	// Type of an Event
 	EventType *EventType `json:"EventType,omitempty"`
 	// Creation date
 	EventDate *time.Time `json:"EventDate,omitempty"`
 	// Name of selected channel.
 	ChannelName *string `json:"ChannelName,omitempty"`
-	// Message category
 	MessageCategory *MessageCategory `json:"MessageCategory,omitempty"`
 	// Date of next try
 	NextTryOn NullableTime `json:"NextTryOn,omitempty"`
@@ -52,6 +50,10 @@ type RecipientEvent struct {
 // will change when the set of required properties is changed
 func NewRecipientEvent() *RecipientEvent {
 	this := RecipientEvent{}
+	var eventType EventType = SUBMISSION
+	this.EventType = &eventType
+	var messageCategory MessageCategory = UNKNOWN
+	this.MessageCategory = &messageCategory
 	return &this
 }
 
@@ -60,6 +62,10 @@ func NewRecipientEvent() *RecipientEvent {
 // but it doesn't guarantee that properties required by API are set
 func NewRecipientEventWithDefaults() *RecipientEvent {
 	this := RecipientEvent{}
+	var eventType EventType = SUBMISSION
+	this.EventType = &eventType
+	var messageCategory MessageCategory = UNKNOWN
+	this.MessageCategory = &messageCategory
 	return &this
 }
 

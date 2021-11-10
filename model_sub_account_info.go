@@ -22,7 +22,6 @@ type SubAccountInfo struct {
 	PublicAccountID *string `json:"PublicAccountID,omitempty"`
 	// Proper email address.
 	Email *string `json:"Email,omitempty"`
-	// SubAccount settings
 	Settings *SubaccountSettingsInfo `json:"Settings,omitempty"`
 	// Date of last activity on Account
 	LastActivity *time.Time `json:"LastActivity,omitempty"`
@@ -32,7 +31,6 @@ type SubAccountInfo struct {
 	TotalEmailsSent *int64 `json:"TotalEmailsSent,omitempty"`
 	// Numeric reputation
 	Reputation *float64 `json:"Reputation,omitempty"`
-	// Account's current status.
 	Status *AccountStatusEnum `json:"Status,omitempty"`
 	// How many contacts this SubAccount has stored
 	ContactsCount *int32 `json:"ContactsCount,omitempty"`
@@ -44,6 +42,8 @@ type SubAccountInfo struct {
 // will change when the set of required properties is changed
 func NewSubAccountInfo() *SubAccountInfo {
 	this := SubAccountInfo{}
+	var status AccountStatusEnum = DISABLED
+	this.Status = &status
 	return &this
 }
 
@@ -52,6 +52,8 @@ func NewSubAccountInfo() *SubAccountInfo {
 // but it doesn't guarantee that properties required by API are set
 func NewSubAccountInfoWithDefaults() *SubAccountInfo {
 	this := SubAccountInfo{}
+	var status AccountStatusEnum = DISABLED
+	this.Status = &status
 	return &this
 }
 

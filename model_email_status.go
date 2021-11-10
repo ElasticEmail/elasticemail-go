@@ -24,7 +24,6 @@ type EmailStatus struct {
 	To *string `json:"To,omitempty"`
 	// Date the email was submitted.
 	Date *time.Time `json:"Date,omitempty"`
-	// Value of email's status
 	Status *LogJobStatus `json:"Status,omitempty"`
 	// Name of email's status
 	StatusName *string `json:"StatusName,omitempty"`
@@ -50,6 +49,8 @@ type EmailStatus struct {
 // will change when the set of required properties is changed
 func NewEmailStatus() *EmailStatus {
 	this := EmailStatus{}
+	var status LogJobStatus = ALL
+	this.Status = &status
 	return &this
 }
 
@@ -58,6 +59,8 @@ func NewEmailStatus() *EmailStatus {
 // but it doesn't guarantee that properties required by API are set
 func NewEmailStatusWithDefaults() *EmailStatus {
 	this := EmailStatus{}
+	var status LogJobStatus = ALL
+	this.Status = &status
 	return &this
 }
 

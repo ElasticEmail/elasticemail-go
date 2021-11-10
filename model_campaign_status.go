@@ -31,7 +31,8 @@ const (
 	DRAFT CampaignStatus = "Draft"
 )
 
-var allowedCampaignStatusEnumValues = []CampaignStatus{
+// All allowed values of CampaignStatus enum
+var AllowedCampaignStatusEnumValues = []CampaignStatus{
 	"Deleted",
 	"Active",
 	"Processing",
@@ -49,7 +50,7 @@ func (v *CampaignStatus) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := CampaignStatus(value)
-	for _, existing := range allowedCampaignStatusEnumValues {
+	for _, existing := range AllowedCampaignStatusEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -66,13 +67,13 @@ func NewCampaignStatusFromValue(v string) (*CampaignStatus, error) {
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for CampaignStatus: valid values are %v", v, allowedCampaignStatusEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for CampaignStatus: valid values are %v", v, AllowedCampaignStatusEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v CampaignStatus) IsValid() bool {
-	for _, existing := range allowedCampaignStatusEnumValues {
+	for _, existing := range AllowedCampaignStatusEnumValues {
 		if existing == v {
 			return true
 		}

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | Pointer to [**SubaccountEmailSettingsPayload**](SubaccountEmailSettingsPayload.md) | Settings related to sending emails | [optional] 
+**Email** | Pointer to [**SubaccountEmailSettingsPayload**](SubaccountEmailSettingsPayload.md) |  | [optional] 
 
 ## Methods
 

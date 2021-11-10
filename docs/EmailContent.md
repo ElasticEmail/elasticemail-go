@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **Subject** | Pointer to **string** | Default subject of email. | [optional] 
 **TemplateName** | Pointer to **string** | Name of template. | [optional] 
 **AttachFiles** | Pointer to **[]string** | Names of previously uploaded files that should be sent as downloadable attachments | [optional] 
-**Utm** | Pointer to [**Utm**](Utm.md) | Utm marketing data to be attached to every link in this e-mail. | [optional] 
+**Utm** | Pointer to [**Utm**](Utm.md) |  | [optional] 
 
 ## Methods
 

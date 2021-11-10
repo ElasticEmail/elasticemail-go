@@ -25,7 +25,8 @@ const (
 	GLOBAL TemplateScope = "Global"
 )
 
-var allowedTemplateScopeEnumValues = []TemplateScope{
+// All allowed values of TemplateScope enum
+var AllowedTemplateScopeEnumValues = []TemplateScope{
 	"Personal",
 	"Global",
 }
@@ -37,7 +38,7 @@ func (v *TemplateScope) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := TemplateScope(value)
-	for _, existing := range allowedTemplateScopeEnumValues {
+	for _, existing := range AllowedTemplateScopeEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -54,13 +55,13 @@ func NewTemplateScopeFromValue(v string) (*TemplateScope, error) {
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for TemplateScope: valid values are %v", v, allowedTemplateScopeEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for TemplateScope: valid values are %v", v, AllowedTemplateScopeEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v TemplateScope) IsValid() bool {
-	for _, existing := range allowedTemplateScopeEnumValues {
+	for _, existing := range AllowedTemplateScopeEnumValues {
 		if existing == v {
 			return true
 		}

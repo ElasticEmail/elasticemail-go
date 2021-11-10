@@ -70,7 +70,8 @@ const (
 	VIEW_INBOUND AccessLevel = "ViewInbound"
 )
 
-var allowedAccessLevelEnumValues = []AccessLevel{
+// All allowed values of AccessLevel enum
+var AllowedAccessLevelEnumValues = []AccessLevel{
 	"None",
 	"ViewAccount",
 	"ViewContacts",
@@ -127,7 +128,7 @@ func (v *AccessLevel) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := AccessLevel(value)
-	for _, existing := range allowedAccessLevelEnumValues {
+	for _, existing := range AllowedAccessLevelEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -144,13 +145,13 @@ func NewAccessLevelFromValue(v string) (*AccessLevel, error) {
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for AccessLevel: valid values are %v", v, allowedAccessLevelEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for AccessLevel: valid values are %v", v, AllowedAccessLevelEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v AccessLevel) IsValid() bool {
-	for _, existing := range allowedAccessLevelEnumValues {
+	for _, existing := range AllowedAccessLevelEnumValues {
 		if existing == v {
 			return true
 		}

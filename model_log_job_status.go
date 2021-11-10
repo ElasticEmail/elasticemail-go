@@ -33,7 +33,8 @@ const (
 	ABUSE_REPORT LogJobStatus = "AbuseReport"
 )
 
-var allowedLogJobStatusEnumValues = []LogJobStatus{
+// All allowed values of LogJobStatus enum
+var AllowedLogJobStatusEnumValues = []LogJobStatus{
 	"All",
 	"ReadyToSend",
 	"WaitingToRetry",
@@ -53,7 +54,7 @@ func (v *LogJobStatus) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := LogJobStatus(value)
-	for _, existing := range allowedLogJobStatusEnumValues {
+	for _, existing := range AllowedLogJobStatusEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -70,13 +71,13 @@ func NewLogJobStatusFromValue(v string) (*LogJobStatus, error) {
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for LogJobStatus: valid values are %v", v, allowedLogJobStatusEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for LogJobStatus: valid values are %v", v, AllowedLogJobStatusEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v LogJobStatus) IsValid() bool {
-	for _, existing := range allowedLogJobStatusEnumValues {
+	for _, existing := range AllowedLogJobStatusEnumValues {
 		if existing == v {
 			return true
 		}

@@ -102,7 +102,7 @@ import (
 )
 
 func main() {
-    mergeEmailPayload := *openapiclient.NewMergeEmailPayload(*openapiclient.NewMessageAttachment(string(123))) // MergeEmailPayload | Email data
+    mergeEmailPayload := *openapiclient.NewMergeEmailPayload(*openapiclient.NewMessageAttachment("BinaryContent_example")) // MergeEmailPayload | Email data
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

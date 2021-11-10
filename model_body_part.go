@@ -17,7 +17,6 @@ import (
 
 // BodyPart Email body part with user-provided MIME type (text/html, text/plain, etc)
 type BodyPart struct {
-	// Type of the body part
 	ContentType BodyContentType `json:"ContentType"`
 	// Actual content of the body part
 	Content *string `json:"Content,omitempty"`
@@ -40,6 +39,8 @@ func NewBodyPart(contentType BodyContentType) *BodyPart {
 // but it doesn't guarantee that properties required by API are set
 func NewBodyPartWithDefaults() *BodyPart {
 	this := BodyPart{}
+	var contentType BodyContentType = HTML
+	this.ContentType = contentType
 	return &this
 }
 

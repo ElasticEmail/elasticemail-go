@@ -444,9 +444,7 @@ paths:
         name: fileFormat
         required: false
         schema:
-          allOf:
-          - $ref: '#/components/schemas/ExportFileFormats'
-          description: string
+          $ref: '#/components/schemas/ExportFileFormats'
         style: form
       - description: Query used for filtering.
         explode: true
@@ -478,9 +476,7 @@ paths:
         name: compressionFormat
         required: false
         schema:
-          allOf:
-          - $ref: '#/components/schemas/CompressionFormat'
-          description: string
+          $ref: '#/components/schemas/CompressionFormat'
         style: form
       - description: Name of your file including extension.
         explode: true
@@ -710,9 +706,7 @@ paths:
         name: orderBy
         required: false
         schema:
-          allOf:
-          - $ref: '#/components/schemas/EventsOrderBy'
-          description: string
+          $ref: '#/components/schemas/EventsOrderBy'
         style: form
       - description: How many items to load. Maximum for this request is 1000 items
         explode: true
@@ -791,9 +785,7 @@ paths:
         name: orderBy
         required: false
         schema:
-          allOf:
-          - $ref: '#/components/schemas/EventsOrderBy'
-          description: string
+          $ref: '#/components/schemas/EventsOrderBy'
         style: form
       - description: Maximum number of returned items.
         explode: true
@@ -884,9 +876,7 @@ paths:
         name: orderBy
         required: false
         schema:
-          allOf:
-          - $ref: '#/components/schemas/EventsOrderBy'
-          description: string
+          $ref: '#/components/schemas/EventsOrderBy'
         style: form
       - description: How many items to load. Maximum for this request is 1000 items
         explode: true
@@ -977,9 +967,7 @@ paths:
         name: fileFormat
         required: false
         schema:
-          allOf:
-          - $ref: '#/components/schemas/ExportFileFormats'
-          description: string
+          $ref: '#/components/schemas/ExportFileFormats'
         style: form
       - description: FileResponse compression format. None or Zip.
         explode: true
@@ -987,9 +975,7 @@ paths:
         name: compressionFormat
         required: false
         schema:
-          allOf:
-          - $ref: '#/components/schemas/CompressionFormat'
-          description: string
+          $ref: '#/components/schemas/CompressionFormat'
         style: form
       - description: Name of your file including extension.
         explode: true
@@ -1084,9 +1070,7 @@ paths:
         name: fileFormat
         required: false
         schema:
-          allOf:
-          - $ref: '#/components/schemas/ExportFileFormats'
-          description: string
+          $ref: '#/components/schemas/ExportFileFormats'
         style: form
       - description: FileResponse compression format. None or Zip.
         explode: true
@@ -1094,9 +1078,7 @@ paths:
         name: compressionFormat
         required: false
         schema:
-          allOf:
-          - $ref: '#/components/schemas/CompressionFormat'
-          description: string
+          $ref: '#/components/schemas/CompressionFormat'
         style: form
       - description: Name of your file including extension.
         explode: true
@@ -2850,9 +2832,7 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                - $ref: '#/components/schemas/Template'
-                description: Template
+                $ref: '#/components/schemas/Template'
           description: Template
       summary: Add Template
       tags:
@@ -2901,9 +2881,7 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                - $ref: '#/components/schemas/Template'
-                description: Serialized template
+                $ref: '#/components/schemas/Template'
           description: Serialized template
       summary: Load Template
       tags:
@@ -3406,14 +3384,11 @@ components:
       description: Email body part with user-provided MIME type (text/html, text/plain,
         etc)
       example:
-        ContentType: ""
         Content: Content
         Charset: Charset
       properties:
         ContentType:
-          allOf:
-          - $ref: '#/components/schemas/BodyContentType'
-          description: Type of the body part
+          $ref: '#/components/schemas/BodyContentType'
         Content:
           description: Actual content of the body part
           format: string
@@ -3428,9 +3403,19 @@ components:
       type: object
     Campaign:
       example:
-        Status: ""
-        Options: ""
-        Recipients: ""
+        Options:
+          TrackClicks: true
+          ScheduleFor: 2000-01-23T04:56:07.000+00:00
+          TrackOpens: true
+          SplitOptions:
+            OptimizePeriodMinutes: 30
+        Recipients:
+          SegmentNames:
+          - SegmentNames
+          - SegmentNames
+          ListNames:
+          - ListNames
+          - ListNames
         Content:
         - ReplyTo: John Doe <email@domain.com>
           Poolname: My Custom Pool
@@ -3438,14 +3423,22 @@ components:
           From: John Doe <email@domain.com>
           AttachFiles: '[ "preuploaded.jpg" ]'
           Subject: Hello!
-          Utm: ""
+          Utm:
+            Campaign: Campaign
+            Medium: Medium
+            Content: Content
+            Source: Source
         - ReplyTo: John Doe <email@domain.com>
           Poolname: My Custom Pool
           TemplateName: Template01
           From: John Doe <email@domain.com>
           AttachFiles: '[ "preuploaded.jpg" ]'
           Subject: Hello!
-          Utm: ""
+          Utm:
+            Campaign: Campaign
+            Medium: Medium
+            Content: Content
+            Source: Source
         Name: Name
       properties:
         Content:
@@ -3459,29 +3452,26 @@ components:
           format: string
           type: string
         Status:
-          allOf:
-          - $ref: '#/components/schemas/CampaignStatus'
-          description: Campaign status
+          $ref: '#/components/schemas/CampaignStatus'
         Recipients:
-          allOf:
-          - $ref: '#/components/schemas/CampaignRecipient'
-          description: Recipients this campaign should be sent to
+          $ref: '#/components/schemas/CampaignRecipient'
         Options:
-          allOf:
-          - $ref: '#/components/schemas/CampaignOptions'
-          description: Campaign sending options
+          $ref: '#/components/schemas/CampaignOptions'
       required:
       - Name
       - Recipients
       type: object
     CampaignOptions:
       description: Different send options for a Campaign
+      example:
+        TrackClicks: true
+        ScheduleFor: 2000-01-23T04:56:07.000+00:00
+        TrackOpens: true
+        SplitOptions:
+          OptimizePeriodMinutes: 30
       properties:
         DeliveryOptimization:
-          allOf:
-          - $ref: '#/components/schemas/DeliveryOptimizationType'
-          description: How to order email delivery - by recipients' engagement score
-            or by the time they open the most of the emails that were sent to them
+          $ref: '#/components/schemas/DeliveryOptimizationType'
         TrackOpens:
           description: Should the opens be tracked? If no value has been provided,
             Account's default setting will be used.
@@ -3502,13 +3492,17 @@ components:
           nullable: true
           type: string
         SplitOptions:
-          allOf:
-          - $ref: '#/components/schemas/SplitOptions'
-          description: Optional options for A/X split campaigns. Will be ignored if
-            only one template content was provided
+          $ref: '#/components/schemas/SplitOptions'
       type: object
     CampaignRecipient:
       description: A set of lists and segments names to read recipients from
+      example:
+        SegmentNames:
+        - SegmentNames
+        - SegmentNames
+        ListNames:
+        - ListNames
+        - ListNames
       properties:
         ListNames:
           description: Names of lists from your Account to read recipients from
@@ -3544,7 +3538,11 @@ components:
         From: John Doe <email@domain.com>
         AttachFiles: '[ "preuploaded.jpg" ]'
         Subject: Hello!
-        Utm: ""
+        Utm:
+          Campaign: Campaign
+          Medium: Medium
+          Content: Content
+          Source: Source
       properties:
         Poolname:
           description: Name of your custom IP Pool to be used in the sending process
@@ -3581,9 +3579,7 @@ components:
             type: string
           type: array
         Utm:
-          allOf:
-          - $ref: '#/components/schemas/Utm'
-          description: Utm marketing data to be attached to every link in this e-mail.
+          $ref: '#/components/schemas/Utm'
       type: object
     ChannelLogStatusSummary:
       description: Summary of channel log status
@@ -3682,7 +3678,6 @@ components:
       type: string
     ConsentData:
       example:
-        ConsentTracking: ""
         ConsentDate: 2000-01-23T04:56:07.000+00:00
         ConsentIP: 192.168.0.1
       properties:
@@ -3699,9 +3694,7 @@ components:
           nullable: true
           type: string
         ConsentTracking:
-          allOf:
-          - $ref: '#/components/schemas/ConsentTracking'
-          description: Does the contant consent to have their tracking data stored.
+          $ref: '#/components/schemas/ConsentTracking'
       type: object
     ConsentTracking:
       default: Unknown
@@ -3713,22 +3706,30 @@ components:
     Contact:
       description: Contact
       example:
-        Status: ""
         CustomFields:
           city: New York
           age: "34"
         Email: mail@example.com
         StatusChangeDate: 2000-01-23T04:56:07.000+00:00
         Consent:
-          ConsentTracking: ""
           ConsentDate: 2000-01-23T04:56:07.000+00:00
           ConsentIP: 192.168.0.1
         FirstName: Fred
         DateUpdated: 2000-01-23T04:56:07.000+00:00
-        Activity: ""
+        Activity:
+          LastIP: LastIP
+          LastOpened: 2000-01-23T04:56:07.000+00:00
+          TotalFailed: 1000
+          LastSent: 2000-01-23T04:56:07.000+00:00
+          LastFailed: 2000-01-23T04:56:07.000+00:00
+          LastClicked: 2000-01-23T04:56:07.000+00:00
+          TotalSent: 1000
+          FriendlyErrorMessage: FriendlyErrorMessage
+          TotalClicked: 1000
+          ErrorCode: 0
+          TotalOpened: 1000
         LastName: Flintstone
         DateAdded: 2000-01-23T04:56:07.000+00:00
-        Source: ""
       properties:
         Email:
           description: Proper email address.
@@ -3736,9 +3737,7 @@ components:
           format: string
           type: string
         Status:
-          allOf:
-          - $ref: '#/components/schemas/ContactStatus'
-          description: Status of the given resource
+          $ref: '#/components/schemas/ContactStatus'
         FirstName:
           description: First name.
           example: Fred
@@ -3761,9 +3760,7 @@ components:
         Consent:
           $ref: '#/components/schemas/ConsentData'
         Source:
-          allOf:
-          - $ref: '#/components/schemas/ContactSource'
-          description: From where was this contact added
+          $ref: '#/components/schemas/ContactSource'
         DateAdded:
           description: Date of creation in YYYY-MM-DDThh:ii:ss format
           format: date-time
@@ -3779,11 +3776,21 @@ components:
           nullable: true
           type: string
         Activity:
-          allOf:
-          - $ref: '#/components/schemas/ContactActivity'
-          description: Contact's email statistics and activity
+          $ref: '#/components/schemas/ContactActivity'
       type: object
     ContactActivity:
+      example:
+        LastIP: LastIP
+        LastOpened: 2000-01-23T04:56:07.000+00:00
+        TotalFailed: 1000
+        LastSent: 2000-01-23T04:56:07.000+00:00
+        LastFailed: 2000-01-23T04:56:07.000+00:00
+        LastClicked: 2000-01-23T04:56:07.000+00:00
+        TotalSent: 1000
+        FriendlyErrorMessage: FriendlyErrorMessage
+        TotalClicked: 1000
+        ErrorCode: 0
+        TotalOpened: 1000
       properties:
         TotalSent:
           description: Total emails sent.
@@ -3862,16 +3869,13 @@ components:
       example:
         EventDate: 2000-01-23T04:56:07.000+00:00
         ChannelName: ChannelName
-        EventType: ""
         TemplateName: TemplateName
         Country: Country
         Data: Data
         IPAddress: IPAddress
       properties:
         EventType:
-          allOf:
-          - $ref: '#/components/schemas/ContactHistEventType'
-          description: Type of event occured on this Contact.
+          $ref: '#/components/schemas/ContactHistEventType'
         EventDate:
           description: Formatted date of event.
           format: date-time
@@ -3899,13 +3903,11 @@ components:
       type: object
     ContactPayload:
       example:
-        Status: ""
         CustomFields:
           city: New York
           age: "34"
         Email: mail@example.com
         Consent:
-          ConsentTracking: ""
           ConsentDate: 2000-01-23T04:56:07.000+00:00
           ConsentIP: 192.168.0.1
         FirstName: Fred
@@ -3917,9 +3919,7 @@ components:
           format: string
           type: string
         Status:
-          allOf:
-          - $ref: '#/components/schemas/ContactStatus'
-          description: Status of the given resource
+          $ref: '#/components/schemas/ContactStatus'
         FirstName:
           description: First name.
           example: Fred
@@ -4005,6 +4005,37 @@ components:
       type: string
     EmailContent:
       description: Proper e-mail content
+      example:
+        ReplyTo: John Doe <email@domain.com>
+        Merge:
+          city: New York
+          age: "34"
+        Headers:
+          city: New York
+          age: "34"
+        Postback: Postback
+        EnvelopeFrom: John Doe <email@domain.com>
+        TemplateName: Template01
+        From: John Doe <email@domain.com>
+        AttachFiles: '[ "preuploaded.jpg" ]'
+        Body:
+        - Content: Content
+          Charset: Charset
+        - Content: Content
+          Charset: Charset
+        Attachments:
+        - ContentType: ContentType
+          BinaryContent: BinaryContent
+          Name: Name
+        - ContentType: ContentType
+          BinaryContent: BinaryContent
+          Name: Name
+        Subject: Hello!
+        Utm:
+          Campaign: Campaign
+          Medium: Medium
+          Content: Content
+          Source: Source
       properties:
         Body:
           description: List of e-mail body parts, with user-provided MIME types (text/html,
@@ -4075,14 +4106,26 @@ components:
             type: string
           type: array
         Utm:
-          allOf:
-          - $ref: '#/components/schemas/Utm'
-          description: Utm marketing data to be attached to every link in this e-mail.
+          $ref: '#/components/schemas/Utm'
       type: object
     EmailData:
       example:
-        Status: ""
-        Preview: ""
+        Status:
+          DateOpened: 2000-01-23T04:56:07.000+00:00
+          DateSent: 2000-01-23T04:56:07.000+00:00
+          StatusChangeDate: 2000-01-23T04:56:07.000+00:00
+          DateClicked: 2000-01-23T04:56:07.000+00:00
+          EnvelopeFrom: EnvelopeFrom
+          StatusName: StatusName
+          From: From
+          To: To
+          ErrorMessage: ErrorMessage
+          Date: 2000-01-23T04:56:07.000+00:00
+          TransactionID: TransactionID
+        Preview:
+          From: From
+          Body: Body
+          Subject: Hello!
         Attachments:
         - ExpirationDate: 2000-01-23T04:56:07.000+00:00
           ContentType: image/jpeg
@@ -4096,23 +4139,24 @@ components:
           DateAdded: 2000-01-23T04:56:07.000+00:00
       properties:
         Preview:
-          allOf:
-          - $ref: '#/components/schemas/EmailView'
-          description: Email details
+          $ref: '#/components/schemas/EmailView'
         Attachments:
           description: Attachments sent with the email
           items:
             $ref: '#/components/schemas/FileInfo'
           type: array
         Status:
-          allOf:
-          - $ref: '#/components/schemas/EmailStatus'
-          description: Status of the given resource
+          $ref: '#/components/schemas/EmailStatus'
       type: object
     EmailMessageData:
       description: Email data
       example:
-        Options: ""
+        Options:
+          TrackClicks: true
+          ChannelName: Channel01
+          PoolName: My Custom Pool
+          TimeOffset: 0
+          TrackOpens: true
         Recipients:
         - Email: mail@example.com
           Fields:
@@ -4122,26 +4166,52 @@ components:
           Fields:
             city: New York
             age: "34"
-        Content: ""
+        Content:
+          ReplyTo: John Doe <email@domain.com>
+          Merge:
+            city: New York
+            age: "34"
+          Headers:
+            city: New York
+            age: "34"
+          Postback: Postback
+          EnvelopeFrom: John Doe <email@domain.com>
+          TemplateName: Template01
+          From: John Doe <email@domain.com>
+          AttachFiles: '[ "preuploaded.jpg" ]'
+          Body:
+          - Content: Content
+            Charset: Charset
+          - Content: Content
+            Charset: Charset
+          Attachments:
+          - ContentType: ContentType
+            BinaryContent: BinaryContent
+            Name: Name
+          - ContentType: ContentType
+            BinaryContent: BinaryContent
+            Name: Name
+          Subject: Hello!
+          Utm:
+            Campaign: Campaign
+            Medium: Medium
+            Content: Content
+            Source: Source
       properties:
         Recipients:
-          description: List of recipients (visible to others)
+          description: List of recipients
           items:
             $ref: '#/components/schemas/EmailRecipient'
           type: array
         Content:
-          allOf:
-          - $ref: '#/components/schemas/EmailContent'
-          description: Proper e-mail content
+          $ref: '#/components/schemas/EmailContent'
         Options:
-          allOf:
-          - $ref: '#/components/schemas/Options'
-          description: E-mail configuration
+          $ref: '#/components/schemas/Options'
       required:
       - Recipients
       type: object
     EmailRecipient:
-      description: List of recipients (visible to others)
+      description: List of recipients
       example:
         Email: mail@example.com
         Fields:
@@ -4203,6 +4273,18 @@ components:
       type: object
     EmailStatus:
       description: Status information of the specified email
+      example:
+        DateOpened: 2000-01-23T04:56:07.000+00:00
+        DateSent: 2000-01-23T04:56:07.000+00:00
+        StatusChangeDate: 2000-01-23T04:56:07.000+00:00
+        DateClicked: 2000-01-23T04:56:07.000+00:00
+        EnvelopeFrom: EnvelopeFrom
+        StatusName: StatusName
+        From: From
+        To: To
+        ErrorMessage: ErrorMessage
+        Date: 2000-01-23T04:56:07.000+00:00
+        TransactionID: TransactionID
       properties:
         From:
           description: Email address this email was sent from.
@@ -4217,9 +4299,7 @@ components:
           format: date-time
           type: string
         Status:
-          allOf:
-          - $ref: '#/components/schemas/LogJobStatus'
-          description: Value of email's status
+          $ref: '#/components/schemas/LogJobStatus'
         StatusName:
           description: Name of email's status
           format: string
@@ -4259,22 +4339,60 @@ components:
     EmailTransactionalMessageData:
       description: Email data
       example:
-        Options: ""
-        Recipients: ""
-        Content: ""
+        Options:
+          TrackClicks: true
+          ChannelName: Channel01
+          PoolName: My Custom Pool
+          TimeOffset: 0
+          TrackOpens: true
+        Recipients:
+          CC:
+          - CC
+          - CC
+          BCC:
+          - BCC
+          - BCC
+          To:
+          - To
+          - To
+        Content:
+          ReplyTo: John Doe <email@domain.com>
+          Merge:
+            city: New York
+            age: "34"
+          Headers:
+            city: New York
+            age: "34"
+          Postback: Postback
+          EnvelopeFrom: John Doe <email@domain.com>
+          TemplateName: Template01
+          From: John Doe <email@domain.com>
+          AttachFiles: '[ "preuploaded.jpg" ]'
+          Body:
+          - Content: Content
+            Charset: Charset
+          - Content: Content
+            Charset: Charset
+          Attachments:
+          - ContentType: ContentType
+            BinaryContent: BinaryContent
+            Name: Name
+          - ContentType: ContentType
+            BinaryContent: BinaryContent
+            Name: Name
+          Subject: Hello!
+          Utm:
+            Campaign: Campaign
+            Medium: Medium
+            Content: Content
+            Source: Source
       properties:
         Recipients:
-          allOf:
-          - $ref: '#/components/schemas/TransactionalRecipient'
-          description: List of transactional recipients
+          $ref: '#/components/schemas/TransactionalRecipient'
         Content:
-          allOf:
-          - $ref: '#/components/schemas/EmailContent'
-          description: Proper e-mail content
+          $ref: '#/components/schemas/EmailContent'
         Options:
-          allOf:
-          - $ref: '#/components/schemas/Options'
-          description: E-mail configuration
+          $ref: '#/components/schemas/Options'
       required:
       - Recipients
       type: object
@@ -4336,6 +4454,10 @@ components:
       type: string
     EmailView:
       description: Email details formatted in json
+      example:
+        From: From
+        Body: Body
+        Subject: Hello!
       properties:
         Body:
           description: Body (HTML, otherwise plain text) of email
@@ -4472,6 +4594,9 @@ components:
       - BinaryContent
       type: object
     FileUploadResult:
+      example:
+        EmailsCount: 0
+        DuplicatedEmailsCount: 6
       properties:
         EmailsCount:
           description: How many unique emails were detected the file
@@ -4484,8 +4609,6 @@ components:
       type: object
     InboundPayload:
       example:
-        FilterType: ""
-        ActionType: ""
         HttpAddress: HttpAddress
         Filter: Filter
         EmailAddress: EmailAddress
@@ -4500,13 +4623,9 @@ components:
           format: string
           type: string
         FilterType:
-          allOf:
-          - $ref: '#/components/schemas/InboundRouteFilterType'
-          description: Type of the filter
+          $ref: '#/components/schemas/InboundRouteFilterType'
         ActionType:
-          allOf:
-          - $ref: '#/components/schemas/InboundRouteActionType'
-          description: Type of action to take
+          $ref: '#/components/schemas/InboundRouteActionType'
         EmailAddress:
           description: Email to forward the inbound to
           format: string
@@ -4524,8 +4643,6 @@ components:
     InboundRoute:
       example:
         PublicId: PublicId
-        FilterType: ""
-        ActionType: ""
         Filter: Filter
         SortOrder: 0
         ActionParameter: ActionParameter
@@ -4539,17 +4656,13 @@ components:
           format: string
           type: string
         FilterType:
-          allOf:
-          - $ref: '#/components/schemas/InboundRouteFilterType'
-          description: Type of the filter
+          $ref: '#/components/schemas/InboundRouteFilterType'
         Filter:
           description: Filter of the inbound data
           format: string
           type: string
         ActionType:
-          allOf:
-          - $ref: '#/components/schemas/InboundRouteActionType'
-          description: Type of action to take
+          $ref: '#/components/schemas/InboundRouteActionType'
         ActionParameter:
           description: URL address or Email to notify about the inbound
           format: string
@@ -4745,26 +4858,62 @@ components:
       type: object
     MergeEmailPayload:
       example:
-        Options: ""
-        MergeFile: ""
-        Content: ""
+        Options:
+          TrackClicks: true
+          ChannelName: Channel01
+          PoolName: My Custom Pool
+          TimeOffset: 0
+          TrackOpens: true
+        MergeFile:
+          ContentType: ContentType
+          BinaryContent: BinaryContent
+          Name: Name
+        Content:
+          ReplyTo: John Doe <email@domain.com>
+          Merge:
+            city: New York
+            age: "34"
+          Headers:
+            city: New York
+            age: "34"
+          Postback: Postback
+          EnvelopeFrom: John Doe <email@domain.com>
+          TemplateName: Template01
+          From: John Doe <email@domain.com>
+          AttachFiles: '[ "preuploaded.jpg" ]'
+          Body:
+          - Content: Content
+            Charset: Charset
+          - Content: Content
+            Charset: Charset
+          Attachments:
+          - ContentType: ContentType
+            BinaryContent: BinaryContent
+            Name: Name
+          - ContentType: ContentType
+            BinaryContent: BinaryContent
+            Name: Name
+          Subject: Hello!
+          Utm:
+            Campaign: Campaign
+            Medium: Medium
+            Content: Content
+            Source: Source
       properties:
         MergeFile:
-          allOf:
-          - $ref: '#/components/schemas/MessageAttachment'
-          description: CSV file containing recipients with optional merge fields
+          $ref: '#/components/schemas/MessageAttachment'
         Content:
-          allOf:
-          - $ref: '#/components/schemas/EmailContent'
-          description: Proper e-mail content
+          $ref: '#/components/schemas/EmailContent'
         Options:
-          allOf:
-          - $ref: '#/components/schemas/Options'
-          description: E-mail configuration
+          $ref: '#/components/schemas/Options'
       required:
       - MergeFile
       type: object
     MessageAttachment:
+      example:
+        ContentType: ContentType
+        BinaryContent: BinaryContent
+        Name: Name
       properties:
         BinaryContent:
           description: File's content as byte array (or a Base64 string)
@@ -4861,7 +5010,6 @@ components:
         Token: Token
         LastUse: 2000-01-23T04:56:07.000+00:00
         Expires: 2000-01-23T04:56:07.000+00:00
-        AccessLevel: ""
         Name: Name
       properties:
         Token:
@@ -4869,9 +5017,7 @@ components:
           format: string
           type: string
         AccessLevel:
-          allOf:
-          - $ref: '#/components/schemas/AccessLevel'
-          description: Access level of this Smtp Credential.
+          $ref: '#/components/schemas/AccessLevel'
         Name:
           description: Name of the key.
           format: string
@@ -4899,6 +5045,12 @@ components:
       type: object
     Options:
       description: E-mail configuration
+      example:
+        TrackClicks: true
+        ChannelName: Channel01
+        PoolName: My Custom Pool
+        TimeOffset: 0
+        TrackOpens: true
       properties:
         TimeOffset:
           description: By how long should an e-mail be delayed (in minutes). Maximum
@@ -4917,12 +5069,7 @@ components:
           format: string
           type: string
         Encoding:
-          allOf:
-          - $ref: '#/components/schemas/EncodingType'
-          description: '0 for None, 1 for Raw7Bit, 2 for Raw8Bit, 3 for QuotedPrintable,
-            4 for Base64 (Default), 5 for Uue note that you can also provide the text
-            version such as "Raw7Bit" for value 1. NOTE: Base64 or QuotedPrintable
-            is recommended if you are validating your domain(s) with DKIM.'
+          $ref: '#/components/schemas/EncodingType'
         TrackOpens:
           description: Should the opens be tracked? If no value has been provided,
             Account's default setting will be used.
@@ -4942,14 +5089,12 @@ components:
         EventDate: 2000-01-23T04:56:07.000+00:00
         NextTryOn: 2000-01-23T04:56:07.000+00:00
         Message: Lorem ipsum
-        EventType: ""
         MsgID: ABCDE_9RPhSWiaJq_ab1g1
         Subject: Hello!
         TransactionID: TransactionID
         ChannelName: Channel01
         PoolName: PoolName
         To: 2001-01-01T01:01:01
-        MessageCategory: ""
         IPAddress: IPAddress
         FromEmail: sender@yourdomain.com
       properties:
@@ -4979,9 +5124,7 @@ components:
           format: string
           type: string
         EventType:
-          allOf:
-          - $ref: '#/components/schemas/EventType'
-          description: Type of an Event
+          $ref: '#/components/schemas/EventType'
         EventDate:
           description: Creation date
           format: date-time
@@ -4992,9 +5135,7 @@ components:
           format: string
           type: string
         MessageCategory:
-          allOf:
-          - $ref: '#/components/schemas/MessageCategory'
-          description: Message category
+          $ref: '#/components/schemas/MessageCategory'
         NextTryOn:
           description: Date of next try
           format: date-time
@@ -5056,13 +5197,10 @@ components:
         DateCreated: 2000-01-23T04:56:07.000+00:00
         LastUse: 2000-01-23T04:56:07.000+00:00
         Expires: 2000-01-23T04:56:07.000+00:00
-        AccessLevel: ""
         Name: Name
       properties:
         AccessLevel:
-          allOf:
-          - $ref: '#/components/schemas/AccessLevel'
-          description: Access level of this Smtp Credential.
+          $ref: '#/components/schemas/AccessLevel'
         Name:
           description: Name of the key.
           format: string
@@ -5149,11 +5287,11 @@ components:
       type: string
     SplitOptions:
       description: Optional A/X split campaign options
+      example:
+        OptimizePeriodMinutes: 30
       properties:
         OptimizeFor:
-          allOf:
-          - $ref: '#/components/schemas/SplitOptimizationType'
-          description: Type of results by which to determine the winner template (content)
+          $ref: '#/components/schemas/SplitOptimizationType'
         OptimizePeriodMinutes:
           description: For how long should the results be measured until determining
             the winner template (content)
@@ -5227,6 +5365,13 @@ components:
       type: object
     SubaccountEmailSettingsPayload:
       description: Settings related to sending emails
+      example:
+        PoolName: My Custom Pool
+        RequiresEmailCredits: true
+        EmailSizeLimit: 10
+        DailySendLimit: 100000
+        MaxContacts: 0
+        EnablePrivateIPPurchase: true
       properties:
         RequiresEmailCredits:
           description: True, if Account needs credits to send emails. Otherwise, false
@@ -5262,13 +5407,20 @@ components:
       description: Detailed information about SubAccount.
       example:
         EmailCredits: 1000
-        Status: ""
         Email: mail@example.com
         PublicAccountID: EB3EBB7A-C20D-4D39-8F2F-5E6842F58E6F
-        ContactsCount: 0
+        ContactsCount: 6
         TotalEmailsSent: 1000
         Reputation: 100
-        Settings: ""
+        Settings:
+          Email:
+            PoolName: My Custom Pool
+            RequiresEmailCredits: true
+            MonthlyRefillCredits: 1000
+            EmailSizeLimit: 10
+            DailySendLimit: 100000
+            MaxContacts: 0
+            EnablePrivateIPPurchase: true
         LastActivity: 2000-01-23T04:56:07.000+00:00
       properties:
         PublicAccountID:
@@ -5283,9 +5435,7 @@ components:
           format: string
           type: string
         Settings:
-          allOf:
-          - $ref: '#/components/schemas/SubaccountSettingsInfo'
-          description: SubAccount settings
+          $ref: '#/components/schemas/SubaccountSettingsInfo'
         LastActivity:
           description: Date of last activity on Account
           format: date-time
@@ -5306,9 +5456,7 @@ components:
           format: double
           type: number
         Status:
-          allOf:
-          - $ref: '#/components/schemas/AccountStatusEnum'
-          description: Account's current status.
+          $ref: '#/components/schemas/AccountStatusEnum'
         ContactsCount:
           description: How many contacts this SubAccount has stored
           format: int32
@@ -5318,7 +5466,14 @@ components:
       description: New SubAccount payload
       example:
         Email: mail@example.com
-        Settings: ""
+        Settings:
+          Email:
+            PoolName: My Custom Pool
+            RequiresEmailCredits: true
+            EmailSizeLimit: 10
+            DailySendLimit: 100000
+            MaxContacts: 0
+            EnablePrivateIPPurchase: true
         Password: '********'
         SendActivation: true
       properties:
@@ -5339,28 +5494,39 @@ components:
           format: boolean
           type: boolean
         Settings:
-          allOf:
-          - $ref: '#/components/schemas/SubaccountSettingsInfoPayload'
-          description: SubAccount settings
+          $ref: '#/components/schemas/SubaccountSettingsInfoPayload'
       required:
       - Email
       - Password
       type: object
     SubaccountSettingsInfo:
       description: SubAccount settings
+      example:
+        Email:
+          PoolName: My Custom Pool
+          RequiresEmailCredits: true
+          MonthlyRefillCredits: 1000
+          EmailSizeLimit: 10
+          DailySendLimit: 100000
+          MaxContacts: 0
+          EnablePrivateIPPurchase: true
       properties:
         Email:
-          allOf:
-          - $ref: '#/components/schemas/SubaccountEmailSettings'
-          description: Settings related to sending emails
+          $ref: '#/components/schemas/SubaccountEmailSettings'
       type: object
     SubaccountSettingsInfoPayload:
       description: SubAccount settings
+      example:
+        Email:
+          PoolName: My Custom Pool
+          RequiresEmailCredits: true
+          EmailSizeLimit: 10
+          DailySendLimit: 100000
+          MaxContacts: 0
+          EnablePrivateIPPurchase: true
       properties:
         Email:
-          allOf:
-          - $ref: '#/components/schemas/SubaccountEmailSettingsPayload'
-          description: Settings related to sending emails
+          $ref: '#/components/schemas/SubaccountEmailSettingsPayload'
       type: object
     Suppression:
       description: Suppression - Email returning Hard Bounces
@@ -5394,23 +5560,17 @@ components:
     Template:
       description: Template info
       example:
-        TemplateScope: ""
-        TemplateType: ""
         DateAdded: 2000-01-23T04:56:07.000+00:00
         Body:
-        - ContentType: ""
-          Content: Content
+        - Content: Content
           Charset: Charset
-        - ContentType: ""
-          Content: Content
+        - Content: Content
           Charset: Charset
         Subject: Hello!
         Name: Name
       properties:
         TemplateType:
-          allOf:
-          - $ref: '#/components/schemas/TemplateType'
-          description: How the template should be edited
+          $ref: '#/components/schemas/TemplateType'
         Name:
           description: Template name
           format: string
@@ -5430,20 +5590,15 @@ components:
             $ref: '#/components/schemas/BodyPart'
           type: array
         TemplateScope:
-          allOf:
-          - $ref: '#/components/schemas/TemplateScope'
-          description: Visibility of a template
+          $ref: '#/components/schemas/TemplateScope'
       type: object
     TemplatePayload:
       description: New template object
       example:
-        TemplateScope: ""
         Body:
-        - ContentType: ""
-          Content: Content
+        - Content: Content
           Charset: Charset
-        - ContentType: ""
-          Content: Content
+        - Content: Content
           Charset: Charset
         Subject: Hello!
         Name: Name
@@ -5463,9 +5618,7 @@ components:
             $ref: '#/components/schemas/BodyPart'
           type: array
         TemplateScope:
-          allOf:
-          - $ref: '#/components/schemas/TemplateScope'
-          description: Visibility of a template
+          $ref: '#/components/schemas/TemplateScope'
       required:
       - Name
       type: object
@@ -5485,6 +5638,16 @@ components:
       type: string
     TransactionalRecipient:
       description: List of transactional recipients
+      example:
+        CC:
+        - CC
+        - CC
+        BCC:
+        - BCC
+        - BCC
+        To:
+        - To
+        - To
       properties:
         To:
           description: List of recipients (visible to others)
@@ -5509,6 +5672,11 @@ components:
       type: object
     Utm:
       description: Utm marketing data to be attached to every link in this e-mail.
+      example:
+        Campaign: Campaign
+        Medium: Medium
+        Content: Content
+        Source: Source
       properties:
         Source:
           description: utmsource value
@@ -5530,8 +5698,9 @@ components:
     VerificationFileResult:
       description: Simple verification file result info
       example:
-        VerificationStatus: ""
-        FileUploadResult: ""
+        FileUploadResult:
+          EmailsCount: 0
+          DuplicatedEmailsCount: 6
         VerificationID: VerificationID
         Filename: Filename
         DateAdded: 2000-01-23T04:56:07.000+00:00
@@ -5546,13 +5715,9 @@ components:
           format: string
           type: string
         VerificationStatus:
-          allOf:
-          - $ref: '#/components/schemas/VerificationStatus'
-          description: In what state does this verification result currently is
+          $ref: '#/components/schemas/VerificationStatus'
         FileUploadResult:
-          allOf:
-          - $ref: '#/components/schemas/FileUploadResult'
-          description: How many emails were detected in the file for verification
+          $ref: '#/components/schemas/FileUploadResult'
         DateAdded:
           description: Date of creation in YYYY-MM-DDThh:ii:ss format
           format: date-time
@@ -5565,8 +5730,9 @@ components:
     VerificationFileResultDetails:
       description: Detailed verification file result info
       example:
-        VerificationStatus: ""
-        FileUploadResult: ""
+        FileUploadResult:
+          EmailsCount: 0
+          DuplicatedEmailsCount: 6
         VerificationResult:
         - Disposable: true
           Role: true
@@ -5603,13 +5769,9 @@ components:
           format: string
           type: string
         VerificationStatus:
-          allOf:
-          - $ref: '#/components/schemas/VerificationStatus'
-          description: In what state does this verification result currently is
+          $ref: '#/components/schemas/VerificationStatus'
         FileUploadResult:
-          allOf:
-          - $ref: '#/components/schemas/FileUploadResult'
-          description: How many emails were detected in the file for verification
+          $ref: '#/components/schemas/FileUploadResult'
         DateAdded:
           description: Date of creation in YYYY-MM-DDThh:ii:ss format
           format: date-time

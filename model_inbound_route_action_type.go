@@ -26,7 +26,8 @@ const (
 	STOP InboundRouteActionType = "Stop"
 )
 
-var allowedInboundRouteActionTypeEnumValues = []InboundRouteActionType{
+// All allowed values of InboundRouteActionType enum
+var AllowedInboundRouteActionTypeEnumValues = []InboundRouteActionType{
 	"ForwardToEmail",
 	"NotifyViaHttp",
 	"Stop",
@@ -39,7 +40,7 @@ func (v *InboundRouteActionType) UnmarshalJSON(src []byte) error {
 		return err
 	}
 	enumTypeValue := InboundRouteActionType(value)
-	for _, existing := range allowedInboundRouteActionTypeEnumValues {
+	for _, existing := range AllowedInboundRouteActionTypeEnumValues {
 		if existing == enumTypeValue {
 			*v = enumTypeValue
 			return nil
@@ -56,13 +57,13 @@ func NewInboundRouteActionTypeFromValue(v string) (*InboundRouteActionType, erro
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for InboundRouteActionType: valid values are %v", v, allowedInboundRouteActionTypeEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for InboundRouteActionType: valid values are %v", v, AllowedInboundRouteActionTypeEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise
 func (v InboundRouteActionType) IsValid() bool {
-	for _, existing := range allowedInboundRouteActionTypeEnumValues {
+	for _, existing := range AllowedInboundRouteActionTypeEnumValues {
 		if existing == v {
 			return true
 		}
