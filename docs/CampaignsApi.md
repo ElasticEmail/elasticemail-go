@@ -36,8 +36,8 @@ func main() {
     name := "name_example" // string | Name of Campaign to delete
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CampaignsApi.CampaignsByNameDelete(context.Background(), name).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.CampaignsApi.CampaignsByNameDelete(context.Background(), name).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CampaignsApi.CampaignsByNameDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -104,8 +104,8 @@ func main() {
     name := "name_example" // string | Name of Campaign to get
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CampaignsApi.CampaignsByNameGet(context.Background(), name).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.CampaignsApi.CampaignsByNameGet(context.Background(), name).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CampaignsApi.CampaignsByNameGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -175,8 +175,8 @@ func main() {
     campaign := *openapiclient.NewCampaign("Name_example", *openapiclient.NewCampaignRecipient()) // Campaign | JSON representation of a campaign
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CampaignsApi.CampaignsByNamePut(context.Background(), name).Campaign(campaign).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.CampaignsApi.CampaignsByNamePut(context.Background(), name).Campaign(campaign).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CampaignsApi.CampaignsByNamePut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -248,8 +248,8 @@ func main() {
     limit := int32(100) // int32 | Maximum number of returned items. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CampaignsApi.CampaignsGet(context.Background()).Search(search).Offset(offset).Limit(limit).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.CampaignsApi.CampaignsGet(context.Background()).Search(search).Offset(offset).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CampaignsApi.CampaignsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -316,8 +316,8 @@ func main() {
     campaign := *openapiclient.NewCampaign("Name_example", *openapiclient.NewCampaignRecipient()) // Campaign | JSON representation of a campaign
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CampaignsApi.CampaignsPost(context.Background()).Campaign(campaign).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.CampaignsApi.CampaignsPost(context.Background()).Campaign(campaign).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CampaignsApi.CampaignsPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

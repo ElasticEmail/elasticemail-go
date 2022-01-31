@@ -13,29 +13,29 @@ package ElasticEmail
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // EmailsApiService EmailsApi service
 type EmailsApiService service
 
 type ApiEmailsByMsgidViewGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *EmailsApiService
 	msgid string
 }
 
 
-func (r ApiEmailsByMsgidViewGetRequest) Execute() (EmailData, *_nethttp.Response, error) {
+func (r ApiEmailsByMsgidViewGetRequest) Execute() (*EmailData, *http.Response, error) {
 	return r.ApiService.EmailsByMsgidViewGetExecute(r)
 }
 
@@ -44,11 +44,11 @@ EmailsByMsgidViewGet View Email
 
 Returns email details for viewing or rendering. Required Access Level: None
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param msgid Message identifier
  @return ApiEmailsByMsgidViewGetRequest
 */
-func (a *EmailsApiService) EmailsByMsgidViewGet(ctx _context.Context, msgid string) ApiEmailsByMsgidViewGetRequest {
+func (a *EmailsApiService) EmailsByMsgidViewGet(ctx context.Context, msgid string) ApiEmailsByMsgidViewGetRequest {
 	return ApiEmailsByMsgidViewGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -58,27 +58,25 @@ func (a *EmailsApiService) EmailsByMsgidViewGet(ctx _context.Context, msgid stri
 
 // Execute executes the request
 //  @return EmailData
-func (a *EmailsApiService) EmailsByMsgidViewGetExecute(r ApiEmailsByMsgidViewGetRequest) (EmailData, *_nethttp.Response, error) {
+func (a *EmailsApiService) EmailsByMsgidViewGetExecute(r ApiEmailsByMsgidViewGetRequest) (*EmailData, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  EmailData
+		formFiles            []formFile
+		localVarReturnValue  *EmailData
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailsApiService.EmailsByMsgidViewGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/emails/{msgid}/view"
-	localVarPath = strings.Replace(localVarPath, "{"+"msgid"+"}", _neturl.PathEscape(parameterToString(r.msgid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"msgid"+"}", url.PathEscape(parameterToString(r.msgid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -111,7 +109,7 @@ func (a *EmailsApiService) EmailsByMsgidViewGetExecute(r ApiEmailsByMsgidViewGet
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -121,15 +119,15 @@ func (a *EmailsApiService) EmailsByMsgidViewGetExecute(r ApiEmailsByMsgidViewGet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -138,7 +136,7 @@ func (a *EmailsApiService) EmailsByMsgidViewGetExecute(r ApiEmailsByMsgidViewGet
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -149,7 +147,7 @@ func (a *EmailsApiService) EmailsByMsgidViewGetExecute(r ApiEmailsByMsgidViewGet
 }
 
 type ApiEmailsMergefilePostRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *EmailsApiService
 	mergeEmailPayload *MergeEmailPayload
 }
@@ -160,7 +158,7 @@ func (r ApiEmailsMergefilePostRequest) MergeEmailPayload(mergeEmailPayload Merge
 	return r
 }
 
-func (r ApiEmailsMergefilePostRequest) Execute() (EmailSend, *_nethttp.Response, error) {
+func (r ApiEmailsMergefilePostRequest) Execute() (*EmailSend, *http.Response, error) {
 	return r.ApiService.EmailsMergefilePostExecute(r)
 }
 
@@ -169,10 +167,10 @@ EmailsMergefilePost Send Bulk Emails CSV
 
 Send bulk merge email. Required Access Level: SendHttp
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiEmailsMergefilePostRequest
 */
-func (a *EmailsApiService) EmailsMergefilePost(ctx _context.Context) ApiEmailsMergefilePostRequest {
+func (a *EmailsApiService) EmailsMergefilePost(ctx context.Context) ApiEmailsMergefilePostRequest {
 	return ApiEmailsMergefilePostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -181,26 +179,24 @@ func (a *EmailsApiService) EmailsMergefilePost(ctx _context.Context) ApiEmailsMe
 
 // Execute executes the request
 //  @return EmailSend
-func (a *EmailsApiService) EmailsMergefilePostExecute(r ApiEmailsMergefilePostRequest) (EmailSend, *_nethttp.Response, error) {
+func (a *EmailsApiService) EmailsMergefilePostExecute(r ApiEmailsMergefilePostRequest) (*EmailSend, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  EmailSend
+		formFiles            []formFile
+		localVarReturnValue  *EmailSend
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailsApiService.EmailsMergefilePost")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/emails/mergefile"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.mergeEmailPayload == nil {
 		return localVarReturnValue, nil, reportError("mergeEmailPayload is required and must be specified")
 	}
@@ -238,7 +234,7 @@ func (a *EmailsApiService) EmailsMergefilePostExecute(r ApiEmailsMergefilePostRe
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -248,15 +244,15 @@ func (a *EmailsApiService) EmailsMergefilePostExecute(r ApiEmailsMergefilePostRe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -265,7 +261,7 @@ func (a *EmailsApiService) EmailsMergefilePostExecute(r ApiEmailsMergefilePostRe
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -276,7 +272,7 @@ func (a *EmailsApiService) EmailsMergefilePostExecute(r ApiEmailsMergefilePostRe
 }
 
 type ApiEmailsPostRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *EmailsApiService
 	emailMessageData *EmailMessageData
 }
@@ -287,7 +283,7 @@ func (r ApiEmailsPostRequest) EmailMessageData(emailMessageData EmailMessageData
 	return r
 }
 
-func (r ApiEmailsPostRequest) Execute() (EmailSend, *_nethttp.Response, error) {
+func (r ApiEmailsPostRequest) Execute() (*EmailSend, *http.Response, error) {
 	return r.ApiService.EmailsPostExecute(r)
 }
 
@@ -296,10 +292,10 @@ EmailsPost Send Bulk Emails
 
 Send bulk merge email. Required Access Level: SendHttp
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiEmailsPostRequest
 */
-func (a *EmailsApiService) EmailsPost(ctx _context.Context) ApiEmailsPostRequest {
+func (a *EmailsApiService) EmailsPost(ctx context.Context) ApiEmailsPostRequest {
 	return ApiEmailsPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -308,26 +304,24 @@ func (a *EmailsApiService) EmailsPost(ctx _context.Context) ApiEmailsPostRequest
 
 // Execute executes the request
 //  @return EmailSend
-func (a *EmailsApiService) EmailsPostExecute(r ApiEmailsPostRequest) (EmailSend, *_nethttp.Response, error) {
+func (a *EmailsApiService) EmailsPostExecute(r ApiEmailsPostRequest) (*EmailSend, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  EmailSend
+		formFiles            []formFile
+		localVarReturnValue  *EmailSend
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailsApiService.EmailsPost")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/emails"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.emailMessageData == nil {
 		return localVarReturnValue, nil, reportError("emailMessageData is required and must be specified")
 	}
@@ -365,7 +359,7 @@ func (a *EmailsApiService) EmailsPostExecute(r ApiEmailsPostRequest) (EmailSend,
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -375,15 +369,15 @@ func (a *EmailsApiService) EmailsPostExecute(r ApiEmailsPostRequest) (EmailSend,
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -392,7 +386,7 @@ func (a *EmailsApiService) EmailsPostExecute(r ApiEmailsPostRequest) (EmailSend,
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -403,7 +397,7 @@ func (a *EmailsApiService) EmailsPostExecute(r ApiEmailsPostRequest) (EmailSend,
 }
 
 type ApiEmailsTransactionalPostRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *EmailsApiService
 	emailTransactionalMessageData *EmailTransactionalMessageData
 }
@@ -414,7 +408,7 @@ func (r ApiEmailsTransactionalPostRequest) EmailTransactionalMessageData(emailTr
 	return r
 }
 
-func (r ApiEmailsTransactionalPostRequest) Execute() (EmailSend, *_nethttp.Response, error) {
+func (r ApiEmailsTransactionalPostRequest) Execute() (*EmailSend, *http.Response, error) {
 	return r.ApiService.EmailsTransactionalPostExecute(r)
 }
 
@@ -423,10 +417,10 @@ EmailsTransactionalPost Send Transactional Email
 
 Send transactional emails (recipients will be known to each other). Required Access Level: SendHttp
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiEmailsTransactionalPostRequest
 */
-func (a *EmailsApiService) EmailsTransactionalPost(ctx _context.Context) ApiEmailsTransactionalPostRequest {
+func (a *EmailsApiService) EmailsTransactionalPost(ctx context.Context) ApiEmailsTransactionalPostRequest {
 	return ApiEmailsTransactionalPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -435,26 +429,24 @@ func (a *EmailsApiService) EmailsTransactionalPost(ctx _context.Context) ApiEmai
 
 // Execute executes the request
 //  @return EmailSend
-func (a *EmailsApiService) EmailsTransactionalPostExecute(r ApiEmailsTransactionalPostRequest) (EmailSend, *_nethttp.Response, error) {
+func (a *EmailsApiService) EmailsTransactionalPostExecute(r ApiEmailsTransactionalPostRequest) (*EmailSend, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  EmailSend
+		formFiles            []formFile
+		localVarReturnValue  *EmailSend
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailsApiService.EmailsTransactionalPost")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/emails/transactional"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.emailTransactionalMessageData == nil {
 		return localVarReturnValue, nil, reportError("emailTransactionalMessageData is required and must be specified")
 	}
@@ -492,7 +484,7 @@ func (a *EmailsApiService) EmailsTransactionalPostExecute(r ApiEmailsTransaction
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -502,15 +494,15 @@ func (a *EmailsApiService) EmailsTransactionalPostExecute(r ApiEmailsTransaction
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -519,7 +511,7 @@ func (a *EmailsApiService) EmailsTransactionalPostExecute(r ApiEmailsTransaction
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

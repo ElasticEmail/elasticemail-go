@@ -25,7 +25,7 @@ type ApiKeyPayload struct {
 	// Date this ApiKey expires.
 	Expires NullableTime `json:"Expires,omitempty"`
 	// Which IPs can use this ApiKey
-	RestrictAccessToIPRange *[]string `json:"RestrictAccessToIPRange,omitempty"`
+	RestrictAccessToIPRange []string `json:"RestrictAccessToIPRange,omitempty"`
 	// Email of the subaccount for which this ApiKey should be created
 	Subaccount *string `json:"Subaccount,omitempty"`
 }
@@ -85,11 +85,11 @@ func (o *ApiKeyPayload) GetAccessLevel() []AccessLevel {
 
 // GetAccessLevelOk returns a tuple with the AccessLevel field value
 // and a boolean to check if the value has been set.
-func (o *ApiKeyPayload) GetAccessLevelOk() (*[]AccessLevel, bool) {
+func (o *ApiKeyPayload) GetAccessLevelOk() ([]AccessLevel, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.AccessLevel, true
+	return o.AccessLevel, true
 }
 
 // SetAccessLevel sets field value
@@ -145,12 +145,12 @@ func (o *ApiKeyPayload) GetRestrictAccessToIPRange() []string {
 		var ret []string
 		return ret
 	}
-	return *o.RestrictAccessToIPRange
+	return o.RestrictAccessToIPRange
 }
 
 // GetRestrictAccessToIPRangeOk returns a tuple with the RestrictAccessToIPRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiKeyPayload) GetRestrictAccessToIPRangeOk() (*[]string, bool) {
+func (o *ApiKeyPayload) GetRestrictAccessToIPRangeOk() ([]string, bool) {
 	if o == nil || o.RestrictAccessToIPRange == nil {
 		return nil, false
 	}
@@ -168,7 +168,7 @@ func (o *ApiKeyPayload) HasRestrictAccessToIPRange() bool {
 
 // SetRestrictAccessToIPRange gets a reference to the given []string and assigns it to the RestrictAccessToIPRange field.
 func (o *ApiKeyPayload) SetRestrictAccessToIPRange(v []string) {
-	o.RestrictAccessToIPRange = &v
+	o.RestrictAccessToIPRange = v
 }
 
 // GetSubaccount returns the Subaccount field value if set, zero value otherwise.

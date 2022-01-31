@@ -29,6 +29,7 @@ type SubaccountEmailSettingsPayload struct {
 	EnablePrivateIPPurchase *bool `json:"EnablePrivateIPPurchase,omitempty"`
 	// Name of your custom IP Pool to be used in the sending process
 	PoolName *string `json:"PoolName,omitempty"`
+	ValidSenderDomainOnly NullableBool `json:"ValidSenderDomainOnly,omitempty"`
 }
 
 // NewSubaccountEmailSettingsPayload instantiates a new SubaccountEmailSettingsPayload object
@@ -240,6 +241,48 @@ func (o *SubaccountEmailSettingsPayload) SetPoolName(v string) {
 	o.PoolName = &v
 }
 
+// GetValidSenderDomainOnly returns the ValidSenderDomainOnly field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SubaccountEmailSettingsPayload) GetValidSenderDomainOnly() bool {
+	if o == nil || o.ValidSenderDomainOnly.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ValidSenderDomainOnly.Get()
+}
+
+// GetValidSenderDomainOnlyOk returns a tuple with the ValidSenderDomainOnly field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SubaccountEmailSettingsPayload) GetValidSenderDomainOnlyOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ValidSenderDomainOnly.Get(), o.ValidSenderDomainOnly.IsSet()
+}
+
+// HasValidSenderDomainOnly returns a boolean if a field has been set.
+func (o *SubaccountEmailSettingsPayload) HasValidSenderDomainOnly() bool {
+	if o != nil && o.ValidSenderDomainOnly.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetValidSenderDomainOnly gets a reference to the given NullableBool and assigns it to the ValidSenderDomainOnly field.
+func (o *SubaccountEmailSettingsPayload) SetValidSenderDomainOnly(v bool) {
+	o.ValidSenderDomainOnly.Set(&v)
+}
+// SetValidSenderDomainOnlyNil sets the value for ValidSenderDomainOnly to be an explicit nil
+func (o *SubaccountEmailSettingsPayload) SetValidSenderDomainOnlyNil() {
+	o.ValidSenderDomainOnly.Set(nil)
+}
+
+// UnsetValidSenderDomainOnly ensures that no value is present for ValidSenderDomainOnly, not even an explicit nil
+func (o *SubaccountEmailSettingsPayload) UnsetValidSenderDomainOnly() {
+	o.ValidSenderDomainOnly.Unset()
+}
+
 func (o SubaccountEmailSettingsPayload) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.RequiresEmailCredits != nil {
@@ -259,6 +302,9 @@ func (o SubaccountEmailSettingsPayload) MarshalJSON() ([]byte, error) {
 	}
 	if o.PoolName != nil {
 		toSerialize["PoolName"] = o.PoolName
+	}
+	if o.ValidSenderDomainOnly.IsSet() {
+		toSerialize["ValidSenderDomainOnly"] = o.ValidSenderDomainOnly.Get()
 	}
 	return json.Marshal(toSerialize)
 }

@@ -20,7 +20,7 @@ type EmailsPayload struct {
 	// SQL-like rule. Sending 'All' as a value loads all resources of the given type. Help for building a segment rule can be found here: https://help.elasticemail.com/en/articles/5162182-segment-rules
 	Rule *string `json:"Rule,omitempty"`
 	// Comma delimited list of contact emails
-	Emails *[]string `json:"Emails,omitempty"`
+	Emails []string `json:"Emails,omitempty"`
 }
 
 // NewEmailsPayload instantiates a new EmailsPayload object
@@ -78,12 +78,12 @@ func (o *EmailsPayload) GetEmails() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Emails
+	return o.Emails
 }
 
 // GetEmailsOk returns a tuple with the Emails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EmailsPayload) GetEmailsOk() (*[]string, bool) {
+func (o *EmailsPayload) GetEmailsOk() ([]string, bool) {
 	if o == nil || o.Emails == nil {
 		return nil, false
 	}
@@ -101,7 +101,7 @@ func (o *EmailsPayload) HasEmails() bool {
 
 // SetEmails gets a reference to the given []string and assigns it to the Emails field.
 func (o *EmailsPayload) SetEmails(v []string) {
-	o.Emails = &v
+	o.Emails = v
 }
 
 func (o EmailsPayload) MarshalJSON() ([]byte, error) {

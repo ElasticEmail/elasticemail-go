@@ -42,8 +42,8 @@ func main() {
     subaccount := "subaccount_example" // string | Email of the subaccount of which ApiKey should be deleted (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SecurityApi.SecurityApikeysByNameDelete(context.Background(), name).Subaccount(subaccount).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecurityApi.SecurityApikeysByNameDelete(context.Background(), name).Subaccount(subaccount).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecurityApikeysByNameDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -112,8 +112,8 @@ func main() {
     subaccount := "subaccount_example" // string | Email of the subaccount of which ApiKey should be loaded (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SecurityApi.SecurityApikeysByNameGet(context.Background(), name).Subaccount(subaccount).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecurityApi.SecurityApikeysByNameGet(context.Background(), name).Subaccount(subaccount).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecurityApikeysByNameGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -184,8 +184,8 @@ func main() {
     apiKeyPayload := *openapiclient.NewApiKeyPayload("Name_example", []openapiclient.AccessLevel{openapiclient.AccessLevel("None")}) // ApiKeyPayload | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SecurityApi.SecurityApikeysByNamePut(context.Background(), name).ApiKeyPayload(apiKeyPayload).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecurityApi.SecurityApikeysByNamePut(context.Background(), name).ApiKeyPayload(apiKeyPayload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecurityApikeysByNamePut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -255,8 +255,8 @@ func main() {
     subaccount := "subaccount_example" // string | Email of the subaccount of which ApiKeys should be loaded (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SecurityApi.SecurityApikeysGet(context.Background()).Subaccount(subaccount).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecurityApi.SecurityApikeysGet(context.Background()).Subaccount(subaccount).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecurityApikeysGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -321,8 +321,8 @@ func main() {
     apiKeyPayload := *openapiclient.NewApiKeyPayload("Name_example", []openapiclient.AccessLevel{openapiclient.AccessLevel("None")}) // ApiKeyPayload | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SecurityApi.SecurityApikeysPost(context.Background()).ApiKeyPayload(apiKeyPayload).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecurityApi.SecurityApikeysPost(context.Background()).ApiKeyPayload(apiKeyPayload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecurityApikeysPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -388,8 +388,8 @@ func main() {
     subaccount := "subaccount_example" // string | Email of the subaccount of which credential should be deleted (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SecurityApi.SecuritySmtpByNameDelete(context.Background(), name).Subaccount(subaccount).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecurityApi.SecuritySmtpByNameDelete(context.Background(), name).Subaccount(subaccount).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecuritySmtpByNameDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -458,8 +458,8 @@ func main() {
     subaccount := "subaccount_example" // string | Email of the subaccount of which credential should be loaded (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SecurityApi.SecuritySmtpByNameGet(context.Background(), name).Subaccount(subaccount).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecurityApi.SecuritySmtpByNameGet(context.Background(), name).Subaccount(subaccount).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecuritySmtpByNameGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -530,8 +530,8 @@ func main() {
     smtpCredentialsPayload := *openapiclient.NewSmtpCredentialsPayload("Name_example") // SmtpCredentialsPayload | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SecurityApi.SecuritySmtpByNamePut(context.Background(), name).SmtpCredentialsPayload(smtpCredentialsPayload).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecurityApi.SecuritySmtpByNamePut(context.Background(), name).SmtpCredentialsPayload(smtpCredentialsPayload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecuritySmtpByNamePut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -601,8 +601,8 @@ func main() {
     subaccount := "subaccount_example" // string | Email of the subaccount of which credentials should be listed (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SecurityApi.SecuritySmtpGet(context.Background()).Subaccount(subaccount).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecurityApi.SecuritySmtpGet(context.Background()).Subaccount(subaccount).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecuritySmtpGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -667,8 +667,8 @@ func main() {
     smtpCredentialsPayload := *openapiclient.NewSmtpCredentialsPayload("Name_example") // SmtpCredentialsPayload | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SecurityApi.SecuritySmtpPost(context.Background()).SmtpCredentialsPayload(smtpCredentialsPayload).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecurityApi.SecuritySmtpPost(context.Background()).SmtpCredentialsPayload(smtpCredentialsPayload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecuritySmtpPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

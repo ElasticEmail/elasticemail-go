@@ -36,8 +36,8 @@ func main() {
     name := "Template01" // string | Name of template.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TemplatesApi.TemplatesByNameDelete(context.Background(), name).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TemplatesApi.TemplatesByNameDelete(context.Background(), name).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplatesByNameDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -104,8 +104,8 @@ func main() {
     name := "Template01" // string | Name of template.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TemplatesApi.TemplatesByNameGet(context.Background(), name).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TemplatesApi.TemplatesByNameGet(context.Background(), name).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplatesByNameGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -175,8 +175,8 @@ func main() {
     templatePayload := *openapiclient.NewTemplatePayload("Name_example") // TemplatePayload | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TemplatesApi.TemplatesByNamePut(context.Background(), name).TemplatePayload(templatePayload).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TemplatesApi.TemplatesByNamePut(context.Background(), name).TemplatePayload(templatePayload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplatesByNamePut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -249,8 +249,8 @@ func main() {
     offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TemplatesApi.TemplatesGet(context.Background()).ScopeType(scopeType).TemplateTypes(templateTypes).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TemplatesApi.TemplatesGet(context.Background()).ScopeType(scopeType).TemplateTypes(templateTypes).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplatesGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -318,8 +318,8 @@ func main() {
     templatePayload := *openapiclient.NewTemplatePayload("Name_example") // TemplatePayload | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TemplatesApi.TemplatesPost(context.Background()).TemplatePayload(templatePayload).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TemplatesApi.TemplatesPost(context.Background()).TemplatePayload(templatePayload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplatesPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

@@ -19,7 +19,7 @@ import (
 // VerificationFileResultDetails Detailed verification file result info
 type VerificationFileResultDetails struct {
 	// Verification result's details
-	VerificationResult *[]EmailValidationResult `json:"VerificationResult,omitempty"`
+	VerificationResult []EmailValidationResult `json:"VerificationResult,omitempty"`
 	// Identifier of this verification result
 	VerificationID *string `json:"VerificationID,omitempty"`
 	// Origin file name
@@ -59,12 +59,12 @@ func (o *VerificationFileResultDetails) GetVerificationResult() []EmailValidatio
 		var ret []EmailValidationResult
 		return ret
 	}
-	return *o.VerificationResult
+	return o.VerificationResult
 }
 
 // GetVerificationResultOk returns a tuple with the VerificationResult field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VerificationFileResultDetails) GetVerificationResultOk() (*[]EmailValidationResult, bool) {
+func (o *VerificationFileResultDetails) GetVerificationResultOk() ([]EmailValidationResult, bool) {
 	if o == nil || o.VerificationResult == nil {
 		return nil, false
 	}
@@ -82,7 +82,7 @@ func (o *VerificationFileResultDetails) HasVerificationResult() bool {
 
 // SetVerificationResult gets a reference to the given []EmailValidationResult and assigns it to the VerificationResult field.
 func (o *VerificationFileResultDetails) SetVerificationResult(v []EmailValidationResult) {
-	o.VerificationResult = &v
+	o.VerificationResult = v
 }
 
 // GetVerificationID returns the VerificationID field value if set, zero value otherwise.

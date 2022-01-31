@@ -23,7 +23,7 @@ type SmtpCredentialsPayload struct {
 	// Date this SmtpCredential expires.
 	Expires NullableTime `json:"Expires,omitempty"`
 	// Which IPs can use this SmtpCredential
-	RestrictAccessToIPRange *[]string `json:"RestrictAccessToIPRange,omitempty"`
+	RestrictAccessToIPRange []string `json:"RestrictAccessToIPRange,omitempty"`
 	// Email of the subaccount for which this SmtpCredential should be created
 	Subaccount *string `json:"Subaccount,omitempty"`
 }
@@ -118,12 +118,12 @@ func (o *SmtpCredentialsPayload) GetRestrictAccessToIPRange() []string {
 		var ret []string
 		return ret
 	}
-	return *o.RestrictAccessToIPRange
+	return o.RestrictAccessToIPRange
 }
 
 // GetRestrictAccessToIPRangeOk returns a tuple with the RestrictAccessToIPRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SmtpCredentialsPayload) GetRestrictAccessToIPRangeOk() (*[]string, bool) {
+func (o *SmtpCredentialsPayload) GetRestrictAccessToIPRangeOk() ([]string, bool) {
 	if o == nil || o.RestrictAccessToIPRange == nil {
 		return nil, false
 	}
@@ -141,7 +141,7 @@ func (o *SmtpCredentialsPayload) HasRestrictAccessToIPRange() bool {
 
 // SetRestrictAccessToIPRange gets a reference to the given []string and assigns it to the RestrictAccessToIPRange field.
 func (o *SmtpCredentialsPayload) SetRestrictAccessToIPRange(v []string) {
-	o.RestrictAccessToIPRange = &v
+	o.RestrictAccessToIPRange = v
 }
 
 // GetSubaccount returns the Subaccount field value if set, zero value otherwise.

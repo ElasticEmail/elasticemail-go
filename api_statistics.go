@@ -13,30 +13,30 @@ package ElasticEmail
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 	"time"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // StatisticsApiService StatisticsApi service
 type StatisticsApiService service
 
 type ApiStatisticsCampaignsByNameGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *StatisticsApiService
 	name string
 }
 
 
-func (r ApiStatisticsCampaignsByNameGetRequest) Execute() (ChannelLogStatusSummary, *_nethttp.Response, error) {
+func (r ApiStatisticsCampaignsByNameGetRequest) Execute() (*ChannelLogStatusSummary, *http.Response, error) {
 	return r.ApiService.StatisticsCampaignsByNameGetExecute(r)
 }
 
@@ -45,11 +45,11 @@ StatisticsCampaignsByNameGet Load Campaign Stats
 
 Retrieve stats of an existing campaign. Required Access Level: ViewChannels
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name The name of the campaign to get.
  @return ApiStatisticsCampaignsByNameGetRequest
 */
-func (a *StatisticsApiService) StatisticsCampaignsByNameGet(ctx _context.Context, name string) ApiStatisticsCampaignsByNameGetRequest {
+func (a *StatisticsApiService) StatisticsCampaignsByNameGet(ctx context.Context, name string) ApiStatisticsCampaignsByNameGetRequest {
 	return ApiStatisticsCampaignsByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -59,27 +59,25 @@ func (a *StatisticsApiService) StatisticsCampaignsByNameGet(ctx _context.Context
 
 // Execute executes the request
 //  @return ChannelLogStatusSummary
-func (a *StatisticsApiService) StatisticsCampaignsByNameGetExecute(r ApiStatisticsCampaignsByNameGetRequest) (ChannelLogStatusSummary, *_nethttp.Response, error) {
+func (a *StatisticsApiService) StatisticsCampaignsByNameGetExecute(r ApiStatisticsCampaignsByNameGetRequest) (*ChannelLogStatusSummary, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ChannelLogStatusSummary
+		formFiles            []formFile
+		localVarReturnValue  *ChannelLogStatusSummary
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatisticsApiService.StatisticsCampaignsByNameGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/statistics/campaigns/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", _neturl.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -112,7 +110,7 @@ func (a *StatisticsApiService) StatisticsCampaignsByNameGetExecute(r ApiStatisti
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -122,15 +120,15 @@ func (a *StatisticsApiService) StatisticsCampaignsByNameGetExecute(r ApiStatisti
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -139,7 +137,7 @@ func (a *StatisticsApiService) StatisticsCampaignsByNameGetExecute(r ApiStatisti
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -150,7 +148,7 @@ func (a *StatisticsApiService) StatisticsCampaignsByNameGetExecute(r ApiStatisti
 }
 
 type ApiStatisticsCampaignsGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *StatisticsApiService
 	limit *int32
 	offset *int32
@@ -167,7 +165,7 @@ func (r ApiStatisticsCampaignsGetRequest) Offset(offset int32) ApiStatisticsCamp
 	return r
 }
 
-func (r ApiStatisticsCampaignsGetRequest) Execute() ([]ChannelLogStatusSummary, *_nethttp.Response, error) {
+func (r ApiStatisticsCampaignsGetRequest) Execute() ([]ChannelLogStatusSummary, *http.Response, error) {
 	return r.ApiService.StatisticsCampaignsGetExecute(r)
 }
 
@@ -176,10 +174,10 @@ StatisticsCampaignsGet Load Campaigns Stats
 
 Returns a list of your Campaigns' stats. Required Access Level: ViewChannels
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiStatisticsCampaignsGetRequest
 */
-func (a *StatisticsApiService) StatisticsCampaignsGet(ctx _context.Context) ApiStatisticsCampaignsGetRequest {
+func (a *StatisticsApiService) StatisticsCampaignsGet(ctx context.Context) ApiStatisticsCampaignsGetRequest {
 	return ApiStatisticsCampaignsGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -188,26 +186,24 @@ func (a *StatisticsApiService) StatisticsCampaignsGet(ctx _context.Context) ApiS
 
 // Execute executes the request
 //  @return []ChannelLogStatusSummary
-func (a *StatisticsApiService) StatisticsCampaignsGetExecute(r ApiStatisticsCampaignsGetRequest) ([]ChannelLogStatusSummary, *_nethttp.Response, error) {
+func (a *StatisticsApiService) StatisticsCampaignsGetExecute(r ApiStatisticsCampaignsGetRequest) ([]ChannelLogStatusSummary, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 		localVarReturnValue  []ChannelLogStatusSummary
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatisticsApiService.StatisticsCampaignsGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/statistics/campaigns"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
@@ -246,7 +242,7 @@ func (a *StatisticsApiService) StatisticsCampaignsGetExecute(r ApiStatisticsCamp
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -256,15 +252,15 @@ func (a *StatisticsApiService) StatisticsCampaignsGetExecute(r ApiStatisticsCamp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -273,7 +269,7 @@ func (a *StatisticsApiService) StatisticsCampaignsGetExecute(r ApiStatisticsCamp
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -284,13 +280,13 @@ func (a *StatisticsApiService) StatisticsCampaignsGetExecute(r ApiStatisticsCamp
 }
 
 type ApiStatisticsChannelsByNameGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *StatisticsApiService
 	name string
 }
 
 
-func (r ApiStatisticsChannelsByNameGetRequest) Execute() (ChannelLogStatusSummary, *_nethttp.Response, error) {
+func (r ApiStatisticsChannelsByNameGetRequest) Execute() (*ChannelLogStatusSummary, *http.Response, error) {
 	return r.ApiService.StatisticsChannelsByNameGetExecute(r)
 }
 
@@ -299,11 +295,11 @@ StatisticsChannelsByNameGet Load Channel Stats
 
 Retrieve an existing channel stats. Required Access Level: ViewChannels
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name The name of the channel to get.
  @return ApiStatisticsChannelsByNameGetRequest
 */
-func (a *StatisticsApiService) StatisticsChannelsByNameGet(ctx _context.Context, name string) ApiStatisticsChannelsByNameGetRequest {
+func (a *StatisticsApiService) StatisticsChannelsByNameGet(ctx context.Context, name string) ApiStatisticsChannelsByNameGetRequest {
 	return ApiStatisticsChannelsByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -313,27 +309,25 @@ func (a *StatisticsApiService) StatisticsChannelsByNameGet(ctx _context.Context,
 
 // Execute executes the request
 //  @return ChannelLogStatusSummary
-func (a *StatisticsApiService) StatisticsChannelsByNameGetExecute(r ApiStatisticsChannelsByNameGetRequest) (ChannelLogStatusSummary, *_nethttp.Response, error) {
+func (a *StatisticsApiService) StatisticsChannelsByNameGetExecute(r ApiStatisticsChannelsByNameGetRequest) (*ChannelLogStatusSummary, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ChannelLogStatusSummary
+		formFiles            []formFile
+		localVarReturnValue  *ChannelLogStatusSummary
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatisticsApiService.StatisticsChannelsByNameGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/statistics/channels/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", _neturl.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -366,7 +360,7 @@ func (a *StatisticsApiService) StatisticsChannelsByNameGetExecute(r ApiStatistic
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -376,15 +370,15 @@ func (a *StatisticsApiService) StatisticsChannelsByNameGetExecute(r ApiStatistic
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -393,7 +387,7 @@ func (a *StatisticsApiService) StatisticsChannelsByNameGetExecute(r ApiStatistic
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -404,7 +398,7 @@ func (a *StatisticsApiService) StatisticsChannelsByNameGetExecute(r ApiStatistic
 }
 
 type ApiStatisticsChannelsGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *StatisticsApiService
 	limit *int32
 	offset *int32
@@ -421,7 +415,7 @@ func (r ApiStatisticsChannelsGetRequest) Offset(offset int32) ApiStatisticsChann
 	return r
 }
 
-func (r ApiStatisticsChannelsGetRequest) Execute() ([]ChannelLogStatusSummary, *_nethttp.Response, error) {
+func (r ApiStatisticsChannelsGetRequest) Execute() ([]ChannelLogStatusSummary, *http.Response, error) {
 	return r.ApiService.StatisticsChannelsGetExecute(r)
 }
 
@@ -430,10 +424,10 @@ StatisticsChannelsGet Load Channels Stats
 
 Returns a list of your Channels' stats. Required Access Level: ViewChannels
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiStatisticsChannelsGetRequest
 */
-func (a *StatisticsApiService) StatisticsChannelsGet(ctx _context.Context) ApiStatisticsChannelsGetRequest {
+func (a *StatisticsApiService) StatisticsChannelsGet(ctx context.Context) ApiStatisticsChannelsGetRequest {
 	return ApiStatisticsChannelsGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -442,26 +436,24 @@ func (a *StatisticsApiService) StatisticsChannelsGet(ctx _context.Context) ApiSt
 
 // Execute executes the request
 //  @return []ChannelLogStatusSummary
-func (a *StatisticsApiService) StatisticsChannelsGetExecute(r ApiStatisticsChannelsGetRequest) ([]ChannelLogStatusSummary, *_nethttp.Response, error) {
+func (a *StatisticsApiService) StatisticsChannelsGetExecute(r ApiStatisticsChannelsGetRequest) ([]ChannelLogStatusSummary, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 		localVarReturnValue  []ChannelLogStatusSummary
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatisticsApiService.StatisticsChannelsGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/statistics/channels"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
@@ -500,7 +492,7 @@ func (a *StatisticsApiService) StatisticsChannelsGetExecute(r ApiStatisticsChann
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -510,15 +502,15 @@ func (a *StatisticsApiService) StatisticsChannelsGetExecute(r ApiStatisticsChann
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -527,7 +519,7 @@ func (a *StatisticsApiService) StatisticsChannelsGetExecute(r ApiStatisticsChann
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -538,7 +530,7 @@ func (a *StatisticsApiService) StatisticsChannelsGetExecute(r ApiStatisticsChann
 }
 
 type ApiStatisticsGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *StatisticsApiService
 	from *time.Time
 	to *time.Time
@@ -555,7 +547,7 @@ func (r ApiStatisticsGetRequest) To(to time.Time) ApiStatisticsGetRequest {
 	return r
 }
 
-func (r ApiStatisticsGetRequest) Execute() (LogStatusSummary, *_nethttp.Response, error) {
+func (r ApiStatisticsGetRequest) Execute() (*LogStatusSummary, *http.Response, error) {
 	return r.ApiService.StatisticsGetExecute(r)
 }
 
@@ -564,10 +556,10 @@ StatisticsGet Load Statistics
 
 Returns basic statistics. Required Access Level: ViewReports
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiStatisticsGetRequest
 */
-func (a *StatisticsApiService) StatisticsGet(ctx _context.Context) ApiStatisticsGetRequest {
+func (a *StatisticsApiService) StatisticsGet(ctx context.Context) ApiStatisticsGetRequest {
 	return ApiStatisticsGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -576,26 +568,24 @@ func (a *StatisticsApiService) StatisticsGet(ctx _context.Context) ApiStatistics
 
 // Execute executes the request
 //  @return LogStatusSummary
-func (a *StatisticsApiService) StatisticsGetExecute(r ApiStatisticsGetRequest) (LogStatusSummary, *_nethttp.Response, error) {
+func (a *StatisticsApiService) StatisticsGetExecute(r ApiStatisticsGetRequest) (*LogStatusSummary, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  LogStatusSummary
+		formFiles            []formFile
+		localVarReturnValue  *LogStatusSummary
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatisticsApiService.StatisticsGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/statistics"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.from == nil {
 		return localVarReturnValue, nil, reportError("from is required and must be specified")
 	}
@@ -635,7 +625,7 @@ func (a *StatisticsApiService) StatisticsGetExecute(r ApiStatisticsGetRequest) (
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -645,15 +635,15 @@ func (a *StatisticsApiService) StatisticsGetExecute(r ApiStatisticsGetRequest) (
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -662,7 +652,7 @@ func (a *StatisticsApiService) StatisticsGetExecute(r ApiStatisticsGetRequest) (
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

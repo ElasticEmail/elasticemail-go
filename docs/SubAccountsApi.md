@@ -38,8 +38,8 @@ func main() {
     subaccountEmailCreditsPayload := *openapiclient.NewSubaccountEmailCreditsPayload(int32(123)) // SubaccountEmailCreditsPayload | Amount of email credits to add or subtract from the current SubAccount email credits pool (positive or negative value)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubAccountsApi.SubaccountsByEmailCreditsPatch(context.Background(), email).SubaccountEmailCreditsPayload(subaccountEmailCreditsPayload).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SubAccountsApi.SubaccountsByEmailCreditsPatch(context.Background(), email).SubaccountEmailCreditsPayload(subaccountEmailCreditsPayload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsApi.SubaccountsByEmailCreditsPatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -107,8 +107,8 @@ func main() {
     email := "mail@example.com" // string | Email address of Sub-Account
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubAccountsApi.SubaccountsByEmailDelete(context.Background(), email).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SubAccountsApi.SubaccountsByEmailDelete(context.Background(), email).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsApi.SubaccountsByEmailDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -175,8 +175,8 @@ func main() {
     email := "mail@example.com" // string | Email address of Sub-Account
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubAccountsApi.SubaccountsByEmailGet(context.Background(), email).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SubAccountsApi.SubaccountsByEmailGet(context.Background(), email).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsApi.SubaccountsByEmailGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -246,8 +246,8 @@ func main() {
     subaccountEmailSettings := *openapiclient.NewSubaccountEmailSettings() // SubaccountEmailSettings | Updated Email Settings
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubAccountsApi.SubaccountsByEmailSettingsEmailPut(context.Background(), email).SubaccountEmailSettings(subaccountEmailSettings).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SubAccountsApi.SubaccountsByEmailSettingsEmailPut(context.Background(), email).SubaccountEmailSettings(subaccountEmailSettings).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsApi.SubaccountsByEmailSettingsEmailPut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -318,8 +318,8 @@ func main() {
     offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubAccountsApi.SubaccountsGet(context.Background()).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SubAccountsApi.SubaccountsGet(context.Background()).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsApi.SubaccountsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -385,8 +385,8 @@ func main() {
     subaccountPayload := *openapiclient.NewSubaccountPayload("mail@example.com", "********") // SubaccountPayload | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubAccountsApi.SubaccountsPost(context.Background()).SubaccountPayload(subaccountPayload).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SubAccountsApi.SubaccountsPost(context.Background()).SubaccountPayload(subaccountPayload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsApi.SubaccountsPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

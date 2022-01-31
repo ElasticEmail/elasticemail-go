@@ -53,11 +53,11 @@ func (o *EmailMessageData) GetRecipients() []EmailRecipient {
 
 // GetRecipientsOk returns a tuple with the Recipients field value
 // and a boolean to check if the value has been set.
-func (o *EmailMessageData) GetRecipientsOk() (*[]EmailRecipient, bool) {
+func (o *EmailMessageData) GetRecipientsOk() ([]EmailRecipient, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Recipients, true
+	return o.Recipients, true
 }
 
 // SetRecipients sets field value

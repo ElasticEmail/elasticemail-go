@@ -26,7 +26,7 @@ type Template struct {
 	// Default subject of email.
 	Subject *string `json:"Subject,omitempty"`
 	// Email content of this template
-	Body *[]BodyPart `json:"Body,omitempty"`
+	Body []BodyPart `json:"Body,omitempty"`
 	TemplateScope *TemplateScope `json:"TemplateScope,omitempty"`
 }
 
@@ -189,12 +189,12 @@ func (o *Template) GetBody() []BodyPart {
 		var ret []BodyPart
 		return ret
 	}
-	return *o.Body
+	return o.Body
 }
 
 // GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Template) GetBodyOk() (*[]BodyPart, bool) {
+func (o *Template) GetBodyOk() ([]BodyPart, bool) {
 	if o == nil || o.Body == nil {
 		return nil, false
 	}
@@ -212,7 +212,7 @@ func (o *Template) HasBody() bool {
 
 // SetBody gets a reference to the given []BodyPart and assigns it to the Body field.
 func (o *Template) SetBody(v []BodyPart) {
-	o.Body = &v
+	o.Body = v
 }
 
 // GetTemplateScope returns the TemplateScope field value if set, zero value otherwise.

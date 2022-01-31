@@ -45,8 +45,8 @@ func main() {
     offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SuppressionsApi.SuppressionsBouncesGet(context.Background()).Search(search).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SuppressionsApi.SuppressionsBouncesGet(context.Background()).Search(search).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SuppressionsApi.SuppressionsBouncesGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -113,8 +113,8 @@ func main() {
     file := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SuppressionsApi.SuppressionsBouncesImportPost(context.Background()).File(file).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SuppressionsApi.SuppressionsBouncesImportPost(context.Background()).File(file).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SuppressionsApi.SuppressionsBouncesImportPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -177,8 +177,8 @@ func main() {
     requestBody := []string{"Property_example"} // []string | Emails to add as bounces. Limited to 1000 per request
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SuppressionsApi.SuppressionsBouncesPost(context.Background()).RequestBody(requestBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SuppressionsApi.SuppressionsBouncesPost(context.Background()).RequestBody(requestBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SuppressionsApi.SuppressionsBouncesPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -243,8 +243,8 @@ func main() {
     email := "mail@example.com" // string | Proper email address.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SuppressionsApi.SuppressionsByEmailDelete(context.Background(), email).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SuppressionsApi.SuppressionsByEmailDelete(context.Background(), email).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SuppressionsApi.SuppressionsByEmailDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -311,8 +311,8 @@ func main() {
     email := "mail@example.com" // string | Proper email address.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SuppressionsApi.SuppressionsByEmailGet(context.Background(), email).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SuppressionsApi.SuppressionsByEmailGet(context.Background(), email).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SuppressionsApi.SuppressionsByEmailGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -383,8 +383,8 @@ func main() {
     offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SuppressionsApi.SuppressionsComplaintsGet(context.Background()).Search(search).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SuppressionsApi.SuppressionsComplaintsGet(context.Background()).Search(search).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SuppressionsApi.SuppressionsComplaintsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -451,8 +451,8 @@ func main() {
     file := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SuppressionsApi.SuppressionsComplaintsImportPost(context.Background()).File(file).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SuppressionsApi.SuppressionsComplaintsImportPost(context.Background()).File(file).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SuppressionsApi.SuppressionsComplaintsImportPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -515,8 +515,8 @@ func main() {
     requestBody := []string{"Property_example"} // []string | Emails to add as complaints. Limited to 1000 per request
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SuppressionsApi.SuppressionsComplaintsPost(context.Background()).RequestBody(requestBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SuppressionsApi.SuppressionsComplaintsPost(context.Background()).RequestBody(requestBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SuppressionsApi.SuppressionsComplaintsPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -582,8 +582,8 @@ func main() {
     offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SuppressionsApi.SuppressionsGet(context.Background()).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SuppressionsApi.SuppressionsGet(context.Background()).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SuppressionsApi.SuppressionsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -651,8 +651,8 @@ func main() {
     offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SuppressionsApi.SuppressionsUnsubscribesGet(context.Background()).Search(search).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SuppressionsApi.SuppressionsUnsubscribesGet(context.Background()).Search(search).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SuppressionsApi.SuppressionsUnsubscribesGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -719,8 +719,8 @@ func main() {
     file := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SuppressionsApi.SuppressionsUnsubscribesImportPost(context.Background()).File(file).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SuppressionsApi.SuppressionsUnsubscribesImportPost(context.Background()).File(file).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SuppressionsApi.SuppressionsUnsubscribesImportPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -783,8 +783,8 @@ func main() {
     requestBody := []string{"Property_example"} // []string | Emails to add as unsubscribes. Limited to 1000 per request
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SuppressionsApi.SuppressionsUnsubscribesPost(context.Background()).RequestBody(requestBody).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SuppressionsApi.SuppressionsUnsubscribesPost(context.Background()).RequestBody(requestBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SuppressionsApi.SuppressionsUnsubscribesPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

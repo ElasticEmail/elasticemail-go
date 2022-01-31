@@ -36,8 +36,8 @@ func main() {
     name := "filename.txt" // string | Name of your file including extension.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.FilesApi.FilesByNameDelete(context.Background(), name).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.FilesApi.FilesByNameDelete(context.Background(), name).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FilesApi.FilesByNameDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -104,8 +104,8 @@ func main() {
     name := "filename.txt" // string | Name of your file including extension.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.FilesApi.FilesByNameGet(context.Background(), name).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.FilesApi.FilesByNameGet(context.Background(), name).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FilesApi.FilesByNameGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -174,8 +174,8 @@ func main() {
     name := "filename.txt" // string | Name of your file including extension.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.FilesApi.FilesByNameInfoGet(context.Background(), name).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.FilesApi.FilesByNameInfoGet(context.Background(), name).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FilesApi.FilesByNameInfoGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -245,8 +245,8 @@ func main() {
     offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.FilesApi.FilesGet(context.Background()).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.FilesApi.FilesGet(context.Background()).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FilesApi.FilesGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -309,12 +309,12 @@ import (
 )
 
 func main() {
-    filePayload := *openapiclient.NewFilePayload("BinaryContent_example") // FilePayload | 
+    filePayload := *openapiclient.NewFilePayload(string(123)) // FilePayload | 
     expiresAfterDays := int32(56) // int32 | After how many days should the file be deleted. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.FilesApi.FilesPost(context.Background()).FilePayload(filePayload).ExpiresAfterDays(expiresAfterDays).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.FilesApi.FilesPost(context.Background()).FilePayload(filePayload).ExpiresAfterDays(expiresAfterDays).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FilesApi.FilesPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

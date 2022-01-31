@@ -37,8 +37,8 @@ func main() {
     id := "id_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InboundRouteApi.InboundrouteByIdDelete(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InboundRouteApi.InboundrouteByIdDelete(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InboundRouteApi.InboundrouteByIdDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -105,8 +105,8 @@ func main() {
     id := "123456" // string | ID number of your attachment
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InboundRouteApi.InboundrouteByIdGet(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InboundRouteApi.InboundrouteByIdGet(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InboundRouteApi.InboundrouteByIdGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -176,8 +176,8 @@ func main() {
     inboundPayload := *openapiclient.NewInboundPayload("Filter_example", "Name_example", openapiclient.InboundRouteFilterType("EmailAddress"), openapiclient.InboundRouteActionType("ForwardToEmail")) // InboundPayload | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InboundRouteApi.InboundrouteByIdPut(context.Background(), id).InboundPayload(inboundPayload).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InboundRouteApi.InboundrouteByIdPut(context.Background(), id).InboundPayload(inboundPayload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InboundRouteApi.InboundrouteByIdPut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -246,8 +246,8 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InboundRouteApi.InboundrouteGet(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InboundRouteApi.InboundrouteGet(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InboundRouteApi.InboundrouteGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -308,8 +308,8 @@ func main() {
     sortOrderItem := []openapiclient.SortOrderItem{*openapiclient.NewSortOrderItem("PublicInboundId_example", int32(123))} // []SortOrderItem | Change the ordering of inbound routes for when matching the inbound
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InboundRouteApi.InboundrouteOrderPut(context.Background()).SortOrderItem(sortOrderItem).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InboundRouteApi.InboundrouteOrderPut(context.Background()).SortOrderItem(sortOrderItem).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InboundRouteApi.InboundrouteOrderPut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -374,8 +374,8 @@ func main() {
     inboundPayload := *openapiclient.NewInboundPayload("Filter_example", "Name_example", openapiclient.InboundRouteFilterType("EmailAddress"), openapiclient.InboundRouteActionType("ForwardToEmail")) // InboundPayload | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InboundRouteApi.InboundroutePost(context.Background()).InboundPayload(inboundPayload).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InboundRouteApi.InboundroutePost(context.Background()).InboundPayload(inboundPayload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InboundRouteApi.InboundroutePost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

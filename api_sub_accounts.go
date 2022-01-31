@@ -13,23 +13,23 @@ package ElasticEmail
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // SubAccountsApiService SubAccountsApi service
 type SubAccountsApiService service
 
 type ApiSubaccountsByEmailCreditsPatchRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SubAccountsApiService
 	email string
 	subaccountEmailCreditsPayload *SubaccountEmailCreditsPayload
@@ -41,7 +41,7 @@ func (r ApiSubaccountsByEmailCreditsPatchRequest) SubaccountEmailCreditsPayload(
 	return r
 }
 
-func (r ApiSubaccountsByEmailCreditsPatchRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiSubaccountsByEmailCreditsPatchRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SubaccountsByEmailCreditsPatchExecute(r)
 }
 
@@ -50,11 +50,11 @@ SubaccountsByEmailCreditsPatch Add, Subtract Email Credits
 
 Update email credits of a subaccount by the given amount. Required Access Level: ModifySubAccounts
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email Email address of Sub-Account
  @return ApiSubaccountsByEmailCreditsPatchRequest
 */
-func (a *SubAccountsApiService) SubaccountsByEmailCreditsPatch(ctx _context.Context, email string) ApiSubaccountsByEmailCreditsPatchRequest {
+func (a *SubAccountsApiService) SubaccountsByEmailCreditsPatch(ctx context.Context, email string) ApiSubaccountsByEmailCreditsPatchRequest {
 	return ApiSubaccountsByEmailCreditsPatchRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -63,26 +63,24 @@ func (a *SubAccountsApiService) SubaccountsByEmailCreditsPatch(ctx _context.Cont
 }
 
 // Execute executes the request
-func (a *SubAccountsApiService) SubaccountsByEmailCreditsPatchExecute(r ApiSubaccountsByEmailCreditsPatchRequest) (*_nethttp.Response, error) {
+func (a *SubAccountsApiService) SubaccountsByEmailCreditsPatchExecute(r ApiSubaccountsByEmailCreditsPatchRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubAccountsApiService.SubaccountsByEmailCreditsPatch")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/subaccounts/{email}/credits"
-	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", _neturl.PathEscape(parameterToString(r.email, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterToString(r.email, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.subaccountEmailCreditsPayload == nil {
 		return nil, reportError("subaccountEmailCreditsPayload is required and must be specified")
 	}
@@ -120,7 +118,7 @@ func (a *SubAccountsApiService) SubaccountsByEmailCreditsPatchExecute(r ApiSubac
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -130,15 +128,15 @@ func (a *SubAccountsApiService) SubaccountsByEmailCreditsPatchExecute(r ApiSubac
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -149,13 +147,13 @@ func (a *SubAccountsApiService) SubaccountsByEmailCreditsPatchExecute(r ApiSubac
 }
 
 type ApiSubaccountsByEmailDeleteRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SubAccountsApiService
 	email string
 }
 
 
-func (r ApiSubaccountsByEmailDeleteRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiSubaccountsByEmailDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SubaccountsByEmailDeleteExecute(r)
 }
 
@@ -164,11 +162,11 @@ SubaccountsByEmailDelete Delete SubAccount
 
 Deletes specified SubAccount. An email will be sent to confirm this change. Required Access Level: ModifySubAccounts
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email Email address of Sub-Account
  @return ApiSubaccountsByEmailDeleteRequest
 */
-func (a *SubAccountsApiService) SubaccountsByEmailDelete(ctx _context.Context, email string) ApiSubaccountsByEmailDeleteRequest {
+func (a *SubAccountsApiService) SubaccountsByEmailDelete(ctx context.Context, email string) ApiSubaccountsByEmailDeleteRequest {
 	return ApiSubaccountsByEmailDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -177,26 +175,24 @@ func (a *SubAccountsApiService) SubaccountsByEmailDelete(ctx _context.Context, e
 }
 
 // Execute executes the request
-func (a *SubAccountsApiService) SubaccountsByEmailDeleteExecute(r ApiSubaccountsByEmailDeleteRequest) (*_nethttp.Response, error) {
+func (a *SubAccountsApiService) SubaccountsByEmailDeleteExecute(r ApiSubaccountsByEmailDeleteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubAccountsApiService.SubaccountsByEmailDelete")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/subaccounts/{email}"
-	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", _neturl.PathEscape(parameterToString(r.email, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterToString(r.email, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -229,7 +225,7 @@ func (a *SubAccountsApiService) SubaccountsByEmailDeleteExecute(r ApiSubaccounts
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -239,15 +235,15 @@ func (a *SubAccountsApiService) SubaccountsByEmailDeleteExecute(r ApiSubaccounts
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -258,13 +254,13 @@ func (a *SubAccountsApiService) SubaccountsByEmailDeleteExecute(r ApiSubaccounts
 }
 
 type ApiSubaccountsByEmailGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SubAccountsApiService
 	email string
 }
 
 
-func (r ApiSubaccountsByEmailGetRequest) Execute() (SubAccountInfo, *_nethttp.Response, error) {
+func (r ApiSubaccountsByEmailGetRequest) Execute() (*SubAccountInfo, *http.Response, error) {
 	return r.ApiService.SubaccountsByEmailGetExecute(r)
 }
 
@@ -273,11 +269,11 @@ SubaccountsByEmailGet Load SubAccount
 
 Returns details for the specified SubAccount. Required Access Level: ViewSubAccounts
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email Email address of Sub-Account
  @return ApiSubaccountsByEmailGetRequest
 */
-func (a *SubAccountsApiService) SubaccountsByEmailGet(ctx _context.Context, email string) ApiSubaccountsByEmailGetRequest {
+func (a *SubAccountsApiService) SubaccountsByEmailGet(ctx context.Context, email string) ApiSubaccountsByEmailGetRequest {
 	return ApiSubaccountsByEmailGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -287,27 +283,25 @@ func (a *SubAccountsApiService) SubaccountsByEmailGet(ctx _context.Context, emai
 
 // Execute executes the request
 //  @return SubAccountInfo
-func (a *SubAccountsApiService) SubaccountsByEmailGetExecute(r ApiSubaccountsByEmailGetRequest) (SubAccountInfo, *_nethttp.Response, error) {
+func (a *SubAccountsApiService) SubaccountsByEmailGetExecute(r ApiSubaccountsByEmailGetRequest) (*SubAccountInfo, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SubAccountInfo
+		formFiles            []formFile
+		localVarReturnValue  *SubAccountInfo
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubAccountsApiService.SubaccountsByEmailGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/subaccounts/{email}"
-	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", _neturl.PathEscape(parameterToString(r.email, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterToString(r.email, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -340,7 +334,7 @@ func (a *SubAccountsApiService) SubaccountsByEmailGetExecute(r ApiSubaccountsByE
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -350,15 +344,15 @@ func (a *SubAccountsApiService) SubaccountsByEmailGetExecute(r ApiSubaccountsByE
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -367,7 +361,7 @@ func (a *SubAccountsApiService) SubaccountsByEmailGetExecute(r ApiSubaccountsByE
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -378,7 +372,7 @@ func (a *SubAccountsApiService) SubaccountsByEmailGetExecute(r ApiSubaccountsByE
 }
 
 type ApiSubaccountsByEmailSettingsEmailPutRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SubAccountsApiService
 	email string
 	subaccountEmailSettings *SubaccountEmailSettings
@@ -390,7 +384,7 @@ func (r ApiSubaccountsByEmailSettingsEmailPutRequest) SubaccountEmailSettings(su
 	return r
 }
 
-func (r ApiSubaccountsByEmailSettingsEmailPutRequest) Execute() (SubaccountEmailSettings, *_nethttp.Response, error) {
+func (r ApiSubaccountsByEmailSettingsEmailPutRequest) Execute() (*SubaccountEmailSettings, *http.Response, error) {
 	return r.ApiService.SubaccountsByEmailSettingsEmailPutExecute(r)
 }
 
@@ -399,11 +393,11 @@ SubaccountsByEmailSettingsEmailPut Update SubAccount Email Settings
 
 Update SubAccount email settings. Required Access Level: ModifySubAccounts
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email
  @return ApiSubaccountsByEmailSettingsEmailPutRequest
 */
-func (a *SubAccountsApiService) SubaccountsByEmailSettingsEmailPut(ctx _context.Context, email string) ApiSubaccountsByEmailSettingsEmailPutRequest {
+func (a *SubAccountsApiService) SubaccountsByEmailSettingsEmailPut(ctx context.Context, email string) ApiSubaccountsByEmailSettingsEmailPutRequest {
 	return ApiSubaccountsByEmailSettingsEmailPutRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -413,27 +407,25 @@ func (a *SubAccountsApiService) SubaccountsByEmailSettingsEmailPut(ctx _context.
 
 // Execute executes the request
 //  @return SubaccountEmailSettings
-func (a *SubAccountsApiService) SubaccountsByEmailSettingsEmailPutExecute(r ApiSubaccountsByEmailSettingsEmailPutRequest) (SubaccountEmailSettings, *_nethttp.Response, error) {
+func (a *SubAccountsApiService) SubaccountsByEmailSettingsEmailPutExecute(r ApiSubaccountsByEmailSettingsEmailPutRequest) (*SubaccountEmailSettings, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SubaccountEmailSettings
+		formFiles            []formFile
+		localVarReturnValue  *SubaccountEmailSettings
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubAccountsApiService.SubaccountsByEmailSettingsEmailPut")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/subaccounts/{email}/settings/email"
-	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", _neturl.PathEscape(parameterToString(r.email, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterToString(r.email, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.subaccountEmailSettings == nil {
 		return localVarReturnValue, nil, reportError("subaccountEmailSettings is required and must be specified")
 	}
@@ -471,7 +463,7 @@ func (a *SubAccountsApiService) SubaccountsByEmailSettingsEmailPutExecute(r ApiS
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -481,15 +473,15 @@ func (a *SubAccountsApiService) SubaccountsByEmailSettingsEmailPutExecute(r ApiS
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -498,7 +490,7 @@ func (a *SubAccountsApiService) SubaccountsByEmailSettingsEmailPutExecute(r ApiS
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -509,7 +501,7 @@ func (a *SubAccountsApiService) SubaccountsByEmailSettingsEmailPutExecute(r ApiS
 }
 
 type ApiSubaccountsGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SubAccountsApiService
 	limit *int32
 	offset *int32
@@ -526,7 +518,7 @@ func (r ApiSubaccountsGetRequest) Offset(offset int32) ApiSubaccountsGetRequest 
 	return r
 }
 
-func (r ApiSubaccountsGetRequest) Execute() ([]SubAccountInfo, *_nethttp.Response, error) {
+func (r ApiSubaccountsGetRequest) Execute() ([]SubAccountInfo, *http.Response, error) {
 	return r.ApiService.SubaccountsGetExecute(r)
 }
 
@@ -535,10 +527,10 @@ SubaccountsGet Load SubAccounts
 
 Returns a list of all your SubAccounts. Required Access Level: ViewSubAccounts
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSubaccountsGetRequest
 */
-func (a *SubAccountsApiService) SubaccountsGet(ctx _context.Context) ApiSubaccountsGetRequest {
+func (a *SubAccountsApiService) SubaccountsGet(ctx context.Context) ApiSubaccountsGetRequest {
 	return ApiSubaccountsGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -547,26 +539,24 @@ func (a *SubAccountsApiService) SubaccountsGet(ctx _context.Context) ApiSubaccou
 
 // Execute executes the request
 //  @return []SubAccountInfo
-func (a *SubAccountsApiService) SubaccountsGetExecute(r ApiSubaccountsGetRequest) ([]SubAccountInfo, *_nethttp.Response, error) {
+func (a *SubAccountsApiService) SubaccountsGetExecute(r ApiSubaccountsGetRequest) ([]SubAccountInfo, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 		localVarReturnValue  []SubAccountInfo
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubAccountsApiService.SubaccountsGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/subaccounts"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
@@ -605,7 +595,7 @@ func (a *SubAccountsApiService) SubaccountsGetExecute(r ApiSubaccountsGetRequest
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -615,15 +605,15 @@ func (a *SubAccountsApiService) SubaccountsGetExecute(r ApiSubaccountsGetRequest
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -632,7 +622,7 @@ func (a *SubAccountsApiService) SubaccountsGetExecute(r ApiSubaccountsGetRequest
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -643,7 +633,7 @@ func (a *SubAccountsApiService) SubaccountsGetExecute(r ApiSubaccountsGetRequest
 }
 
 type ApiSubaccountsPostRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SubAccountsApiService
 	subaccountPayload *SubaccountPayload
 }
@@ -653,7 +643,7 @@ func (r ApiSubaccountsPostRequest) SubaccountPayload(subaccountPayload Subaccoun
 	return r
 }
 
-func (r ApiSubaccountsPostRequest) Execute() (SubAccountInfo, *_nethttp.Response, error) {
+func (r ApiSubaccountsPostRequest) Execute() (*SubAccountInfo, *http.Response, error) {
 	return r.ApiService.SubaccountsPostExecute(r)
 }
 
@@ -662,10 +652,10 @@ SubaccountsPost Add SubAccount
 
 Add a new SubAccount to your Account. To receive an access token for this SubAccount, make a POST security/apikeys request using the 'subaccount' parameter. Required Access Level: ModifySubAccounts
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSubaccountsPostRequest
 */
-func (a *SubAccountsApiService) SubaccountsPost(ctx _context.Context) ApiSubaccountsPostRequest {
+func (a *SubAccountsApiService) SubaccountsPost(ctx context.Context) ApiSubaccountsPostRequest {
 	return ApiSubaccountsPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -674,26 +664,24 @@ func (a *SubAccountsApiService) SubaccountsPost(ctx _context.Context) ApiSubacco
 
 // Execute executes the request
 //  @return SubAccountInfo
-func (a *SubAccountsApiService) SubaccountsPostExecute(r ApiSubaccountsPostRequest) (SubAccountInfo, *_nethttp.Response, error) {
+func (a *SubAccountsApiService) SubaccountsPostExecute(r ApiSubaccountsPostRequest) (*SubAccountInfo, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SubAccountInfo
+		formFiles            []formFile
+		localVarReturnValue  *SubAccountInfo
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubAccountsApiService.SubaccountsPost")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/subaccounts"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.subaccountPayload == nil {
 		return localVarReturnValue, nil, reportError("subaccountPayload is required and must be specified")
 	}
@@ -731,7 +719,7 @@ func (a *SubAccountsApiService) SubaccountsPostExecute(r ApiSubaccountsPostReque
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -741,15 +729,15 @@ func (a *SubAccountsApiService) SubaccountsPostExecute(r ApiSubaccountsPostReque
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -758,7 +746,7 @@ func (a *SubAccountsApiService) SubaccountsPostExecute(r ApiSubaccountsPostReque
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

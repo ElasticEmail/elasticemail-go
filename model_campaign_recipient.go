@@ -18,9 +18,9 @@ import (
 // CampaignRecipient A set of lists and segments names to read recipients from
 type CampaignRecipient struct {
 	// Names of lists from your Account to read recipients from
-	ListNames *[]string `json:"ListNames,omitempty"`
+	ListNames []string `json:"ListNames,omitempty"`
 	// Names of segments from your Account to read recipients from
-	SegmentNames *[]string `json:"SegmentNames,omitempty"`
+	SegmentNames []string `json:"SegmentNames,omitempty"`
 }
 
 // NewCampaignRecipient instantiates a new CampaignRecipient object
@@ -46,12 +46,12 @@ func (o *CampaignRecipient) GetListNames() []string {
 		var ret []string
 		return ret
 	}
-	return *o.ListNames
+	return o.ListNames
 }
 
 // GetListNamesOk returns a tuple with the ListNames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignRecipient) GetListNamesOk() (*[]string, bool) {
+func (o *CampaignRecipient) GetListNamesOk() ([]string, bool) {
 	if o == nil || o.ListNames == nil {
 		return nil, false
 	}
@@ -69,7 +69,7 @@ func (o *CampaignRecipient) HasListNames() bool {
 
 // SetListNames gets a reference to the given []string and assigns it to the ListNames field.
 func (o *CampaignRecipient) SetListNames(v []string) {
-	o.ListNames = &v
+	o.ListNames = v
 }
 
 // GetSegmentNames returns the SegmentNames field value if set, zero value otherwise.
@@ -78,12 +78,12 @@ func (o *CampaignRecipient) GetSegmentNames() []string {
 		var ret []string
 		return ret
 	}
-	return *o.SegmentNames
+	return o.SegmentNames
 }
 
 // GetSegmentNamesOk returns a tuple with the SegmentNames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignRecipient) GetSegmentNamesOk() (*[]string, bool) {
+func (o *CampaignRecipient) GetSegmentNamesOk() ([]string, bool) {
 	if o == nil || o.SegmentNames == nil {
 		return nil, false
 	}
@@ -101,7 +101,7 @@ func (o *CampaignRecipient) HasSegmentNames() bool {
 
 // SetSegmentNames gets a reference to the given []string and assigns it to the SegmentNames field.
 func (o *CampaignRecipient) SetSegmentNames(v []string) {
-	o.SegmentNames = &v
+	o.SegmentNames = v
 }
 
 func (o CampaignRecipient) MarshalJSON() ([]byte, error) {

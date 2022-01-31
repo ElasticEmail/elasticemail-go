@@ -36,8 +36,8 @@ func main() {
     name := "My Segment 1" // string | Name of your segment.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SegmentsApi.SegmentsByNameDelete(context.Background(), name).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SegmentsApi.SegmentsByNameDelete(context.Background(), name).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SegmentsApi.SegmentsByNameDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -104,8 +104,8 @@ func main() {
     name := "name_example" // string | Name of the segment you want to load. Will load all contacts if the 'All Contacts' name has been provided
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SegmentsApi.SegmentsByNameGet(context.Background(), name).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SegmentsApi.SegmentsByNameGet(context.Background(), name).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SegmentsApi.SegmentsByNameGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -175,8 +175,8 @@ func main() {
     segmentPayload := *openapiclient.NewSegmentPayload("Name_example", "Rule_example") // SegmentPayload | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SegmentsApi.SegmentsByNamePut(context.Background(), name).SegmentPayload(segmentPayload).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SegmentsApi.SegmentsByNamePut(context.Background(), name).SegmentPayload(segmentPayload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SegmentsApi.SegmentsByNamePut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -247,8 +247,8 @@ func main() {
     offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SegmentsApi.SegmentsGet(context.Background()).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SegmentsApi.SegmentsGet(context.Background()).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SegmentsApi.SegmentsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -314,8 +314,8 @@ func main() {
     segmentPayload := *openapiclient.NewSegmentPayload("Name_example", "Rule_example") // SegmentPayload | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SegmentsApi.SegmentsPost(context.Background()).SegmentPayload(segmentPayload).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SegmentsApi.SegmentsPost(context.Background()).SegmentPayload(segmentPayload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SegmentsApi.SegmentsPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

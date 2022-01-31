@@ -13,23 +13,23 @@ package ElasticEmail
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // SecurityApiService SecurityApi service
 type SecurityApiService service
 
 type ApiSecurityApikeysByNameDeleteRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SecurityApiService
 	name string
 	subaccount *string
@@ -41,7 +41,7 @@ func (r ApiSecurityApikeysByNameDeleteRequest) Subaccount(subaccount string) Api
 	return r
 }
 
-func (r ApiSecurityApikeysByNameDeleteRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiSecurityApikeysByNameDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SecurityApikeysByNameDeleteExecute(r)
 }
 
@@ -50,11 +50,11 @@ SecurityApikeysByNameDelete Delete ApiKey
 
 Delete your existing ApiKey. Required Access Level: Security
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of the ApiKey
  @return ApiSecurityApikeysByNameDeleteRequest
 */
-func (a *SecurityApiService) SecurityApikeysByNameDelete(ctx _context.Context, name string) ApiSecurityApikeysByNameDeleteRequest {
+func (a *SecurityApiService) SecurityApikeysByNameDelete(ctx context.Context, name string) ApiSecurityApikeysByNameDeleteRequest {
 	return ApiSecurityApikeysByNameDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -63,26 +63,24 @@ func (a *SecurityApiService) SecurityApikeysByNameDelete(ctx _context.Context, n
 }
 
 // Execute executes the request
-func (a *SecurityApiService) SecurityApikeysByNameDeleteExecute(r ApiSecurityApikeysByNameDeleteRequest) (*_nethttp.Response, error) {
+func (a *SecurityApiService) SecurityApikeysByNameDeleteExecute(r ApiSecurityApikeysByNameDeleteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityApiService.SecurityApikeysByNameDelete")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/security/apikeys/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", _neturl.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
 		localVarQueryParams.Add("subaccount", parameterToString(*r.subaccount, ""))
@@ -118,7 +116,7 @@ func (a *SecurityApiService) SecurityApikeysByNameDeleteExecute(r ApiSecurityApi
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -128,15 +126,15 @@ func (a *SecurityApiService) SecurityApikeysByNameDeleteExecute(r ApiSecurityApi
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -147,7 +145,7 @@ func (a *SecurityApiService) SecurityApikeysByNameDeleteExecute(r ApiSecurityApi
 }
 
 type ApiSecurityApikeysByNameGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SecurityApiService
 	name string
 	subaccount *string
@@ -159,7 +157,7 @@ func (r ApiSecurityApikeysByNameGetRequest) Subaccount(subaccount string) ApiSec
 	return r
 }
 
-func (r ApiSecurityApikeysByNameGetRequest) Execute() (ApiKey, *_nethttp.Response, error) {
+func (r ApiSecurityApikeysByNameGetRequest) Execute() (*ApiKey, *http.Response, error) {
 	return r.ApiService.SecurityApikeysByNameGetExecute(r)
 }
 
@@ -168,11 +166,11 @@ SecurityApikeysByNameGet Load ApiKey
 
 Load your existing ApiKey info. Required Access Level: Security
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of the ApiKey
  @return ApiSecurityApikeysByNameGetRequest
 */
-func (a *SecurityApiService) SecurityApikeysByNameGet(ctx _context.Context, name string) ApiSecurityApikeysByNameGetRequest {
+func (a *SecurityApiService) SecurityApikeysByNameGet(ctx context.Context, name string) ApiSecurityApikeysByNameGetRequest {
 	return ApiSecurityApikeysByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -182,27 +180,25 @@ func (a *SecurityApiService) SecurityApikeysByNameGet(ctx _context.Context, name
 
 // Execute executes the request
 //  @return ApiKey
-func (a *SecurityApiService) SecurityApikeysByNameGetExecute(r ApiSecurityApikeysByNameGetRequest) (ApiKey, *_nethttp.Response, error) {
+func (a *SecurityApiService) SecurityApikeysByNameGetExecute(r ApiSecurityApikeysByNameGetRequest) (*ApiKey, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ApiKey
+		formFiles            []formFile
+		localVarReturnValue  *ApiKey
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityApiService.SecurityApikeysByNameGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/security/apikeys/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", _neturl.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
 		localVarQueryParams.Add("subaccount", parameterToString(*r.subaccount, ""))
@@ -238,7 +234,7 @@ func (a *SecurityApiService) SecurityApikeysByNameGetExecute(r ApiSecurityApikey
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -248,15 +244,15 @@ func (a *SecurityApiService) SecurityApikeysByNameGetExecute(r ApiSecurityApikey
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -265,7 +261,7 @@ func (a *SecurityApiService) SecurityApikeysByNameGetExecute(r ApiSecurityApikey
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -276,7 +272,7 @@ func (a *SecurityApiService) SecurityApikeysByNameGetExecute(r ApiSecurityApikey
 }
 
 type ApiSecurityApikeysByNamePutRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SecurityApiService
 	name string
 	apiKeyPayload *ApiKeyPayload
@@ -287,7 +283,7 @@ func (r ApiSecurityApikeysByNamePutRequest) ApiKeyPayload(apiKeyPayload ApiKeyPa
 	return r
 }
 
-func (r ApiSecurityApikeysByNamePutRequest) Execute() (ApiKey, *_nethttp.Response, error) {
+func (r ApiSecurityApikeysByNamePutRequest) Execute() (*ApiKey, *http.Response, error) {
 	return r.ApiService.SecurityApikeysByNamePutExecute(r)
 }
 
@@ -296,11 +292,11 @@ SecurityApikeysByNamePut Update ApiKey
 
 Update your existing ApiKey. Required Access Level: Security
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of the ApiKey
  @return ApiSecurityApikeysByNamePutRequest
 */
-func (a *SecurityApiService) SecurityApikeysByNamePut(ctx _context.Context, name string) ApiSecurityApikeysByNamePutRequest {
+func (a *SecurityApiService) SecurityApikeysByNamePut(ctx context.Context, name string) ApiSecurityApikeysByNamePutRequest {
 	return ApiSecurityApikeysByNamePutRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -310,27 +306,25 @@ func (a *SecurityApiService) SecurityApikeysByNamePut(ctx _context.Context, name
 
 // Execute executes the request
 //  @return ApiKey
-func (a *SecurityApiService) SecurityApikeysByNamePutExecute(r ApiSecurityApikeysByNamePutRequest) (ApiKey, *_nethttp.Response, error) {
+func (a *SecurityApiService) SecurityApikeysByNamePutExecute(r ApiSecurityApikeysByNamePutRequest) (*ApiKey, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ApiKey
+		formFiles            []formFile
+		localVarReturnValue  *ApiKey
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityApiService.SecurityApikeysByNamePut")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/security/apikeys/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", _neturl.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.apiKeyPayload == nil {
 		return localVarReturnValue, nil, reportError("apiKeyPayload is required and must be specified")
 	}
@@ -368,7 +362,7 @@ func (a *SecurityApiService) SecurityApikeysByNamePutExecute(r ApiSecurityApikey
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -378,15 +372,15 @@ func (a *SecurityApiService) SecurityApikeysByNamePutExecute(r ApiSecurityApikey
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -395,7 +389,7 @@ func (a *SecurityApiService) SecurityApikeysByNamePutExecute(r ApiSecurityApikey
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -406,7 +400,7 @@ func (a *SecurityApiService) SecurityApikeysByNamePutExecute(r ApiSecurityApikey
 }
 
 type ApiSecurityApikeysGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SecurityApiService
 	subaccount *string
 }
@@ -417,7 +411,7 @@ func (r ApiSecurityApikeysGetRequest) Subaccount(subaccount string) ApiSecurityA
 	return r
 }
 
-func (r ApiSecurityApikeysGetRequest) Execute() ([]ApiKey, *_nethttp.Response, error) {
+func (r ApiSecurityApikeysGetRequest) Execute() ([]ApiKey, *http.Response, error) {
 	return r.ApiService.SecurityApikeysGetExecute(r)
 }
 
@@ -426,10 +420,10 @@ SecurityApikeysGet List ApiKeys
 
 List all your existing ApiKeys. Required Access Level: Security
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSecurityApikeysGetRequest
 */
-func (a *SecurityApiService) SecurityApikeysGet(ctx _context.Context) ApiSecurityApikeysGetRequest {
+func (a *SecurityApiService) SecurityApikeysGet(ctx context.Context) ApiSecurityApikeysGetRequest {
 	return ApiSecurityApikeysGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -438,26 +432,24 @@ func (a *SecurityApiService) SecurityApikeysGet(ctx _context.Context) ApiSecurit
 
 // Execute executes the request
 //  @return []ApiKey
-func (a *SecurityApiService) SecurityApikeysGetExecute(r ApiSecurityApikeysGetRequest) ([]ApiKey, *_nethttp.Response, error) {
+func (a *SecurityApiService) SecurityApikeysGetExecute(r ApiSecurityApikeysGetRequest) ([]ApiKey, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 		localVarReturnValue  []ApiKey
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityApiService.SecurityApikeysGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/security/apikeys"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
 		localVarQueryParams.Add("subaccount", parameterToString(*r.subaccount, ""))
@@ -493,7 +485,7 @@ func (a *SecurityApiService) SecurityApikeysGetExecute(r ApiSecurityApikeysGetRe
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -503,15 +495,15 @@ func (a *SecurityApiService) SecurityApikeysGetExecute(r ApiSecurityApikeysGetRe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -520,7 +512,7 @@ func (a *SecurityApiService) SecurityApikeysGetExecute(r ApiSecurityApikeysGetRe
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -531,7 +523,7 @@ func (a *SecurityApiService) SecurityApikeysGetExecute(r ApiSecurityApikeysGetRe
 }
 
 type ApiSecurityApikeysPostRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SecurityApiService
 	apiKeyPayload *ApiKeyPayload
 }
@@ -541,7 +533,7 @@ func (r ApiSecurityApikeysPostRequest) ApiKeyPayload(apiKeyPayload ApiKeyPayload
 	return r
 }
 
-func (r ApiSecurityApikeysPostRequest) Execute() (NewApiKey, *_nethttp.Response, error) {
+func (r ApiSecurityApikeysPostRequest) Execute() (*NewApiKey, *http.Response, error) {
 	return r.ApiService.SecurityApikeysPostExecute(r)
 }
 
@@ -550,10 +542,10 @@ SecurityApikeysPost Add ApiKey
 
 Add a new ApiKey. Required Access Level: Security
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSecurityApikeysPostRequest
 */
-func (a *SecurityApiService) SecurityApikeysPost(ctx _context.Context) ApiSecurityApikeysPostRequest {
+func (a *SecurityApiService) SecurityApikeysPost(ctx context.Context) ApiSecurityApikeysPostRequest {
 	return ApiSecurityApikeysPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -562,26 +554,24 @@ func (a *SecurityApiService) SecurityApikeysPost(ctx _context.Context) ApiSecuri
 
 // Execute executes the request
 //  @return NewApiKey
-func (a *SecurityApiService) SecurityApikeysPostExecute(r ApiSecurityApikeysPostRequest) (NewApiKey, *_nethttp.Response, error) {
+func (a *SecurityApiService) SecurityApikeysPostExecute(r ApiSecurityApikeysPostRequest) (*NewApiKey, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  NewApiKey
+		formFiles            []formFile
+		localVarReturnValue  *NewApiKey
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityApiService.SecurityApikeysPost")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/security/apikeys"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.apiKeyPayload == nil {
 		return localVarReturnValue, nil, reportError("apiKeyPayload is required and must be specified")
 	}
@@ -619,7 +609,7 @@ func (a *SecurityApiService) SecurityApikeysPostExecute(r ApiSecurityApikeysPost
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -629,15 +619,15 @@ func (a *SecurityApiService) SecurityApikeysPostExecute(r ApiSecurityApikeysPost
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -646,7 +636,7 @@ func (a *SecurityApiService) SecurityApikeysPostExecute(r ApiSecurityApikeysPost
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -657,7 +647,7 @@ func (a *SecurityApiService) SecurityApikeysPostExecute(r ApiSecurityApikeysPost
 }
 
 type ApiSecuritySmtpByNameDeleteRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SecurityApiService
 	name string
 	subaccount *string
@@ -669,7 +659,7 @@ func (r ApiSecuritySmtpByNameDeleteRequest) Subaccount(subaccount string) ApiSec
 	return r
 }
 
-func (r ApiSecuritySmtpByNameDeleteRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiSecuritySmtpByNameDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SecuritySmtpByNameDeleteExecute(r)
 }
 
@@ -678,11 +668,11 @@ SecuritySmtpByNameDelete Delete SMTP Credential
 
 Delete your existing SMTP Credentials. Required Access Level: Security
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of the SMTP Credential
  @return ApiSecuritySmtpByNameDeleteRequest
 */
-func (a *SecurityApiService) SecuritySmtpByNameDelete(ctx _context.Context, name string) ApiSecuritySmtpByNameDeleteRequest {
+func (a *SecurityApiService) SecuritySmtpByNameDelete(ctx context.Context, name string) ApiSecuritySmtpByNameDeleteRequest {
 	return ApiSecuritySmtpByNameDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -691,26 +681,24 @@ func (a *SecurityApiService) SecuritySmtpByNameDelete(ctx _context.Context, name
 }
 
 // Execute executes the request
-func (a *SecurityApiService) SecuritySmtpByNameDeleteExecute(r ApiSecuritySmtpByNameDeleteRequest) (*_nethttp.Response, error) {
+func (a *SecurityApiService) SecuritySmtpByNameDeleteExecute(r ApiSecuritySmtpByNameDeleteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityApiService.SecuritySmtpByNameDelete")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/security/smtp/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", _neturl.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
 		localVarQueryParams.Add("subaccount", parameterToString(*r.subaccount, ""))
@@ -746,7 +734,7 @@ func (a *SecurityApiService) SecuritySmtpByNameDeleteExecute(r ApiSecuritySmtpBy
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -756,15 +744,15 @@ func (a *SecurityApiService) SecuritySmtpByNameDeleteExecute(r ApiSecuritySmtpBy
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -775,7 +763,7 @@ func (a *SecurityApiService) SecuritySmtpByNameDeleteExecute(r ApiSecuritySmtpBy
 }
 
 type ApiSecuritySmtpByNameGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SecurityApiService
 	name string
 	subaccount *string
@@ -787,7 +775,7 @@ func (r ApiSecuritySmtpByNameGetRequest) Subaccount(subaccount string) ApiSecuri
 	return r
 }
 
-func (r ApiSecuritySmtpByNameGetRequest) Execute() (SmtpCredentials, *_nethttp.Response, error) {
+func (r ApiSecuritySmtpByNameGetRequest) Execute() (*SmtpCredentials, *http.Response, error) {
 	return r.ApiService.SecuritySmtpByNameGetExecute(r)
 }
 
@@ -796,11 +784,11 @@ SecuritySmtpByNameGet Load SMTP Credential
 
 Load your existing SMTP Credential info. Required Access Level: Security
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of the SMTP Credential
  @return ApiSecuritySmtpByNameGetRequest
 */
-func (a *SecurityApiService) SecuritySmtpByNameGet(ctx _context.Context, name string) ApiSecuritySmtpByNameGetRequest {
+func (a *SecurityApiService) SecuritySmtpByNameGet(ctx context.Context, name string) ApiSecuritySmtpByNameGetRequest {
 	return ApiSecuritySmtpByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -810,27 +798,25 @@ func (a *SecurityApiService) SecuritySmtpByNameGet(ctx _context.Context, name st
 
 // Execute executes the request
 //  @return SmtpCredentials
-func (a *SecurityApiService) SecuritySmtpByNameGetExecute(r ApiSecuritySmtpByNameGetRequest) (SmtpCredentials, *_nethttp.Response, error) {
+func (a *SecurityApiService) SecuritySmtpByNameGetExecute(r ApiSecuritySmtpByNameGetRequest) (*SmtpCredentials, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SmtpCredentials
+		formFiles            []formFile
+		localVarReturnValue  *SmtpCredentials
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityApiService.SecuritySmtpByNameGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/security/smtp/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", _neturl.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
 		localVarQueryParams.Add("subaccount", parameterToString(*r.subaccount, ""))
@@ -866,7 +852,7 @@ func (a *SecurityApiService) SecuritySmtpByNameGetExecute(r ApiSecuritySmtpByNam
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -876,15 +862,15 @@ func (a *SecurityApiService) SecuritySmtpByNameGetExecute(r ApiSecuritySmtpByNam
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -893,7 +879,7 @@ func (a *SecurityApiService) SecuritySmtpByNameGetExecute(r ApiSecuritySmtpByNam
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -904,7 +890,7 @@ func (a *SecurityApiService) SecuritySmtpByNameGetExecute(r ApiSecuritySmtpByNam
 }
 
 type ApiSecuritySmtpByNamePutRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SecurityApiService
 	name string
 	smtpCredentialsPayload *SmtpCredentialsPayload
@@ -915,7 +901,7 @@ func (r ApiSecuritySmtpByNamePutRequest) SmtpCredentialsPayload(smtpCredentialsP
 	return r
 }
 
-func (r ApiSecuritySmtpByNamePutRequest) Execute() (SmtpCredentials, *_nethttp.Response, error) {
+func (r ApiSecuritySmtpByNamePutRequest) Execute() (*SmtpCredentials, *http.Response, error) {
 	return r.ApiService.SecuritySmtpByNamePutExecute(r)
 }
 
@@ -924,11 +910,11 @@ SecuritySmtpByNamePut Update SMTP Credential
 
 Update your existing SMTP Credentials. Required Access Level: Security
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of the SMTP Credential
  @return ApiSecuritySmtpByNamePutRequest
 */
-func (a *SecurityApiService) SecuritySmtpByNamePut(ctx _context.Context, name string) ApiSecuritySmtpByNamePutRequest {
+func (a *SecurityApiService) SecuritySmtpByNamePut(ctx context.Context, name string) ApiSecuritySmtpByNamePutRequest {
 	return ApiSecuritySmtpByNamePutRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -938,27 +924,25 @@ func (a *SecurityApiService) SecuritySmtpByNamePut(ctx _context.Context, name st
 
 // Execute executes the request
 //  @return SmtpCredentials
-func (a *SecurityApiService) SecuritySmtpByNamePutExecute(r ApiSecuritySmtpByNamePutRequest) (SmtpCredentials, *_nethttp.Response, error) {
+func (a *SecurityApiService) SecuritySmtpByNamePutExecute(r ApiSecuritySmtpByNamePutRequest) (*SmtpCredentials, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SmtpCredentials
+		formFiles            []formFile
+		localVarReturnValue  *SmtpCredentials
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityApiService.SecuritySmtpByNamePut")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/security/smtp/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", _neturl.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.smtpCredentialsPayload == nil {
 		return localVarReturnValue, nil, reportError("smtpCredentialsPayload is required and must be specified")
 	}
@@ -996,7 +980,7 @@ func (a *SecurityApiService) SecuritySmtpByNamePutExecute(r ApiSecuritySmtpByNam
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1006,15 +990,15 @@ func (a *SecurityApiService) SecuritySmtpByNamePutExecute(r ApiSecuritySmtpByNam
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1023,7 +1007,7 @@ func (a *SecurityApiService) SecuritySmtpByNamePutExecute(r ApiSecuritySmtpByNam
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1034,7 +1018,7 @@ func (a *SecurityApiService) SecuritySmtpByNamePutExecute(r ApiSecuritySmtpByNam
 }
 
 type ApiSecuritySmtpGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SecurityApiService
 	subaccount *string
 }
@@ -1045,7 +1029,7 @@ func (r ApiSecuritySmtpGetRequest) Subaccount(subaccount string) ApiSecuritySmtp
 	return r
 }
 
-func (r ApiSecuritySmtpGetRequest) Execute() ([]SmtpCredentials, *_nethttp.Response, error) {
+func (r ApiSecuritySmtpGetRequest) Execute() ([]SmtpCredentials, *http.Response, error) {
 	return r.ApiService.SecuritySmtpGetExecute(r)
 }
 
@@ -1054,10 +1038,10 @@ SecuritySmtpGet List SMTP Credentials
 
 List all your existing SMTP Credentials. Required Access Level: Security
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSecuritySmtpGetRequest
 */
-func (a *SecurityApiService) SecuritySmtpGet(ctx _context.Context) ApiSecuritySmtpGetRequest {
+func (a *SecurityApiService) SecuritySmtpGet(ctx context.Context) ApiSecuritySmtpGetRequest {
 	return ApiSecuritySmtpGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1066,26 +1050,24 @@ func (a *SecurityApiService) SecuritySmtpGet(ctx _context.Context) ApiSecuritySm
 
 // Execute executes the request
 //  @return []SmtpCredentials
-func (a *SecurityApiService) SecuritySmtpGetExecute(r ApiSecuritySmtpGetRequest) ([]SmtpCredentials, *_nethttp.Response, error) {
+func (a *SecurityApiService) SecuritySmtpGetExecute(r ApiSecuritySmtpGetRequest) ([]SmtpCredentials, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 		localVarReturnValue  []SmtpCredentials
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityApiService.SecuritySmtpGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/security/smtp"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
 		localVarQueryParams.Add("subaccount", parameterToString(*r.subaccount, ""))
@@ -1121,7 +1103,7 @@ func (a *SecurityApiService) SecuritySmtpGetExecute(r ApiSecuritySmtpGetRequest)
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1131,15 +1113,15 @@ func (a *SecurityApiService) SecuritySmtpGetExecute(r ApiSecuritySmtpGetRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1148,7 +1130,7 @@ func (a *SecurityApiService) SecuritySmtpGetExecute(r ApiSecuritySmtpGetRequest)
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1159,7 +1141,7 @@ func (a *SecurityApiService) SecuritySmtpGetExecute(r ApiSecuritySmtpGetRequest)
 }
 
 type ApiSecuritySmtpPostRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SecurityApiService
 	smtpCredentialsPayload *SmtpCredentialsPayload
 }
@@ -1169,7 +1151,7 @@ func (r ApiSecuritySmtpPostRequest) SmtpCredentialsPayload(smtpCredentialsPayloa
 	return r
 }
 
-func (r ApiSecuritySmtpPostRequest) Execute() (NewSmtpCredentials, *_nethttp.Response, error) {
+func (r ApiSecuritySmtpPostRequest) Execute() (*NewSmtpCredentials, *http.Response, error) {
 	return r.ApiService.SecuritySmtpPostExecute(r)
 }
 
@@ -1178,10 +1160,10 @@ SecuritySmtpPost Add SMTP Credential
 
 Add new SMTP Credential. Required Access Level: Security
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSecuritySmtpPostRequest
 */
-func (a *SecurityApiService) SecuritySmtpPost(ctx _context.Context) ApiSecuritySmtpPostRequest {
+func (a *SecurityApiService) SecuritySmtpPost(ctx context.Context) ApiSecuritySmtpPostRequest {
 	return ApiSecuritySmtpPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1190,26 +1172,24 @@ func (a *SecurityApiService) SecuritySmtpPost(ctx _context.Context) ApiSecurityS
 
 // Execute executes the request
 //  @return NewSmtpCredentials
-func (a *SecurityApiService) SecuritySmtpPostExecute(r ApiSecuritySmtpPostRequest) (NewSmtpCredentials, *_nethttp.Response, error) {
+func (a *SecurityApiService) SecuritySmtpPostExecute(r ApiSecuritySmtpPostRequest) (*NewSmtpCredentials, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  NewSmtpCredentials
+		formFiles            []formFile
+		localVarReturnValue  *NewSmtpCredentials
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityApiService.SecuritySmtpPost")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/security/smtp"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.smtpCredentialsPayload == nil {
 		return localVarReturnValue, nil, reportError("smtpCredentialsPayload is required and must be specified")
 	}
@@ -1247,7 +1227,7 @@ func (a *SecurityApiService) SecuritySmtpPostExecute(r ApiSecuritySmtpPostReques
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1257,15 +1237,15 @@ func (a *SecurityApiService) SecuritySmtpPostExecute(r ApiSecuritySmtpPostReques
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1274,7 +1254,7 @@ func (a *SecurityApiService) SecuritySmtpPostExecute(r ApiSecuritySmtpPostReques
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

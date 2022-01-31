@@ -19,7 +19,7 @@ import (
 type EmailData struct {
 	Preview *EmailView `json:"Preview,omitempty"`
 	// Attachments sent with the email
-	Attachments *[]FileInfo `json:"Attachments,omitempty"`
+	Attachments []FileInfo `json:"Attachments,omitempty"`
 	Status *EmailStatus `json:"Status,omitempty"`
 }
 
@@ -78,12 +78,12 @@ func (o *EmailData) GetAttachments() []FileInfo {
 		var ret []FileInfo
 		return ret
 	}
-	return *o.Attachments
+	return o.Attachments
 }
 
 // GetAttachmentsOk returns a tuple with the Attachments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EmailData) GetAttachmentsOk() (*[]FileInfo, bool) {
+func (o *EmailData) GetAttachmentsOk() ([]FileInfo, bool) {
 	if o == nil || o.Attachments == nil {
 		return nil, false
 	}
@@ -101,7 +101,7 @@ func (o *EmailData) HasAttachments() bool {
 
 // SetAttachments gets a reference to the given []FileInfo and assigns it to the Attachments field.
 func (o *EmailData) SetAttachments(v []FileInfo) {
-	o.Attachments = &v
+	o.Attachments = v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.

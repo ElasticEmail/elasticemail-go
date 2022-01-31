@@ -19,7 +19,7 @@ import (
 // ApiKey ApiKey info
 type ApiKey struct {
 	// Access level or permission to be assigned to this ApiKey.
-	AccessLevel *[]AccessLevel `json:"AccessLevel,omitempty"`
+	AccessLevel []AccessLevel `json:"AccessLevel,omitempty"`
 	// Name of the ApiKey.
 	Name *string `json:"Name,omitempty"`
 	// Date this ApiKey was created.
@@ -29,7 +29,7 @@ type ApiKey struct {
 	// Date this ApiKey expires.
 	Expires NullableTime `json:"Expires,omitempty"`
 	// Which IPs can use this ApiKey
-	RestrictAccessToIPRange *[]string `json:"RestrictAccessToIPRange,omitempty"`
+	RestrictAccessToIPRange []string `json:"RestrictAccessToIPRange,omitempty"`
 }
 
 // NewApiKey instantiates a new ApiKey object
@@ -55,12 +55,12 @@ func (o *ApiKey) GetAccessLevel() []AccessLevel {
 		var ret []AccessLevel
 		return ret
 	}
-	return *o.AccessLevel
+	return o.AccessLevel
 }
 
 // GetAccessLevelOk returns a tuple with the AccessLevel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiKey) GetAccessLevelOk() (*[]AccessLevel, bool) {
+func (o *ApiKey) GetAccessLevelOk() ([]AccessLevel, bool) {
 	if o == nil || o.AccessLevel == nil {
 		return nil, false
 	}
@@ -78,7 +78,7 @@ func (o *ApiKey) HasAccessLevel() bool {
 
 // SetAccessLevel gets a reference to the given []AccessLevel and assigns it to the AccessLevel field.
 func (o *ApiKey) SetAccessLevel(v []AccessLevel) {
-	o.AccessLevel = &v
+	o.AccessLevel = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -235,12 +235,12 @@ func (o *ApiKey) GetRestrictAccessToIPRange() []string {
 		var ret []string
 		return ret
 	}
-	return *o.RestrictAccessToIPRange
+	return o.RestrictAccessToIPRange
 }
 
 // GetRestrictAccessToIPRangeOk returns a tuple with the RestrictAccessToIPRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiKey) GetRestrictAccessToIPRangeOk() (*[]string, bool) {
+func (o *ApiKey) GetRestrictAccessToIPRangeOk() ([]string, bool) {
 	if o == nil || o.RestrictAccessToIPRange == nil {
 		return nil, false
 	}
@@ -258,7 +258,7 @@ func (o *ApiKey) HasRestrictAccessToIPRange() bool {
 
 // SetRestrictAccessToIPRange gets a reference to the given []string and assigns it to the RestrictAccessToIPRange field.
 func (o *ApiKey) SetRestrictAccessToIPRange(v []string) {
-	o.RestrictAccessToIPRange = &v
+	o.RestrictAccessToIPRange = v
 }
 
 func (o ApiKey) MarshalJSON() ([]byte, error) {

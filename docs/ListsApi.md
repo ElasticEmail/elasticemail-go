@@ -39,8 +39,8 @@ func main() {
     emailsPayload := *openapiclient.NewEmailsPayload() // EmailsPayload | Provide either rule or a list of emails, not both.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ListsApi.ListsByNameContactsPost(context.Background(), name).EmailsPayload(emailsPayload).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ListsApi.ListsByNameContactsPost(context.Background(), name).EmailsPayload(emailsPayload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ListsApi.ListsByNameContactsPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -111,8 +111,8 @@ func main() {
     emailsPayload := *openapiclient.NewEmailsPayload() // EmailsPayload | Provide either rule or a list of emails, not both.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ListsApi.ListsByNameContactsRemovePost(context.Background(), name).EmailsPayload(emailsPayload).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ListsApi.ListsByNameContactsRemovePost(context.Background(), name).EmailsPayload(emailsPayload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ListsApi.ListsByNameContactsRemovePost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -180,8 +180,8 @@ func main() {
     name := "My List 1" // string | Name of your list.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ListsApi.ListsByNameDelete(context.Background(), name).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ListsApi.ListsByNameDelete(context.Background(), name).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ListsApi.ListsByNameDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -248,8 +248,8 @@ func main() {
     name := "My List 1" // string | Name of your list.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ListsApi.ListsByNameGet(context.Background(), name).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ListsApi.ListsByNameGet(context.Background(), name).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ListsApi.ListsByNameGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -319,8 +319,8 @@ func main() {
     listUpdatePayload := *openapiclient.NewListUpdatePayload() // ListUpdatePayload | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ListsApi.ListsByNamePut(context.Background(), name).ListUpdatePayload(listUpdatePayload).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ListsApi.ListsByNamePut(context.Background(), name).ListUpdatePayload(listUpdatePayload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ListsApi.ListsByNamePut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -391,8 +391,8 @@ func main() {
     offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ListsApi.ListsGet(context.Background()).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ListsApi.ListsGet(context.Background()).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ListsApi.ListsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -458,8 +458,8 @@ func main() {
     listPayload := *openapiclient.NewListPayload("My List 1") // ListPayload | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ListsApi.ListsPost(context.Background()).ListPayload(listPayload).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ListsApi.ListsPost(context.Background()).ListPayload(listPayload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ListsApi.ListsPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

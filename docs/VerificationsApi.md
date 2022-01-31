@@ -41,8 +41,8 @@ func main() {
     email := "email_example" // string | Email address to verification
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.VerificationsApi.VerificationsByEmailDelete(context.Background(), email).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VerificationsApi.VerificationsByEmailDelete(context.Background(), email).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VerificationsApi.VerificationsByEmailDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -109,8 +109,8 @@ func main() {
     email := "email_example" // string | Email address to view verification result of
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.VerificationsApi.VerificationsByEmailGet(context.Background(), email).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VerificationsApi.VerificationsByEmailGet(context.Background(), email).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VerificationsApi.VerificationsByEmailGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -179,8 +179,8 @@ func main() {
     email := "email_example" // string | Email address to verify
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.VerificationsApi.VerificationsByEmailPost(context.Background(), email).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VerificationsApi.VerificationsByEmailPost(context.Background(), email).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VerificationsApi.VerificationsByEmailPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -249,8 +249,8 @@ func main() {
     id := "E33EBA7A-C20D-4D3D-8F2F-5EEF42F58E6F" // string | ID of the exported file
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.VerificationsApi.VerificationsFilesByIdDelete(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VerificationsApi.VerificationsFilesByIdDelete(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VerificationsApi.VerificationsFilesByIdDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -317,8 +317,8 @@ func main() {
     id := "id_example" // string | Verification ID to download
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.VerificationsApi.VerificationsFilesByIdResultDownloadGet(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VerificationsApi.VerificationsFilesByIdResultDownloadGet(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VerificationsApi.VerificationsFilesByIdResultDownloadGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -389,8 +389,8 @@ func main() {
     offset := int32(56) // int32 | How many result items should be returned ahead (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.VerificationsApi.VerificationsFilesByIdResultGet(context.Background(), id).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VerificationsApi.VerificationsFilesByIdResultGet(context.Background(), id).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VerificationsApi.VerificationsFilesByIdResultGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -461,8 +461,8 @@ func main() {
     id := "id_example" // string | File ID to start verification
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.VerificationsApi.VerificationsFilesByIdVerificationPost(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VerificationsApi.VerificationsFilesByIdVerificationPost(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VerificationsApi.VerificationsFilesByIdVerificationPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -529,8 +529,8 @@ func main() {
     file := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.VerificationsApi.VerificationsFilesPost(context.Background()).File(file).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VerificationsApi.VerificationsFilesPost(context.Background()).File(file).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VerificationsApi.VerificationsFilesPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -594,8 +594,8 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.VerificationsApi.VerificationsFilesResultGet(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VerificationsApi.VerificationsFilesResultGet(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VerificationsApi.VerificationsFilesResultGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -657,8 +657,8 @@ func main() {
     offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.VerificationsApi.VerificationsGet(context.Background()).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VerificationsApi.VerificationsGet(context.Background()).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VerificationsApi.VerificationsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

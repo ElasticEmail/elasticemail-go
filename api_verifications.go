@@ -13,30 +13,30 @@ package ElasticEmail
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 	"os"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // VerificationsApiService VerificationsApi service
 type VerificationsApiService service
 
 type ApiVerificationsByEmailDeleteRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *VerificationsApiService
 	email string
 }
 
 
-func (r ApiVerificationsByEmailDeleteRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiVerificationsByEmailDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.VerificationsByEmailDeleteExecute(r)
 }
 
@@ -45,11 +45,11 @@ VerificationsByEmailDelete Delete Email Verification Result
 
 Delete a result with given email if exists. Required Access Level: VerifyEmails
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email Email address to verification
  @return ApiVerificationsByEmailDeleteRequest
 */
-func (a *VerificationsApiService) VerificationsByEmailDelete(ctx _context.Context, email string) ApiVerificationsByEmailDeleteRequest {
+func (a *VerificationsApiService) VerificationsByEmailDelete(ctx context.Context, email string) ApiVerificationsByEmailDeleteRequest {
 	return ApiVerificationsByEmailDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -58,26 +58,24 @@ func (a *VerificationsApiService) VerificationsByEmailDelete(ctx _context.Contex
 }
 
 // Execute executes the request
-func (a *VerificationsApiService) VerificationsByEmailDeleteExecute(r ApiVerificationsByEmailDeleteRequest) (*_nethttp.Response, error) {
+func (a *VerificationsApiService) VerificationsByEmailDeleteExecute(r ApiVerificationsByEmailDeleteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VerificationsApiService.VerificationsByEmailDelete")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/verifications/{email}"
-	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", _neturl.PathEscape(parameterToString(r.email, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterToString(r.email, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -110,7 +108,7 @@ func (a *VerificationsApiService) VerificationsByEmailDeleteExecute(r ApiVerific
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -120,15 +118,15 @@ func (a *VerificationsApiService) VerificationsByEmailDeleteExecute(r ApiVerific
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -139,13 +137,13 @@ func (a *VerificationsApiService) VerificationsByEmailDeleteExecute(r ApiVerific
 }
 
 type ApiVerificationsByEmailGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *VerificationsApiService
 	email string
 }
 
 
-func (r ApiVerificationsByEmailGetRequest) Execute() (EmailValidationResult, *_nethttp.Response, error) {
+func (r ApiVerificationsByEmailGetRequest) Execute() (*EmailValidationResult, *http.Response, error) {
 	return r.ApiService.VerificationsByEmailGetExecute(r)
 }
 
@@ -154,11 +152,11 @@ VerificationsByEmailGet Get Email Verification Result
 
 Returns a result of verified email. Required Access Level: ViewEmailVerifications
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email Email address to view verification result of
  @return ApiVerificationsByEmailGetRequest
 */
-func (a *VerificationsApiService) VerificationsByEmailGet(ctx _context.Context, email string) ApiVerificationsByEmailGetRequest {
+func (a *VerificationsApiService) VerificationsByEmailGet(ctx context.Context, email string) ApiVerificationsByEmailGetRequest {
 	return ApiVerificationsByEmailGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -168,27 +166,25 @@ func (a *VerificationsApiService) VerificationsByEmailGet(ctx _context.Context, 
 
 // Execute executes the request
 //  @return EmailValidationResult
-func (a *VerificationsApiService) VerificationsByEmailGetExecute(r ApiVerificationsByEmailGetRequest) (EmailValidationResult, *_nethttp.Response, error) {
+func (a *VerificationsApiService) VerificationsByEmailGetExecute(r ApiVerificationsByEmailGetRequest) (*EmailValidationResult, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  EmailValidationResult
+		formFiles            []formFile
+		localVarReturnValue  *EmailValidationResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VerificationsApiService.VerificationsByEmailGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/verifications/{email}"
-	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", _neturl.PathEscape(parameterToString(r.email, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterToString(r.email, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -221,7 +217,7 @@ func (a *VerificationsApiService) VerificationsByEmailGetExecute(r ApiVerificati
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -231,15 +227,15 @@ func (a *VerificationsApiService) VerificationsByEmailGetExecute(r ApiVerificati
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -248,7 +244,7 @@ func (a *VerificationsApiService) VerificationsByEmailGetExecute(r ApiVerificati
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -259,13 +255,13 @@ func (a *VerificationsApiService) VerificationsByEmailGetExecute(r ApiVerificati
 }
 
 type ApiVerificationsByEmailPostRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *VerificationsApiService
 	email string
 }
 
 
-func (r ApiVerificationsByEmailPostRequest) Execute() (EmailValidationResult, *_nethttp.Response, error) {
+func (r ApiVerificationsByEmailPostRequest) Execute() (*EmailValidationResult, *http.Response, error) {
 	return r.ApiService.VerificationsByEmailPostExecute(r)
 }
 
@@ -274,11 +270,11 @@ VerificationsByEmailPost Verify Email
 
 Verify single email address and returns result of verification. Required Access Level: VerifyEmails
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email Email address to verify
  @return ApiVerificationsByEmailPostRequest
 */
-func (a *VerificationsApiService) VerificationsByEmailPost(ctx _context.Context, email string) ApiVerificationsByEmailPostRequest {
+func (a *VerificationsApiService) VerificationsByEmailPost(ctx context.Context, email string) ApiVerificationsByEmailPostRequest {
 	return ApiVerificationsByEmailPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -288,27 +284,25 @@ func (a *VerificationsApiService) VerificationsByEmailPost(ctx _context.Context,
 
 // Execute executes the request
 //  @return EmailValidationResult
-func (a *VerificationsApiService) VerificationsByEmailPostExecute(r ApiVerificationsByEmailPostRequest) (EmailValidationResult, *_nethttp.Response, error) {
+func (a *VerificationsApiService) VerificationsByEmailPostExecute(r ApiVerificationsByEmailPostRequest) (*EmailValidationResult, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  EmailValidationResult
+		formFiles            []formFile
+		localVarReturnValue  *EmailValidationResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VerificationsApiService.VerificationsByEmailPost")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/verifications/{email}"
-	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", _neturl.PathEscape(parameterToString(r.email, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterToString(r.email, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -341,7 +335,7 @@ func (a *VerificationsApiService) VerificationsByEmailPostExecute(r ApiVerificat
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -351,15 +345,15 @@ func (a *VerificationsApiService) VerificationsByEmailPostExecute(r ApiVerificat
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -368,7 +362,7 @@ func (a *VerificationsApiService) VerificationsByEmailPostExecute(r ApiVerificat
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -379,13 +373,13 @@ func (a *VerificationsApiService) VerificationsByEmailPostExecute(r ApiVerificat
 }
 
 type ApiVerificationsFilesByIdDeleteRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *VerificationsApiService
 	id string
 }
 
 
-func (r ApiVerificationsFilesByIdDeleteRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiVerificationsFilesByIdDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.VerificationsFilesByIdDeleteExecute(r)
 }
 
@@ -394,11 +388,11 @@ VerificationsFilesByIdDelete Delete File Verification Result
 
 Delete Verification Results if they exist. Required Access Level: VerifyEmails
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID of the exported file
  @return ApiVerificationsFilesByIdDeleteRequest
 */
-func (a *VerificationsApiService) VerificationsFilesByIdDelete(ctx _context.Context, id string) ApiVerificationsFilesByIdDeleteRequest {
+func (a *VerificationsApiService) VerificationsFilesByIdDelete(ctx context.Context, id string) ApiVerificationsFilesByIdDeleteRequest {
 	return ApiVerificationsFilesByIdDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -407,26 +401,24 @@ func (a *VerificationsApiService) VerificationsFilesByIdDelete(ctx _context.Cont
 }
 
 // Execute executes the request
-func (a *VerificationsApiService) VerificationsFilesByIdDeleteExecute(r ApiVerificationsFilesByIdDeleteRequest) (*_nethttp.Response, error) {
+func (a *VerificationsApiService) VerificationsFilesByIdDeleteExecute(r ApiVerificationsFilesByIdDeleteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VerificationsApiService.VerificationsFilesByIdDelete")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/verifications/files/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -459,7 +451,7 @@ func (a *VerificationsApiService) VerificationsFilesByIdDeleteExecute(r ApiVerif
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -469,15 +461,15 @@ func (a *VerificationsApiService) VerificationsFilesByIdDeleteExecute(r ApiVerif
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -488,13 +480,13 @@ func (a *VerificationsApiService) VerificationsFilesByIdDeleteExecute(r ApiVerif
 }
 
 type ApiVerificationsFilesByIdResultDownloadGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *VerificationsApiService
 	id string
 }
 
 
-func (r ApiVerificationsFilesByIdResultDownloadGetRequest) Execute() (*os.File, *_nethttp.Response, error) {
+func (r ApiVerificationsFilesByIdResultDownloadGetRequest) Execute() (**os.File, *http.Response, error) {
 	return r.ApiService.VerificationsFilesByIdResultDownloadGetExecute(r)
 }
 
@@ -503,11 +495,11 @@ VerificationsFilesByIdResultDownloadGet Download File Verification Result
 
 Download verification results as a ZIP file. Required Access Level: VerifyEmails
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Verification ID to download
  @return ApiVerificationsFilesByIdResultDownloadGetRequest
 */
-func (a *VerificationsApiService) VerificationsFilesByIdResultDownloadGet(ctx _context.Context, id string) ApiVerificationsFilesByIdResultDownloadGetRequest {
+func (a *VerificationsApiService) VerificationsFilesByIdResultDownloadGet(ctx context.Context, id string) ApiVerificationsFilesByIdResultDownloadGetRequest {
 	return ApiVerificationsFilesByIdResultDownloadGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -517,27 +509,25 @@ func (a *VerificationsApiService) VerificationsFilesByIdResultDownloadGet(ctx _c
 
 // Execute executes the request
 //  @return *os.File
-func (a *VerificationsApiService) VerificationsFilesByIdResultDownloadGetExecute(r ApiVerificationsFilesByIdResultDownloadGetRequest) (*os.File, *_nethttp.Response, error) {
+func (a *VerificationsApiService) VerificationsFilesByIdResultDownloadGetExecute(r ApiVerificationsFilesByIdResultDownloadGetRequest) (**os.File, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  *os.File
+		formFiles            []formFile
+		localVarReturnValue  **os.File
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VerificationsApiService.VerificationsFilesByIdResultDownloadGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/verifications/files/{id}/result/download"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -570,7 +560,7 @@ func (a *VerificationsApiService) VerificationsFilesByIdResultDownloadGetExecute
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -580,15 +570,15 @@ func (a *VerificationsApiService) VerificationsFilesByIdResultDownloadGetExecute
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -597,7 +587,7 @@ func (a *VerificationsApiService) VerificationsFilesByIdResultDownloadGetExecute
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -608,7 +598,7 @@ func (a *VerificationsApiService) VerificationsFilesByIdResultDownloadGetExecute
 }
 
 type ApiVerificationsFilesByIdResultGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *VerificationsApiService
 	id string
 	limit *int32
@@ -626,7 +616,7 @@ func (r ApiVerificationsFilesByIdResultGetRequest) Offset(offset int32) ApiVerif
 	return r
 }
 
-func (r ApiVerificationsFilesByIdResultGetRequest) Execute() (VerificationFileResultDetails, *_nethttp.Response, error) {
+func (r ApiVerificationsFilesByIdResultGetRequest) Execute() (*VerificationFileResultDetails, *http.Response, error) {
 	return r.ApiService.VerificationsFilesByIdResultGetExecute(r)
 }
 
@@ -635,11 +625,11 @@ VerificationsFilesByIdResultGet Get Detailed File Verification Result
 
 Returns status and results (if verified) of file with given ID. Required Access Level: ViewEmailVerifications
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID of the Verification to display status of
  @return ApiVerificationsFilesByIdResultGetRequest
 */
-func (a *VerificationsApiService) VerificationsFilesByIdResultGet(ctx _context.Context, id string) ApiVerificationsFilesByIdResultGetRequest {
+func (a *VerificationsApiService) VerificationsFilesByIdResultGet(ctx context.Context, id string) ApiVerificationsFilesByIdResultGetRequest {
 	return ApiVerificationsFilesByIdResultGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -649,27 +639,25 @@ func (a *VerificationsApiService) VerificationsFilesByIdResultGet(ctx _context.C
 
 // Execute executes the request
 //  @return VerificationFileResultDetails
-func (a *VerificationsApiService) VerificationsFilesByIdResultGetExecute(r ApiVerificationsFilesByIdResultGetRequest) (VerificationFileResultDetails, *_nethttp.Response, error) {
+func (a *VerificationsApiService) VerificationsFilesByIdResultGetExecute(r ApiVerificationsFilesByIdResultGetRequest) (*VerificationFileResultDetails, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  VerificationFileResultDetails
+		formFiles            []formFile
+		localVarReturnValue  *VerificationFileResultDetails
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VerificationsApiService.VerificationsFilesByIdResultGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/verifications/files/{id}/result"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
@@ -708,7 +696,7 @@ func (a *VerificationsApiService) VerificationsFilesByIdResultGetExecute(r ApiVe
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -718,15 +706,15 @@ func (a *VerificationsApiService) VerificationsFilesByIdResultGetExecute(r ApiVe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -735,7 +723,7 @@ func (a *VerificationsApiService) VerificationsFilesByIdResultGetExecute(r ApiVe
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -746,13 +734,13 @@ func (a *VerificationsApiService) VerificationsFilesByIdResultGetExecute(r ApiVe
 }
 
 type ApiVerificationsFilesByIdVerificationPostRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *VerificationsApiService
 	id string
 }
 
 
-func (r ApiVerificationsFilesByIdVerificationPostRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiVerificationsFilesByIdVerificationPostRequest) Execute() (*http.Response, error) {
 	return r.ApiService.VerificationsFilesByIdVerificationPostExecute(r)
 }
 
@@ -761,11 +749,11 @@ VerificationsFilesByIdVerificationPost Start verification
 
 Start a verification of the previously uploaded file with emails. Required Access Level: VerifyEmails
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id File ID to start verification
  @return ApiVerificationsFilesByIdVerificationPostRequest
 */
-func (a *VerificationsApiService) VerificationsFilesByIdVerificationPost(ctx _context.Context, id string) ApiVerificationsFilesByIdVerificationPostRequest {
+func (a *VerificationsApiService) VerificationsFilesByIdVerificationPost(ctx context.Context, id string) ApiVerificationsFilesByIdVerificationPostRequest {
 	return ApiVerificationsFilesByIdVerificationPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -774,26 +762,24 @@ func (a *VerificationsApiService) VerificationsFilesByIdVerificationPost(ctx _co
 }
 
 // Execute executes the request
-func (a *VerificationsApiService) VerificationsFilesByIdVerificationPostExecute(r ApiVerificationsFilesByIdVerificationPostRequest) (*_nethttp.Response, error) {
+func (a *VerificationsApiService) VerificationsFilesByIdVerificationPostExecute(r ApiVerificationsFilesByIdVerificationPostRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VerificationsApiService.VerificationsFilesByIdVerificationPost")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/verifications/files/{id}/verification"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -826,7 +812,7 @@ func (a *VerificationsApiService) VerificationsFilesByIdVerificationPostExecute(
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -836,15 +822,15 @@ func (a *VerificationsApiService) VerificationsFilesByIdVerificationPostExecute(
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -855,7 +841,7 @@ func (a *VerificationsApiService) VerificationsFilesByIdVerificationPostExecute(
 }
 
 type ApiVerificationsFilesPostRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *VerificationsApiService
 	file **os.File
 }
@@ -865,7 +851,7 @@ func (r ApiVerificationsFilesPostRequest) File(file *os.File) ApiVerificationsFi
 	return r
 }
 
-func (r ApiVerificationsFilesPostRequest) Execute() (VerificationFileResult, *_nethttp.Response, error) {
+func (r ApiVerificationsFilesPostRequest) Execute() (*VerificationFileResult, *http.Response, error) {
 	return r.ApiService.VerificationsFilesPostExecute(r)
 }
 
@@ -874,10 +860,10 @@ VerificationsFilesPost Upload File with Emails
 
 Uploads a CSV file with list of emails that can then be triggered for verification. An 'email' column is required. Required Access Level: VerifyEmails
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiVerificationsFilesPostRequest
 */
-func (a *VerificationsApiService) VerificationsFilesPost(ctx _context.Context) ApiVerificationsFilesPostRequest {
+func (a *VerificationsApiService) VerificationsFilesPost(ctx context.Context) ApiVerificationsFilesPostRequest {
 	return ApiVerificationsFilesPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -886,26 +872,24 @@ func (a *VerificationsApiService) VerificationsFilesPost(ctx _context.Context) A
 
 // Execute executes the request
 //  @return VerificationFileResult
-func (a *VerificationsApiService) VerificationsFilesPostExecute(r ApiVerificationsFilesPostRequest) (VerificationFileResult, *_nethttp.Response, error) {
+func (a *VerificationsApiService) VerificationsFilesPostExecute(r ApiVerificationsFilesPostRequest) (*VerificationFileResult, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  VerificationFileResult
+		formFiles            []formFile
+		localVarReturnValue  *VerificationFileResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VerificationsApiService.VerificationsFilesPost")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/verifications/files"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"multipart/form-data"}
@@ -924,17 +908,23 @@ func (a *VerificationsApiService) VerificationsFilesPostExecute(r ApiVerificatio
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	localVarFormFileName = "file"
-	var localVarFile *os.File
+	var fileLocalVarFormFileName string
+	var fileLocalVarFileName     string
+	var fileLocalVarFileBytes    []byte
+
+	fileLocalVarFormFileName = "file"
+
+	var fileLocalVarFile *os.File
 	if r.file != nil {
-		localVarFile = *r.file
+		fileLocalVarFile = *r.file
 	}
-	if localVarFile != nil {
-		fbs, _ := _ioutil.ReadAll(localVarFile)
-		localVarFileBytes = fbs
-		localVarFileName = localVarFile.Name()
-		localVarFile.Close()
+	if fileLocalVarFile != nil {
+		fbs, _ := ioutil.ReadAll(fileLocalVarFile)
+		fileLocalVarFileBytes = fbs
+		fileLocalVarFileName = fileLocalVarFile.Name()
+		fileLocalVarFile.Close()
 	}
+	formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -949,7 +939,7 @@ func (a *VerificationsApiService) VerificationsFilesPostExecute(r ApiVerificatio
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -959,15 +949,15 @@ func (a *VerificationsApiService) VerificationsFilesPostExecute(r ApiVerificatio
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -976,7 +966,7 @@ func (a *VerificationsApiService) VerificationsFilesPostExecute(r ApiVerificatio
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -987,12 +977,12 @@ func (a *VerificationsApiService) VerificationsFilesPostExecute(r ApiVerificatio
 }
 
 type ApiVerificationsFilesResultGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *VerificationsApiService
 }
 
 
-func (r ApiVerificationsFilesResultGetRequest) Execute() ([]VerificationFileResult, *_nethttp.Response, error) {
+func (r ApiVerificationsFilesResultGetRequest) Execute() ([]VerificationFileResult, *http.Response, error) {
 	return r.ApiService.VerificationsFilesResultGetExecute(r)
 }
 
@@ -1001,10 +991,10 @@ VerificationsFilesResultGet Get Files Verification Results
 
 Returns a list of uploaded files, their statuses and results. Required Access Level: ViewEmailVerifications
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiVerificationsFilesResultGetRequest
 */
-func (a *VerificationsApiService) VerificationsFilesResultGet(ctx _context.Context) ApiVerificationsFilesResultGetRequest {
+func (a *VerificationsApiService) VerificationsFilesResultGet(ctx context.Context) ApiVerificationsFilesResultGetRequest {
 	return ApiVerificationsFilesResultGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1013,26 +1003,24 @@ func (a *VerificationsApiService) VerificationsFilesResultGet(ctx _context.Conte
 
 // Execute executes the request
 //  @return []VerificationFileResult
-func (a *VerificationsApiService) VerificationsFilesResultGetExecute(r ApiVerificationsFilesResultGetRequest) ([]VerificationFileResult, *_nethttp.Response, error) {
+func (a *VerificationsApiService) VerificationsFilesResultGetExecute(r ApiVerificationsFilesResultGetRequest) ([]VerificationFileResult, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 		localVarReturnValue  []VerificationFileResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VerificationsApiService.VerificationsFilesResultGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/verifications/files/result"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1065,7 +1053,7 @@ func (a *VerificationsApiService) VerificationsFilesResultGetExecute(r ApiVerifi
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1075,15 +1063,15 @@ func (a *VerificationsApiService) VerificationsFilesResultGetExecute(r ApiVerifi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1092,7 +1080,7 @@ func (a *VerificationsApiService) VerificationsFilesResultGetExecute(r ApiVerifi
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1103,7 +1091,7 @@ func (a *VerificationsApiService) VerificationsFilesResultGetExecute(r ApiVerifi
 }
 
 type ApiVerificationsGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *VerificationsApiService
 	limit *int32
 	offset *int32
@@ -1120,7 +1108,7 @@ func (r ApiVerificationsGetRequest) Offset(offset int32) ApiVerificationsGetRequ
 	return r
 }
 
-func (r ApiVerificationsGetRequest) Execute() ([]EmailValidationResult, *_nethttp.Response, error) {
+func (r ApiVerificationsGetRequest) Execute() ([]EmailValidationResult, *http.Response, error) {
 	return r.ApiService.VerificationsGetExecute(r)
 }
 
@@ -1129,10 +1117,10 @@ VerificationsGet Get Emails Verification Results
 
 Returns a results of all verified single emails. Required Access Level: ViewEmailVerifications
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiVerificationsGetRequest
 */
-func (a *VerificationsApiService) VerificationsGet(ctx _context.Context) ApiVerificationsGetRequest {
+func (a *VerificationsApiService) VerificationsGet(ctx context.Context) ApiVerificationsGetRequest {
 	return ApiVerificationsGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1141,26 +1129,24 @@ func (a *VerificationsApiService) VerificationsGet(ctx _context.Context) ApiVeri
 
 // Execute executes the request
 //  @return []EmailValidationResult
-func (a *VerificationsApiService) VerificationsGetExecute(r ApiVerificationsGetRequest) ([]EmailValidationResult, *_nethttp.Response, error) {
+func (a *VerificationsApiService) VerificationsGetExecute(r ApiVerificationsGetRequest) ([]EmailValidationResult, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 		localVarReturnValue  []EmailValidationResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VerificationsApiService.VerificationsGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/verifications"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
@@ -1199,7 +1185,7 @@ func (a *VerificationsApiService) VerificationsGetExecute(r ApiVerificationsGetR
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1209,15 +1195,15 @@ func (a *VerificationsApiService) VerificationsGetExecute(r ApiVerificationsGetR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1226,7 +1212,7 @@ func (a *VerificationsApiService) VerificationsGetExecute(r ApiVerificationsGetR
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

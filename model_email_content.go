@@ -18,11 +18,11 @@ import (
 // EmailContent Proper e-mail content
 type EmailContent struct {
 	// List of e-mail body parts, with user-provided MIME types (text/html, text/plain etc)
-	Body *[]BodyPart `json:"Body,omitempty"`
+	Body []BodyPart `json:"Body,omitempty"`
 	// A key-value collection of custom merge fields, shared between recipients. Should be used in e-mail body like so: {firstname}, {lastname} etc.
 	Merge *map[string]string `json:"Merge,omitempty"`
 	// Attachments provided by sending binary data
-	Attachments *[]MessageAttachment `json:"Attachments,omitempty"`
+	Attachments []MessageAttachment `json:"Attachments,omitempty"`
 	// A key-value collection of custom e-mail headers.
 	Headers *map[string]string `json:"Headers,omitempty"`
 	// Postback header.
@@ -38,7 +38,7 @@ type EmailContent struct {
 	// Name of template.
 	TemplateName *string `json:"TemplateName,omitempty"`
 	// Names of previously uploaded files that should be sent as downloadable attachments
-	AttachFiles *[]string `json:"AttachFiles,omitempty"`
+	AttachFiles []string `json:"AttachFiles,omitempty"`
 	Utm *Utm `json:"Utm,omitempty"`
 }
 
@@ -65,12 +65,12 @@ func (o *EmailContent) GetBody() []BodyPart {
 		var ret []BodyPart
 		return ret
 	}
-	return *o.Body
+	return o.Body
 }
 
 // GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EmailContent) GetBodyOk() (*[]BodyPart, bool) {
+func (o *EmailContent) GetBodyOk() ([]BodyPart, bool) {
 	if o == nil || o.Body == nil {
 		return nil, false
 	}
@@ -88,7 +88,7 @@ func (o *EmailContent) HasBody() bool {
 
 // SetBody gets a reference to the given []BodyPart and assigns it to the Body field.
 func (o *EmailContent) SetBody(v []BodyPart) {
-	o.Body = &v
+	o.Body = v
 }
 
 // GetMerge returns the Merge field value if set, zero value otherwise.
@@ -129,12 +129,12 @@ func (o *EmailContent) GetAttachments() []MessageAttachment {
 		var ret []MessageAttachment
 		return ret
 	}
-	return *o.Attachments
+	return o.Attachments
 }
 
 // GetAttachmentsOk returns a tuple with the Attachments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EmailContent) GetAttachmentsOk() (*[]MessageAttachment, bool) {
+func (o *EmailContent) GetAttachmentsOk() ([]MessageAttachment, bool) {
 	if o == nil || o.Attachments == nil {
 		return nil, false
 	}
@@ -152,7 +152,7 @@ func (o *EmailContent) HasAttachments() bool {
 
 // SetAttachments gets a reference to the given []MessageAttachment and assigns it to the Attachments field.
 func (o *EmailContent) SetAttachments(v []MessageAttachment) {
-	o.Attachments = &v
+	o.Attachments = v
 }
 
 // GetHeaders returns the Headers field value if set, zero value otherwise.
@@ -385,12 +385,12 @@ func (o *EmailContent) GetAttachFiles() []string {
 		var ret []string
 		return ret
 	}
-	return *o.AttachFiles
+	return o.AttachFiles
 }
 
 // GetAttachFilesOk returns a tuple with the AttachFiles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EmailContent) GetAttachFilesOk() (*[]string, bool) {
+func (o *EmailContent) GetAttachFilesOk() ([]string, bool) {
 	if o == nil || o.AttachFiles == nil {
 		return nil, false
 	}
@@ -408,7 +408,7 @@ func (o *EmailContent) HasAttachFiles() bool {
 
 // SetAttachFiles gets a reference to the given []string and assigns it to the AttachFiles field.
 func (o *EmailContent) SetAttachFiles(v []string) {
-	o.AttachFiles = &v
+	o.AttachFiles = v
 }
 
 // GetUtm returns the Utm field value if set, zero value otherwise.

@@ -20,9 +20,9 @@ type TransactionalRecipient struct {
 	// List of recipients (visible to others)
 	To []string `json:"To"`
 	// List of Carbon Copy recipients (visible to others)
-	CC *[]string `json:"CC,omitempty"`
+	CC []string `json:"CC,omitempty"`
 	// List of Blind Carbon Copy recipients (hidden from other recipients)
-	BCC *[]string `json:"BCC,omitempty"`
+	BCC []string `json:"BCC,omitempty"`
 }
 
 // NewTransactionalRecipient instantiates a new TransactionalRecipient object
@@ -55,11 +55,11 @@ func (o *TransactionalRecipient) GetTo() []string {
 
 // GetToOk returns a tuple with the To field value
 // and a boolean to check if the value has been set.
-func (o *TransactionalRecipient) GetToOk() (*[]string, bool) {
+func (o *TransactionalRecipient) GetToOk() ([]string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.To, true
+	return o.To, true
 }
 
 // SetTo sets field value
@@ -73,12 +73,12 @@ func (o *TransactionalRecipient) GetCC() []string {
 		var ret []string
 		return ret
 	}
-	return *o.CC
+	return o.CC
 }
 
 // GetCCOk returns a tuple with the CC field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TransactionalRecipient) GetCCOk() (*[]string, bool) {
+func (o *TransactionalRecipient) GetCCOk() ([]string, bool) {
 	if o == nil || o.CC == nil {
 		return nil, false
 	}
@@ -96,7 +96,7 @@ func (o *TransactionalRecipient) HasCC() bool {
 
 // SetCC gets a reference to the given []string and assigns it to the CC field.
 func (o *TransactionalRecipient) SetCC(v []string) {
-	o.CC = &v
+	o.CC = v
 }
 
 // GetBCC returns the BCC field value if set, zero value otherwise.
@@ -105,12 +105,12 @@ func (o *TransactionalRecipient) GetBCC() []string {
 		var ret []string
 		return ret
 	}
-	return *o.BCC
+	return o.BCC
 }
 
 // GetBCCOk returns a tuple with the BCC field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TransactionalRecipient) GetBCCOk() (*[]string, bool) {
+func (o *TransactionalRecipient) GetBCCOk() ([]string, bool) {
 	if o == nil || o.BCC == nil {
 		return nil, false
 	}
@@ -128,7 +128,7 @@ func (o *TransactionalRecipient) HasBCC() bool {
 
 // SetBCC gets a reference to the given []string and assigns it to the BCC field.
 func (o *TransactionalRecipient) SetBCC(v []string) {
-	o.BCC = &v
+	o.BCC = v
 }
 
 func (o TransactionalRecipient) MarshalJSON() ([]byte, error) {

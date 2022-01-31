@@ -44,8 +44,8 @@ func main() {
     offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.EventsApi.EventsByTransactionidGet(context.Background(), transactionid).From(from).To(to).OrderBy(orderBy).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.EventsApi.EventsByTransactionidGet(context.Background(), transactionid).From(from).To(to).OrderBy(orderBy).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.EventsByTransactionidGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -126,8 +126,8 @@ func main() {
     fileName := "filename.txt" // string | Name of your file including extension. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.EventsApi.EventsChannelsByNameExportPost(context.Background(), name).EventTypes(eventTypes).From(from).To(to).FileFormat(fileFormat).CompressionFormat(compressionFormat).FileName(fileName).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.EventsApi.EventsChannelsByNameExportPost(context.Background(), name).EventTypes(eventTypes).From(from).To(to).FileFormat(fileFormat).CompressionFormat(compressionFormat).FileName(fileName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.EventsChannelsByNameExportPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -209,8 +209,8 @@ func main() {
     offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.EventsApi.EventsChannelsByNameGet(context.Background(), name).EventTypes(eventTypes).From(from).To(to).OrderBy(orderBy).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.EventsApi.EventsChannelsByNameGet(context.Background(), name).EventTypes(eventTypes).From(from).To(to).OrderBy(orderBy).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.EventsChannelsByNameGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -285,8 +285,8 @@ func main() {
     id := "E33EBA7A-C20D-4D3D-8F2F-5EEF42F58E6F" // string | ID of the exported file
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.EventsApi.EventsChannelsExportByIdStatusGet(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.EventsApi.EventsChannelsExportByIdStatusGet(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.EventsChannelsExportByIdStatusGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -355,8 +355,8 @@ func main() {
     id := "E33EBA7A-C20D-4D3D-8F2F-5EEF42F58E6F" // string | ID of the exported file
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.EventsApi.EventsExportByIdStatusGet(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.EventsApi.EventsExportByIdStatusGet(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.EventsExportByIdStatusGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -431,8 +431,8 @@ func main() {
     fileName := "filename.txt" // string | Name of your file including extension. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.EventsApi.EventsExportPost(context.Background()).EventTypes(eventTypes).From(from).To(to).FileFormat(fileFormat).CompressionFormat(compressionFormat).FileName(fileName).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.EventsApi.EventsExportPost(context.Background()).EventTypes(eventTypes).From(from).To(to).FileFormat(fileFormat).CompressionFormat(compressionFormat).FileName(fileName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.EventsExportPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -508,8 +508,8 @@ func main() {
     offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.EventsApi.EventsGet(context.Background()).EventTypes(eventTypes).From(from).To(to).OrderBy(orderBy).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.EventsApi.EventsGet(context.Background()).EventTypes(eventTypes).From(from).To(to).OrderBy(orderBy).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.EventsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

@@ -41,8 +41,8 @@ func main() {
     email := "mail@example.com" // string | Proper email address.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ContactsApi.ContactsByEmailDelete(context.Background(), email).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ContactsApi.ContactsByEmailDelete(context.Background(), email).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsByEmailDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -109,8 +109,8 @@ func main() {
     email := "mail@example.com" // string | Proper email address.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ContactsApi.ContactsByEmailGet(context.Background(), email).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ContactsApi.ContactsByEmailGet(context.Background(), email).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsByEmailGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -181,8 +181,8 @@ func main() {
     offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ContactsApi.ContactsByEmailHistoryGet(context.Background(), email).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ContactsApi.ContactsByEmailHistoryGet(context.Background(), email).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsByEmailHistoryGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -254,8 +254,8 @@ func main() {
     contactUpdatePayload := *openapiclient.NewContactUpdatePayload() // ContactUpdatePayload | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ContactsApi.ContactsByEmailPut(context.Background(), email).ContactUpdatePayload(contactUpdatePayload).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ContactsApi.ContactsByEmailPut(context.Background(), email).ContactUpdatePayload(contactUpdatePayload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsByEmailPut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -325,8 +325,8 @@ func main() {
     emailsPayload := *openapiclient.NewEmailsPayload() // EmailsPayload | Provide either rule or a list of emails, not both.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ContactsApi.ContactsDeletePost(context.Background()).EmailsPayload(emailsPayload).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ContactsApi.ContactsDeletePost(context.Background()).EmailsPayload(emailsPayload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsDeletePost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -389,8 +389,8 @@ func main() {
     id := "E33EBA7A-C20D-4D3D-8F2F-5EEF42F58E6F" // string | ID of the exported file
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ContactsApi.ContactsExportByIdStatusGet(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ContactsApi.ContactsExportByIdStatusGet(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsExportByIdStatusGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -463,8 +463,8 @@ func main() {
     fileName := "filename.txt" // string | Name of your file including extension. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ContactsApi.ContactsExportPost(context.Background()).FileFormat(fileFormat).Rule(rule).Emails(emails).CompressionFormat(compressionFormat).FileName(fileName).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ContactsApi.ContactsExportPost(context.Background()).FileFormat(fileFormat).Rule(rule).Emails(emails).CompressionFormat(compressionFormat).FileName(fileName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsExportPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -534,8 +534,8 @@ func main() {
     offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ContactsApi.ContactsGet(context.Background()).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ContactsApi.ContactsGet(context.Background()).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -603,8 +603,8 @@ func main() {
     file := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ContactsApi.ContactsImportPost(context.Background()).ListName(listName).EncodingName(encodingName).File(file).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ContactsApi.ContactsImportPost(context.Background()).ListName(listName).EncodingName(encodingName).File(file).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsImportPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -670,8 +670,8 @@ func main() {
     listnames := []string{"Inner_example"} // []string | Names of lists to which the uploaded contacts should be added to (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ContactsApi.ContactsPost(context.Background()).ContactPayload(contactPayload).Listnames(listnames).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ContactsApi.ContactsPost(context.Background()).ContactPayload(contactPayload).Listnames(listnames).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

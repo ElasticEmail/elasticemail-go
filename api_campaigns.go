@@ -13,29 +13,29 @@ package ElasticEmail
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // CampaignsApiService CampaignsApi service
 type CampaignsApiService service
 
 type ApiCampaignsByNameDeleteRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *CampaignsApiService
 	name string
 }
 
 
-func (r ApiCampaignsByNameDeleteRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiCampaignsByNameDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.CampaignsByNameDeleteExecute(r)
 }
 
@@ -44,11 +44,11 @@ CampaignsByNameDelete Delete Campaign
 
 Delete the specific campaign.  This does not cancel in progress email, see Cancel In Progress. Required Access Level: ModifyCampaigns
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of Campaign to delete
  @return ApiCampaignsByNameDeleteRequest
 */
-func (a *CampaignsApiService) CampaignsByNameDelete(ctx _context.Context, name string) ApiCampaignsByNameDeleteRequest {
+func (a *CampaignsApiService) CampaignsByNameDelete(ctx context.Context, name string) ApiCampaignsByNameDeleteRequest {
 	return ApiCampaignsByNameDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -57,26 +57,24 @@ func (a *CampaignsApiService) CampaignsByNameDelete(ctx _context.Context, name s
 }
 
 // Execute executes the request
-func (a *CampaignsApiService) CampaignsByNameDeleteExecute(r ApiCampaignsByNameDeleteRequest) (*_nethttp.Response, error) {
+func (a *CampaignsApiService) CampaignsByNameDeleteExecute(r ApiCampaignsByNameDeleteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsApiService.CampaignsByNameDelete")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/campaigns/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", _neturl.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -109,7 +107,7 @@ func (a *CampaignsApiService) CampaignsByNameDeleteExecute(r ApiCampaignsByNameD
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -119,15 +117,15 @@ func (a *CampaignsApiService) CampaignsByNameDeleteExecute(r ApiCampaignsByNameD
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -138,13 +136,13 @@ func (a *CampaignsApiService) CampaignsByNameDeleteExecute(r ApiCampaignsByNameD
 }
 
 type ApiCampaignsByNameGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *CampaignsApiService
 	name string
 }
 
 
-func (r ApiCampaignsByNameGetRequest) Execute() (Campaign, *_nethttp.Response, error) {
+func (r ApiCampaignsByNameGetRequest) Execute() (*Campaign, *http.Response, error) {
 	return r.ApiService.CampaignsByNameGetExecute(r)
 }
 
@@ -153,11 +151,11 @@ CampaignsByNameGet Load Campaign
 
 Returns the specified campaign details. Required Access Level: ViewCampaigns
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of Campaign to get
  @return ApiCampaignsByNameGetRequest
 */
-func (a *CampaignsApiService) CampaignsByNameGet(ctx _context.Context, name string) ApiCampaignsByNameGetRequest {
+func (a *CampaignsApiService) CampaignsByNameGet(ctx context.Context, name string) ApiCampaignsByNameGetRequest {
 	return ApiCampaignsByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -167,27 +165,25 @@ func (a *CampaignsApiService) CampaignsByNameGet(ctx _context.Context, name stri
 
 // Execute executes the request
 //  @return Campaign
-func (a *CampaignsApiService) CampaignsByNameGetExecute(r ApiCampaignsByNameGetRequest) (Campaign, *_nethttp.Response, error) {
+func (a *CampaignsApiService) CampaignsByNameGetExecute(r ApiCampaignsByNameGetRequest) (*Campaign, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Campaign
+		formFiles            []formFile
+		localVarReturnValue  *Campaign
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsApiService.CampaignsByNameGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/campaigns/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", _neturl.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -220,7 +216,7 @@ func (a *CampaignsApiService) CampaignsByNameGetExecute(r ApiCampaignsByNameGetR
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -230,15 +226,15 @@ func (a *CampaignsApiService) CampaignsByNameGetExecute(r ApiCampaignsByNameGetR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -247,7 +243,7 @@ func (a *CampaignsApiService) CampaignsByNameGetExecute(r ApiCampaignsByNameGetR
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -258,7 +254,7 @@ func (a *CampaignsApiService) CampaignsByNameGetExecute(r ApiCampaignsByNameGetR
 }
 
 type ApiCampaignsByNamePutRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *CampaignsApiService
 	name string
 	campaign *Campaign
@@ -270,7 +266,7 @@ func (r ApiCampaignsByNamePutRequest) Campaign(campaign Campaign) ApiCampaignsBy
 	return r
 }
 
-func (r ApiCampaignsByNamePutRequest) Execute() (Campaign, *_nethttp.Response, error) {
+func (r ApiCampaignsByNamePutRequest) Execute() (*Campaign, *http.Response, error) {
 	return r.ApiService.CampaignsByNamePutExecute(r)
 }
 
@@ -279,11 +275,11 @@ CampaignsByNamePut Update Campaign
 
 Updates a previously added campaign.  Only Active and Paused campaigns can be updated. Required Access Level: ModifyCampaigns
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of Campaign to update
  @return ApiCampaignsByNamePutRequest
 */
-func (a *CampaignsApiService) CampaignsByNamePut(ctx _context.Context, name string) ApiCampaignsByNamePutRequest {
+func (a *CampaignsApiService) CampaignsByNamePut(ctx context.Context, name string) ApiCampaignsByNamePutRequest {
 	return ApiCampaignsByNamePutRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -293,27 +289,25 @@ func (a *CampaignsApiService) CampaignsByNamePut(ctx _context.Context, name stri
 
 // Execute executes the request
 //  @return Campaign
-func (a *CampaignsApiService) CampaignsByNamePutExecute(r ApiCampaignsByNamePutRequest) (Campaign, *_nethttp.Response, error) {
+func (a *CampaignsApiService) CampaignsByNamePutExecute(r ApiCampaignsByNamePutRequest) (*Campaign, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Campaign
+		formFiles            []formFile
+		localVarReturnValue  *Campaign
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsApiService.CampaignsByNamePut")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/campaigns/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", _neturl.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.campaign == nil {
 		return localVarReturnValue, nil, reportError("campaign is required and must be specified")
 	}
@@ -351,7 +345,7 @@ func (a *CampaignsApiService) CampaignsByNamePutExecute(r ApiCampaignsByNamePutR
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -361,15 +355,15 @@ func (a *CampaignsApiService) CampaignsByNamePutExecute(r ApiCampaignsByNamePutR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -378,7 +372,7 @@ func (a *CampaignsApiService) CampaignsByNamePutExecute(r ApiCampaignsByNamePutR
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -389,7 +383,7 @@ func (a *CampaignsApiService) CampaignsByNamePutExecute(r ApiCampaignsByNamePutR
 }
 
 type ApiCampaignsGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *CampaignsApiService
 	search *string
 	offset *int32
@@ -412,7 +406,7 @@ func (r ApiCampaignsGetRequest) Limit(limit int32) ApiCampaignsGetRequest {
 	return r
 }
 
-func (r ApiCampaignsGetRequest) Execute() ([]Campaign, *_nethttp.Response, error) {
+func (r ApiCampaignsGetRequest) Execute() ([]Campaign, *http.Response, error) {
 	return r.ApiService.CampaignsGetExecute(r)
 }
 
@@ -421,10 +415,10 @@ CampaignsGet Load Campaigns
 
 Returns a list all of your campaigns. Limited to 1000 results. Required Access Level: ViewCampaigns
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCampaignsGetRequest
 */
-func (a *CampaignsApiService) CampaignsGet(ctx _context.Context) ApiCampaignsGetRequest {
+func (a *CampaignsApiService) CampaignsGet(ctx context.Context) ApiCampaignsGetRequest {
 	return ApiCampaignsGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -433,26 +427,24 @@ func (a *CampaignsApiService) CampaignsGet(ctx _context.Context) ApiCampaignsGet
 
 // Execute executes the request
 //  @return []Campaign
-func (a *CampaignsApiService) CampaignsGetExecute(r ApiCampaignsGetRequest) ([]Campaign, *_nethttp.Response, error) {
+func (a *CampaignsApiService) CampaignsGetExecute(r ApiCampaignsGetRequest) ([]Campaign, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 		localVarReturnValue  []Campaign
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsApiService.CampaignsGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/campaigns"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.search != nil {
 		localVarQueryParams.Add("search", parameterToString(*r.search, ""))
@@ -494,7 +486,7 @@ func (a *CampaignsApiService) CampaignsGetExecute(r ApiCampaignsGetRequest) ([]C
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -504,15 +496,15 @@ func (a *CampaignsApiService) CampaignsGetExecute(r ApiCampaignsGetRequest) ([]C
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -521,7 +513,7 @@ func (a *CampaignsApiService) CampaignsGetExecute(r ApiCampaignsGetRequest) ([]C
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -532,7 +524,7 @@ func (a *CampaignsApiService) CampaignsGetExecute(r ApiCampaignsGetRequest) ([]C
 }
 
 type ApiCampaignsPostRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *CampaignsApiService
 	campaign *Campaign
 }
@@ -543,7 +535,7 @@ func (r ApiCampaignsPostRequest) Campaign(campaign Campaign) ApiCampaignsPostReq
 	return r
 }
 
-func (r ApiCampaignsPostRequest) Execute() (Campaign, *_nethttp.Response, error) {
+func (r ApiCampaignsPostRequest) Execute() (*Campaign, *http.Response, error) {
 	return r.ApiService.CampaignsPostExecute(r)
 }
 
@@ -552,10 +544,10 @@ CampaignsPost Add Campaign
 
 Add a campaign for processing. Required Access Level: ModifyCampaigns
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCampaignsPostRequest
 */
-func (a *CampaignsApiService) CampaignsPost(ctx _context.Context) ApiCampaignsPostRequest {
+func (a *CampaignsApiService) CampaignsPost(ctx context.Context) ApiCampaignsPostRequest {
 	return ApiCampaignsPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -564,26 +556,24 @@ func (a *CampaignsApiService) CampaignsPost(ctx _context.Context) ApiCampaignsPo
 
 // Execute executes the request
 //  @return Campaign
-func (a *CampaignsApiService) CampaignsPostExecute(r ApiCampaignsPostRequest) (Campaign, *_nethttp.Response, error) {
+func (a *CampaignsApiService) CampaignsPostExecute(r ApiCampaignsPostRequest) (*Campaign, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Campaign
+		formFiles            []formFile
+		localVarReturnValue  *Campaign
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsApiService.CampaignsPost")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/campaigns"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.campaign == nil {
 		return localVarReturnValue, nil, reportError("campaign is required and must be specified")
 	}
@@ -621,7 +611,7 @@ func (a *CampaignsApiService) CampaignsPostExecute(r ApiCampaignsPostRequest) (C
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -631,15 +621,15 @@ func (a *CampaignsApiService) CampaignsPostExecute(r ApiCampaignsPostRequest) (C
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -648,7 +638,7 @@ func (a *CampaignsApiService) CampaignsPostExecute(r ApiCampaignsPostRequest) (C
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

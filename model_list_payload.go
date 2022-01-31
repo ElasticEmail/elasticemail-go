@@ -22,7 +22,7 @@ type ListPayload struct {
 	// True: Allow unsubscribing from this list. Otherwise, false
 	AllowUnsubscribe *bool `json:"AllowUnsubscribe,omitempty"`
 	// Comma delimited list of existing contact emails that should be added to this list. Leave empty for all contacts
-	Emails *[]string `json:"Emails,omitempty"`
+	Emails []string `json:"Emails,omitempty"`
 }
 
 // NewListPayload instantiates a new ListPayload object
@@ -105,12 +105,12 @@ func (o *ListPayload) GetEmails() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Emails
+	return o.Emails
 }
 
 // GetEmailsOk returns a tuple with the Emails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListPayload) GetEmailsOk() (*[]string, bool) {
+func (o *ListPayload) GetEmailsOk() ([]string, bool) {
 	if o == nil || o.Emails == nil {
 		return nil, false
 	}
@@ -128,7 +128,7 @@ func (o *ListPayload) HasEmails() bool {
 
 // SetEmails gets a reference to the given []string and assigns it to the Emails field.
 func (o *ListPayload) SetEmails(v []string) {
-	o.Emails = &v
+	o.Emails = v
 }
 
 func (o ListPayload) MarshalJSON() ([]byte, error) {

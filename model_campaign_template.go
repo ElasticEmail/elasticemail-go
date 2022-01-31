@@ -28,7 +28,7 @@ type CampaignTemplate struct {
 	// Name of template.
 	TemplateName *string `json:"TemplateName,omitempty"`
 	// Names of previously uploaded files that should be sent as downloadable attachments
-	AttachFiles *[]string `json:"AttachFiles,omitempty"`
+	AttachFiles []string `json:"AttachFiles,omitempty"`
 	Utm *Utm `json:"Utm,omitempty"`
 }
 
@@ -215,12 +215,12 @@ func (o *CampaignTemplate) GetAttachFiles() []string {
 		var ret []string
 		return ret
 	}
-	return *o.AttachFiles
+	return o.AttachFiles
 }
 
 // GetAttachFilesOk returns a tuple with the AttachFiles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignTemplate) GetAttachFilesOk() (*[]string, bool) {
+func (o *CampaignTemplate) GetAttachFilesOk() ([]string, bool) {
 	if o == nil || o.AttachFiles == nil {
 		return nil, false
 	}
@@ -238,7 +238,7 @@ func (o *CampaignTemplate) HasAttachFiles() bool {
 
 // SetAttachFiles gets a reference to the given []string and assigns it to the AttachFiles field.
 func (o *CampaignTemplate) SetAttachFiles(v []string) {
-	o.AttachFiles = &v
+	o.AttachFiles = v
 }
 
 // GetUtm returns the Utm field value if set, zero value otherwise.

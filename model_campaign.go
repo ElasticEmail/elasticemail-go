@@ -18,7 +18,7 @@ import (
 // Campaign struct for Campaign
 type Campaign struct {
 	// Campaign's email content. Provide multiple items to send an A/X Split Campaign
-	Content *[]CampaignTemplate `json:"Content,omitempty"`
+	Content []CampaignTemplate `json:"Content,omitempty"`
 	// Campaign name
 	Name string `json:"Name"`
 	Status *CampaignStatus `json:"Status,omitempty"`
@@ -55,12 +55,12 @@ func (o *Campaign) GetContent() []CampaignTemplate {
 		var ret []CampaignTemplate
 		return ret
 	}
-	return *o.Content
+	return o.Content
 }
 
 // GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetContentOk() (*[]CampaignTemplate, bool) {
+func (o *Campaign) GetContentOk() ([]CampaignTemplate, bool) {
 	if o == nil || o.Content == nil {
 		return nil, false
 	}
@@ -78,7 +78,7 @@ func (o *Campaign) HasContent() bool {
 
 // SetContent gets a reference to the given []CampaignTemplate and assigns it to the Content field.
 func (o *Campaign) SetContent(v []CampaignTemplate) {
-	o.Content = &v
+	o.Content = v
 }
 
 // GetName returns the Name field value

@@ -13,29 +13,29 @@ package ElasticEmail
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Linger please
 var (
-	_ _context.Context
+	_ context.Context
 )
 
 // SegmentsApiService SegmentsApi service
 type SegmentsApiService service
 
 type ApiSegmentsByNameDeleteRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SegmentsApiService
 	name string
 }
 
 
-func (r ApiSegmentsByNameDeleteRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiSegmentsByNameDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SegmentsByNameDeleteExecute(r)
 }
 
@@ -44,11 +44,11 @@ SegmentsByNameDelete Delete Segment
 
 Delete an existing segment. Required Access Level: ModifyContacts
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of your segment.
  @return ApiSegmentsByNameDeleteRequest
 */
-func (a *SegmentsApiService) SegmentsByNameDelete(ctx _context.Context, name string) ApiSegmentsByNameDeleteRequest {
+func (a *SegmentsApiService) SegmentsByNameDelete(ctx context.Context, name string) ApiSegmentsByNameDeleteRequest {
 	return ApiSegmentsByNameDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -57,26 +57,24 @@ func (a *SegmentsApiService) SegmentsByNameDelete(ctx _context.Context, name str
 }
 
 // Execute executes the request
-func (a *SegmentsApiService) SegmentsByNameDeleteExecute(r ApiSegmentsByNameDeleteRequest) (*_nethttp.Response, error) {
+func (a *SegmentsApiService) SegmentsByNameDeleteExecute(r ApiSegmentsByNameDeleteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SegmentsApiService.SegmentsByNameDelete")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/segments/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", _neturl.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -109,7 +107,7 @@ func (a *SegmentsApiService) SegmentsByNameDeleteExecute(r ApiSegmentsByNameDele
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -119,15 +117,15 @@ func (a *SegmentsApiService) SegmentsByNameDeleteExecute(r ApiSegmentsByNameDele
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -138,13 +136,13 @@ func (a *SegmentsApiService) SegmentsByNameDeleteExecute(r ApiSegmentsByNameDele
 }
 
 type ApiSegmentsByNameGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SegmentsApiService
 	name string
 }
 
 
-func (r ApiSegmentsByNameGetRequest) Execute() (Segment, *_nethttp.Response, error) {
+func (r ApiSegmentsByNameGetRequest) Execute() (*Segment, *http.Response, error) {
 	return r.ApiService.SegmentsByNameGetExecute(r)
 }
 
@@ -153,11 +151,11 @@ SegmentsByNameGet Load Segment
 
 Returns details for the specified segment. Required Access Level: ViewContacts
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of the segment you want to load. Will load all contacts if the 'All Contacts' name has been provided
  @return ApiSegmentsByNameGetRequest
 */
-func (a *SegmentsApiService) SegmentsByNameGet(ctx _context.Context, name string) ApiSegmentsByNameGetRequest {
+func (a *SegmentsApiService) SegmentsByNameGet(ctx context.Context, name string) ApiSegmentsByNameGetRequest {
 	return ApiSegmentsByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -167,27 +165,25 @@ func (a *SegmentsApiService) SegmentsByNameGet(ctx _context.Context, name string
 
 // Execute executes the request
 //  @return Segment
-func (a *SegmentsApiService) SegmentsByNameGetExecute(r ApiSegmentsByNameGetRequest) (Segment, *_nethttp.Response, error) {
+func (a *SegmentsApiService) SegmentsByNameGetExecute(r ApiSegmentsByNameGetRequest) (*Segment, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Segment
+		formFiles            []formFile
+		localVarReturnValue  *Segment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SegmentsApiService.SegmentsByNameGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/segments/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", _neturl.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -220,7 +216,7 @@ func (a *SegmentsApiService) SegmentsByNameGetExecute(r ApiSegmentsByNameGetRequ
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -230,15 +226,15 @@ func (a *SegmentsApiService) SegmentsByNameGetExecute(r ApiSegmentsByNameGetRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -247,7 +243,7 @@ func (a *SegmentsApiService) SegmentsByNameGetExecute(r ApiSegmentsByNameGetRequ
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -258,7 +254,7 @@ func (a *SegmentsApiService) SegmentsByNameGetExecute(r ApiSegmentsByNameGetRequ
 }
 
 type ApiSegmentsByNamePutRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SegmentsApiService
 	name string
 	segmentPayload *SegmentPayload
@@ -269,7 +265,7 @@ func (r ApiSegmentsByNamePutRequest) SegmentPayload(segmentPayload SegmentPayloa
 	return r
 }
 
-func (r ApiSegmentsByNamePutRequest) Execute() (Segment, *_nethttp.Response, error) {
+func (r ApiSegmentsByNamePutRequest) Execute() (*Segment, *http.Response, error) {
 	return r.ApiService.SegmentsByNamePutExecute(r)
 }
 
@@ -278,11 +274,11 @@ SegmentsByNamePut Update Segment
 
 Rename or change RULE for your segment. Required Access Level: ModifyContacts
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of your segment.
  @return ApiSegmentsByNamePutRequest
 */
-func (a *SegmentsApiService) SegmentsByNamePut(ctx _context.Context, name string) ApiSegmentsByNamePutRequest {
+func (a *SegmentsApiService) SegmentsByNamePut(ctx context.Context, name string) ApiSegmentsByNamePutRequest {
 	return ApiSegmentsByNamePutRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -292,27 +288,25 @@ func (a *SegmentsApiService) SegmentsByNamePut(ctx _context.Context, name string
 
 // Execute executes the request
 //  @return Segment
-func (a *SegmentsApiService) SegmentsByNamePutExecute(r ApiSegmentsByNamePutRequest) (Segment, *_nethttp.Response, error) {
+func (a *SegmentsApiService) SegmentsByNamePutExecute(r ApiSegmentsByNamePutRequest) (*Segment, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Segment
+		formFiles            []formFile
+		localVarReturnValue  *Segment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SegmentsApiService.SegmentsByNamePut")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/segments/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", _neturl.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.segmentPayload == nil {
 		return localVarReturnValue, nil, reportError("segmentPayload is required and must be specified")
 	}
@@ -350,7 +344,7 @@ func (a *SegmentsApiService) SegmentsByNamePutExecute(r ApiSegmentsByNamePutRequ
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -360,15 +354,15 @@ func (a *SegmentsApiService) SegmentsByNamePutExecute(r ApiSegmentsByNamePutRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -377,7 +371,7 @@ func (a *SegmentsApiService) SegmentsByNamePutExecute(r ApiSegmentsByNamePutRequ
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -388,7 +382,7 @@ func (a *SegmentsApiService) SegmentsByNamePutExecute(r ApiSegmentsByNamePutRequ
 }
 
 type ApiSegmentsGetRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SegmentsApiService
 	limit *int32
 	offset *int32
@@ -405,7 +399,7 @@ func (r ApiSegmentsGetRequest) Offset(offset int32) ApiSegmentsGetRequest {
 	return r
 }
 
-func (r ApiSegmentsGetRequest) Execute() ([]Segment, *_nethttp.Response, error) {
+func (r ApiSegmentsGetRequest) Execute() ([]Segment, *http.Response, error) {
 	return r.ApiService.SegmentsGetExecute(r)
 }
 
@@ -414,10 +408,10 @@ SegmentsGet Load Segments
 
 Returns a list of all your available Segments. Required Access Level: ViewContacts
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSegmentsGetRequest
 */
-func (a *SegmentsApiService) SegmentsGet(ctx _context.Context) ApiSegmentsGetRequest {
+func (a *SegmentsApiService) SegmentsGet(ctx context.Context) ApiSegmentsGetRequest {
 	return ApiSegmentsGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -426,26 +420,24 @@ func (a *SegmentsApiService) SegmentsGet(ctx _context.Context) ApiSegmentsGetReq
 
 // Execute executes the request
 //  @return []Segment
-func (a *SegmentsApiService) SegmentsGetExecute(r ApiSegmentsGetRequest) ([]Segment, *_nethttp.Response, error) {
+func (a *SegmentsApiService) SegmentsGetExecute(r ApiSegmentsGetRequest) ([]Segment, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		formFiles            []formFile
 		localVarReturnValue  []Segment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SegmentsApiService.SegmentsGet")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/segments"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
@@ -484,7 +476,7 @@ func (a *SegmentsApiService) SegmentsGetExecute(r ApiSegmentsGetRequest) ([]Segm
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -494,15 +486,15 @@ func (a *SegmentsApiService) SegmentsGetExecute(r ApiSegmentsGetRequest) ([]Segm
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -511,7 +503,7 @@ func (a *SegmentsApiService) SegmentsGetExecute(r ApiSegmentsGetRequest) ([]Segm
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -522,7 +514,7 @@ func (a *SegmentsApiService) SegmentsGetExecute(r ApiSegmentsGetRequest) ([]Segm
 }
 
 type ApiSegmentsPostRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService *SegmentsApiService
 	segmentPayload *SegmentPayload
 }
@@ -532,7 +524,7 @@ func (r ApiSegmentsPostRequest) SegmentPayload(segmentPayload SegmentPayload) Ap
 	return r
 }
 
-func (r ApiSegmentsPostRequest) Execute() (Segment, *_nethttp.Response, error) {
+func (r ApiSegmentsPostRequest) Execute() (*Segment, *http.Response, error) {
 	return r.ApiService.SegmentsPostExecute(r)
 }
 
@@ -541,10 +533,10 @@ SegmentsPost Add Segment
 
 Add a new segment, based on specified RULE. Required Access Level: ModifyContacts
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSegmentsPostRequest
 */
-func (a *SegmentsApiService) SegmentsPost(ctx _context.Context) ApiSegmentsPostRequest {
+func (a *SegmentsApiService) SegmentsPost(ctx context.Context) ApiSegmentsPostRequest {
 	return ApiSegmentsPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -553,26 +545,24 @@ func (a *SegmentsApiService) SegmentsPost(ctx _context.Context) ApiSegmentsPostR
 
 // Execute executes the request
 //  @return Segment
-func (a *SegmentsApiService) SegmentsPostExecute(r ApiSegmentsPostRequest) (Segment, *_nethttp.Response, error) {
+func (a *SegmentsApiService) SegmentsPostExecute(r ApiSegmentsPostRequest) (*Segment, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Segment
+		formFiles            []formFile
+		localVarReturnValue  *Segment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SegmentsApiService.SegmentsPost")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/segments"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.segmentPayload == nil {
 		return localVarReturnValue, nil, reportError("segmentPayload is required and must be specified")
 	}
@@ -610,7 +600,7 @@ func (a *SegmentsApiService) SegmentsPostExecute(r ApiSegmentsPostRequest) (Segm
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -620,15 +610,15 @@ func (a *SegmentsApiService) SegmentsPostExecute(r ApiSegmentsPostRequest) (Segm
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -637,7 +627,7 @@ func (a *SegmentsApiService) SegmentsPostExecute(r ApiSegmentsPostRequest) (Segm
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

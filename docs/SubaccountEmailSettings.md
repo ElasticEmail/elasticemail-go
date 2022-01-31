@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **MaxContacts** | Pointer to **int32** | Maximum number of contacts the Account can have. 0 means that parent account&#39;s limit is used. | [optional] 
 **EnablePrivateIPPurchase** | Pointer to **bool** | Can the SubAccount purchase Private IP for themselves | [optional] 
 **PoolName** | Pointer to **string** | Name of your custom IP Pool to be used in the sending process | [optional] 
+**ValidSenderDomainOnly** | Pointer to **NullableBool** |  | [optional] 
 
 ## Methods
 
@@ -206,6 +207,41 @@ SetPoolName sets PoolName field to given value.
 
 HasPoolName returns a boolean if a field has been set.
 
+### GetValidSenderDomainOnly
+
+`func (o *SubaccountEmailSettings) GetValidSenderDomainOnly() bool`
+
+GetValidSenderDomainOnly returns the ValidSenderDomainOnly field if non-nil, zero value otherwise.
+
+### GetValidSenderDomainOnlyOk
+
+`func (o *SubaccountEmailSettings) GetValidSenderDomainOnlyOk() (*bool, bool)`
+
+GetValidSenderDomainOnlyOk returns a tuple with the ValidSenderDomainOnly field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetValidSenderDomainOnly
+
+`func (o *SubaccountEmailSettings) SetValidSenderDomainOnly(v bool)`
+
+SetValidSenderDomainOnly sets ValidSenderDomainOnly field to given value.
+
+### HasValidSenderDomainOnly
+
+`func (o *SubaccountEmailSettings) HasValidSenderDomainOnly() bool`
+
+HasValidSenderDomainOnly returns a boolean if a field has been set.
+
+### SetValidSenderDomainOnlyNil
+
+`func (o *SubaccountEmailSettings) SetValidSenderDomainOnlyNil(b bool)`
+
+ SetValidSenderDomainOnlyNil sets the value for ValidSenderDomainOnly to be an explicit nil
+
+### UnsetValidSenderDomainOnly
+`func (o *SubaccountEmailSettings) UnsetValidSenderDomainOnly()`
+
+UnsetValidSenderDomainOnly ensures that no value is present for ValidSenderDomainOnly, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

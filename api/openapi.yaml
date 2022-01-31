@@ -5322,6 +5322,7 @@ components:
       example:
         PoolName: My Custom Pool
         RequiresEmailCredits: true
+        ValidSenderDomainOnly: true
         MonthlyRefillCredits: 1000
         EmailSizeLimit: 10
         DailySendLimit: 100000
@@ -5362,12 +5363,17 @@ components:
           example: My Custom Pool
           format: string
           type: string
+        ValidSenderDomainOnly:
+          format: boolean
+          nullable: true
+          type: boolean
       type: object
     SubaccountEmailSettingsPayload:
       description: Settings related to sending emails
       example:
         PoolName: My Custom Pool
         RequiresEmailCredits: true
+        ValidSenderDomainOnly: true
         EmailSizeLimit: 10
         DailySendLimit: 100000
         MaxContacts: 0
@@ -5402,6 +5408,10 @@ components:
           example: My Custom Pool
           format: string
           type: string
+        ValidSenderDomainOnly:
+          format: boolean
+          nullable: true
+          type: boolean
       type: object
     SubAccountInfo:
       description: Detailed information about SubAccount.
@@ -5416,6 +5426,7 @@ components:
           Email:
             PoolName: My Custom Pool
             RequiresEmailCredits: true
+            ValidSenderDomainOnly: true
             MonthlyRefillCredits: 1000
             EmailSizeLimit: 10
             DailySendLimit: 100000
@@ -5470,6 +5481,7 @@ components:
           Email:
             PoolName: My Custom Pool
             RequiresEmailCredits: true
+            ValidSenderDomainOnly: true
             EmailSizeLimit: 10
             DailySendLimit: 100000
             MaxContacts: 0
@@ -5505,6 +5517,7 @@ components:
         Email:
           PoolName: My Custom Pool
           RequiresEmailCredits: true
+          ValidSenderDomainOnly: true
           MonthlyRefillCredits: 1000
           EmailSizeLimit: 10
           DailySendLimit: 100000
@@ -5520,6 +5533,7 @@ components:
         Email:
           PoolName: My Custom Pool
           RequiresEmailCredits: true
+          ValidSenderDomainOnly: true
           EmailSizeLimit: 10
           DailySendLimit: 100000
           MaxContacts: 0

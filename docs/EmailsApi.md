@@ -35,8 +35,8 @@ func main() {
     msgid := "msgid_example" // string | Message identifier
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.EmailsApi.EmailsByMsgidViewGet(context.Background(), msgid).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.EmailsApi.EmailsByMsgidViewGet(context.Background(), msgid).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EmailsApi.EmailsByMsgidViewGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -102,11 +102,11 @@ import (
 )
 
 func main() {
-    mergeEmailPayload := *openapiclient.NewMergeEmailPayload(*openapiclient.NewMessageAttachment("BinaryContent_example")) // MergeEmailPayload | Email data
+    mergeEmailPayload := *openapiclient.NewMergeEmailPayload(*openapiclient.NewMessageAttachment(string(123))) // MergeEmailPayload | Email data
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.EmailsApi.EmailsMergefilePost(context.Background()).MergeEmailPayload(mergeEmailPayload).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.EmailsApi.EmailsMergefilePost(context.Background()).MergeEmailPayload(mergeEmailPayload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EmailsApi.EmailsMergefilePost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -171,8 +171,8 @@ func main() {
     emailMessageData := *openapiclient.NewEmailMessageData([]openapiclient.EmailRecipient{*openapiclient.NewEmailRecipient("mail@example.com")}) // EmailMessageData | Email data
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.EmailsApi.EmailsPost(context.Background()).EmailMessageData(emailMessageData).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.EmailsApi.EmailsPost(context.Background()).EmailMessageData(emailMessageData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EmailsApi.EmailsPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -237,8 +237,8 @@ func main() {
     emailTransactionalMessageData := *openapiclient.NewEmailTransactionalMessageData(*openapiclient.NewTransactionalRecipient([]string{"To_example"})) // EmailTransactionalMessageData | Email data
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.EmailsApi.EmailsTransactionalPost(context.Background()).EmailTransactionalMessageData(emailTransactionalMessageData).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.EmailsApi.EmailsTransactionalPost(context.Background()).EmailTransactionalMessageData(emailTransactionalMessageData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EmailsApi.EmailsTransactionalPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
