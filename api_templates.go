@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    This is the documentation for REST API. If you’d like to read our legacy documentation regarding Web API v2 click <a target=\"_blank\" href=\"https://api.elasticemail.com/public/help\">here</a>.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -21,10 +21,6 @@ import (
 	"reflect"
 )
 
-// Linger please
-var (
-	_ context.Context
-)
 
 // TemplatesApiService TemplatesApi service
 type TemplatesApiService service
@@ -34,7 +30,6 @@ type ApiTemplatesByNameDeleteRequest struct {
 	ApiService *TemplatesApiService
 	name string
 }
-
 
 func (r ApiTemplatesByNameDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.TemplatesByNameDeleteExecute(r)
@@ -141,7 +136,6 @@ type ApiTemplatesByNameGetRequest struct {
 	ApiService *TemplatesApiService
 	name string
 }
-
 
 func (r ApiTemplatesByNameGetRequest) Execute() (*Template, *http.Response, error) {
 	return r.ApiService.TemplatesByNameGetExecute(r)
@@ -396,16 +390,19 @@ func (r ApiTemplatesGetRequest) ScopeType(scopeType []TemplateScope) ApiTemplate
 	r.scopeType = &scopeType
 	return r
 }
+
 // Return templates with specified type only
 func (r ApiTemplatesGetRequest) TemplateTypes(templateTypes []TemplateType) ApiTemplatesGetRequest {
 	r.templateTypes = &templateTypes
 	return r
 }
+
 // Maximum number of returned items.
 func (r ApiTemplatesGetRequest) Limit(limit int32) ApiTemplatesGetRequest {
 	r.limit = &limit
 	return r
 }
+
 // How many items should be returned ahead.
 func (r ApiTemplatesGetRequest) Offset(offset int32) ApiTemplatesGetRequest {
 	r.offset = &offset

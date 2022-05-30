@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    This is the documentation for REST API. If you’d like to read our legacy documentation regarding Web API v2 click <a target=\"_blank\" href=\"https://api.elasticemail.com/public/help\">here</a>.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -20,10 +20,6 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ context.Context
-)
 
 // CampaignsApiService CampaignsApi service
 type CampaignsApiService service
@@ -33,7 +29,6 @@ type ApiCampaignsByNameDeleteRequest struct {
 	ApiService *CampaignsApiService
 	name string
 }
-
 
 func (r ApiCampaignsByNameDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.CampaignsByNameDeleteExecute(r)
@@ -140,7 +135,6 @@ type ApiCampaignsByNameGetRequest struct {
 	ApiService *CampaignsApiService
 	name string
 }
-
 
 func (r ApiCampaignsByNameGetRequest) Execute() (*Campaign, *http.Response, error) {
 	return r.ApiService.CampaignsByNameGetExecute(r)
@@ -395,11 +389,13 @@ func (r ApiCampaignsGetRequest) Search(search string) ApiCampaignsGetRequest {
 	r.search = &search
 	return r
 }
+
 // How many items should be returned ahead.
 func (r ApiCampaignsGetRequest) Offset(offset int32) ApiCampaignsGetRequest {
 	r.offset = &offset
 	return r
 }
+
 // Maximum number of returned items.
 func (r ApiCampaignsGetRequest) Limit(limit int32) ApiCampaignsGetRequest {
 	r.limit = &limit

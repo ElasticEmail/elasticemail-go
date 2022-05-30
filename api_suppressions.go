@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    This is the documentation for REST API. If you’d like to read our legacy documentation regarding Web API v2 click <a target=\"_blank\" href=\"https://api.elasticemail.com/public/help\">here</a>.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -21,10 +21,6 @@ import (
 	"os"
 )
 
-// Linger please
-var (
-	_ context.Context
-)
 
 // SuppressionsApiService SuppressionsApi service
 type SuppressionsApiService service
@@ -42,11 +38,13 @@ func (r ApiSuppressionsBouncesGetRequest) Search(search string) ApiSuppressionsB
 	r.search = &search
 	return r
 }
+
 // Maximum number of returned items.
 func (r ApiSuppressionsBouncesGetRequest) Limit(limit int32) ApiSuppressionsBouncesGetRequest {
 	r.limit = &limit
 	return r
 }
+
 // How many items should be returned ahead.
 func (r ApiSuppressionsBouncesGetRequest) Offset(offset int32) ApiSuppressionsBouncesGetRequest {
 	r.offset = &offset
@@ -60,7 +58,7 @@ func (r ApiSuppressionsBouncesGetRequest) Execute() ([]Suppression, *http.Respon
 /*
 SuppressionsBouncesGet Get Bounce List
 
-Retrieve your list of bounced emails. Required Access Level: ViewContacts
+Retrieve your list of bounced emails. Required Access Level: ViewContacts, ViewSuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSuppressionsBouncesGetRequest
@@ -188,7 +186,7 @@ func (r ApiSuppressionsBouncesImportPostRequest) Execute() (*http.Response, erro
 /*
 SuppressionsBouncesImportPost Add Bounces Async
 
-Add Bounced. Required Access Level: ModifyContacts
+Add Bounced. Required Access Level: ModifyContacts, ModifySuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSuppressionsBouncesImportPostRequest
@@ -314,7 +312,7 @@ func (r ApiSuppressionsBouncesPostRequest) Execute() ([]Suppression, *http.Respo
 /*
 SuppressionsBouncesPost Add Bounces
 
-Add Bounced. Required Access Level: ModifyContacts
+Add Bounced. Required Access Level: ModifyContacts, ModifySuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSuppressionsBouncesPostRequest
@@ -426,7 +424,6 @@ type ApiSuppressionsByEmailDeleteRequest struct {
 	email string
 }
 
-
 func (r ApiSuppressionsByEmailDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SuppressionsByEmailDeleteExecute(r)
 }
@@ -434,7 +431,7 @@ func (r ApiSuppressionsByEmailDeleteRequest) Execute() (*http.Response, error) {
 /*
 SuppressionsByEmailDelete Delete Suppression
 
-Delete Suppression. Required Access Level: ViewContacts
+Delete Suppression. Required Access Level: ViewContacts, ViewSuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email Proper email address.
@@ -533,7 +530,6 @@ type ApiSuppressionsByEmailGetRequest struct {
 	email string
 }
 
-
 func (r ApiSuppressionsByEmailGetRequest) Execute() (*Suppression, *http.Response, error) {
 	return r.ApiService.SuppressionsByEmailGetExecute(r)
 }
@@ -541,7 +537,7 @@ func (r ApiSuppressionsByEmailGetRequest) Execute() (*Suppression, *http.Respons
 /*
 SuppressionsByEmailGet Get Suppression
 
-Retrieve your suppression. Required Access Level: ViewContacts
+Retrieve your suppression. Required Access Level: ViewContacts, ViewSuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email Proper email address.
@@ -658,11 +654,13 @@ func (r ApiSuppressionsComplaintsGetRequest) Search(search string) ApiSuppressio
 	r.search = &search
 	return r
 }
+
 // Maximum number of returned items.
 func (r ApiSuppressionsComplaintsGetRequest) Limit(limit int32) ApiSuppressionsComplaintsGetRequest {
 	r.limit = &limit
 	return r
 }
+
 // How many items should be returned ahead.
 func (r ApiSuppressionsComplaintsGetRequest) Offset(offset int32) ApiSuppressionsComplaintsGetRequest {
 	r.offset = &offset
@@ -676,7 +674,7 @@ func (r ApiSuppressionsComplaintsGetRequest) Execute() ([]Suppression, *http.Res
 /*
 SuppressionsComplaintsGet Get Complaints List
 
-Retrieve your list of complaints. Required Access Level: ViewContacts
+Retrieve your list of complaints. Required Access Level: ViewContacts, ViewSuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSuppressionsComplaintsGetRequest
@@ -804,7 +802,7 @@ func (r ApiSuppressionsComplaintsImportPostRequest) Execute() (*http.Response, e
 /*
 SuppressionsComplaintsImportPost Add Complaints Async
 
-Add Complaints. Required Access Level: ModifyContacts
+Add Complaints. Required Access Level: ModifyContacts, ModifySuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSuppressionsComplaintsImportPostRequest
@@ -930,7 +928,7 @@ func (r ApiSuppressionsComplaintsPostRequest) Execute() ([]Suppression, *http.Re
 /*
 SuppressionsComplaintsPost Add Complaints
 
-Add Complaints. Required Access Level: ModifyContacts
+Add Complaints. Required Access Level: ModifyContacts, ModifySuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSuppressionsComplaintsPostRequest
@@ -1048,6 +1046,7 @@ func (r ApiSuppressionsGetRequest) Limit(limit int32) ApiSuppressionsGetRequest 
 	r.limit = &limit
 	return r
 }
+
 // How many items should be returned ahead.
 func (r ApiSuppressionsGetRequest) Offset(offset int32) ApiSuppressionsGetRequest {
 	r.offset = &offset
@@ -1061,7 +1060,7 @@ func (r ApiSuppressionsGetRequest) Execute() ([]Suppression, *http.Response, err
 /*
 SuppressionsGet Get Suppressions
 
-Retrieve your suppressions. Required Access Level: ViewContacts
+Retrieve your suppressions. Required Access Level: ViewContacts, ViewSuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSuppressionsGetRequest
@@ -1181,11 +1180,13 @@ func (r ApiSuppressionsUnsubscribesGetRequest) Search(search string) ApiSuppress
 	r.search = &search
 	return r
 }
+
 // Maximum number of returned items.
 func (r ApiSuppressionsUnsubscribesGetRequest) Limit(limit int32) ApiSuppressionsUnsubscribesGetRequest {
 	r.limit = &limit
 	return r
 }
+
 // How many items should be returned ahead.
 func (r ApiSuppressionsUnsubscribesGetRequest) Offset(offset int32) ApiSuppressionsUnsubscribesGetRequest {
 	r.offset = &offset
@@ -1199,7 +1200,7 @@ func (r ApiSuppressionsUnsubscribesGetRequest) Execute() ([]Suppression, *http.R
 /*
 SuppressionsUnsubscribesGet Get Unsubscribes List
 
-Retrieve your list of unsubscribes. Required Access Level: ViewContacts
+Retrieve your list of unsubscribes. Required Access Level: ViewContacts, ViewSuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSuppressionsUnsubscribesGetRequest
@@ -1327,7 +1328,7 @@ func (r ApiSuppressionsUnsubscribesImportPostRequest) Execute() (*http.Response,
 /*
 SuppressionsUnsubscribesImportPost Add Unsubscribes Async
 
-Add Unsubscribes. Required Access Level: ModifyContacts
+Add Unsubscribes. Required Access Level: ModifyContacts, ModifySuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSuppressionsUnsubscribesImportPostRequest
@@ -1453,7 +1454,7 @@ func (r ApiSuppressionsUnsubscribesPostRequest) Execute() ([]Suppression, *http.
 /*
 SuppressionsUnsubscribesPost Add Unsubscribes
 
-Add Unsubscribes. Required Access Level: ModifyContacts
+Add Unsubscribes. Required Access Level: ModifyContacts, ModifySuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSuppressionsUnsubscribesPostRequest

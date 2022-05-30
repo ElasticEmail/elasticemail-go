@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    This is the documentation for REST API. If you’d like to read our legacy documentation regarding Web API v2 click <a target=\"_blank\" href=\"https://api.elasticemail.com/public/help\">here</a>.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -20,10 +20,6 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ context.Context
-)
 
 // SegmentsApiService SegmentsApi service
 type SegmentsApiService service
@@ -33,7 +29,6 @@ type ApiSegmentsByNameDeleteRequest struct {
 	ApiService *SegmentsApiService
 	name string
 }
-
 
 func (r ApiSegmentsByNameDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SegmentsByNameDeleteExecute(r)
@@ -140,7 +135,6 @@ type ApiSegmentsByNameGetRequest struct {
 	ApiService *SegmentsApiService
 	name string
 }
-
 
 func (r ApiSegmentsByNameGetRequest) Execute() (*Segment, *http.Response, error) {
 	return r.ApiService.SegmentsByNameGetExecute(r)
@@ -393,6 +387,7 @@ func (r ApiSegmentsGetRequest) Limit(limit int32) ApiSegmentsGetRequest {
 	r.limit = &limit
 	return r
 }
+
 // How many items should be returned ahead.
 func (r ApiSegmentsGetRequest) Offset(offset int32) ApiSegmentsGetRequest {
 	r.offset = &offset

@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    This is the documentation for REST API. If you’d like to read our legacy documentation regarding Web API v2 click <a target=\"_blank\" href=\"https://api.elasticemail.com/public/help\">here</a>.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -22,10 +22,6 @@ import (
 	"os"
 )
 
-// Linger please
-var (
-	_ context.Context
-)
 
 // ContactsApiService ContactsApi service
 type ContactsApiService service
@@ -35,7 +31,6 @@ type ApiContactsByEmailDeleteRequest struct {
 	ApiService *ContactsApiService
 	email string
 }
-
 
 func (r ApiContactsByEmailDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.ContactsByEmailDeleteExecute(r)
@@ -142,7 +137,6 @@ type ApiContactsByEmailGetRequest struct {
 	ApiService *ContactsApiService
 	email string
 }
-
 
 func (r ApiContactsByEmailGetRequest) Execute() (*Contact, *http.Response, error) {
 	return r.ApiService.ContactsByEmailGetExecute(r)
@@ -268,6 +262,7 @@ func (r ApiContactsByEmailHistoryGetRequest) Limit(limit int32) ApiContactsByEma
 	r.limit = &limit
 	return r
 }
+
 // How many items should be returned ahead.
 func (r ApiContactsByEmailHistoryGetRequest) Offset(offset int32) ApiContactsByEmailHistoryGetRequest {
 	r.offset = &offset
@@ -639,7 +634,6 @@ type ApiContactsExportByIdStatusGetRequest struct {
 	id string
 }
 
-
 func (r ApiContactsExportByIdStatusGetRequest) Execute() (*ExportStatus, *http.Response, error) {
 	return r.ApiService.ContactsExportByIdStatusGetExecute(r)
 }
@@ -766,21 +760,25 @@ func (r ApiContactsExportPostRequest) FileFormat(fileFormat ExportFileFormats) A
 	r.fileFormat = &fileFormat
 	return r
 }
+
 // Query used for filtering.
 func (r ApiContactsExportPostRequest) Rule(rule string) ApiContactsExportPostRequest {
 	r.rule = &rule
 	return r
 }
+
 // Comma delimited list of contact emails
 func (r ApiContactsExportPostRequest) Emails(emails []string) ApiContactsExportPostRequest {
 	r.emails = &emails
 	return r
 }
+
 // FileResponse compression format. None or Zip.
 func (r ApiContactsExportPostRequest) CompressionFormat(compressionFormat CompressionFormat) ApiContactsExportPostRequest {
 	r.compressionFormat = &compressionFormat
 	return r
 }
+
 // Name of your file including extension.
 func (r ApiContactsExportPostRequest) FileName(fileName string) ApiContactsExportPostRequest {
 	r.fileName = &fileName
@@ -930,6 +928,7 @@ func (r ApiContactsGetRequest) Limit(limit int32) ApiContactsGetRequest {
 	r.limit = &limit
 	return r
 }
+
 // How many items should be returned ahead.
 func (r ApiContactsGetRequest) Offset(offset int32) ApiContactsGetRequest {
 	r.offset = &offset
@@ -1063,11 +1062,13 @@ func (r ApiContactsImportPostRequest) ListName(listName string) ApiContactsImpor
 	r.listName = &listName
 	return r
 }
+
 // In what encoding the file is uploaded
 func (r ApiContactsImportPostRequest) EncodingName(encodingName string) ApiContactsImportPostRequest {
 	r.encodingName = &encodingName
 	return r
 }
+
 func (r ApiContactsImportPostRequest) File(file *os.File) ApiContactsImportPostRequest {
 	r.file = &file
 	return r
@@ -1204,6 +1205,7 @@ func (r ApiContactsPostRequest) ContactPayload(contactPayload []ContactPayload) 
 	r.contactPayload = &contactPayload
 	return r
 }
+
 // Names of lists to which the uploaded contacts should be added to
 func (r ApiContactsPostRequest) Listnames(listnames []string) ApiContactsPostRequest {
 	r.listnames = &listnames

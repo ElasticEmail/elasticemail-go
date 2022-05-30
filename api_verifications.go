@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    This is the documentation for REST API. If you’d like to read our legacy documentation regarding Web API v2 click <a target=\"_blank\" href=\"https://api.elasticemail.com/public/help\">here</a>.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -21,10 +21,6 @@ import (
 	"os"
 )
 
-// Linger please
-var (
-	_ context.Context
-)
 
 // VerificationsApiService VerificationsApi service
 type VerificationsApiService service
@@ -34,7 +30,6 @@ type ApiVerificationsByEmailDeleteRequest struct {
 	ApiService *VerificationsApiService
 	email string
 }
-
 
 func (r ApiVerificationsByEmailDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.VerificationsByEmailDeleteExecute(r)
@@ -141,7 +136,6 @@ type ApiVerificationsByEmailGetRequest struct {
 	ApiService *VerificationsApiService
 	email string
 }
-
 
 func (r ApiVerificationsByEmailGetRequest) Execute() (*EmailValidationResult, *http.Response, error) {
 	return r.ApiService.VerificationsByEmailGetExecute(r)
@@ -260,7 +254,6 @@ type ApiVerificationsByEmailPostRequest struct {
 	email string
 }
 
-
 func (r ApiVerificationsByEmailPostRequest) Execute() (*EmailValidationResult, *http.Response, error) {
 	return r.ApiService.VerificationsByEmailPostExecute(r)
 }
@@ -378,7 +371,6 @@ type ApiVerificationsFilesByIdDeleteRequest struct {
 	id string
 }
 
-
 func (r ApiVerificationsFilesByIdDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.VerificationsFilesByIdDeleteExecute(r)
 }
@@ -484,7 +476,6 @@ type ApiVerificationsFilesByIdResultDownloadGetRequest struct {
 	ApiService *VerificationsApiService
 	id string
 }
-
 
 func (r ApiVerificationsFilesByIdResultDownloadGetRequest) Execute() (**os.File, *http.Response, error) {
 	return r.ApiService.VerificationsFilesByIdResultDownloadGetExecute(r)
@@ -610,6 +601,7 @@ func (r ApiVerificationsFilesByIdResultGetRequest) Limit(limit int32) ApiVerific
 	r.limit = &limit
 	return r
 }
+
 // How many result items should be returned ahead
 func (r ApiVerificationsFilesByIdResultGetRequest) Offset(offset int32) ApiVerificationsFilesByIdResultGetRequest {
 	r.offset = &offset
@@ -738,7 +730,6 @@ type ApiVerificationsFilesByIdVerificationPostRequest struct {
 	ApiService *VerificationsApiService
 	id string
 }
-
 
 func (r ApiVerificationsFilesByIdVerificationPostRequest) Execute() (*http.Response, error) {
 	return r.ApiService.VerificationsFilesByIdVerificationPostExecute(r)
@@ -981,7 +972,6 @@ type ApiVerificationsFilesResultGetRequest struct {
 	ApiService *VerificationsApiService
 }
 
-
 func (r ApiVerificationsFilesResultGetRequest) Execute() ([]VerificationFileResult, *http.Response, error) {
 	return r.ApiService.VerificationsFilesResultGetExecute(r)
 }
@@ -1102,6 +1092,7 @@ func (r ApiVerificationsGetRequest) Limit(limit int32) ApiVerificationsGetReques
 	r.limit = &limit
 	return r
 }
+
 // How many items should be returned ahead.
 func (r ApiVerificationsGetRequest) Offset(offset int32) ApiVerificationsGetRequest {
 	r.offset = &offset

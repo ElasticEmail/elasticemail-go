@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    This is the documentation for REST API. If you’d like to read our legacy documentation regarding Web API v2 click <a target=\"_blank\" href=\"https://api.elasticemail.com/public/help\">here</a>.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -22,10 +22,6 @@ import (
 	"reflect"
 )
 
-// Linger please
-var (
-	_ context.Context
-)
 
 // EventsApiService EventsApi service
 type EventsApiService service
@@ -46,20 +42,24 @@ func (r ApiEventsByTransactionidGetRequest) From(from time.Time) ApiEventsByTran
 	r.from = &from
 	return r
 }
+
 // Ending date for search in YYYY-MM-DDThh:mm:ss format.
 func (r ApiEventsByTransactionidGetRequest) To(to time.Time) ApiEventsByTransactionidGetRequest {
 	r.to = &to
 	return r
 }
+
 func (r ApiEventsByTransactionidGetRequest) OrderBy(orderBy EventsOrderBy) ApiEventsByTransactionidGetRequest {
 	r.orderBy = &orderBy
 	return r
 }
+
 // Maximum number of returned items.
 func (r ApiEventsByTransactionidGetRequest) Limit(limit int32) ApiEventsByTransactionidGetRequest {
 	r.limit = &limit
 	return r
 }
+
 // How many items should be returned ahead.
 func (r ApiEventsByTransactionidGetRequest) Offset(offset int32) ApiEventsByTransactionidGetRequest {
 	r.offset = &offset
@@ -209,26 +209,31 @@ func (r ApiEventsChannelsByNameExportPostRequest) EventTypes(eventTypes []EventT
 	r.eventTypes = &eventTypes
 	return r
 }
+
 // Starting date for search in YYYY-MM-DDThh:mm:ss format.
 func (r ApiEventsChannelsByNameExportPostRequest) From(from time.Time) ApiEventsChannelsByNameExportPostRequest {
 	r.from = &from
 	return r
 }
+
 // Ending date for search in YYYY-MM-DDThh:mm:ss format.
 func (r ApiEventsChannelsByNameExportPostRequest) To(to time.Time) ApiEventsChannelsByNameExportPostRequest {
 	r.to = &to
 	return r
 }
+
 // Format of the exported file
 func (r ApiEventsChannelsByNameExportPostRequest) FileFormat(fileFormat ExportFileFormats) ApiEventsChannelsByNameExportPostRequest {
 	r.fileFormat = &fileFormat
 	return r
 }
+
 // FileResponse compression format. None or Zip.
 func (r ApiEventsChannelsByNameExportPostRequest) CompressionFormat(compressionFormat CompressionFormat) ApiEventsChannelsByNameExportPostRequest {
 	r.compressionFormat = &compressionFormat
 	return r
 }
+
 // Name of your file including extension.
 func (r ApiEventsChannelsByNameExportPostRequest) FileName(fileName string) ApiEventsChannelsByNameExportPostRequest {
 	r.fileName = &fileName
@@ -389,25 +394,30 @@ func (r ApiEventsChannelsByNameGetRequest) EventTypes(eventTypes []EventType) Ap
 	r.eventTypes = &eventTypes
 	return r
 }
+
 // Starting date for search in YYYY-MM-DDThh:mm:ss format.
 func (r ApiEventsChannelsByNameGetRequest) From(from time.Time) ApiEventsChannelsByNameGetRequest {
 	r.from = &from
 	return r
 }
+
 // Ending date for search in YYYY-MM-DDThh:mm:ss format.
 func (r ApiEventsChannelsByNameGetRequest) To(to time.Time) ApiEventsChannelsByNameGetRequest {
 	r.to = &to
 	return r
 }
+
 func (r ApiEventsChannelsByNameGetRequest) OrderBy(orderBy EventsOrderBy) ApiEventsChannelsByNameGetRequest {
 	r.orderBy = &orderBy
 	return r
 }
+
 // How many items to load. Maximum for this request is 1000 items
 func (r ApiEventsChannelsByNameGetRequest) Limit(limit int32) ApiEventsChannelsByNameGetRequest {
 	r.limit = &limit
 	return r
 }
+
 // How many items should be returned ahead.
 func (r ApiEventsChannelsByNameGetRequest) Offset(offset int32) ApiEventsChannelsByNameGetRequest {
 	r.offset = &offset
@@ -557,7 +567,6 @@ type ApiEventsChannelsExportByIdStatusGetRequest struct {
 	id string
 }
 
-
 func (r ApiEventsChannelsExportByIdStatusGetRequest) Execute() (*ExportStatus, *http.Response, error) {
 	return r.ApiService.EventsChannelsExportByIdStatusGetExecute(r)
 }
@@ -674,7 +683,6 @@ type ApiEventsExportByIdStatusGetRequest struct {
 	ApiService *EventsApiService
 	id string
 }
-
 
 func (r ApiEventsExportByIdStatusGetRequest) Execute() (*ExportStatus, *http.Response, error) {
 	return r.ApiService.EventsExportByIdStatusGetExecute(r)
@@ -803,26 +811,31 @@ func (r ApiEventsExportPostRequest) EventTypes(eventTypes []EventType) ApiEvents
 	r.eventTypes = &eventTypes
 	return r
 }
+
 // Starting date for search in YYYY-MM-DDThh:mm:ss format.
 func (r ApiEventsExportPostRequest) From(from time.Time) ApiEventsExportPostRequest {
 	r.from = &from
 	return r
 }
+
 // Ending date for search in YYYY-MM-DDThh:mm:ss format.
 func (r ApiEventsExportPostRequest) To(to time.Time) ApiEventsExportPostRequest {
 	r.to = &to
 	return r
 }
+
 // Format of the exported file
 func (r ApiEventsExportPostRequest) FileFormat(fileFormat ExportFileFormats) ApiEventsExportPostRequest {
 	r.fileFormat = &fileFormat
 	return r
 }
+
 // FileResponse compression format. None or Zip.
 func (r ApiEventsExportPostRequest) CompressionFormat(compressionFormat CompressionFormat) ApiEventsExportPostRequest {
 	r.compressionFormat = &compressionFormat
 	return r
 }
+
 // Name of your file including extension.
 func (r ApiEventsExportPostRequest) FileName(fileName string) ApiEventsExportPostRequest {
 	r.fileName = &fileName
@@ -979,25 +992,30 @@ func (r ApiEventsGetRequest) EventTypes(eventTypes []EventType) ApiEventsGetRequ
 	r.eventTypes = &eventTypes
 	return r
 }
+
 // Starting date for search in YYYY-MM-DDThh:mm:ss format.
 func (r ApiEventsGetRequest) From(from time.Time) ApiEventsGetRequest {
 	r.from = &from
 	return r
 }
+
 // Ending date for search in YYYY-MM-DDThh:mm:ss format.
 func (r ApiEventsGetRequest) To(to time.Time) ApiEventsGetRequest {
 	r.to = &to
 	return r
 }
+
 func (r ApiEventsGetRequest) OrderBy(orderBy EventsOrderBy) ApiEventsGetRequest {
 	r.orderBy = &orderBy
 	return r
 }
+
 // How many items to load. Maximum for this request is 1000 items
 func (r ApiEventsGetRequest) Limit(limit int32) ApiEventsGetRequest {
 	r.limit = &limit
 	return r
 }
+
 // How many items should be returned ahead.
 func (r ApiEventsGetRequest) Offset(offset int32) ApiEventsGetRequest {
 	r.offset = &offset

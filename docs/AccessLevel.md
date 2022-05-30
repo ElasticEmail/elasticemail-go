@@ -97,6 +97,14 @@
 
 * `VIEW_INBOUND` (value: `"ViewInbound"`)
 
+* `MODIFY_LANDING_PAGES` (value: `"ModifyLandingPages"`)
+
+* `VIEW_LANDING_PAGES` (value: `"ViewLandingPages"`)
+
+* `MODIFY_SUPPRESSIONS` (value: `"ModifySuppressions"`)
+
+* `VIEW_SUPPRESSIONS` (value: `"ViewSuppressions"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
