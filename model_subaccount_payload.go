@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -59,7 +59,7 @@ func (o *SubaccountPayload) GetEmail() string {
 // and a boolean to check if the value has been set.
 func (o *SubaccountPayload) GetEmailOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Email, true
 }
@@ -83,7 +83,7 @@ func (o *SubaccountPayload) GetPassword() string {
 // and a boolean to check if the value has been set.
 func (o *SubaccountPayload) GetPasswordOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Password, true
 }
@@ -95,7 +95,7 @@ func (o *SubaccountPayload) SetPassword(v string) {
 
 // GetSendActivation returns the SendActivation field value if set, zero value otherwise.
 func (o *SubaccountPayload) GetSendActivation() bool {
-	if o == nil || o.SendActivation == nil {
+	if o == nil || isNil(o.SendActivation) {
 		var ret bool
 		return ret
 	}
@@ -105,15 +105,15 @@ func (o *SubaccountPayload) GetSendActivation() bool {
 // GetSendActivationOk returns a tuple with the SendActivation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubaccountPayload) GetSendActivationOk() (*bool, bool) {
-	if o == nil || o.SendActivation == nil {
-		return nil, false
+	if o == nil || isNil(o.SendActivation) {
+    return nil, false
 	}
 	return o.SendActivation, true
 }
 
 // HasSendActivation returns a boolean if a field has been set.
 func (o *SubaccountPayload) HasSendActivation() bool {
-	if o != nil && o.SendActivation != nil {
+	if o != nil && !isNil(o.SendActivation) {
 		return true
 	}
 
@@ -127,7 +127,7 @@ func (o *SubaccountPayload) SetSendActivation(v bool) {
 
 // GetSettings returns the Settings field value if set, zero value otherwise.
 func (o *SubaccountPayload) GetSettings() SubaccountSettingsInfoPayload {
-	if o == nil || o.Settings == nil {
+	if o == nil || isNil(o.Settings) {
 		var ret SubaccountSettingsInfoPayload
 		return ret
 	}
@@ -137,15 +137,15 @@ func (o *SubaccountPayload) GetSettings() SubaccountSettingsInfoPayload {
 // GetSettingsOk returns a tuple with the Settings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubaccountPayload) GetSettingsOk() (*SubaccountSettingsInfoPayload, bool) {
-	if o == nil || o.Settings == nil {
-		return nil, false
+	if o == nil || isNil(o.Settings) {
+    return nil, false
 	}
 	return o.Settings, true
 }
 
 // HasSettings returns a boolean if a field has been set.
 func (o *SubaccountPayload) HasSettings() bool {
-	if o != nil && o.Settings != nil {
+	if o != nil && !isNil(o.Settings) {
 		return true
 	}
 
@@ -165,10 +165,10 @@ func (o SubaccountPayload) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["Password"] = o.Password
 	}
-	if o.SendActivation != nil {
+	if !isNil(o.SendActivation) {
 		toSerialize["SendActivation"] = o.SendActivation
 	}
-	if o.Settings != nil {
+	if !isNil(o.Settings) {
 		toSerialize["Settings"] = o.Settings
 	}
 	return json.Marshal(toSerialize)

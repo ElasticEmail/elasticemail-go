@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -42,7 +42,7 @@ func NewEmailSendWithDefaults() *EmailSend {
 
 // GetTransactionID returns the TransactionID field value if set, zero value otherwise.
 func (o *EmailSend) GetTransactionID() string {
-	if o == nil || o.TransactionID == nil {
+	if o == nil || isNil(o.TransactionID) {
 		var ret string
 		return ret
 	}
@@ -52,15 +52,15 @@ func (o *EmailSend) GetTransactionID() string {
 // GetTransactionIDOk returns a tuple with the TransactionID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailSend) GetTransactionIDOk() (*string, bool) {
-	if o == nil || o.TransactionID == nil {
-		return nil, false
+	if o == nil || isNil(o.TransactionID) {
+    return nil, false
 	}
 	return o.TransactionID, true
 }
 
 // HasTransactionID returns a boolean if a field has been set.
 func (o *EmailSend) HasTransactionID() bool {
-	if o != nil && o.TransactionID != nil {
+	if o != nil && !isNil(o.TransactionID) {
 		return true
 	}
 
@@ -74,7 +74,7 @@ func (o *EmailSend) SetTransactionID(v string) {
 
 // GetMessageID returns the MessageID field value if set, zero value otherwise.
 func (o *EmailSend) GetMessageID() string {
-	if o == nil || o.MessageID == nil {
+	if o == nil || isNil(o.MessageID) {
 		var ret string
 		return ret
 	}
@@ -84,15 +84,15 @@ func (o *EmailSend) GetMessageID() string {
 // GetMessageIDOk returns a tuple with the MessageID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailSend) GetMessageIDOk() (*string, bool) {
-	if o == nil || o.MessageID == nil {
-		return nil, false
+	if o == nil || isNil(o.MessageID) {
+    return nil, false
 	}
 	return o.MessageID, true
 }
 
 // HasMessageID returns a boolean if a field has been set.
 func (o *EmailSend) HasMessageID() bool {
-	if o != nil && o.MessageID != nil {
+	if o != nil && !isNil(o.MessageID) {
 		return true
 	}
 
@@ -106,10 +106,10 @@ func (o *EmailSend) SetMessageID(v string) {
 
 func (o EmailSend) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.TransactionID != nil {
+	if !isNil(o.TransactionID) {
 		toSerialize["TransactionID"] = o.TransactionID
 	}
-	if o.MessageID != nil {
+	if !isNil(o.MessageID) {
 		toSerialize["MessageID"] = o.MessageID
 	}
 	return json.Marshal(toSerialize)

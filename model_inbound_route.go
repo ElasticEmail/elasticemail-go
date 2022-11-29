@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -57,7 +57,7 @@ func NewInboundRouteWithDefaults() *InboundRoute {
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *InboundRoute) GetPublicId() string {
-	if o == nil || o.PublicId == nil {
+	if o == nil || isNil(o.PublicId) {
 		var ret string
 		return ret
 	}
@@ -67,15 +67,15 @@ func (o *InboundRoute) GetPublicId() string {
 // GetPublicIdOk returns a tuple with the PublicId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InboundRoute) GetPublicIdOk() (*string, bool) {
-	if o == nil || o.PublicId == nil {
-		return nil, false
+	if o == nil || isNil(o.PublicId) {
+    return nil, false
 	}
 	return o.PublicId, true
 }
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *InboundRoute) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
+	if o != nil && !isNil(o.PublicId) {
 		return true
 	}
 
@@ -89,7 +89,7 @@ func (o *InboundRoute) SetPublicId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *InboundRoute) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -99,15 +99,15 @@ func (o *InboundRoute) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InboundRoute) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
-		return nil, false
+	if o == nil || isNil(o.Name) {
+    return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *InboundRoute) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !isNil(o.Name) {
 		return true
 	}
 
@@ -121,7 +121,7 @@ func (o *InboundRoute) SetName(v string) {
 
 // GetFilterType returns the FilterType field value if set, zero value otherwise.
 func (o *InboundRoute) GetFilterType() InboundRouteFilterType {
-	if o == nil || o.FilterType == nil {
+	if o == nil || isNil(o.FilterType) {
 		var ret InboundRouteFilterType
 		return ret
 	}
@@ -131,15 +131,15 @@ func (o *InboundRoute) GetFilterType() InboundRouteFilterType {
 // GetFilterTypeOk returns a tuple with the FilterType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InboundRoute) GetFilterTypeOk() (*InboundRouteFilterType, bool) {
-	if o == nil || o.FilterType == nil {
-		return nil, false
+	if o == nil || isNil(o.FilterType) {
+    return nil, false
 	}
 	return o.FilterType, true
 }
 
 // HasFilterType returns a boolean if a field has been set.
 func (o *InboundRoute) HasFilterType() bool {
-	if o != nil && o.FilterType != nil {
+	if o != nil && !isNil(o.FilterType) {
 		return true
 	}
 
@@ -153,7 +153,7 @@ func (o *InboundRoute) SetFilterType(v InboundRouteFilterType) {
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *InboundRoute) GetFilter() string {
-	if o == nil || o.Filter == nil {
+	if o == nil || isNil(o.Filter) {
 		var ret string
 		return ret
 	}
@@ -163,15 +163,15 @@ func (o *InboundRoute) GetFilter() string {
 // GetFilterOk returns a tuple with the Filter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InboundRoute) GetFilterOk() (*string, bool) {
-	if o == nil || o.Filter == nil {
-		return nil, false
+	if o == nil || isNil(o.Filter) {
+    return nil, false
 	}
 	return o.Filter, true
 }
 
 // HasFilter returns a boolean if a field has been set.
 func (o *InboundRoute) HasFilter() bool {
-	if o != nil && o.Filter != nil {
+	if o != nil && !isNil(o.Filter) {
 		return true
 	}
 
@@ -185,7 +185,7 @@ func (o *InboundRoute) SetFilter(v string) {
 
 // GetActionType returns the ActionType field value if set, zero value otherwise.
 func (o *InboundRoute) GetActionType() InboundRouteActionType {
-	if o == nil || o.ActionType == nil {
+	if o == nil || isNil(o.ActionType) {
 		var ret InboundRouteActionType
 		return ret
 	}
@@ -195,15 +195,15 @@ func (o *InboundRoute) GetActionType() InboundRouteActionType {
 // GetActionTypeOk returns a tuple with the ActionType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InboundRoute) GetActionTypeOk() (*InboundRouteActionType, bool) {
-	if o == nil || o.ActionType == nil {
-		return nil, false
+	if o == nil || isNil(o.ActionType) {
+    return nil, false
 	}
 	return o.ActionType, true
 }
 
 // HasActionType returns a boolean if a field has been set.
 func (o *InboundRoute) HasActionType() bool {
-	if o != nil && o.ActionType != nil {
+	if o != nil && !isNil(o.ActionType) {
 		return true
 	}
 
@@ -217,7 +217,7 @@ func (o *InboundRoute) SetActionType(v InboundRouteActionType) {
 
 // GetActionParameter returns the ActionParameter field value if set, zero value otherwise.
 func (o *InboundRoute) GetActionParameter() string {
-	if o == nil || o.ActionParameter == nil {
+	if o == nil || isNil(o.ActionParameter) {
 		var ret string
 		return ret
 	}
@@ -227,15 +227,15 @@ func (o *InboundRoute) GetActionParameter() string {
 // GetActionParameterOk returns a tuple with the ActionParameter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InboundRoute) GetActionParameterOk() (*string, bool) {
-	if o == nil || o.ActionParameter == nil {
-		return nil, false
+	if o == nil || isNil(o.ActionParameter) {
+    return nil, false
 	}
 	return o.ActionParameter, true
 }
 
 // HasActionParameter returns a boolean if a field has been set.
 func (o *InboundRoute) HasActionParameter() bool {
-	if o != nil && o.ActionParameter != nil {
+	if o != nil && !isNil(o.ActionParameter) {
 		return true
 	}
 
@@ -249,7 +249,7 @@ func (o *InboundRoute) SetActionParameter(v string) {
 
 // GetSortOrder returns the SortOrder field value if set, zero value otherwise.
 func (o *InboundRoute) GetSortOrder() int32 {
-	if o == nil || o.SortOrder == nil {
+	if o == nil || isNil(o.SortOrder) {
 		var ret int32
 		return ret
 	}
@@ -259,15 +259,15 @@ func (o *InboundRoute) GetSortOrder() int32 {
 // GetSortOrderOk returns a tuple with the SortOrder field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InboundRoute) GetSortOrderOk() (*int32, bool) {
-	if o == nil || o.SortOrder == nil {
-		return nil, false
+	if o == nil || isNil(o.SortOrder) {
+    return nil, false
 	}
 	return o.SortOrder, true
 }
 
 // HasSortOrder returns a boolean if a field has been set.
 func (o *InboundRoute) HasSortOrder() bool {
-	if o != nil && o.SortOrder != nil {
+	if o != nil && !isNil(o.SortOrder) {
 		return true
 	}
 
@@ -281,25 +281,25 @@ func (o *InboundRoute) SetSortOrder(v int32) {
 
 func (o InboundRoute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.PublicId != nil {
+	if !isNil(o.PublicId) {
 		toSerialize["PublicId"] = o.PublicId
 	}
-	if o.Name != nil {
+	if !isNil(o.Name) {
 		toSerialize["Name"] = o.Name
 	}
-	if o.FilterType != nil {
+	if !isNil(o.FilterType) {
 		toSerialize["FilterType"] = o.FilterType
 	}
-	if o.Filter != nil {
+	if !isNil(o.Filter) {
 		toSerialize["Filter"] = o.Filter
 	}
-	if o.ActionType != nil {
+	if !isNil(o.ActionType) {
 		toSerialize["ActionType"] = o.ActionType
 	}
-	if o.ActionParameter != nil {
+	if !isNil(o.ActionParameter) {
 		toSerialize["ActionParameter"] = o.ActionParameter
 	}
-	if o.SortOrder != nil {
+	if !isNil(o.SortOrder) {
 		toSerialize["SortOrder"] = o.SortOrder
 	}
 	return json.Marshal(toSerialize)

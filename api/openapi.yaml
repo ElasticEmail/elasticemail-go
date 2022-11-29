@@ -7,7 +7,7 @@ info:
     \ API call is established on which specific request type (GET, POST, PUT, DELETE)\
     \ will be used.\r\n\r\nThe API has a limit of 20 concurrent connections and a\
     \ hard timeout of 600 seconds per request.\r\n\r\nTo start using this API, you\
-    \ will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\"\
+    \ will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\"\
     >here</a>). Remember to keep it safe. Required access levels are listed in the\
     \ given request’s description.\r\n\r\nDownloadable library clients can be found\
     \ in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\"\
@@ -361,57 +361,6 @@ paths:
       summary: Update Contact
       tags:
       - Contacts
-  /contacts/{email}/history:
-    get:
-      description: "Returns detailed history of specified Contact. Required Access\
-        \ Level: ViewContacts"
-      operationId: contactsByEmailHistoryGet
-      parameters:
-      - description: Proper email address.
-        explode: false
-        in: path
-        name: email
-        required: true
-        schema:
-          description: string
-          example: mail@example.com
-          format: string
-          type: string
-        style: simple
-      - description: Maximum number of returned items.
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          description: integer
-          example: 100
-          format: int32
-          type: integer
-        style: form
-      - description: How many items should be returned ahead.
-        explode: true
-        in: query
-        name: offset
-        required: false
-        schema:
-          description: integer
-          example: 20
-          format: int32
-          type: integer
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/ContactHistory'
-                type: array
-          description: OK
-      summary: Load History
-      tags:
-      - Contacts
   /contacts/delete:
     post:
       description: "Deletes provided contacts in bulk. Required Access Level: ModifyContacts"
@@ -542,6 +491,16 @@ paths:
         explode: true
         in: query
         name: encodingName
+        required: false
+        schema:
+          description: string
+          format: string
+          type: string
+        style: form
+      - description: Optional url of csv to import
+        explode: true
+        in: query
+        name: fileUrl
         required: false
         schema:
           description: string
@@ -1173,6 +1132,7 @@ paths:
           format: int32
           nullable: true
           type: integer
+          example: null
         style: form
       requestBody:
         content:
@@ -2898,7 +2858,7 @@ paths:
   /verifications:
     get:
       description: "Returns a results of all verified single emails. Required Access\
-        \ Level: ViewEmailVerifications"
+        \ Level: VerifyEmails, ViewEmailVerifications"
       operationId: verificationsGet
       parameters:
       - description: Maximum number of returned items.
@@ -2958,7 +2918,8 @@ paths:
       tags:
       - Verifications
     get:
-      description: "Returns a result of verified email. Required Access Level: ViewEmailVerifications"
+      description: "Returns a result of verified email. Required Access Level: VerifyEmails,\
+        \ ViewEmailVerifications"
       operationId: verificationsByEmailGet
       parameters:
       - description: Email address to view verification result of
@@ -3055,7 +3016,7 @@ paths:
   /verifications/files/{id}/result:
     get:
       description: "Returns status and results (if verified) of file with given ID.\
-        \ Required Access Level: ViewEmailVerifications"
+        \ Required Access Level: VerifyEmails, ViewEmailVerifications"
       operationId: verificationsFilesByIdResultGet
       parameters:
       - description: ID of the Verification to display status of
@@ -3150,7 +3111,7 @@ paths:
   /verifications/files/result:
     get:
       description: "Returns a list of uploaded files, their statuses and results.\
-        \ Required Access Level: ViewEmailVerifications"
+        \ Required Access Level: VerifyEmails, ViewEmailVerifications"
       operationId: verificationsFilesResultGet
       responses:
         "200":
@@ -3213,9 +3174,7 @@ components:
       - ExtendedLogs
       - VerifyEmails
       - ViewEmailVerifications
-      - ViewMarketing
-      - ViewEmailApi
-      - ViewInbound
+      - DisableContactsStore
       - ModifyLandingPages
       - ViewLandingPages
       - ModifySuppressions
@@ -3226,7 +3185,6 @@ components:
       enum:
       - Disabled
       - UnderReview
-      - NoPaymentsAllowed
       - NeverSignedIn
       - Active
       type: string
@@ -3262,11 +3220,13 @@ components:
           format: date-time
           nullable: true
           type: string
+          example: null
         Expires:
           description: Date this ApiKey expires.
           format: date-time
           nullable: true
           type: string
+          example: null
         RestrictAccessToIPRange:
           description: Which IPs can use this ApiKey
           items:
@@ -3301,6 +3261,7 @@ components:
           format: date-time
           nullable: true
           type: string
+          example: null
         RestrictAccessToIPRange:
           description: Which IPs can use this ApiKey
           items:
@@ -3441,6 +3402,7 @@ components:
           format: date-time
           nullable: true
           type: string
+          example: null
         SplitOptions:
           $ref: '#/components/schemas/SplitOptions'
       type: object
@@ -3771,6 +3733,7 @@ components:
           format: date-time
           nullable: true
           type: string
+          example: null
         LastOpened:
           description: Date this contact last opened an email
           format: date-time
@@ -3781,11 +3744,13 @@ components:
           format: date-time
           nullable: true
           type: string
+          example: null
         LastFailed:
           description: Last date when an email sent to this contact bounced
           format: date-time
           nullable: true
           type: string
+          example: null
         LastIP:
           description: IP from which this contact opened or clicked their email last
             time
@@ -3796,63 +3761,9 @@ components:
           format: int32
           nullable: true
           type: integer
+          example: null
         FriendlyErrorMessage:
           description: Last RFC error message if any occurred
-          format: string
-          type: string
-      type: object
-    ContactHistEventType:
-      default: Opened
-      enum:
-      - Opened
-      - Clicked
-      - Bounced
-      - Unsubscribed
-      - Complained
-      - Activated
-      - TransactionalUnsubscribed
-      - ManualStatusChange
-      - ManualConsentTrackingChange
-      - ActivationSent
-      - JourneyStarted
-      - JourneyStepProcessed
-      - JourneyFinished
-      - Deleted
-      type: string
-    ContactHistory:
-      example:
-        EventDate: 2000-01-23T04:56:07.000+00:00
-        ChannelName: ChannelName
-        EventType: null
-        TemplateName: TemplateName
-        Country: Country
-        Data: Data
-        IPAddress: IPAddress
-      properties:
-        EventType:
-          $ref: '#/components/schemas/ContactHistEventType'
-        EventDate:
-          description: Formatted date of event.
-          format: date-time
-          type: string
-        ChannelName:
-          description: Name of channel this event occured on
-          format: string
-          type: string
-        TemplateName:
-          description: Name of template this event occured on
-          format: string
-          type: string
-        IPAddress:
-          description: IP Address of the event.
-          format: string
-          type: string
-        Country:
-          description: Country of the event.
-          format: string
-          type: string
-        Data:
-          description: Additional information about the event
           format: string
           type: string
       type: object
@@ -4533,6 +4444,7 @@ components:
           format: date-time
           nullable: true
           type: string
+          example: null
         ContentType:
           description: Content type of the file.
           example: image/jpeg
@@ -4904,6 +4816,7 @@ components:
           type: string
       required:
       - BinaryContent
+      - Name
       type: object
     MessageCategory:
       default: Unknown
@@ -4963,11 +4876,13 @@ components:
           format: date-time
           nullable: true
           type: string
+          example: null
         Expires:
           description: Date this ApiKey expires.
           format: date-time
           nullable: true
           type: string
+          example: null
         RestrictAccessToIPRange:
           description: Which IPs can use this ApiKey
           items:
@@ -5007,11 +4922,13 @@ components:
           format: date-time
           nullable: true
           type: string
+          example: null
         Expires:
           description: Date this SmtpCredential expires.
           format: date-time
           nullable: true
           type: string
+          example: null
         RestrictAccessToIPRange:
           description: Which IPs can use this SmtpCredential
           items:
@@ -5035,6 +4952,7 @@ components:
           format: int32
           nullable: true
           type: integer
+          example: null
         PoolName:
           description: Name of your custom IP Pool to be used in the sending process
           example: My Custom Pool
@@ -5194,11 +5112,13 @@ components:
           format: date-time
           nullable: true
           type: string
+          example: null
         Expires:
           description: Date this SmtpCredential expires.
           format: date-time
           nullable: true
           type: string
+          example: null
         RestrictAccessToIPRange:
           description: Which IPs can use this SmtpCredential
           items:
@@ -5226,6 +5146,7 @@ components:
           format: date-time
           nullable: true
           type: string
+          example: null
         RestrictAccessToIPRange:
           description: Which IPs can use this SmtpCredential
           items:
@@ -5350,6 +5271,7 @@ components:
           format: boolean
           nullable: true
           type: boolean
+          example: null
       type: object
     SubaccountEmailSettingsPayload:
       description: Settings related to sending emails
@@ -5396,6 +5318,7 @@ components:
           format: boolean
           nullable: true
           type: boolean
+          example: null
       type: object
     SubAccountInfo:
       description: Detailed information about SubAccount.
@@ -5550,6 +5473,7 @@ components:
           format: int32
           nullable: true
           type: integer
+          example: null
         DateUpdated:
           description: Last change date
           format: date-time

@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -46,7 +46,7 @@ func NewUtmWithDefaults() *Utm {
 
 // GetSource returns the Source field value if set, zero value otherwise.
 func (o *Utm) GetSource() string {
-	if o == nil || o.Source == nil {
+	if o == nil || isNil(o.Source) {
 		var ret string
 		return ret
 	}
@@ -56,15 +56,15 @@ func (o *Utm) GetSource() string {
 // GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Utm) GetSourceOk() (*string, bool) {
-	if o == nil || o.Source == nil {
-		return nil, false
+	if o == nil || isNil(o.Source) {
+    return nil, false
 	}
 	return o.Source, true
 }
 
 // HasSource returns a boolean if a field has been set.
 func (o *Utm) HasSource() bool {
-	if o != nil && o.Source != nil {
+	if o != nil && !isNil(o.Source) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *Utm) SetSource(v string) {
 
 // GetMedium returns the Medium field value if set, zero value otherwise.
 func (o *Utm) GetMedium() string {
-	if o == nil || o.Medium == nil {
+	if o == nil || isNil(o.Medium) {
 		var ret string
 		return ret
 	}
@@ -88,15 +88,15 @@ func (o *Utm) GetMedium() string {
 // GetMediumOk returns a tuple with the Medium field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Utm) GetMediumOk() (*string, bool) {
-	if o == nil || o.Medium == nil {
-		return nil, false
+	if o == nil || isNil(o.Medium) {
+    return nil, false
 	}
 	return o.Medium, true
 }
 
 // HasMedium returns a boolean if a field has been set.
 func (o *Utm) HasMedium() bool {
-	if o != nil && o.Medium != nil {
+	if o != nil && !isNil(o.Medium) {
 		return true
 	}
 
@@ -110,7 +110,7 @@ func (o *Utm) SetMedium(v string) {
 
 // GetCampaign returns the Campaign field value if set, zero value otherwise.
 func (o *Utm) GetCampaign() string {
-	if o == nil || o.Campaign == nil {
+	if o == nil || isNil(o.Campaign) {
 		var ret string
 		return ret
 	}
@@ -120,15 +120,15 @@ func (o *Utm) GetCampaign() string {
 // GetCampaignOk returns a tuple with the Campaign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Utm) GetCampaignOk() (*string, bool) {
-	if o == nil || o.Campaign == nil {
-		return nil, false
+	if o == nil || isNil(o.Campaign) {
+    return nil, false
 	}
 	return o.Campaign, true
 }
 
 // HasCampaign returns a boolean if a field has been set.
 func (o *Utm) HasCampaign() bool {
-	if o != nil && o.Campaign != nil {
+	if o != nil && !isNil(o.Campaign) {
 		return true
 	}
 
@@ -142,7 +142,7 @@ func (o *Utm) SetCampaign(v string) {
 
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *Utm) GetContent() string {
-	if o == nil || o.Content == nil {
+	if o == nil || isNil(o.Content) {
 		var ret string
 		return ret
 	}
@@ -152,15 +152,15 @@ func (o *Utm) GetContent() string {
 // GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Utm) GetContentOk() (*string, bool) {
-	if o == nil || o.Content == nil {
-		return nil, false
+	if o == nil || isNil(o.Content) {
+    return nil, false
 	}
 	return o.Content, true
 }
 
 // HasContent returns a boolean if a field has been set.
 func (o *Utm) HasContent() bool {
-	if o != nil && o.Content != nil {
+	if o != nil && !isNil(o.Content) {
 		return true
 	}
 
@@ -174,16 +174,16 @@ func (o *Utm) SetContent(v string) {
 
 func (o Utm) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Source != nil {
+	if !isNil(o.Source) {
 		toSerialize["Source"] = o.Source
 	}
-	if o.Medium != nil {
+	if !isNil(o.Medium) {
 		toSerialize["Medium"] = o.Medium
 	}
-	if o.Campaign != nil {
+	if !isNil(o.Campaign) {
 		toSerialize["Campaign"] = o.Campaign
 	}
-	if o.Content != nil {
+	if !isNil(o.Content) {
 		toSerialize["Content"] = o.Content
 	}
 	return json.Marshal(toSerialize)

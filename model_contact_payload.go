@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -65,7 +65,7 @@ func (o *ContactPayload) GetEmail() string {
 // and a boolean to check if the value has been set.
 func (o *ContactPayload) GetEmailOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Email, true
 }
@@ -77,7 +77,7 @@ func (o *ContactPayload) SetEmail(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *ContactPayload) GetStatus() ContactStatus {
-	if o == nil || o.Status == nil {
+	if o == nil || isNil(o.Status) {
 		var ret ContactStatus
 		return ret
 	}
@@ -87,15 +87,15 @@ func (o *ContactPayload) GetStatus() ContactStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactPayload) GetStatusOk() (*ContactStatus, bool) {
-	if o == nil || o.Status == nil {
-		return nil, false
+	if o == nil || isNil(o.Status) {
+    return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *ContactPayload) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !isNil(o.Status) {
 		return true
 	}
 
@@ -109,7 +109,7 @@ func (o *ContactPayload) SetStatus(v ContactStatus) {
 
 // GetFirstName returns the FirstName field value if set, zero value otherwise.
 func (o *ContactPayload) GetFirstName() string {
-	if o == nil || o.FirstName == nil {
+	if o == nil || isNil(o.FirstName) {
 		var ret string
 		return ret
 	}
@@ -119,15 +119,15 @@ func (o *ContactPayload) GetFirstName() string {
 // GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactPayload) GetFirstNameOk() (*string, bool) {
-	if o == nil || o.FirstName == nil {
-		return nil, false
+	if o == nil || isNil(o.FirstName) {
+    return nil, false
 	}
 	return o.FirstName, true
 }
 
 // HasFirstName returns a boolean if a field has been set.
 func (o *ContactPayload) HasFirstName() bool {
-	if o != nil && o.FirstName != nil {
+	if o != nil && !isNil(o.FirstName) {
 		return true
 	}
 
@@ -141,7 +141,7 @@ func (o *ContactPayload) SetFirstName(v string) {
 
 // GetLastName returns the LastName field value if set, zero value otherwise.
 func (o *ContactPayload) GetLastName() string {
-	if o == nil || o.LastName == nil {
+	if o == nil || isNil(o.LastName) {
 		var ret string
 		return ret
 	}
@@ -151,15 +151,15 @@ func (o *ContactPayload) GetLastName() string {
 // GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactPayload) GetLastNameOk() (*string, bool) {
-	if o == nil || o.LastName == nil {
-		return nil, false
+	if o == nil || isNil(o.LastName) {
+    return nil, false
 	}
 	return o.LastName, true
 }
 
 // HasLastName returns a boolean if a field has been set.
 func (o *ContactPayload) HasLastName() bool {
-	if o != nil && o.LastName != nil {
+	if o != nil && !isNil(o.LastName) {
 		return true
 	}
 
@@ -173,7 +173,7 @@ func (o *ContactPayload) SetLastName(v string) {
 
 // GetCustomFields returns the CustomFields field value if set, zero value otherwise.
 func (o *ContactPayload) GetCustomFields() map[string]string {
-	if o == nil || o.CustomFields == nil {
+	if o == nil || isNil(o.CustomFields) {
 		var ret map[string]string
 		return ret
 	}
@@ -183,15 +183,15 @@ func (o *ContactPayload) GetCustomFields() map[string]string {
 // GetCustomFieldsOk returns a tuple with the CustomFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactPayload) GetCustomFieldsOk() (*map[string]string, bool) {
-	if o == nil || o.CustomFields == nil {
-		return nil, false
+	if o == nil || isNil(o.CustomFields) {
+    return nil, false
 	}
 	return o.CustomFields, true
 }
 
 // HasCustomFields returns a boolean if a field has been set.
 func (o *ContactPayload) HasCustomFields() bool {
-	if o != nil && o.CustomFields != nil {
+	if o != nil && !isNil(o.CustomFields) {
 		return true
 	}
 
@@ -205,7 +205,7 @@ func (o *ContactPayload) SetCustomFields(v map[string]string) {
 
 // GetConsent returns the Consent field value if set, zero value otherwise.
 func (o *ContactPayload) GetConsent() ConsentData {
-	if o == nil || o.Consent == nil {
+	if o == nil || isNil(o.Consent) {
 		var ret ConsentData
 		return ret
 	}
@@ -215,15 +215,15 @@ func (o *ContactPayload) GetConsent() ConsentData {
 // GetConsentOk returns a tuple with the Consent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactPayload) GetConsentOk() (*ConsentData, bool) {
-	if o == nil || o.Consent == nil {
-		return nil, false
+	if o == nil || isNil(o.Consent) {
+    return nil, false
 	}
 	return o.Consent, true
 }
 
 // HasConsent returns a boolean if a field has been set.
 func (o *ContactPayload) HasConsent() bool {
-	if o != nil && o.Consent != nil {
+	if o != nil && !isNil(o.Consent) {
 		return true
 	}
 
@@ -240,19 +240,19 @@ func (o ContactPayload) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["Email"] = o.Email
 	}
-	if o.Status != nil {
+	if !isNil(o.Status) {
 		toSerialize["Status"] = o.Status
 	}
-	if o.FirstName != nil {
+	if !isNil(o.FirstName) {
 		toSerialize["FirstName"] = o.FirstName
 	}
-	if o.LastName != nil {
+	if !isNil(o.LastName) {
 		toSerialize["LastName"] = o.LastName
 	}
-	if o.CustomFields != nil {
+	if !isNil(o.CustomFields) {
 		toSerialize["CustomFields"] = o.CustomFields
 	}
-	if o.Consent != nil {
+	if !isNil(o.Consent) {
 		toSerialize["Consent"] = o.Consent
 	}
 	return json.Marshal(toSerialize)

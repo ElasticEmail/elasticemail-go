@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -71,7 +71,7 @@ func NewRecipientEventWithDefaults() *RecipientEvent {
 
 // GetTransactionID returns the TransactionID field value if set, zero value otherwise.
 func (o *RecipientEvent) GetTransactionID() string {
-	if o == nil || o.TransactionID == nil {
+	if o == nil || isNil(o.TransactionID) {
 		var ret string
 		return ret
 	}
@@ -81,15 +81,15 @@ func (o *RecipientEvent) GetTransactionID() string {
 // GetTransactionIDOk returns a tuple with the TransactionID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetTransactionIDOk() (*string, bool) {
-	if o == nil || o.TransactionID == nil {
-		return nil, false
+	if o == nil || isNil(o.TransactionID) {
+    return nil, false
 	}
 	return o.TransactionID, true
 }
 
 // HasTransactionID returns a boolean if a field has been set.
 func (o *RecipientEvent) HasTransactionID() bool {
-	if o != nil && o.TransactionID != nil {
+	if o != nil && !isNil(o.TransactionID) {
 		return true
 	}
 
@@ -103,7 +103,7 @@ func (o *RecipientEvent) SetTransactionID(v string) {
 
 // GetMsgID returns the MsgID field value if set, zero value otherwise.
 func (o *RecipientEvent) GetMsgID() string {
-	if o == nil || o.MsgID == nil {
+	if o == nil || isNil(o.MsgID) {
 		var ret string
 		return ret
 	}
@@ -113,15 +113,15 @@ func (o *RecipientEvent) GetMsgID() string {
 // GetMsgIDOk returns a tuple with the MsgID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetMsgIDOk() (*string, bool) {
-	if o == nil || o.MsgID == nil {
-		return nil, false
+	if o == nil || isNil(o.MsgID) {
+    return nil, false
 	}
 	return o.MsgID, true
 }
 
 // HasMsgID returns a boolean if a field has been set.
 func (o *RecipientEvent) HasMsgID() bool {
-	if o != nil && o.MsgID != nil {
+	if o != nil && !isNil(o.MsgID) {
 		return true
 	}
 
@@ -135,7 +135,7 @@ func (o *RecipientEvent) SetMsgID(v string) {
 
 // GetFromEmail returns the FromEmail field value if set, zero value otherwise.
 func (o *RecipientEvent) GetFromEmail() string {
-	if o == nil || o.FromEmail == nil {
+	if o == nil || isNil(o.FromEmail) {
 		var ret string
 		return ret
 	}
@@ -145,15 +145,15 @@ func (o *RecipientEvent) GetFromEmail() string {
 // GetFromEmailOk returns a tuple with the FromEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetFromEmailOk() (*string, bool) {
-	if o == nil || o.FromEmail == nil {
-		return nil, false
+	if o == nil || isNil(o.FromEmail) {
+    return nil, false
 	}
 	return o.FromEmail, true
 }
 
 // HasFromEmail returns a boolean if a field has been set.
 func (o *RecipientEvent) HasFromEmail() bool {
-	if o != nil && o.FromEmail != nil {
+	if o != nil && !isNil(o.FromEmail) {
 		return true
 	}
 
@@ -167,7 +167,7 @@ func (o *RecipientEvent) SetFromEmail(v string) {
 
 // GetTo returns the To field value if set, zero value otherwise.
 func (o *RecipientEvent) GetTo() string {
-	if o == nil || o.To == nil {
+	if o == nil || isNil(o.To) {
 		var ret string
 		return ret
 	}
@@ -177,15 +177,15 @@ func (o *RecipientEvent) GetTo() string {
 // GetToOk returns a tuple with the To field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetToOk() (*string, bool) {
-	if o == nil || o.To == nil {
-		return nil, false
+	if o == nil || isNil(o.To) {
+    return nil, false
 	}
 	return o.To, true
 }
 
 // HasTo returns a boolean if a field has been set.
 func (o *RecipientEvent) HasTo() bool {
-	if o != nil && o.To != nil {
+	if o != nil && !isNil(o.To) {
 		return true
 	}
 
@@ -199,7 +199,7 @@ func (o *RecipientEvent) SetTo(v string) {
 
 // GetSubject returns the Subject field value if set, zero value otherwise.
 func (o *RecipientEvent) GetSubject() string {
-	if o == nil || o.Subject == nil {
+	if o == nil || isNil(o.Subject) {
 		var ret string
 		return ret
 	}
@@ -209,15 +209,15 @@ func (o *RecipientEvent) GetSubject() string {
 // GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetSubjectOk() (*string, bool) {
-	if o == nil || o.Subject == nil {
-		return nil, false
+	if o == nil || isNil(o.Subject) {
+    return nil, false
 	}
 	return o.Subject, true
 }
 
 // HasSubject returns a boolean if a field has been set.
 func (o *RecipientEvent) HasSubject() bool {
-	if o != nil && o.Subject != nil {
+	if o != nil && !isNil(o.Subject) {
 		return true
 	}
 
@@ -231,7 +231,7 @@ func (o *RecipientEvent) SetSubject(v string) {
 
 // GetEventType returns the EventType field value if set, zero value otherwise.
 func (o *RecipientEvent) GetEventType() EventType {
-	if o == nil || o.EventType == nil {
+	if o == nil || isNil(o.EventType) {
 		var ret EventType
 		return ret
 	}
@@ -241,15 +241,15 @@ func (o *RecipientEvent) GetEventType() EventType {
 // GetEventTypeOk returns a tuple with the EventType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetEventTypeOk() (*EventType, bool) {
-	if o == nil || o.EventType == nil {
-		return nil, false
+	if o == nil || isNil(o.EventType) {
+    return nil, false
 	}
 	return o.EventType, true
 }
 
 // HasEventType returns a boolean if a field has been set.
 func (o *RecipientEvent) HasEventType() bool {
-	if o != nil && o.EventType != nil {
+	if o != nil && !isNil(o.EventType) {
 		return true
 	}
 
@@ -263,7 +263,7 @@ func (o *RecipientEvent) SetEventType(v EventType) {
 
 // GetEventDate returns the EventDate field value if set, zero value otherwise.
 func (o *RecipientEvent) GetEventDate() time.Time {
-	if o == nil || o.EventDate == nil {
+	if o == nil || isNil(o.EventDate) {
 		var ret time.Time
 		return ret
 	}
@@ -273,15 +273,15 @@ func (o *RecipientEvent) GetEventDate() time.Time {
 // GetEventDateOk returns a tuple with the EventDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetEventDateOk() (*time.Time, bool) {
-	if o == nil || o.EventDate == nil {
-		return nil, false
+	if o == nil || isNil(o.EventDate) {
+    return nil, false
 	}
 	return o.EventDate, true
 }
 
 // HasEventDate returns a boolean if a field has been set.
 func (o *RecipientEvent) HasEventDate() bool {
-	if o != nil && o.EventDate != nil {
+	if o != nil && !isNil(o.EventDate) {
 		return true
 	}
 
@@ -295,7 +295,7 @@ func (o *RecipientEvent) SetEventDate(v time.Time) {
 
 // GetChannelName returns the ChannelName field value if set, zero value otherwise.
 func (o *RecipientEvent) GetChannelName() string {
-	if o == nil || o.ChannelName == nil {
+	if o == nil || isNil(o.ChannelName) {
 		var ret string
 		return ret
 	}
@@ -305,15 +305,15 @@ func (o *RecipientEvent) GetChannelName() string {
 // GetChannelNameOk returns a tuple with the ChannelName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetChannelNameOk() (*string, bool) {
-	if o == nil || o.ChannelName == nil {
-		return nil, false
+	if o == nil || isNil(o.ChannelName) {
+    return nil, false
 	}
 	return o.ChannelName, true
 }
 
 // HasChannelName returns a boolean if a field has been set.
 func (o *RecipientEvent) HasChannelName() bool {
-	if o != nil && o.ChannelName != nil {
+	if o != nil && !isNil(o.ChannelName) {
 		return true
 	}
 
@@ -327,7 +327,7 @@ func (o *RecipientEvent) SetChannelName(v string) {
 
 // GetMessageCategory returns the MessageCategory field value if set, zero value otherwise.
 func (o *RecipientEvent) GetMessageCategory() MessageCategory {
-	if o == nil || o.MessageCategory == nil {
+	if o == nil || isNil(o.MessageCategory) {
 		var ret MessageCategory
 		return ret
 	}
@@ -337,15 +337,15 @@ func (o *RecipientEvent) GetMessageCategory() MessageCategory {
 // GetMessageCategoryOk returns a tuple with the MessageCategory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetMessageCategoryOk() (*MessageCategory, bool) {
-	if o == nil || o.MessageCategory == nil {
-		return nil, false
+	if o == nil || isNil(o.MessageCategory) {
+    return nil, false
 	}
 	return o.MessageCategory, true
 }
 
 // HasMessageCategory returns a boolean if a field has been set.
 func (o *RecipientEvent) HasMessageCategory() bool {
-	if o != nil && o.MessageCategory != nil {
+	if o != nil && !isNil(o.MessageCategory) {
 		return true
 	}
 
@@ -359,7 +359,7 @@ func (o *RecipientEvent) SetMessageCategory(v MessageCategory) {
 
 // GetNextTryOn returns the NextTryOn field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *RecipientEvent) GetNextTryOn() time.Time {
-	if o == nil || o.NextTryOn.Get() == nil {
+	if o == nil || isNil(o.NextTryOn.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -371,7 +371,7 @@ func (o *RecipientEvent) GetNextTryOn() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *RecipientEvent) GetNextTryOnOk() (*time.Time, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.NextTryOn.Get(), o.NextTryOn.IsSet()
 }
@@ -401,7 +401,7 @@ func (o *RecipientEvent) UnsetNextTryOn() {
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *RecipientEvent) GetMessage() string {
-	if o == nil || o.Message == nil {
+	if o == nil || isNil(o.Message) {
 		var ret string
 		return ret
 	}
@@ -411,15 +411,15 @@ func (o *RecipientEvent) GetMessage() string {
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetMessageOk() (*string, bool) {
-	if o == nil || o.Message == nil {
-		return nil, false
+	if o == nil || isNil(o.Message) {
+    return nil, false
 	}
 	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *RecipientEvent) HasMessage() bool {
-	if o != nil && o.Message != nil {
+	if o != nil && !isNil(o.Message) {
 		return true
 	}
 
@@ -433,7 +433,7 @@ func (o *RecipientEvent) SetMessage(v string) {
 
 // GetIPAddress returns the IPAddress field value if set, zero value otherwise.
 func (o *RecipientEvent) GetIPAddress() string {
-	if o == nil || o.IPAddress == nil {
+	if o == nil || isNil(o.IPAddress) {
 		var ret string
 		return ret
 	}
@@ -443,15 +443,15 @@ func (o *RecipientEvent) GetIPAddress() string {
 // GetIPAddressOk returns a tuple with the IPAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetIPAddressOk() (*string, bool) {
-	if o == nil || o.IPAddress == nil {
-		return nil, false
+	if o == nil || isNil(o.IPAddress) {
+    return nil, false
 	}
 	return o.IPAddress, true
 }
 
 // HasIPAddress returns a boolean if a field has been set.
 func (o *RecipientEvent) HasIPAddress() bool {
-	if o != nil && o.IPAddress != nil {
+	if o != nil && !isNil(o.IPAddress) {
 		return true
 	}
 
@@ -465,7 +465,7 @@ func (o *RecipientEvent) SetIPAddress(v string) {
 
 // GetPoolName returns the PoolName field value if set, zero value otherwise.
 func (o *RecipientEvent) GetPoolName() string {
-	if o == nil || o.PoolName == nil {
+	if o == nil || isNil(o.PoolName) {
 		var ret string
 		return ret
 	}
@@ -475,15 +475,15 @@ func (o *RecipientEvent) GetPoolName() string {
 // GetPoolNameOk returns a tuple with the PoolName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetPoolNameOk() (*string, bool) {
-	if o == nil || o.PoolName == nil {
-		return nil, false
+	if o == nil || isNil(o.PoolName) {
+    return nil, false
 	}
 	return o.PoolName, true
 }
 
 // HasPoolName returns a boolean if a field has been set.
 func (o *RecipientEvent) HasPoolName() bool {
-	if o != nil && o.PoolName != nil {
+	if o != nil && !isNil(o.PoolName) {
 		return true
 	}
 
@@ -497,43 +497,43 @@ func (o *RecipientEvent) SetPoolName(v string) {
 
 func (o RecipientEvent) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.TransactionID != nil {
+	if !isNil(o.TransactionID) {
 		toSerialize["TransactionID"] = o.TransactionID
 	}
-	if o.MsgID != nil {
+	if !isNil(o.MsgID) {
 		toSerialize["MsgID"] = o.MsgID
 	}
-	if o.FromEmail != nil {
+	if !isNil(o.FromEmail) {
 		toSerialize["FromEmail"] = o.FromEmail
 	}
-	if o.To != nil {
+	if !isNil(o.To) {
 		toSerialize["To"] = o.To
 	}
-	if o.Subject != nil {
+	if !isNil(o.Subject) {
 		toSerialize["Subject"] = o.Subject
 	}
-	if o.EventType != nil {
+	if !isNil(o.EventType) {
 		toSerialize["EventType"] = o.EventType
 	}
-	if o.EventDate != nil {
+	if !isNil(o.EventDate) {
 		toSerialize["EventDate"] = o.EventDate
 	}
-	if o.ChannelName != nil {
+	if !isNil(o.ChannelName) {
 		toSerialize["ChannelName"] = o.ChannelName
 	}
-	if o.MessageCategory != nil {
+	if !isNil(o.MessageCategory) {
 		toSerialize["MessageCategory"] = o.MessageCategory
 	}
 	if o.NextTryOn.IsSet() {
 		toSerialize["NextTryOn"] = o.NextTryOn.Get()
 	}
-	if o.Message != nil {
+	if !isNil(o.Message) {
 		toSerialize["Message"] = o.Message
 	}
-	if o.IPAddress != nil {
+	if !isNil(o.IPAddress) {
 		toSerialize["IPAddress"] = o.IPAddress
 	}
-	if o.PoolName != nil {
+	if !isNil(o.PoolName) {
 		toSerialize["PoolName"] = o.PoolName
 	}
 	return json.Marshal(toSerialize)

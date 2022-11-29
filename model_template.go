@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -57,7 +57,7 @@ func NewTemplateWithDefaults() *Template {
 
 // GetTemplateType returns the TemplateType field value if set, zero value otherwise.
 func (o *Template) GetTemplateType() TemplateType {
-	if o == nil || o.TemplateType == nil {
+	if o == nil || isNil(o.TemplateType) {
 		var ret TemplateType
 		return ret
 	}
@@ -67,15 +67,15 @@ func (o *Template) GetTemplateType() TemplateType {
 // GetTemplateTypeOk returns a tuple with the TemplateType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Template) GetTemplateTypeOk() (*TemplateType, bool) {
-	if o == nil || o.TemplateType == nil {
-		return nil, false
+	if o == nil || isNil(o.TemplateType) {
+    return nil, false
 	}
 	return o.TemplateType, true
 }
 
 // HasTemplateType returns a boolean if a field has been set.
 func (o *Template) HasTemplateType() bool {
-	if o != nil && o.TemplateType != nil {
+	if o != nil && !isNil(o.TemplateType) {
 		return true
 	}
 
@@ -89,7 +89,7 @@ func (o *Template) SetTemplateType(v TemplateType) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Template) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -99,15 +99,15 @@ func (o *Template) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Template) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
-		return nil, false
+	if o == nil || isNil(o.Name) {
+    return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Template) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !isNil(o.Name) {
 		return true
 	}
 
@@ -121,7 +121,7 @@ func (o *Template) SetName(v string) {
 
 // GetDateAdded returns the DateAdded field value if set, zero value otherwise.
 func (o *Template) GetDateAdded() time.Time {
-	if o == nil || o.DateAdded == nil {
+	if o == nil || isNil(o.DateAdded) {
 		var ret time.Time
 		return ret
 	}
@@ -131,15 +131,15 @@ func (o *Template) GetDateAdded() time.Time {
 // GetDateAddedOk returns a tuple with the DateAdded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Template) GetDateAddedOk() (*time.Time, bool) {
-	if o == nil || o.DateAdded == nil {
-		return nil, false
+	if o == nil || isNil(o.DateAdded) {
+    return nil, false
 	}
 	return o.DateAdded, true
 }
 
 // HasDateAdded returns a boolean if a field has been set.
 func (o *Template) HasDateAdded() bool {
-	if o != nil && o.DateAdded != nil {
+	if o != nil && !isNil(o.DateAdded) {
 		return true
 	}
 
@@ -153,7 +153,7 @@ func (o *Template) SetDateAdded(v time.Time) {
 
 // GetSubject returns the Subject field value if set, zero value otherwise.
 func (o *Template) GetSubject() string {
-	if o == nil || o.Subject == nil {
+	if o == nil || isNil(o.Subject) {
 		var ret string
 		return ret
 	}
@@ -163,15 +163,15 @@ func (o *Template) GetSubject() string {
 // GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Template) GetSubjectOk() (*string, bool) {
-	if o == nil || o.Subject == nil {
-		return nil, false
+	if o == nil || isNil(o.Subject) {
+    return nil, false
 	}
 	return o.Subject, true
 }
 
 // HasSubject returns a boolean if a field has been set.
 func (o *Template) HasSubject() bool {
-	if o != nil && o.Subject != nil {
+	if o != nil && !isNil(o.Subject) {
 		return true
 	}
 
@@ -185,7 +185,7 @@ func (o *Template) SetSubject(v string) {
 
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *Template) GetBody() []BodyPart {
-	if o == nil || o.Body == nil {
+	if o == nil || isNil(o.Body) {
 		var ret []BodyPart
 		return ret
 	}
@@ -195,15 +195,15 @@ func (o *Template) GetBody() []BodyPart {
 // GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Template) GetBodyOk() ([]BodyPart, bool) {
-	if o == nil || o.Body == nil {
-		return nil, false
+	if o == nil || isNil(o.Body) {
+    return nil, false
 	}
 	return o.Body, true
 }
 
 // HasBody returns a boolean if a field has been set.
 func (o *Template) HasBody() bool {
-	if o != nil && o.Body != nil {
+	if o != nil && !isNil(o.Body) {
 		return true
 	}
 
@@ -217,7 +217,7 @@ func (o *Template) SetBody(v []BodyPart) {
 
 // GetTemplateScope returns the TemplateScope field value if set, zero value otherwise.
 func (o *Template) GetTemplateScope() TemplateScope {
-	if o == nil || o.TemplateScope == nil {
+	if o == nil || isNil(o.TemplateScope) {
 		var ret TemplateScope
 		return ret
 	}
@@ -227,15 +227,15 @@ func (o *Template) GetTemplateScope() TemplateScope {
 // GetTemplateScopeOk returns a tuple with the TemplateScope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Template) GetTemplateScopeOk() (*TemplateScope, bool) {
-	if o == nil || o.TemplateScope == nil {
-		return nil, false
+	if o == nil || isNil(o.TemplateScope) {
+    return nil, false
 	}
 	return o.TemplateScope, true
 }
 
 // HasTemplateScope returns a boolean if a field has been set.
 func (o *Template) HasTemplateScope() bool {
-	if o != nil && o.TemplateScope != nil {
+	if o != nil && !isNil(o.TemplateScope) {
 		return true
 	}
 
@@ -249,22 +249,22 @@ func (o *Template) SetTemplateScope(v TemplateScope) {
 
 func (o Template) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.TemplateType != nil {
+	if !isNil(o.TemplateType) {
 		toSerialize["TemplateType"] = o.TemplateType
 	}
-	if o.Name != nil {
+	if !isNil(o.Name) {
 		toSerialize["Name"] = o.Name
 	}
-	if o.DateAdded != nil {
+	if !isNil(o.DateAdded) {
 		toSerialize["DateAdded"] = o.DateAdded
 	}
-	if o.Subject != nil {
+	if !isNil(o.Subject) {
 		toSerialize["Subject"] = o.Subject
 	}
-	if o.Body != nil {
+	if !isNil(o.Body) {
 		toSerialize["Body"] = o.Body
 	}
-	if o.TemplateScope != nil {
+	if !isNil(o.TemplateScope) {
 		toSerialize["TemplateScope"] = o.TemplateScope
 	}
 	return json.Marshal(toSerialize)

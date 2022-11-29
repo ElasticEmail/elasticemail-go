@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -66,7 +66,7 @@ func NewEmailStatusWithDefaults() *EmailStatus {
 
 // GetFrom returns the From field value if set, zero value otherwise.
 func (o *EmailStatus) GetFrom() string {
-	if o == nil || o.From == nil {
+	if o == nil || isNil(o.From) {
 		var ret string
 		return ret
 	}
@@ -76,15 +76,15 @@ func (o *EmailStatus) GetFrom() string {
 // GetFromOk returns a tuple with the From field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailStatus) GetFromOk() (*string, bool) {
-	if o == nil || o.From == nil {
-		return nil, false
+	if o == nil || isNil(o.From) {
+    return nil, false
 	}
 	return o.From, true
 }
 
 // HasFrom returns a boolean if a field has been set.
 func (o *EmailStatus) HasFrom() bool {
-	if o != nil && o.From != nil {
+	if o != nil && !isNil(o.From) {
 		return true
 	}
 
@@ -98,7 +98,7 @@ func (o *EmailStatus) SetFrom(v string) {
 
 // GetTo returns the To field value if set, zero value otherwise.
 func (o *EmailStatus) GetTo() string {
-	if o == nil || o.To == nil {
+	if o == nil || isNil(o.To) {
 		var ret string
 		return ret
 	}
@@ -108,15 +108,15 @@ func (o *EmailStatus) GetTo() string {
 // GetToOk returns a tuple with the To field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailStatus) GetToOk() (*string, bool) {
-	if o == nil || o.To == nil {
-		return nil, false
+	if o == nil || isNil(o.To) {
+    return nil, false
 	}
 	return o.To, true
 }
 
 // HasTo returns a boolean if a field has been set.
 func (o *EmailStatus) HasTo() bool {
-	if o != nil && o.To != nil {
+	if o != nil && !isNil(o.To) {
 		return true
 	}
 
@@ -130,7 +130,7 @@ func (o *EmailStatus) SetTo(v string) {
 
 // GetDate returns the Date field value if set, zero value otherwise.
 func (o *EmailStatus) GetDate() time.Time {
-	if o == nil || o.Date == nil {
+	if o == nil || isNil(o.Date) {
 		var ret time.Time
 		return ret
 	}
@@ -140,15 +140,15 @@ func (o *EmailStatus) GetDate() time.Time {
 // GetDateOk returns a tuple with the Date field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailStatus) GetDateOk() (*time.Time, bool) {
-	if o == nil || o.Date == nil {
-		return nil, false
+	if o == nil || isNil(o.Date) {
+    return nil, false
 	}
 	return o.Date, true
 }
 
 // HasDate returns a boolean if a field has been set.
 func (o *EmailStatus) HasDate() bool {
-	if o != nil && o.Date != nil {
+	if o != nil && !isNil(o.Date) {
 		return true
 	}
 
@@ -162,7 +162,7 @@ func (o *EmailStatus) SetDate(v time.Time) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *EmailStatus) GetStatus() LogJobStatus {
-	if o == nil || o.Status == nil {
+	if o == nil || isNil(o.Status) {
 		var ret LogJobStatus
 		return ret
 	}
@@ -172,15 +172,15 @@ func (o *EmailStatus) GetStatus() LogJobStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailStatus) GetStatusOk() (*LogJobStatus, bool) {
-	if o == nil || o.Status == nil {
-		return nil, false
+	if o == nil || isNil(o.Status) {
+    return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *EmailStatus) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !isNil(o.Status) {
 		return true
 	}
 
@@ -194,7 +194,7 @@ func (o *EmailStatus) SetStatus(v LogJobStatus) {
 
 // GetStatusName returns the StatusName field value if set, zero value otherwise.
 func (o *EmailStatus) GetStatusName() string {
-	if o == nil || o.StatusName == nil {
+	if o == nil || isNil(o.StatusName) {
 		var ret string
 		return ret
 	}
@@ -204,15 +204,15 @@ func (o *EmailStatus) GetStatusName() string {
 // GetStatusNameOk returns a tuple with the StatusName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailStatus) GetStatusNameOk() (*string, bool) {
-	if o == nil || o.StatusName == nil {
-		return nil, false
+	if o == nil || isNil(o.StatusName) {
+    return nil, false
 	}
 	return o.StatusName, true
 }
 
 // HasStatusName returns a boolean if a field has been set.
 func (o *EmailStatus) HasStatusName() bool {
-	if o != nil && o.StatusName != nil {
+	if o != nil && !isNil(o.StatusName) {
 		return true
 	}
 
@@ -226,7 +226,7 @@ func (o *EmailStatus) SetStatusName(v string) {
 
 // GetStatusChangeDate returns the StatusChangeDate field value if set, zero value otherwise.
 func (o *EmailStatus) GetStatusChangeDate() time.Time {
-	if o == nil || o.StatusChangeDate == nil {
+	if o == nil || isNil(o.StatusChangeDate) {
 		var ret time.Time
 		return ret
 	}
@@ -236,15 +236,15 @@ func (o *EmailStatus) GetStatusChangeDate() time.Time {
 // GetStatusChangeDateOk returns a tuple with the StatusChangeDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailStatus) GetStatusChangeDateOk() (*time.Time, bool) {
-	if o == nil || o.StatusChangeDate == nil {
-		return nil, false
+	if o == nil || isNil(o.StatusChangeDate) {
+    return nil, false
 	}
 	return o.StatusChangeDate, true
 }
 
 // HasStatusChangeDate returns a boolean if a field has been set.
 func (o *EmailStatus) HasStatusChangeDate() bool {
-	if o != nil && o.StatusChangeDate != nil {
+	if o != nil && !isNil(o.StatusChangeDate) {
 		return true
 	}
 
@@ -258,7 +258,7 @@ func (o *EmailStatus) SetStatusChangeDate(v time.Time) {
 
 // GetDateSent returns the DateSent field value if set, zero value otherwise.
 func (o *EmailStatus) GetDateSent() time.Time {
-	if o == nil || o.DateSent == nil {
+	if o == nil || isNil(o.DateSent) {
 		var ret time.Time
 		return ret
 	}
@@ -268,15 +268,15 @@ func (o *EmailStatus) GetDateSent() time.Time {
 // GetDateSentOk returns a tuple with the DateSent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailStatus) GetDateSentOk() (*time.Time, bool) {
-	if o == nil || o.DateSent == nil {
-		return nil, false
+	if o == nil || isNil(o.DateSent) {
+    return nil, false
 	}
 	return o.DateSent, true
 }
 
 // HasDateSent returns a boolean if a field has been set.
 func (o *EmailStatus) HasDateSent() bool {
-	if o != nil && o.DateSent != nil {
+	if o != nil && !isNil(o.DateSent) {
 		return true
 	}
 
@@ -290,7 +290,7 @@ func (o *EmailStatus) SetDateSent(v time.Time) {
 
 // GetDateOpened returns the DateOpened field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EmailStatus) GetDateOpened() time.Time {
-	if o == nil || o.DateOpened.Get() == nil {
+	if o == nil || isNil(o.DateOpened.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -302,7 +302,7 @@ func (o *EmailStatus) GetDateOpened() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *EmailStatus) GetDateOpenedOk() (*time.Time, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.DateOpened.Get(), o.DateOpened.IsSet()
 }
@@ -332,7 +332,7 @@ func (o *EmailStatus) UnsetDateOpened() {
 
 // GetDateClicked returns the DateClicked field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EmailStatus) GetDateClicked() time.Time {
-	if o == nil || o.DateClicked.Get() == nil {
+	if o == nil || isNil(o.DateClicked.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -344,7 +344,7 @@ func (o *EmailStatus) GetDateClicked() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *EmailStatus) GetDateClickedOk() (*time.Time, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.DateClicked.Get(), o.DateClicked.IsSet()
 }
@@ -374,7 +374,7 @@ func (o *EmailStatus) UnsetDateClicked() {
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
 func (o *EmailStatus) GetErrorMessage() string {
-	if o == nil || o.ErrorMessage == nil {
+	if o == nil || isNil(o.ErrorMessage) {
 		var ret string
 		return ret
 	}
@@ -384,15 +384,15 @@ func (o *EmailStatus) GetErrorMessage() string {
 // GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailStatus) GetErrorMessageOk() (*string, bool) {
-	if o == nil || o.ErrorMessage == nil {
-		return nil, false
+	if o == nil || isNil(o.ErrorMessage) {
+    return nil, false
 	}
 	return o.ErrorMessage, true
 }
 
 // HasErrorMessage returns a boolean if a field has been set.
 func (o *EmailStatus) HasErrorMessage() bool {
-	if o != nil && o.ErrorMessage != nil {
+	if o != nil && !isNil(o.ErrorMessage) {
 		return true
 	}
 
@@ -406,7 +406,7 @@ func (o *EmailStatus) SetErrorMessage(v string) {
 
 // GetTransactionID returns the TransactionID field value if set, zero value otherwise.
 func (o *EmailStatus) GetTransactionID() string {
-	if o == nil || o.TransactionID == nil {
+	if o == nil || isNil(o.TransactionID) {
 		var ret string
 		return ret
 	}
@@ -416,15 +416,15 @@ func (o *EmailStatus) GetTransactionID() string {
 // GetTransactionIDOk returns a tuple with the TransactionID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailStatus) GetTransactionIDOk() (*string, bool) {
-	if o == nil || o.TransactionID == nil {
-		return nil, false
+	if o == nil || isNil(o.TransactionID) {
+    return nil, false
 	}
 	return o.TransactionID, true
 }
 
 // HasTransactionID returns a boolean if a field has been set.
 func (o *EmailStatus) HasTransactionID() bool {
-	if o != nil && o.TransactionID != nil {
+	if o != nil && !isNil(o.TransactionID) {
 		return true
 	}
 
@@ -438,7 +438,7 @@ func (o *EmailStatus) SetTransactionID(v string) {
 
 // GetEnvelopeFrom returns the EnvelopeFrom field value if set, zero value otherwise.
 func (o *EmailStatus) GetEnvelopeFrom() string {
-	if o == nil || o.EnvelopeFrom == nil {
+	if o == nil || isNil(o.EnvelopeFrom) {
 		var ret string
 		return ret
 	}
@@ -448,15 +448,15 @@ func (o *EmailStatus) GetEnvelopeFrom() string {
 // GetEnvelopeFromOk returns a tuple with the EnvelopeFrom field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailStatus) GetEnvelopeFromOk() (*string, bool) {
-	if o == nil || o.EnvelopeFrom == nil {
-		return nil, false
+	if o == nil || isNil(o.EnvelopeFrom) {
+    return nil, false
 	}
 	return o.EnvelopeFrom, true
 }
 
 // HasEnvelopeFrom returns a boolean if a field has been set.
 func (o *EmailStatus) HasEnvelopeFrom() bool {
-	if o != nil && o.EnvelopeFrom != nil {
+	if o != nil && !isNil(o.EnvelopeFrom) {
 		return true
 	}
 
@@ -470,25 +470,25 @@ func (o *EmailStatus) SetEnvelopeFrom(v string) {
 
 func (o EmailStatus) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.From != nil {
+	if !isNil(o.From) {
 		toSerialize["From"] = o.From
 	}
-	if o.To != nil {
+	if !isNil(o.To) {
 		toSerialize["To"] = o.To
 	}
-	if o.Date != nil {
+	if !isNil(o.Date) {
 		toSerialize["Date"] = o.Date
 	}
-	if o.Status != nil {
+	if !isNil(o.Status) {
 		toSerialize["Status"] = o.Status
 	}
-	if o.StatusName != nil {
+	if !isNil(o.StatusName) {
 		toSerialize["StatusName"] = o.StatusName
 	}
-	if o.StatusChangeDate != nil {
+	if !isNil(o.StatusChangeDate) {
 		toSerialize["StatusChangeDate"] = o.StatusChangeDate
 	}
-	if o.DateSent != nil {
+	if !isNil(o.DateSent) {
 		toSerialize["DateSent"] = o.DateSent
 	}
 	if o.DateOpened.IsSet() {
@@ -497,13 +497,13 @@ func (o EmailStatus) MarshalJSON() ([]byte, error) {
 	if o.DateClicked.IsSet() {
 		toSerialize["DateClicked"] = o.DateClicked.Get()
 	}
-	if o.ErrorMessage != nil {
+	if !isNil(o.ErrorMessage) {
 		toSerialize["ErrorMessage"] = o.ErrorMessage
 	}
-	if o.TransactionID != nil {
+	if !isNil(o.TransactionID) {
 		toSerialize["TransactionID"] = o.TransactionID
 	}
-	if o.EnvelopeFrom != nil {
+	if !isNil(o.EnvelopeFrom) {
 		toSerialize["EnvelopeFrom"] = o.EnvelopeFrom
 	}
 	return json.Marshal(toSerialize)

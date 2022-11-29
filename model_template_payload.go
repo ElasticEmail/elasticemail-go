@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -62,7 +62,7 @@ func (o *TemplatePayload) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *TemplatePayload) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -74,7 +74,7 @@ func (o *TemplatePayload) SetName(v string) {
 
 // GetSubject returns the Subject field value if set, zero value otherwise.
 func (o *TemplatePayload) GetSubject() string {
-	if o == nil || o.Subject == nil {
+	if o == nil || isNil(o.Subject) {
 		var ret string
 		return ret
 	}
@@ -84,15 +84,15 @@ func (o *TemplatePayload) GetSubject() string {
 // GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TemplatePayload) GetSubjectOk() (*string, bool) {
-	if o == nil || o.Subject == nil {
-		return nil, false
+	if o == nil || isNil(o.Subject) {
+    return nil, false
 	}
 	return o.Subject, true
 }
 
 // HasSubject returns a boolean if a field has been set.
 func (o *TemplatePayload) HasSubject() bool {
-	if o != nil && o.Subject != nil {
+	if o != nil && !isNil(o.Subject) {
 		return true
 	}
 
@@ -106,7 +106,7 @@ func (o *TemplatePayload) SetSubject(v string) {
 
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *TemplatePayload) GetBody() []BodyPart {
-	if o == nil || o.Body == nil {
+	if o == nil || isNil(o.Body) {
 		var ret []BodyPart
 		return ret
 	}
@@ -116,15 +116,15 @@ func (o *TemplatePayload) GetBody() []BodyPart {
 // GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TemplatePayload) GetBodyOk() ([]BodyPart, bool) {
-	if o == nil || o.Body == nil {
-		return nil, false
+	if o == nil || isNil(o.Body) {
+    return nil, false
 	}
 	return o.Body, true
 }
 
 // HasBody returns a boolean if a field has been set.
 func (o *TemplatePayload) HasBody() bool {
-	if o != nil && o.Body != nil {
+	if o != nil && !isNil(o.Body) {
 		return true
 	}
 
@@ -138,7 +138,7 @@ func (o *TemplatePayload) SetBody(v []BodyPart) {
 
 // GetTemplateScope returns the TemplateScope field value if set, zero value otherwise.
 func (o *TemplatePayload) GetTemplateScope() TemplateScope {
-	if o == nil || o.TemplateScope == nil {
+	if o == nil || isNil(o.TemplateScope) {
 		var ret TemplateScope
 		return ret
 	}
@@ -148,15 +148,15 @@ func (o *TemplatePayload) GetTemplateScope() TemplateScope {
 // GetTemplateScopeOk returns a tuple with the TemplateScope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TemplatePayload) GetTemplateScopeOk() (*TemplateScope, bool) {
-	if o == nil || o.TemplateScope == nil {
-		return nil, false
+	if o == nil || isNil(o.TemplateScope) {
+    return nil, false
 	}
 	return o.TemplateScope, true
 }
 
 // HasTemplateScope returns a boolean if a field has been set.
 func (o *TemplatePayload) HasTemplateScope() bool {
-	if o != nil && o.TemplateScope != nil {
+	if o != nil && !isNil(o.TemplateScope) {
 		return true
 	}
 
@@ -173,13 +173,13 @@ func (o TemplatePayload) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["Name"] = o.Name
 	}
-	if o.Subject != nil {
+	if !isNil(o.Subject) {
 		toSerialize["Subject"] = o.Subject
 	}
-	if o.Body != nil {
+	if !isNil(o.Body) {
 		toSerialize["Body"] = o.Body
 	}
-	if o.TemplateScope != nil {
+	if !isNil(o.TemplateScope) {
 		toSerialize["TemplateScope"] = o.TemplateScope
 	}
 	return json.Marshal(toSerialize)

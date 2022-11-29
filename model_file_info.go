@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -49,7 +49,7 @@ func NewFileInfoWithDefaults() *FileInfo {
 
 // GetFileName returns the FileName field value if set, zero value otherwise.
 func (o *FileInfo) GetFileName() string {
-	if o == nil || o.FileName == nil {
+	if o == nil || isNil(o.FileName) {
 		var ret string
 		return ret
 	}
@@ -59,15 +59,15 @@ func (o *FileInfo) GetFileName() string {
 // GetFileNameOk returns a tuple with the FileName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FileInfo) GetFileNameOk() (*string, bool) {
-	if o == nil || o.FileName == nil {
-		return nil, false
+	if o == nil || isNil(o.FileName) {
+    return nil, false
 	}
 	return o.FileName, true
 }
 
 // HasFileName returns a boolean if a field has been set.
 func (o *FileInfo) HasFileName() bool {
-	if o != nil && o.FileName != nil {
+	if o != nil && !isNil(o.FileName) {
 		return true
 	}
 
@@ -81,7 +81,7 @@ func (o *FileInfo) SetFileName(v string) {
 
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FileInfo) GetSize() int32 {
-	if o == nil || o.Size.Get() == nil {
+	if o == nil || isNil(o.Size.Get()) {
 		var ret int32
 		return ret
 	}
@@ -93,7 +93,7 @@ func (o *FileInfo) GetSize() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FileInfo) GetSizeOk() (*int32, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Size.Get(), o.Size.IsSet()
 }
@@ -123,7 +123,7 @@ func (o *FileInfo) UnsetSize() {
 
 // GetDateAdded returns the DateAdded field value if set, zero value otherwise.
 func (o *FileInfo) GetDateAdded() time.Time {
-	if o == nil || o.DateAdded == nil {
+	if o == nil || isNil(o.DateAdded) {
 		var ret time.Time
 		return ret
 	}
@@ -133,15 +133,15 @@ func (o *FileInfo) GetDateAdded() time.Time {
 // GetDateAddedOk returns a tuple with the DateAdded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FileInfo) GetDateAddedOk() (*time.Time, bool) {
-	if o == nil || o.DateAdded == nil {
-		return nil, false
+	if o == nil || isNil(o.DateAdded) {
+    return nil, false
 	}
 	return o.DateAdded, true
 }
 
 // HasDateAdded returns a boolean if a field has been set.
 func (o *FileInfo) HasDateAdded() bool {
-	if o != nil && o.DateAdded != nil {
+	if o != nil && !isNil(o.DateAdded) {
 		return true
 	}
 
@@ -155,7 +155,7 @@ func (o *FileInfo) SetDateAdded(v time.Time) {
 
 // GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FileInfo) GetExpirationDate() time.Time {
-	if o == nil || o.ExpirationDate.Get() == nil {
+	if o == nil || isNil(o.ExpirationDate.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -167,7 +167,7 @@ func (o *FileInfo) GetExpirationDate() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FileInfo) GetExpirationDateOk() (*time.Time, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.ExpirationDate.Get(), o.ExpirationDate.IsSet()
 }
@@ -197,7 +197,7 @@ func (o *FileInfo) UnsetExpirationDate() {
 
 // GetContentType returns the ContentType field value if set, zero value otherwise.
 func (o *FileInfo) GetContentType() string {
-	if o == nil || o.ContentType == nil {
+	if o == nil || isNil(o.ContentType) {
 		var ret string
 		return ret
 	}
@@ -207,15 +207,15 @@ func (o *FileInfo) GetContentType() string {
 // GetContentTypeOk returns a tuple with the ContentType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FileInfo) GetContentTypeOk() (*string, bool) {
-	if o == nil || o.ContentType == nil {
-		return nil, false
+	if o == nil || isNil(o.ContentType) {
+    return nil, false
 	}
 	return o.ContentType, true
 }
 
 // HasContentType returns a boolean if a field has been set.
 func (o *FileInfo) HasContentType() bool {
-	if o != nil && o.ContentType != nil {
+	if o != nil && !isNil(o.ContentType) {
 		return true
 	}
 
@@ -229,19 +229,19 @@ func (o *FileInfo) SetContentType(v string) {
 
 func (o FileInfo) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.FileName != nil {
+	if !isNil(o.FileName) {
 		toSerialize["FileName"] = o.FileName
 	}
 	if o.Size.IsSet() {
 		toSerialize["Size"] = o.Size.Get()
 	}
-	if o.DateAdded != nil {
+	if !isNil(o.DateAdded) {
 		toSerialize["DateAdded"] = o.DateAdded
 	}
 	if o.ExpirationDate.IsSet() {
 		toSerialize["ExpirationDate"] = o.ExpirationDate.Get()
 	}
-	if o.ContentType != nil {
+	if !isNil(o.ContentType) {
 		toSerialize["ContentType"] = o.ContentType
 	}
 	return json.Marshal(toSerialize)

@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -42,7 +42,7 @@ func NewSegmentWithDefaults() *Segment {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Segment) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -52,15 +52,15 @@ func (o *Segment) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Segment) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
-		return nil, false
+	if o == nil || isNil(o.Name) {
+    return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Segment) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !isNil(o.Name) {
 		return true
 	}
 
@@ -74,7 +74,7 @@ func (o *Segment) SetName(v string) {
 
 // GetRule returns the Rule field value if set, zero value otherwise.
 func (o *Segment) GetRule() string {
-	if o == nil || o.Rule == nil {
+	if o == nil || isNil(o.Rule) {
 		var ret string
 		return ret
 	}
@@ -84,15 +84,15 @@ func (o *Segment) GetRule() string {
 // GetRuleOk returns a tuple with the Rule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Segment) GetRuleOk() (*string, bool) {
-	if o == nil || o.Rule == nil {
-		return nil, false
+	if o == nil || isNil(o.Rule) {
+    return nil, false
 	}
 	return o.Rule, true
 }
 
 // HasRule returns a boolean if a field has been set.
 func (o *Segment) HasRule() bool {
-	if o != nil && o.Rule != nil {
+	if o != nil && !isNil(o.Rule) {
 		return true
 	}
 
@@ -106,10 +106,10 @@ func (o *Segment) SetRule(v string) {
 
 func (o Segment) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
+	if !isNil(o.Name) {
 		toSerialize["Name"] = o.Name
 	}
-	if o.Rule != nil {
+	if !isNil(o.Rule) {
 		toSerialize["Rule"] = o.Rule
 	}
 	return json.Marshal(toSerialize)

@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BinaryContent** | **string** | File&#39;s content as byte array (or a Base64 string) | 
-**Name** | Pointer to **string** | Display name of the file | [optional] 
+**Name** | **string** | Display name of the file | 
 **ContentType** | Pointer to **string** | MIME content type | [optional] 
 
 ## Methods
 
 ### NewMessageAttachment
 
-`func NewMessageAttachment(binaryContent string, ) *MessageAttachment`
+`func NewMessageAttachment(binaryContent string, name string, ) *MessageAttachment`
 
 NewMessageAttachment instantiates a new MessageAttachment object
 This constructor will assign default values to properties that have it defined,
@@ -66,11 +66,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *MessageAttachment) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetContentType
 

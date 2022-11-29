@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -63,7 +63,7 @@ func (o *ApiKeyPayload) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *ApiKeyPayload) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -87,7 +87,7 @@ func (o *ApiKeyPayload) GetAccessLevel() []AccessLevel {
 // and a boolean to check if the value has been set.
 func (o *ApiKeyPayload) GetAccessLevelOk() ([]AccessLevel, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.AccessLevel, true
 }
@@ -99,7 +99,7 @@ func (o *ApiKeyPayload) SetAccessLevel(v []AccessLevel) {
 
 // GetExpires returns the Expires field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ApiKeyPayload) GetExpires() time.Time {
-	if o == nil || o.Expires.Get() == nil {
+	if o == nil || isNil(o.Expires.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -111,7 +111,7 @@ func (o *ApiKeyPayload) GetExpires() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ApiKeyPayload) GetExpiresOk() (*time.Time, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Expires.Get(), o.Expires.IsSet()
 }
@@ -141,7 +141,7 @@ func (o *ApiKeyPayload) UnsetExpires() {
 
 // GetRestrictAccessToIPRange returns the RestrictAccessToIPRange field value if set, zero value otherwise.
 func (o *ApiKeyPayload) GetRestrictAccessToIPRange() []string {
-	if o == nil || o.RestrictAccessToIPRange == nil {
+	if o == nil || isNil(o.RestrictAccessToIPRange) {
 		var ret []string
 		return ret
 	}
@@ -151,15 +151,15 @@ func (o *ApiKeyPayload) GetRestrictAccessToIPRange() []string {
 // GetRestrictAccessToIPRangeOk returns a tuple with the RestrictAccessToIPRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiKeyPayload) GetRestrictAccessToIPRangeOk() ([]string, bool) {
-	if o == nil || o.RestrictAccessToIPRange == nil {
-		return nil, false
+	if o == nil || isNil(o.RestrictAccessToIPRange) {
+    return nil, false
 	}
 	return o.RestrictAccessToIPRange, true
 }
 
 // HasRestrictAccessToIPRange returns a boolean if a field has been set.
 func (o *ApiKeyPayload) HasRestrictAccessToIPRange() bool {
-	if o != nil && o.RestrictAccessToIPRange != nil {
+	if o != nil && !isNil(o.RestrictAccessToIPRange) {
 		return true
 	}
 
@@ -173,7 +173,7 @@ func (o *ApiKeyPayload) SetRestrictAccessToIPRange(v []string) {
 
 // GetSubaccount returns the Subaccount field value if set, zero value otherwise.
 func (o *ApiKeyPayload) GetSubaccount() string {
-	if o == nil || o.Subaccount == nil {
+	if o == nil || isNil(o.Subaccount) {
 		var ret string
 		return ret
 	}
@@ -183,15 +183,15 @@ func (o *ApiKeyPayload) GetSubaccount() string {
 // GetSubaccountOk returns a tuple with the Subaccount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiKeyPayload) GetSubaccountOk() (*string, bool) {
-	if o == nil || o.Subaccount == nil {
-		return nil, false
+	if o == nil || isNil(o.Subaccount) {
+    return nil, false
 	}
 	return o.Subaccount, true
 }
 
 // HasSubaccount returns a boolean if a field has been set.
 func (o *ApiKeyPayload) HasSubaccount() bool {
-	if o != nil && o.Subaccount != nil {
+	if o != nil && !isNil(o.Subaccount) {
 		return true
 	}
 
@@ -214,10 +214,10 @@ func (o ApiKeyPayload) MarshalJSON() ([]byte, error) {
 	if o.Expires.IsSet() {
 		toSerialize["Expires"] = o.Expires.Get()
 	}
-	if o.RestrictAccessToIPRange != nil {
+	if !isNil(o.RestrictAccessToIPRange) {
 		toSerialize["RestrictAccessToIPRange"] = o.RestrictAccessToIPRange
 	}
-	if o.Subaccount != nil {
+	if !isNil(o.Subaccount) {
 		toSerialize["Subaccount"] = o.Subaccount
 	}
 	return json.Marshal(toSerialize)

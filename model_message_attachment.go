@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -20,7 +20,7 @@ type MessageAttachment struct {
 	// File's content as byte array (or a Base64 string)
 	BinaryContent string `json:"BinaryContent"`
 	// Display name of the file
-	Name *string `json:"Name,omitempty"`
+	Name string `json:"Name"`
 	// MIME content type
 	ContentType *string `json:"ContentType,omitempty"`
 }
@@ -29,9 +29,10 @@ type MessageAttachment struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMessageAttachment(binaryContent string) *MessageAttachment {
+func NewMessageAttachment(binaryContent string, name string) *MessageAttachment {
 	this := MessageAttachment{}
 	this.BinaryContent = binaryContent
+	this.Name = name
 	return &this
 }
 
@@ -57,7 +58,7 @@ func (o *MessageAttachment) GetBinaryContent() string {
 // and a boolean to check if the value has been set.
 func (o *MessageAttachment) GetBinaryContentOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.BinaryContent, true
 }
@@ -67,41 +68,33 @@ func (o *MessageAttachment) SetBinaryContent(v string) {
 	o.BinaryContent = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *MessageAttachment) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *MessageAttachment) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
-		return nil, false
+	if o == nil {
+    return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *MessageAttachment) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *MessageAttachment) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
 // GetContentType returns the ContentType field value if set, zero value otherwise.
 func (o *MessageAttachment) GetContentType() string {
-	if o == nil || o.ContentType == nil {
+	if o == nil || isNil(o.ContentType) {
 		var ret string
 		return ret
 	}
@@ -111,15 +104,15 @@ func (o *MessageAttachment) GetContentType() string {
 // GetContentTypeOk returns a tuple with the ContentType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageAttachment) GetContentTypeOk() (*string, bool) {
-	if o == nil || o.ContentType == nil {
-		return nil, false
+	if o == nil || isNil(o.ContentType) {
+    return nil, false
 	}
 	return o.ContentType, true
 }
 
 // HasContentType returns a boolean if a field has been set.
 func (o *MessageAttachment) HasContentType() bool {
-	if o != nil && o.ContentType != nil {
+	if o != nil && !isNil(o.ContentType) {
 		return true
 	}
 
@@ -136,10 +129,10 @@ func (o MessageAttachment) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["BinaryContent"] = o.BinaryContent
 	}
-	if o.Name != nil {
+	if true {
 		toSerialize["Name"] = o.Name
 	}
-	if o.ContentType != nil {
+	if !isNil(o.ContentType) {
 		toSerialize["ContentType"] = o.ContentType
 	}
 	return json.Marshal(toSerialize)

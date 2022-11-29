@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -68,7 +68,7 @@ func (o *InboundPayload) GetFilter() string {
 // and a boolean to check if the value has been set.
 func (o *InboundPayload) GetFilterOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Filter, true
 }
@@ -92,7 +92,7 @@ func (o *InboundPayload) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *InboundPayload) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -116,7 +116,7 @@ func (o *InboundPayload) GetFilterType() InboundRouteFilterType {
 // and a boolean to check if the value has been set.
 func (o *InboundPayload) GetFilterTypeOk() (*InboundRouteFilterType, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.FilterType, true
 }
@@ -140,7 +140,7 @@ func (o *InboundPayload) GetActionType() InboundRouteActionType {
 // and a boolean to check if the value has been set.
 func (o *InboundPayload) GetActionTypeOk() (*InboundRouteActionType, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.ActionType, true
 }
@@ -152,7 +152,7 @@ func (o *InboundPayload) SetActionType(v InboundRouteActionType) {
 
 // GetEmailAddress returns the EmailAddress field value if set, zero value otherwise.
 func (o *InboundPayload) GetEmailAddress() string {
-	if o == nil || o.EmailAddress == nil {
+	if o == nil || isNil(o.EmailAddress) {
 		var ret string
 		return ret
 	}
@@ -162,15 +162,15 @@ func (o *InboundPayload) GetEmailAddress() string {
 // GetEmailAddressOk returns a tuple with the EmailAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InboundPayload) GetEmailAddressOk() (*string, bool) {
-	if o == nil || o.EmailAddress == nil {
-		return nil, false
+	if o == nil || isNil(o.EmailAddress) {
+    return nil, false
 	}
 	return o.EmailAddress, true
 }
 
 // HasEmailAddress returns a boolean if a field has been set.
 func (o *InboundPayload) HasEmailAddress() bool {
-	if o != nil && o.EmailAddress != nil {
+	if o != nil && !isNil(o.EmailAddress) {
 		return true
 	}
 
@@ -184,7 +184,7 @@ func (o *InboundPayload) SetEmailAddress(v string) {
 
 // GetHttpAddress returns the HttpAddress field value if set, zero value otherwise.
 func (o *InboundPayload) GetHttpAddress() string {
-	if o == nil || o.HttpAddress == nil {
+	if o == nil || isNil(o.HttpAddress) {
 		var ret string
 		return ret
 	}
@@ -194,15 +194,15 @@ func (o *InboundPayload) GetHttpAddress() string {
 // GetHttpAddressOk returns a tuple with the HttpAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InboundPayload) GetHttpAddressOk() (*string, bool) {
-	if o == nil || o.HttpAddress == nil {
-		return nil, false
+	if o == nil || isNil(o.HttpAddress) {
+    return nil, false
 	}
 	return o.HttpAddress, true
 }
 
 // HasHttpAddress returns a boolean if a field has been set.
 func (o *InboundPayload) HasHttpAddress() bool {
-	if o != nil && o.HttpAddress != nil {
+	if o != nil && !isNil(o.HttpAddress) {
 		return true
 	}
 
@@ -228,10 +228,10 @@ func (o InboundPayload) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["ActionType"] = o.ActionType
 	}
-	if o.EmailAddress != nil {
+	if !isNil(o.EmailAddress) {
 		toSerialize["EmailAddress"] = o.EmailAddress
 	}
-	if o.HttpAddress != nil {
+	if !isNil(o.HttpAddress) {
 		toSerialize["HttpAddress"] = o.HttpAddress
 	}
 	return json.Marshal(toSerialize)

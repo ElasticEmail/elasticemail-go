@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -58,7 +58,7 @@ func (o *BodyPart) GetContentType() BodyContentType {
 // and a boolean to check if the value has been set.
 func (o *BodyPart) GetContentTypeOk() (*BodyContentType, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.ContentType, true
 }
@@ -70,7 +70,7 @@ func (o *BodyPart) SetContentType(v BodyContentType) {
 
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *BodyPart) GetContent() string {
-	if o == nil || o.Content == nil {
+	if o == nil || isNil(o.Content) {
 		var ret string
 		return ret
 	}
@@ -80,15 +80,15 @@ func (o *BodyPart) GetContent() string {
 // GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BodyPart) GetContentOk() (*string, bool) {
-	if o == nil || o.Content == nil {
-		return nil, false
+	if o == nil || isNil(o.Content) {
+    return nil, false
 	}
 	return o.Content, true
 }
 
 // HasContent returns a boolean if a field has been set.
 func (o *BodyPart) HasContent() bool {
-	if o != nil && o.Content != nil {
+	if o != nil && !isNil(o.Content) {
 		return true
 	}
 
@@ -102,7 +102,7 @@ func (o *BodyPart) SetContent(v string) {
 
 // GetCharset returns the Charset field value if set, zero value otherwise.
 func (o *BodyPart) GetCharset() string {
-	if o == nil || o.Charset == nil {
+	if o == nil || isNil(o.Charset) {
 		var ret string
 		return ret
 	}
@@ -112,15 +112,15 @@ func (o *BodyPart) GetCharset() string {
 // GetCharsetOk returns a tuple with the Charset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BodyPart) GetCharsetOk() (*string, bool) {
-	if o == nil || o.Charset == nil {
-		return nil, false
+	if o == nil || isNil(o.Charset) {
+    return nil, false
 	}
 	return o.Charset, true
 }
 
 // HasCharset returns a boolean if a field has been set.
 func (o *BodyPart) HasCharset() bool {
-	if o != nil && o.Charset != nil {
+	if o != nil && !isNil(o.Charset) {
 		return true
 	}
 
@@ -137,10 +137,10 @@ func (o BodyPart) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["ContentType"] = o.ContentType
 	}
-	if o.Content != nil {
+	if !isNil(o.Content) {
 		toSerialize["Content"] = o.Content
 	}
-	if o.Charset != nil {
+	if !isNil(o.Charset) {
 		toSerialize["Charset"] = o.Charset
 	}
 	return json.Marshal(toSerialize)

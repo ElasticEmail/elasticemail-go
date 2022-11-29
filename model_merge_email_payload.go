@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -54,7 +54,7 @@ func (o *MergeEmailPayload) GetMergeFile() MessageAttachment {
 // and a boolean to check if the value has been set.
 func (o *MergeEmailPayload) GetMergeFileOk() (*MessageAttachment, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.MergeFile, true
 }
@@ -66,7 +66,7 @@ func (o *MergeEmailPayload) SetMergeFile(v MessageAttachment) {
 
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *MergeEmailPayload) GetContent() EmailContent {
-	if o == nil || o.Content == nil {
+	if o == nil || isNil(o.Content) {
 		var ret EmailContent
 		return ret
 	}
@@ -76,15 +76,15 @@ func (o *MergeEmailPayload) GetContent() EmailContent {
 // GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MergeEmailPayload) GetContentOk() (*EmailContent, bool) {
-	if o == nil || o.Content == nil {
-		return nil, false
+	if o == nil || isNil(o.Content) {
+    return nil, false
 	}
 	return o.Content, true
 }
 
 // HasContent returns a boolean if a field has been set.
 func (o *MergeEmailPayload) HasContent() bool {
-	if o != nil && o.Content != nil {
+	if o != nil && !isNil(o.Content) {
 		return true
 	}
 
@@ -98,7 +98,7 @@ func (o *MergeEmailPayload) SetContent(v EmailContent) {
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *MergeEmailPayload) GetOptions() Options {
-	if o == nil || o.Options == nil {
+	if o == nil || isNil(o.Options) {
 		var ret Options
 		return ret
 	}
@@ -108,15 +108,15 @@ func (o *MergeEmailPayload) GetOptions() Options {
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MergeEmailPayload) GetOptionsOk() (*Options, bool) {
-	if o == nil || o.Options == nil {
-		return nil, false
+	if o == nil || isNil(o.Options) {
+    return nil, false
 	}
 	return o.Options, true
 }
 
 // HasOptions returns a boolean if a field has been set.
 func (o *MergeEmailPayload) HasOptions() bool {
-	if o != nil && o.Options != nil {
+	if o != nil && !isNil(o.Options) {
 		return true
 	}
 
@@ -133,10 +133,10 @@ func (o MergeEmailPayload) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["MergeFile"] = o.MergeFile
 	}
-	if o.Content != nil {
+	if !isNil(o.Content) {
 		toSerialize["Content"] = o.Content
 	}
-	if o.Options != nil {
+	if !isNil(o.Options) {
 		toSerialize["Options"] = o.Options
 	}
 	return json.Marshal(toSerialize)

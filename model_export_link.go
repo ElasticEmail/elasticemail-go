@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -42,7 +42,7 @@ func NewExportLinkWithDefaults() *ExportLink {
 
 // GetLink returns the Link field value if set, zero value otherwise.
 func (o *ExportLink) GetLink() string {
-	if o == nil || o.Link == nil {
+	if o == nil || isNil(o.Link) {
 		var ret string
 		return ret
 	}
@@ -52,15 +52,15 @@ func (o *ExportLink) GetLink() string {
 // GetLinkOk returns a tuple with the Link field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExportLink) GetLinkOk() (*string, bool) {
-	if o == nil || o.Link == nil {
-		return nil, false
+	if o == nil || isNil(o.Link) {
+    return nil, false
 	}
 	return o.Link, true
 }
 
 // HasLink returns a boolean if a field has been set.
 func (o *ExportLink) HasLink() bool {
-	if o != nil && o.Link != nil {
+	if o != nil && !isNil(o.Link) {
 		return true
 	}
 
@@ -74,7 +74,7 @@ func (o *ExportLink) SetLink(v string) {
 
 // GetPublicExportID returns the PublicExportID field value if set, zero value otherwise.
 func (o *ExportLink) GetPublicExportID() string {
-	if o == nil || o.PublicExportID == nil {
+	if o == nil || isNil(o.PublicExportID) {
 		var ret string
 		return ret
 	}
@@ -84,15 +84,15 @@ func (o *ExportLink) GetPublicExportID() string {
 // GetPublicExportIDOk returns a tuple with the PublicExportID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExportLink) GetPublicExportIDOk() (*string, bool) {
-	if o == nil || o.PublicExportID == nil {
-		return nil, false
+	if o == nil || isNil(o.PublicExportID) {
+    return nil, false
 	}
 	return o.PublicExportID, true
 }
 
 // HasPublicExportID returns a boolean if a field has been set.
 func (o *ExportLink) HasPublicExportID() bool {
-	if o != nil && o.PublicExportID != nil {
+	if o != nil && !isNil(o.PublicExportID) {
 		return true
 	}
 
@@ -106,10 +106,10 @@ func (o *ExportLink) SetPublicExportID(v string) {
 
 func (o ExportLink) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Link != nil {
+	if !isNil(o.Link) {
 		toSerialize["Link"] = o.Link
 	}
-	if o.PublicExportID != nil {
+	if !isNil(o.PublicExportID) {
 		toSerialize["PublicExportID"] = o.PublicExportID
 	}
 	return json.Marshal(toSerialize)

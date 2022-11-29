@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -60,7 +60,7 @@ func NewEmailValidationResultWithDefaults() *EmailValidationResult {
 
 // GetAccount returns the Account field value if set, zero value otherwise.
 func (o *EmailValidationResult) GetAccount() string {
-	if o == nil || o.Account == nil {
+	if o == nil || isNil(o.Account) {
 		var ret string
 		return ret
 	}
@@ -70,15 +70,15 @@ func (o *EmailValidationResult) GetAccount() string {
 // GetAccountOk returns a tuple with the Account field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailValidationResult) GetAccountOk() (*string, bool) {
-	if o == nil || o.Account == nil {
-		return nil, false
+	if o == nil || isNil(o.Account) {
+    return nil, false
 	}
 	return o.Account, true
 }
 
 // HasAccount returns a boolean if a field has been set.
 func (o *EmailValidationResult) HasAccount() bool {
-	if o != nil && o.Account != nil {
+	if o != nil && !isNil(o.Account) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *EmailValidationResult) SetAccount(v string) {
 
 // GetDomain returns the Domain field value if set, zero value otherwise.
 func (o *EmailValidationResult) GetDomain() string {
-	if o == nil || o.Domain == nil {
+	if o == nil || isNil(o.Domain) {
 		var ret string
 		return ret
 	}
@@ -102,15 +102,15 @@ func (o *EmailValidationResult) GetDomain() string {
 // GetDomainOk returns a tuple with the Domain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailValidationResult) GetDomainOk() (*string, bool) {
-	if o == nil || o.Domain == nil {
-		return nil, false
+	if o == nil || isNil(o.Domain) {
+    return nil, false
 	}
 	return o.Domain, true
 }
 
 // HasDomain returns a boolean if a field has been set.
 func (o *EmailValidationResult) HasDomain() bool {
-	if o != nil && o.Domain != nil {
+	if o != nil && !isNil(o.Domain) {
 		return true
 	}
 
@@ -124,7 +124,7 @@ func (o *EmailValidationResult) SetDomain(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *EmailValidationResult) GetEmail() string {
-	if o == nil || o.Email == nil {
+	if o == nil || isNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -134,15 +134,15 @@ func (o *EmailValidationResult) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailValidationResult) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
-		return nil, false
+	if o == nil || isNil(o.Email) {
+    return nil, false
 	}
 	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *EmailValidationResult) HasEmail() bool {
-	if o != nil && o.Email != nil {
+	if o != nil && !isNil(o.Email) {
 		return true
 	}
 
@@ -156,7 +156,7 @@ func (o *EmailValidationResult) SetEmail(v string) {
 
 // GetSuggestedSpelling returns the SuggestedSpelling field value if set, zero value otherwise.
 func (o *EmailValidationResult) GetSuggestedSpelling() string {
-	if o == nil || o.SuggestedSpelling == nil {
+	if o == nil || isNil(o.SuggestedSpelling) {
 		var ret string
 		return ret
 	}
@@ -166,15 +166,15 @@ func (o *EmailValidationResult) GetSuggestedSpelling() string {
 // GetSuggestedSpellingOk returns a tuple with the SuggestedSpelling field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailValidationResult) GetSuggestedSpellingOk() (*string, bool) {
-	if o == nil || o.SuggestedSpelling == nil {
-		return nil, false
+	if o == nil || isNil(o.SuggestedSpelling) {
+    return nil, false
 	}
 	return o.SuggestedSpelling, true
 }
 
 // HasSuggestedSpelling returns a boolean if a field has been set.
 func (o *EmailValidationResult) HasSuggestedSpelling() bool {
-	if o != nil && o.SuggestedSpelling != nil {
+	if o != nil && !isNil(o.SuggestedSpelling) {
 		return true
 	}
 
@@ -188,7 +188,7 @@ func (o *EmailValidationResult) SetSuggestedSpelling(v string) {
 
 // GetDisposable returns the Disposable field value if set, zero value otherwise.
 func (o *EmailValidationResult) GetDisposable() bool {
-	if o == nil || o.Disposable == nil {
+	if o == nil || isNil(o.Disposable) {
 		var ret bool
 		return ret
 	}
@@ -198,15 +198,15 @@ func (o *EmailValidationResult) GetDisposable() bool {
 // GetDisposableOk returns a tuple with the Disposable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailValidationResult) GetDisposableOk() (*bool, bool) {
-	if o == nil || o.Disposable == nil {
-		return nil, false
+	if o == nil || isNil(o.Disposable) {
+    return nil, false
 	}
 	return o.Disposable, true
 }
 
 // HasDisposable returns a boolean if a field has been set.
 func (o *EmailValidationResult) HasDisposable() bool {
-	if o != nil && o.Disposable != nil {
+	if o != nil && !isNil(o.Disposable) {
 		return true
 	}
 
@@ -220,7 +220,7 @@ func (o *EmailValidationResult) SetDisposable(v bool) {
 
 // GetRole returns the Role field value if set, zero value otherwise.
 func (o *EmailValidationResult) GetRole() bool {
-	if o == nil || o.Role == nil {
+	if o == nil || isNil(o.Role) {
 		var ret bool
 		return ret
 	}
@@ -230,15 +230,15 @@ func (o *EmailValidationResult) GetRole() bool {
 // GetRoleOk returns a tuple with the Role field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailValidationResult) GetRoleOk() (*bool, bool) {
-	if o == nil || o.Role == nil {
-		return nil, false
+	if o == nil || isNil(o.Role) {
+    return nil, false
 	}
 	return o.Role, true
 }
 
 // HasRole returns a boolean if a field has been set.
 func (o *EmailValidationResult) HasRole() bool {
-	if o != nil && o.Role != nil {
+	if o != nil && !isNil(o.Role) {
 		return true
 	}
 
@@ -252,7 +252,7 @@ func (o *EmailValidationResult) SetRole(v bool) {
 
 // GetReason returns the Reason field value if set, zero value otherwise.
 func (o *EmailValidationResult) GetReason() string {
-	if o == nil || o.Reason == nil {
+	if o == nil || isNil(o.Reason) {
 		var ret string
 		return ret
 	}
@@ -262,15 +262,15 @@ func (o *EmailValidationResult) GetReason() string {
 // GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailValidationResult) GetReasonOk() (*string, bool) {
-	if o == nil || o.Reason == nil {
-		return nil, false
+	if o == nil || isNil(o.Reason) {
+    return nil, false
 	}
 	return o.Reason, true
 }
 
 // HasReason returns a boolean if a field has been set.
 func (o *EmailValidationResult) HasReason() bool {
-	if o != nil && o.Reason != nil {
+	if o != nil && !isNil(o.Reason) {
 		return true
 	}
 
@@ -284,7 +284,7 @@ func (o *EmailValidationResult) SetReason(v string) {
 
 // GetDateAdded returns the DateAdded field value if set, zero value otherwise.
 func (o *EmailValidationResult) GetDateAdded() time.Time {
-	if o == nil || o.DateAdded == nil {
+	if o == nil || isNil(o.DateAdded) {
 		var ret time.Time
 		return ret
 	}
@@ -294,15 +294,15 @@ func (o *EmailValidationResult) GetDateAdded() time.Time {
 // GetDateAddedOk returns a tuple with the DateAdded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailValidationResult) GetDateAddedOk() (*time.Time, bool) {
-	if o == nil || o.DateAdded == nil {
-		return nil, false
+	if o == nil || isNil(o.DateAdded) {
+    return nil, false
 	}
 	return o.DateAdded, true
 }
 
 // HasDateAdded returns a boolean if a field has been set.
 func (o *EmailValidationResult) HasDateAdded() bool {
-	if o != nil && o.DateAdded != nil {
+	if o != nil && !isNil(o.DateAdded) {
 		return true
 	}
 
@@ -316,7 +316,7 @@ func (o *EmailValidationResult) SetDateAdded(v time.Time) {
 
 // GetResult returns the Result field value if set, zero value otherwise.
 func (o *EmailValidationResult) GetResult() EmailValidationStatus {
-	if o == nil || o.Result == nil {
+	if o == nil || isNil(o.Result) {
 		var ret EmailValidationStatus
 		return ret
 	}
@@ -326,15 +326,15 @@ func (o *EmailValidationResult) GetResult() EmailValidationStatus {
 // GetResultOk returns a tuple with the Result field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailValidationResult) GetResultOk() (*EmailValidationStatus, bool) {
-	if o == nil || o.Result == nil {
-		return nil, false
+	if o == nil || isNil(o.Result) {
+    return nil, false
 	}
 	return o.Result, true
 }
 
 // HasResult returns a boolean if a field has been set.
 func (o *EmailValidationResult) HasResult() bool {
-	if o != nil && o.Result != nil {
+	if o != nil && !isNil(o.Result) {
 		return true
 	}
 
@@ -348,31 +348,31 @@ func (o *EmailValidationResult) SetResult(v EmailValidationStatus) {
 
 func (o EmailValidationResult) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Account != nil {
+	if !isNil(o.Account) {
 		toSerialize["Account"] = o.Account
 	}
-	if o.Domain != nil {
+	if !isNil(o.Domain) {
 		toSerialize["Domain"] = o.Domain
 	}
-	if o.Email != nil {
+	if !isNil(o.Email) {
 		toSerialize["Email"] = o.Email
 	}
-	if o.SuggestedSpelling != nil {
+	if !isNil(o.SuggestedSpelling) {
 		toSerialize["SuggestedSpelling"] = o.SuggestedSpelling
 	}
-	if o.Disposable != nil {
+	if !isNil(o.Disposable) {
 		toSerialize["Disposable"] = o.Disposable
 	}
-	if o.Role != nil {
+	if !isNil(o.Role) {
 		toSerialize["Role"] = o.Role
 	}
-	if o.Reason != nil {
+	if !isNil(o.Reason) {
 		toSerialize["Reason"] = o.Reason
 	}
-	if o.DateAdded != nil {
+	if !isNil(o.DateAdded) {
 		toSerialize["DateAdded"] = o.DateAdded
 	}
-	if o.Result != nil {
+	if !isNil(o.Result) {
 		toSerialize["Result"] = o.Result
 	}
 	return json.Marshal(toSerialize)

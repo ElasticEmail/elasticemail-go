@@ -7,8 +7,6 @@
 
 * `UNDER_REVIEW` (value: `"UnderReview"`)
 
-* `NO_PAYMENTS_ALLOWED` (value: `"NoPaymentsAllowed"`)
-
 * `NEVER_SIGNED_IN` (value: `"NeverSignedIn"`)
 
 * `ACTIVE` (value: `"Active"`)

@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -51,7 +51,7 @@ func NewCampaignWithDefaults() *Campaign {
 
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *Campaign) GetContent() []CampaignTemplate {
-	if o == nil || o.Content == nil {
+	if o == nil || isNil(o.Content) {
 		var ret []CampaignTemplate
 		return ret
 	}
@@ -61,15 +61,15 @@ func (o *Campaign) GetContent() []CampaignTemplate {
 // GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Campaign) GetContentOk() ([]CampaignTemplate, bool) {
-	if o == nil || o.Content == nil {
-		return nil, false
+	if o == nil || isNil(o.Content) {
+    return nil, false
 	}
 	return o.Content, true
 }
 
 // HasContent returns a boolean if a field has been set.
 func (o *Campaign) HasContent() bool {
-	if o != nil && o.Content != nil {
+	if o != nil && !isNil(o.Content) {
 		return true
 	}
 
@@ -95,7 +95,7 @@ func (o *Campaign) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *Campaign) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -107,7 +107,7 @@ func (o *Campaign) SetName(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *Campaign) GetStatus() CampaignStatus {
-	if o == nil || o.Status == nil {
+	if o == nil || isNil(o.Status) {
 		var ret CampaignStatus
 		return ret
 	}
@@ -117,15 +117,15 @@ func (o *Campaign) GetStatus() CampaignStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Campaign) GetStatusOk() (*CampaignStatus, bool) {
-	if o == nil || o.Status == nil {
-		return nil, false
+	if o == nil || isNil(o.Status) {
+    return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Campaign) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !isNil(o.Status) {
 		return true
 	}
 
@@ -151,7 +151,7 @@ func (o *Campaign) GetRecipients() CampaignRecipient {
 // and a boolean to check if the value has been set.
 func (o *Campaign) GetRecipientsOk() (*CampaignRecipient, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Recipients, true
 }
@@ -163,7 +163,7 @@ func (o *Campaign) SetRecipients(v CampaignRecipient) {
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *Campaign) GetOptions() CampaignOptions {
-	if o == nil || o.Options == nil {
+	if o == nil || isNil(o.Options) {
 		var ret CampaignOptions
 		return ret
 	}
@@ -173,15 +173,15 @@ func (o *Campaign) GetOptions() CampaignOptions {
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Campaign) GetOptionsOk() (*CampaignOptions, bool) {
-	if o == nil || o.Options == nil {
-		return nil, false
+	if o == nil || isNil(o.Options) {
+    return nil, false
 	}
 	return o.Options, true
 }
 
 // HasOptions returns a boolean if a field has been set.
 func (o *Campaign) HasOptions() bool {
-	if o != nil && o.Options != nil {
+	if o != nil && !isNil(o.Options) {
 		return true
 	}
 
@@ -195,19 +195,19 @@ func (o *Campaign) SetOptions(v CampaignOptions) {
 
 func (o Campaign) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Content != nil {
+	if !isNil(o.Content) {
 		toSerialize["Content"] = o.Content
 	}
 	if true {
 		toSerialize["Name"] = o.Name
 	}
-	if o.Status != nil {
+	if !isNil(o.Status) {
 		toSerialize["Status"] = o.Status
 	}
 	if true {
 		toSerialize["Recipients"] = o.Recipients
 	}
-	if o.Options != nil {
+	if !isNil(o.Options) {
 		toSerialize["Options"] = o.Options
 	}
 	return json.Marshal(toSerialize)

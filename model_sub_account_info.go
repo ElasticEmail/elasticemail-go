@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -59,7 +59,7 @@ func NewSubAccountInfoWithDefaults() *SubAccountInfo {
 
 // GetPublicAccountID returns the PublicAccountID field value if set, zero value otherwise.
 func (o *SubAccountInfo) GetPublicAccountID() string {
-	if o == nil || o.PublicAccountID == nil {
+	if o == nil || isNil(o.PublicAccountID) {
 		var ret string
 		return ret
 	}
@@ -69,15 +69,15 @@ func (o *SubAccountInfo) GetPublicAccountID() string {
 // GetPublicAccountIDOk returns a tuple with the PublicAccountID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubAccountInfo) GetPublicAccountIDOk() (*string, bool) {
-	if o == nil || o.PublicAccountID == nil {
-		return nil, false
+	if o == nil || isNil(o.PublicAccountID) {
+    return nil, false
 	}
 	return o.PublicAccountID, true
 }
 
 // HasPublicAccountID returns a boolean if a field has been set.
 func (o *SubAccountInfo) HasPublicAccountID() bool {
-	if o != nil && o.PublicAccountID != nil {
+	if o != nil && !isNil(o.PublicAccountID) {
 		return true
 	}
 
@@ -91,7 +91,7 @@ func (o *SubAccountInfo) SetPublicAccountID(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *SubAccountInfo) GetEmail() string {
-	if o == nil || o.Email == nil {
+	if o == nil || isNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -101,15 +101,15 @@ func (o *SubAccountInfo) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubAccountInfo) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
-		return nil, false
+	if o == nil || isNil(o.Email) {
+    return nil, false
 	}
 	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *SubAccountInfo) HasEmail() bool {
-	if o != nil && o.Email != nil {
+	if o != nil && !isNil(o.Email) {
 		return true
 	}
 
@@ -123,7 +123,7 @@ func (o *SubAccountInfo) SetEmail(v string) {
 
 // GetSettings returns the Settings field value if set, zero value otherwise.
 func (o *SubAccountInfo) GetSettings() SubaccountSettingsInfo {
-	if o == nil || o.Settings == nil {
+	if o == nil || isNil(o.Settings) {
 		var ret SubaccountSettingsInfo
 		return ret
 	}
@@ -133,15 +133,15 @@ func (o *SubAccountInfo) GetSettings() SubaccountSettingsInfo {
 // GetSettingsOk returns a tuple with the Settings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubAccountInfo) GetSettingsOk() (*SubaccountSettingsInfo, bool) {
-	if o == nil || o.Settings == nil {
-		return nil, false
+	if o == nil || isNil(o.Settings) {
+    return nil, false
 	}
 	return o.Settings, true
 }
 
 // HasSettings returns a boolean if a field has been set.
 func (o *SubAccountInfo) HasSettings() bool {
-	if o != nil && o.Settings != nil {
+	if o != nil && !isNil(o.Settings) {
 		return true
 	}
 
@@ -155,7 +155,7 @@ func (o *SubAccountInfo) SetSettings(v SubaccountSettingsInfo) {
 
 // GetLastActivity returns the LastActivity field value if set, zero value otherwise.
 func (o *SubAccountInfo) GetLastActivity() time.Time {
-	if o == nil || o.LastActivity == nil {
+	if o == nil || isNil(o.LastActivity) {
 		var ret time.Time
 		return ret
 	}
@@ -165,15 +165,15 @@ func (o *SubAccountInfo) GetLastActivity() time.Time {
 // GetLastActivityOk returns a tuple with the LastActivity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubAccountInfo) GetLastActivityOk() (*time.Time, bool) {
-	if o == nil || o.LastActivity == nil {
-		return nil, false
+	if o == nil || isNil(o.LastActivity) {
+    return nil, false
 	}
 	return o.LastActivity, true
 }
 
 // HasLastActivity returns a boolean if a field has been set.
 func (o *SubAccountInfo) HasLastActivity() bool {
-	if o != nil && o.LastActivity != nil {
+	if o != nil && !isNil(o.LastActivity) {
 		return true
 	}
 
@@ -187,7 +187,7 @@ func (o *SubAccountInfo) SetLastActivity(v time.Time) {
 
 // GetEmailCredits returns the EmailCredits field value if set, zero value otherwise.
 func (o *SubAccountInfo) GetEmailCredits() int32 {
-	if o == nil || o.EmailCredits == nil {
+	if o == nil || isNil(o.EmailCredits) {
 		var ret int32
 		return ret
 	}
@@ -197,15 +197,15 @@ func (o *SubAccountInfo) GetEmailCredits() int32 {
 // GetEmailCreditsOk returns a tuple with the EmailCredits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubAccountInfo) GetEmailCreditsOk() (*int32, bool) {
-	if o == nil || o.EmailCredits == nil {
-		return nil, false
+	if o == nil || isNil(o.EmailCredits) {
+    return nil, false
 	}
 	return o.EmailCredits, true
 }
 
 // HasEmailCredits returns a boolean if a field has been set.
 func (o *SubAccountInfo) HasEmailCredits() bool {
-	if o != nil && o.EmailCredits != nil {
+	if o != nil && !isNil(o.EmailCredits) {
 		return true
 	}
 
@@ -219,7 +219,7 @@ func (o *SubAccountInfo) SetEmailCredits(v int32) {
 
 // GetTotalEmailsSent returns the TotalEmailsSent field value if set, zero value otherwise.
 func (o *SubAccountInfo) GetTotalEmailsSent() int64 {
-	if o == nil || o.TotalEmailsSent == nil {
+	if o == nil || isNil(o.TotalEmailsSent) {
 		var ret int64
 		return ret
 	}
@@ -229,15 +229,15 @@ func (o *SubAccountInfo) GetTotalEmailsSent() int64 {
 // GetTotalEmailsSentOk returns a tuple with the TotalEmailsSent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubAccountInfo) GetTotalEmailsSentOk() (*int64, bool) {
-	if o == nil || o.TotalEmailsSent == nil {
-		return nil, false
+	if o == nil || isNil(o.TotalEmailsSent) {
+    return nil, false
 	}
 	return o.TotalEmailsSent, true
 }
 
 // HasTotalEmailsSent returns a boolean if a field has been set.
 func (o *SubAccountInfo) HasTotalEmailsSent() bool {
-	if o != nil && o.TotalEmailsSent != nil {
+	if o != nil && !isNil(o.TotalEmailsSent) {
 		return true
 	}
 
@@ -251,7 +251,7 @@ func (o *SubAccountInfo) SetTotalEmailsSent(v int64) {
 
 // GetReputation returns the Reputation field value if set, zero value otherwise.
 func (o *SubAccountInfo) GetReputation() float64 {
-	if o == nil || o.Reputation == nil {
+	if o == nil || isNil(o.Reputation) {
 		var ret float64
 		return ret
 	}
@@ -261,15 +261,15 @@ func (o *SubAccountInfo) GetReputation() float64 {
 // GetReputationOk returns a tuple with the Reputation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubAccountInfo) GetReputationOk() (*float64, bool) {
-	if o == nil || o.Reputation == nil {
-		return nil, false
+	if o == nil || isNil(o.Reputation) {
+    return nil, false
 	}
 	return o.Reputation, true
 }
 
 // HasReputation returns a boolean if a field has been set.
 func (o *SubAccountInfo) HasReputation() bool {
-	if o != nil && o.Reputation != nil {
+	if o != nil && !isNil(o.Reputation) {
 		return true
 	}
 
@@ -283,7 +283,7 @@ func (o *SubAccountInfo) SetReputation(v float64) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *SubAccountInfo) GetStatus() AccountStatusEnum {
-	if o == nil || o.Status == nil {
+	if o == nil || isNil(o.Status) {
 		var ret AccountStatusEnum
 		return ret
 	}
@@ -293,15 +293,15 @@ func (o *SubAccountInfo) GetStatus() AccountStatusEnum {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubAccountInfo) GetStatusOk() (*AccountStatusEnum, bool) {
-	if o == nil || o.Status == nil {
-		return nil, false
+	if o == nil || isNil(o.Status) {
+    return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *SubAccountInfo) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !isNil(o.Status) {
 		return true
 	}
 
@@ -315,7 +315,7 @@ func (o *SubAccountInfo) SetStatus(v AccountStatusEnum) {
 
 // GetContactsCount returns the ContactsCount field value if set, zero value otherwise.
 func (o *SubAccountInfo) GetContactsCount() int32 {
-	if o == nil || o.ContactsCount == nil {
+	if o == nil || isNil(o.ContactsCount) {
 		var ret int32
 		return ret
 	}
@@ -325,15 +325,15 @@ func (o *SubAccountInfo) GetContactsCount() int32 {
 // GetContactsCountOk returns a tuple with the ContactsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubAccountInfo) GetContactsCountOk() (*int32, bool) {
-	if o == nil || o.ContactsCount == nil {
-		return nil, false
+	if o == nil || isNil(o.ContactsCount) {
+    return nil, false
 	}
 	return o.ContactsCount, true
 }
 
 // HasContactsCount returns a boolean if a field has been set.
 func (o *SubAccountInfo) HasContactsCount() bool {
-	if o != nil && o.ContactsCount != nil {
+	if o != nil && !isNil(o.ContactsCount) {
 		return true
 	}
 
@@ -347,31 +347,31 @@ func (o *SubAccountInfo) SetContactsCount(v int32) {
 
 func (o SubAccountInfo) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.PublicAccountID != nil {
+	if !isNil(o.PublicAccountID) {
 		toSerialize["PublicAccountID"] = o.PublicAccountID
 	}
-	if o.Email != nil {
+	if !isNil(o.Email) {
 		toSerialize["Email"] = o.Email
 	}
-	if o.Settings != nil {
+	if !isNil(o.Settings) {
 		toSerialize["Settings"] = o.Settings
 	}
-	if o.LastActivity != nil {
+	if !isNil(o.LastActivity) {
 		toSerialize["LastActivity"] = o.LastActivity
 	}
-	if o.EmailCredits != nil {
+	if !isNil(o.EmailCredits) {
 		toSerialize["EmailCredits"] = o.EmailCredits
 	}
-	if o.TotalEmailsSent != nil {
+	if !isNil(o.TotalEmailsSent) {
 		toSerialize["TotalEmailsSent"] = o.TotalEmailsSent
 	}
-	if o.Reputation != nil {
+	if !isNil(o.Reputation) {
 		toSerialize["Reputation"] = o.Reputation
 	}
-	if o.Status != nil {
+	if !isNil(o.Status) {
 		toSerialize["Status"] = o.Status
 	}
-	if o.ContactsCount != nil {
+	if !isNil(o.ContactsCount) {
 		toSerialize["ContactsCount"] = o.ContactsCount
 	}
 	return json.Marshal(toSerialize)

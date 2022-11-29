@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -44,7 +44,7 @@ func NewEmailViewWithDefaults() *EmailView {
 
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *EmailView) GetBody() string {
-	if o == nil || o.Body == nil {
+	if o == nil || isNil(o.Body) {
 		var ret string
 		return ret
 	}
@@ -54,15 +54,15 @@ func (o *EmailView) GetBody() string {
 // GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailView) GetBodyOk() (*string, bool) {
-	if o == nil || o.Body == nil {
-		return nil, false
+	if o == nil || isNil(o.Body) {
+    return nil, false
 	}
 	return o.Body, true
 }
 
 // HasBody returns a boolean if a field has been set.
 func (o *EmailView) HasBody() bool {
-	if o != nil && o.Body != nil {
+	if o != nil && !isNil(o.Body) {
 		return true
 	}
 
@@ -76,7 +76,7 @@ func (o *EmailView) SetBody(v string) {
 
 // GetSubject returns the Subject field value if set, zero value otherwise.
 func (o *EmailView) GetSubject() string {
-	if o == nil || o.Subject == nil {
+	if o == nil || isNil(o.Subject) {
 		var ret string
 		return ret
 	}
@@ -86,15 +86,15 @@ func (o *EmailView) GetSubject() string {
 // GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailView) GetSubjectOk() (*string, bool) {
-	if o == nil || o.Subject == nil {
-		return nil, false
+	if o == nil || isNil(o.Subject) {
+    return nil, false
 	}
 	return o.Subject, true
 }
 
 // HasSubject returns a boolean if a field has been set.
 func (o *EmailView) HasSubject() bool {
-	if o != nil && o.Subject != nil {
+	if o != nil && !isNil(o.Subject) {
 		return true
 	}
 
@@ -108,7 +108,7 @@ func (o *EmailView) SetSubject(v string) {
 
 // GetFrom returns the From field value if set, zero value otherwise.
 func (o *EmailView) GetFrom() string {
-	if o == nil || o.From == nil {
+	if o == nil || isNil(o.From) {
 		var ret string
 		return ret
 	}
@@ -118,15 +118,15 @@ func (o *EmailView) GetFrom() string {
 // GetFromOk returns a tuple with the From field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailView) GetFromOk() (*string, bool) {
-	if o == nil || o.From == nil {
-		return nil, false
+	if o == nil || isNil(o.From) {
+    return nil, false
 	}
 	return o.From, true
 }
 
 // HasFrom returns a boolean if a field has been set.
 func (o *EmailView) HasFrom() bool {
-	if o != nil && o.From != nil {
+	if o != nil && !isNil(o.From) {
 		return true
 	}
 
@@ -140,13 +140,13 @@ func (o *EmailView) SetFrom(v string) {
 
 func (o EmailView) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Body != nil {
+	if !isNil(o.Body) {
 		toSerialize["Body"] = o.Body
 	}
-	if o.Subject != nil {
+	if !isNil(o.Subject) {
 		toSerialize["Subject"] = o.Subject
 	}
-	if o.From != nil {
+	if !isNil(o.From) {
 		toSerialize["From"] = o.From
 	}
 	return json.Marshal(toSerialize)

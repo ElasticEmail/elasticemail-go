@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -57,7 +57,7 @@ func (o *ListPayload) GetListName() string {
 // and a boolean to check if the value has been set.
 func (o *ListPayload) GetListNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.ListName, true
 }
@@ -69,7 +69,7 @@ func (o *ListPayload) SetListName(v string) {
 
 // GetAllowUnsubscribe returns the AllowUnsubscribe field value if set, zero value otherwise.
 func (o *ListPayload) GetAllowUnsubscribe() bool {
-	if o == nil || o.AllowUnsubscribe == nil {
+	if o == nil || isNil(o.AllowUnsubscribe) {
 		var ret bool
 		return ret
 	}
@@ -79,15 +79,15 @@ func (o *ListPayload) GetAllowUnsubscribe() bool {
 // GetAllowUnsubscribeOk returns a tuple with the AllowUnsubscribe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListPayload) GetAllowUnsubscribeOk() (*bool, bool) {
-	if o == nil || o.AllowUnsubscribe == nil {
-		return nil, false
+	if o == nil || isNil(o.AllowUnsubscribe) {
+    return nil, false
 	}
 	return o.AllowUnsubscribe, true
 }
 
 // HasAllowUnsubscribe returns a boolean if a field has been set.
 func (o *ListPayload) HasAllowUnsubscribe() bool {
-	if o != nil && o.AllowUnsubscribe != nil {
+	if o != nil && !isNil(o.AllowUnsubscribe) {
 		return true
 	}
 
@@ -101,7 +101,7 @@ func (o *ListPayload) SetAllowUnsubscribe(v bool) {
 
 // GetEmails returns the Emails field value if set, zero value otherwise.
 func (o *ListPayload) GetEmails() []string {
-	if o == nil || o.Emails == nil {
+	if o == nil || isNil(o.Emails) {
 		var ret []string
 		return ret
 	}
@@ -111,15 +111,15 @@ func (o *ListPayload) GetEmails() []string {
 // GetEmailsOk returns a tuple with the Emails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListPayload) GetEmailsOk() ([]string, bool) {
-	if o == nil || o.Emails == nil {
-		return nil, false
+	if o == nil || isNil(o.Emails) {
+    return nil, false
 	}
 	return o.Emails, true
 }
 
 // HasEmails returns a boolean if a field has been set.
 func (o *ListPayload) HasEmails() bool {
-	if o != nil && o.Emails != nil {
+	if o != nil && !isNil(o.Emails) {
 		return true
 	}
 
@@ -136,10 +136,10 @@ func (o ListPayload) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["ListName"] = o.ListName
 	}
-	if o.AllowUnsubscribe != nil {
+	if !isNil(o.AllowUnsubscribe) {
 		toSerialize["AllowUnsubscribe"] = o.AllowUnsubscribe
 	}
-	if o.Emails != nil {
+	if !isNil(o.Emails) {
 		toSerialize["Emails"] = o.Emails
 	}
 	return json.Marshal(toSerialize)

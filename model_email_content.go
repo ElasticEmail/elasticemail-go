@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -61,7 +61,7 @@ func NewEmailContentWithDefaults() *EmailContent {
 
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *EmailContent) GetBody() []BodyPart {
-	if o == nil || o.Body == nil {
+	if o == nil || isNil(o.Body) {
 		var ret []BodyPart
 		return ret
 	}
@@ -71,15 +71,15 @@ func (o *EmailContent) GetBody() []BodyPart {
 // GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetBodyOk() ([]BodyPart, bool) {
-	if o == nil || o.Body == nil {
-		return nil, false
+	if o == nil || isNil(o.Body) {
+    return nil, false
 	}
 	return o.Body, true
 }
 
 // HasBody returns a boolean if a field has been set.
 func (o *EmailContent) HasBody() bool {
-	if o != nil && o.Body != nil {
+	if o != nil && !isNil(o.Body) {
 		return true
 	}
 
@@ -93,7 +93,7 @@ func (o *EmailContent) SetBody(v []BodyPart) {
 
 // GetMerge returns the Merge field value if set, zero value otherwise.
 func (o *EmailContent) GetMerge() map[string]string {
-	if o == nil || o.Merge == nil {
+	if o == nil || isNil(o.Merge) {
 		var ret map[string]string
 		return ret
 	}
@@ -103,15 +103,15 @@ func (o *EmailContent) GetMerge() map[string]string {
 // GetMergeOk returns a tuple with the Merge field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetMergeOk() (*map[string]string, bool) {
-	if o == nil || o.Merge == nil {
-		return nil, false
+	if o == nil || isNil(o.Merge) {
+    return nil, false
 	}
 	return o.Merge, true
 }
 
 // HasMerge returns a boolean if a field has been set.
 func (o *EmailContent) HasMerge() bool {
-	if o != nil && o.Merge != nil {
+	if o != nil && !isNil(o.Merge) {
 		return true
 	}
 
@@ -125,7 +125,7 @@ func (o *EmailContent) SetMerge(v map[string]string) {
 
 // GetAttachments returns the Attachments field value if set, zero value otherwise.
 func (o *EmailContent) GetAttachments() []MessageAttachment {
-	if o == nil || o.Attachments == nil {
+	if o == nil || isNil(o.Attachments) {
 		var ret []MessageAttachment
 		return ret
 	}
@@ -135,15 +135,15 @@ func (o *EmailContent) GetAttachments() []MessageAttachment {
 // GetAttachmentsOk returns a tuple with the Attachments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetAttachmentsOk() ([]MessageAttachment, bool) {
-	if o == nil || o.Attachments == nil {
-		return nil, false
+	if o == nil || isNil(o.Attachments) {
+    return nil, false
 	}
 	return o.Attachments, true
 }
 
 // HasAttachments returns a boolean if a field has been set.
 func (o *EmailContent) HasAttachments() bool {
-	if o != nil && o.Attachments != nil {
+	if o != nil && !isNil(o.Attachments) {
 		return true
 	}
 
@@ -157,7 +157,7 @@ func (o *EmailContent) SetAttachments(v []MessageAttachment) {
 
 // GetHeaders returns the Headers field value if set, zero value otherwise.
 func (o *EmailContent) GetHeaders() map[string]string {
-	if o == nil || o.Headers == nil {
+	if o == nil || isNil(o.Headers) {
 		var ret map[string]string
 		return ret
 	}
@@ -167,15 +167,15 @@ func (o *EmailContent) GetHeaders() map[string]string {
 // GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetHeadersOk() (*map[string]string, bool) {
-	if o == nil || o.Headers == nil {
-		return nil, false
+	if o == nil || isNil(o.Headers) {
+    return nil, false
 	}
 	return o.Headers, true
 }
 
 // HasHeaders returns a boolean if a field has been set.
 func (o *EmailContent) HasHeaders() bool {
-	if o != nil && o.Headers != nil {
+	if o != nil && !isNil(o.Headers) {
 		return true
 	}
 
@@ -189,7 +189,7 @@ func (o *EmailContent) SetHeaders(v map[string]string) {
 
 // GetPostback returns the Postback field value if set, zero value otherwise.
 func (o *EmailContent) GetPostback() string {
-	if o == nil || o.Postback == nil {
+	if o == nil || isNil(o.Postback) {
 		var ret string
 		return ret
 	}
@@ -199,15 +199,15 @@ func (o *EmailContent) GetPostback() string {
 // GetPostbackOk returns a tuple with the Postback field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetPostbackOk() (*string, bool) {
-	if o == nil || o.Postback == nil {
-		return nil, false
+	if o == nil || isNil(o.Postback) {
+    return nil, false
 	}
 	return o.Postback, true
 }
 
 // HasPostback returns a boolean if a field has been set.
 func (o *EmailContent) HasPostback() bool {
-	if o != nil && o.Postback != nil {
+	if o != nil && !isNil(o.Postback) {
 		return true
 	}
 
@@ -221,7 +221,7 @@ func (o *EmailContent) SetPostback(v string) {
 
 // GetEnvelopeFrom returns the EnvelopeFrom field value if set, zero value otherwise.
 func (o *EmailContent) GetEnvelopeFrom() string {
-	if o == nil || o.EnvelopeFrom == nil {
+	if o == nil || isNil(o.EnvelopeFrom) {
 		var ret string
 		return ret
 	}
@@ -231,15 +231,15 @@ func (o *EmailContent) GetEnvelopeFrom() string {
 // GetEnvelopeFromOk returns a tuple with the EnvelopeFrom field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetEnvelopeFromOk() (*string, bool) {
-	if o == nil || o.EnvelopeFrom == nil {
-		return nil, false
+	if o == nil || isNil(o.EnvelopeFrom) {
+    return nil, false
 	}
 	return o.EnvelopeFrom, true
 }
 
 // HasEnvelopeFrom returns a boolean if a field has been set.
 func (o *EmailContent) HasEnvelopeFrom() bool {
-	if o != nil && o.EnvelopeFrom != nil {
+	if o != nil && !isNil(o.EnvelopeFrom) {
 		return true
 	}
 
@@ -253,7 +253,7 @@ func (o *EmailContent) SetEnvelopeFrom(v string) {
 
 // GetFrom returns the From field value if set, zero value otherwise.
 func (o *EmailContent) GetFrom() string {
-	if o == nil || o.From == nil {
+	if o == nil || isNil(o.From) {
 		var ret string
 		return ret
 	}
@@ -263,15 +263,15 @@ func (o *EmailContent) GetFrom() string {
 // GetFromOk returns a tuple with the From field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetFromOk() (*string, bool) {
-	if o == nil || o.From == nil {
-		return nil, false
+	if o == nil || isNil(o.From) {
+    return nil, false
 	}
 	return o.From, true
 }
 
 // HasFrom returns a boolean if a field has been set.
 func (o *EmailContent) HasFrom() bool {
-	if o != nil && o.From != nil {
+	if o != nil && !isNil(o.From) {
 		return true
 	}
 
@@ -285,7 +285,7 @@ func (o *EmailContent) SetFrom(v string) {
 
 // GetReplyTo returns the ReplyTo field value if set, zero value otherwise.
 func (o *EmailContent) GetReplyTo() string {
-	if o == nil || o.ReplyTo == nil {
+	if o == nil || isNil(o.ReplyTo) {
 		var ret string
 		return ret
 	}
@@ -295,15 +295,15 @@ func (o *EmailContent) GetReplyTo() string {
 // GetReplyToOk returns a tuple with the ReplyTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetReplyToOk() (*string, bool) {
-	if o == nil || o.ReplyTo == nil {
-		return nil, false
+	if o == nil || isNil(o.ReplyTo) {
+    return nil, false
 	}
 	return o.ReplyTo, true
 }
 
 // HasReplyTo returns a boolean if a field has been set.
 func (o *EmailContent) HasReplyTo() bool {
-	if o != nil && o.ReplyTo != nil {
+	if o != nil && !isNil(o.ReplyTo) {
 		return true
 	}
 
@@ -317,7 +317,7 @@ func (o *EmailContent) SetReplyTo(v string) {
 
 // GetSubject returns the Subject field value if set, zero value otherwise.
 func (o *EmailContent) GetSubject() string {
-	if o == nil || o.Subject == nil {
+	if o == nil || isNil(o.Subject) {
 		var ret string
 		return ret
 	}
@@ -327,15 +327,15 @@ func (o *EmailContent) GetSubject() string {
 // GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetSubjectOk() (*string, bool) {
-	if o == nil || o.Subject == nil {
-		return nil, false
+	if o == nil || isNil(o.Subject) {
+    return nil, false
 	}
 	return o.Subject, true
 }
 
 // HasSubject returns a boolean if a field has been set.
 func (o *EmailContent) HasSubject() bool {
-	if o != nil && o.Subject != nil {
+	if o != nil && !isNil(o.Subject) {
 		return true
 	}
 
@@ -349,7 +349,7 @@ func (o *EmailContent) SetSubject(v string) {
 
 // GetTemplateName returns the TemplateName field value if set, zero value otherwise.
 func (o *EmailContent) GetTemplateName() string {
-	if o == nil || o.TemplateName == nil {
+	if o == nil || isNil(o.TemplateName) {
 		var ret string
 		return ret
 	}
@@ -359,15 +359,15 @@ func (o *EmailContent) GetTemplateName() string {
 // GetTemplateNameOk returns a tuple with the TemplateName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetTemplateNameOk() (*string, bool) {
-	if o == nil || o.TemplateName == nil {
-		return nil, false
+	if o == nil || isNil(o.TemplateName) {
+    return nil, false
 	}
 	return o.TemplateName, true
 }
 
 // HasTemplateName returns a boolean if a field has been set.
 func (o *EmailContent) HasTemplateName() bool {
-	if o != nil && o.TemplateName != nil {
+	if o != nil && !isNil(o.TemplateName) {
 		return true
 	}
 
@@ -381,7 +381,7 @@ func (o *EmailContent) SetTemplateName(v string) {
 
 // GetAttachFiles returns the AttachFiles field value if set, zero value otherwise.
 func (o *EmailContent) GetAttachFiles() []string {
-	if o == nil || o.AttachFiles == nil {
+	if o == nil || isNil(o.AttachFiles) {
 		var ret []string
 		return ret
 	}
@@ -391,15 +391,15 @@ func (o *EmailContent) GetAttachFiles() []string {
 // GetAttachFilesOk returns a tuple with the AttachFiles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetAttachFilesOk() ([]string, bool) {
-	if o == nil || o.AttachFiles == nil {
-		return nil, false
+	if o == nil || isNil(o.AttachFiles) {
+    return nil, false
 	}
 	return o.AttachFiles, true
 }
 
 // HasAttachFiles returns a boolean if a field has been set.
 func (o *EmailContent) HasAttachFiles() bool {
-	if o != nil && o.AttachFiles != nil {
+	if o != nil && !isNil(o.AttachFiles) {
 		return true
 	}
 
@@ -413,7 +413,7 @@ func (o *EmailContent) SetAttachFiles(v []string) {
 
 // GetUtm returns the Utm field value if set, zero value otherwise.
 func (o *EmailContent) GetUtm() Utm {
-	if o == nil || o.Utm == nil {
+	if o == nil || isNil(o.Utm) {
 		var ret Utm
 		return ret
 	}
@@ -423,15 +423,15 @@ func (o *EmailContent) GetUtm() Utm {
 // GetUtmOk returns a tuple with the Utm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetUtmOk() (*Utm, bool) {
-	if o == nil || o.Utm == nil {
-		return nil, false
+	if o == nil || isNil(o.Utm) {
+    return nil, false
 	}
 	return o.Utm, true
 }
 
 // HasUtm returns a boolean if a field has been set.
 func (o *EmailContent) HasUtm() bool {
-	if o != nil && o.Utm != nil {
+	if o != nil && !isNil(o.Utm) {
 		return true
 	}
 
@@ -445,40 +445,40 @@ func (o *EmailContent) SetUtm(v Utm) {
 
 func (o EmailContent) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Body != nil {
+	if !isNil(o.Body) {
 		toSerialize["Body"] = o.Body
 	}
-	if o.Merge != nil {
+	if !isNil(o.Merge) {
 		toSerialize["Merge"] = o.Merge
 	}
-	if o.Attachments != nil {
+	if !isNil(o.Attachments) {
 		toSerialize["Attachments"] = o.Attachments
 	}
-	if o.Headers != nil {
+	if !isNil(o.Headers) {
 		toSerialize["Headers"] = o.Headers
 	}
-	if o.Postback != nil {
+	if !isNil(o.Postback) {
 		toSerialize["Postback"] = o.Postback
 	}
-	if o.EnvelopeFrom != nil {
+	if !isNil(o.EnvelopeFrom) {
 		toSerialize["EnvelopeFrom"] = o.EnvelopeFrom
 	}
-	if o.From != nil {
+	if !isNil(o.From) {
 		toSerialize["From"] = o.From
 	}
-	if o.ReplyTo != nil {
+	if !isNil(o.ReplyTo) {
 		toSerialize["ReplyTo"] = o.ReplyTo
 	}
-	if o.Subject != nil {
+	if !isNil(o.Subject) {
 		toSerialize["Subject"] = o.Subject
 	}
-	if o.TemplateName != nil {
+	if !isNil(o.TemplateName) {
 		toSerialize["TemplateName"] = o.TemplateName
 	}
-	if o.AttachFiles != nil {
+	if !isNil(o.AttachFiles) {
 		toSerialize["AttachFiles"] = o.AttachFiles
 	}
-	if o.Utm != nil {
+	if !isNil(o.Utm) {
 		toSerialize["Utm"] = o.Utm
 	}
 	return json.Marshal(toSerialize)

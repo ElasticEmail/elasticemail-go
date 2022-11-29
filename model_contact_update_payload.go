@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -44,7 +44,7 @@ func NewContactUpdatePayloadWithDefaults() *ContactUpdatePayload {
 
 // GetFirstName returns the FirstName field value if set, zero value otherwise.
 func (o *ContactUpdatePayload) GetFirstName() string {
-	if o == nil || o.FirstName == nil {
+	if o == nil || isNil(o.FirstName) {
 		var ret string
 		return ret
 	}
@@ -54,15 +54,15 @@ func (o *ContactUpdatePayload) GetFirstName() string {
 // GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactUpdatePayload) GetFirstNameOk() (*string, bool) {
-	if o == nil || o.FirstName == nil {
-		return nil, false
+	if o == nil || isNil(o.FirstName) {
+    return nil, false
 	}
 	return o.FirstName, true
 }
 
 // HasFirstName returns a boolean if a field has been set.
 func (o *ContactUpdatePayload) HasFirstName() bool {
-	if o != nil && o.FirstName != nil {
+	if o != nil && !isNil(o.FirstName) {
 		return true
 	}
 
@@ -76,7 +76,7 @@ func (o *ContactUpdatePayload) SetFirstName(v string) {
 
 // GetLastName returns the LastName field value if set, zero value otherwise.
 func (o *ContactUpdatePayload) GetLastName() string {
-	if o == nil || o.LastName == nil {
+	if o == nil || isNil(o.LastName) {
 		var ret string
 		return ret
 	}
@@ -86,15 +86,15 @@ func (o *ContactUpdatePayload) GetLastName() string {
 // GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactUpdatePayload) GetLastNameOk() (*string, bool) {
-	if o == nil || o.LastName == nil {
-		return nil, false
+	if o == nil || isNil(o.LastName) {
+    return nil, false
 	}
 	return o.LastName, true
 }
 
 // HasLastName returns a boolean if a field has been set.
 func (o *ContactUpdatePayload) HasLastName() bool {
-	if o != nil && o.LastName != nil {
+	if o != nil && !isNil(o.LastName) {
 		return true
 	}
 
@@ -108,7 +108,7 @@ func (o *ContactUpdatePayload) SetLastName(v string) {
 
 // GetCustomFields returns the CustomFields field value if set, zero value otherwise.
 func (o *ContactUpdatePayload) GetCustomFields() map[string]string {
-	if o == nil || o.CustomFields == nil {
+	if o == nil || isNil(o.CustomFields) {
 		var ret map[string]string
 		return ret
 	}
@@ -118,15 +118,15 @@ func (o *ContactUpdatePayload) GetCustomFields() map[string]string {
 // GetCustomFieldsOk returns a tuple with the CustomFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactUpdatePayload) GetCustomFieldsOk() (*map[string]string, bool) {
-	if o == nil || o.CustomFields == nil {
-		return nil, false
+	if o == nil || isNil(o.CustomFields) {
+    return nil, false
 	}
 	return o.CustomFields, true
 }
 
 // HasCustomFields returns a boolean if a field has been set.
 func (o *ContactUpdatePayload) HasCustomFields() bool {
-	if o != nil && o.CustomFields != nil {
+	if o != nil && !isNil(o.CustomFields) {
 		return true
 	}
 
@@ -140,13 +140,13 @@ func (o *ContactUpdatePayload) SetCustomFields(v map[string]string) {
 
 func (o ContactUpdatePayload) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.FirstName != nil {
+	if !isNil(o.FirstName) {
 		toSerialize["FirstName"] = o.FirstName
 	}
-	if o.LastName != nil {
+	if !isNil(o.LastName) {
 		toSerialize["LastName"] = o.LastName
 	}
-	if o.CustomFields != nil {
+	if !isNil(o.CustomFields) {
 		toSerialize["CustomFields"] = o.CustomFields
 	}
 	return json.Marshal(toSerialize)

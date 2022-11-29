@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -53,7 +53,7 @@ func NewOptionsWithDefaults() *Options {
 
 // GetTimeOffset returns the TimeOffset field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Options) GetTimeOffset() int32 {
-	if o == nil || o.TimeOffset.Get() == nil {
+	if o == nil || isNil(o.TimeOffset.Get()) {
 		var ret int32
 		return ret
 	}
@@ -65,7 +65,7 @@ func (o *Options) GetTimeOffset() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Options) GetTimeOffsetOk() (*int32, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.TimeOffset.Get(), o.TimeOffset.IsSet()
 }
@@ -95,7 +95,7 @@ func (o *Options) UnsetTimeOffset() {
 
 // GetPoolName returns the PoolName field value if set, zero value otherwise.
 func (o *Options) GetPoolName() string {
-	if o == nil || o.PoolName == nil {
+	if o == nil || isNil(o.PoolName) {
 		var ret string
 		return ret
 	}
@@ -105,15 +105,15 @@ func (o *Options) GetPoolName() string {
 // GetPoolNameOk returns a tuple with the PoolName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Options) GetPoolNameOk() (*string, bool) {
-	if o == nil || o.PoolName == nil {
-		return nil, false
+	if o == nil || isNil(o.PoolName) {
+    return nil, false
 	}
 	return o.PoolName, true
 }
 
 // HasPoolName returns a boolean if a field has been set.
 func (o *Options) HasPoolName() bool {
-	if o != nil && o.PoolName != nil {
+	if o != nil && !isNil(o.PoolName) {
 		return true
 	}
 
@@ -127,7 +127,7 @@ func (o *Options) SetPoolName(v string) {
 
 // GetChannelName returns the ChannelName field value if set, zero value otherwise.
 func (o *Options) GetChannelName() string {
-	if o == nil || o.ChannelName == nil {
+	if o == nil || isNil(o.ChannelName) {
 		var ret string
 		return ret
 	}
@@ -137,15 +137,15 @@ func (o *Options) GetChannelName() string {
 // GetChannelNameOk returns a tuple with the ChannelName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Options) GetChannelNameOk() (*string, bool) {
-	if o == nil || o.ChannelName == nil {
-		return nil, false
+	if o == nil || isNil(o.ChannelName) {
+    return nil, false
 	}
 	return o.ChannelName, true
 }
 
 // HasChannelName returns a boolean if a field has been set.
 func (o *Options) HasChannelName() bool {
-	if o != nil && o.ChannelName != nil {
+	if o != nil && !isNil(o.ChannelName) {
 		return true
 	}
 
@@ -159,7 +159,7 @@ func (o *Options) SetChannelName(v string) {
 
 // GetEncoding returns the Encoding field value if set, zero value otherwise.
 func (o *Options) GetEncoding() EncodingType {
-	if o == nil || o.Encoding == nil {
+	if o == nil || isNil(o.Encoding) {
 		var ret EncodingType
 		return ret
 	}
@@ -169,15 +169,15 @@ func (o *Options) GetEncoding() EncodingType {
 // GetEncodingOk returns a tuple with the Encoding field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Options) GetEncodingOk() (*EncodingType, bool) {
-	if o == nil || o.Encoding == nil {
-		return nil, false
+	if o == nil || isNil(o.Encoding) {
+    return nil, false
 	}
 	return o.Encoding, true
 }
 
 // HasEncoding returns a boolean if a field has been set.
 func (o *Options) HasEncoding() bool {
-	if o != nil && o.Encoding != nil {
+	if o != nil && !isNil(o.Encoding) {
 		return true
 	}
 
@@ -191,7 +191,7 @@ func (o *Options) SetEncoding(v EncodingType) {
 
 // GetTrackOpens returns the TrackOpens field value if set, zero value otherwise.
 func (o *Options) GetTrackOpens() bool {
-	if o == nil || o.TrackOpens == nil {
+	if o == nil || isNil(o.TrackOpens) {
 		var ret bool
 		return ret
 	}
@@ -201,15 +201,15 @@ func (o *Options) GetTrackOpens() bool {
 // GetTrackOpensOk returns a tuple with the TrackOpens field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Options) GetTrackOpensOk() (*bool, bool) {
-	if o == nil || o.TrackOpens == nil {
-		return nil, false
+	if o == nil || isNil(o.TrackOpens) {
+    return nil, false
 	}
 	return o.TrackOpens, true
 }
 
 // HasTrackOpens returns a boolean if a field has been set.
 func (o *Options) HasTrackOpens() bool {
-	if o != nil && o.TrackOpens != nil {
+	if o != nil && !isNil(o.TrackOpens) {
 		return true
 	}
 
@@ -223,7 +223,7 @@ func (o *Options) SetTrackOpens(v bool) {
 
 // GetTrackClicks returns the TrackClicks field value if set, zero value otherwise.
 func (o *Options) GetTrackClicks() bool {
-	if o == nil || o.TrackClicks == nil {
+	if o == nil || isNil(o.TrackClicks) {
 		var ret bool
 		return ret
 	}
@@ -233,15 +233,15 @@ func (o *Options) GetTrackClicks() bool {
 // GetTrackClicksOk returns a tuple with the TrackClicks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Options) GetTrackClicksOk() (*bool, bool) {
-	if o == nil || o.TrackClicks == nil {
-		return nil, false
+	if o == nil || isNil(o.TrackClicks) {
+    return nil, false
 	}
 	return o.TrackClicks, true
 }
 
 // HasTrackClicks returns a boolean if a field has been set.
 func (o *Options) HasTrackClicks() bool {
-	if o != nil && o.TrackClicks != nil {
+	if o != nil && !isNil(o.TrackClicks) {
 		return true
 	}
 
@@ -258,19 +258,19 @@ func (o Options) MarshalJSON() ([]byte, error) {
 	if o.TimeOffset.IsSet() {
 		toSerialize["TimeOffset"] = o.TimeOffset.Get()
 	}
-	if o.PoolName != nil {
+	if !isNil(o.PoolName) {
 		toSerialize["PoolName"] = o.PoolName
 	}
-	if o.ChannelName != nil {
+	if !isNil(o.ChannelName) {
 		toSerialize["ChannelName"] = o.ChannelName
 	}
-	if o.Encoding != nil {
+	if !isNil(o.Encoding) {
 		toSerialize["Encoding"] = o.Encoding
 	}
-	if o.TrackOpens != nil {
+	if !isNil(o.TrackOpens) {
 		toSerialize["TrackOpens"] = o.TrackOpens
 	}
-	if o.TrackClicks != nil {
+	if !isNil(o.TrackClicks) {
 		toSerialize["TrackClicks"] = o.TrackClicks
 	}
 	return json.Marshal(toSerialize)

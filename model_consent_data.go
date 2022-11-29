@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -48,7 +48,7 @@ func NewConsentDataWithDefaults() *ConsentData {
 
 // GetConsentIP returns the ConsentIP field value if set, zero value otherwise.
 func (o *ConsentData) GetConsentIP() string {
-	if o == nil || o.ConsentIP == nil {
+	if o == nil || isNil(o.ConsentIP) {
 		var ret string
 		return ret
 	}
@@ -58,15 +58,15 @@ func (o *ConsentData) GetConsentIP() string {
 // GetConsentIPOk returns a tuple with the ConsentIP field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ConsentData) GetConsentIPOk() (*string, bool) {
-	if o == nil || o.ConsentIP == nil {
-		return nil, false
+	if o == nil || isNil(o.ConsentIP) {
+    return nil, false
 	}
 	return o.ConsentIP, true
 }
 
 // HasConsentIP returns a boolean if a field has been set.
 func (o *ConsentData) HasConsentIP() bool {
-	if o != nil && o.ConsentIP != nil {
+	if o != nil && !isNil(o.ConsentIP) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *ConsentData) SetConsentIP(v string) {
 
 // GetConsentDate returns the ConsentDate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ConsentData) GetConsentDate() time.Time {
-	if o == nil || o.ConsentDate.Get() == nil {
+	if o == nil || isNil(o.ConsentDate.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -92,7 +92,7 @@ func (o *ConsentData) GetConsentDate() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ConsentData) GetConsentDateOk() (*time.Time, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.ConsentDate.Get(), o.ConsentDate.IsSet()
 }
@@ -122,7 +122,7 @@ func (o *ConsentData) UnsetConsentDate() {
 
 // GetConsentTracking returns the ConsentTracking field value if set, zero value otherwise.
 func (o *ConsentData) GetConsentTracking() ConsentTracking {
-	if o == nil || o.ConsentTracking == nil {
+	if o == nil || isNil(o.ConsentTracking) {
 		var ret ConsentTracking
 		return ret
 	}
@@ -132,15 +132,15 @@ func (o *ConsentData) GetConsentTracking() ConsentTracking {
 // GetConsentTrackingOk returns a tuple with the ConsentTracking field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ConsentData) GetConsentTrackingOk() (*ConsentTracking, bool) {
-	if o == nil || o.ConsentTracking == nil {
-		return nil, false
+	if o == nil || isNil(o.ConsentTracking) {
+    return nil, false
 	}
 	return o.ConsentTracking, true
 }
 
 // HasConsentTracking returns a boolean if a field has been set.
 func (o *ConsentData) HasConsentTracking() bool {
-	if o != nil && o.ConsentTracking != nil {
+	if o != nil && !isNil(o.ConsentTracking) {
 		return true
 	}
 
@@ -154,13 +154,13 @@ func (o *ConsentData) SetConsentTracking(v ConsentTracking) {
 
 func (o ConsentData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ConsentIP != nil {
+	if !isNil(o.ConsentIP) {
 		toSerialize["ConsentIP"] = o.ConsentIP
 	}
 	if o.ConsentDate.IsSet() {
 		toSerialize["ConsentDate"] = o.ConsentDate.Get()
 	}
-	if o.ConsentTracking != nil {
+	if !isNil(o.ConsentTracking) {
 		toSerialize["ConsentTracking"] = o.ConsentTracking
 	}
 	return json.Marshal(toSerialize)

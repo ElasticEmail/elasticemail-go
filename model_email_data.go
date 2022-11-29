@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -42,7 +42,7 @@ func NewEmailDataWithDefaults() *EmailData {
 
 // GetPreview returns the Preview field value if set, zero value otherwise.
 func (o *EmailData) GetPreview() EmailView {
-	if o == nil || o.Preview == nil {
+	if o == nil || isNil(o.Preview) {
 		var ret EmailView
 		return ret
 	}
@@ -52,15 +52,15 @@ func (o *EmailData) GetPreview() EmailView {
 // GetPreviewOk returns a tuple with the Preview field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailData) GetPreviewOk() (*EmailView, bool) {
-	if o == nil || o.Preview == nil {
-		return nil, false
+	if o == nil || isNil(o.Preview) {
+    return nil, false
 	}
 	return o.Preview, true
 }
 
 // HasPreview returns a boolean if a field has been set.
 func (o *EmailData) HasPreview() bool {
-	if o != nil && o.Preview != nil {
+	if o != nil && !isNil(o.Preview) {
 		return true
 	}
 
@@ -74,7 +74,7 @@ func (o *EmailData) SetPreview(v EmailView) {
 
 // GetAttachments returns the Attachments field value if set, zero value otherwise.
 func (o *EmailData) GetAttachments() []FileInfo {
-	if o == nil || o.Attachments == nil {
+	if o == nil || isNil(o.Attachments) {
 		var ret []FileInfo
 		return ret
 	}
@@ -84,15 +84,15 @@ func (o *EmailData) GetAttachments() []FileInfo {
 // GetAttachmentsOk returns a tuple with the Attachments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailData) GetAttachmentsOk() ([]FileInfo, bool) {
-	if o == nil || o.Attachments == nil {
-		return nil, false
+	if o == nil || isNil(o.Attachments) {
+    return nil, false
 	}
 	return o.Attachments, true
 }
 
 // HasAttachments returns a boolean if a field has been set.
 func (o *EmailData) HasAttachments() bool {
-	if o != nil && o.Attachments != nil {
+	if o != nil && !isNil(o.Attachments) {
 		return true
 	}
 
@@ -106,7 +106,7 @@ func (o *EmailData) SetAttachments(v []FileInfo) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *EmailData) GetStatus() EmailStatus {
-	if o == nil || o.Status == nil {
+	if o == nil || isNil(o.Status) {
 		var ret EmailStatus
 		return ret
 	}
@@ -116,15 +116,15 @@ func (o *EmailData) GetStatus() EmailStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailData) GetStatusOk() (*EmailStatus, bool) {
-	if o == nil || o.Status == nil {
-		return nil, false
+	if o == nil || isNil(o.Status) {
+    return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *EmailData) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !isNil(o.Status) {
 		return true
 	}
 
@@ -138,13 +138,13 @@ func (o *EmailData) SetStatus(v EmailStatus) {
 
 func (o EmailData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Preview != nil {
+	if !isNil(o.Preview) {
 		toSerialize["Preview"] = o.Preview
 	}
-	if o.Attachments != nil {
+	if !isNil(o.Attachments) {
 		toSerialize["Attachments"] = o.Attachments
 	}
-	if o.Status != nil {
+	if !isNil(o.Status) {
 		toSerialize["Status"] = o.Status
 	}
 	return json.Marshal(toSerialize)

@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://elasticemail.com/account#/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -45,7 +45,7 @@ func NewSplitOptionsWithDefaults() *SplitOptions {
 
 // GetOptimizeFor returns the OptimizeFor field value if set, zero value otherwise.
 func (o *SplitOptions) GetOptimizeFor() SplitOptimizationType {
-	if o == nil || o.OptimizeFor == nil {
+	if o == nil || isNil(o.OptimizeFor) {
 		var ret SplitOptimizationType
 		return ret
 	}
@@ -55,15 +55,15 @@ func (o *SplitOptions) GetOptimizeFor() SplitOptimizationType {
 // GetOptimizeForOk returns a tuple with the OptimizeFor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SplitOptions) GetOptimizeForOk() (*SplitOptimizationType, bool) {
-	if o == nil || o.OptimizeFor == nil {
-		return nil, false
+	if o == nil || isNil(o.OptimizeFor) {
+    return nil, false
 	}
 	return o.OptimizeFor, true
 }
 
 // HasOptimizeFor returns a boolean if a field has been set.
 func (o *SplitOptions) HasOptimizeFor() bool {
-	if o != nil && o.OptimizeFor != nil {
+	if o != nil && !isNil(o.OptimizeFor) {
 		return true
 	}
 
@@ -77,7 +77,7 @@ func (o *SplitOptions) SetOptimizeFor(v SplitOptimizationType) {
 
 // GetOptimizePeriodMinutes returns the OptimizePeriodMinutes field value if set, zero value otherwise.
 func (o *SplitOptions) GetOptimizePeriodMinutes() int32 {
-	if o == nil || o.OptimizePeriodMinutes == nil {
+	if o == nil || isNil(o.OptimizePeriodMinutes) {
 		var ret int32
 		return ret
 	}
@@ -87,15 +87,15 @@ func (o *SplitOptions) GetOptimizePeriodMinutes() int32 {
 // GetOptimizePeriodMinutesOk returns a tuple with the OptimizePeriodMinutes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SplitOptions) GetOptimizePeriodMinutesOk() (*int32, bool) {
-	if o == nil || o.OptimizePeriodMinutes == nil {
-		return nil, false
+	if o == nil || isNil(o.OptimizePeriodMinutes) {
+    return nil, false
 	}
 	return o.OptimizePeriodMinutes, true
 }
 
 // HasOptimizePeriodMinutes returns a boolean if a field has been set.
 func (o *SplitOptions) HasOptimizePeriodMinutes() bool {
-	if o != nil && o.OptimizePeriodMinutes != nil {
+	if o != nil && !isNil(o.OptimizePeriodMinutes) {
 		return true
 	}
 
@@ -109,10 +109,10 @@ func (o *SplitOptions) SetOptimizePeriodMinutes(v int32) {
 
 func (o SplitOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.OptimizeFor != nil {
+	if !isNil(o.OptimizeFor) {
 		toSerialize["OptimizeFor"] = o.OptimizeFor
 	}
-	if o.OptimizePeriodMinutes != nil {
+	if !isNil(o.OptimizePeriodMinutes) {
 		toSerialize["OptimizePeriodMinutes"] = o.OptimizePeriodMinutes
 	}
 	return json.Marshal(toSerialize)

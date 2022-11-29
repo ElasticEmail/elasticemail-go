@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ContactsByEmailDelete**](ContactsApi.md#ContactsByEmailDelete) | **Delete** /contacts/{email} | Delete Contact
 [**ContactsByEmailGet**](ContactsApi.md#ContactsByEmailGet) | **Get** /contacts/{email} | Load Contact
-[**ContactsByEmailHistoryGet**](ContactsApi.md#ContactsByEmailHistoryGet) | **Get** /contacts/{email}/history | Load History
 [**ContactsByEmailPut**](ContactsApi.md#ContactsByEmailPut) | **Put** /contacts/{email} | Update Contact
 [**ContactsDeletePost**](ContactsApi.md#ContactsDeletePost) | **Post** /contacts/delete | Delete Contacts Bulk
 [**ContactsExportByIdStatusGet**](ContactsApi.md#ContactsExportByIdStatusGet) | **Get** /contacts/export/{id}/status | Check Export Status
@@ -140,80 +139,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Contact**](Contact.md)
-
-### Authorization
-
-[apikey](../README.md#apikey)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ContactsByEmailHistoryGet
-
-> []ContactHistory ContactsByEmailHistoryGet(ctx, email).Limit(limit).Offset(offset).Execute()
-
-Load History
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    email := "mail@example.com" // string | Proper email address.
-    limit := int32(100) // int32 | Maximum number of returned items. (optional)
-    offset := int32(20) // int32 | How many items should be returned ahead. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContactsApi.ContactsByEmailHistoryGet(context.Background(), email).Limit(limit).Offset(offset).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsByEmailHistoryGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContactsByEmailHistoryGet`: []ContactHistory
-    fmt.Fprintf(os.Stdout, "Response from `ContactsApi.ContactsByEmailHistoryGet`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**email** | **string** | Proper email address. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiContactsByEmailHistoryGetRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **limit** | **int32** | Maximum number of returned items. | 
- **offset** | **int32** | How many items should be returned ahead. | 
-
-### Return type
-
-[**[]ContactHistory**](ContactHistory.md)
 
 ### Authorization
 
@@ -579,7 +504,7 @@ Name | Type | Description  | Notes
 
 ## ContactsImportPost
 
-> ContactsImportPost(ctx).ListName(listName).EncodingName(encodingName).File(file).Execute()
+> ContactsImportPost(ctx).ListName(listName).EncodingName(encodingName).FileUrl(fileUrl).File(file).Execute()
 
 Upload Contacts
 
@@ -600,11 +525,12 @@ import (
 func main() {
     listName := "listName_example" // string | Name of an existing list to add these contacts to (optional)
     encodingName := "encodingName_example" // string | In what encoding the file is uploaded (optional)
+    fileUrl := "fileUrl_example" // string | Optional url of csv to import (optional)
     file := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContactsApi.ContactsImportPost(context.Background()).ListName(listName).EncodingName(encodingName).File(file).Execute()
+    resp, r, err := apiClient.ContactsApi.ContactsImportPost(context.Background()).ListName(listName).EncodingName(encodingName).FileUrl(fileUrl).File(file).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsImportPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -625,6 +551,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **listName** | **string** | Name of an existing list to add these contacts to | 
  **encodingName** | **string** | In what encoding the file is uploaded | 
+ **fileUrl** | **string** | Optional url of csv to import | 
  **file** | ***os.File** |  | 
 
 ### Return type
