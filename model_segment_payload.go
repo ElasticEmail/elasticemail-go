@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SegmentPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SegmentPayload{}
+
 // SegmentPayload struct for SegmentPayload
 type SegmentPayload struct {
 	// Segment name
@@ -56,7 +59,7 @@ func (o *SegmentPayload) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *SegmentPayload) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -80,7 +83,7 @@ func (o *SegmentPayload) GetRule() string {
 // and a boolean to check if the value has been set.
 func (o *SegmentPayload) GetRuleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Rule, true
 }
@@ -91,14 +94,18 @@ func (o *SegmentPayload) SetRule(v string) {
 }
 
 func (o SegmentPayload) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["Name"] = o.Name
-	}
-	if true {
-		toSerialize["Rule"] = o.Rule
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SegmentPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["Name"] = o.Name
+	toSerialize["Rule"] = o.Rule
+	return toSerialize, nil
 }
 
 type NullableSegmentPayload struct {

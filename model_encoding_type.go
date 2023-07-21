@@ -21,13 +21,13 @@ type EncodingType string
 
 // List of EncodingType
 const (
-	USER_PROVIDED EncodingType = "UserProvided"
-	NONE EncodingType = "None"
-	RAW7BIT EncodingType = "Raw7bit"
-	RAW8BIT EncodingType = "Raw8bit"
-	QUOTED_PRINTABLE EncodingType = "QuotedPrintable"
-	BASE64 EncodingType = "Base64"
-	UUE EncodingType = "Uue"
+	ENCODINGTYPE_USER_PROVIDED EncodingType = "UserProvided"
+	ENCODINGTYPE_NONE EncodingType = "None"
+	ENCODINGTYPE_RAW7BIT EncodingType = "Raw7bit"
+	ENCODINGTYPE_RAW8BIT EncodingType = "Raw8bit"
+	ENCODINGTYPE_QUOTED_PRINTABLE EncodingType = "QuotedPrintable"
+	ENCODINGTYPE_BASE64 EncodingType = "Base64"
+	ENCODINGTYPE_UUE EncodingType = "Uue"
 )
 
 // All allowed values of EncodingType enum

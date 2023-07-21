@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EmailView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmailView{}
+
 // EmailView Email details formatted in json
 type EmailView struct {
 	// Body (HTML, otherwise plain text) of email
@@ -44,7 +47,7 @@ func NewEmailViewWithDefaults() *EmailView {
 
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *EmailView) GetBody() string {
-	if o == nil || isNil(o.Body) {
+	if o == nil || IsNil(o.Body) {
 		var ret string
 		return ret
 	}
@@ -54,15 +57,15 @@ func (o *EmailView) GetBody() string {
 // GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailView) GetBodyOk() (*string, bool) {
-	if o == nil || isNil(o.Body) {
-    return nil, false
+	if o == nil || IsNil(o.Body) {
+		return nil, false
 	}
 	return o.Body, true
 }
 
 // HasBody returns a boolean if a field has been set.
 func (o *EmailView) HasBody() bool {
-	if o != nil && !isNil(o.Body) {
+	if o != nil && !IsNil(o.Body) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *EmailView) SetBody(v string) {
 
 // GetSubject returns the Subject field value if set, zero value otherwise.
 func (o *EmailView) GetSubject() string {
-	if o == nil || isNil(o.Subject) {
+	if o == nil || IsNil(o.Subject) {
 		var ret string
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *EmailView) GetSubject() string {
 // GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailView) GetSubjectOk() (*string, bool) {
-	if o == nil || isNil(o.Subject) {
-    return nil, false
+	if o == nil || IsNil(o.Subject) {
+		return nil, false
 	}
 	return o.Subject, true
 }
 
 // HasSubject returns a boolean if a field has been set.
 func (o *EmailView) HasSubject() bool {
-	if o != nil && !isNil(o.Subject) {
+	if o != nil && !IsNil(o.Subject) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *EmailView) SetSubject(v string) {
 
 // GetFrom returns the From field value if set, zero value otherwise.
 func (o *EmailView) GetFrom() string {
-	if o == nil || isNil(o.From) {
+	if o == nil || IsNil(o.From) {
 		var ret string
 		return ret
 	}
@@ -118,15 +121,15 @@ func (o *EmailView) GetFrom() string {
 // GetFromOk returns a tuple with the From field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailView) GetFromOk() (*string, bool) {
-	if o == nil || isNil(o.From) {
-    return nil, false
+	if o == nil || IsNil(o.From) {
+		return nil, false
 	}
 	return o.From, true
 }
 
 // HasFrom returns a boolean if a field has been set.
 func (o *EmailView) HasFrom() bool {
-	if o != nil && !isNil(o.From) {
+	if o != nil && !IsNil(o.From) {
 		return true
 	}
 
@@ -139,17 +142,25 @@ func (o *EmailView) SetFrom(v string) {
 }
 
 func (o EmailView) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Body) {
-		toSerialize["Body"] = o.Body
-	}
-	if !isNil(o.Subject) {
-		toSerialize["Subject"] = o.Subject
-	}
-	if !isNil(o.From) {
-		toSerialize["From"] = o.From
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o EmailView) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Body) {
+		toSerialize["Body"] = o.Body
+	}
+	if !IsNil(o.Subject) {
+		toSerialize["Subject"] = o.Subject
+	}
+	if !IsNil(o.From) {
+		toSerialize["From"] = o.From
+	}
+	return toSerialize, nil
 }
 
 type NullableEmailView struct {

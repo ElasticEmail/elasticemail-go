@@ -34,7 +34,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -42,7 +42,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VerificationsApi.VerificationsByEmailDelete(context.Background(), email).Execute()
+    r, err := apiClient.VerificationsApi.VerificationsByEmailDelete(context.Background(), email).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VerificationsApi.VerificationsByEmailDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -102,7 +102,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -172,7 +172,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -242,7 +242,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -250,7 +250,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VerificationsApi.VerificationsFilesByIdDelete(context.Background(), id).Execute()
+    r, err := apiClient.VerificationsApi.VerificationsFilesByIdDelete(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VerificationsApi.VerificationsFilesByIdDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -310,7 +310,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -380,7 +380,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -454,7 +454,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -462,7 +462,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VerificationsApi.VerificationsFilesByIdVerificationPost(context.Background(), id).Execute()
+    r, err := apiClient.VerificationsApi.VerificationsFilesByIdVerificationPost(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VerificationsApi.VerificationsFilesByIdVerificationPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -522,7 +522,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -588,7 +588,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -649,7 +649,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {

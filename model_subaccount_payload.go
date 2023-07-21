@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SubaccountPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SubaccountPayload{}
+
 // SubaccountPayload New SubAccount payload
 type SubaccountPayload struct {
 	// Proper email address.
@@ -59,7 +62,7 @@ func (o *SubaccountPayload) GetEmail() string {
 // and a boolean to check if the value has been set.
 func (o *SubaccountPayload) GetEmailOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Email, true
 }
@@ -83,7 +86,7 @@ func (o *SubaccountPayload) GetPassword() string {
 // and a boolean to check if the value has been set.
 func (o *SubaccountPayload) GetPasswordOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Password, true
 }
@@ -95,7 +98,7 @@ func (o *SubaccountPayload) SetPassword(v string) {
 
 // GetSendActivation returns the SendActivation field value if set, zero value otherwise.
 func (o *SubaccountPayload) GetSendActivation() bool {
-	if o == nil || isNil(o.SendActivation) {
+	if o == nil || IsNil(o.SendActivation) {
 		var ret bool
 		return ret
 	}
@@ -105,15 +108,15 @@ func (o *SubaccountPayload) GetSendActivation() bool {
 // GetSendActivationOk returns a tuple with the SendActivation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubaccountPayload) GetSendActivationOk() (*bool, bool) {
-	if o == nil || isNil(o.SendActivation) {
-    return nil, false
+	if o == nil || IsNil(o.SendActivation) {
+		return nil, false
 	}
 	return o.SendActivation, true
 }
 
 // HasSendActivation returns a boolean if a field has been set.
 func (o *SubaccountPayload) HasSendActivation() bool {
-	if o != nil && !isNil(o.SendActivation) {
+	if o != nil && !IsNil(o.SendActivation) {
 		return true
 	}
 
@@ -127,7 +130,7 @@ func (o *SubaccountPayload) SetSendActivation(v bool) {
 
 // GetSettings returns the Settings field value if set, zero value otherwise.
 func (o *SubaccountPayload) GetSettings() SubaccountSettingsInfoPayload {
-	if o == nil || isNil(o.Settings) {
+	if o == nil || IsNil(o.Settings) {
 		var ret SubaccountSettingsInfoPayload
 		return ret
 	}
@@ -137,15 +140,15 @@ func (o *SubaccountPayload) GetSettings() SubaccountSettingsInfoPayload {
 // GetSettingsOk returns a tuple with the Settings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubaccountPayload) GetSettingsOk() (*SubaccountSettingsInfoPayload, bool) {
-	if o == nil || isNil(o.Settings) {
-    return nil, false
+	if o == nil || IsNil(o.Settings) {
+		return nil, false
 	}
 	return o.Settings, true
 }
 
 // HasSettings returns a boolean if a field has been set.
 func (o *SubaccountPayload) HasSettings() bool {
-	if o != nil && !isNil(o.Settings) {
+	if o != nil && !IsNil(o.Settings) {
 		return true
 	}
 
@@ -158,20 +161,24 @@ func (o *SubaccountPayload) SetSettings(v SubaccountSettingsInfoPayload) {
 }
 
 func (o SubaccountPayload) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["Email"] = o.Email
-	}
-	if true {
-		toSerialize["Password"] = o.Password
-	}
-	if !isNil(o.SendActivation) {
-		toSerialize["SendActivation"] = o.SendActivation
-	}
-	if !isNil(o.Settings) {
-		toSerialize["Settings"] = o.Settings
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SubaccountPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["Email"] = o.Email
+	toSerialize["Password"] = o.Password
+	if !IsNil(o.SendActivation) {
+		toSerialize["SendActivation"] = o.SendActivation
+	}
+	if !IsNil(o.Settings) {
+		toSerialize["Settings"] = o.Settings
+	}
+	return toSerialize, nil
 }
 
 type NullableSubaccountPayload struct {

@@ -36,7 +36,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -106,7 +106,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -114,7 +114,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SuppressionsApi.SuppressionsBouncesImportPost(context.Background()).File(file).Execute()
+    r, err := apiClient.SuppressionsApi.SuppressionsBouncesImportPost(context.Background()).File(file).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SuppressionsApi.SuppressionsBouncesImportPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -170,7 +170,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -236,7 +236,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -244,7 +244,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SuppressionsApi.SuppressionsByEmailDelete(context.Background(), email).Execute()
+    r, err := apiClient.SuppressionsApi.SuppressionsByEmailDelete(context.Background(), email).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SuppressionsApi.SuppressionsByEmailDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -304,7 +304,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -374,7 +374,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -444,7 +444,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -452,7 +452,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SuppressionsApi.SuppressionsComplaintsImportPost(context.Background()).File(file).Execute()
+    r, err := apiClient.SuppressionsApi.SuppressionsComplaintsImportPost(context.Background()).File(file).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SuppressionsApi.SuppressionsComplaintsImportPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -508,7 +508,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -574,7 +574,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -642,7 +642,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -712,7 +712,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -720,7 +720,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SuppressionsApi.SuppressionsUnsubscribesImportPost(context.Background()).File(file).Execute()
+    r, err := apiClient.SuppressionsApi.SuppressionsUnsubscribesImportPost(context.Background()).File(file).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SuppressionsApi.SuppressionsUnsubscribesImportPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -776,7 +776,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {

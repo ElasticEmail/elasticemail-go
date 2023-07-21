@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SubaccountSettingsInfoPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SubaccountSettingsInfoPayload{}
+
 // SubaccountSettingsInfoPayload SubAccount settings
 type SubaccountSettingsInfoPayload struct {
 	Email *SubaccountEmailSettingsPayload `json:"Email,omitempty"`
@@ -39,7 +42,7 @@ func NewSubaccountSettingsInfoPayloadWithDefaults() *SubaccountSettingsInfoPaylo
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *SubaccountSettingsInfoPayload) GetEmail() SubaccountEmailSettingsPayload {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		var ret SubaccountEmailSettingsPayload
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *SubaccountSettingsInfoPayload) GetEmail() SubaccountEmailSettingsPayloa
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubaccountSettingsInfoPayload) GetEmailOk() (*SubaccountEmailSettingsPayload, bool) {
-	if o == nil || isNil(o.Email) {
-    return nil, false
+	if o == nil || IsNil(o.Email) {
+		return nil, false
 	}
 	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *SubaccountSettingsInfoPayload) HasEmail() bool {
-	if o != nil && !isNil(o.Email) {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *SubaccountSettingsInfoPayload) SetEmail(v SubaccountEmailSettingsPayloa
 }
 
 func (o SubaccountSettingsInfoPayload) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Email) {
-		toSerialize["Email"] = o.Email
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SubaccountSettingsInfoPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Email) {
+		toSerialize["Email"] = o.Email
+	}
+	return toSerialize, nil
 }
 
 type NullableSubaccountSettingsInfoPayload struct {

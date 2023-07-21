@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EmailMessageData type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmailMessageData{}
+
 // EmailMessageData Email data
 type EmailMessageData struct {
 	// List of recipients
@@ -55,7 +58,7 @@ func (o *EmailMessageData) GetRecipients() []EmailRecipient {
 // and a boolean to check if the value has been set.
 func (o *EmailMessageData) GetRecipientsOk() ([]EmailRecipient, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Recipients, true
 }
@@ -67,7 +70,7 @@ func (o *EmailMessageData) SetRecipients(v []EmailRecipient) {
 
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *EmailMessageData) GetContent() EmailContent {
-	if o == nil || isNil(o.Content) {
+	if o == nil || IsNil(o.Content) {
 		var ret EmailContent
 		return ret
 	}
@@ -77,15 +80,15 @@ func (o *EmailMessageData) GetContent() EmailContent {
 // GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailMessageData) GetContentOk() (*EmailContent, bool) {
-	if o == nil || isNil(o.Content) {
-    return nil, false
+	if o == nil || IsNil(o.Content) {
+		return nil, false
 	}
 	return o.Content, true
 }
 
 // HasContent returns a boolean if a field has been set.
 func (o *EmailMessageData) HasContent() bool {
-	if o != nil && !isNil(o.Content) {
+	if o != nil && !IsNil(o.Content) {
 		return true
 	}
 
@@ -99,7 +102,7 @@ func (o *EmailMessageData) SetContent(v EmailContent) {
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *EmailMessageData) GetOptions() Options {
-	if o == nil || isNil(o.Options) {
+	if o == nil || IsNil(o.Options) {
 		var ret Options
 		return ret
 	}
@@ -109,15 +112,15 @@ func (o *EmailMessageData) GetOptions() Options {
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailMessageData) GetOptionsOk() (*Options, bool) {
-	if o == nil || isNil(o.Options) {
-    return nil, false
+	if o == nil || IsNil(o.Options) {
+		return nil, false
 	}
 	return o.Options, true
 }
 
 // HasOptions returns a boolean if a field has been set.
 func (o *EmailMessageData) HasOptions() bool {
-	if o != nil && !isNil(o.Options) {
+	if o != nil && !IsNil(o.Options) {
 		return true
 	}
 
@@ -130,17 +133,23 @@ func (o *EmailMessageData) SetOptions(v Options) {
 }
 
 func (o EmailMessageData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["Recipients"] = o.Recipients
-	}
-	if !isNil(o.Content) {
-		toSerialize["Content"] = o.Content
-	}
-	if !isNil(o.Options) {
-		toSerialize["Options"] = o.Options
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o EmailMessageData) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["Recipients"] = o.Recipients
+	if !IsNil(o.Content) {
+		toSerialize["Content"] = o.Content
+	}
+	if !IsNil(o.Options) {
+		toSerialize["Options"] = o.Options
+	}
+	return toSerialize, nil
 }
 
 type NullableEmailMessageData struct {

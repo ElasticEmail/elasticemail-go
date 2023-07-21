@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EmailsPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmailsPayload{}
+
 // EmailsPayload Provide either rule or a list of emails, not both.
 type EmailsPayload struct {
 	// SQL-like rule. Sending 'All' as a value loads all resources of the given type. Help for building a segment rule can be found here: https://help.elasticemail.com/en/articles/5162182-segment-rules
@@ -42,7 +45,7 @@ func NewEmailsPayloadWithDefaults() *EmailsPayload {
 
 // GetRule returns the Rule field value if set, zero value otherwise.
 func (o *EmailsPayload) GetRule() string {
-	if o == nil || isNil(o.Rule) {
+	if o == nil || IsNil(o.Rule) {
 		var ret string
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *EmailsPayload) GetRule() string {
 // GetRuleOk returns a tuple with the Rule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailsPayload) GetRuleOk() (*string, bool) {
-	if o == nil || isNil(o.Rule) {
-    return nil, false
+	if o == nil || IsNil(o.Rule) {
+		return nil, false
 	}
 	return o.Rule, true
 }
 
 // HasRule returns a boolean if a field has been set.
 func (o *EmailsPayload) HasRule() bool {
-	if o != nil && !isNil(o.Rule) {
+	if o != nil && !IsNil(o.Rule) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *EmailsPayload) SetRule(v string) {
 
 // GetEmails returns the Emails field value if set, zero value otherwise.
 func (o *EmailsPayload) GetEmails() []string {
-	if o == nil || isNil(o.Emails) {
+	if o == nil || IsNil(o.Emails) {
 		var ret []string
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *EmailsPayload) GetEmails() []string {
 // GetEmailsOk returns a tuple with the Emails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailsPayload) GetEmailsOk() ([]string, bool) {
-	if o == nil || isNil(o.Emails) {
-    return nil, false
+	if o == nil || IsNil(o.Emails) {
+		return nil, false
 	}
 	return o.Emails, true
 }
 
 // HasEmails returns a boolean if a field has been set.
 func (o *EmailsPayload) HasEmails() bool {
-	if o != nil && !isNil(o.Emails) {
+	if o != nil && !IsNil(o.Emails) {
 		return true
 	}
 
@@ -105,14 +108,22 @@ func (o *EmailsPayload) SetEmails(v []string) {
 }
 
 func (o EmailsPayload) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Rule) {
-		toSerialize["Rule"] = o.Rule
-	}
-	if !isNil(o.Emails) {
-		toSerialize["Emails"] = o.Emails
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o EmailsPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Rule) {
+		toSerialize["Rule"] = o.Rule
+	}
+	if !IsNil(o.Emails) {
+		toSerialize["Emails"] = o.Emails
+	}
+	return toSerialize, nil
 }
 
 type NullableEmailsPayload struct {

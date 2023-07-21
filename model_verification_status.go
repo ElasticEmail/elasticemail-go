@@ -21,11 +21,11 @@ type VerificationStatus string
 
 // List of VerificationStatus
 const (
-	PROCESSING VerificationStatus = "Processing"
-	READY VerificationStatus = "Ready"
-	EXPIRED VerificationStatus = "Expired"
-	VERIFIED VerificationStatus = "Verified"
-	ERROR VerificationStatus = "Error"
+	VERIFICATIONSTATUS_PROCESSING VerificationStatus = "Processing"
+	VERIFICATIONSTATUS_READY VerificationStatus = "Ready"
+	VERIFICATIONSTATUS_EXPIRED VerificationStatus = "Expired"
+	VERIFICATIONSTATUS_VERIFIED VerificationStatus = "Verified"
+	VERIFICATIONSTATUS_ERROR VerificationStatus = "Error"
 )
 
 // All allowed values of VerificationStatus enum

@@ -14,7 +14,7 @@ package ElasticEmail
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -72,14 +72,14 @@ func (a *SecurityApiService) SecurityApikeysByNameDeleteExecute(r ApiSecurityApi
 	}
 
 	localVarPath := localBasePath + "/security/apikeys/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
-		localVarQueryParams.Add("subaccount", parameterToString(*r.subaccount, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subaccount", r.subaccount, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -122,9 +122,9 @@ func (a *SecurityApiService) SecurityApikeysByNameDeleteExecute(r ApiSecurityApi
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -190,14 +190,14 @@ func (a *SecurityApiService) SecurityApikeysByNameGetExecute(r ApiSecurityApikey
 	}
 
 	localVarPath := localBasePath + "/security/apikeys/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
-		localVarQueryParams.Add("subaccount", parameterToString(*r.subaccount, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subaccount", r.subaccount, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -240,9 +240,9 @@ func (a *SecurityApiService) SecurityApikeysByNameGetExecute(r ApiSecurityApikey
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -316,7 +316,7 @@ func (a *SecurityApiService) SecurityApikeysByNamePutExecute(r ApiSecurityApikey
 	}
 
 	localVarPath := localBasePath + "/security/apikeys/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -368,9 +368,9 @@ func (a *SecurityApiService) SecurityApikeysByNamePutExecute(r ApiSecurityApikey
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -448,7 +448,7 @@ func (a *SecurityApiService) SecurityApikeysGetExecute(r ApiSecurityApikeysGetRe
 	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
-		localVarQueryParams.Add("subaccount", parameterToString(*r.subaccount, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subaccount", r.subaccount, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -491,9 +491,9 @@ func (a *SecurityApiService) SecurityApikeysGetExecute(r ApiSecurityApikeysGetRe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -529,7 +529,7 @@ func (r ApiSecurityApikeysPostRequest) ApiKeyPayload(apiKeyPayload ApiKeyPayload
 	return r
 }
 
-func (r ApiSecurityApikeysPostRequest) Execute() (*NewApiKey, *http.Response, error) {
+func (r ApiSecurityApikeysPostRequest) Execute() (*ApiKeyNew, *http.Response, error) {
 	return r.ApiService.SecurityApikeysPostExecute(r)
 }
 
@@ -549,13 +549,13 @@ func (a *SecurityApiService) SecurityApikeysPost(ctx context.Context) ApiSecurit
 }
 
 // Execute executes the request
-//  @return NewApiKey
-func (a *SecurityApiService) SecurityApikeysPostExecute(r ApiSecurityApikeysPostRequest) (*NewApiKey, *http.Response, error) {
+//  @return ApiKeyNew
+func (a *SecurityApiService) SecurityApikeysPostExecute(r ApiSecurityApikeysPostRequest) (*ApiKeyNew, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *NewApiKey
+		localVarReturnValue  *ApiKeyNew
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityApiService.SecurityApikeysPost")
@@ -615,9 +615,9 @@ func (a *SecurityApiService) SecurityApikeysPostExecute(r ApiSecurityApikeysPost
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -690,14 +690,14 @@ func (a *SecurityApiService) SecuritySmtpByNameDeleteExecute(r ApiSecuritySmtpBy
 	}
 
 	localVarPath := localBasePath + "/security/smtp/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
-		localVarQueryParams.Add("subaccount", parameterToString(*r.subaccount, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subaccount", r.subaccount, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -740,9 +740,9 @@ func (a *SecurityApiService) SecuritySmtpByNameDeleteExecute(r ApiSecuritySmtpBy
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -808,14 +808,14 @@ func (a *SecurityApiService) SecuritySmtpByNameGetExecute(r ApiSecuritySmtpByNam
 	}
 
 	localVarPath := localBasePath + "/security/smtp/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
-		localVarQueryParams.Add("subaccount", parameterToString(*r.subaccount, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subaccount", r.subaccount, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -858,9 +858,9 @@ func (a *SecurityApiService) SecuritySmtpByNameGetExecute(r ApiSecuritySmtpByNam
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -934,7 +934,7 @@ func (a *SecurityApiService) SecuritySmtpByNamePutExecute(r ApiSecuritySmtpByNam
 	}
 
 	localVarPath := localBasePath + "/security/smtp/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -986,9 +986,9 @@ func (a *SecurityApiService) SecuritySmtpByNamePutExecute(r ApiSecuritySmtpByNam
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1066,7 +1066,7 @@ func (a *SecurityApiService) SecuritySmtpGetExecute(r ApiSecuritySmtpGetRequest)
 	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
-		localVarQueryParams.Add("subaccount", parameterToString(*r.subaccount, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subaccount", r.subaccount, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1109,9 +1109,9 @@ func (a *SecurityApiService) SecuritySmtpGetExecute(r ApiSecuritySmtpGetRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1147,7 +1147,7 @@ func (r ApiSecuritySmtpPostRequest) SmtpCredentialsPayload(smtpCredentialsPayloa
 	return r
 }
 
-func (r ApiSecuritySmtpPostRequest) Execute() (*NewSmtpCredentials, *http.Response, error) {
+func (r ApiSecuritySmtpPostRequest) Execute() (*SmtpCredentialsNew, *http.Response, error) {
 	return r.ApiService.SecuritySmtpPostExecute(r)
 }
 
@@ -1167,13 +1167,13 @@ func (a *SecurityApiService) SecuritySmtpPost(ctx context.Context) ApiSecuritySm
 }
 
 // Execute executes the request
-//  @return NewSmtpCredentials
-func (a *SecurityApiService) SecuritySmtpPostExecute(r ApiSecuritySmtpPostRequest) (*NewSmtpCredentials, *http.Response, error) {
+//  @return SmtpCredentialsNew
+func (a *SecurityApiService) SecuritySmtpPostExecute(r ApiSecuritySmtpPostRequest) (*SmtpCredentialsNew, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *NewSmtpCredentials
+		localVarReturnValue  *SmtpCredentialsNew
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityApiService.SecuritySmtpPost")
@@ -1233,9 +1233,9 @@ func (a *SecurityApiService) SecuritySmtpPostExecute(r ApiSecuritySmtpPostReques
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the ContactsList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ContactsList{}
+
 // ContactsList List of Lists, with detailed data about its contents.
 type ContactsList struct {
 	// Name of your list.
@@ -47,7 +50,7 @@ func NewContactsListWithDefaults() *ContactsList {
 
 // GetListName returns the ListName field value if set, zero value otherwise.
 func (o *ContactsList) GetListName() string {
-	if o == nil || isNil(o.ListName) {
+	if o == nil || IsNil(o.ListName) {
 		var ret string
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *ContactsList) GetListName() string {
 // GetListNameOk returns a tuple with the ListName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactsList) GetListNameOk() (*string, bool) {
-	if o == nil || isNil(o.ListName) {
-    return nil, false
+	if o == nil || IsNil(o.ListName) {
+		return nil, false
 	}
 	return o.ListName, true
 }
 
 // HasListName returns a boolean if a field has been set.
 func (o *ContactsList) HasListName() bool {
-	if o != nil && !isNil(o.ListName) {
+	if o != nil && !IsNil(o.ListName) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *ContactsList) SetListName(v string) {
 
 // GetPublicListID returns the PublicListID field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ContactsList) GetPublicListID() string {
-	if o == nil || isNil(o.PublicListID.Get()) {
+	if o == nil || IsNil(o.PublicListID.Get()) {
 		var ret string
 		return ret
 	}
@@ -91,7 +94,7 @@ func (o *ContactsList) GetPublicListID() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ContactsList) GetPublicListIDOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.PublicListID.Get(), o.PublicListID.IsSet()
 }
@@ -121,7 +124,7 @@ func (o *ContactsList) UnsetPublicListID() {
 
 // GetDateAdded returns the DateAdded field value if set, zero value otherwise.
 func (o *ContactsList) GetDateAdded() time.Time {
-	if o == nil || isNil(o.DateAdded) {
+	if o == nil || IsNil(o.DateAdded) {
 		var ret time.Time
 		return ret
 	}
@@ -131,15 +134,15 @@ func (o *ContactsList) GetDateAdded() time.Time {
 // GetDateAddedOk returns a tuple with the DateAdded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactsList) GetDateAddedOk() (*time.Time, bool) {
-	if o == nil || isNil(o.DateAdded) {
-    return nil, false
+	if o == nil || IsNil(o.DateAdded) {
+		return nil, false
 	}
 	return o.DateAdded, true
 }
 
 // HasDateAdded returns a boolean if a field has been set.
 func (o *ContactsList) HasDateAdded() bool {
-	if o != nil && !isNil(o.DateAdded) {
+	if o != nil && !IsNil(o.DateAdded) {
 		return true
 	}
 
@@ -153,7 +156,7 @@ func (o *ContactsList) SetDateAdded(v time.Time) {
 
 // GetAllowUnsubscribe returns the AllowUnsubscribe field value if set, zero value otherwise.
 func (o *ContactsList) GetAllowUnsubscribe() bool {
-	if o == nil || isNil(o.AllowUnsubscribe) {
+	if o == nil || IsNil(o.AllowUnsubscribe) {
 		var ret bool
 		return ret
 	}
@@ -163,15 +166,15 @@ func (o *ContactsList) GetAllowUnsubscribe() bool {
 // GetAllowUnsubscribeOk returns a tuple with the AllowUnsubscribe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactsList) GetAllowUnsubscribeOk() (*bool, bool) {
-	if o == nil || isNil(o.AllowUnsubscribe) {
-    return nil, false
+	if o == nil || IsNil(o.AllowUnsubscribe) {
+		return nil, false
 	}
 	return o.AllowUnsubscribe, true
 }
 
 // HasAllowUnsubscribe returns a boolean if a field has been set.
 func (o *ContactsList) HasAllowUnsubscribe() bool {
-	if o != nil && !isNil(o.AllowUnsubscribe) {
+	if o != nil && !IsNil(o.AllowUnsubscribe) {
 		return true
 	}
 
@@ -184,20 +187,28 @@ func (o *ContactsList) SetAllowUnsubscribe(v bool) {
 }
 
 func (o ContactsList) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ContactsList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.ListName) {
+	if !IsNil(o.ListName) {
 		toSerialize["ListName"] = o.ListName
 	}
 	if o.PublicListID.IsSet() {
 		toSerialize["PublicListID"] = o.PublicListID.Get()
 	}
-	if !isNil(o.DateAdded) {
+	if !IsNil(o.DateAdded) {
 		toSerialize["DateAdded"] = o.DateAdded
 	}
-	if !isNil(o.AllowUnsubscribe) {
+	if !IsNil(o.AllowUnsubscribe) {
 		toSerialize["AllowUnsubscribe"] = o.AllowUnsubscribe
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableContactsList struct {

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Utm type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Utm{}
+
 // Utm Utm marketing data to be attached to every link in this e-mail.
 type Utm struct {
 	// utmsource value
@@ -46,7 +49,7 @@ func NewUtmWithDefaults() *Utm {
 
 // GetSource returns the Source field value if set, zero value otherwise.
 func (o *Utm) GetSource() string {
-	if o == nil || isNil(o.Source) {
+	if o == nil || IsNil(o.Source) {
 		var ret string
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *Utm) GetSource() string {
 // GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Utm) GetSourceOk() (*string, bool) {
-	if o == nil || isNil(o.Source) {
-    return nil, false
+	if o == nil || IsNil(o.Source) {
+		return nil, false
 	}
 	return o.Source, true
 }
 
 // HasSource returns a boolean if a field has been set.
 func (o *Utm) HasSource() bool {
-	if o != nil && !isNil(o.Source) {
+	if o != nil && !IsNil(o.Source) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *Utm) SetSource(v string) {
 
 // GetMedium returns the Medium field value if set, zero value otherwise.
 func (o *Utm) GetMedium() string {
-	if o == nil || isNil(o.Medium) {
+	if o == nil || IsNil(o.Medium) {
 		var ret string
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *Utm) GetMedium() string {
 // GetMediumOk returns a tuple with the Medium field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Utm) GetMediumOk() (*string, bool) {
-	if o == nil || isNil(o.Medium) {
-    return nil, false
+	if o == nil || IsNil(o.Medium) {
+		return nil, false
 	}
 	return o.Medium, true
 }
 
 // HasMedium returns a boolean if a field has been set.
 func (o *Utm) HasMedium() bool {
-	if o != nil && !isNil(o.Medium) {
+	if o != nil && !IsNil(o.Medium) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *Utm) SetMedium(v string) {
 
 // GetCampaign returns the Campaign field value if set, zero value otherwise.
 func (o *Utm) GetCampaign() string {
-	if o == nil || isNil(o.Campaign) {
+	if o == nil || IsNil(o.Campaign) {
 		var ret string
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *Utm) GetCampaign() string {
 // GetCampaignOk returns a tuple with the Campaign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Utm) GetCampaignOk() (*string, bool) {
-	if o == nil || isNil(o.Campaign) {
-    return nil, false
+	if o == nil || IsNil(o.Campaign) {
+		return nil, false
 	}
 	return o.Campaign, true
 }
 
 // HasCampaign returns a boolean if a field has been set.
 func (o *Utm) HasCampaign() bool {
-	if o != nil && !isNil(o.Campaign) {
+	if o != nil && !IsNil(o.Campaign) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *Utm) SetCampaign(v string) {
 
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *Utm) GetContent() string {
-	if o == nil || isNil(o.Content) {
+	if o == nil || IsNil(o.Content) {
 		var ret string
 		return ret
 	}
@@ -152,15 +155,15 @@ func (o *Utm) GetContent() string {
 // GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Utm) GetContentOk() (*string, bool) {
-	if o == nil || isNil(o.Content) {
-    return nil, false
+	if o == nil || IsNil(o.Content) {
+		return nil, false
 	}
 	return o.Content, true
 }
 
 // HasContent returns a boolean if a field has been set.
 func (o *Utm) HasContent() bool {
-	if o != nil && !isNil(o.Content) {
+	if o != nil && !IsNil(o.Content) {
 		return true
 	}
 
@@ -173,20 +176,28 @@ func (o *Utm) SetContent(v string) {
 }
 
 func (o Utm) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Source) {
-		toSerialize["Source"] = o.Source
-	}
-	if !isNil(o.Medium) {
-		toSerialize["Medium"] = o.Medium
-	}
-	if !isNil(o.Campaign) {
-		toSerialize["Campaign"] = o.Campaign
-	}
-	if !isNil(o.Content) {
-		toSerialize["Content"] = o.Content
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Utm) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Source) {
+		toSerialize["Source"] = o.Source
+	}
+	if !IsNil(o.Medium) {
+		toSerialize["Medium"] = o.Medium
+	}
+	if !IsNil(o.Campaign) {
+		toSerialize["Campaign"] = o.Campaign
+	}
+	if !IsNil(o.Content) {
+		toSerialize["Content"] = o.Content
+	}
+	return toSerialize, nil
 }
 
 type NullableUtm struct {

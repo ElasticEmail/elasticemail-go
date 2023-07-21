@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **EmailCredits** | Pointer to **int32** | Amount of email credits | [optional] 
 **TotalEmailsSent** | Pointer to **int64** | Amount of emails sent from this Account | [optional] 
 **Reputation** | Pointer to **float64** | Numeric reputation | [optional] 
-**Status** | Pointer to [**AccountStatusEnum**](AccountStatusEnum.md) |  | [optional] [default to DISABLED]
+**Status** | Pointer to [**AccountStatusEnum**](AccountStatusEnum.md) |  | [optional] [default to ACCOUNTSTATUSENUM_DISABLED]
 **ContactsCount** | Pointer to **int32** | How many contacts this SubAccount has stored | [optional] 
 
 ## Methods

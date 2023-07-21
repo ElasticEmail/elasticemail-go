@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EmailData type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmailData{}
+
 // EmailData struct for EmailData
 type EmailData struct {
 	Preview *EmailView `json:"Preview,omitempty"`
@@ -42,7 +45,7 @@ func NewEmailDataWithDefaults() *EmailData {
 
 // GetPreview returns the Preview field value if set, zero value otherwise.
 func (o *EmailData) GetPreview() EmailView {
-	if o == nil || isNil(o.Preview) {
+	if o == nil || IsNil(o.Preview) {
 		var ret EmailView
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *EmailData) GetPreview() EmailView {
 // GetPreviewOk returns a tuple with the Preview field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailData) GetPreviewOk() (*EmailView, bool) {
-	if o == nil || isNil(o.Preview) {
-    return nil, false
+	if o == nil || IsNil(o.Preview) {
+		return nil, false
 	}
 	return o.Preview, true
 }
 
 // HasPreview returns a boolean if a field has been set.
 func (o *EmailData) HasPreview() bool {
-	if o != nil && !isNil(o.Preview) {
+	if o != nil && !IsNil(o.Preview) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *EmailData) SetPreview(v EmailView) {
 
 // GetAttachments returns the Attachments field value if set, zero value otherwise.
 func (o *EmailData) GetAttachments() []FileInfo {
-	if o == nil || isNil(o.Attachments) {
+	if o == nil || IsNil(o.Attachments) {
 		var ret []FileInfo
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *EmailData) GetAttachments() []FileInfo {
 // GetAttachmentsOk returns a tuple with the Attachments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailData) GetAttachmentsOk() ([]FileInfo, bool) {
-	if o == nil || isNil(o.Attachments) {
-    return nil, false
+	if o == nil || IsNil(o.Attachments) {
+		return nil, false
 	}
 	return o.Attachments, true
 }
 
 // HasAttachments returns a boolean if a field has been set.
 func (o *EmailData) HasAttachments() bool {
-	if o != nil && !isNil(o.Attachments) {
+	if o != nil && !IsNil(o.Attachments) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *EmailData) SetAttachments(v []FileInfo) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *EmailData) GetStatus() EmailStatus {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret EmailStatus
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *EmailData) GetStatus() EmailStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailData) GetStatusOk() (*EmailStatus, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *EmailData) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *EmailData) SetStatus(v EmailStatus) {
 }
 
 func (o EmailData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Preview) {
-		toSerialize["Preview"] = o.Preview
-	}
-	if !isNil(o.Attachments) {
-		toSerialize["Attachments"] = o.Attachments
-	}
-	if !isNil(o.Status) {
-		toSerialize["Status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o EmailData) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Preview) {
+		toSerialize["Preview"] = o.Preview
+	}
+	if !IsNil(o.Attachments) {
+		toSerialize["Attachments"] = o.Attachments
+	}
+	if !IsNil(o.Status) {
+		toSerialize["Status"] = o.Status
+	}
+	return toSerialize, nil
 }
 
 type NullableEmailData struct {

@@ -10,132 +10,129 @@ Testing ContactsApiService
 package ElasticEmail
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "./openapi"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func Test_ElasticEmail_ContactsApiService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test ContactsApiService ContactsByEmailDelete", func(t *testing.T) {
+	t.Run("Test ContactsApiService ContactsByEmailDelete", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var email string
+		var email string
 
-        resp, httpRes, err := apiClient.ContactsApi.ContactsByEmailDelete(context.Background(), email).Execute()
+		httpRes, err := apiClient.ContactsApi.ContactsByEmailDelete(context.Background(), email).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test ContactsApiService ContactsByEmailGet", func(t *testing.T) {
+	t.Run("Test ContactsApiService ContactsByEmailGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var email string
+		var email string
 
-        resp, httpRes, err := apiClient.ContactsApi.ContactsByEmailGet(context.Background(), email).Execute()
+		resp, httpRes, err := apiClient.ContactsApi.ContactsByEmailGet(context.Background(), email).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test ContactsApiService ContactsByEmailPut", func(t *testing.T) {
+	t.Run("Test ContactsApiService ContactsByEmailPut", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var email string
+		var email string
 
-        resp, httpRes, err := apiClient.ContactsApi.ContactsByEmailPut(context.Background(), email).Execute()
+		resp, httpRes, err := apiClient.ContactsApi.ContactsByEmailPut(context.Background(), email).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test ContactsApiService ContactsDeletePost", func(t *testing.T) {
+	t.Run("Test ContactsApiService ContactsDeletePost", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.ContactsApi.ContactsDeletePost(context.Background()).Execute()
+		httpRes, err := apiClient.ContactsApi.ContactsDeletePost(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test ContactsApiService ContactsExportByIdStatusGet", func(t *testing.T) {
+	t.Run("Test ContactsApiService ContactsExportByIdStatusGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var id string
+		var id string
 
-        resp, httpRes, err := apiClient.ContactsApi.ContactsExportByIdStatusGet(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ContactsApi.ContactsExportByIdStatusGet(context.Background(), id).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test ContactsApiService ContactsExportPost", func(t *testing.T) {
+	t.Run("Test ContactsApiService ContactsExportPost", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.ContactsApi.ContactsExportPost(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ContactsApi.ContactsExportPost(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test ContactsApiService ContactsGet", func(t *testing.T) {
+	t.Run("Test ContactsApiService ContactsGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.ContactsApi.ContactsGet(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ContactsApi.ContactsGet(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test ContactsApiService ContactsImportPost", func(t *testing.T) {
+	t.Run("Test ContactsApiService ContactsImportPost", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.ContactsApi.ContactsImportPost(context.Background()).Execute()
+		httpRes, err := apiClient.ContactsApi.ContactsImportPost(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test ContactsApiService ContactsPost", func(t *testing.T) {
+	t.Run("Test ContactsApiService ContactsPost", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.ContactsApi.ContactsPost(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ContactsApi.ContactsPost(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

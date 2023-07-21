@@ -21,8 +21,8 @@ type EventsOrderBy string
 
 // List of EventsOrderBy
 const (
-	DATE_DESCENDING EventsOrderBy = "DateDescending"
-	DATE_ASCENDING EventsOrderBy = "DateAscending"
+	EVENTSORDERBY_DATE_DESCENDING EventsOrderBy = "DateDescending"
+	EVENTSORDERBY_DATE_ASCENDING EventsOrderBy = "DateAscending"
 )
 
 // All allowed values of EventsOrderBy enum

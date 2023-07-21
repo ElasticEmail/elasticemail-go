@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the VerificationFileResult type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VerificationFileResult{}
+
 // VerificationFileResult Simple verification file result info
 type VerificationFileResult struct {
 	// Identifier of this verification result
@@ -36,7 +39,7 @@ type VerificationFileResult struct {
 // will change when the set of required properties is changed
 func NewVerificationFileResult() *VerificationFileResult {
 	this := VerificationFileResult{}
-	var verificationStatus VerificationStatus = PROCESSING
+	var verificationStatus VerificationStatus = VERIFICATIONSTATUS_PROCESSING
 	this.VerificationStatus = &verificationStatus
 	return &this
 }
@@ -46,14 +49,14 @@ func NewVerificationFileResult() *VerificationFileResult {
 // but it doesn't guarantee that properties required by API are set
 func NewVerificationFileResultWithDefaults() *VerificationFileResult {
 	this := VerificationFileResult{}
-	var verificationStatus VerificationStatus = PROCESSING
+	var verificationStatus VerificationStatus = VERIFICATIONSTATUS_PROCESSING
 	this.VerificationStatus = &verificationStatus
 	return &this
 }
 
 // GetVerificationID returns the VerificationID field value if set, zero value otherwise.
 func (o *VerificationFileResult) GetVerificationID() string {
-	if o == nil || isNil(o.VerificationID) {
+	if o == nil || IsNil(o.VerificationID) {
 		var ret string
 		return ret
 	}
@@ -63,15 +66,15 @@ func (o *VerificationFileResult) GetVerificationID() string {
 // GetVerificationIDOk returns a tuple with the VerificationID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerificationFileResult) GetVerificationIDOk() (*string, bool) {
-	if o == nil || isNil(o.VerificationID) {
-    return nil, false
+	if o == nil || IsNil(o.VerificationID) {
+		return nil, false
 	}
 	return o.VerificationID, true
 }
 
 // HasVerificationID returns a boolean if a field has been set.
 func (o *VerificationFileResult) HasVerificationID() bool {
-	if o != nil && !isNil(o.VerificationID) {
+	if o != nil && !IsNil(o.VerificationID) {
 		return true
 	}
 
@@ -85,7 +88,7 @@ func (o *VerificationFileResult) SetVerificationID(v string) {
 
 // GetFilename returns the Filename field value if set, zero value otherwise.
 func (o *VerificationFileResult) GetFilename() string {
-	if o == nil || isNil(o.Filename) {
+	if o == nil || IsNil(o.Filename) {
 		var ret string
 		return ret
 	}
@@ -95,15 +98,15 @@ func (o *VerificationFileResult) GetFilename() string {
 // GetFilenameOk returns a tuple with the Filename field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerificationFileResult) GetFilenameOk() (*string, bool) {
-	if o == nil || isNil(o.Filename) {
-    return nil, false
+	if o == nil || IsNil(o.Filename) {
+		return nil, false
 	}
 	return o.Filename, true
 }
 
 // HasFilename returns a boolean if a field has been set.
 func (o *VerificationFileResult) HasFilename() bool {
-	if o != nil && !isNil(o.Filename) {
+	if o != nil && !IsNil(o.Filename) {
 		return true
 	}
 
@@ -117,7 +120,7 @@ func (o *VerificationFileResult) SetFilename(v string) {
 
 // GetVerificationStatus returns the VerificationStatus field value if set, zero value otherwise.
 func (o *VerificationFileResult) GetVerificationStatus() VerificationStatus {
-	if o == nil || isNil(o.VerificationStatus) {
+	if o == nil || IsNil(o.VerificationStatus) {
 		var ret VerificationStatus
 		return ret
 	}
@@ -127,15 +130,15 @@ func (o *VerificationFileResult) GetVerificationStatus() VerificationStatus {
 // GetVerificationStatusOk returns a tuple with the VerificationStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerificationFileResult) GetVerificationStatusOk() (*VerificationStatus, bool) {
-	if o == nil || isNil(o.VerificationStatus) {
-    return nil, false
+	if o == nil || IsNil(o.VerificationStatus) {
+		return nil, false
 	}
 	return o.VerificationStatus, true
 }
 
 // HasVerificationStatus returns a boolean if a field has been set.
 func (o *VerificationFileResult) HasVerificationStatus() bool {
-	if o != nil && !isNil(o.VerificationStatus) {
+	if o != nil && !IsNil(o.VerificationStatus) {
 		return true
 	}
 
@@ -149,7 +152,7 @@ func (o *VerificationFileResult) SetVerificationStatus(v VerificationStatus) {
 
 // GetFileUploadResult returns the FileUploadResult field value if set, zero value otherwise.
 func (o *VerificationFileResult) GetFileUploadResult() FileUploadResult {
-	if o == nil || isNil(o.FileUploadResult) {
+	if o == nil || IsNil(o.FileUploadResult) {
 		var ret FileUploadResult
 		return ret
 	}
@@ -159,15 +162,15 @@ func (o *VerificationFileResult) GetFileUploadResult() FileUploadResult {
 // GetFileUploadResultOk returns a tuple with the FileUploadResult field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerificationFileResult) GetFileUploadResultOk() (*FileUploadResult, bool) {
-	if o == nil || isNil(o.FileUploadResult) {
-    return nil, false
+	if o == nil || IsNil(o.FileUploadResult) {
+		return nil, false
 	}
 	return o.FileUploadResult, true
 }
 
 // HasFileUploadResult returns a boolean if a field has been set.
 func (o *VerificationFileResult) HasFileUploadResult() bool {
-	if o != nil && !isNil(o.FileUploadResult) {
+	if o != nil && !IsNil(o.FileUploadResult) {
 		return true
 	}
 
@@ -181,7 +184,7 @@ func (o *VerificationFileResult) SetFileUploadResult(v FileUploadResult) {
 
 // GetDateAdded returns the DateAdded field value if set, zero value otherwise.
 func (o *VerificationFileResult) GetDateAdded() time.Time {
-	if o == nil || isNil(o.DateAdded) {
+	if o == nil || IsNil(o.DateAdded) {
 		var ret time.Time
 		return ret
 	}
@@ -191,15 +194,15 @@ func (o *VerificationFileResult) GetDateAdded() time.Time {
 // GetDateAddedOk returns a tuple with the DateAdded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerificationFileResult) GetDateAddedOk() (*time.Time, bool) {
-	if o == nil || isNil(o.DateAdded) {
-    return nil, false
+	if o == nil || IsNil(o.DateAdded) {
+		return nil, false
 	}
 	return o.DateAdded, true
 }
 
 // HasDateAdded returns a boolean if a field has been set.
 func (o *VerificationFileResult) HasDateAdded() bool {
-	if o != nil && !isNil(o.DateAdded) {
+	if o != nil && !IsNil(o.DateAdded) {
 		return true
 	}
 
@@ -213,7 +216,7 @@ func (o *VerificationFileResult) SetDateAdded(v time.Time) {
 
 // GetSource returns the Source field value if set, zero value otherwise.
 func (o *VerificationFileResult) GetSource() string {
-	if o == nil || isNil(o.Source) {
+	if o == nil || IsNil(o.Source) {
 		var ret string
 		return ret
 	}
@@ -223,15 +226,15 @@ func (o *VerificationFileResult) GetSource() string {
 // GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VerificationFileResult) GetSourceOk() (*string, bool) {
-	if o == nil || isNil(o.Source) {
-    return nil, false
+	if o == nil || IsNil(o.Source) {
+		return nil, false
 	}
 	return o.Source, true
 }
 
 // HasSource returns a boolean if a field has been set.
 func (o *VerificationFileResult) HasSource() bool {
-	if o != nil && !isNil(o.Source) {
+	if o != nil && !IsNil(o.Source) {
 		return true
 	}
 
@@ -244,26 +247,34 @@ func (o *VerificationFileResult) SetSource(v string) {
 }
 
 func (o VerificationFileResult) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.VerificationID) {
-		toSerialize["VerificationID"] = o.VerificationID
-	}
-	if !isNil(o.Filename) {
-		toSerialize["Filename"] = o.Filename
-	}
-	if !isNil(o.VerificationStatus) {
-		toSerialize["VerificationStatus"] = o.VerificationStatus
-	}
-	if !isNil(o.FileUploadResult) {
-		toSerialize["FileUploadResult"] = o.FileUploadResult
-	}
-	if !isNil(o.DateAdded) {
-		toSerialize["DateAdded"] = o.DateAdded
-	}
-	if !isNil(o.Source) {
-		toSerialize["Source"] = o.Source
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o VerificationFileResult) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.VerificationID) {
+		toSerialize["VerificationID"] = o.VerificationID
+	}
+	if !IsNil(o.Filename) {
+		toSerialize["Filename"] = o.Filename
+	}
+	if !IsNil(o.VerificationStatus) {
+		toSerialize["VerificationStatus"] = o.VerificationStatus
+	}
+	if !IsNil(o.FileUploadResult) {
+		toSerialize["FileUploadResult"] = o.FileUploadResult
+	}
+	if !IsNil(o.DateAdded) {
+		toSerialize["DateAdded"] = o.DateAdded
+	}
+	if !IsNil(o.Source) {
+		toSerialize["Source"] = o.Source
+	}
+	return toSerialize, nil
 }
 
 type NullableVerificationFileResult struct {

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TemplatePayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TemplatePayload{}
+
 // TemplatePayload New template object
 type TemplatePayload struct {
 	// Template name
@@ -33,7 +36,7 @@ type TemplatePayload struct {
 func NewTemplatePayload(name string) *TemplatePayload {
 	this := TemplatePayload{}
 	this.Name = name
-	var templateScope TemplateScope = PERSONAL
+	var templateScope TemplateScope = TEMPLATESCOPE_PERSONAL
 	this.TemplateScope = &templateScope
 	return &this
 }
@@ -43,7 +46,7 @@ func NewTemplatePayload(name string) *TemplatePayload {
 // but it doesn't guarantee that properties required by API are set
 func NewTemplatePayloadWithDefaults() *TemplatePayload {
 	this := TemplatePayload{}
-	var templateScope TemplateScope = PERSONAL
+	var templateScope TemplateScope = TEMPLATESCOPE_PERSONAL
 	this.TemplateScope = &templateScope
 	return &this
 }
@@ -62,7 +65,7 @@ func (o *TemplatePayload) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *TemplatePayload) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -74,7 +77,7 @@ func (o *TemplatePayload) SetName(v string) {
 
 // GetSubject returns the Subject field value if set, zero value otherwise.
 func (o *TemplatePayload) GetSubject() string {
-	if o == nil || isNil(o.Subject) {
+	if o == nil || IsNil(o.Subject) {
 		var ret string
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *TemplatePayload) GetSubject() string {
 // GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TemplatePayload) GetSubjectOk() (*string, bool) {
-	if o == nil || isNil(o.Subject) {
-    return nil, false
+	if o == nil || IsNil(o.Subject) {
+		return nil, false
 	}
 	return o.Subject, true
 }
 
 // HasSubject returns a boolean if a field has been set.
 func (o *TemplatePayload) HasSubject() bool {
-	if o != nil && !isNil(o.Subject) {
+	if o != nil && !IsNil(o.Subject) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *TemplatePayload) SetSubject(v string) {
 
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *TemplatePayload) GetBody() []BodyPart {
-	if o == nil || isNil(o.Body) {
+	if o == nil || IsNil(o.Body) {
 		var ret []BodyPart
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *TemplatePayload) GetBody() []BodyPart {
 // GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TemplatePayload) GetBodyOk() ([]BodyPart, bool) {
-	if o == nil || isNil(o.Body) {
-    return nil, false
+	if o == nil || IsNil(o.Body) {
+		return nil, false
 	}
 	return o.Body, true
 }
 
 // HasBody returns a boolean if a field has been set.
 func (o *TemplatePayload) HasBody() bool {
-	if o != nil && !isNil(o.Body) {
+	if o != nil && !IsNil(o.Body) {
 		return true
 	}
 
@@ -138,7 +141,7 @@ func (o *TemplatePayload) SetBody(v []BodyPart) {
 
 // GetTemplateScope returns the TemplateScope field value if set, zero value otherwise.
 func (o *TemplatePayload) GetTemplateScope() TemplateScope {
-	if o == nil || isNil(o.TemplateScope) {
+	if o == nil || IsNil(o.TemplateScope) {
 		var ret TemplateScope
 		return ret
 	}
@@ -148,15 +151,15 @@ func (o *TemplatePayload) GetTemplateScope() TemplateScope {
 // GetTemplateScopeOk returns a tuple with the TemplateScope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TemplatePayload) GetTemplateScopeOk() (*TemplateScope, bool) {
-	if o == nil || isNil(o.TemplateScope) {
-    return nil, false
+	if o == nil || IsNil(o.TemplateScope) {
+		return nil, false
 	}
 	return o.TemplateScope, true
 }
 
 // HasTemplateScope returns a boolean if a field has been set.
 func (o *TemplatePayload) HasTemplateScope() bool {
-	if o != nil && !isNil(o.TemplateScope) {
+	if o != nil && !IsNil(o.TemplateScope) {
 		return true
 	}
 
@@ -169,20 +172,26 @@ func (o *TemplatePayload) SetTemplateScope(v TemplateScope) {
 }
 
 func (o TemplatePayload) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["Name"] = o.Name
-	}
-	if !isNil(o.Subject) {
-		toSerialize["Subject"] = o.Subject
-	}
-	if !isNil(o.Body) {
-		toSerialize["Body"] = o.Body
-	}
-	if !isNil(o.TemplateScope) {
-		toSerialize["TemplateScope"] = o.TemplateScope
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TemplatePayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["Name"] = o.Name
+	if !IsNil(o.Subject) {
+		toSerialize["Subject"] = o.Subject
+	}
+	if !IsNil(o.Body) {
+		toSerialize["Body"] = o.Body
+	}
+	if !IsNil(o.TemplateScope) {
+		toSerialize["TemplateScope"] = o.TemplateScope
+	}
+	return toSerialize, nil
 }
 
 type NullableTemplatePayload struct {

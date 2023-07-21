@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelLogStatusSummary type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelLogStatusSummary{}
+
 // ChannelLogStatusSummary Summary of channel log status
 type ChannelLogStatusSummary struct {
 	// Channel name
@@ -66,7 +69,7 @@ func NewChannelLogStatusSummaryWithDefaults() *ChannelLogStatusSummary {
 
 // GetChannelName returns the ChannelName field value if set, zero value otherwise.
 func (o *ChannelLogStatusSummary) GetChannelName() string {
-	if o == nil || isNil(o.ChannelName) {
+	if o == nil || IsNil(o.ChannelName) {
 		var ret string
 		return ret
 	}
@@ -76,15 +79,15 @@ func (o *ChannelLogStatusSummary) GetChannelName() string {
 // GetChannelNameOk returns a tuple with the ChannelName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelLogStatusSummary) GetChannelNameOk() (*string, bool) {
-	if o == nil || isNil(o.ChannelName) {
-    return nil, false
+	if o == nil || IsNil(o.ChannelName) {
+		return nil, false
 	}
 	return o.ChannelName, true
 }
 
 // HasChannelName returns a boolean if a field has been set.
 func (o *ChannelLogStatusSummary) HasChannelName() bool {
-	if o != nil && !isNil(o.ChannelName) {
+	if o != nil && !IsNil(o.ChannelName) {
 		return true
 	}
 
@@ -98,7 +101,7 @@ func (o *ChannelLogStatusSummary) SetChannelName(v string) {
 
 // GetRecipients returns the Recipients field value if set, zero value otherwise.
 func (o *ChannelLogStatusSummary) GetRecipients() int64 {
-	if o == nil || isNil(o.Recipients) {
+	if o == nil || IsNil(o.Recipients) {
 		var ret int64
 		return ret
 	}
@@ -108,15 +111,15 @@ func (o *ChannelLogStatusSummary) GetRecipients() int64 {
 // GetRecipientsOk returns a tuple with the Recipients field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelLogStatusSummary) GetRecipientsOk() (*int64, bool) {
-	if o == nil || isNil(o.Recipients) {
-    return nil, false
+	if o == nil || IsNil(o.Recipients) {
+		return nil, false
 	}
 	return o.Recipients, true
 }
 
 // HasRecipients returns a boolean if a field has been set.
 func (o *ChannelLogStatusSummary) HasRecipients() bool {
-	if o != nil && !isNil(o.Recipients) {
+	if o != nil && !IsNil(o.Recipients) {
 		return true
 	}
 
@@ -130,7 +133,7 @@ func (o *ChannelLogStatusSummary) SetRecipients(v int64) {
 
 // GetEmailTotal returns the EmailTotal field value if set, zero value otherwise.
 func (o *ChannelLogStatusSummary) GetEmailTotal() int64 {
-	if o == nil || isNil(o.EmailTotal) {
+	if o == nil || IsNil(o.EmailTotal) {
 		var ret int64
 		return ret
 	}
@@ -140,15 +143,15 @@ func (o *ChannelLogStatusSummary) GetEmailTotal() int64 {
 // GetEmailTotalOk returns a tuple with the EmailTotal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelLogStatusSummary) GetEmailTotalOk() (*int64, bool) {
-	if o == nil || isNil(o.EmailTotal) {
-    return nil, false
+	if o == nil || IsNil(o.EmailTotal) {
+		return nil, false
 	}
 	return o.EmailTotal, true
 }
 
 // HasEmailTotal returns a boolean if a field has been set.
 func (o *ChannelLogStatusSummary) HasEmailTotal() bool {
-	if o != nil && !isNil(o.EmailTotal) {
+	if o != nil && !IsNil(o.EmailTotal) {
 		return true
 	}
 
@@ -162,7 +165,7 @@ func (o *ChannelLogStatusSummary) SetEmailTotal(v int64) {
 
 // GetSmsTotal returns the SmsTotal field value if set, zero value otherwise.
 func (o *ChannelLogStatusSummary) GetSmsTotal() int64 {
-	if o == nil || isNil(o.SmsTotal) {
+	if o == nil || IsNil(o.SmsTotal) {
 		var ret int64
 		return ret
 	}
@@ -172,15 +175,15 @@ func (o *ChannelLogStatusSummary) GetSmsTotal() int64 {
 // GetSmsTotalOk returns a tuple with the SmsTotal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelLogStatusSummary) GetSmsTotalOk() (*int64, bool) {
-	if o == nil || isNil(o.SmsTotal) {
-    return nil, false
+	if o == nil || IsNil(o.SmsTotal) {
+		return nil, false
 	}
 	return o.SmsTotal, true
 }
 
 // HasSmsTotal returns a boolean if a field has been set.
 func (o *ChannelLogStatusSummary) HasSmsTotal() bool {
-	if o != nil && !isNil(o.SmsTotal) {
+	if o != nil && !IsNil(o.SmsTotal) {
 		return true
 	}
 
@@ -194,7 +197,7 @@ func (o *ChannelLogStatusSummary) SetSmsTotal(v int64) {
 
 // GetDelivered returns the Delivered field value if set, zero value otherwise.
 func (o *ChannelLogStatusSummary) GetDelivered() int64 {
-	if o == nil || isNil(o.Delivered) {
+	if o == nil || IsNil(o.Delivered) {
 		var ret int64
 		return ret
 	}
@@ -204,15 +207,15 @@ func (o *ChannelLogStatusSummary) GetDelivered() int64 {
 // GetDeliveredOk returns a tuple with the Delivered field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelLogStatusSummary) GetDeliveredOk() (*int64, bool) {
-	if o == nil || isNil(o.Delivered) {
-    return nil, false
+	if o == nil || IsNil(o.Delivered) {
+		return nil, false
 	}
 	return o.Delivered, true
 }
 
 // HasDelivered returns a boolean if a field has been set.
 func (o *ChannelLogStatusSummary) HasDelivered() bool {
-	if o != nil && !isNil(o.Delivered) {
+	if o != nil && !IsNil(o.Delivered) {
 		return true
 	}
 
@@ -226,7 +229,7 @@ func (o *ChannelLogStatusSummary) SetDelivered(v int64) {
 
 // GetBounced returns the Bounced field value if set, zero value otherwise.
 func (o *ChannelLogStatusSummary) GetBounced() int64 {
-	if o == nil || isNil(o.Bounced) {
+	if o == nil || IsNil(o.Bounced) {
 		var ret int64
 		return ret
 	}
@@ -236,15 +239,15 @@ func (o *ChannelLogStatusSummary) GetBounced() int64 {
 // GetBouncedOk returns a tuple with the Bounced field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelLogStatusSummary) GetBouncedOk() (*int64, bool) {
-	if o == nil || isNil(o.Bounced) {
-    return nil, false
+	if o == nil || IsNil(o.Bounced) {
+		return nil, false
 	}
 	return o.Bounced, true
 }
 
 // HasBounced returns a boolean if a field has been set.
 func (o *ChannelLogStatusSummary) HasBounced() bool {
-	if o != nil && !isNil(o.Bounced) {
+	if o != nil && !IsNil(o.Bounced) {
 		return true
 	}
 
@@ -258,7 +261,7 @@ func (o *ChannelLogStatusSummary) SetBounced(v int64) {
 
 // GetInProgress returns the InProgress field value if set, zero value otherwise.
 func (o *ChannelLogStatusSummary) GetInProgress() int64 {
-	if o == nil || isNil(o.InProgress) {
+	if o == nil || IsNil(o.InProgress) {
 		var ret int64
 		return ret
 	}
@@ -268,15 +271,15 @@ func (o *ChannelLogStatusSummary) GetInProgress() int64 {
 // GetInProgressOk returns a tuple with the InProgress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelLogStatusSummary) GetInProgressOk() (*int64, bool) {
-	if o == nil || isNil(o.InProgress) {
-    return nil, false
+	if o == nil || IsNil(o.InProgress) {
+		return nil, false
 	}
 	return o.InProgress, true
 }
 
 // HasInProgress returns a boolean if a field has been set.
 func (o *ChannelLogStatusSummary) HasInProgress() bool {
-	if o != nil && !isNil(o.InProgress) {
+	if o != nil && !IsNil(o.InProgress) {
 		return true
 	}
 
@@ -290,7 +293,7 @@ func (o *ChannelLogStatusSummary) SetInProgress(v int64) {
 
 // GetOpened returns the Opened field value if set, zero value otherwise.
 func (o *ChannelLogStatusSummary) GetOpened() int64 {
-	if o == nil || isNil(o.Opened) {
+	if o == nil || IsNil(o.Opened) {
 		var ret int64
 		return ret
 	}
@@ -300,15 +303,15 @@ func (o *ChannelLogStatusSummary) GetOpened() int64 {
 // GetOpenedOk returns a tuple with the Opened field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelLogStatusSummary) GetOpenedOk() (*int64, bool) {
-	if o == nil || isNil(o.Opened) {
-    return nil, false
+	if o == nil || IsNil(o.Opened) {
+		return nil, false
 	}
 	return o.Opened, true
 }
 
 // HasOpened returns a boolean if a field has been set.
 func (o *ChannelLogStatusSummary) HasOpened() bool {
-	if o != nil && !isNil(o.Opened) {
+	if o != nil && !IsNil(o.Opened) {
 		return true
 	}
 
@@ -322,7 +325,7 @@ func (o *ChannelLogStatusSummary) SetOpened(v int64) {
 
 // GetClicked returns the Clicked field value if set, zero value otherwise.
 func (o *ChannelLogStatusSummary) GetClicked() int64 {
-	if o == nil || isNil(o.Clicked) {
+	if o == nil || IsNil(o.Clicked) {
 		var ret int64
 		return ret
 	}
@@ -332,15 +335,15 @@ func (o *ChannelLogStatusSummary) GetClicked() int64 {
 // GetClickedOk returns a tuple with the Clicked field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelLogStatusSummary) GetClickedOk() (*int64, bool) {
-	if o == nil || isNil(o.Clicked) {
-    return nil, false
+	if o == nil || IsNil(o.Clicked) {
+		return nil, false
 	}
 	return o.Clicked, true
 }
 
 // HasClicked returns a boolean if a field has been set.
 func (o *ChannelLogStatusSummary) HasClicked() bool {
-	if o != nil && !isNil(o.Clicked) {
+	if o != nil && !IsNil(o.Clicked) {
 		return true
 	}
 
@@ -354,7 +357,7 @@ func (o *ChannelLogStatusSummary) SetClicked(v int64) {
 
 // GetUnsubscribed returns the Unsubscribed field value if set, zero value otherwise.
 func (o *ChannelLogStatusSummary) GetUnsubscribed() int64 {
-	if o == nil || isNil(o.Unsubscribed) {
+	if o == nil || IsNil(o.Unsubscribed) {
 		var ret int64
 		return ret
 	}
@@ -364,15 +367,15 @@ func (o *ChannelLogStatusSummary) GetUnsubscribed() int64 {
 // GetUnsubscribedOk returns a tuple with the Unsubscribed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelLogStatusSummary) GetUnsubscribedOk() (*int64, bool) {
-	if o == nil || isNil(o.Unsubscribed) {
-    return nil, false
+	if o == nil || IsNil(o.Unsubscribed) {
+		return nil, false
 	}
 	return o.Unsubscribed, true
 }
 
 // HasUnsubscribed returns a boolean if a field has been set.
 func (o *ChannelLogStatusSummary) HasUnsubscribed() bool {
-	if o != nil && !isNil(o.Unsubscribed) {
+	if o != nil && !IsNil(o.Unsubscribed) {
 		return true
 	}
 
@@ -386,7 +389,7 @@ func (o *ChannelLogStatusSummary) SetUnsubscribed(v int64) {
 
 // GetComplaints returns the Complaints field value if set, zero value otherwise.
 func (o *ChannelLogStatusSummary) GetComplaints() int64 {
-	if o == nil || isNil(o.Complaints) {
+	if o == nil || IsNil(o.Complaints) {
 		var ret int64
 		return ret
 	}
@@ -396,15 +399,15 @@ func (o *ChannelLogStatusSummary) GetComplaints() int64 {
 // GetComplaintsOk returns a tuple with the Complaints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelLogStatusSummary) GetComplaintsOk() (*int64, bool) {
-	if o == nil || isNil(o.Complaints) {
-    return nil, false
+	if o == nil || IsNil(o.Complaints) {
+		return nil, false
 	}
 	return o.Complaints, true
 }
 
 // HasComplaints returns a boolean if a field has been set.
 func (o *ChannelLogStatusSummary) HasComplaints() bool {
-	if o != nil && !isNil(o.Complaints) {
+	if o != nil && !IsNil(o.Complaints) {
 		return true
 	}
 
@@ -418,7 +421,7 @@ func (o *ChannelLogStatusSummary) SetComplaints(v int64) {
 
 // GetInbound returns the Inbound field value if set, zero value otherwise.
 func (o *ChannelLogStatusSummary) GetInbound() int64 {
-	if o == nil || isNil(o.Inbound) {
+	if o == nil || IsNil(o.Inbound) {
 		var ret int64
 		return ret
 	}
@@ -428,15 +431,15 @@ func (o *ChannelLogStatusSummary) GetInbound() int64 {
 // GetInboundOk returns a tuple with the Inbound field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelLogStatusSummary) GetInboundOk() (*int64, bool) {
-	if o == nil || isNil(o.Inbound) {
-    return nil, false
+	if o == nil || IsNil(o.Inbound) {
+		return nil, false
 	}
 	return o.Inbound, true
 }
 
 // HasInbound returns a boolean if a field has been set.
 func (o *ChannelLogStatusSummary) HasInbound() bool {
-	if o != nil && !isNil(o.Inbound) {
+	if o != nil && !IsNil(o.Inbound) {
 		return true
 	}
 
@@ -450,7 +453,7 @@ func (o *ChannelLogStatusSummary) SetInbound(v int64) {
 
 // GetManualCancel returns the ManualCancel field value if set, zero value otherwise.
 func (o *ChannelLogStatusSummary) GetManualCancel() int64 {
-	if o == nil || isNil(o.ManualCancel) {
+	if o == nil || IsNil(o.ManualCancel) {
 		var ret int64
 		return ret
 	}
@@ -460,15 +463,15 @@ func (o *ChannelLogStatusSummary) GetManualCancel() int64 {
 // GetManualCancelOk returns a tuple with the ManualCancel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelLogStatusSummary) GetManualCancelOk() (*int64, bool) {
-	if o == nil || isNil(o.ManualCancel) {
-    return nil, false
+	if o == nil || IsNil(o.ManualCancel) {
+		return nil, false
 	}
 	return o.ManualCancel, true
 }
 
 // HasManualCancel returns a boolean if a field has been set.
 func (o *ChannelLogStatusSummary) HasManualCancel() bool {
-	if o != nil && !isNil(o.ManualCancel) {
+	if o != nil && !IsNil(o.ManualCancel) {
 		return true
 	}
 
@@ -482,7 +485,7 @@ func (o *ChannelLogStatusSummary) SetManualCancel(v int64) {
 
 // GetNotDelivered returns the NotDelivered field value if set, zero value otherwise.
 func (o *ChannelLogStatusSummary) GetNotDelivered() int64 {
-	if o == nil || isNil(o.NotDelivered) {
+	if o == nil || IsNil(o.NotDelivered) {
 		var ret int64
 		return ret
 	}
@@ -492,15 +495,15 @@ func (o *ChannelLogStatusSummary) GetNotDelivered() int64 {
 // GetNotDeliveredOk returns a tuple with the NotDelivered field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelLogStatusSummary) GetNotDeliveredOk() (*int64, bool) {
-	if o == nil || isNil(o.NotDelivered) {
-    return nil, false
+	if o == nil || IsNil(o.NotDelivered) {
+		return nil, false
 	}
 	return o.NotDelivered, true
 }
 
 // HasNotDelivered returns a boolean if a field has been set.
 func (o *ChannelLogStatusSummary) HasNotDelivered() bool {
-	if o != nil && !isNil(o.NotDelivered) {
+	if o != nil && !IsNil(o.NotDelivered) {
 		return true
 	}
 
@@ -513,50 +516,58 @@ func (o *ChannelLogStatusSummary) SetNotDelivered(v int64) {
 }
 
 func (o ChannelLogStatusSummary) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.ChannelName) {
-		toSerialize["ChannelName"] = o.ChannelName
-	}
-	if !isNil(o.Recipients) {
-		toSerialize["Recipients"] = o.Recipients
-	}
-	if !isNil(o.EmailTotal) {
-		toSerialize["EmailTotal"] = o.EmailTotal
-	}
-	if !isNil(o.SmsTotal) {
-		toSerialize["SmsTotal"] = o.SmsTotal
-	}
-	if !isNil(o.Delivered) {
-		toSerialize["Delivered"] = o.Delivered
-	}
-	if !isNil(o.Bounced) {
-		toSerialize["Bounced"] = o.Bounced
-	}
-	if !isNil(o.InProgress) {
-		toSerialize["InProgress"] = o.InProgress
-	}
-	if !isNil(o.Opened) {
-		toSerialize["Opened"] = o.Opened
-	}
-	if !isNil(o.Clicked) {
-		toSerialize["Clicked"] = o.Clicked
-	}
-	if !isNil(o.Unsubscribed) {
-		toSerialize["Unsubscribed"] = o.Unsubscribed
-	}
-	if !isNil(o.Complaints) {
-		toSerialize["Complaints"] = o.Complaints
-	}
-	if !isNil(o.Inbound) {
-		toSerialize["Inbound"] = o.Inbound
-	}
-	if !isNil(o.ManualCancel) {
-		toSerialize["ManualCancel"] = o.ManualCancel
-	}
-	if !isNil(o.NotDelivered) {
-		toSerialize["NotDelivered"] = o.NotDelivered
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelLogStatusSummary) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ChannelName) {
+		toSerialize["ChannelName"] = o.ChannelName
+	}
+	if !IsNil(o.Recipients) {
+		toSerialize["Recipients"] = o.Recipients
+	}
+	if !IsNil(o.EmailTotal) {
+		toSerialize["EmailTotal"] = o.EmailTotal
+	}
+	if !IsNil(o.SmsTotal) {
+		toSerialize["SmsTotal"] = o.SmsTotal
+	}
+	if !IsNil(o.Delivered) {
+		toSerialize["Delivered"] = o.Delivered
+	}
+	if !IsNil(o.Bounced) {
+		toSerialize["Bounced"] = o.Bounced
+	}
+	if !IsNil(o.InProgress) {
+		toSerialize["InProgress"] = o.InProgress
+	}
+	if !IsNil(o.Opened) {
+		toSerialize["Opened"] = o.Opened
+	}
+	if !IsNil(o.Clicked) {
+		toSerialize["Clicked"] = o.Clicked
+	}
+	if !IsNil(o.Unsubscribed) {
+		toSerialize["Unsubscribed"] = o.Unsubscribed
+	}
+	if !IsNil(o.Complaints) {
+		toSerialize["Complaints"] = o.Complaints
+	}
+	if !IsNil(o.Inbound) {
+		toSerialize["Inbound"] = o.Inbound
+	}
+	if !IsNil(o.ManualCancel) {
+		toSerialize["ManualCancel"] = o.ManualCancel
+	}
+	if !IsNil(o.NotDelivered) {
+		toSerialize["NotDelivered"] = o.NotDelivered
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelLogStatusSummary struct {

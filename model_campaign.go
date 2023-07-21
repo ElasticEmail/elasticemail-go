@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Campaign type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Campaign{}
+
 // Campaign struct for Campaign
 type Campaign struct {
 	// Campaign's email content. Provide multiple items to send an A/X Split Campaign
@@ -33,7 +36,7 @@ type Campaign struct {
 func NewCampaign(name string, recipients CampaignRecipient) *Campaign {
 	this := Campaign{}
 	this.Name = name
-	var status CampaignStatus = DELETED
+	var status CampaignStatus = CAMPAIGNSTATUS_DELETED
 	this.Status = &status
 	this.Recipients = recipients
 	return &this
@@ -44,14 +47,14 @@ func NewCampaign(name string, recipients CampaignRecipient) *Campaign {
 // but it doesn't guarantee that properties required by API are set
 func NewCampaignWithDefaults() *Campaign {
 	this := Campaign{}
-	var status CampaignStatus = DELETED
+	var status CampaignStatus = CAMPAIGNSTATUS_DELETED
 	this.Status = &status
 	return &this
 }
 
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *Campaign) GetContent() []CampaignTemplate {
-	if o == nil || isNil(o.Content) {
+	if o == nil || IsNil(o.Content) {
 		var ret []CampaignTemplate
 		return ret
 	}
@@ -61,15 +64,15 @@ func (o *Campaign) GetContent() []CampaignTemplate {
 // GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Campaign) GetContentOk() ([]CampaignTemplate, bool) {
-	if o == nil || isNil(o.Content) {
-    return nil, false
+	if o == nil || IsNil(o.Content) {
+		return nil, false
 	}
 	return o.Content, true
 }
 
 // HasContent returns a boolean if a field has been set.
 func (o *Campaign) HasContent() bool {
-	if o != nil && !isNil(o.Content) {
+	if o != nil && !IsNil(o.Content) {
 		return true
 	}
 
@@ -95,7 +98,7 @@ func (o *Campaign) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *Campaign) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -107,7 +110,7 @@ func (o *Campaign) SetName(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *Campaign) GetStatus() CampaignStatus {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret CampaignStatus
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *Campaign) GetStatus() CampaignStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Campaign) GetStatusOk() (*CampaignStatus, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Campaign) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -151,7 +154,7 @@ func (o *Campaign) GetRecipients() CampaignRecipient {
 // and a boolean to check if the value has been set.
 func (o *Campaign) GetRecipientsOk() (*CampaignRecipient, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Recipients, true
 }
@@ -163,7 +166,7 @@ func (o *Campaign) SetRecipients(v CampaignRecipient) {
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *Campaign) GetOptions() CampaignOptions {
-	if o == nil || isNil(o.Options) {
+	if o == nil || IsNil(o.Options) {
 		var ret CampaignOptions
 		return ret
 	}
@@ -173,15 +176,15 @@ func (o *Campaign) GetOptions() CampaignOptions {
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Campaign) GetOptionsOk() (*CampaignOptions, bool) {
-	if o == nil || isNil(o.Options) {
-    return nil, false
+	if o == nil || IsNil(o.Options) {
+		return nil, false
 	}
 	return o.Options, true
 }
 
 // HasOptions returns a boolean if a field has been set.
 func (o *Campaign) HasOptions() bool {
-	if o != nil && !isNil(o.Options) {
+	if o != nil && !IsNil(o.Options) {
 		return true
 	}
 
@@ -194,23 +197,27 @@ func (o *Campaign) SetOptions(v CampaignOptions) {
 }
 
 func (o Campaign) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Content) {
-		toSerialize["Content"] = o.Content
-	}
-	if true {
-		toSerialize["Name"] = o.Name
-	}
-	if !isNil(o.Status) {
-		toSerialize["Status"] = o.Status
-	}
-	if true {
-		toSerialize["Recipients"] = o.Recipients
-	}
-	if !isNil(o.Options) {
-		toSerialize["Options"] = o.Options
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Campaign) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Content) {
+		toSerialize["Content"] = o.Content
+	}
+	toSerialize["Name"] = o.Name
+	if !IsNil(o.Status) {
+		toSerialize["Status"] = o.Status
+	}
+	toSerialize["Recipients"] = o.Recipients
+	if !IsNil(o.Options) {
+		toSerialize["Options"] = o.Options
+	}
+	return toSerialize, nil
 }
 
 type NullableCampaign struct {

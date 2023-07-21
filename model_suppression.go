@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the Suppression type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Suppression{}
+
 // Suppression Suppression - Email returning Hard Bounces
 type Suppression struct {
 	// Proper email address.
@@ -47,7 +50,7 @@ func NewSuppressionWithDefaults() *Suppression {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *Suppression) GetEmail() string {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *Suppression) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Suppression) GetEmailOk() (*string, bool) {
-	if o == nil || isNil(o.Email) {
-    return nil, false
+	if o == nil || IsNil(o.Email) {
+		return nil, false
 	}
 	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *Suppression) HasEmail() bool {
-	if o != nil && !isNil(o.Email) {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *Suppression) SetEmail(v string) {
 
 // GetFriendlyErrorMessage returns the FriendlyErrorMessage field value if set, zero value otherwise.
 func (o *Suppression) GetFriendlyErrorMessage() string {
-	if o == nil || isNil(o.FriendlyErrorMessage) {
+	if o == nil || IsNil(o.FriendlyErrorMessage) {
 		var ret string
 		return ret
 	}
@@ -89,15 +92,15 @@ func (o *Suppression) GetFriendlyErrorMessage() string {
 // GetFriendlyErrorMessageOk returns a tuple with the FriendlyErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Suppression) GetFriendlyErrorMessageOk() (*string, bool) {
-	if o == nil || isNil(o.FriendlyErrorMessage) {
-    return nil, false
+	if o == nil || IsNil(o.FriendlyErrorMessage) {
+		return nil, false
 	}
 	return o.FriendlyErrorMessage, true
 }
 
 // HasFriendlyErrorMessage returns a boolean if a field has been set.
 func (o *Suppression) HasFriendlyErrorMessage() bool {
-	if o != nil && !isNil(o.FriendlyErrorMessage) {
+	if o != nil && !IsNil(o.FriendlyErrorMessage) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *Suppression) SetFriendlyErrorMessage(v string) {
 
 // GetErrorCode returns the ErrorCode field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Suppression) GetErrorCode() int32 {
-	if o == nil || isNil(o.ErrorCode.Get()) {
+	if o == nil || IsNil(o.ErrorCode.Get()) {
 		var ret int32
 		return ret
 	}
@@ -123,7 +126,7 @@ func (o *Suppression) GetErrorCode() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Suppression) GetErrorCodeOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.ErrorCode.Get(), o.ErrorCode.IsSet()
 }
@@ -153,7 +156,7 @@ func (o *Suppression) UnsetErrorCode() {
 
 // GetDateUpdated returns the DateUpdated field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Suppression) GetDateUpdated() time.Time {
-	if o == nil || isNil(o.DateUpdated.Get()) {
+	if o == nil || IsNil(o.DateUpdated.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -165,7 +168,7 @@ func (o *Suppression) GetDateUpdated() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Suppression) GetDateUpdatedOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.DateUpdated.Get(), o.DateUpdated.IsSet()
 }
@@ -194,11 +197,19 @@ func (o *Suppression) UnsetDateUpdated() {
 }
 
 func (o Suppression) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Suppression) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Email) {
+	if !IsNil(o.Email) {
 		toSerialize["Email"] = o.Email
 	}
-	if !isNil(o.FriendlyErrorMessage) {
+	if !IsNil(o.FriendlyErrorMessage) {
 		toSerialize["FriendlyErrorMessage"] = o.FriendlyErrorMessage
 	}
 	if o.ErrorCode.IsSet() {
@@ -207,7 +218,7 @@ func (o Suppression) MarshalJSON() ([]byte, error) {
 	if o.DateUpdated.IsSet() {
 		toSerialize["DateUpdated"] = o.DateUpdated.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSuppression struct {

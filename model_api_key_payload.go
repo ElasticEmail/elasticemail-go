@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the ApiKeyPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiKeyPayload{}
+
 // ApiKeyPayload Create a new ApiKey
 type ApiKeyPayload struct {
 	// Name of the ApiKey for ease of reference.
@@ -63,7 +66,7 @@ func (o *ApiKeyPayload) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *ApiKeyPayload) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -87,7 +90,7 @@ func (o *ApiKeyPayload) GetAccessLevel() []AccessLevel {
 // and a boolean to check if the value has been set.
 func (o *ApiKeyPayload) GetAccessLevelOk() ([]AccessLevel, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.AccessLevel, true
 }
@@ -99,7 +102,7 @@ func (o *ApiKeyPayload) SetAccessLevel(v []AccessLevel) {
 
 // GetExpires returns the Expires field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ApiKeyPayload) GetExpires() time.Time {
-	if o == nil || isNil(o.Expires.Get()) {
+	if o == nil || IsNil(o.Expires.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -111,7 +114,7 @@ func (o *ApiKeyPayload) GetExpires() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ApiKeyPayload) GetExpiresOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Expires.Get(), o.Expires.IsSet()
 }
@@ -141,7 +144,7 @@ func (o *ApiKeyPayload) UnsetExpires() {
 
 // GetRestrictAccessToIPRange returns the RestrictAccessToIPRange field value if set, zero value otherwise.
 func (o *ApiKeyPayload) GetRestrictAccessToIPRange() []string {
-	if o == nil || isNil(o.RestrictAccessToIPRange) {
+	if o == nil || IsNil(o.RestrictAccessToIPRange) {
 		var ret []string
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *ApiKeyPayload) GetRestrictAccessToIPRange() []string {
 // GetRestrictAccessToIPRangeOk returns a tuple with the RestrictAccessToIPRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiKeyPayload) GetRestrictAccessToIPRangeOk() ([]string, bool) {
-	if o == nil || isNil(o.RestrictAccessToIPRange) {
-    return nil, false
+	if o == nil || IsNil(o.RestrictAccessToIPRange) {
+		return nil, false
 	}
 	return o.RestrictAccessToIPRange, true
 }
 
 // HasRestrictAccessToIPRange returns a boolean if a field has been set.
 func (o *ApiKeyPayload) HasRestrictAccessToIPRange() bool {
-	if o != nil && !isNil(o.RestrictAccessToIPRange) {
+	if o != nil && !IsNil(o.RestrictAccessToIPRange) {
 		return true
 	}
 
@@ -173,7 +176,7 @@ func (o *ApiKeyPayload) SetRestrictAccessToIPRange(v []string) {
 
 // GetSubaccount returns the Subaccount field value if set, zero value otherwise.
 func (o *ApiKeyPayload) GetSubaccount() string {
-	if o == nil || isNil(o.Subaccount) {
+	if o == nil || IsNil(o.Subaccount) {
 		var ret string
 		return ret
 	}
@@ -183,15 +186,15 @@ func (o *ApiKeyPayload) GetSubaccount() string {
 // GetSubaccountOk returns a tuple with the Subaccount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiKeyPayload) GetSubaccountOk() (*string, bool) {
-	if o == nil || isNil(o.Subaccount) {
-    return nil, false
+	if o == nil || IsNil(o.Subaccount) {
+		return nil, false
 	}
 	return o.Subaccount, true
 }
 
 // HasSubaccount returns a boolean if a field has been set.
 func (o *ApiKeyPayload) HasSubaccount() bool {
-	if o != nil && !isNil(o.Subaccount) {
+	if o != nil && !IsNil(o.Subaccount) {
 		return true
 	}
 
@@ -204,23 +207,27 @@ func (o *ApiKeyPayload) SetSubaccount(v string) {
 }
 
 func (o ApiKeyPayload) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ApiKeyPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["Name"] = o.Name
-	}
-	if true {
-		toSerialize["AccessLevel"] = o.AccessLevel
-	}
+	toSerialize["Name"] = o.Name
+	toSerialize["AccessLevel"] = o.AccessLevel
 	if o.Expires.IsSet() {
 		toSerialize["Expires"] = o.Expires.Get()
 	}
-	if !isNil(o.RestrictAccessToIPRange) {
+	if !IsNil(o.RestrictAccessToIPRange) {
 		toSerialize["RestrictAccessToIPRange"] = o.RestrictAccessToIPRange
 	}
-	if !isNil(o.Subaccount) {
+	if !IsNil(o.Subaccount) {
 		toSerialize["Subaccount"] = o.Subaccount
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableApiKeyPayload struct {

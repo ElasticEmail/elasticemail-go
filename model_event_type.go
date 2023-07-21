@@ -21,14 +21,14 @@ type EventType string
 
 // List of EventType
 const (
-	SUBMISSION EventType = "Submission"
-	FAILED_ATTEMPT EventType = "FailedAttempt"
-	BOUNCE EventType = "Bounce"
-	SENT EventType = "Sent"
-	OPEN EventType = "Open"
-	CLICK EventType = "Click"
-	UNSUBSCRIBE EventType = "Unsubscribe"
-	COMPLAINT EventType = "Complaint"
+	EVENTTYPE_SUBMISSION EventType = "Submission"
+	EVENTTYPE_FAILED_ATTEMPT EventType = "FailedAttempt"
+	EVENTTYPE_BOUNCE EventType = "Bounce"
+	EVENTTYPE_SENT EventType = "Sent"
+	EVENTTYPE_OPEN EventType = "Open"
+	EVENTTYPE_CLICK EventType = "Click"
+	EVENTTYPE_UNSUBSCRIBE EventType = "Unsubscribe"
+	EVENTTYPE_COMPLAINT EventType = "Complaint"
 )
 
 // All allowed values of EventType enum

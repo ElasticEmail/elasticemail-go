@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SubaccountEmailSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SubaccountEmailSettings{}
+
 // SubaccountEmailSettings Settings related to sending emails
 type SubaccountEmailSettings struct {
 	// Amount of credits added to Account automatically
@@ -53,7 +56,7 @@ func NewSubaccountEmailSettingsWithDefaults() *SubaccountEmailSettings {
 
 // GetMonthlyRefillCredits returns the MonthlyRefillCredits field value if set, zero value otherwise.
 func (o *SubaccountEmailSettings) GetMonthlyRefillCredits() int32 {
-	if o == nil || isNil(o.MonthlyRefillCredits) {
+	if o == nil || IsNil(o.MonthlyRefillCredits) {
 		var ret int32
 		return ret
 	}
@@ -63,15 +66,15 @@ func (o *SubaccountEmailSettings) GetMonthlyRefillCredits() int32 {
 // GetMonthlyRefillCreditsOk returns a tuple with the MonthlyRefillCredits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubaccountEmailSettings) GetMonthlyRefillCreditsOk() (*int32, bool) {
-	if o == nil || isNil(o.MonthlyRefillCredits) {
-    return nil, false
+	if o == nil || IsNil(o.MonthlyRefillCredits) {
+		return nil, false
 	}
 	return o.MonthlyRefillCredits, true
 }
 
 // HasMonthlyRefillCredits returns a boolean if a field has been set.
 func (o *SubaccountEmailSettings) HasMonthlyRefillCredits() bool {
-	if o != nil && !isNil(o.MonthlyRefillCredits) {
+	if o != nil && !IsNil(o.MonthlyRefillCredits) {
 		return true
 	}
 
@@ -85,7 +88,7 @@ func (o *SubaccountEmailSettings) SetMonthlyRefillCredits(v int32) {
 
 // GetRequiresEmailCredits returns the RequiresEmailCredits field value if set, zero value otherwise.
 func (o *SubaccountEmailSettings) GetRequiresEmailCredits() bool {
-	if o == nil || isNil(o.RequiresEmailCredits) {
+	if o == nil || IsNil(o.RequiresEmailCredits) {
 		var ret bool
 		return ret
 	}
@@ -95,15 +98,15 @@ func (o *SubaccountEmailSettings) GetRequiresEmailCredits() bool {
 // GetRequiresEmailCreditsOk returns a tuple with the RequiresEmailCredits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubaccountEmailSettings) GetRequiresEmailCreditsOk() (*bool, bool) {
-	if o == nil || isNil(o.RequiresEmailCredits) {
-    return nil, false
+	if o == nil || IsNil(o.RequiresEmailCredits) {
+		return nil, false
 	}
 	return o.RequiresEmailCredits, true
 }
 
 // HasRequiresEmailCredits returns a boolean if a field has been set.
 func (o *SubaccountEmailSettings) HasRequiresEmailCredits() bool {
-	if o != nil && !isNil(o.RequiresEmailCredits) {
+	if o != nil && !IsNil(o.RequiresEmailCredits) {
 		return true
 	}
 
@@ -117,7 +120,7 @@ func (o *SubaccountEmailSettings) SetRequiresEmailCredits(v bool) {
 
 // GetEmailSizeLimit returns the EmailSizeLimit field value if set, zero value otherwise.
 func (o *SubaccountEmailSettings) GetEmailSizeLimit() int32 {
-	if o == nil || isNil(o.EmailSizeLimit) {
+	if o == nil || IsNil(o.EmailSizeLimit) {
 		var ret int32
 		return ret
 	}
@@ -127,15 +130,15 @@ func (o *SubaccountEmailSettings) GetEmailSizeLimit() int32 {
 // GetEmailSizeLimitOk returns a tuple with the EmailSizeLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubaccountEmailSettings) GetEmailSizeLimitOk() (*int32, bool) {
-	if o == nil || isNil(o.EmailSizeLimit) {
-    return nil, false
+	if o == nil || IsNil(o.EmailSizeLimit) {
+		return nil, false
 	}
 	return o.EmailSizeLimit, true
 }
 
 // HasEmailSizeLimit returns a boolean if a field has been set.
 func (o *SubaccountEmailSettings) HasEmailSizeLimit() bool {
-	if o != nil && !isNil(o.EmailSizeLimit) {
+	if o != nil && !IsNil(o.EmailSizeLimit) {
 		return true
 	}
 
@@ -149,7 +152,7 @@ func (o *SubaccountEmailSettings) SetEmailSizeLimit(v int32) {
 
 // GetDailySendLimit returns the DailySendLimit field value if set, zero value otherwise.
 func (o *SubaccountEmailSettings) GetDailySendLimit() int32 {
-	if o == nil || isNil(o.DailySendLimit) {
+	if o == nil || IsNil(o.DailySendLimit) {
 		var ret int32
 		return ret
 	}
@@ -159,15 +162,15 @@ func (o *SubaccountEmailSettings) GetDailySendLimit() int32 {
 // GetDailySendLimitOk returns a tuple with the DailySendLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubaccountEmailSettings) GetDailySendLimitOk() (*int32, bool) {
-	if o == nil || isNil(o.DailySendLimit) {
-    return nil, false
+	if o == nil || IsNil(o.DailySendLimit) {
+		return nil, false
 	}
 	return o.DailySendLimit, true
 }
 
 // HasDailySendLimit returns a boolean if a field has been set.
 func (o *SubaccountEmailSettings) HasDailySendLimit() bool {
-	if o != nil && !isNil(o.DailySendLimit) {
+	if o != nil && !IsNil(o.DailySendLimit) {
 		return true
 	}
 
@@ -181,7 +184,7 @@ func (o *SubaccountEmailSettings) SetDailySendLimit(v int32) {
 
 // GetMaxContacts returns the MaxContacts field value if set, zero value otherwise.
 func (o *SubaccountEmailSettings) GetMaxContacts() int32 {
-	if o == nil || isNil(o.MaxContacts) {
+	if o == nil || IsNil(o.MaxContacts) {
 		var ret int32
 		return ret
 	}
@@ -191,15 +194,15 @@ func (o *SubaccountEmailSettings) GetMaxContacts() int32 {
 // GetMaxContactsOk returns a tuple with the MaxContacts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubaccountEmailSettings) GetMaxContactsOk() (*int32, bool) {
-	if o == nil || isNil(o.MaxContacts) {
-    return nil, false
+	if o == nil || IsNil(o.MaxContacts) {
+		return nil, false
 	}
 	return o.MaxContacts, true
 }
 
 // HasMaxContacts returns a boolean if a field has been set.
 func (o *SubaccountEmailSettings) HasMaxContacts() bool {
-	if o != nil && !isNil(o.MaxContacts) {
+	if o != nil && !IsNil(o.MaxContacts) {
 		return true
 	}
 
@@ -213,7 +216,7 @@ func (o *SubaccountEmailSettings) SetMaxContacts(v int32) {
 
 // GetEnablePrivateIPPurchase returns the EnablePrivateIPPurchase field value if set, zero value otherwise.
 func (o *SubaccountEmailSettings) GetEnablePrivateIPPurchase() bool {
-	if o == nil || isNil(o.EnablePrivateIPPurchase) {
+	if o == nil || IsNil(o.EnablePrivateIPPurchase) {
 		var ret bool
 		return ret
 	}
@@ -223,15 +226,15 @@ func (o *SubaccountEmailSettings) GetEnablePrivateIPPurchase() bool {
 // GetEnablePrivateIPPurchaseOk returns a tuple with the EnablePrivateIPPurchase field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubaccountEmailSettings) GetEnablePrivateIPPurchaseOk() (*bool, bool) {
-	if o == nil || isNil(o.EnablePrivateIPPurchase) {
-    return nil, false
+	if o == nil || IsNil(o.EnablePrivateIPPurchase) {
+		return nil, false
 	}
 	return o.EnablePrivateIPPurchase, true
 }
 
 // HasEnablePrivateIPPurchase returns a boolean if a field has been set.
 func (o *SubaccountEmailSettings) HasEnablePrivateIPPurchase() bool {
-	if o != nil && !isNil(o.EnablePrivateIPPurchase) {
+	if o != nil && !IsNil(o.EnablePrivateIPPurchase) {
 		return true
 	}
 
@@ -245,7 +248,7 @@ func (o *SubaccountEmailSettings) SetEnablePrivateIPPurchase(v bool) {
 
 // GetPoolName returns the PoolName field value if set, zero value otherwise.
 func (o *SubaccountEmailSettings) GetPoolName() string {
-	if o == nil || isNil(o.PoolName) {
+	if o == nil || IsNil(o.PoolName) {
 		var ret string
 		return ret
 	}
@@ -255,15 +258,15 @@ func (o *SubaccountEmailSettings) GetPoolName() string {
 // GetPoolNameOk returns a tuple with the PoolName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubaccountEmailSettings) GetPoolNameOk() (*string, bool) {
-	if o == nil || isNil(o.PoolName) {
-    return nil, false
+	if o == nil || IsNil(o.PoolName) {
+		return nil, false
 	}
 	return o.PoolName, true
 }
 
 // HasPoolName returns a boolean if a field has been set.
 func (o *SubaccountEmailSettings) HasPoolName() bool {
-	if o != nil && !isNil(o.PoolName) {
+	if o != nil && !IsNil(o.PoolName) {
 		return true
 	}
 
@@ -277,7 +280,7 @@ func (o *SubaccountEmailSettings) SetPoolName(v string) {
 
 // GetValidSenderDomainOnly returns the ValidSenderDomainOnly field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SubaccountEmailSettings) GetValidSenderDomainOnly() bool {
-	if o == nil || isNil(o.ValidSenderDomainOnly.Get()) {
+	if o == nil || IsNil(o.ValidSenderDomainOnly.Get()) {
 		var ret bool
 		return ret
 	}
@@ -289,7 +292,7 @@ func (o *SubaccountEmailSettings) GetValidSenderDomainOnly() bool {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubaccountEmailSettings) GetValidSenderDomainOnlyOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.ValidSenderDomainOnly.Get(), o.ValidSenderDomainOnly.IsSet()
 }
@@ -318,32 +321,40 @@ func (o *SubaccountEmailSettings) UnsetValidSenderDomainOnly() {
 }
 
 func (o SubaccountEmailSettings) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SubaccountEmailSettings) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.MonthlyRefillCredits) {
+	if !IsNil(o.MonthlyRefillCredits) {
 		toSerialize["MonthlyRefillCredits"] = o.MonthlyRefillCredits
 	}
-	if !isNil(o.RequiresEmailCredits) {
+	if !IsNil(o.RequiresEmailCredits) {
 		toSerialize["RequiresEmailCredits"] = o.RequiresEmailCredits
 	}
-	if !isNil(o.EmailSizeLimit) {
+	if !IsNil(o.EmailSizeLimit) {
 		toSerialize["EmailSizeLimit"] = o.EmailSizeLimit
 	}
-	if !isNil(o.DailySendLimit) {
+	if !IsNil(o.DailySendLimit) {
 		toSerialize["DailySendLimit"] = o.DailySendLimit
 	}
-	if !isNil(o.MaxContacts) {
+	if !IsNil(o.MaxContacts) {
 		toSerialize["MaxContacts"] = o.MaxContacts
 	}
-	if !isNil(o.EnablePrivateIPPurchase) {
+	if !IsNil(o.EnablePrivateIPPurchase) {
 		toSerialize["EnablePrivateIPPurchase"] = o.EnablePrivateIPPurchase
 	}
-	if !isNil(o.PoolName) {
+	if !IsNil(o.PoolName) {
 		toSerialize["PoolName"] = o.PoolName
 	}
 	if o.ValidSenderDomainOnly.IsSet() {
 		toSerialize["ValidSenderDomainOnly"] = o.ValidSenderDomainOnly.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSubaccountEmailSettings struct {

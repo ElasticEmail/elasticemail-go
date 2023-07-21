@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **From** | Pointer to **string** | Email address this email was sent from. | [optional] 
 **To** | Pointer to **string** | Email address this email was sent to. | [optional] 
 **Date** | Pointer to **time.Time** | Date the email was submitted. | [optional] 
-**Status** | Pointer to [**LogJobStatus**](LogJobStatus.md) |  | [optional] [default to ALL]
+**Status** | Pointer to [**LogJobStatus**](LogJobStatus.md) |  | [optional] [default to LOGJOBSTATUS_ALL]
 **StatusName** | Pointer to **string** | Name of email&#39;s status | [optional] 
 **StatusChangeDate** | Pointer to **time.Time** | Date of last status change. | [optional] 
 **DateSent** | Pointer to **time.Time** | Date when the email was sent | [optional] 

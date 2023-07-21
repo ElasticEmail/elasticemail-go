@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CampaignTemplate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CampaignTemplate{}
+
 // CampaignTemplate Content of a Campaign
 type CampaignTemplate struct {
 	// Name of your custom IP Pool to be used in the sending process
@@ -51,7 +54,7 @@ func NewCampaignTemplateWithDefaults() *CampaignTemplate {
 
 // GetPoolname returns the Poolname field value if set, zero value otherwise.
 func (o *CampaignTemplate) GetPoolname() string {
-	if o == nil || isNil(o.Poolname) {
+	if o == nil || IsNil(o.Poolname) {
 		var ret string
 		return ret
 	}
@@ -61,15 +64,15 @@ func (o *CampaignTemplate) GetPoolname() string {
 // GetPoolnameOk returns a tuple with the Poolname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CampaignTemplate) GetPoolnameOk() (*string, bool) {
-	if o == nil || isNil(o.Poolname) {
-    return nil, false
+	if o == nil || IsNil(o.Poolname) {
+		return nil, false
 	}
 	return o.Poolname, true
 }
 
 // HasPoolname returns a boolean if a field has been set.
 func (o *CampaignTemplate) HasPoolname() bool {
-	if o != nil && !isNil(o.Poolname) {
+	if o != nil && !IsNil(o.Poolname) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *CampaignTemplate) SetPoolname(v string) {
 
 // GetFrom returns the From field value if set, zero value otherwise.
 func (o *CampaignTemplate) GetFrom() string {
-	if o == nil || isNil(o.From) {
+	if o == nil || IsNil(o.From) {
 		var ret string
 		return ret
 	}
@@ -93,15 +96,15 @@ func (o *CampaignTemplate) GetFrom() string {
 // GetFromOk returns a tuple with the From field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CampaignTemplate) GetFromOk() (*string, bool) {
-	if o == nil || isNil(o.From) {
-    return nil, false
+	if o == nil || IsNil(o.From) {
+		return nil, false
 	}
 	return o.From, true
 }
 
 // HasFrom returns a boolean if a field has been set.
 func (o *CampaignTemplate) HasFrom() bool {
-	if o != nil && !isNil(o.From) {
+	if o != nil && !IsNil(o.From) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *CampaignTemplate) SetFrom(v string) {
 
 // GetReplyTo returns the ReplyTo field value if set, zero value otherwise.
 func (o *CampaignTemplate) GetReplyTo() string {
-	if o == nil || isNil(o.ReplyTo) {
+	if o == nil || IsNil(o.ReplyTo) {
 		var ret string
 		return ret
 	}
@@ -125,15 +128,15 @@ func (o *CampaignTemplate) GetReplyTo() string {
 // GetReplyToOk returns a tuple with the ReplyTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CampaignTemplate) GetReplyToOk() (*string, bool) {
-	if o == nil || isNil(o.ReplyTo) {
-    return nil, false
+	if o == nil || IsNil(o.ReplyTo) {
+		return nil, false
 	}
 	return o.ReplyTo, true
 }
 
 // HasReplyTo returns a boolean if a field has been set.
 func (o *CampaignTemplate) HasReplyTo() bool {
-	if o != nil && !isNil(o.ReplyTo) {
+	if o != nil && !IsNil(o.ReplyTo) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *CampaignTemplate) SetReplyTo(v string) {
 
 // GetSubject returns the Subject field value if set, zero value otherwise.
 func (o *CampaignTemplate) GetSubject() string {
-	if o == nil || isNil(o.Subject) {
+	if o == nil || IsNil(o.Subject) {
 		var ret string
 		return ret
 	}
@@ -157,15 +160,15 @@ func (o *CampaignTemplate) GetSubject() string {
 // GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CampaignTemplate) GetSubjectOk() (*string, bool) {
-	if o == nil || isNil(o.Subject) {
-    return nil, false
+	if o == nil || IsNil(o.Subject) {
+		return nil, false
 	}
 	return o.Subject, true
 }
 
 // HasSubject returns a boolean if a field has been set.
 func (o *CampaignTemplate) HasSubject() bool {
-	if o != nil && !isNil(o.Subject) {
+	if o != nil && !IsNil(o.Subject) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *CampaignTemplate) SetSubject(v string) {
 
 // GetTemplateName returns the TemplateName field value if set, zero value otherwise.
 func (o *CampaignTemplate) GetTemplateName() string {
-	if o == nil || isNil(o.TemplateName) {
+	if o == nil || IsNil(o.TemplateName) {
 		var ret string
 		return ret
 	}
@@ -189,15 +192,15 @@ func (o *CampaignTemplate) GetTemplateName() string {
 // GetTemplateNameOk returns a tuple with the TemplateName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CampaignTemplate) GetTemplateNameOk() (*string, bool) {
-	if o == nil || isNil(o.TemplateName) {
-    return nil, false
+	if o == nil || IsNil(o.TemplateName) {
+		return nil, false
 	}
 	return o.TemplateName, true
 }
 
 // HasTemplateName returns a boolean if a field has been set.
 func (o *CampaignTemplate) HasTemplateName() bool {
-	if o != nil && !isNil(o.TemplateName) {
+	if o != nil && !IsNil(o.TemplateName) {
 		return true
 	}
 
@@ -211,7 +214,7 @@ func (o *CampaignTemplate) SetTemplateName(v string) {
 
 // GetAttachFiles returns the AttachFiles field value if set, zero value otherwise.
 func (o *CampaignTemplate) GetAttachFiles() []string {
-	if o == nil || isNil(o.AttachFiles) {
+	if o == nil || IsNil(o.AttachFiles) {
 		var ret []string
 		return ret
 	}
@@ -221,15 +224,15 @@ func (o *CampaignTemplate) GetAttachFiles() []string {
 // GetAttachFilesOk returns a tuple with the AttachFiles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CampaignTemplate) GetAttachFilesOk() ([]string, bool) {
-	if o == nil || isNil(o.AttachFiles) {
-    return nil, false
+	if o == nil || IsNil(o.AttachFiles) {
+		return nil, false
 	}
 	return o.AttachFiles, true
 }
 
 // HasAttachFiles returns a boolean if a field has been set.
 func (o *CampaignTemplate) HasAttachFiles() bool {
-	if o != nil && !isNil(o.AttachFiles) {
+	if o != nil && !IsNil(o.AttachFiles) {
 		return true
 	}
 
@@ -243,7 +246,7 @@ func (o *CampaignTemplate) SetAttachFiles(v []string) {
 
 // GetUtm returns the Utm field value if set, zero value otherwise.
 func (o *CampaignTemplate) GetUtm() Utm {
-	if o == nil || isNil(o.Utm) {
+	if o == nil || IsNil(o.Utm) {
 		var ret Utm
 		return ret
 	}
@@ -253,15 +256,15 @@ func (o *CampaignTemplate) GetUtm() Utm {
 // GetUtmOk returns a tuple with the Utm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CampaignTemplate) GetUtmOk() (*Utm, bool) {
-	if o == nil || isNil(o.Utm) {
-    return nil, false
+	if o == nil || IsNil(o.Utm) {
+		return nil, false
 	}
 	return o.Utm, true
 }
 
 // HasUtm returns a boolean if a field has been set.
 func (o *CampaignTemplate) HasUtm() bool {
-	if o != nil && !isNil(o.Utm) {
+	if o != nil && !IsNil(o.Utm) {
 		return true
 	}
 
@@ -274,29 +277,37 @@ func (o *CampaignTemplate) SetUtm(v Utm) {
 }
 
 func (o CampaignTemplate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Poolname) {
-		toSerialize["Poolname"] = o.Poolname
-	}
-	if !isNil(o.From) {
-		toSerialize["From"] = o.From
-	}
-	if !isNil(o.ReplyTo) {
-		toSerialize["ReplyTo"] = o.ReplyTo
-	}
-	if !isNil(o.Subject) {
-		toSerialize["Subject"] = o.Subject
-	}
-	if !isNil(o.TemplateName) {
-		toSerialize["TemplateName"] = o.TemplateName
-	}
-	if !isNil(o.AttachFiles) {
-		toSerialize["AttachFiles"] = o.AttachFiles
-	}
-	if !isNil(o.Utm) {
-		toSerialize["Utm"] = o.Utm
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CampaignTemplate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Poolname) {
+		toSerialize["Poolname"] = o.Poolname
+	}
+	if !IsNil(o.From) {
+		toSerialize["From"] = o.From
+	}
+	if !IsNil(o.ReplyTo) {
+		toSerialize["ReplyTo"] = o.ReplyTo
+	}
+	if !IsNil(o.Subject) {
+		toSerialize["Subject"] = o.Subject
+	}
+	if !IsNil(o.TemplateName) {
+		toSerialize["TemplateName"] = o.TemplateName
+	}
+	if !IsNil(o.AttachFiles) {
+		toSerialize["AttachFiles"] = o.AttachFiles
+	}
+	if !IsNil(o.Utm) {
+		toSerialize["Utm"] = o.Utm
+	}
+	return toSerialize, nil
 }
 
 type NullableCampaignTemplate struct {
