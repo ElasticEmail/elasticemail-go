@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the SmtpCredentialsPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SmtpCredentialsPayload{}
+
 // SmtpCredentialsPayload Create new SMTP Credentials
 type SmtpCredentialsPayload struct {
 	// Name of the Credential for ease of reference. It must be a valid email address.
@@ -60,7 +63,7 @@ func (o *SmtpCredentialsPayload) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *SmtpCredentialsPayload) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -72,7 +75,7 @@ func (o *SmtpCredentialsPayload) SetName(v string) {
 
 // GetExpires returns the Expires field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SmtpCredentialsPayload) GetExpires() time.Time {
-	if o == nil || isNil(o.Expires.Get()) {
+	if o == nil || IsNil(o.Expires.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -84,7 +87,7 @@ func (o *SmtpCredentialsPayload) GetExpires() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SmtpCredentialsPayload) GetExpiresOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Expires.Get(), o.Expires.IsSet()
 }
@@ -114,7 +117,7 @@ func (o *SmtpCredentialsPayload) UnsetExpires() {
 
 // GetRestrictAccessToIPRange returns the RestrictAccessToIPRange field value if set, zero value otherwise.
 func (o *SmtpCredentialsPayload) GetRestrictAccessToIPRange() []string {
-	if o == nil || isNil(o.RestrictAccessToIPRange) {
+	if o == nil || IsNil(o.RestrictAccessToIPRange) {
 		var ret []string
 		return ret
 	}
@@ -124,15 +127,15 @@ func (o *SmtpCredentialsPayload) GetRestrictAccessToIPRange() []string {
 // GetRestrictAccessToIPRangeOk returns a tuple with the RestrictAccessToIPRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SmtpCredentialsPayload) GetRestrictAccessToIPRangeOk() ([]string, bool) {
-	if o == nil || isNil(o.RestrictAccessToIPRange) {
-    return nil, false
+	if o == nil || IsNil(o.RestrictAccessToIPRange) {
+		return nil, false
 	}
 	return o.RestrictAccessToIPRange, true
 }
 
 // HasRestrictAccessToIPRange returns a boolean if a field has been set.
 func (o *SmtpCredentialsPayload) HasRestrictAccessToIPRange() bool {
-	if o != nil && !isNil(o.RestrictAccessToIPRange) {
+	if o != nil && !IsNil(o.RestrictAccessToIPRange) {
 		return true
 	}
 
@@ -146,7 +149,7 @@ func (o *SmtpCredentialsPayload) SetRestrictAccessToIPRange(v []string) {
 
 // GetSubaccount returns the Subaccount field value if set, zero value otherwise.
 func (o *SmtpCredentialsPayload) GetSubaccount() string {
-	if o == nil || isNil(o.Subaccount) {
+	if o == nil || IsNil(o.Subaccount) {
 		var ret string
 		return ret
 	}
@@ -156,15 +159,15 @@ func (o *SmtpCredentialsPayload) GetSubaccount() string {
 // GetSubaccountOk returns a tuple with the Subaccount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SmtpCredentialsPayload) GetSubaccountOk() (*string, bool) {
-	if o == nil || isNil(o.Subaccount) {
-    return nil, false
+	if o == nil || IsNil(o.Subaccount) {
+		return nil, false
 	}
 	return o.Subaccount, true
 }
 
 // HasSubaccount returns a boolean if a field has been set.
 func (o *SmtpCredentialsPayload) HasSubaccount() bool {
-	if o != nil && !isNil(o.Subaccount) {
+	if o != nil && !IsNil(o.Subaccount) {
 		return true
 	}
 
@@ -177,20 +180,26 @@ func (o *SmtpCredentialsPayload) SetSubaccount(v string) {
 }
 
 func (o SmtpCredentialsPayload) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["Name"] = o.Name
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SmtpCredentialsPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["Name"] = o.Name
 	if o.Expires.IsSet() {
 		toSerialize["Expires"] = o.Expires.Get()
 	}
-	if !isNil(o.RestrictAccessToIPRange) {
+	if !IsNil(o.RestrictAccessToIPRange) {
 		toSerialize["RestrictAccessToIPRange"] = o.RestrictAccessToIPRange
 	}
-	if !isNil(o.Subaccount) {
+	if !IsNil(o.Subaccount) {
 		toSerialize["Subaccount"] = o.Subaccount
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSmtpCredentialsPayload struct {

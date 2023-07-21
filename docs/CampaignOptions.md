@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DeliveryOptimization** | Pointer to [**DeliveryOptimizationType**](DeliveryOptimizationType.md) |  | [optional] [default to NONE]
+**DeliveryOptimization** | Pointer to [**DeliveryOptimizationType**](DeliveryOptimizationType.md) |  | [optional] [default to DELIVERYOPTIMIZATIONTYPE_NONE]
 **TrackOpens** | Pointer to **NullableBool** | Should the opens be tracked? If no value has been provided, Account&#39;s default setting will be used. | [optional] 
 **TrackClicks** | Pointer to **NullableBool** | Should the clicks be tracked? If no value has been provided, Account&#39;s default setting will be used. | [optional] 
 **ScheduleFor** | Pointer to **NullableTime** | Date when this Campaign is scheduled to be sent on | [optional] 

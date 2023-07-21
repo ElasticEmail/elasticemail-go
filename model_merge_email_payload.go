@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MergeEmailPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MergeEmailPayload{}
+
 // MergeEmailPayload struct for MergeEmailPayload
 type MergeEmailPayload struct {
 	MergeFile MessageAttachment `json:"MergeFile"`
@@ -54,7 +57,7 @@ func (o *MergeEmailPayload) GetMergeFile() MessageAttachment {
 // and a boolean to check if the value has been set.
 func (o *MergeEmailPayload) GetMergeFileOk() (*MessageAttachment, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.MergeFile, true
 }
@@ -66,7 +69,7 @@ func (o *MergeEmailPayload) SetMergeFile(v MessageAttachment) {
 
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *MergeEmailPayload) GetContent() EmailContent {
-	if o == nil || isNil(o.Content) {
+	if o == nil || IsNil(o.Content) {
 		var ret EmailContent
 		return ret
 	}
@@ -76,15 +79,15 @@ func (o *MergeEmailPayload) GetContent() EmailContent {
 // GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MergeEmailPayload) GetContentOk() (*EmailContent, bool) {
-	if o == nil || isNil(o.Content) {
-    return nil, false
+	if o == nil || IsNil(o.Content) {
+		return nil, false
 	}
 	return o.Content, true
 }
 
 // HasContent returns a boolean if a field has been set.
 func (o *MergeEmailPayload) HasContent() bool {
-	if o != nil && !isNil(o.Content) {
+	if o != nil && !IsNil(o.Content) {
 		return true
 	}
 
@@ -98,7 +101,7 @@ func (o *MergeEmailPayload) SetContent(v EmailContent) {
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *MergeEmailPayload) GetOptions() Options {
-	if o == nil || isNil(o.Options) {
+	if o == nil || IsNil(o.Options) {
 		var ret Options
 		return ret
 	}
@@ -108,15 +111,15 @@ func (o *MergeEmailPayload) GetOptions() Options {
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MergeEmailPayload) GetOptionsOk() (*Options, bool) {
-	if o == nil || isNil(o.Options) {
-    return nil, false
+	if o == nil || IsNil(o.Options) {
+		return nil, false
 	}
 	return o.Options, true
 }
 
 // HasOptions returns a boolean if a field has been set.
 func (o *MergeEmailPayload) HasOptions() bool {
-	if o != nil && !isNil(o.Options) {
+	if o != nil && !IsNil(o.Options) {
 		return true
 	}
 
@@ -129,17 +132,23 @@ func (o *MergeEmailPayload) SetOptions(v Options) {
 }
 
 func (o MergeEmailPayload) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["MergeFile"] = o.MergeFile
-	}
-	if !isNil(o.Content) {
-		toSerialize["Content"] = o.Content
-	}
-	if !isNil(o.Options) {
-		toSerialize["Options"] = o.Options
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o MergeEmailPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["MergeFile"] = o.MergeFile
+	if !IsNil(o.Content) {
+		toSerialize["Content"] = o.Content
+	}
+	if !IsNil(o.Options) {
+		toSerialize["Options"] = o.Options
+	}
+	return toSerialize, nil
 }
 
 type NullableMergeEmailPayload struct {

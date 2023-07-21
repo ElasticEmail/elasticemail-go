@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CampaignRecipient type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CampaignRecipient{}
+
 // CampaignRecipient A set of lists and segments names to read recipients from
 type CampaignRecipient struct {
 	// Names of lists from your Account to read recipients from
@@ -42,7 +45,7 @@ func NewCampaignRecipientWithDefaults() *CampaignRecipient {
 
 // GetListNames returns the ListNames field value if set, zero value otherwise.
 func (o *CampaignRecipient) GetListNames() []string {
-	if o == nil || isNil(o.ListNames) {
+	if o == nil || IsNil(o.ListNames) {
 		var ret []string
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *CampaignRecipient) GetListNames() []string {
 // GetListNamesOk returns a tuple with the ListNames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CampaignRecipient) GetListNamesOk() ([]string, bool) {
-	if o == nil || isNil(o.ListNames) {
-    return nil, false
+	if o == nil || IsNil(o.ListNames) {
+		return nil, false
 	}
 	return o.ListNames, true
 }
 
 // HasListNames returns a boolean if a field has been set.
 func (o *CampaignRecipient) HasListNames() bool {
-	if o != nil && !isNil(o.ListNames) {
+	if o != nil && !IsNil(o.ListNames) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *CampaignRecipient) SetListNames(v []string) {
 
 // GetSegmentNames returns the SegmentNames field value if set, zero value otherwise.
 func (o *CampaignRecipient) GetSegmentNames() []string {
-	if o == nil || isNil(o.SegmentNames) {
+	if o == nil || IsNil(o.SegmentNames) {
 		var ret []string
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *CampaignRecipient) GetSegmentNames() []string {
 // GetSegmentNamesOk returns a tuple with the SegmentNames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CampaignRecipient) GetSegmentNamesOk() ([]string, bool) {
-	if o == nil || isNil(o.SegmentNames) {
-    return nil, false
+	if o == nil || IsNil(o.SegmentNames) {
+		return nil, false
 	}
 	return o.SegmentNames, true
 }
 
 // HasSegmentNames returns a boolean if a field has been set.
 func (o *CampaignRecipient) HasSegmentNames() bool {
-	if o != nil && !isNil(o.SegmentNames) {
+	if o != nil && !IsNil(o.SegmentNames) {
 		return true
 	}
 
@@ -105,14 +108,22 @@ func (o *CampaignRecipient) SetSegmentNames(v []string) {
 }
 
 func (o CampaignRecipient) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.ListNames) {
-		toSerialize["ListNames"] = o.ListNames
-	}
-	if !isNil(o.SegmentNames) {
-		toSerialize["SegmentNames"] = o.SegmentNames
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CampaignRecipient) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ListNames) {
+		toSerialize["ListNames"] = o.ListNames
+	}
+	if !IsNil(o.SegmentNames) {
+		toSerialize["SegmentNames"] = o.SegmentNames
+	}
+	return toSerialize, nil
 }
 
 type NullableCampaignRecipient struct {

@@ -21,16 +21,16 @@ type LogJobStatus string
 
 // List of LogJobStatus
 const (
-	ALL LogJobStatus = "All"
-	READY_TO_SEND LogJobStatus = "ReadyToSend"
-	WAITING_TO_RETRY LogJobStatus = "WaitingToRetry"
-	SENDING LogJobStatus = "Sending"
-	ERROR LogJobStatus = "Error"
-	SENT LogJobStatus = "Sent"
-	OPENED LogJobStatus = "Opened"
-	CLICKED LogJobStatus = "Clicked"
-	UNSUBSCRIBED LogJobStatus = "Unsubscribed"
-	ABUSE_REPORT LogJobStatus = "AbuseReport"
+	LOGJOBSTATUS_ALL LogJobStatus = "All"
+	LOGJOBSTATUS_READY_TO_SEND LogJobStatus = "ReadyToSend"
+	LOGJOBSTATUS_WAITING_TO_RETRY LogJobStatus = "WaitingToRetry"
+	LOGJOBSTATUS_SENDING LogJobStatus = "Sending"
+	LOGJOBSTATUS_ERROR LogJobStatus = "Error"
+	LOGJOBSTATUS_SENT LogJobStatus = "Sent"
+	LOGJOBSTATUS_OPENED LogJobStatus = "Opened"
+	LOGJOBSTATUS_CLICKED LogJobStatus = "Clicked"
+	LOGJOBSTATUS_UNSUBSCRIBED LogJobStatus = "Unsubscribed"
+	LOGJOBSTATUS_ABUSE_REPORT LogJobStatus = "AbuseReport"
 )
 
 // All allowed values of LogJobStatus enum

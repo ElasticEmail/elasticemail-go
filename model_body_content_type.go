@@ -21,10 +21,10 @@ type BodyContentType string
 
 // List of BodyContentType
 const (
-	HTML BodyContentType = "HTML"
-	PLAIN_TEXT BodyContentType = "PlainText"
-	AMP BodyContentType = "AMP"
-	CSS BodyContentType = "CSS"
+	BODYCONTENTTYPE_HTML BodyContentType = "HTML"
+	BODYCONTENTTYPE_PLAIN_TEXT BodyContentType = "PlainText"
+	BODYCONTENTTYPE_AMP BodyContentType = "AMP"
+	BODYCONTENTTYPE_CSS BodyContentType = "CSS"
 )
 
 // All allowed values of BodyContentType enum

@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the ConsentData type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ConsentData{}
+
 // ConsentData struct for ConsentData
 type ConsentData struct {
 	// IP address of consent to send this contact(s) your email. If not provided your current public IP address is used for consent.
@@ -31,7 +34,7 @@ type ConsentData struct {
 // will change when the set of required properties is changed
 func NewConsentData() *ConsentData {
 	this := ConsentData{}
-	var consentTracking ConsentTracking = UNKNOWN
+	var consentTracking ConsentTracking = CONSENTTRACKING_UNKNOWN
 	this.ConsentTracking = &consentTracking
 	return &this
 }
@@ -41,14 +44,14 @@ func NewConsentData() *ConsentData {
 // but it doesn't guarantee that properties required by API are set
 func NewConsentDataWithDefaults() *ConsentData {
 	this := ConsentData{}
-	var consentTracking ConsentTracking = UNKNOWN
+	var consentTracking ConsentTracking = CONSENTTRACKING_UNKNOWN
 	this.ConsentTracking = &consentTracking
 	return &this
 }
 
 // GetConsentIP returns the ConsentIP field value if set, zero value otherwise.
 func (o *ConsentData) GetConsentIP() string {
-	if o == nil || isNil(o.ConsentIP) {
+	if o == nil || IsNil(o.ConsentIP) {
 		var ret string
 		return ret
 	}
@@ -58,15 +61,15 @@ func (o *ConsentData) GetConsentIP() string {
 // GetConsentIPOk returns a tuple with the ConsentIP field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ConsentData) GetConsentIPOk() (*string, bool) {
-	if o == nil || isNil(o.ConsentIP) {
-    return nil, false
+	if o == nil || IsNil(o.ConsentIP) {
+		return nil, false
 	}
 	return o.ConsentIP, true
 }
 
 // HasConsentIP returns a boolean if a field has been set.
 func (o *ConsentData) HasConsentIP() bool {
-	if o != nil && !isNil(o.ConsentIP) {
+	if o != nil && !IsNil(o.ConsentIP) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *ConsentData) SetConsentIP(v string) {
 
 // GetConsentDate returns the ConsentDate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ConsentData) GetConsentDate() time.Time {
-	if o == nil || isNil(o.ConsentDate.Get()) {
+	if o == nil || IsNil(o.ConsentDate.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -92,7 +95,7 @@ func (o *ConsentData) GetConsentDate() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ConsentData) GetConsentDateOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.ConsentDate.Get(), o.ConsentDate.IsSet()
 }
@@ -122,7 +125,7 @@ func (o *ConsentData) UnsetConsentDate() {
 
 // GetConsentTracking returns the ConsentTracking field value if set, zero value otherwise.
 func (o *ConsentData) GetConsentTracking() ConsentTracking {
-	if o == nil || isNil(o.ConsentTracking) {
+	if o == nil || IsNil(o.ConsentTracking) {
 		var ret ConsentTracking
 		return ret
 	}
@@ -132,15 +135,15 @@ func (o *ConsentData) GetConsentTracking() ConsentTracking {
 // GetConsentTrackingOk returns a tuple with the ConsentTracking field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ConsentData) GetConsentTrackingOk() (*ConsentTracking, bool) {
-	if o == nil || isNil(o.ConsentTracking) {
-    return nil, false
+	if o == nil || IsNil(o.ConsentTracking) {
+		return nil, false
 	}
 	return o.ConsentTracking, true
 }
 
 // HasConsentTracking returns a boolean if a field has been set.
 func (o *ConsentData) HasConsentTracking() bool {
-	if o != nil && !isNil(o.ConsentTracking) {
+	if o != nil && !IsNil(o.ConsentTracking) {
 		return true
 	}
 
@@ -153,17 +156,25 @@ func (o *ConsentData) SetConsentTracking(v ConsentTracking) {
 }
 
 func (o ConsentData) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ConsentData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.ConsentIP) {
+	if !IsNil(o.ConsentIP) {
 		toSerialize["ConsentIP"] = o.ConsentIP
 	}
 	if o.ConsentDate.IsSet() {
 		toSerialize["ConsentDate"] = o.ConsentDate.Get()
 	}
-	if !isNil(o.ConsentTracking) {
+	if !IsNil(o.ConsentTracking) {
 		toSerialize["ConsentTracking"] = o.ConsentTracking
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableConsentData struct {

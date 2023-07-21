@@ -21,15 +21,15 @@ type ContactStatus string
 
 // List of ContactStatus
 const (
-	TRANSACTIONAL ContactStatus = "Transactional"
-	ENGAGED ContactStatus = "Engaged"
-	ACTIVE ContactStatus = "Active"
-	BOUNCED ContactStatus = "Bounced"
-	UNSUBSCRIBED ContactStatus = "Unsubscribed"
-	ABUSE ContactStatus = "Abuse"
-	INACTIVE ContactStatus = "Inactive"
-	STALE ContactStatus = "Stale"
-	NOT_CONFIRMED ContactStatus = "NotConfirmed"
+	CONTACTSTATUS_TRANSACTIONAL ContactStatus = "Transactional"
+	CONTACTSTATUS_ENGAGED ContactStatus = "Engaged"
+	CONTACTSTATUS_ACTIVE ContactStatus = "Active"
+	CONTACTSTATUS_BOUNCED ContactStatus = "Bounced"
+	CONTACTSTATUS_UNSUBSCRIBED ContactStatus = "Unsubscribed"
+	CONTACTSTATUS_ABUSE ContactStatus = "Abuse"
+	CONTACTSTATUS_INACTIVE ContactStatus = "Inactive"
+	CONTACTSTATUS_STALE ContactStatus = "Stale"
+	CONTACTSTATUS_NOT_CONFIRMED ContactStatus = "NotConfirmed"
 )
 
 // All allowed values of ContactStatus enum

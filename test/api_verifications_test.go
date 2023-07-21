@@ -10,150 +10,147 @@ Testing VerificationsApiService
 package ElasticEmail
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "./openapi"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func Test_ElasticEmail_VerificationsApiService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test VerificationsApiService VerificationsByEmailDelete", func(t *testing.T) {
+	t.Run("Test VerificationsApiService VerificationsByEmailDelete", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var email string
+		var email string
 
-        resp, httpRes, err := apiClient.VerificationsApi.VerificationsByEmailDelete(context.Background(), email).Execute()
+		httpRes, err := apiClient.VerificationsApi.VerificationsByEmailDelete(context.Background(), email).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test VerificationsApiService VerificationsByEmailGet", func(t *testing.T) {
+	t.Run("Test VerificationsApiService VerificationsByEmailGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var email string
+		var email string
 
-        resp, httpRes, err := apiClient.VerificationsApi.VerificationsByEmailGet(context.Background(), email).Execute()
+		resp, httpRes, err := apiClient.VerificationsApi.VerificationsByEmailGet(context.Background(), email).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test VerificationsApiService VerificationsByEmailPost", func(t *testing.T) {
+	t.Run("Test VerificationsApiService VerificationsByEmailPost", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var email string
+		var email string
 
-        resp, httpRes, err := apiClient.VerificationsApi.VerificationsByEmailPost(context.Background(), email).Execute()
+		resp, httpRes, err := apiClient.VerificationsApi.VerificationsByEmailPost(context.Background(), email).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test VerificationsApiService VerificationsFilesByIdDelete", func(t *testing.T) {
+	t.Run("Test VerificationsApiService VerificationsFilesByIdDelete", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var id string
+		var id string
 
-        resp, httpRes, err := apiClient.VerificationsApi.VerificationsFilesByIdDelete(context.Background(), id).Execute()
+		httpRes, err := apiClient.VerificationsApi.VerificationsFilesByIdDelete(context.Background(), id).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test VerificationsApiService VerificationsFilesByIdResultDownloadGet", func(t *testing.T) {
+	t.Run("Test VerificationsApiService VerificationsFilesByIdResultDownloadGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var id string
+		var id string
 
-        resp, httpRes, err := apiClient.VerificationsApi.VerificationsFilesByIdResultDownloadGet(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.VerificationsApi.VerificationsFilesByIdResultDownloadGet(context.Background(), id).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test VerificationsApiService VerificationsFilesByIdResultGet", func(t *testing.T) {
+	t.Run("Test VerificationsApiService VerificationsFilesByIdResultGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var id string
+		var id string
 
-        resp, httpRes, err := apiClient.VerificationsApi.VerificationsFilesByIdResultGet(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.VerificationsApi.VerificationsFilesByIdResultGet(context.Background(), id).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test VerificationsApiService VerificationsFilesByIdVerificationPost", func(t *testing.T) {
+	t.Run("Test VerificationsApiService VerificationsFilesByIdVerificationPost", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var id string
+		var id string
 
-        resp, httpRes, err := apiClient.VerificationsApi.VerificationsFilesByIdVerificationPost(context.Background(), id).Execute()
+		httpRes, err := apiClient.VerificationsApi.VerificationsFilesByIdVerificationPost(context.Background(), id).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test VerificationsApiService VerificationsFilesPost", func(t *testing.T) {
+	t.Run("Test VerificationsApiService VerificationsFilesPost", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.VerificationsApi.VerificationsFilesPost(context.Background()).Execute()
+		resp, httpRes, err := apiClient.VerificationsApi.VerificationsFilesPost(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test VerificationsApiService VerificationsFilesResultGet", func(t *testing.T) {
+	t.Run("Test VerificationsApiService VerificationsFilesResultGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.VerificationsApi.VerificationsFilesResultGet(context.Background()).Execute()
+		resp, httpRes, err := apiClient.VerificationsApi.VerificationsFilesResultGet(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test VerificationsApiService VerificationsGet", func(t *testing.T) {
+	t.Run("Test VerificationsApiService VerificationsGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.VerificationsApi.VerificationsGet(context.Background()).Execute()
+		resp, httpRes, err := apiClient.VerificationsApi.VerificationsGet(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

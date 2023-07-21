@@ -21,9 +21,9 @@ type ConsentTracking string
 
 // List of ConsentTracking
 const (
-	UNKNOWN ConsentTracking = "Unknown"
-	ALLOW ConsentTracking = "Allow"
-	DENY ConsentTracking = "Deny"
+	CONSENTTRACKING_UNKNOWN ConsentTracking = "Unknown"
+	CONSENTTRACKING_ALLOW ConsentTracking = "Allow"
+	CONSENTTRACKING_DENY ConsentTracking = "Deny"
 )
 
 // All allowed values of ConsentTracking enum

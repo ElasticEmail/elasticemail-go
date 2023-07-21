@@ -21,9 +21,9 @@ type TemplateType string
 
 // List of TemplateType
 const (
-	RAW_HTML TemplateType = "RawHTML"
-	DRAG_DROP_EDITOR TemplateType = "DragDropEditor"
-	LANDING_PAGE_EDITOR TemplateType = "LandingPageEditor"
+	TEMPLATETYPE_RAW_HTML TemplateType = "RawHTML"
+	TEMPLATETYPE_DRAG_DROP_EDITOR TemplateType = "DragDropEditor"
+	TEMPLATETYPE_LANDING_PAGE_EDITOR TemplateType = "LandingPageEditor"
 )
 
 // All allowed values of TemplateType enum

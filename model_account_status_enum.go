@@ -21,10 +21,10 @@ type AccountStatusEnum string
 
 // List of AccountStatusEnum
 const (
-	DISABLED AccountStatusEnum = "Disabled"
-	UNDER_REVIEW AccountStatusEnum = "UnderReview"
-	NEVER_SIGNED_IN AccountStatusEnum = "NeverSignedIn"
-	ACTIVE AccountStatusEnum = "Active"
+	ACCOUNTSTATUSENUM_DISABLED AccountStatusEnum = "Disabled"
+	ACCOUNTSTATUSENUM_UNDER_REVIEW AccountStatusEnum = "UnderReview"
+	ACCOUNTSTATUSENUM_NEVER_SIGNED_IN AccountStatusEnum = "NeverSignedIn"
+	ACCOUNTSTATUSENUM_ACTIVE AccountStatusEnum = "Active"
 )
 
 // All allowed values of AccountStatusEnum enum

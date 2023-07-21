@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the FileInfo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FileInfo{}
+
 // FileInfo File information
 type FileInfo struct {
 	// Name of your file including extension.
@@ -49,7 +52,7 @@ func NewFileInfoWithDefaults() *FileInfo {
 
 // GetFileName returns the FileName field value if set, zero value otherwise.
 func (o *FileInfo) GetFileName() string {
-	if o == nil || isNil(o.FileName) {
+	if o == nil || IsNil(o.FileName) {
 		var ret string
 		return ret
 	}
@@ -59,15 +62,15 @@ func (o *FileInfo) GetFileName() string {
 // GetFileNameOk returns a tuple with the FileName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FileInfo) GetFileNameOk() (*string, bool) {
-	if o == nil || isNil(o.FileName) {
-    return nil, false
+	if o == nil || IsNil(o.FileName) {
+		return nil, false
 	}
 	return o.FileName, true
 }
 
 // HasFileName returns a boolean if a field has been set.
 func (o *FileInfo) HasFileName() bool {
-	if o != nil && !isNil(o.FileName) {
+	if o != nil && !IsNil(o.FileName) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *FileInfo) SetFileName(v string) {
 
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FileInfo) GetSize() int32 {
-	if o == nil || isNil(o.Size.Get()) {
+	if o == nil || IsNil(o.Size.Get()) {
 		var ret int32
 		return ret
 	}
@@ -93,7 +96,7 @@ func (o *FileInfo) GetSize() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FileInfo) GetSizeOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Size.Get(), o.Size.IsSet()
 }
@@ -123,7 +126,7 @@ func (o *FileInfo) UnsetSize() {
 
 // GetDateAdded returns the DateAdded field value if set, zero value otherwise.
 func (o *FileInfo) GetDateAdded() time.Time {
-	if o == nil || isNil(o.DateAdded) {
+	if o == nil || IsNil(o.DateAdded) {
 		var ret time.Time
 		return ret
 	}
@@ -133,15 +136,15 @@ func (o *FileInfo) GetDateAdded() time.Time {
 // GetDateAddedOk returns a tuple with the DateAdded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FileInfo) GetDateAddedOk() (*time.Time, bool) {
-	if o == nil || isNil(o.DateAdded) {
-    return nil, false
+	if o == nil || IsNil(o.DateAdded) {
+		return nil, false
 	}
 	return o.DateAdded, true
 }
 
 // HasDateAdded returns a boolean if a field has been set.
 func (o *FileInfo) HasDateAdded() bool {
-	if o != nil && !isNil(o.DateAdded) {
+	if o != nil && !IsNil(o.DateAdded) {
 		return true
 	}
 
@@ -155,7 +158,7 @@ func (o *FileInfo) SetDateAdded(v time.Time) {
 
 // GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FileInfo) GetExpirationDate() time.Time {
-	if o == nil || isNil(o.ExpirationDate.Get()) {
+	if o == nil || IsNil(o.ExpirationDate.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -167,7 +170,7 @@ func (o *FileInfo) GetExpirationDate() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FileInfo) GetExpirationDateOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.ExpirationDate.Get(), o.ExpirationDate.IsSet()
 }
@@ -197,7 +200,7 @@ func (o *FileInfo) UnsetExpirationDate() {
 
 // GetContentType returns the ContentType field value if set, zero value otherwise.
 func (o *FileInfo) GetContentType() string {
-	if o == nil || isNil(o.ContentType) {
+	if o == nil || IsNil(o.ContentType) {
 		var ret string
 		return ret
 	}
@@ -207,15 +210,15 @@ func (o *FileInfo) GetContentType() string {
 // GetContentTypeOk returns a tuple with the ContentType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FileInfo) GetContentTypeOk() (*string, bool) {
-	if o == nil || isNil(o.ContentType) {
-    return nil, false
+	if o == nil || IsNil(o.ContentType) {
+		return nil, false
 	}
 	return o.ContentType, true
 }
 
 // HasContentType returns a boolean if a field has been set.
 func (o *FileInfo) HasContentType() bool {
-	if o != nil && !isNil(o.ContentType) {
+	if o != nil && !IsNil(o.ContentType) {
 		return true
 	}
 
@@ -228,23 +231,31 @@ func (o *FileInfo) SetContentType(v string) {
 }
 
 func (o FileInfo) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o FileInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.FileName) {
+	if !IsNil(o.FileName) {
 		toSerialize["FileName"] = o.FileName
 	}
 	if o.Size.IsSet() {
 		toSerialize["Size"] = o.Size.Get()
 	}
-	if !isNil(o.DateAdded) {
+	if !IsNil(o.DateAdded) {
 		toSerialize["DateAdded"] = o.DateAdded
 	}
 	if o.ExpirationDate.IsSet() {
 		toSerialize["ExpirationDate"] = o.ExpirationDate.Get()
 	}
-	if !isNil(o.ContentType) {
+	if !IsNil(o.ContentType) {
 		toSerialize["ContentType"] = o.ContentType
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableFileInfo struct {

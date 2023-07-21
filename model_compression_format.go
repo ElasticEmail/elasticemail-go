@@ -21,8 +21,8 @@ type CompressionFormat string
 
 // List of CompressionFormat
 const (
-	NONE CompressionFormat = "None"
-	ZIP CompressionFormat = "Zip"
+	COMPRESSIONFORMAT_NONE CompressionFormat = "None"
+	COMPRESSIONFORMAT_ZIP CompressionFormat = "Zip"
 )
 
 // All allowed values of CompressionFormat enum

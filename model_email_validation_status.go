@@ -21,11 +21,11 @@ type EmailValidationStatus string
 
 // List of EmailValidationStatus
 const (
-	NONE EmailValidationStatus = "None"
-	VALID EmailValidationStatus = "Valid"
-	UNKNOWN EmailValidationStatus = "Unknown"
-	RISKY EmailValidationStatus = "Risky"
-	INVALID EmailValidationStatus = "Invalid"
+	EMAILVALIDATIONSTATUS_NONE EmailValidationStatus = "None"
+	EMAILVALIDATIONSTATUS_VALID EmailValidationStatus = "Valid"
+	EMAILVALIDATIONSTATUS_UNKNOWN EmailValidationStatus = "Unknown"
+	EMAILVALIDATIONSTATUS_RISKY EmailValidationStatus = "Risky"
+	EMAILVALIDATIONSTATUS_INVALID EmailValidationStatus = "Invalid"
 )
 
 // All allowed values of EmailValidationStatus enum

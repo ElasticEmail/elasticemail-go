@@ -21,10 +21,10 @@ type ExportStatus string
 
 // List of ExportStatus
 const (
-	ERROR ExportStatus = "Error"
-	LOADING ExportStatus = "Loading"
-	READY ExportStatus = "Ready"
-	EXPIRED ExportStatus = "Expired"
+	EXPORTSTATUS_ERROR ExportStatus = "Error"
+	EXPORTSTATUS_LOADING ExportStatus = "Loading"
+	EXPORTSTATUS_READY ExportStatus = "Ready"
+	EXPORTSTATUS_EXPIRED ExportStatus = "Expired"
 )
 
 // All allowed values of ExportStatus enum

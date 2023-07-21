@@ -21,8 +21,8 @@ type InboundRouteFilterType string
 
 // List of InboundRouteFilterType
 const (
-	EMAIL_ADDRESS InboundRouteFilterType = "EmailAddress"
-	SUBJECT InboundRouteFilterType = "Subject"
+	INBOUNDROUTEFILTERTYPE_EMAIL_ADDRESS InboundRouteFilterType = "EmailAddress"
+	INBOUNDROUTEFILTERTYPE_SUBJECT InboundRouteFilterType = "Subject"
 )
 
 // All allowed values of InboundRouteFilterType enum

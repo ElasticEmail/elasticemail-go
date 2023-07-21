@@ -21,8 +21,8 @@ type TemplateScope string
 
 // List of TemplateScope
 const (
-	PERSONAL TemplateScope = "Personal"
-	GLOBAL TemplateScope = "Global"
+	TEMPLATESCOPE_PERSONAL TemplateScope = "Personal"
+	TEMPLATESCOPE_GLOBAL TemplateScope = "Global"
 )
 
 // All allowed values of TemplateScope enum

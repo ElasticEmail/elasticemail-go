@@ -21,9 +21,9 @@ type InboundRouteActionType string
 
 // List of InboundRouteActionType
 const (
-	FORWARD_TO_EMAIL InboundRouteActionType = "ForwardToEmail"
-	NOTIFY_VIA_HTTP InboundRouteActionType = "NotifyViaHttp"
-	STOP InboundRouteActionType = "Stop"
+	INBOUNDROUTEACTIONTYPE_FORWARD_TO_EMAIL InboundRouteActionType = "ForwardToEmail"
+	INBOUNDROUTEACTIONTYPE_NOTIFY_VIA_HTTP InboundRouteActionType = "NotifyViaHttp"
+	INBOUNDROUTEACTIONTYPE_STOP InboundRouteActionType = "Stop"
 )
 
 // All allowed values of InboundRouteActionType enum

@@ -16,8 +16,11 @@ import (
 	"time"
 )
 
-// NewSmtpCredentials Newly generated SMTP Credentials with Token
-type NewSmtpCredentials struct {
+// checks if the SmtpCredentialsNew type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SmtpCredentialsNew{}
+
+// SmtpCredentialsNew Newly generated SMTP Credentials with Token
+type SmtpCredentialsNew struct {
 	// Unique token to be used in the system
 	Token *string `json:"Token,omitempty"`
 	AccessLevel *AccessLevel `json:"AccessLevel,omitempty"`
@@ -33,30 +36,30 @@ type NewSmtpCredentials struct {
 	RestrictAccessToIPRange []string `json:"RestrictAccessToIPRange,omitempty"`
 }
 
-// NewNewSmtpCredentials instantiates a new NewSmtpCredentials object
+// NewSmtpCredentialsNew instantiates a new SmtpCredentialsNew object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNewSmtpCredentials() *NewSmtpCredentials {
-	this := NewSmtpCredentials{}
-	var accessLevel AccessLevel = NONE
+func NewSmtpCredentialsNew() *SmtpCredentialsNew {
+	this := SmtpCredentialsNew{}
+	var accessLevel AccessLevel = ACCESSLEVEL_NONE
 	this.AccessLevel = &accessLevel
 	return &this
 }
 
-// NewNewSmtpCredentialsWithDefaults instantiates a new NewSmtpCredentials object
+// NewSmtpCredentialsNewWithDefaults instantiates a new SmtpCredentialsNew object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewNewSmtpCredentialsWithDefaults() *NewSmtpCredentials {
-	this := NewSmtpCredentials{}
-	var accessLevel AccessLevel = NONE
+func NewSmtpCredentialsNewWithDefaults() *SmtpCredentialsNew {
+	this := SmtpCredentialsNew{}
+	var accessLevel AccessLevel = ACCESSLEVEL_NONE
 	this.AccessLevel = &accessLevel
 	return &this
 }
 
 // GetToken returns the Token field value if set, zero value otherwise.
-func (o *NewSmtpCredentials) GetToken() string {
-	if o == nil || isNil(o.Token) {
+func (o *SmtpCredentialsNew) GetToken() string {
+	if o == nil || IsNil(o.Token) {
 		var ret string
 		return ret
 	}
@@ -65,16 +68,16 @@ func (o *NewSmtpCredentials) GetToken() string {
 
 // GetTokenOk returns a tuple with the Token field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewSmtpCredentials) GetTokenOk() (*string, bool) {
-	if o == nil || isNil(o.Token) {
-    return nil, false
+func (o *SmtpCredentialsNew) GetTokenOk() (*string, bool) {
+	if o == nil || IsNil(o.Token) {
+		return nil, false
 	}
 	return o.Token, true
 }
 
 // HasToken returns a boolean if a field has been set.
-func (o *NewSmtpCredentials) HasToken() bool {
-	if o != nil && !isNil(o.Token) {
+func (o *SmtpCredentialsNew) HasToken() bool {
+	if o != nil && !IsNil(o.Token) {
 		return true
 	}
 
@@ -82,13 +85,13 @@ func (o *NewSmtpCredentials) HasToken() bool {
 }
 
 // SetToken gets a reference to the given string and assigns it to the Token field.
-func (o *NewSmtpCredentials) SetToken(v string) {
+func (o *SmtpCredentialsNew) SetToken(v string) {
 	o.Token = &v
 }
 
 // GetAccessLevel returns the AccessLevel field value if set, zero value otherwise.
-func (o *NewSmtpCredentials) GetAccessLevel() AccessLevel {
-	if o == nil || isNil(o.AccessLevel) {
+func (o *SmtpCredentialsNew) GetAccessLevel() AccessLevel {
+	if o == nil || IsNil(o.AccessLevel) {
 		var ret AccessLevel
 		return ret
 	}
@@ -97,16 +100,16 @@ func (o *NewSmtpCredentials) GetAccessLevel() AccessLevel {
 
 // GetAccessLevelOk returns a tuple with the AccessLevel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewSmtpCredentials) GetAccessLevelOk() (*AccessLevel, bool) {
-	if o == nil || isNil(o.AccessLevel) {
-    return nil, false
+func (o *SmtpCredentialsNew) GetAccessLevelOk() (*AccessLevel, bool) {
+	if o == nil || IsNil(o.AccessLevel) {
+		return nil, false
 	}
 	return o.AccessLevel, true
 }
 
 // HasAccessLevel returns a boolean if a field has been set.
-func (o *NewSmtpCredentials) HasAccessLevel() bool {
-	if o != nil && !isNil(o.AccessLevel) {
+func (o *SmtpCredentialsNew) HasAccessLevel() bool {
+	if o != nil && !IsNil(o.AccessLevel) {
 		return true
 	}
 
@@ -114,13 +117,13 @@ func (o *NewSmtpCredentials) HasAccessLevel() bool {
 }
 
 // SetAccessLevel gets a reference to the given AccessLevel and assigns it to the AccessLevel field.
-func (o *NewSmtpCredentials) SetAccessLevel(v AccessLevel) {
+func (o *SmtpCredentialsNew) SetAccessLevel(v AccessLevel) {
 	o.AccessLevel = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *NewSmtpCredentials) GetName() string {
-	if o == nil || isNil(o.Name) {
+func (o *SmtpCredentialsNew) GetName() string {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -129,16 +132,16 @@ func (o *NewSmtpCredentials) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewSmtpCredentials) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+func (o *SmtpCredentialsNew) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *NewSmtpCredentials) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+func (o *SmtpCredentialsNew) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -146,13 +149,13 @@ func (o *NewSmtpCredentials) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *NewSmtpCredentials) SetName(v string) {
+func (o *SmtpCredentialsNew) SetName(v string) {
 	o.Name = &v
 }
 
 // GetDateCreated returns the DateCreated field value if set, zero value otherwise.
-func (o *NewSmtpCredentials) GetDateCreated() time.Time {
-	if o == nil || isNil(o.DateCreated) {
+func (o *SmtpCredentialsNew) GetDateCreated() time.Time {
+	if o == nil || IsNil(o.DateCreated) {
 		var ret time.Time
 		return ret
 	}
@@ -161,16 +164,16 @@ func (o *NewSmtpCredentials) GetDateCreated() time.Time {
 
 // GetDateCreatedOk returns a tuple with the DateCreated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewSmtpCredentials) GetDateCreatedOk() (*time.Time, bool) {
-	if o == nil || isNil(o.DateCreated) {
-    return nil, false
+func (o *SmtpCredentialsNew) GetDateCreatedOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.DateCreated) {
+		return nil, false
 	}
 	return o.DateCreated, true
 }
 
 // HasDateCreated returns a boolean if a field has been set.
-func (o *NewSmtpCredentials) HasDateCreated() bool {
-	if o != nil && !isNil(o.DateCreated) {
+func (o *SmtpCredentialsNew) HasDateCreated() bool {
+	if o != nil && !IsNil(o.DateCreated) {
 		return true
 	}
 
@@ -178,13 +181,13 @@ func (o *NewSmtpCredentials) HasDateCreated() bool {
 }
 
 // SetDateCreated gets a reference to the given time.Time and assigns it to the DateCreated field.
-func (o *NewSmtpCredentials) SetDateCreated(v time.Time) {
+func (o *SmtpCredentialsNew) SetDateCreated(v time.Time) {
 	o.DateCreated = &v
 }
 
 // GetLastUse returns the LastUse field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *NewSmtpCredentials) GetLastUse() time.Time {
-	if o == nil || isNil(o.LastUse.Get()) {
+func (o *SmtpCredentialsNew) GetLastUse() time.Time {
+	if o == nil || IsNil(o.LastUse.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -194,15 +197,15 @@ func (o *NewSmtpCredentials) GetLastUse() time.Time {
 // GetLastUseOk returns a tuple with the LastUse field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *NewSmtpCredentials) GetLastUseOk() (*time.Time, bool) {
+func (o *SmtpCredentialsNew) GetLastUseOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.LastUse.Get(), o.LastUse.IsSet()
 }
 
 // HasLastUse returns a boolean if a field has been set.
-func (o *NewSmtpCredentials) HasLastUse() bool {
+func (o *SmtpCredentialsNew) HasLastUse() bool {
 	if o != nil && o.LastUse.IsSet() {
 		return true
 	}
@@ -211,22 +214,22 @@ func (o *NewSmtpCredentials) HasLastUse() bool {
 }
 
 // SetLastUse gets a reference to the given NullableTime and assigns it to the LastUse field.
-func (o *NewSmtpCredentials) SetLastUse(v time.Time) {
+func (o *SmtpCredentialsNew) SetLastUse(v time.Time) {
 	o.LastUse.Set(&v)
 }
 // SetLastUseNil sets the value for LastUse to be an explicit nil
-func (o *NewSmtpCredentials) SetLastUseNil() {
+func (o *SmtpCredentialsNew) SetLastUseNil() {
 	o.LastUse.Set(nil)
 }
 
 // UnsetLastUse ensures that no value is present for LastUse, not even an explicit nil
-func (o *NewSmtpCredentials) UnsetLastUse() {
+func (o *SmtpCredentialsNew) UnsetLastUse() {
 	o.LastUse.Unset()
 }
 
 // GetExpires returns the Expires field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *NewSmtpCredentials) GetExpires() time.Time {
-	if o == nil || isNil(o.Expires.Get()) {
+func (o *SmtpCredentialsNew) GetExpires() time.Time {
+	if o == nil || IsNil(o.Expires.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -236,15 +239,15 @@ func (o *NewSmtpCredentials) GetExpires() time.Time {
 // GetExpiresOk returns a tuple with the Expires field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *NewSmtpCredentials) GetExpiresOk() (*time.Time, bool) {
+func (o *SmtpCredentialsNew) GetExpiresOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Expires.Get(), o.Expires.IsSet()
 }
 
 // HasExpires returns a boolean if a field has been set.
-func (o *NewSmtpCredentials) HasExpires() bool {
+func (o *SmtpCredentialsNew) HasExpires() bool {
 	if o != nil && o.Expires.IsSet() {
 		return true
 	}
@@ -253,22 +256,22 @@ func (o *NewSmtpCredentials) HasExpires() bool {
 }
 
 // SetExpires gets a reference to the given NullableTime and assigns it to the Expires field.
-func (o *NewSmtpCredentials) SetExpires(v time.Time) {
+func (o *SmtpCredentialsNew) SetExpires(v time.Time) {
 	o.Expires.Set(&v)
 }
 // SetExpiresNil sets the value for Expires to be an explicit nil
-func (o *NewSmtpCredentials) SetExpiresNil() {
+func (o *SmtpCredentialsNew) SetExpiresNil() {
 	o.Expires.Set(nil)
 }
 
 // UnsetExpires ensures that no value is present for Expires, not even an explicit nil
-func (o *NewSmtpCredentials) UnsetExpires() {
+func (o *SmtpCredentialsNew) UnsetExpires() {
 	o.Expires.Unset()
 }
 
 // GetRestrictAccessToIPRange returns the RestrictAccessToIPRange field value if set, zero value otherwise.
-func (o *NewSmtpCredentials) GetRestrictAccessToIPRange() []string {
-	if o == nil || isNil(o.RestrictAccessToIPRange) {
+func (o *SmtpCredentialsNew) GetRestrictAccessToIPRange() []string {
+	if o == nil || IsNil(o.RestrictAccessToIPRange) {
 		var ret []string
 		return ret
 	}
@@ -277,16 +280,16 @@ func (o *NewSmtpCredentials) GetRestrictAccessToIPRange() []string {
 
 // GetRestrictAccessToIPRangeOk returns a tuple with the RestrictAccessToIPRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewSmtpCredentials) GetRestrictAccessToIPRangeOk() ([]string, bool) {
-	if o == nil || isNil(o.RestrictAccessToIPRange) {
-    return nil, false
+func (o *SmtpCredentialsNew) GetRestrictAccessToIPRangeOk() ([]string, bool) {
+	if o == nil || IsNil(o.RestrictAccessToIPRange) {
+		return nil, false
 	}
 	return o.RestrictAccessToIPRange, true
 }
 
 // HasRestrictAccessToIPRange returns a boolean if a field has been set.
-func (o *NewSmtpCredentials) HasRestrictAccessToIPRange() bool {
-	if o != nil && !isNil(o.RestrictAccessToIPRange) {
+func (o *SmtpCredentialsNew) HasRestrictAccessToIPRange() bool {
+	if o != nil && !IsNil(o.RestrictAccessToIPRange) {
 		return true
 	}
 
@@ -294,22 +297,30 @@ func (o *NewSmtpCredentials) HasRestrictAccessToIPRange() bool {
 }
 
 // SetRestrictAccessToIPRange gets a reference to the given []string and assigns it to the RestrictAccessToIPRange field.
-func (o *NewSmtpCredentials) SetRestrictAccessToIPRange(v []string) {
+func (o *SmtpCredentialsNew) SetRestrictAccessToIPRange(v []string) {
 	o.RestrictAccessToIPRange = v
 }
 
-func (o NewSmtpCredentials) MarshalJSON() ([]byte, error) {
+func (o SmtpCredentialsNew) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SmtpCredentialsNew) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Token) {
+	if !IsNil(o.Token) {
 		toSerialize["Token"] = o.Token
 	}
-	if !isNil(o.AccessLevel) {
+	if !IsNil(o.AccessLevel) {
 		toSerialize["AccessLevel"] = o.AccessLevel
 	}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["Name"] = o.Name
 	}
-	if !isNil(o.DateCreated) {
+	if !IsNil(o.DateCreated) {
 		toSerialize["DateCreated"] = o.DateCreated
 	}
 	if o.LastUse.IsSet() {
@@ -318,44 +329,44 @@ func (o NewSmtpCredentials) MarshalJSON() ([]byte, error) {
 	if o.Expires.IsSet() {
 		toSerialize["Expires"] = o.Expires.Get()
 	}
-	if !isNil(o.RestrictAccessToIPRange) {
+	if !IsNil(o.RestrictAccessToIPRange) {
 		toSerialize["RestrictAccessToIPRange"] = o.RestrictAccessToIPRange
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
-type NullableNewSmtpCredentials struct {
-	value *NewSmtpCredentials
+type NullableSmtpCredentialsNew struct {
+	value *SmtpCredentialsNew
 	isSet bool
 }
 
-func (v NullableNewSmtpCredentials) Get() *NewSmtpCredentials {
+func (v NullableSmtpCredentialsNew) Get() *SmtpCredentialsNew {
 	return v.value
 }
 
-func (v *NullableNewSmtpCredentials) Set(val *NewSmtpCredentials) {
+func (v *NullableSmtpCredentialsNew) Set(val *SmtpCredentialsNew) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableNewSmtpCredentials) IsSet() bool {
+func (v NullableSmtpCredentialsNew) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableNewSmtpCredentials) Unset() {
+func (v *NullableSmtpCredentialsNew) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableNewSmtpCredentials(val *NewSmtpCredentials) *NullableNewSmtpCredentials {
-	return &NullableNewSmtpCredentials{value: val, isSet: true}
+func NewNullableSmtpCredentialsNew(val *SmtpCredentialsNew) *NullableSmtpCredentialsNew {
+	return &NullableSmtpCredentialsNew{value: val, isSet: true}
 }
 
-func (v NullableNewSmtpCredentials) MarshalJSON() ([]byte, error) {
+func (v NullableSmtpCredentialsNew) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableNewSmtpCredentials) UnmarshalJSON(src []byte) error {
+func (v *NullableSmtpCredentialsNew) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

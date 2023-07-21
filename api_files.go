@@ -14,7 +14,7 @@ package ElasticEmail
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -66,7 +66,7 @@ func (a *FilesApiService) FilesByNameDeleteExecute(r ApiFilesByNameDeleteRequest
 	}
 
 	localVarPath := localBasePath + "/files/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -113,9 +113,9 @@ func (a *FilesApiService) FilesByNameDeleteExecute(r ApiFilesByNameDeleteRequest
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -137,7 +137,7 @@ type ApiFilesByNameGetRequest struct {
 	name string
 }
 
-func (r ApiFilesByNameGetRequest) Execute() (**os.File, *http.Response, error) {
+func (r ApiFilesByNameGetRequest) Execute() (*os.File, *http.Response, error) {
 	return r.ApiService.FilesByNameGetExecute(r)
 }
 
@@ -160,12 +160,12 @@ func (a *FilesApiService) FilesByNameGet(ctx context.Context, name string) ApiFi
 
 // Execute executes the request
 //  @return *os.File
-func (a *FilesApiService) FilesByNameGetExecute(r ApiFilesByNameGetRequest) (**os.File, *http.Response, error) {
+func (a *FilesApiService) FilesByNameGetExecute(r ApiFilesByNameGetRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  **os.File
+		localVarReturnValue  *os.File
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesApiService.FilesByNameGet")
@@ -174,7 +174,7 @@ func (a *FilesApiService) FilesByNameGetExecute(r ApiFilesByNameGetRequest) (**o
 	}
 
 	localVarPath := localBasePath + "/files/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -221,9 +221,9 @@ func (a *FilesApiService) FilesByNameGetExecute(r ApiFilesByNameGetRequest) (**o
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -291,7 +291,7 @@ func (a *FilesApiService) FilesByNameInfoGetExecute(r ApiFilesByNameInfoGetReque
 	}
 
 	localVarPath := localBasePath + "/files/{name}/info"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -338,9 +338,9 @@ func (a *FilesApiService) FilesByNameInfoGetExecute(r ApiFilesByNameInfoGetReque
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -425,10 +425,10 @@ func (a *FilesApiService) FilesGetExecute(r ApiFilesGetRequest) ([]FileInfo, *ht
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -471,9 +471,9 @@ func (a *FilesApiService) FilesGetExecute(r ApiFilesGetRequest) ([]FileInfo, *ht
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -560,7 +560,7 @@ func (a *FilesApiService) FilesPostExecute(r ApiFilesPostRequest) (*FileInfo, *h
 	}
 
 	if r.expiresAfterDays != nil {
-		localVarQueryParams.Add("expiresAfterDays", parameterToString(*r.expiresAfterDays, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expiresAfterDays", r.expiresAfterDays, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -605,9 +605,9 @@ func (a *FilesApiService) FilesPostExecute(r ApiFilesPostRequest) (*FileInfo, *h
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

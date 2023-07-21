@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FilePayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FilePayload{}
+
 // FilePayload struct for FilePayload
 type FilePayload struct {
 	// Content of the file sent as binary data
@@ -57,7 +60,7 @@ func (o *FilePayload) GetBinaryContent() string {
 // and a boolean to check if the value has been set.
 func (o *FilePayload) GetBinaryContentOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.BinaryContent, true
 }
@@ -69,7 +72,7 @@ func (o *FilePayload) SetBinaryContent(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *FilePayload) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -79,15 +82,15 @@ func (o *FilePayload) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FilePayload) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *FilePayload) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -101,7 +104,7 @@ func (o *FilePayload) SetName(v string) {
 
 // GetContentType returns the ContentType field value if set, zero value otherwise.
 func (o *FilePayload) GetContentType() string {
-	if o == nil || isNil(o.ContentType) {
+	if o == nil || IsNil(o.ContentType) {
 		var ret string
 		return ret
 	}
@@ -111,15 +114,15 @@ func (o *FilePayload) GetContentType() string {
 // GetContentTypeOk returns a tuple with the ContentType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FilePayload) GetContentTypeOk() (*string, bool) {
-	if o == nil || isNil(o.ContentType) {
-    return nil, false
+	if o == nil || IsNil(o.ContentType) {
+		return nil, false
 	}
 	return o.ContentType, true
 }
 
 // HasContentType returns a boolean if a field has been set.
 func (o *FilePayload) HasContentType() bool {
-	if o != nil && !isNil(o.ContentType) {
+	if o != nil && !IsNil(o.ContentType) {
 		return true
 	}
 
@@ -132,17 +135,23 @@ func (o *FilePayload) SetContentType(v string) {
 }
 
 func (o FilePayload) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["BinaryContent"] = o.BinaryContent
-	}
-	if !isNil(o.Name) {
-		toSerialize["Name"] = o.Name
-	}
-	if !isNil(o.ContentType) {
-		toSerialize["ContentType"] = o.ContentType
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o FilePayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["BinaryContent"] = o.BinaryContent
+	if !IsNil(o.Name) {
+		toSerialize["Name"] = o.Name
+	}
+	if !IsNil(o.ContentType) {
+		toSerialize["ContentType"] = o.ContentType
+	}
+	return toSerialize, nil
 }
 
 type NullableFilePayload struct {

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the BodyPart type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BodyPart{}
+
 // BodyPart Email body part with user-provided MIME type (text/html, text/plain, etc)
 type BodyPart struct {
 	ContentType BodyContentType `json:"ContentType"`
@@ -39,7 +42,7 @@ func NewBodyPart(contentType BodyContentType) *BodyPart {
 // but it doesn't guarantee that properties required by API are set
 func NewBodyPartWithDefaults() *BodyPart {
 	this := BodyPart{}
-	var contentType BodyContentType = HTML
+	var contentType BodyContentType = BODYCONTENTTYPE_HTML
 	this.ContentType = contentType
 	return &this
 }
@@ -58,7 +61,7 @@ func (o *BodyPart) GetContentType() BodyContentType {
 // and a boolean to check if the value has been set.
 func (o *BodyPart) GetContentTypeOk() (*BodyContentType, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.ContentType, true
 }
@@ -70,7 +73,7 @@ func (o *BodyPart) SetContentType(v BodyContentType) {
 
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *BodyPart) GetContent() string {
-	if o == nil || isNil(o.Content) {
+	if o == nil || IsNil(o.Content) {
 		var ret string
 		return ret
 	}
@@ -80,15 +83,15 @@ func (o *BodyPart) GetContent() string {
 // GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BodyPart) GetContentOk() (*string, bool) {
-	if o == nil || isNil(o.Content) {
-    return nil, false
+	if o == nil || IsNil(o.Content) {
+		return nil, false
 	}
 	return o.Content, true
 }
 
 // HasContent returns a boolean if a field has been set.
 func (o *BodyPart) HasContent() bool {
-	if o != nil && !isNil(o.Content) {
+	if o != nil && !IsNil(o.Content) {
 		return true
 	}
 
@@ -102,7 +105,7 @@ func (o *BodyPart) SetContent(v string) {
 
 // GetCharset returns the Charset field value if set, zero value otherwise.
 func (o *BodyPart) GetCharset() string {
-	if o == nil || isNil(o.Charset) {
+	if o == nil || IsNil(o.Charset) {
 		var ret string
 		return ret
 	}
@@ -112,15 +115,15 @@ func (o *BodyPart) GetCharset() string {
 // GetCharsetOk returns a tuple with the Charset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BodyPart) GetCharsetOk() (*string, bool) {
-	if o == nil || isNil(o.Charset) {
-    return nil, false
+	if o == nil || IsNil(o.Charset) {
+		return nil, false
 	}
 	return o.Charset, true
 }
 
 // HasCharset returns a boolean if a field has been set.
 func (o *BodyPart) HasCharset() bool {
-	if o != nil && !isNil(o.Charset) {
+	if o != nil && !IsNil(o.Charset) {
 		return true
 	}
 
@@ -133,17 +136,23 @@ func (o *BodyPart) SetCharset(v string) {
 }
 
 func (o BodyPart) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["ContentType"] = o.ContentType
-	}
-	if !isNil(o.Content) {
-		toSerialize["Content"] = o.Content
-	}
-	if !isNil(o.Charset) {
-		toSerialize["Charset"] = o.Charset
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o BodyPart) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["ContentType"] = o.ContentType
+	if !IsNil(o.Content) {
+		toSerialize["Content"] = o.Content
+	}
+	if !IsNil(o.Charset) {
+		toSerialize["Charset"] = o.Charset
+	}
+	return toSerialize, nil
 }
 
 type NullableBodyPart struct {

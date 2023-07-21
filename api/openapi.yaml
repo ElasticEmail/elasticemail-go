@@ -1602,7 +1602,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NewApiKey'
+                $ref: '#/components/schemas/ApiKeyNew'
           description: Created
       summary: Add ApiKey
       tags:
@@ -1744,7 +1744,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NewSmtpCredentials'
+                $ref: '#/components/schemas/SmtpCredentialsNew'
           description: Created
       summary: Add SMTP Credential
       tags:
@@ -3202,6 +3202,57 @@ components:
         - null
         Name: Name
       properties:
+        AccessLevel:
+          description: Access level or permission to be assigned to this ApiKey.
+          items:
+            $ref: '#/components/schemas/AccessLevel'
+          type: array
+        Name:
+          description: Name of the ApiKey.
+          format: string
+          type: string
+        DateCreated:
+          description: Date this ApiKey was created.
+          format: date-time
+          type: string
+        LastUse:
+          description: Date this ApiKey was last used.
+          format: date-time
+          nullable: true
+          type: string
+          example: null
+        Expires:
+          description: Date this ApiKey expires.
+          format: date-time
+          nullable: true
+          type: string
+          example: null
+        RestrictAccessToIPRange:
+          description: Which IPs can use this ApiKey
+          items:
+            format: string
+            type: string
+          type: array
+      type: object
+    ApiKeyNew:
+      description: Newly generated ApiKey with Token
+      example:
+        RestrictAccessToIPRange:
+        - RestrictAccessToIPRange
+        - RestrictAccessToIPRange
+        DateCreated: 2000-01-23T04:56:07.000+00:00
+        Token: Token
+        LastUse: 2000-01-23T04:56:07.000+00:00
+        Expires: 2000-01-23T04:56:07.000+00:00
+        AccessLevel:
+        - null
+        - null
+        Name: Name
+      properties:
+        Token:
+          description: Unique token to be used in the system
+          format: string
+          type: string
         AccessLevel:
           description: Access level or permission to be assigned to this ApiKey.
           items:
@@ -4839,145 +4890,6 @@ components:
       - ConnectionTerminated
       - NotDelivered
       type: string
-    NewApiKey:
-      description: Newly generated ApiKey with Token
-      example:
-        RestrictAccessToIPRange:
-        - RestrictAccessToIPRange
-        - RestrictAccessToIPRange
-        DateCreated: 2000-01-23T04:56:07.000+00:00
-        Token: Token
-        LastUse: 2000-01-23T04:56:07.000+00:00
-        Expires: 2000-01-23T04:56:07.000+00:00
-        AccessLevel:
-        - null
-        - null
-        Name: Name
-      properties:
-        Token:
-          description: Unique token to be used in the system
-          format: string
-          type: string
-        AccessLevel:
-          description: Access level or permission to be assigned to this ApiKey.
-          items:
-            $ref: '#/components/schemas/AccessLevel'
-          type: array
-        Name:
-          description: Name of the ApiKey.
-          format: string
-          type: string
-        DateCreated:
-          description: Date this ApiKey was created.
-          format: date-time
-          type: string
-        LastUse:
-          description: Date this ApiKey was last used.
-          format: date-time
-          nullable: true
-          type: string
-          example: null
-        Expires:
-          description: Date this ApiKey expires.
-          format: date-time
-          nullable: true
-          type: string
-          example: null
-        RestrictAccessToIPRange:
-          description: Which IPs can use this ApiKey
-          items:
-            format: string
-            type: string
-          type: array
-      type: object
-    NewSmtpCredentials:
-      description: Newly generated SMTP Credentials with Token
-      example:
-        RestrictAccessToIPRange:
-        - RestrictAccessToIPRange
-        - RestrictAccessToIPRange
-        DateCreated: 2000-01-23T04:56:07.000+00:00
-        Token: Token
-        LastUse: 2000-01-23T04:56:07.000+00:00
-        Expires: 2000-01-23T04:56:07.000+00:00
-        AccessLevel: null
-        Name: Name
-      properties:
-        Token:
-          description: Unique token to be used in the system
-          format: string
-          type: string
-        AccessLevel:
-          $ref: '#/components/schemas/AccessLevel'
-        Name:
-          description: Name of the key.
-          format: string
-          type: string
-        DateCreated:
-          description: Date this SmtpCredential was created.
-          format: date-time
-          type: string
-        LastUse:
-          description: Date this SmtpCredential was last used.
-          format: date-time
-          nullable: true
-          type: string
-          example: null
-        Expires:
-          description: Date this SmtpCredential expires.
-          format: date-time
-          nullable: true
-          type: string
-          example: null
-        RestrictAccessToIPRange:
-          description: Which IPs can use this SmtpCredential
-          items:
-            format: string
-            type: string
-          type: array
-      type: object
-    Options:
-      description: E-mail configuration
-      example:
-        TrackClicks: true
-        ChannelName: Channel01
-        PoolName: My Custom Pool
-        Encoding: null
-        TimeOffset: 0
-        TrackOpens: true
-      properties:
-        TimeOffset:
-          description: By how long should an e-mail be delayed (in minutes). Maximum
-            is 35 days.
-          format: int32
-          nullable: true
-          type: integer
-          example: null
-        PoolName:
-          description: Name of your custom IP Pool to be used in the sending process
-          example: My Custom Pool
-          format: string
-          type: string
-        ChannelName:
-          description: Name of selected channel.
-          example: Channel01
-          format: string
-          type: string
-        Encoding:
-          $ref: '#/components/schemas/EncodingType'
-        TrackOpens:
-          description: "Should the opens be tracked? If no value has been provided,\
-            \ Account's default setting will be used."
-          example: true
-          format: boolean
-          type: boolean
-        TrackClicks:
-          description: "Should the clicks be tracked? If no value has been provided,\
-            \ Account's default setting will be used."
-          example: true
-          format: boolean
-          type: boolean
-      type: object
     RecipientEvent:
       description: Detailed information about message recipient
       example:
@@ -5125,6 +5037,94 @@ components:
             format: string
             type: string
           type: array
+      type: object
+    SmtpCredentialsNew:
+      description: Newly generated SMTP Credentials with Token
+      example:
+        RestrictAccessToIPRange:
+        - RestrictAccessToIPRange
+        - RestrictAccessToIPRange
+        DateCreated: 2000-01-23T04:56:07.000+00:00
+        Token: Token
+        LastUse: 2000-01-23T04:56:07.000+00:00
+        Expires: 2000-01-23T04:56:07.000+00:00
+        AccessLevel: null
+        Name: Name
+      properties:
+        Token:
+          description: Unique token to be used in the system
+          format: string
+          type: string
+        AccessLevel:
+          $ref: '#/components/schemas/AccessLevel'
+        Name:
+          description: Name of the key.
+          format: string
+          type: string
+        DateCreated:
+          description: Date this SmtpCredential was created.
+          format: date-time
+          type: string
+        LastUse:
+          description: Date this SmtpCredential was last used.
+          format: date-time
+          nullable: true
+          type: string
+          example: null
+        Expires:
+          description: Date this SmtpCredential expires.
+          format: date-time
+          nullable: true
+          type: string
+          example: null
+        RestrictAccessToIPRange:
+          description: Which IPs can use this SmtpCredential
+          items:
+            format: string
+            type: string
+          type: array
+      type: object
+    Options:
+      description: E-mail configuration
+      example:
+        TrackClicks: true
+        ChannelName: Channel01
+        PoolName: My Custom Pool
+        Encoding: null
+        TimeOffset: 0
+        TrackOpens: true
+      properties:
+        TimeOffset:
+          description: By how long should an e-mail be delayed (in minutes). Maximum
+            is 35 days.
+          format: int32
+          nullable: true
+          type: integer
+          example: null
+        PoolName:
+          description: Name of your custom IP Pool to be used in the sending process
+          example: My Custom Pool
+          format: string
+          type: string
+        ChannelName:
+          description: Name of selected channel.
+          example: Channel01
+          format: string
+          type: string
+        Encoding:
+          $ref: '#/components/schemas/EncodingType'
+        TrackOpens:
+          description: "Should the opens be tracked? If no value has been provided,\
+            \ Account's default setting will be used."
+          example: true
+          format: boolean
+          type: boolean
+        TrackClicks:
+          description: "Should the clicks be tracked? If no value has been provided,\
+            \ Account's default setting will be used."
+          example: true
+          format: boolean
+          type: boolean
       type: object
     SmtpCredentialsPayload:
       description: Create new SMTP Credentials

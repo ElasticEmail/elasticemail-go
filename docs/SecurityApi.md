@@ -34,7 +34,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -43,7 +43,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityApi.SecurityApikeysByNameDelete(context.Background(), name).Subaccount(subaccount).Execute()
+    r, err := apiClient.SecurityApi.SecurityApikeysByNameDelete(context.Background(), name).Subaccount(subaccount).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecurityApikeysByNameDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -104,7 +104,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -176,7 +176,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -248,7 +248,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -299,7 +299,7 @@ Name | Type | Description  | Notes
 
 ## SecurityApikeysPost
 
-> NewApiKey SecurityApikeysPost(ctx).ApiKeyPayload(apiKeyPayload).Execute()
+> ApiKeyNew SecurityApikeysPost(ctx).ApiKeyPayload(apiKeyPayload).Execute()
 
 Add ApiKey
 
@@ -314,7 +314,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -327,7 +327,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecurityApikeysPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `SecurityApikeysPost`: NewApiKey
+    // response from `SecurityApikeysPost`: ApiKeyNew
     fmt.Fprintf(os.Stdout, "Response from `SecurityApi.SecurityApikeysPost`: %v\n", resp)
 }
 ```
@@ -347,7 +347,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NewApiKey**](NewApiKey.md)
+[**ApiKeyNew**](ApiKeyNew.md)
 
 ### Authorization
 
@@ -380,7 +380,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -389,7 +389,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityApi.SecuritySmtpByNameDelete(context.Background(), name).Subaccount(subaccount).Execute()
+    r, err := apiClient.SecurityApi.SecuritySmtpByNameDelete(context.Background(), name).Subaccount(subaccount).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecuritySmtpByNameDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -450,7 +450,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -522,7 +522,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -594,7 +594,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -645,7 +645,7 @@ Name | Type | Description  | Notes
 
 ## SecuritySmtpPost
 
-> NewSmtpCredentials SecuritySmtpPost(ctx).SmtpCredentialsPayload(smtpCredentialsPayload).Execute()
+> SmtpCredentialsNew SecuritySmtpPost(ctx).SmtpCredentialsPayload(smtpCredentialsPayload).Execute()
 
 Add SMTP Credential
 
@@ -660,7 +660,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -673,7 +673,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecuritySmtpPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `SecuritySmtpPost`: NewSmtpCredentials
+    // response from `SecuritySmtpPost`: SmtpCredentialsNew
     fmt.Fprintf(os.Stdout, "Response from `SecurityApi.SecuritySmtpPost`: %v\n", resp)
 }
 ```
@@ -693,7 +693,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NewSmtpCredentials**](NewSmtpCredentials.md)
+[**SmtpCredentialsNew**](SmtpCredentialsNew.md)
 
 ### Authorization
 

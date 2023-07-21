@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Options type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Options{}
+
 // Options E-mail configuration
 type Options struct {
 	// By how long should an e-mail be delayed (in minutes). Maximum is 35 days.
@@ -36,7 +39,7 @@ type Options struct {
 // will change when the set of required properties is changed
 func NewOptions() *Options {
 	this := Options{}
-	var encoding EncodingType = USER_PROVIDED
+	var encoding EncodingType = ENCODINGTYPE_USER_PROVIDED
 	this.Encoding = &encoding
 	return &this
 }
@@ -46,14 +49,14 @@ func NewOptions() *Options {
 // but it doesn't guarantee that properties required by API are set
 func NewOptionsWithDefaults() *Options {
 	this := Options{}
-	var encoding EncodingType = USER_PROVIDED
+	var encoding EncodingType = ENCODINGTYPE_USER_PROVIDED
 	this.Encoding = &encoding
 	return &this
 }
 
 // GetTimeOffset returns the TimeOffset field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Options) GetTimeOffset() int32 {
-	if o == nil || isNil(o.TimeOffset.Get()) {
+	if o == nil || IsNil(o.TimeOffset.Get()) {
 		var ret int32
 		return ret
 	}
@@ -65,7 +68,7 @@ func (o *Options) GetTimeOffset() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Options) GetTimeOffsetOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.TimeOffset.Get(), o.TimeOffset.IsSet()
 }
@@ -95,7 +98,7 @@ func (o *Options) UnsetTimeOffset() {
 
 // GetPoolName returns the PoolName field value if set, zero value otherwise.
 func (o *Options) GetPoolName() string {
-	if o == nil || isNil(o.PoolName) {
+	if o == nil || IsNil(o.PoolName) {
 		var ret string
 		return ret
 	}
@@ -105,15 +108,15 @@ func (o *Options) GetPoolName() string {
 // GetPoolNameOk returns a tuple with the PoolName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Options) GetPoolNameOk() (*string, bool) {
-	if o == nil || isNil(o.PoolName) {
-    return nil, false
+	if o == nil || IsNil(o.PoolName) {
+		return nil, false
 	}
 	return o.PoolName, true
 }
 
 // HasPoolName returns a boolean if a field has been set.
 func (o *Options) HasPoolName() bool {
-	if o != nil && !isNil(o.PoolName) {
+	if o != nil && !IsNil(o.PoolName) {
 		return true
 	}
 
@@ -127,7 +130,7 @@ func (o *Options) SetPoolName(v string) {
 
 // GetChannelName returns the ChannelName field value if set, zero value otherwise.
 func (o *Options) GetChannelName() string {
-	if o == nil || isNil(o.ChannelName) {
+	if o == nil || IsNil(o.ChannelName) {
 		var ret string
 		return ret
 	}
@@ -137,15 +140,15 @@ func (o *Options) GetChannelName() string {
 // GetChannelNameOk returns a tuple with the ChannelName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Options) GetChannelNameOk() (*string, bool) {
-	if o == nil || isNil(o.ChannelName) {
-    return nil, false
+	if o == nil || IsNil(o.ChannelName) {
+		return nil, false
 	}
 	return o.ChannelName, true
 }
 
 // HasChannelName returns a boolean if a field has been set.
 func (o *Options) HasChannelName() bool {
-	if o != nil && !isNil(o.ChannelName) {
+	if o != nil && !IsNil(o.ChannelName) {
 		return true
 	}
 
@@ -159,7 +162,7 @@ func (o *Options) SetChannelName(v string) {
 
 // GetEncoding returns the Encoding field value if set, zero value otherwise.
 func (o *Options) GetEncoding() EncodingType {
-	if o == nil || isNil(o.Encoding) {
+	if o == nil || IsNil(o.Encoding) {
 		var ret EncodingType
 		return ret
 	}
@@ -169,15 +172,15 @@ func (o *Options) GetEncoding() EncodingType {
 // GetEncodingOk returns a tuple with the Encoding field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Options) GetEncodingOk() (*EncodingType, bool) {
-	if o == nil || isNil(o.Encoding) {
-    return nil, false
+	if o == nil || IsNil(o.Encoding) {
+		return nil, false
 	}
 	return o.Encoding, true
 }
 
 // HasEncoding returns a boolean if a field has been set.
 func (o *Options) HasEncoding() bool {
-	if o != nil && !isNil(o.Encoding) {
+	if o != nil && !IsNil(o.Encoding) {
 		return true
 	}
 
@@ -191,7 +194,7 @@ func (o *Options) SetEncoding(v EncodingType) {
 
 // GetTrackOpens returns the TrackOpens field value if set, zero value otherwise.
 func (o *Options) GetTrackOpens() bool {
-	if o == nil || isNil(o.TrackOpens) {
+	if o == nil || IsNil(o.TrackOpens) {
 		var ret bool
 		return ret
 	}
@@ -201,15 +204,15 @@ func (o *Options) GetTrackOpens() bool {
 // GetTrackOpensOk returns a tuple with the TrackOpens field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Options) GetTrackOpensOk() (*bool, bool) {
-	if o == nil || isNil(o.TrackOpens) {
-    return nil, false
+	if o == nil || IsNil(o.TrackOpens) {
+		return nil, false
 	}
 	return o.TrackOpens, true
 }
 
 // HasTrackOpens returns a boolean if a field has been set.
 func (o *Options) HasTrackOpens() bool {
-	if o != nil && !isNil(o.TrackOpens) {
+	if o != nil && !IsNil(o.TrackOpens) {
 		return true
 	}
 
@@ -223,7 +226,7 @@ func (o *Options) SetTrackOpens(v bool) {
 
 // GetTrackClicks returns the TrackClicks field value if set, zero value otherwise.
 func (o *Options) GetTrackClicks() bool {
-	if o == nil || isNil(o.TrackClicks) {
+	if o == nil || IsNil(o.TrackClicks) {
 		var ret bool
 		return ret
 	}
@@ -233,15 +236,15 @@ func (o *Options) GetTrackClicks() bool {
 // GetTrackClicksOk returns a tuple with the TrackClicks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Options) GetTrackClicksOk() (*bool, bool) {
-	if o == nil || isNil(o.TrackClicks) {
-    return nil, false
+	if o == nil || IsNil(o.TrackClicks) {
+		return nil, false
 	}
 	return o.TrackClicks, true
 }
 
 // HasTrackClicks returns a boolean if a field has been set.
 func (o *Options) HasTrackClicks() bool {
-	if o != nil && !isNil(o.TrackClicks) {
+	if o != nil && !IsNil(o.TrackClicks) {
 		return true
 	}
 
@@ -254,26 +257,34 @@ func (o *Options) SetTrackClicks(v bool) {
 }
 
 func (o Options) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Options) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.TimeOffset.IsSet() {
 		toSerialize["TimeOffset"] = o.TimeOffset.Get()
 	}
-	if !isNil(o.PoolName) {
+	if !IsNil(o.PoolName) {
 		toSerialize["PoolName"] = o.PoolName
 	}
-	if !isNil(o.ChannelName) {
+	if !IsNil(o.ChannelName) {
 		toSerialize["ChannelName"] = o.ChannelName
 	}
-	if !isNil(o.Encoding) {
+	if !IsNil(o.Encoding) {
 		toSerialize["Encoding"] = o.Encoding
 	}
-	if !isNil(o.TrackOpens) {
+	if !IsNil(o.TrackOpens) {
 		toSerialize["TrackOpens"] = o.TrackOpens
 	}
-	if !isNil(o.TrackClicks) {
+	if !IsNil(o.TrackClicks) {
 		toSerialize["TrackClicks"] = o.TrackClicks
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableOptions struct {

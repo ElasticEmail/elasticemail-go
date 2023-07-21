@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MessageAttachment type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MessageAttachment{}
+
 // MessageAttachment struct for MessageAttachment
 type MessageAttachment struct {
 	// File's content as byte array (or a Base64 string)
@@ -58,7 +61,7 @@ func (o *MessageAttachment) GetBinaryContent() string {
 // and a boolean to check if the value has been set.
 func (o *MessageAttachment) GetBinaryContentOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.BinaryContent, true
 }
@@ -82,7 +85,7 @@ func (o *MessageAttachment) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *MessageAttachment) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -94,7 +97,7 @@ func (o *MessageAttachment) SetName(v string) {
 
 // GetContentType returns the ContentType field value if set, zero value otherwise.
 func (o *MessageAttachment) GetContentType() string {
-	if o == nil || isNil(o.ContentType) {
+	if o == nil || IsNil(o.ContentType) {
 		var ret string
 		return ret
 	}
@@ -104,15 +107,15 @@ func (o *MessageAttachment) GetContentType() string {
 // GetContentTypeOk returns a tuple with the ContentType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageAttachment) GetContentTypeOk() (*string, bool) {
-	if o == nil || isNil(o.ContentType) {
-    return nil, false
+	if o == nil || IsNil(o.ContentType) {
+		return nil, false
 	}
 	return o.ContentType, true
 }
 
 // HasContentType returns a boolean if a field has been set.
 func (o *MessageAttachment) HasContentType() bool {
-	if o != nil && !isNil(o.ContentType) {
+	if o != nil && !IsNil(o.ContentType) {
 		return true
 	}
 
@@ -125,17 +128,21 @@ func (o *MessageAttachment) SetContentType(v string) {
 }
 
 func (o MessageAttachment) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["BinaryContent"] = o.BinaryContent
-	}
-	if true {
-		toSerialize["Name"] = o.Name
-	}
-	if !isNil(o.ContentType) {
-		toSerialize["ContentType"] = o.ContentType
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o MessageAttachment) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["BinaryContent"] = o.BinaryContent
+	toSerialize["Name"] = o.Name
+	if !IsNil(o.ContentType) {
+		toSerialize["ContentType"] = o.ContentType
+	}
+	return toSerialize, nil
 }
 
 type NullableMessageAttachment struct {

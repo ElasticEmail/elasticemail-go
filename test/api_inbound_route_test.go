@@ -10,94 +10,93 @@ Testing InboundRouteApiService
 package ElasticEmail
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "./openapi"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func Test_ElasticEmail_InboundRouteApiService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test InboundRouteApiService InboundrouteByIdDelete", func(t *testing.T) {
+	t.Run("Test InboundRouteApiService InboundrouteByIdDelete", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var id string
+		var id string
 
-        resp, httpRes, err := apiClient.InboundRouteApi.InboundrouteByIdDelete(context.Background(), id).Execute()
+		httpRes, err := apiClient.InboundRouteApi.InboundrouteByIdDelete(context.Background(), id).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test InboundRouteApiService InboundrouteByIdGet", func(t *testing.T) {
+	t.Run("Test InboundRouteApiService InboundrouteByIdGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var id string
+		var id string
 
-        resp, httpRes, err := apiClient.InboundRouteApi.InboundrouteByIdGet(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.InboundRouteApi.InboundrouteByIdGet(context.Background(), id).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test InboundRouteApiService InboundrouteByIdPut", func(t *testing.T) {
+	t.Run("Test InboundRouteApiService InboundrouteByIdPut", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var id string
+		var id string
 
-        resp, httpRes, err := apiClient.InboundRouteApi.InboundrouteByIdPut(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.InboundRouteApi.InboundrouteByIdPut(context.Background(), id).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test InboundRouteApiService InboundrouteGet", func(t *testing.T) {
+	t.Run("Test InboundRouteApiService InboundrouteGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.InboundRouteApi.InboundrouteGet(context.Background()).Execute()
+		resp, httpRes, err := apiClient.InboundRouteApi.InboundrouteGet(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test InboundRouteApiService InboundrouteOrderPut", func(t *testing.T) {
+	t.Run("Test InboundRouteApiService InboundrouteOrderPut", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.InboundRouteApi.InboundrouteOrderPut(context.Background()).Execute()
+		resp, httpRes, err := apiClient.InboundRouteApi.InboundrouteOrderPut(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test InboundRouteApiService InboundroutePost", func(t *testing.T) {
+	t.Run("Test InboundRouteApiService InboundroutePost", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.InboundRouteApi.InboundroutePost(context.Background()).Execute()
+		resp, httpRes, err := apiClient.InboundRouteApi.InboundroutePost(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

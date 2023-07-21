@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the CampaignOptions type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CampaignOptions{}
+
 // CampaignOptions Different send options for a Campaign
 type CampaignOptions struct {
 	DeliveryOptimization *DeliveryOptimizationType `json:"DeliveryOptimization,omitempty"`
@@ -34,7 +37,7 @@ type CampaignOptions struct {
 // will change when the set of required properties is changed
 func NewCampaignOptions() *CampaignOptions {
 	this := CampaignOptions{}
-	var deliveryOptimization DeliveryOptimizationType = NONE
+	var deliveryOptimization DeliveryOptimizationType = DELIVERYOPTIMIZATIONTYPE_NONE
 	this.DeliveryOptimization = &deliveryOptimization
 	return &this
 }
@@ -44,14 +47,14 @@ func NewCampaignOptions() *CampaignOptions {
 // but it doesn't guarantee that properties required by API are set
 func NewCampaignOptionsWithDefaults() *CampaignOptions {
 	this := CampaignOptions{}
-	var deliveryOptimization DeliveryOptimizationType = NONE
+	var deliveryOptimization DeliveryOptimizationType = DELIVERYOPTIMIZATIONTYPE_NONE
 	this.DeliveryOptimization = &deliveryOptimization
 	return &this
 }
 
 // GetDeliveryOptimization returns the DeliveryOptimization field value if set, zero value otherwise.
 func (o *CampaignOptions) GetDeliveryOptimization() DeliveryOptimizationType {
-	if o == nil || isNil(o.DeliveryOptimization) {
+	if o == nil || IsNil(o.DeliveryOptimization) {
 		var ret DeliveryOptimizationType
 		return ret
 	}
@@ -61,15 +64,15 @@ func (o *CampaignOptions) GetDeliveryOptimization() DeliveryOptimizationType {
 // GetDeliveryOptimizationOk returns a tuple with the DeliveryOptimization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CampaignOptions) GetDeliveryOptimizationOk() (*DeliveryOptimizationType, bool) {
-	if o == nil || isNil(o.DeliveryOptimization) {
-    return nil, false
+	if o == nil || IsNil(o.DeliveryOptimization) {
+		return nil, false
 	}
 	return o.DeliveryOptimization, true
 }
 
 // HasDeliveryOptimization returns a boolean if a field has been set.
 func (o *CampaignOptions) HasDeliveryOptimization() bool {
-	if o != nil && !isNil(o.DeliveryOptimization) {
+	if o != nil && !IsNil(o.DeliveryOptimization) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *CampaignOptions) SetDeliveryOptimization(v DeliveryOptimizationType) {
 
 // GetTrackOpens returns the TrackOpens field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CampaignOptions) GetTrackOpens() bool {
-	if o == nil || isNil(o.TrackOpens.Get()) {
+	if o == nil || IsNil(o.TrackOpens.Get()) {
 		var ret bool
 		return ret
 	}
@@ -95,7 +98,7 @@ func (o *CampaignOptions) GetTrackOpens() bool {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CampaignOptions) GetTrackOpensOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.TrackOpens.Get(), o.TrackOpens.IsSet()
 }
@@ -125,7 +128,7 @@ func (o *CampaignOptions) UnsetTrackOpens() {
 
 // GetTrackClicks returns the TrackClicks field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CampaignOptions) GetTrackClicks() bool {
-	if o == nil || isNil(o.TrackClicks.Get()) {
+	if o == nil || IsNil(o.TrackClicks.Get()) {
 		var ret bool
 		return ret
 	}
@@ -137,7 +140,7 @@ func (o *CampaignOptions) GetTrackClicks() bool {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CampaignOptions) GetTrackClicksOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.TrackClicks.Get(), o.TrackClicks.IsSet()
 }
@@ -167,7 +170,7 @@ func (o *CampaignOptions) UnsetTrackClicks() {
 
 // GetScheduleFor returns the ScheduleFor field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CampaignOptions) GetScheduleFor() time.Time {
-	if o == nil || isNil(o.ScheduleFor.Get()) {
+	if o == nil || IsNil(o.ScheduleFor.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -179,7 +182,7 @@ func (o *CampaignOptions) GetScheduleFor() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CampaignOptions) GetScheduleForOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.ScheduleFor.Get(), o.ScheduleFor.IsSet()
 }
@@ -209,7 +212,7 @@ func (o *CampaignOptions) UnsetScheduleFor() {
 
 // GetSplitOptions returns the SplitOptions field value if set, zero value otherwise.
 func (o *CampaignOptions) GetSplitOptions() SplitOptions {
-	if o == nil || isNil(o.SplitOptions) {
+	if o == nil || IsNil(o.SplitOptions) {
 		var ret SplitOptions
 		return ret
 	}
@@ -219,15 +222,15 @@ func (o *CampaignOptions) GetSplitOptions() SplitOptions {
 // GetSplitOptionsOk returns a tuple with the SplitOptions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CampaignOptions) GetSplitOptionsOk() (*SplitOptions, bool) {
-	if o == nil || isNil(o.SplitOptions) {
-    return nil, false
+	if o == nil || IsNil(o.SplitOptions) {
+		return nil, false
 	}
 	return o.SplitOptions, true
 }
 
 // HasSplitOptions returns a boolean if a field has been set.
 func (o *CampaignOptions) HasSplitOptions() bool {
-	if o != nil && !isNil(o.SplitOptions) {
+	if o != nil && !IsNil(o.SplitOptions) {
 		return true
 	}
 
@@ -240,8 +243,16 @@ func (o *CampaignOptions) SetSplitOptions(v SplitOptions) {
 }
 
 func (o CampaignOptions) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CampaignOptions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.DeliveryOptimization) {
+	if !IsNil(o.DeliveryOptimization) {
 		toSerialize["DeliveryOptimization"] = o.DeliveryOptimization
 	}
 	if o.TrackOpens.IsSet() {
@@ -253,10 +264,10 @@ func (o CampaignOptions) MarshalJSON() ([]byte, error) {
 	if o.ScheduleFor.IsSet() {
 		toSerialize["ScheduleFor"] = o.ScheduleFor.Get()
 	}
-	if !isNil(o.SplitOptions) {
+	if !IsNil(o.SplitOptions) {
 		toSerialize["SplitOptions"] = o.SplitOptions
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCampaignOptions struct {

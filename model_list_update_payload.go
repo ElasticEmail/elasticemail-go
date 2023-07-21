@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ListUpdatePayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListUpdatePayload{}
+
 // ListUpdatePayload struct for ListUpdatePayload
 type ListUpdatePayload struct {
 	// Name of your list if you want to change it.
@@ -42,7 +45,7 @@ func NewListUpdatePayloadWithDefaults() *ListUpdatePayload {
 
 // GetNewListName returns the NewListName field value if set, zero value otherwise.
 func (o *ListUpdatePayload) GetNewListName() string {
-	if o == nil || isNil(o.NewListName) {
+	if o == nil || IsNil(o.NewListName) {
 		var ret string
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *ListUpdatePayload) GetNewListName() string {
 // GetNewListNameOk returns a tuple with the NewListName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListUpdatePayload) GetNewListNameOk() (*string, bool) {
-	if o == nil || isNil(o.NewListName) {
-    return nil, false
+	if o == nil || IsNil(o.NewListName) {
+		return nil, false
 	}
 	return o.NewListName, true
 }
 
 // HasNewListName returns a boolean if a field has been set.
 func (o *ListUpdatePayload) HasNewListName() bool {
-	if o != nil && !isNil(o.NewListName) {
+	if o != nil && !IsNil(o.NewListName) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *ListUpdatePayload) SetNewListName(v string) {
 
 // GetAllowUnsubscribe returns the AllowUnsubscribe field value if set, zero value otherwise.
 func (o *ListUpdatePayload) GetAllowUnsubscribe() bool {
-	if o == nil || isNil(o.AllowUnsubscribe) {
+	if o == nil || IsNil(o.AllowUnsubscribe) {
 		var ret bool
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *ListUpdatePayload) GetAllowUnsubscribe() bool {
 // GetAllowUnsubscribeOk returns a tuple with the AllowUnsubscribe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListUpdatePayload) GetAllowUnsubscribeOk() (*bool, bool) {
-	if o == nil || isNil(o.AllowUnsubscribe) {
-    return nil, false
+	if o == nil || IsNil(o.AllowUnsubscribe) {
+		return nil, false
 	}
 	return o.AllowUnsubscribe, true
 }
 
 // HasAllowUnsubscribe returns a boolean if a field has been set.
 func (o *ListUpdatePayload) HasAllowUnsubscribe() bool {
-	if o != nil && !isNil(o.AllowUnsubscribe) {
+	if o != nil && !IsNil(o.AllowUnsubscribe) {
 		return true
 	}
 
@@ -105,14 +108,22 @@ func (o *ListUpdatePayload) SetAllowUnsubscribe(v bool) {
 }
 
 func (o ListUpdatePayload) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.NewListName) {
-		toSerialize["NewListName"] = o.NewListName
-	}
-	if !isNil(o.AllowUnsubscribe) {
-		toSerialize["AllowUnsubscribe"] = o.AllowUnsubscribe
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ListUpdatePayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.NewListName) {
+		toSerialize["NewListName"] = o.NewListName
+	}
+	if !IsNil(o.AllowUnsubscribe) {
+		toSerialize["AllowUnsubscribe"] = o.AllowUnsubscribe
+	}
+	return toSerialize, nil
 }
 
 type NullableListUpdatePayload struct {

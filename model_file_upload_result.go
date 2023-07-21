@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FileUploadResult type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FileUploadResult{}
+
 // FileUploadResult struct for FileUploadResult
 type FileUploadResult struct {
 	// How many unique emails were detected the file
@@ -42,7 +45,7 @@ func NewFileUploadResultWithDefaults() *FileUploadResult {
 
 // GetEmailsCount returns the EmailsCount field value if set, zero value otherwise.
 func (o *FileUploadResult) GetEmailsCount() int32 {
-	if o == nil || isNil(o.EmailsCount) {
+	if o == nil || IsNil(o.EmailsCount) {
 		var ret int32
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *FileUploadResult) GetEmailsCount() int32 {
 // GetEmailsCountOk returns a tuple with the EmailsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FileUploadResult) GetEmailsCountOk() (*int32, bool) {
-	if o == nil || isNil(o.EmailsCount) {
-    return nil, false
+	if o == nil || IsNil(o.EmailsCount) {
+		return nil, false
 	}
 	return o.EmailsCount, true
 }
 
 // HasEmailsCount returns a boolean if a field has been set.
 func (o *FileUploadResult) HasEmailsCount() bool {
-	if o != nil && !isNil(o.EmailsCount) {
+	if o != nil && !IsNil(o.EmailsCount) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *FileUploadResult) SetEmailsCount(v int32) {
 
 // GetDuplicatedEmailsCount returns the DuplicatedEmailsCount field value if set, zero value otherwise.
 func (o *FileUploadResult) GetDuplicatedEmailsCount() int32 {
-	if o == nil || isNil(o.DuplicatedEmailsCount) {
+	if o == nil || IsNil(o.DuplicatedEmailsCount) {
 		var ret int32
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *FileUploadResult) GetDuplicatedEmailsCount() int32 {
 // GetDuplicatedEmailsCountOk returns a tuple with the DuplicatedEmailsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FileUploadResult) GetDuplicatedEmailsCountOk() (*int32, bool) {
-	if o == nil || isNil(o.DuplicatedEmailsCount) {
-    return nil, false
+	if o == nil || IsNil(o.DuplicatedEmailsCount) {
+		return nil, false
 	}
 	return o.DuplicatedEmailsCount, true
 }
 
 // HasDuplicatedEmailsCount returns a boolean if a field has been set.
 func (o *FileUploadResult) HasDuplicatedEmailsCount() bool {
-	if o != nil && !isNil(o.DuplicatedEmailsCount) {
+	if o != nil && !IsNil(o.DuplicatedEmailsCount) {
 		return true
 	}
 
@@ -105,14 +108,22 @@ func (o *FileUploadResult) SetDuplicatedEmailsCount(v int32) {
 }
 
 func (o FileUploadResult) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.EmailsCount) {
-		toSerialize["EmailsCount"] = o.EmailsCount
-	}
-	if !isNil(o.DuplicatedEmailsCount) {
-		toSerialize["DuplicatedEmailsCount"] = o.DuplicatedEmailsCount
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o FileUploadResult) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.EmailsCount) {
+		toSerialize["EmailsCount"] = o.EmailsCount
+	}
+	if !IsNil(o.DuplicatedEmailsCount) {
+		toSerialize["DuplicatedEmailsCount"] = o.DuplicatedEmailsCount
+	}
+	return toSerialize, nil
 }
 
 type NullableFileUploadResult struct {

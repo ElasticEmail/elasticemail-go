@@ -30,7 +30,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -39,7 +39,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SubAccountsApi.SubaccountsByEmailCreditsPatch(context.Background(), email).SubaccountEmailCreditsPayload(subaccountEmailCreditsPayload).Execute()
+    r, err := apiClient.SubAccountsApi.SubaccountsByEmailCreditsPatch(context.Background(), email).SubaccountEmailCreditsPayload(subaccountEmailCreditsPayload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsApi.SubaccountsByEmailCreditsPatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -100,7 +100,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -108,7 +108,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SubAccountsApi.SubaccountsByEmailDelete(context.Background(), email).Execute()
+    r, err := apiClient.SubAccountsApi.SubaccountsByEmailDelete(context.Background(), email).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsApi.SubaccountsByEmailDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -168,7 +168,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -238,7 +238,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -310,7 +310,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -378,7 +378,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {

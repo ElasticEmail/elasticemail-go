@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the Contact type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Contact{}
+
 // Contact Contact
 type Contact struct {
 	// Proper email address.
@@ -44,9 +47,9 @@ type Contact struct {
 // will change when the set of required properties is changed
 func NewContact() *Contact {
 	this := Contact{}
-	var status ContactStatus = TRANSACTIONAL
+	var status ContactStatus = CONTACTSTATUS_TRANSACTIONAL
 	this.Status = &status
-	var source ContactSource = DELIVERY_API
+	var source ContactSource = CONTACTSOURCE_DELIVERY_API
 	this.Source = &source
 	return &this
 }
@@ -56,16 +59,16 @@ func NewContact() *Contact {
 // but it doesn't guarantee that properties required by API are set
 func NewContactWithDefaults() *Contact {
 	this := Contact{}
-	var status ContactStatus = TRANSACTIONAL
+	var status ContactStatus = CONTACTSTATUS_TRANSACTIONAL
 	this.Status = &status
-	var source ContactSource = DELIVERY_API
+	var source ContactSource = CONTACTSOURCE_DELIVERY_API
 	this.Source = &source
 	return &this
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *Contact) GetEmail() string {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -75,15 +78,15 @@ func (o *Contact) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Contact) GetEmailOk() (*string, bool) {
-	if o == nil || isNil(o.Email) {
-    return nil, false
+	if o == nil || IsNil(o.Email) {
+		return nil, false
 	}
 	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *Contact) HasEmail() bool {
-	if o != nil && !isNil(o.Email) {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -97,7 +100,7 @@ func (o *Contact) SetEmail(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *Contact) GetStatus() ContactStatus {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret ContactStatus
 		return ret
 	}
@@ -107,15 +110,15 @@ func (o *Contact) GetStatus() ContactStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Contact) GetStatusOk() (*ContactStatus, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Contact) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -129,7 +132,7 @@ func (o *Contact) SetStatus(v ContactStatus) {
 
 // GetFirstName returns the FirstName field value if set, zero value otherwise.
 func (o *Contact) GetFirstName() string {
-	if o == nil || isNil(o.FirstName) {
+	if o == nil || IsNil(o.FirstName) {
 		var ret string
 		return ret
 	}
@@ -139,15 +142,15 @@ func (o *Contact) GetFirstName() string {
 // GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Contact) GetFirstNameOk() (*string, bool) {
-	if o == nil || isNil(o.FirstName) {
-    return nil, false
+	if o == nil || IsNil(o.FirstName) {
+		return nil, false
 	}
 	return o.FirstName, true
 }
 
 // HasFirstName returns a boolean if a field has been set.
 func (o *Contact) HasFirstName() bool {
-	if o != nil && !isNil(o.FirstName) {
+	if o != nil && !IsNil(o.FirstName) {
 		return true
 	}
 
@@ -161,7 +164,7 @@ func (o *Contact) SetFirstName(v string) {
 
 // GetLastName returns the LastName field value if set, zero value otherwise.
 func (o *Contact) GetLastName() string {
-	if o == nil || isNil(o.LastName) {
+	if o == nil || IsNil(o.LastName) {
 		var ret string
 		return ret
 	}
@@ -171,15 +174,15 @@ func (o *Contact) GetLastName() string {
 // GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Contact) GetLastNameOk() (*string, bool) {
-	if o == nil || isNil(o.LastName) {
-    return nil, false
+	if o == nil || IsNil(o.LastName) {
+		return nil, false
 	}
 	return o.LastName, true
 }
 
 // HasLastName returns a boolean if a field has been set.
 func (o *Contact) HasLastName() bool {
-	if o != nil && !isNil(o.LastName) {
+	if o != nil && !IsNil(o.LastName) {
 		return true
 	}
 
@@ -193,7 +196,7 @@ func (o *Contact) SetLastName(v string) {
 
 // GetCustomFields returns the CustomFields field value if set, zero value otherwise.
 func (o *Contact) GetCustomFields() map[string]string {
-	if o == nil || isNil(o.CustomFields) {
+	if o == nil || IsNil(o.CustomFields) {
 		var ret map[string]string
 		return ret
 	}
@@ -203,15 +206,15 @@ func (o *Contact) GetCustomFields() map[string]string {
 // GetCustomFieldsOk returns a tuple with the CustomFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Contact) GetCustomFieldsOk() (*map[string]string, bool) {
-	if o == nil || isNil(o.CustomFields) {
-    return nil, false
+	if o == nil || IsNil(o.CustomFields) {
+		return nil, false
 	}
 	return o.CustomFields, true
 }
 
 // HasCustomFields returns a boolean if a field has been set.
 func (o *Contact) HasCustomFields() bool {
-	if o != nil && !isNil(o.CustomFields) {
+	if o != nil && !IsNil(o.CustomFields) {
 		return true
 	}
 
@@ -225,7 +228,7 @@ func (o *Contact) SetCustomFields(v map[string]string) {
 
 // GetConsent returns the Consent field value if set, zero value otherwise.
 func (o *Contact) GetConsent() ConsentData {
-	if o == nil || isNil(o.Consent) {
+	if o == nil || IsNil(o.Consent) {
 		var ret ConsentData
 		return ret
 	}
@@ -235,15 +238,15 @@ func (o *Contact) GetConsent() ConsentData {
 // GetConsentOk returns a tuple with the Consent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Contact) GetConsentOk() (*ConsentData, bool) {
-	if o == nil || isNil(o.Consent) {
-    return nil, false
+	if o == nil || IsNil(o.Consent) {
+		return nil, false
 	}
 	return o.Consent, true
 }
 
 // HasConsent returns a boolean if a field has been set.
 func (o *Contact) HasConsent() bool {
-	if o != nil && !isNil(o.Consent) {
+	if o != nil && !IsNil(o.Consent) {
 		return true
 	}
 
@@ -257,7 +260,7 @@ func (o *Contact) SetConsent(v ConsentData) {
 
 // GetSource returns the Source field value if set, zero value otherwise.
 func (o *Contact) GetSource() ContactSource {
-	if o == nil || isNil(o.Source) {
+	if o == nil || IsNil(o.Source) {
 		var ret ContactSource
 		return ret
 	}
@@ -267,15 +270,15 @@ func (o *Contact) GetSource() ContactSource {
 // GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Contact) GetSourceOk() (*ContactSource, bool) {
-	if o == nil || isNil(o.Source) {
-    return nil, false
+	if o == nil || IsNil(o.Source) {
+		return nil, false
 	}
 	return o.Source, true
 }
 
 // HasSource returns a boolean if a field has been set.
 func (o *Contact) HasSource() bool {
-	if o != nil && !isNil(o.Source) {
+	if o != nil && !IsNil(o.Source) {
 		return true
 	}
 
@@ -289,7 +292,7 @@ func (o *Contact) SetSource(v ContactSource) {
 
 // GetDateAdded returns the DateAdded field value if set, zero value otherwise.
 func (o *Contact) GetDateAdded() time.Time {
-	if o == nil || isNil(o.DateAdded) {
+	if o == nil || IsNil(o.DateAdded) {
 		var ret time.Time
 		return ret
 	}
@@ -299,15 +302,15 @@ func (o *Contact) GetDateAdded() time.Time {
 // GetDateAddedOk returns a tuple with the DateAdded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Contact) GetDateAddedOk() (*time.Time, bool) {
-	if o == nil || isNil(o.DateAdded) {
-    return nil, false
+	if o == nil || IsNil(o.DateAdded) {
+		return nil, false
 	}
 	return o.DateAdded, true
 }
 
 // HasDateAdded returns a boolean if a field has been set.
 func (o *Contact) HasDateAdded() bool {
-	if o != nil && !isNil(o.DateAdded) {
+	if o != nil && !IsNil(o.DateAdded) {
 		return true
 	}
 
@@ -321,7 +324,7 @@ func (o *Contact) SetDateAdded(v time.Time) {
 
 // GetDateUpdated returns the DateUpdated field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Contact) GetDateUpdated() time.Time {
-	if o == nil || isNil(o.DateUpdated.Get()) {
+	if o == nil || IsNil(o.DateUpdated.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -333,7 +336,7 @@ func (o *Contact) GetDateUpdated() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Contact) GetDateUpdatedOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.DateUpdated.Get(), o.DateUpdated.IsSet()
 }
@@ -363,7 +366,7 @@ func (o *Contact) UnsetDateUpdated() {
 
 // GetStatusChangeDate returns the StatusChangeDate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Contact) GetStatusChangeDate() time.Time {
-	if o == nil || isNil(o.StatusChangeDate.Get()) {
+	if o == nil || IsNil(o.StatusChangeDate.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -375,7 +378,7 @@ func (o *Contact) GetStatusChangeDate() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Contact) GetStatusChangeDateOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.StatusChangeDate.Get(), o.StatusChangeDate.IsSet()
 }
@@ -405,7 +408,7 @@ func (o *Contact) UnsetStatusChangeDate() {
 
 // GetActivity returns the Activity field value if set, zero value otherwise.
 func (o *Contact) GetActivity() ContactActivity {
-	if o == nil || isNil(o.Activity) {
+	if o == nil || IsNil(o.Activity) {
 		var ret ContactActivity
 		return ret
 	}
@@ -415,15 +418,15 @@ func (o *Contact) GetActivity() ContactActivity {
 // GetActivityOk returns a tuple with the Activity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Contact) GetActivityOk() (*ContactActivity, bool) {
-	if o == nil || isNil(o.Activity) {
-    return nil, false
+	if o == nil || IsNil(o.Activity) {
+		return nil, false
 	}
 	return o.Activity, true
 }
 
 // HasActivity returns a boolean if a field has been set.
 func (o *Contact) HasActivity() bool {
-	if o != nil && !isNil(o.Activity) {
+	if o != nil && !IsNil(o.Activity) {
 		return true
 	}
 
@@ -436,29 +439,37 @@ func (o *Contact) SetActivity(v ContactActivity) {
 }
 
 func (o Contact) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Contact) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Email) {
+	if !IsNil(o.Email) {
 		toSerialize["Email"] = o.Email
 	}
-	if !isNil(o.Status) {
+	if !IsNil(o.Status) {
 		toSerialize["Status"] = o.Status
 	}
-	if !isNil(o.FirstName) {
+	if !IsNil(o.FirstName) {
 		toSerialize["FirstName"] = o.FirstName
 	}
-	if !isNil(o.LastName) {
+	if !IsNil(o.LastName) {
 		toSerialize["LastName"] = o.LastName
 	}
-	if !isNil(o.CustomFields) {
+	if !IsNil(o.CustomFields) {
 		toSerialize["CustomFields"] = o.CustomFields
 	}
-	if !isNil(o.Consent) {
+	if !IsNil(o.Consent) {
 		toSerialize["Consent"] = o.Consent
 	}
-	if !isNil(o.Source) {
+	if !IsNil(o.Source) {
 		toSerialize["Source"] = o.Source
 	}
-	if !isNil(o.DateAdded) {
+	if !IsNil(o.DateAdded) {
 		toSerialize["DateAdded"] = o.DateAdded
 	}
 	if o.DateUpdated.IsSet() {
@@ -467,10 +478,10 @@ func (o Contact) MarshalJSON() ([]byte, error) {
 	if o.StatusChangeDate.IsSet() {
 		toSerialize["StatusChangeDate"] = o.StatusChangeDate.Get()
 	}
-	if !isNil(o.Activity) {
+	if !IsNil(o.Activity) {
 		toSerialize["Activity"] = o.Activity
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableContact struct {

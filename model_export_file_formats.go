@@ -21,9 +21,9 @@ type ExportFileFormats string
 
 // List of ExportFileFormats
 const (
-	CSV ExportFileFormats = "Csv"
-	XML ExportFileFormats = "Xml"
-	JSON ExportFileFormats = "Json"
+	EXPORTFILEFORMATS_CSV ExportFileFormats = "Csv"
+	EXPORTFILEFORMATS_XML ExportFileFormats = "Xml"
+	EXPORTFILEFORMATS_JSON ExportFileFormats = "Json"
 )
 
 // All allowed values of ExportFileFormats enum

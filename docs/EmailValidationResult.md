@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Role** | Pointer to **bool** | Is an email a role email (e.g. info@, noreply@ etc.) | [optional] 
 **Reason** | Pointer to **string** | All detected issues | [optional] 
 **DateAdded** | Pointer to **time.Time** | Date of creation in YYYY-MM-DDThh:ii:ss format | [optional] 
-**Result** | Pointer to [**EmailValidationStatus**](EmailValidationStatus.md) |  | [optional] [default to NONE]
+**Result** | Pointer to [**EmailValidationStatus**](EmailValidationStatus.md) |  | [optional] [default to EMAILVALIDATIONSTATUS_NONE]
 
 ## Methods
 

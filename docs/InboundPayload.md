@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Filter** | **string** | Filter of the inbound data | 
 **Name** | **string** | Name of this route | 
-**FilterType** | [**InboundRouteFilterType**](InboundRouteFilterType.md) |  | [default to EMAIL_ADDRESS]
-**ActionType** | [**InboundRouteActionType**](InboundRouteActionType.md) |  | [default to FORWARD_TO_EMAIL]
+**FilterType** | [**InboundRouteFilterType**](InboundRouteFilterType.md) |  | [default to INBOUNDROUTEFILTERTYPE_EMAIL_ADDRESS]
+**ActionType** | [**InboundRouteActionType**](InboundRouteActionType.md) |  | [default to INBOUNDROUTEACTIONTYPE_FORWARD_TO_EMAIL]
 **EmailAddress** | Pointer to **string** | Email to forward the inbound to | [optional] 
 **HttpAddress** | Pointer to **string** | Address to notify about the inbound | [optional] 
 

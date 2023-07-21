@@ -21,14 +21,14 @@ type CampaignStatus string
 
 // List of CampaignStatus
 const (
-	DELETED CampaignStatus = "Deleted"
-	ACTIVE CampaignStatus = "Active"
-	PROCESSING CampaignStatus = "Processing"
-	SENDING CampaignStatus = "Sending"
-	COMPLETED CampaignStatus = "Completed"
-	PAUSED CampaignStatus = "Paused"
-	CANCELLED CampaignStatus = "Cancelled"
-	DRAFT CampaignStatus = "Draft"
+	CAMPAIGNSTATUS_DELETED CampaignStatus = "Deleted"
+	CAMPAIGNSTATUS_ACTIVE CampaignStatus = "Active"
+	CAMPAIGNSTATUS_PROCESSING CampaignStatus = "Processing"
+	CAMPAIGNSTATUS_SENDING CampaignStatus = "Sending"
+	CAMPAIGNSTATUS_COMPLETED CampaignStatus = "Completed"
+	CAMPAIGNSTATUS_PAUSED CampaignStatus = "Paused"
+	CAMPAIGNSTATUS_CANCELLED CampaignStatus = "Cancelled"
+	CAMPAIGNSTATUS_DRAFT CampaignStatus = "Draft"
 )
 
 // All allowed values of CampaignStatus enum
