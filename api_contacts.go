@@ -67,7 +67,7 @@ func (a *ContactsApiService) ContactsByEmailDeleteExecute(r ApiContactsByEmailDe
 	}
 
 	localVarPath := localBasePath + "/contacts/{email}"
-	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterToString(r.email, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterValueToString(r.email, "email")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -175,7 +175,7 @@ func (a *ContactsApiService) ContactsByEmailGetExecute(r ApiContactsByEmailGetRe
 	}
 
 	localVarPath := localBasePath + "/contacts/{email}"
-	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterToString(r.email, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterValueToString(r.email, "email")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -298,7 +298,7 @@ func (a *ContactsApiService) ContactsByEmailPutExecute(r ApiContactsByEmailPutRe
 	}
 
 	localVarPath := localBasePath + "/contacts/{email}"
-	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterToString(r.email, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterValueToString(r.email, "email")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -534,7 +534,7 @@ func (a *ContactsApiService) ContactsExportByIdStatusGetExecute(r ApiContactsExp
 	}
 
 	localVarPath := localBasePath + "/contacts/export/{id}/status"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -689,27 +689,27 @@ func (a *ContactsApiService) ContactsExportPostExecute(r ApiContactsExportPostRe
 	localVarFormParams := url.Values{}
 
 	if r.fileFormat != nil {
-		localVarQueryParams.Add("fileFormat", parameterToString(*r.fileFormat, ""))
+		parameterAddToQuery(localVarQueryParams, "fileFormat", r.fileFormat, "")
 	}
 	if r.rule != nil {
-		localVarQueryParams.Add("rule", parameterToString(*r.rule, ""))
+		parameterAddToQuery(localVarQueryParams, "rule", r.rule, "")
 	}
 	if r.emails != nil {
 		t := *r.emails
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("emails", parameterToString(s.Index(i), "multi"))
+				parameterAddToQuery(localVarQueryParams, "emails", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("emails", parameterToString(t, "multi"))
+			parameterAddToQuery(localVarQueryParams, "emails", t, "multi")
 		}
 	}
 	if r.compressionFormat != nil {
-		localVarQueryParams.Add("compressionFormat", parameterToString(*r.compressionFormat, ""))
+		parameterAddToQuery(localVarQueryParams, "compressionFormat", r.compressionFormat, "")
 	}
 	if r.fileName != nil {
-		localVarQueryParams.Add("fileName", parameterToString(*r.fileName, ""))
+		parameterAddToQuery(localVarQueryParams, "fileName", r.fileName, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -839,10 +839,10 @@ func (a *ContactsApiService) ContactsGetExecute(r ApiContactsGetRequest) ([]Cont
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -918,7 +918,7 @@ type ApiContactsImportPostRequest struct {
 	listName *string
 	encodingName *string
 	fileUrl *string
-	file **os.File
+	file *os.File
 }
 
 // Name of an existing list to add these contacts to
@@ -940,7 +940,7 @@ func (r ApiContactsImportPostRequest) FileUrl(fileUrl string) ApiContactsImportP
 }
 
 func (r ApiContactsImportPostRequest) File(file *os.File) ApiContactsImportPostRequest {
-	r.file = &file
+	r.file = file
 	return r
 }
 
@@ -983,13 +983,13 @@ func (a *ContactsApiService) ContactsImportPostExecute(r ApiContactsImportPostRe
 	localVarFormParams := url.Values{}
 
 	if r.listName != nil {
-		localVarQueryParams.Add("listName", parameterToString(*r.listName, ""))
+		parameterAddToQuery(localVarQueryParams, "listName", r.listName, "")
 	}
 	if r.encodingName != nil {
-		localVarQueryParams.Add("encodingName", parameterToString(*r.encodingName, ""))
+		parameterAddToQuery(localVarQueryParams, "encodingName", r.encodingName, "")
 	}
 	if r.fileUrl != nil {
-		localVarQueryParams.Add("fileUrl", parameterToString(*r.fileUrl, ""))
+		parameterAddToQuery(localVarQueryParams, "fileUrl", r.fileUrl, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"multipart/form-data"}
@@ -1014,17 +1014,17 @@ func (a *ContactsApiService) ContactsImportPostExecute(r ApiContactsImportPostRe
 
 	fileLocalVarFormFileName = "file"
 
-	var fileLocalVarFile *os.File
-	if r.file != nil {
-		fileLocalVarFile = *r.file
-	}
+
+	fileLocalVarFile := r.file
+
 	if fileLocalVarFile != nil {
 		fbs, _ := ioutil.ReadAll(fileLocalVarFile)
+
 		fileLocalVarFileBytes = fbs
 		fileLocalVarFileName = fileLocalVarFile.Name()
 		fileLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
 	}
-	formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1133,10 +1133,10 @@ func (a *ContactsApiService) ContactsPostExecute(r ApiContactsPostRequest) ([]Co
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("listnames", parameterToString(s.Index(i), "multi"))
+				parameterAddToQuery(localVarQueryParams, "listnames", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("listnames", parameterToString(t, "multi"))
+			parameterAddToQuery(localVarQueryParams, "listnames", t, "multi")
 		}
 	}
 	// to determine the Content-Type header

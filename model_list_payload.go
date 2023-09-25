@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ListPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListPayload{}
+
 // ListPayload struct for ListPayload
 type ListPayload struct {
 	// Name of your list.
@@ -57,7 +60,7 @@ func (o *ListPayload) GetListName() string {
 // and a boolean to check if the value has been set.
 func (o *ListPayload) GetListNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.ListName, true
 }
@@ -80,7 +83,7 @@ func (o *ListPayload) GetAllowUnsubscribe() bool {
 // and a boolean to check if the value has been set.
 func (o *ListPayload) GetAllowUnsubscribeOk() (*bool, bool) {
 	if o == nil || isNil(o.AllowUnsubscribe) {
-    return nil, false
+		return nil, false
 	}
 	return o.AllowUnsubscribe, true
 }
@@ -112,7 +115,7 @@ func (o *ListPayload) GetEmails() []string {
 // and a boolean to check if the value has been set.
 func (o *ListPayload) GetEmailsOk() ([]string, bool) {
 	if o == nil || isNil(o.Emails) {
-    return nil, false
+		return nil, false
 	}
 	return o.Emails, true
 }
@@ -132,17 +135,23 @@ func (o *ListPayload) SetEmails(v []string) {
 }
 
 func (o ListPayload) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["ListName"] = o.ListName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ListPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["ListName"] = o.ListName
 	if !isNil(o.AllowUnsubscribe) {
 		toSerialize["AllowUnsubscribe"] = o.AllowUnsubscribe
 	}
 	if !isNil(o.Emails) {
 		toSerialize["Emails"] = o.Emails
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableListPayload struct {

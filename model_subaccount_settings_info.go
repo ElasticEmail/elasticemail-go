@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SubaccountSettingsInfo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SubaccountSettingsInfo{}
+
 // SubaccountSettingsInfo SubAccount settings
 type SubaccountSettingsInfo struct {
 	Email *SubaccountEmailSettings `json:"Email,omitempty"`
@@ -50,7 +53,7 @@ func (o *SubaccountSettingsInfo) GetEmail() SubaccountEmailSettings {
 // and a boolean to check if the value has been set.
 func (o *SubaccountSettingsInfo) GetEmailOk() (*SubaccountEmailSettings, bool) {
 	if o == nil || isNil(o.Email) {
-    return nil, false
+		return nil, false
 	}
 	return o.Email, true
 }
@@ -70,11 +73,19 @@ func (o *SubaccountSettingsInfo) SetEmail(v SubaccountEmailSettings) {
 }
 
 func (o SubaccountSettingsInfo) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SubaccountSettingsInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Email) {
 		toSerialize["Email"] = o.Email
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSubaccountSettingsInfo struct {

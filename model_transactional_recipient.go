@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TransactionalRecipient type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TransactionalRecipient{}
+
 // TransactionalRecipient List of transactional recipients
 type TransactionalRecipient struct {
 	// List of recipients (visible to others)
@@ -57,7 +60,7 @@ func (o *TransactionalRecipient) GetTo() []string {
 // and a boolean to check if the value has been set.
 func (o *TransactionalRecipient) GetToOk() ([]string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.To, true
 }
@@ -80,7 +83,7 @@ func (o *TransactionalRecipient) GetCC() []string {
 // and a boolean to check if the value has been set.
 func (o *TransactionalRecipient) GetCCOk() ([]string, bool) {
 	if o == nil || isNil(o.CC) {
-    return nil, false
+		return nil, false
 	}
 	return o.CC, true
 }
@@ -112,7 +115,7 @@ func (o *TransactionalRecipient) GetBCC() []string {
 // and a boolean to check if the value has been set.
 func (o *TransactionalRecipient) GetBCCOk() ([]string, bool) {
 	if o == nil || isNil(o.BCC) {
-    return nil, false
+		return nil, false
 	}
 	return o.BCC, true
 }
@@ -132,17 +135,23 @@ func (o *TransactionalRecipient) SetBCC(v []string) {
 }
 
 func (o TransactionalRecipient) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["To"] = o.To
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o TransactionalRecipient) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["To"] = o.To
 	if !isNil(o.CC) {
 		toSerialize["CC"] = o.CC
 	}
 	if !isNil(o.BCC) {
 		toSerialize["BCC"] = o.BCC
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableTransactionalRecipient struct {

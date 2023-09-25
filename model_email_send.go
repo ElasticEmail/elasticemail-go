@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EmailSend type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmailSend{}
+
 // EmailSend struct for EmailSend
 type EmailSend struct {
 	// ID number of transaction
@@ -53,7 +56,7 @@ func (o *EmailSend) GetTransactionID() string {
 // and a boolean to check if the value has been set.
 func (o *EmailSend) GetTransactionIDOk() (*string, bool) {
 	if o == nil || isNil(o.TransactionID) {
-    return nil, false
+		return nil, false
 	}
 	return o.TransactionID, true
 }
@@ -85,7 +88,7 @@ func (o *EmailSend) GetMessageID() string {
 // and a boolean to check if the value has been set.
 func (o *EmailSend) GetMessageIDOk() (*string, bool) {
 	if o == nil || isNil(o.MessageID) {
-    return nil, false
+		return nil, false
 	}
 	return o.MessageID, true
 }
@@ -105,6 +108,14 @@ func (o *EmailSend) SetMessageID(v string) {
 }
 
 func (o EmailSend) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o EmailSend) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.TransactionID) {
 		toSerialize["TransactionID"] = o.TransactionID
@@ -112,7 +123,7 @@ func (o EmailSend) MarshalJSON() ([]byte, error) {
 	if !isNil(o.MessageID) {
 		toSerialize["MessageID"] = o.MessageID
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableEmailSend struct {

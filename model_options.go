@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Options type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Options{}
+
 // Options E-mail configuration
 type Options struct {
 	// By how long should an e-mail be delayed (in minutes). Maximum is 35 days.
@@ -65,7 +68,7 @@ func (o *Options) GetTimeOffset() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Options) GetTimeOffsetOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.TimeOffset.Get(), o.TimeOffset.IsSet()
 }
@@ -106,7 +109,7 @@ func (o *Options) GetPoolName() string {
 // and a boolean to check if the value has been set.
 func (o *Options) GetPoolNameOk() (*string, bool) {
 	if o == nil || isNil(o.PoolName) {
-    return nil, false
+		return nil, false
 	}
 	return o.PoolName, true
 }
@@ -138,7 +141,7 @@ func (o *Options) GetChannelName() string {
 // and a boolean to check if the value has been set.
 func (o *Options) GetChannelNameOk() (*string, bool) {
 	if o == nil || isNil(o.ChannelName) {
-    return nil, false
+		return nil, false
 	}
 	return o.ChannelName, true
 }
@@ -170,7 +173,7 @@ func (o *Options) GetEncoding() EncodingType {
 // and a boolean to check if the value has been set.
 func (o *Options) GetEncodingOk() (*EncodingType, bool) {
 	if o == nil || isNil(o.Encoding) {
-    return nil, false
+		return nil, false
 	}
 	return o.Encoding, true
 }
@@ -202,7 +205,7 @@ func (o *Options) GetTrackOpens() bool {
 // and a boolean to check if the value has been set.
 func (o *Options) GetTrackOpensOk() (*bool, bool) {
 	if o == nil || isNil(o.TrackOpens) {
-    return nil, false
+		return nil, false
 	}
 	return o.TrackOpens, true
 }
@@ -234,7 +237,7 @@ func (o *Options) GetTrackClicks() bool {
 // and a boolean to check if the value has been set.
 func (o *Options) GetTrackClicksOk() (*bool, bool) {
 	if o == nil || isNil(o.TrackClicks) {
-    return nil, false
+		return nil, false
 	}
 	return o.TrackClicks, true
 }
@@ -254,6 +257,14 @@ func (o *Options) SetTrackClicks(v bool) {
 }
 
 func (o Options) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Options) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.TimeOffset.IsSet() {
 		toSerialize["TimeOffset"] = o.TimeOffset.Get()
@@ -273,7 +284,7 @@ func (o Options) MarshalJSON() ([]byte, error) {
 	if !isNil(o.TrackClicks) {
 		toSerialize["TrackClicks"] = o.TrackClicks
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableOptions struct {

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SubaccountPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SubaccountPayload{}
+
 // SubaccountPayload New SubAccount payload
 type SubaccountPayload struct {
 	// Proper email address.
@@ -59,7 +62,7 @@ func (o *SubaccountPayload) GetEmail() string {
 // and a boolean to check if the value has been set.
 func (o *SubaccountPayload) GetEmailOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Email, true
 }
@@ -83,7 +86,7 @@ func (o *SubaccountPayload) GetPassword() string {
 // and a boolean to check if the value has been set.
 func (o *SubaccountPayload) GetPasswordOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Password, true
 }
@@ -106,7 +109,7 @@ func (o *SubaccountPayload) GetSendActivation() bool {
 // and a boolean to check if the value has been set.
 func (o *SubaccountPayload) GetSendActivationOk() (*bool, bool) {
 	if o == nil || isNil(o.SendActivation) {
-    return nil, false
+		return nil, false
 	}
 	return o.SendActivation, true
 }
@@ -138,7 +141,7 @@ func (o *SubaccountPayload) GetSettings() SubaccountSettingsInfoPayload {
 // and a boolean to check if the value has been set.
 func (o *SubaccountPayload) GetSettingsOk() (*SubaccountSettingsInfoPayload, bool) {
 	if o == nil || isNil(o.Settings) {
-    return nil, false
+		return nil, false
 	}
 	return o.Settings, true
 }
@@ -158,20 +161,24 @@ func (o *SubaccountPayload) SetSettings(v SubaccountSettingsInfoPayload) {
 }
 
 func (o SubaccountPayload) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SubaccountPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["Email"] = o.Email
-	}
-	if true {
-		toSerialize["Password"] = o.Password
-	}
+	toSerialize["Email"] = o.Email
+	toSerialize["Password"] = o.Password
 	if !isNil(o.SendActivation) {
 		toSerialize["SendActivation"] = o.SendActivation
 	}
 	if !isNil(o.Settings) {
 		toSerialize["Settings"] = o.Settings
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSubaccountPayload struct {

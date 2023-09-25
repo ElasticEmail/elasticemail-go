@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Campaign type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Campaign{}
+
 // Campaign struct for Campaign
 type Campaign struct {
 	// Campaign's email content. Provide multiple items to send an A/X Split Campaign
@@ -62,7 +65,7 @@ func (o *Campaign) GetContent() []CampaignTemplate {
 // and a boolean to check if the value has been set.
 func (o *Campaign) GetContentOk() ([]CampaignTemplate, bool) {
 	if o == nil || isNil(o.Content) {
-    return nil, false
+		return nil, false
 	}
 	return o.Content, true
 }
@@ -95,7 +98,7 @@ func (o *Campaign) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *Campaign) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -118,7 +121,7 @@ func (o *Campaign) GetStatus() CampaignStatus {
 // and a boolean to check if the value has been set.
 func (o *Campaign) GetStatusOk() (*CampaignStatus, bool) {
 	if o == nil || isNil(o.Status) {
-    return nil, false
+		return nil, false
 	}
 	return o.Status, true
 }
@@ -151,7 +154,7 @@ func (o *Campaign) GetRecipients() CampaignRecipient {
 // and a boolean to check if the value has been set.
 func (o *Campaign) GetRecipientsOk() (*CampaignRecipient, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Recipients, true
 }
@@ -174,7 +177,7 @@ func (o *Campaign) GetOptions() CampaignOptions {
 // and a boolean to check if the value has been set.
 func (o *Campaign) GetOptionsOk() (*CampaignOptions, bool) {
 	if o == nil || isNil(o.Options) {
-    return nil, false
+		return nil, false
 	}
 	return o.Options, true
 }
@@ -194,23 +197,27 @@ func (o *Campaign) SetOptions(v CampaignOptions) {
 }
 
 func (o Campaign) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Campaign) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Content) {
 		toSerialize["Content"] = o.Content
 	}
-	if true {
-		toSerialize["Name"] = o.Name
-	}
+	toSerialize["Name"] = o.Name
 	if !isNil(o.Status) {
 		toSerialize["Status"] = o.Status
 	}
-	if true {
-		toSerialize["Recipients"] = o.Recipients
-	}
+	toSerialize["Recipients"] = o.Recipients
 	if !isNil(o.Options) {
 		toSerialize["Options"] = o.Options
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCampaign struct {

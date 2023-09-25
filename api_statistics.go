@@ -68,7 +68,7 @@ func (a *StatisticsApiService) StatisticsCampaignsByNameGetExecute(r ApiStatisti
 	}
 
 	localVarPath := localBasePath + "/statistics/campaigns/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -202,10 +202,10 @@ func (a *StatisticsApiService) StatisticsCampaignsGetExecute(r ApiStatisticsCamp
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -318,7 +318,7 @@ func (a *StatisticsApiService) StatisticsChannelsByNameGetExecute(r ApiStatistic
 	}
 
 	localVarPath := localBasePath + "/statistics/channels/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -452,10 +452,10 @@ func (a *StatisticsApiService) StatisticsChannelsGetExecute(r ApiStatisticsChann
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -587,9 +587,9 @@ func (a *StatisticsApiService) StatisticsGetExecute(r ApiStatisticsGetRequest) (
 		return localVarReturnValue, nil, reportError("from is required and must be specified")
 	}
 
-	localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	parameterAddToQuery(localVarQueryParams, "from", r.from, "")
 	if r.to != nil {
-		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+		parameterAddToQuery(localVarQueryParams, "to", r.to, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

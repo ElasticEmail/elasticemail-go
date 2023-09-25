@@ -75,7 +75,7 @@
 
 * `SEND_HTTP` (value: `"SendHttp"`)
 
-* `MODIFY2_FA` (value: `"Modify2FA"`)
+* `MODIFY2_FA_EMAIL` (value: `"Modify2FAEmail"`)
 
 * `MODIFY_SUPPORT` (value: `"ModifySupport"`)
 
@@ -89,7 +89,7 @@
 
 * `VERIFY_EMAILS` (value: `"VerifyEmails"`)
 
-* `VIEW_EMAIL_VERIFICATIONS` (value: `"ViewEmailVerifications"`)
+* `MODIFY2_FA_SMS` (value: `"Modify2FASms"`)
 
 * `DISABLE_CONTACTS_STORE` (value: `"DisableContactsStore"`)
 
@@ -100,6 +100,10 @@
 * `MODIFY_SUPPRESSIONS` (value: `"ModifySuppressions"`)
 
 * `VIEW_SUPPRESSIONS` (value: `"ViewSuppressions"`)
+
+* `VIEW_DRAG_DROP_EDITOR` (value: `"ViewDragDropEditor"`)
+
+* `VIEW_TEMPLATE_EDITOR` (value: `"ViewTemplateEditor"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

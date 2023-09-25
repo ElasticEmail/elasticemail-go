@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SubaccountEmailSettingsPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SubaccountEmailSettingsPayload{}
+
 // SubaccountEmailSettingsPayload Settings related to sending emails
 type SubaccountEmailSettingsPayload struct {
 	// True, if Account needs credits to send emails. Otherwise, false
@@ -62,7 +65,7 @@ func (o *SubaccountEmailSettingsPayload) GetRequiresEmailCredits() bool {
 // and a boolean to check if the value has been set.
 func (o *SubaccountEmailSettingsPayload) GetRequiresEmailCreditsOk() (*bool, bool) {
 	if o == nil || isNil(o.RequiresEmailCredits) {
-    return nil, false
+		return nil, false
 	}
 	return o.RequiresEmailCredits, true
 }
@@ -94,7 +97,7 @@ func (o *SubaccountEmailSettingsPayload) GetEmailSizeLimit() int32 {
 // and a boolean to check if the value has been set.
 func (o *SubaccountEmailSettingsPayload) GetEmailSizeLimitOk() (*int32, bool) {
 	if o == nil || isNil(o.EmailSizeLimit) {
-    return nil, false
+		return nil, false
 	}
 	return o.EmailSizeLimit, true
 }
@@ -126,7 +129,7 @@ func (o *SubaccountEmailSettingsPayload) GetDailySendLimit() int32 {
 // and a boolean to check if the value has been set.
 func (o *SubaccountEmailSettingsPayload) GetDailySendLimitOk() (*int32, bool) {
 	if o == nil || isNil(o.DailySendLimit) {
-    return nil, false
+		return nil, false
 	}
 	return o.DailySendLimit, true
 }
@@ -158,7 +161,7 @@ func (o *SubaccountEmailSettingsPayload) GetMaxContacts() int32 {
 // and a boolean to check if the value has been set.
 func (o *SubaccountEmailSettingsPayload) GetMaxContactsOk() (*int32, bool) {
 	if o == nil || isNil(o.MaxContacts) {
-    return nil, false
+		return nil, false
 	}
 	return o.MaxContacts, true
 }
@@ -190,7 +193,7 @@ func (o *SubaccountEmailSettingsPayload) GetEnablePrivateIPPurchase() bool {
 // and a boolean to check if the value has been set.
 func (o *SubaccountEmailSettingsPayload) GetEnablePrivateIPPurchaseOk() (*bool, bool) {
 	if o == nil || isNil(o.EnablePrivateIPPurchase) {
-    return nil, false
+		return nil, false
 	}
 	return o.EnablePrivateIPPurchase, true
 }
@@ -222,7 +225,7 @@ func (o *SubaccountEmailSettingsPayload) GetPoolName() string {
 // and a boolean to check if the value has been set.
 func (o *SubaccountEmailSettingsPayload) GetPoolNameOk() (*string, bool) {
 	if o == nil || isNil(o.PoolName) {
-    return nil, false
+		return nil, false
 	}
 	return o.PoolName, true
 }
@@ -255,7 +258,7 @@ func (o *SubaccountEmailSettingsPayload) GetValidSenderDomainOnly() bool {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubaccountEmailSettingsPayload) GetValidSenderDomainOnlyOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.ValidSenderDomainOnly.Get(), o.ValidSenderDomainOnly.IsSet()
 }
@@ -284,6 +287,14 @@ func (o *SubaccountEmailSettingsPayload) UnsetValidSenderDomainOnly() {
 }
 
 func (o SubaccountEmailSettingsPayload) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SubaccountEmailSettingsPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.RequiresEmailCredits) {
 		toSerialize["RequiresEmailCredits"] = o.RequiresEmailCredits
@@ -306,7 +317,7 @@ func (o SubaccountEmailSettingsPayload) MarshalJSON() ([]byte, error) {
 	if o.ValidSenderDomainOnly.IsSet() {
 		toSerialize["ValidSenderDomainOnly"] = o.ValidSenderDomainOnly.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSubaccountEmailSettingsPayload struct {

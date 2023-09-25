@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **Reason** | Pointer to **string** | All detected issues | [optional] 
 **DateAdded** | Pointer to **time.Time** | Date of creation in YYYY-MM-DDThh:ii:ss format | [optional] 
 **Result** | Pointer to [**EmailValidationStatus**](EmailValidationStatus.md) |  | [optional] [default to NONE]
+**PredictedScore** | Pointer to **float32** |  | [optional] 
+**PredictedStatus** | Pointer to [**EmailPredictedValidationStatus**](EmailPredictedValidationStatus.md) |  | [optional] [default to NONE]
 
 ## Methods
 
@@ -257,6 +259,56 @@ SetResult sets Result field to given value.
 `func (o *EmailValidationResult) HasResult() bool`
 
 HasResult returns a boolean if a field has been set.
+
+### GetPredictedScore
+
+`func (o *EmailValidationResult) GetPredictedScore() float32`
+
+GetPredictedScore returns the PredictedScore field if non-nil, zero value otherwise.
+
+### GetPredictedScoreOk
+
+`func (o *EmailValidationResult) GetPredictedScoreOk() (*float32, bool)`
+
+GetPredictedScoreOk returns a tuple with the PredictedScore field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPredictedScore
+
+`func (o *EmailValidationResult) SetPredictedScore(v float32)`
+
+SetPredictedScore sets PredictedScore field to given value.
+
+### HasPredictedScore
+
+`func (o *EmailValidationResult) HasPredictedScore() bool`
+
+HasPredictedScore returns a boolean if a field has been set.
+
+### GetPredictedStatus
+
+`func (o *EmailValidationResult) GetPredictedStatus() EmailPredictedValidationStatus`
+
+GetPredictedStatus returns the PredictedStatus field if non-nil, zero value otherwise.
+
+### GetPredictedStatusOk
+
+`func (o *EmailValidationResult) GetPredictedStatusOk() (*EmailPredictedValidationStatus, bool)`
+
+GetPredictedStatusOk returns a tuple with the PredictedStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPredictedStatus
+
+`func (o *EmailValidationResult) SetPredictedStatus(v EmailPredictedValidationStatus)`
+
+SetPredictedStatus sets PredictedStatus field to given value.
+
+### HasPredictedStatus
+
+`func (o *EmailValidationResult) HasPredictedStatus() bool`
+
+HasPredictedStatus returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

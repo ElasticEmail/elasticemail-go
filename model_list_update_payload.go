@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ListUpdatePayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListUpdatePayload{}
+
 // ListUpdatePayload struct for ListUpdatePayload
 type ListUpdatePayload struct {
 	// Name of your list if you want to change it.
@@ -53,7 +56,7 @@ func (o *ListUpdatePayload) GetNewListName() string {
 // and a boolean to check if the value has been set.
 func (o *ListUpdatePayload) GetNewListNameOk() (*string, bool) {
 	if o == nil || isNil(o.NewListName) {
-    return nil, false
+		return nil, false
 	}
 	return o.NewListName, true
 }
@@ -85,7 +88,7 @@ func (o *ListUpdatePayload) GetAllowUnsubscribe() bool {
 // and a boolean to check if the value has been set.
 func (o *ListUpdatePayload) GetAllowUnsubscribeOk() (*bool, bool) {
 	if o == nil || isNil(o.AllowUnsubscribe) {
-    return nil, false
+		return nil, false
 	}
 	return o.AllowUnsubscribe, true
 }
@@ -105,6 +108,14 @@ func (o *ListUpdatePayload) SetAllowUnsubscribe(v bool) {
 }
 
 func (o ListUpdatePayload) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ListUpdatePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.NewListName) {
 		toSerialize["NewListName"] = o.NewListName
@@ -112,7 +123,7 @@ func (o ListUpdatePayload) MarshalJSON() ([]byte, error) {
 	if !isNil(o.AllowUnsubscribe) {
 		toSerialize["AllowUnsubscribe"] = o.AllowUnsubscribe
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableListUpdatePayload struct {

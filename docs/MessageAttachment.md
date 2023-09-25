@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **BinaryContent** | **string** | File&#39;s content as byte array (or a Base64 string) | 
 **Name** | **string** | Display name of the file | 
 **ContentType** | Pointer to **string** | MIME content type | [optional] 
+**Size** | Pointer to **int32** | Size of your attachment (in bytes). | [optional] 
 
 ## Methods
 
@@ -91,6 +92,31 @@ SetContentType sets ContentType field to given value.
 `func (o *MessageAttachment) HasContentType() bool`
 
 HasContentType returns a boolean if a field has been set.
+
+### GetSize
+
+`func (o *MessageAttachment) GetSize() int32`
+
+GetSize returns the Size field if non-nil, zero value otherwise.
+
+### GetSizeOk
+
+`func (o *MessageAttachment) GetSizeOk() (*int32, bool)`
+
+GetSizeOk returns a tuple with the Size field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSize
+
+`func (o *MessageAttachment) SetSize(v int32)`
+
+SetSize sets Size field to given value.
+
+### HasSize
+
+`func (o *MessageAttachment) HasSize() bool`
+
+HasSize returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

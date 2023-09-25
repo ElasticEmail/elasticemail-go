@@ -66,7 +66,7 @@ func (a *VerificationsApiService) VerificationsByEmailDeleteExecute(r ApiVerific
 	}
 
 	localVarPath := localBasePath + "/verifications/{email}"
-	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterToString(r.email, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterValueToString(r.email, "email")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -144,7 +144,7 @@ func (r ApiVerificationsByEmailGetRequest) Execute() (*EmailValidationResult, *h
 /*
 VerificationsByEmailGet Get Email Verification Result
 
-Returns a result of verified email. Required Access Level: VerifyEmails, ViewEmailVerifications
+Returns a result of verified email. Required Access Level: VerifyEmails
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email Email address to view verification result of
@@ -174,7 +174,7 @@ func (a *VerificationsApiService) VerificationsByEmailGetExecute(r ApiVerificati
 	}
 
 	localVarPath := localBasePath + "/verifications/{email}"
-	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterToString(r.email, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterValueToString(r.email, "email")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -291,7 +291,7 @@ func (a *VerificationsApiService) VerificationsByEmailPostExecute(r ApiVerificat
 	}
 
 	localVarPath := localBasePath + "/verifications/{email}"
-	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterToString(r.email, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterValueToString(r.email, "email")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -406,7 +406,7 @@ func (a *VerificationsApiService) VerificationsFilesByIdDeleteExecute(r ApiVerif
 	}
 
 	localVarPath := localBasePath + "/verifications/files/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -477,7 +477,7 @@ type ApiVerificationsFilesByIdResultDownloadGetRequest struct {
 	id string
 }
 
-func (r ApiVerificationsFilesByIdResultDownloadGetRequest) Execute() (**os.File, *http.Response, error) {
+func (r ApiVerificationsFilesByIdResultDownloadGetRequest) Execute() (*os.File, *http.Response, error) {
 	return r.ApiService.VerificationsFilesByIdResultDownloadGetExecute(r)
 }
 
@@ -500,12 +500,12 @@ func (a *VerificationsApiService) VerificationsFilesByIdResultDownloadGet(ctx co
 
 // Execute executes the request
 //  @return *os.File
-func (a *VerificationsApiService) VerificationsFilesByIdResultDownloadGetExecute(r ApiVerificationsFilesByIdResultDownloadGetRequest) (**os.File, *http.Response, error) {
+func (a *VerificationsApiService) VerificationsFilesByIdResultDownloadGetExecute(r ApiVerificationsFilesByIdResultDownloadGetRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  **os.File
+		localVarReturnValue  *os.File
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VerificationsApiService.VerificationsFilesByIdResultDownloadGet")
@@ -514,7 +514,7 @@ func (a *VerificationsApiService) VerificationsFilesByIdResultDownloadGetExecute
 	}
 
 	localVarPath := localBasePath + "/verifications/files/{id}/result/download"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -615,7 +615,7 @@ func (r ApiVerificationsFilesByIdResultGetRequest) Execute() (*VerificationFileR
 /*
 VerificationsFilesByIdResultGet Get Detailed File Verification Result
 
-Returns status and results (if verified) of file with given ID. Required Access Level: VerifyEmails, ViewEmailVerifications
+Returns status and results (if verified) of file with given ID. Required Access Level: VerifyEmails
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID of the Verification to display status of
@@ -645,17 +645,17 @@ func (a *VerificationsApiService) VerificationsFilesByIdResultGetExecute(r ApiVe
 	}
 
 	localVarPath := localBasePath + "/verifications/files/{id}/result"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -766,7 +766,7 @@ func (a *VerificationsApiService) VerificationsFilesByIdVerificationPostExecute(
 	}
 
 	localVarPath := localBasePath + "/verifications/files/{id}/verification"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -834,11 +834,11 @@ func (a *VerificationsApiService) VerificationsFilesByIdVerificationPostExecute(
 type ApiVerificationsFilesPostRequest struct {
 	ctx context.Context
 	ApiService *VerificationsApiService
-	file **os.File
+	file *os.File
 }
 
 func (r ApiVerificationsFilesPostRequest) File(file *os.File) ApiVerificationsFilesPostRequest {
-	r.file = &file
+	r.file = file
 	return r
 }
 
@@ -905,17 +905,17 @@ func (a *VerificationsApiService) VerificationsFilesPostExecute(r ApiVerificatio
 
 	fileLocalVarFormFileName = "file"
 
-	var fileLocalVarFile *os.File
-	if r.file != nil {
-		fileLocalVarFile = *r.file
-	}
+
+	fileLocalVarFile := r.file
+
 	if fileLocalVarFile != nil {
 		fbs, _ := ioutil.ReadAll(fileLocalVarFile)
+
 		fileLocalVarFileBytes = fbs
 		fileLocalVarFileName = fileLocalVarFile.Name()
 		fileLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
 	}
-	formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -979,7 +979,7 @@ func (r ApiVerificationsFilesResultGetRequest) Execute() ([]VerificationFileResu
 /*
 VerificationsFilesResultGet Get Files Verification Results
 
-Returns a list of uploaded files, their statuses and results. Required Access Level: VerifyEmails, ViewEmailVerifications
+Returns a list of uploaded files, their statuses and results. Required Access Level: VerifyEmails
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiVerificationsFilesResultGetRequest
@@ -1106,7 +1106,7 @@ func (r ApiVerificationsGetRequest) Execute() ([]EmailValidationResult, *http.Re
 /*
 VerificationsGet Get Emails Verification Results
 
-Returns a results of all verified single emails. Required Access Level: VerifyEmails, ViewEmailVerifications
+Returns a results of all verified single emails. Required Access Level: VerifyEmails
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiVerificationsGetRequest
@@ -1140,10 +1140,10 @@ func (a *VerificationsApiService) VerificationsGetExecute(r ApiVerificationsGetR
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

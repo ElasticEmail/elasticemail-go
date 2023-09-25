@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Utm type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Utm{}
+
 // Utm Utm marketing data to be attached to every link in this e-mail.
 type Utm struct {
 	// utmsource value
@@ -57,7 +60,7 @@ func (o *Utm) GetSource() string {
 // and a boolean to check if the value has been set.
 func (o *Utm) GetSourceOk() (*string, bool) {
 	if o == nil || isNil(o.Source) {
-    return nil, false
+		return nil, false
 	}
 	return o.Source, true
 }
@@ -89,7 +92,7 @@ func (o *Utm) GetMedium() string {
 // and a boolean to check if the value has been set.
 func (o *Utm) GetMediumOk() (*string, bool) {
 	if o == nil || isNil(o.Medium) {
-    return nil, false
+		return nil, false
 	}
 	return o.Medium, true
 }
@@ -121,7 +124,7 @@ func (o *Utm) GetCampaign() string {
 // and a boolean to check if the value has been set.
 func (o *Utm) GetCampaignOk() (*string, bool) {
 	if o == nil || isNil(o.Campaign) {
-    return nil, false
+		return nil, false
 	}
 	return o.Campaign, true
 }
@@ -153,7 +156,7 @@ func (o *Utm) GetContent() string {
 // and a boolean to check if the value has been set.
 func (o *Utm) GetContentOk() (*string, bool) {
 	if o == nil || isNil(o.Content) {
-    return nil, false
+		return nil, false
 	}
 	return o.Content, true
 }
@@ -173,6 +176,14 @@ func (o *Utm) SetContent(v string) {
 }
 
 func (o Utm) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Utm) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Source) {
 		toSerialize["Source"] = o.Source
@@ -186,7 +197,7 @@ func (o Utm) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Content) {
 		toSerialize["Content"] = o.Content
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableUtm struct {

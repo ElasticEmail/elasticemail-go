@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the CampaignOptions type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CampaignOptions{}
+
 // CampaignOptions Different send options for a Campaign
 type CampaignOptions struct {
 	DeliveryOptimization *DeliveryOptimizationType `json:"DeliveryOptimization,omitempty"`
@@ -62,7 +65,7 @@ func (o *CampaignOptions) GetDeliveryOptimization() DeliveryOptimizationType {
 // and a boolean to check if the value has been set.
 func (o *CampaignOptions) GetDeliveryOptimizationOk() (*DeliveryOptimizationType, bool) {
 	if o == nil || isNil(o.DeliveryOptimization) {
-    return nil, false
+		return nil, false
 	}
 	return o.DeliveryOptimization, true
 }
@@ -95,7 +98,7 @@ func (o *CampaignOptions) GetTrackOpens() bool {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CampaignOptions) GetTrackOpensOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.TrackOpens.Get(), o.TrackOpens.IsSet()
 }
@@ -137,7 +140,7 @@ func (o *CampaignOptions) GetTrackClicks() bool {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CampaignOptions) GetTrackClicksOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.TrackClicks.Get(), o.TrackClicks.IsSet()
 }
@@ -179,7 +182,7 @@ func (o *CampaignOptions) GetScheduleFor() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CampaignOptions) GetScheduleForOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.ScheduleFor.Get(), o.ScheduleFor.IsSet()
 }
@@ -220,7 +223,7 @@ func (o *CampaignOptions) GetSplitOptions() SplitOptions {
 // and a boolean to check if the value has been set.
 func (o *CampaignOptions) GetSplitOptionsOk() (*SplitOptions, bool) {
 	if o == nil || isNil(o.SplitOptions) {
-    return nil, false
+		return nil, false
 	}
 	return o.SplitOptions, true
 }
@@ -240,6 +243,14 @@ func (o *CampaignOptions) SetSplitOptions(v SplitOptions) {
 }
 
 func (o CampaignOptions) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CampaignOptions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.DeliveryOptimization) {
 		toSerialize["DeliveryOptimization"] = o.DeliveryOptimization
@@ -256,7 +267,7 @@ func (o CampaignOptions) MarshalJSON() ([]byte, error) {
 	if !isNil(o.SplitOptions) {
 		toSerialize["SplitOptions"] = o.SplitOptions
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCampaignOptions struct {

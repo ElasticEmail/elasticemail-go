@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the SubAccountInfo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SubAccountInfo{}
+
 // SubAccountInfo Detailed information about SubAccount.
 type SubAccountInfo struct {
 	// Public key for limited access to your Account such as contact/add so you can use it safely on public websites.
@@ -70,7 +73,7 @@ func (o *SubAccountInfo) GetPublicAccountID() string {
 // and a boolean to check if the value has been set.
 func (o *SubAccountInfo) GetPublicAccountIDOk() (*string, bool) {
 	if o == nil || isNil(o.PublicAccountID) {
-    return nil, false
+		return nil, false
 	}
 	return o.PublicAccountID, true
 }
@@ -102,7 +105,7 @@ func (o *SubAccountInfo) GetEmail() string {
 // and a boolean to check if the value has been set.
 func (o *SubAccountInfo) GetEmailOk() (*string, bool) {
 	if o == nil || isNil(o.Email) {
-    return nil, false
+		return nil, false
 	}
 	return o.Email, true
 }
@@ -134,7 +137,7 @@ func (o *SubAccountInfo) GetSettings() SubaccountSettingsInfo {
 // and a boolean to check if the value has been set.
 func (o *SubAccountInfo) GetSettingsOk() (*SubaccountSettingsInfo, bool) {
 	if o == nil || isNil(o.Settings) {
-    return nil, false
+		return nil, false
 	}
 	return o.Settings, true
 }
@@ -166,7 +169,7 @@ func (o *SubAccountInfo) GetLastActivity() time.Time {
 // and a boolean to check if the value has been set.
 func (o *SubAccountInfo) GetLastActivityOk() (*time.Time, bool) {
 	if o == nil || isNil(o.LastActivity) {
-    return nil, false
+		return nil, false
 	}
 	return o.LastActivity, true
 }
@@ -198,7 +201,7 @@ func (o *SubAccountInfo) GetEmailCredits() int32 {
 // and a boolean to check if the value has been set.
 func (o *SubAccountInfo) GetEmailCreditsOk() (*int32, bool) {
 	if o == nil || isNil(o.EmailCredits) {
-    return nil, false
+		return nil, false
 	}
 	return o.EmailCredits, true
 }
@@ -230,7 +233,7 @@ func (o *SubAccountInfo) GetTotalEmailsSent() int64 {
 // and a boolean to check if the value has been set.
 func (o *SubAccountInfo) GetTotalEmailsSentOk() (*int64, bool) {
 	if o == nil || isNil(o.TotalEmailsSent) {
-    return nil, false
+		return nil, false
 	}
 	return o.TotalEmailsSent, true
 }
@@ -262,7 +265,7 @@ func (o *SubAccountInfo) GetReputation() float64 {
 // and a boolean to check if the value has been set.
 func (o *SubAccountInfo) GetReputationOk() (*float64, bool) {
 	if o == nil || isNil(o.Reputation) {
-    return nil, false
+		return nil, false
 	}
 	return o.Reputation, true
 }
@@ -294,7 +297,7 @@ func (o *SubAccountInfo) GetStatus() AccountStatusEnum {
 // and a boolean to check if the value has been set.
 func (o *SubAccountInfo) GetStatusOk() (*AccountStatusEnum, bool) {
 	if o == nil || isNil(o.Status) {
-    return nil, false
+		return nil, false
 	}
 	return o.Status, true
 }
@@ -326,7 +329,7 @@ func (o *SubAccountInfo) GetContactsCount() int32 {
 // and a boolean to check if the value has been set.
 func (o *SubAccountInfo) GetContactsCountOk() (*int32, bool) {
 	if o == nil || isNil(o.ContactsCount) {
-    return nil, false
+		return nil, false
 	}
 	return o.ContactsCount, true
 }
@@ -346,6 +349,14 @@ func (o *SubAccountInfo) SetContactsCount(v int32) {
 }
 
 func (o SubAccountInfo) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SubAccountInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.PublicAccountID) {
 		toSerialize["PublicAccountID"] = o.PublicAccountID
@@ -374,7 +385,7 @@ func (o SubAccountInfo) MarshalJSON() ([]byte, error) {
 	if !isNil(o.ContactsCount) {
 		toSerialize["ContactsCount"] = o.ContactsCount
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSubAccountInfo struct {

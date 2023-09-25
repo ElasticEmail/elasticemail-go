@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the RecipientEvent type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RecipientEvent{}
+
 // RecipientEvent Detailed information about message recipient
 type RecipientEvent struct {
 	// ID number of transaction
@@ -82,7 +85,7 @@ func (o *RecipientEvent) GetTransactionID() string {
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetTransactionIDOk() (*string, bool) {
 	if o == nil || isNil(o.TransactionID) {
-    return nil, false
+		return nil, false
 	}
 	return o.TransactionID, true
 }
@@ -114,7 +117,7 @@ func (o *RecipientEvent) GetMsgID() string {
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetMsgIDOk() (*string, bool) {
 	if o == nil || isNil(o.MsgID) {
-    return nil, false
+		return nil, false
 	}
 	return o.MsgID, true
 }
@@ -146,7 +149,7 @@ func (o *RecipientEvent) GetFromEmail() string {
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetFromEmailOk() (*string, bool) {
 	if o == nil || isNil(o.FromEmail) {
-    return nil, false
+		return nil, false
 	}
 	return o.FromEmail, true
 }
@@ -178,7 +181,7 @@ func (o *RecipientEvent) GetTo() string {
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetToOk() (*string, bool) {
 	if o == nil || isNil(o.To) {
-    return nil, false
+		return nil, false
 	}
 	return o.To, true
 }
@@ -210,7 +213,7 @@ func (o *RecipientEvent) GetSubject() string {
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetSubjectOk() (*string, bool) {
 	if o == nil || isNil(o.Subject) {
-    return nil, false
+		return nil, false
 	}
 	return o.Subject, true
 }
@@ -242,7 +245,7 @@ func (o *RecipientEvent) GetEventType() EventType {
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetEventTypeOk() (*EventType, bool) {
 	if o == nil || isNil(o.EventType) {
-    return nil, false
+		return nil, false
 	}
 	return o.EventType, true
 }
@@ -274,7 +277,7 @@ func (o *RecipientEvent) GetEventDate() time.Time {
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetEventDateOk() (*time.Time, bool) {
 	if o == nil || isNil(o.EventDate) {
-    return nil, false
+		return nil, false
 	}
 	return o.EventDate, true
 }
@@ -306,7 +309,7 @@ func (o *RecipientEvent) GetChannelName() string {
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetChannelNameOk() (*string, bool) {
 	if o == nil || isNil(o.ChannelName) {
-    return nil, false
+		return nil, false
 	}
 	return o.ChannelName, true
 }
@@ -338,7 +341,7 @@ func (o *RecipientEvent) GetMessageCategory() MessageCategory {
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetMessageCategoryOk() (*MessageCategory, bool) {
 	if o == nil || isNil(o.MessageCategory) {
-    return nil, false
+		return nil, false
 	}
 	return o.MessageCategory, true
 }
@@ -371,7 +374,7 @@ func (o *RecipientEvent) GetNextTryOn() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *RecipientEvent) GetNextTryOnOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.NextTryOn.Get(), o.NextTryOn.IsSet()
 }
@@ -412,7 +415,7 @@ func (o *RecipientEvent) GetMessage() string {
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetMessageOk() (*string, bool) {
 	if o == nil || isNil(o.Message) {
-    return nil, false
+		return nil, false
 	}
 	return o.Message, true
 }
@@ -444,7 +447,7 @@ func (o *RecipientEvent) GetIPAddress() string {
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetIPAddressOk() (*string, bool) {
 	if o == nil || isNil(o.IPAddress) {
-    return nil, false
+		return nil, false
 	}
 	return o.IPAddress, true
 }
@@ -476,7 +479,7 @@ func (o *RecipientEvent) GetPoolName() string {
 // and a boolean to check if the value has been set.
 func (o *RecipientEvent) GetPoolNameOk() (*string, bool) {
 	if o == nil || isNil(o.PoolName) {
-    return nil, false
+		return nil, false
 	}
 	return o.PoolName, true
 }
@@ -496,6 +499,14 @@ func (o *RecipientEvent) SetPoolName(v string) {
 }
 
 func (o RecipientEvent) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o RecipientEvent) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.TransactionID) {
 		toSerialize["TransactionID"] = o.TransactionID
@@ -536,7 +547,7 @@ func (o RecipientEvent) MarshalJSON() ([]byte, error) {
 	if !isNil(o.PoolName) {
 		toSerialize["PoolName"] = o.PoolName
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableRecipientEvent struct {

@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the InboundRoute type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InboundRoute{}
+
 // InboundRoute struct for InboundRoute
 type InboundRoute struct {
 	PublicId *string `json:"PublicId,omitempty"`
@@ -68,7 +71,7 @@ func (o *InboundRoute) GetPublicId() string {
 // and a boolean to check if the value has been set.
 func (o *InboundRoute) GetPublicIdOk() (*string, bool) {
 	if o == nil || isNil(o.PublicId) {
-    return nil, false
+		return nil, false
 	}
 	return o.PublicId, true
 }
@@ -100,7 +103,7 @@ func (o *InboundRoute) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *InboundRoute) GetNameOk() (*string, bool) {
 	if o == nil || isNil(o.Name) {
-    return nil, false
+		return nil, false
 	}
 	return o.Name, true
 }
@@ -132,7 +135,7 @@ func (o *InboundRoute) GetFilterType() InboundRouteFilterType {
 // and a boolean to check if the value has been set.
 func (o *InboundRoute) GetFilterTypeOk() (*InboundRouteFilterType, bool) {
 	if o == nil || isNil(o.FilterType) {
-    return nil, false
+		return nil, false
 	}
 	return o.FilterType, true
 }
@@ -164,7 +167,7 @@ func (o *InboundRoute) GetFilter() string {
 // and a boolean to check if the value has been set.
 func (o *InboundRoute) GetFilterOk() (*string, bool) {
 	if o == nil || isNil(o.Filter) {
-    return nil, false
+		return nil, false
 	}
 	return o.Filter, true
 }
@@ -196,7 +199,7 @@ func (o *InboundRoute) GetActionType() InboundRouteActionType {
 // and a boolean to check if the value has been set.
 func (o *InboundRoute) GetActionTypeOk() (*InboundRouteActionType, bool) {
 	if o == nil || isNil(o.ActionType) {
-    return nil, false
+		return nil, false
 	}
 	return o.ActionType, true
 }
@@ -228,7 +231,7 @@ func (o *InboundRoute) GetActionParameter() string {
 // and a boolean to check if the value has been set.
 func (o *InboundRoute) GetActionParameterOk() (*string, bool) {
 	if o == nil || isNil(o.ActionParameter) {
-    return nil, false
+		return nil, false
 	}
 	return o.ActionParameter, true
 }
@@ -260,7 +263,7 @@ func (o *InboundRoute) GetSortOrder() int32 {
 // and a boolean to check if the value has been set.
 func (o *InboundRoute) GetSortOrderOk() (*int32, bool) {
 	if o == nil || isNil(o.SortOrder) {
-    return nil, false
+		return nil, false
 	}
 	return o.SortOrder, true
 }
@@ -280,6 +283,14 @@ func (o *InboundRoute) SetSortOrder(v int32) {
 }
 
 func (o InboundRoute) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o InboundRoute) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.PublicId) {
 		toSerialize["PublicId"] = o.PublicId
@@ -302,7 +313,7 @@ func (o InboundRoute) MarshalJSON() ([]byte, error) {
 	if !isNil(o.SortOrder) {
 		toSerialize["SortOrder"] = o.SortOrder
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableInboundRoute struct {

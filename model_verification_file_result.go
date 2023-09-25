@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the VerificationFileResult type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VerificationFileResult{}
+
 // VerificationFileResult Simple verification file result info
 type VerificationFileResult struct {
 	// Identifier of this verification result
@@ -64,7 +67,7 @@ func (o *VerificationFileResult) GetVerificationID() string {
 // and a boolean to check if the value has been set.
 func (o *VerificationFileResult) GetVerificationIDOk() (*string, bool) {
 	if o == nil || isNil(o.VerificationID) {
-    return nil, false
+		return nil, false
 	}
 	return o.VerificationID, true
 }
@@ -96,7 +99,7 @@ func (o *VerificationFileResult) GetFilename() string {
 // and a boolean to check if the value has been set.
 func (o *VerificationFileResult) GetFilenameOk() (*string, bool) {
 	if o == nil || isNil(o.Filename) {
-    return nil, false
+		return nil, false
 	}
 	return o.Filename, true
 }
@@ -128,7 +131,7 @@ func (o *VerificationFileResult) GetVerificationStatus() VerificationStatus {
 // and a boolean to check if the value has been set.
 func (o *VerificationFileResult) GetVerificationStatusOk() (*VerificationStatus, bool) {
 	if o == nil || isNil(o.VerificationStatus) {
-    return nil, false
+		return nil, false
 	}
 	return o.VerificationStatus, true
 }
@@ -160,7 +163,7 @@ func (o *VerificationFileResult) GetFileUploadResult() FileUploadResult {
 // and a boolean to check if the value has been set.
 func (o *VerificationFileResult) GetFileUploadResultOk() (*FileUploadResult, bool) {
 	if o == nil || isNil(o.FileUploadResult) {
-    return nil, false
+		return nil, false
 	}
 	return o.FileUploadResult, true
 }
@@ -192,7 +195,7 @@ func (o *VerificationFileResult) GetDateAdded() time.Time {
 // and a boolean to check if the value has been set.
 func (o *VerificationFileResult) GetDateAddedOk() (*time.Time, bool) {
 	if o == nil || isNil(o.DateAdded) {
-    return nil, false
+		return nil, false
 	}
 	return o.DateAdded, true
 }
@@ -224,7 +227,7 @@ func (o *VerificationFileResult) GetSource() string {
 // and a boolean to check if the value has been set.
 func (o *VerificationFileResult) GetSourceOk() (*string, bool) {
 	if o == nil || isNil(o.Source) {
-    return nil, false
+		return nil, false
 	}
 	return o.Source, true
 }
@@ -244,6 +247,14 @@ func (o *VerificationFileResult) SetSource(v string) {
 }
 
 func (o VerificationFileResult) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o VerificationFileResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.VerificationID) {
 		toSerialize["VerificationID"] = o.VerificationID
@@ -263,7 +274,7 @@ func (o VerificationFileResult) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Source) {
 		toSerialize["Source"] = o.Source
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableVerificationFileResult struct {

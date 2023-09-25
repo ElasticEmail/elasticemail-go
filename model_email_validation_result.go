@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the EmailValidationResult type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmailValidationResult{}
+
 // EmailValidationResult struct for EmailValidationResult
 type EmailValidationResult struct {
 	// Local part of an email
@@ -35,6 +38,8 @@ type EmailValidationResult struct {
 	// Date of creation in YYYY-MM-DDThh:ii:ss format
 	DateAdded *time.Time `json:"DateAdded,omitempty"`
 	Result *EmailValidationStatus `json:"Result,omitempty"`
+	PredictedScore *float32 `json:"PredictedScore,omitempty"`
+	PredictedStatus *EmailPredictedValidationStatus `json:"PredictedStatus,omitempty"`
 }
 
 // NewEmailValidationResult instantiates a new EmailValidationResult object
@@ -45,6 +50,8 @@ func NewEmailValidationResult() *EmailValidationResult {
 	this := EmailValidationResult{}
 	var result EmailValidationStatus = NONE
 	this.Result = &result
+	var predictedStatus EmailPredictedValidationStatus = NONE
+	this.PredictedStatus = &predictedStatus
 	return &this
 }
 
@@ -55,6 +62,8 @@ func NewEmailValidationResultWithDefaults() *EmailValidationResult {
 	this := EmailValidationResult{}
 	var result EmailValidationStatus = NONE
 	this.Result = &result
+	var predictedStatus EmailPredictedValidationStatus = NONE
+	this.PredictedStatus = &predictedStatus
 	return &this
 }
 
@@ -71,7 +80,7 @@ func (o *EmailValidationResult) GetAccount() string {
 // and a boolean to check if the value has been set.
 func (o *EmailValidationResult) GetAccountOk() (*string, bool) {
 	if o == nil || isNil(o.Account) {
-    return nil, false
+		return nil, false
 	}
 	return o.Account, true
 }
@@ -103,7 +112,7 @@ func (o *EmailValidationResult) GetDomain() string {
 // and a boolean to check if the value has been set.
 func (o *EmailValidationResult) GetDomainOk() (*string, bool) {
 	if o == nil || isNil(o.Domain) {
-    return nil, false
+		return nil, false
 	}
 	return o.Domain, true
 }
@@ -135,7 +144,7 @@ func (o *EmailValidationResult) GetEmail() string {
 // and a boolean to check if the value has been set.
 func (o *EmailValidationResult) GetEmailOk() (*string, bool) {
 	if o == nil || isNil(o.Email) {
-    return nil, false
+		return nil, false
 	}
 	return o.Email, true
 }
@@ -167,7 +176,7 @@ func (o *EmailValidationResult) GetSuggestedSpelling() string {
 // and a boolean to check if the value has been set.
 func (o *EmailValidationResult) GetSuggestedSpellingOk() (*string, bool) {
 	if o == nil || isNil(o.SuggestedSpelling) {
-    return nil, false
+		return nil, false
 	}
 	return o.SuggestedSpelling, true
 }
@@ -199,7 +208,7 @@ func (o *EmailValidationResult) GetDisposable() bool {
 // and a boolean to check if the value has been set.
 func (o *EmailValidationResult) GetDisposableOk() (*bool, bool) {
 	if o == nil || isNil(o.Disposable) {
-    return nil, false
+		return nil, false
 	}
 	return o.Disposable, true
 }
@@ -231,7 +240,7 @@ func (o *EmailValidationResult) GetRole() bool {
 // and a boolean to check if the value has been set.
 func (o *EmailValidationResult) GetRoleOk() (*bool, bool) {
 	if o == nil || isNil(o.Role) {
-    return nil, false
+		return nil, false
 	}
 	return o.Role, true
 }
@@ -263,7 +272,7 @@ func (o *EmailValidationResult) GetReason() string {
 // and a boolean to check if the value has been set.
 func (o *EmailValidationResult) GetReasonOk() (*string, bool) {
 	if o == nil || isNil(o.Reason) {
-    return nil, false
+		return nil, false
 	}
 	return o.Reason, true
 }
@@ -295,7 +304,7 @@ func (o *EmailValidationResult) GetDateAdded() time.Time {
 // and a boolean to check if the value has been set.
 func (o *EmailValidationResult) GetDateAddedOk() (*time.Time, bool) {
 	if o == nil || isNil(o.DateAdded) {
-    return nil, false
+		return nil, false
 	}
 	return o.DateAdded, true
 }
@@ -327,7 +336,7 @@ func (o *EmailValidationResult) GetResult() EmailValidationStatus {
 // and a boolean to check if the value has been set.
 func (o *EmailValidationResult) GetResultOk() (*EmailValidationStatus, bool) {
 	if o == nil || isNil(o.Result) {
-    return nil, false
+		return nil, false
 	}
 	return o.Result, true
 }
@@ -346,7 +355,79 @@ func (o *EmailValidationResult) SetResult(v EmailValidationStatus) {
 	o.Result = &v
 }
 
+// GetPredictedScore returns the PredictedScore field value if set, zero value otherwise.
+func (o *EmailValidationResult) GetPredictedScore() float32 {
+	if o == nil || isNil(o.PredictedScore) {
+		var ret float32
+		return ret
+	}
+	return *o.PredictedScore
+}
+
+// GetPredictedScoreOk returns a tuple with the PredictedScore field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EmailValidationResult) GetPredictedScoreOk() (*float32, bool) {
+	if o == nil || isNil(o.PredictedScore) {
+		return nil, false
+	}
+	return o.PredictedScore, true
+}
+
+// HasPredictedScore returns a boolean if a field has been set.
+func (o *EmailValidationResult) HasPredictedScore() bool {
+	if o != nil && !isNil(o.PredictedScore) {
+		return true
+	}
+
+	return false
+}
+
+// SetPredictedScore gets a reference to the given float32 and assigns it to the PredictedScore field.
+func (o *EmailValidationResult) SetPredictedScore(v float32) {
+	o.PredictedScore = &v
+}
+
+// GetPredictedStatus returns the PredictedStatus field value if set, zero value otherwise.
+func (o *EmailValidationResult) GetPredictedStatus() EmailPredictedValidationStatus {
+	if o == nil || isNil(o.PredictedStatus) {
+		var ret EmailPredictedValidationStatus
+		return ret
+	}
+	return *o.PredictedStatus
+}
+
+// GetPredictedStatusOk returns a tuple with the PredictedStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EmailValidationResult) GetPredictedStatusOk() (*EmailPredictedValidationStatus, bool) {
+	if o == nil || isNil(o.PredictedStatus) {
+		return nil, false
+	}
+	return o.PredictedStatus, true
+}
+
+// HasPredictedStatus returns a boolean if a field has been set.
+func (o *EmailValidationResult) HasPredictedStatus() bool {
+	if o != nil && !isNil(o.PredictedStatus) {
+		return true
+	}
+
+	return false
+}
+
+// SetPredictedStatus gets a reference to the given EmailPredictedValidationStatus and assigns it to the PredictedStatus field.
+func (o *EmailValidationResult) SetPredictedStatus(v EmailPredictedValidationStatus) {
+	o.PredictedStatus = &v
+}
+
 func (o EmailValidationResult) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o EmailValidationResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Account) {
 		toSerialize["Account"] = o.Account
@@ -375,7 +456,13 @@ func (o EmailValidationResult) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Result) {
 		toSerialize["Result"] = o.Result
 	}
-	return json.Marshal(toSerialize)
+	if !isNil(o.PredictedScore) {
+		toSerialize["PredictedScore"] = o.PredictedScore
+	}
+	if !isNil(o.PredictedStatus) {
+		toSerialize["PredictedStatus"] = o.PredictedStatus
+	}
+	return toSerialize, nil
 }
 
 type NullableEmailValidationResult struct {

@@ -15,12 +15,15 @@ import (
 	"encoding/json"
 )
 
+// checks if the BodyPart type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BodyPart{}
+
 // BodyPart Email body part with user-provided MIME type (text/html, text/plain, etc)
 type BodyPart struct {
 	ContentType BodyContentType `json:"ContentType"`
 	// Actual content of the body part
 	Content *string `json:"Content,omitempty"`
-	// Text value of charset encoding for example: iso-8859-1, windows-1251, utf-8, us-ascii, windows-1250 and more…
+	// Text value of charset encoding for example: iso-8859-1, windows-1251, utf-8, us-ascii, windows-1250 and more...
 	Charset *string `json:"Charset,omitempty"`
 }
 
@@ -58,7 +61,7 @@ func (o *BodyPart) GetContentType() BodyContentType {
 // and a boolean to check if the value has been set.
 func (o *BodyPart) GetContentTypeOk() (*BodyContentType, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.ContentType, true
 }
@@ -81,7 +84,7 @@ func (o *BodyPart) GetContent() string {
 // and a boolean to check if the value has been set.
 func (o *BodyPart) GetContentOk() (*string, bool) {
 	if o == nil || isNil(o.Content) {
-    return nil, false
+		return nil, false
 	}
 	return o.Content, true
 }
@@ -113,7 +116,7 @@ func (o *BodyPart) GetCharset() string {
 // and a boolean to check if the value has been set.
 func (o *BodyPart) GetCharsetOk() (*string, bool) {
 	if o == nil || isNil(o.Charset) {
-    return nil, false
+		return nil, false
 	}
 	return o.Charset, true
 }
@@ -133,17 +136,23 @@ func (o *BodyPart) SetCharset(v string) {
 }
 
 func (o BodyPart) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["ContentType"] = o.ContentType
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o BodyPart) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["ContentType"] = o.ContentType
 	if !isNil(o.Content) {
 		toSerialize["Content"] = o.Content
 	}
 	if !isNil(o.Charset) {
 		toSerialize["Charset"] = o.Charset
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableBodyPart struct {

@@ -65,7 +65,7 @@ func (a *InboundRouteApiService) InboundrouteByIdDeleteExecute(r ApiInboundroute
 	}
 
 	localVarPath := localBasePath + "/inboundroute/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -173,7 +173,7 @@ func (a *InboundRouteApiService) InboundrouteByIdGetExecute(r ApiInboundrouteByI
 	}
 
 	localVarPath := localBasePath + "/inboundroute/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -296,7 +296,7 @@ func (a *InboundRouteApiService) InboundrouteByIdPutExecute(r ApiInboundrouteByI
 	}
 
 	localVarPath := localBasePath + "/inboundroute/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

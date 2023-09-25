@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EmailMessageData type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmailMessageData{}
+
 // EmailMessageData Email data
 type EmailMessageData struct {
 	// List of recipients
@@ -55,7 +58,7 @@ func (o *EmailMessageData) GetRecipients() []EmailRecipient {
 // and a boolean to check if the value has been set.
 func (o *EmailMessageData) GetRecipientsOk() ([]EmailRecipient, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Recipients, true
 }
@@ -78,7 +81,7 @@ func (o *EmailMessageData) GetContent() EmailContent {
 // and a boolean to check if the value has been set.
 func (o *EmailMessageData) GetContentOk() (*EmailContent, bool) {
 	if o == nil || isNil(o.Content) {
-    return nil, false
+		return nil, false
 	}
 	return o.Content, true
 }
@@ -110,7 +113,7 @@ func (o *EmailMessageData) GetOptions() Options {
 // and a boolean to check if the value has been set.
 func (o *EmailMessageData) GetOptionsOk() (*Options, bool) {
 	if o == nil || isNil(o.Options) {
-    return nil, false
+		return nil, false
 	}
 	return o.Options, true
 }
@@ -130,17 +133,23 @@ func (o *EmailMessageData) SetOptions(v Options) {
 }
 
 func (o EmailMessageData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["Recipients"] = o.Recipients
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o EmailMessageData) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["Recipients"] = o.Recipients
 	if !isNil(o.Content) {
 		toSerialize["Content"] = o.Content
 	}
 	if !isNil(o.Options) {
 		toSerialize["Options"] = o.Options
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableEmailMessageData struct {

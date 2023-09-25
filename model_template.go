@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the Template type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Template{}
+
 // Template Template info
 type Template struct {
 	TemplateType *TemplateType `json:"TemplateType,omitempty"`
@@ -68,7 +71,7 @@ func (o *Template) GetTemplateType() TemplateType {
 // and a boolean to check if the value has been set.
 func (o *Template) GetTemplateTypeOk() (*TemplateType, bool) {
 	if o == nil || isNil(o.TemplateType) {
-    return nil, false
+		return nil, false
 	}
 	return o.TemplateType, true
 }
@@ -100,7 +103,7 @@ func (o *Template) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *Template) GetNameOk() (*string, bool) {
 	if o == nil || isNil(o.Name) {
-    return nil, false
+		return nil, false
 	}
 	return o.Name, true
 }
@@ -132,7 +135,7 @@ func (o *Template) GetDateAdded() time.Time {
 // and a boolean to check if the value has been set.
 func (o *Template) GetDateAddedOk() (*time.Time, bool) {
 	if o == nil || isNil(o.DateAdded) {
-    return nil, false
+		return nil, false
 	}
 	return o.DateAdded, true
 }
@@ -164,7 +167,7 @@ func (o *Template) GetSubject() string {
 // and a boolean to check if the value has been set.
 func (o *Template) GetSubjectOk() (*string, bool) {
 	if o == nil || isNil(o.Subject) {
-    return nil, false
+		return nil, false
 	}
 	return o.Subject, true
 }
@@ -196,7 +199,7 @@ func (o *Template) GetBody() []BodyPart {
 // and a boolean to check if the value has been set.
 func (o *Template) GetBodyOk() ([]BodyPart, bool) {
 	if o == nil || isNil(o.Body) {
-    return nil, false
+		return nil, false
 	}
 	return o.Body, true
 }
@@ -228,7 +231,7 @@ func (o *Template) GetTemplateScope() TemplateScope {
 // and a boolean to check if the value has been set.
 func (o *Template) GetTemplateScopeOk() (*TemplateScope, bool) {
 	if o == nil || isNil(o.TemplateScope) {
-    return nil, false
+		return nil, false
 	}
 	return o.TemplateScope, true
 }
@@ -248,6 +251,14 @@ func (o *Template) SetTemplateScope(v TemplateScope) {
 }
 
 func (o Template) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Template) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.TemplateType) {
 		toSerialize["TemplateType"] = o.TemplateType
@@ -267,7 +278,7 @@ func (o Template) MarshalJSON() ([]byte, error) {
 	if !isNil(o.TemplateScope) {
 		toSerialize["TemplateScope"] = o.TemplateScope
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableTemplate struct {

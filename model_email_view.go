@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EmailView type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmailView{}
+
 // EmailView Email details formatted in json
 type EmailView struct {
 	// Body (HTML, otherwise plain text) of email
@@ -55,7 +58,7 @@ func (o *EmailView) GetBody() string {
 // and a boolean to check if the value has been set.
 func (o *EmailView) GetBodyOk() (*string, bool) {
 	if o == nil || isNil(o.Body) {
-    return nil, false
+		return nil, false
 	}
 	return o.Body, true
 }
@@ -87,7 +90,7 @@ func (o *EmailView) GetSubject() string {
 // and a boolean to check if the value has been set.
 func (o *EmailView) GetSubjectOk() (*string, bool) {
 	if o == nil || isNil(o.Subject) {
-    return nil, false
+		return nil, false
 	}
 	return o.Subject, true
 }
@@ -119,7 +122,7 @@ func (o *EmailView) GetFrom() string {
 // and a boolean to check if the value has been set.
 func (o *EmailView) GetFromOk() (*string, bool) {
 	if o == nil || isNil(o.From) {
-    return nil, false
+		return nil, false
 	}
 	return o.From, true
 }
@@ -139,6 +142,14 @@ func (o *EmailView) SetFrom(v string) {
 }
 
 func (o EmailView) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o EmailView) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Body) {
 		toSerialize["Body"] = o.Body
@@ -149,7 +160,7 @@ func (o EmailView) MarshalJSON() ([]byte, error) {
 	if !isNil(o.From) {
 		toSerialize["From"] = o.From
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableEmailView struct {

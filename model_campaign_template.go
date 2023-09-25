@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CampaignTemplate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CampaignTemplate{}
+
 // CampaignTemplate Content of a Campaign
 type CampaignTemplate struct {
 	// Name of your custom IP Pool to be used in the sending process
@@ -62,7 +65,7 @@ func (o *CampaignTemplate) GetPoolname() string {
 // and a boolean to check if the value has been set.
 func (o *CampaignTemplate) GetPoolnameOk() (*string, bool) {
 	if o == nil || isNil(o.Poolname) {
-    return nil, false
+		return nil, false
 	}
 	return o.Poolname, true
 }
@@ -94,7 +97,7 @@ func (o *CampaignTemplate) GetFrom() string {
 // and a boolean to check if the value has been set.
 func (o *CampaignTemplate) GetFromOk() (*string, bool) {
 	if o == nil || isNil(o.From) {
-    return nil, false
+		return nil, false
 	}
 	return o.From, true
 }
@@ -126,7 +129,7 @@ func (o *CampaignTemplate) GetReplyTo() string {
 // and a boolean to check if the value has been set.
 func (o *CampaignTemplate) GetReplyToOk() (*string, bool) {
 	if o == nil || isNil(o.ReplyTo) {
-    return nil, false
+		return nil, false
 	}
 	return o.ReplyTo, true
 }
@@ -158,7 +161,7 @@ func (o *CampaignTemplate) GetSubject() string {
 // and a boolean to check if the value has been set.
 func (o *CampaignTemplate) GetSubjectOk() (*string, bool) {
 	if o == nil || isNil(o.Subject) {
-    return nil, false
+		return nil, false
 	}
 	return o.Subject, true
 }
@@ -190,7 +193,7 @@ func (o *CampaignTemplate) GetTemplateName() string {
 // and a boolean to check if the value has been set.
 func (o *CampaignTemplate) GetTemplateNameOk() (*string, bool) {
 	if o == nil || isNil(o.TemplateName) {
-    return nil, false
+		return nil, false
 	}
 	return o.TemplateName, true
 }
@@ -222,7 +225,7 @@ func (o *CampaignTemplate) GetAttachFiles() []string {
 // and a boolean to check if the value has been set.
 func (o *CampaignTemplate) GetAttachFilesOk() ([]string, bool) {
 	if o == nil || isNil(o.AttachFiles) {
-    return nil, false
+		return nil, false
 	}
 	return o.AttachFiles, true
 }
@@ -254,7 +257,7 @@ func (o *CampaignTemplate) GetUtm() Utm {
 // and a boolean to check if the value has been set.
 func (o *CampaignTemplate) GetUtmOk() (*Utm, bool) {
 	if o == nil || isNil(o.Utm) {
-    return nil, false
+		return nil, false
 	}
 	return o.Utm, true
 }
@@ -274,6 +277,14 @@ func (o *CampaignTemplate) SetUtm(v Utm) {
 }
 
 func (o CampaignTemplate) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CampaignTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Poolname) {
 		toSerialize["Poolname"] = o.Poolname
@@ -296,7 +307,7 @@ func (o CampaignTemplate) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Utm) {
 		toSerialize["Utm"] = o.Utm
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCampaignTemplate struct {

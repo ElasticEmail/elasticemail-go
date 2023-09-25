@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SplitOptions type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SplitOptions{}
+
 // SplitOptions Optional A/X split campaign options
 type SplitOptions struct {
 	OptimizeFor *SplitOptimizationType `json:"OptimizeFor,omitempty"`
@@ -56,7 +59,7 @@ func (o *SplitOptions) GetOptimizeFor() SplitOptimizationType {
 // and a boolean to check if the value has been set.
 func (o *SplitOptions) GetOptimizeForOk() (*SplitOptimizationType, bool) {
 	if o == nil || isNil(o.OptimizeFor) {
-    return nil, false
+		return nil, false
 	}
 	return o.OptimizeFor, true
 }
@@ -88,7 +91,7 @@ func (o *SplitOptions) GetOptimizePeriodMinutes() int32 {
 // and a boolean to check if the value has been set.
 func (o *SplitOptions) GetOptimizePeriodMinutesOk() (*int32, bool) {
 	if o == nil || isNil(o.OptimizePeriodMinutes) {
-    return nil, false
+		return nil, false
 	}
 	return o.OptimizePeriodMinutes, true
 }
@@ -108,6 +111,14 @@ func (o *SplitOptions) SetOptimizePeriodMinutes(v int32) {
 }
 
 func (o SplitOptions) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SplitOptions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.OptimizeFor) {
 		toSerialize["OptimizeFor"] = o.OptimizeFor
@@ -115,7 +126,7 @@ func (o SplitOptions) MarshalJSON() ([]byte, error) {
 	if !isNil(o.OptimizePeriodMinutes) {
 		toSerialize["OptimizePeriodMinutes"] = o.OptimizePeriodMinutes
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSplitOptions struct {

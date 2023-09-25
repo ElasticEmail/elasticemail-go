@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ExportLink type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ExportLink{}
+
 // ExportLink struct for ExportLink
 type ExportLink struct {
 	// Direct URL to the exported file
@@ -53,7 +56,7 @@ func (o *ExportLink) GetLink() string {
 // and a boolean to check if the value has been set.
 func (o *ExportLink) GetLinkOk() (*string, bool) {
 	if o == nil || isNil(o.Link) {
-    return nil, false
+		return nil, false
 	}
 	return o.Link, true
 }
@@ -85,7 +88,7 @@ func (o *ExportLink) GetPublicExportID() string {
 // and a boolean to check if the value has been set.
 func (o *ExportLink) GetPublicExportIDOk() (*string, bool) {
 	if o == nil || isNil(o.PublicExportID) {
-    return nil, false
+		return nil, false
 	}
 	return o.PublicExportID, true
 }
@@ -105,6 +108,14 @@ func (o *ExportLink) SetPublicExportID(v string) {
 }
 
 func (o ExportLink) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ExportLink) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Link) {
 		toSerialize["Link"] = o.Link
@@ -112,7 +123,7 @@ func (o ExportLink) MarshalJSON() ([]byte, error) {
 	if !isNil(o.PublicExportID) {
 		toSerialize["PublicExportID"] = o.PublicExportID
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableExportLink struct {

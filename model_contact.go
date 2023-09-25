@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the Contact type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Contact{}
+
 // Contact Contact
 type Contact struct {
 	// Proper email address.
@@ -76,7 +79,7 @@ func (o *Contact) GetEmail() string {
 // and a boolean to check if the value has been set.
 func (o *Contact) GetEmailOk() (*string, bool) {
 	if o == nil || isNil(o.Email) {
-    return nil, false
+		return nil, false
 	}
 	return o.Email, true
 }
@@ -108,7 +111,7 @@ func (o *Contact) GetStatus() ContactStatus {
 // and a boolean to check if the value has been set.
 func (o *Contact) GetStatusOk() (*ContactStatus, bool) {
 	if o == nil || isNil(o.Status) {
-    return nil, false
+		return nil, false
 	}
 	return o.Status, true
 }
@@ -140,7 +143,7 @@ func (o *Contact) GetFirstName() string {
 // and a boolean to check if the value has been set.
 func (o *Contact) GetFirstNameOk() (*string, bool) {
 	if o == nil || isNil(o.FirstName) {
-    return nil, false
+		return nil, false
 	}
 	return o.FirstName, true
 }
@@ -172,7 +175,7 @@ func (o *Contact) GetLastName() string {
 // and a boolean to check if the value has been set.
 func (o *Contact) GetLastNameOk() (*string, bool) {
 	if o == nil || isNil(o.LastName) {
-    return nil, false
+		return nil, false
 	}
 	return o.LastName, true
 }
@@ -204,7 +207,7 @@ func (o *Contact) GetCustomFields() map[string]string {
 // and a boolean to check if the value has been set.
 func (o *Contact) GetCustomFieldsOk() (*map[string]string, bool) {
 	if o == nil || isNil(o.CustomFields) {
-    return nil, false
+		return nil, false
 	}
 	return o.CustomFields, true
 }
@@ -236,7 +239,7 @@ func (o *Contact) GetConsent() ConsentData {
 // and a boolean to check if the value has been set.
 func (o *Contact) GetConsentOk() (*ConsentData, bool) {
 	if o == nil || isNil(o.Consent) {
-    return nil, false
+		return nil, false
 	}
 	return o.Consent, true
 }
@@ -268,7 +271,7 @@ func (o *Contact) GetSource() ContactSource {
 // and a boolean to check if the value has been set.
 func (o *Contact) GetSourceOk() (*ContactSource, bool) {
 	if o == nil || isNil(o.Source) {
-    return nil, false
+		return nil, false
 	}
 	return o.Source, true
 }
@@ -300,7 +303,7 @@ func (o *Contact) GetDateAdded() time.Time {
 // and a boolean to check if the value has been set.
 func (o *Contact) GetDateAddedOk() (*time.Time, bool) {
 	if o == nil || isNil(o.DateAdded) {
-    return nil, false
+		return nil, false
 	}
 	return o.DateAdded, true
 }
@@ -333,7 +336,7 @@ func (o *Contact) GetDateUpdated() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Contact) GetDateUpdatedOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.DateUpdated.Get(), o.DateUpdated.IsSet()
 }
@@ -375,7 +378,7 @@ func (o *Contact) GetStatusChangeDate() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Contact) GetStatusChangeDateOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.StatusChangeDate.Get(), o.StatusChangeDate.IsSet()
 }
@@ -416,7 +419,7 @@ func (o *Contact) GetActivity() ContactActivity {
 // and a boolean to check if the value has been set.
 func (o *Contact) GetActivityOk() (*ContactActivity, bool) {
 	if o == nil || isNil(o.Activity) {
-    return nil, false
+		return nil, false
 	}
 	return o.Activity, true
 }
@@ -436,6 +439,14 @@ func (o *Contact) SetActivity(v ContactActivity) {
 }
 
 func (o Contact) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Contact) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Email) {
 		toSerialize["Email"] = o.Email
@@ -470,7 +481,7 @@ func (o Contact) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Activity) {
 		toSerialize["Activity"] = o.Activity
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableContact struct {

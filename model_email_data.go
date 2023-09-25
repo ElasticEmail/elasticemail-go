@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EmailData type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmailData{}
+
 // EmailData struct for EmailData
 type EmailData struct {
 	Preview *EmailView `json:"Preview,omitempty"`
@@ -53,7 +56,7 @@ func (o *EmailData) GetPreview() EmailView {
 // and a boolean to check if the value has been set.
 func (o *EmailData) GetPreviewOk() (*EmailView, bool) {
 	if o == nil || isNil(o.Preview) {
-    return nil, false
+		return nil, false
 	}
 	return o.Preview, true
 }
@@ -85,7 +88,7 @@ func (o *EmailData) GetAttachments() []FileInfo {
 // and a boolean to check if the value has been set.
 func (o *EmailData) GetAttachmentsOk() ([]FileInfo, bool) {
 	if o == nil || isNil(o.Attachments) {
-    return nil, false
+		return nil, false
 	}
 	return o.Attachments, true
 }
@@ -117,7 +120,7 @@ func (o *EmailData) GetStatus() EmailStatus {
 // and a boolean to check if the value has been set.
 func (o *EmailData) GetStatusOk() (*EmailStatus, bool) {
 	if o == nil || isNil(o.Status) {
-    return nil, false
+		return nil, false
 	}
 	return o.Status, true
 }
@@ -137,6 +140,14 @@ func (o *EmailData) SetStatus(v EmailStatus) {
 }
 
 func (o EmailData) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o EmailData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Preview) {
 		toSerialize["Preview"] = o.Preview
@@ -147,7 +158,7 @@ func (o EmailData) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Status) {
 		toSerialize["Status"] = o.Status
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableEmailData struct {

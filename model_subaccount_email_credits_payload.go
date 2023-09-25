@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SubaccountEmailCreditsPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SubaccountEmailCreditsPayload{}
+
 // SubaccountEmailCreditsPayload A change to SubAccount email credits pool, with an additional note.
 type SubaccountEmailCreditsPayload struct {
 	// Positive or negative value; this will be added or subtracted from Subaccount's current email Credits pool.
@@ -55,7 +58,7 @@ func (o *SubaccountEmailCreditsPayload) GetCredits() int32 {
 // and a boolean to check if the value has been set.
 func (o *SubaccountEmailCreditsPayload) GetCreditsOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Credits, true
 }
@@ -78,7 +81,7 @@ func (o *SubaccountEmailCreditsPayload) GetNotes() string {
 // and a boolean to check if the value has been set.
 func (o *SubaccountEmailCreditsPayload) GetNotesOk() (*string, bool) {
 	if o == nil || isNil(o.Notes) {
-    return nil, false
+		return nil, false
 	}
 	return o.Notes, true
 }
@@ -98,14 +101,20 @@ func (o *SubaccountEmailCreditsPayload) SetNotes(v string) {
 }
 
 func (o SubaccountEmailCreditsPayload) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["Credits"] = o.Credits
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SubaccountEmailCreditsPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["Credits"] = o.Credits
 	if !isNil(o.Notes) {
 		toSerialize["Notes"] = o.Notes
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSubaccountEmailCreditsPayload struct {

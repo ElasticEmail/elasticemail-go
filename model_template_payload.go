@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TemplatePayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TemplatePayload{}
+
 // TemplatePayload New template object
 type TemplatePayload struct {
 	// Template name
@@ -62,7 +65,7 @@ func (o *TemplatePayload) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *TemplatePayload) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -85,7 +88,7 @@ func (o *TemplatePayload) GetSubject() string {
 // and a boolean to check if the value has been set.
 func (o *TemplatePayload) GetSubjectOk() (*string, bool) {
 	if o == nil || isNil(o.Subject) {
-    return nil, false
+		return nil, false
 	}
 	return o.Subject, true
 }
@@ -117,7 +120,7 @@ func (o *TemplatePayload) GetBody() []BodyPart {
 // and a boolean to check if the value has been set.
 func (o *TemplatePayload) GetBodyOk() ([]BodyPart, bool) {
 	if o == nil || isNil(o.Body) {
-    return nil, false
+		return nil, false
 	}
 	return o.Body, true
 }
@@ -149,7 +152,7 @@ func (o *TemplatePayload) GetTemplateScope() TemplateScope {
 // and a boolean to check if the value has been set.
 func (o *TemplatePayload) GetTemplateScopeOk() (*TemplateScope, bool) {
 	if o == nil || isNil(o.TemplateScope) {
-    return nil, false
+		return nil, false
 	}
 	return o.TemplateScope, true
 }
@@ -169,10 +172,16 @@ func (o *TemplatePayload) SetTemplateScope(v TemplateScope) {
 }
 
 func (o TemplatePayload) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["Name"] = o.Name
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o TemplatePayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["Name"] = o.Name
 	if !isNil(o.Subject) {
 		toSerialize["Subject"] = o.Subject
 	}
@@ -182,7 +191,7 @@ func (o TemplatePayload) MarshalJSON() ([]byte, error) {
 	if !isNil(o.TemplateScope) {
 		toSerialize["TemplateScope"] = o.TemplateScope
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableTemplatePayload struct {

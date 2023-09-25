@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the InboundPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InboundPayload{}
+
 // InboundPayload struct for InboundPayload
 type InboundPayload struct {
 	// Filter of the inbound data
@@ -68,7 +71,7 @@ func (o *InboundPayload) GetFilter() string {
 // and a boolean to check if the value has been set.
 func (o *InboundPayload) GetFilterOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Filter, true
 }
@@ -92,7 +95,7 @@ func (o *InboundPayload) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *InboundPayload) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -116,7 +119,7 @@ func (o *InboundPayload) GetFilterType() InboundRouteFilterType {
 // and a boolean to check if the value has been set.
 func (o *InboundPayload) GetFilterTypeOk() (*InboundRouteFilterType, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.FilterType, true
 }
@@ -140,7 +143,7 @@ func (o *InboundPayload) GetActionType() InboundRouteActionType {
 // and a boolean to check if the value has been set.
 func (o *InboundPayload) GetActionTypeOk() (*InboundRouteActionType, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.ActionType, true
 }
@@ -163,7 +166,7 @@ func (o *InboundPayload) GetEmailAddress() string {
 // and a boolean to check if the value has been set.
 func (o *InboundPayload) GetEmailAddressOk() (*string, bool) {
 	if o == nil || isNil(o.EmailAddress) {
-    return nil, false
+		return nil, false
 	}
 	return o.EmailAddress, true
 }
@@ -195,7 +198,7 @@ func (o *InboundPayload) GetHttpAddress() string {
 // and a boolean to check if the value has been set.
 func (o *InboundPayload) GetHttpAddressOk() (*string, bool) {
 	if o == nil || isNil(o.HttpAddress) {
-    return nil, false
+		return nil, false
 	}
 	return o.HttpAddress, true
 }
@@ -215,26 +218,26 @@ func (o *InboundPayload) SetHttpAddress(v string) {
 }
 
 func (o InboundPayload) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o InboundPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["Filter"] = o.Filter
-	}
-	if true {
-		toSerialize["Name"] = o.Name
-	}
-	if true {
-		toSerialize["FilterType"] = o.FilterType
-	}
-	if true {
-		toSerialize["ActionType"] = o.ActionType
-	}
+	toSerialize["Filter"] = o.Filter
+	toSerialize["Name"] = o.Name
+	toSerialize["FilterType"] = o.FilterType
+	toSerialize["ActionType"] = o.ActionType
 	if !isNil(o.EmailAddress) {
 		toSerialize["EmailAddress"] = o.EmailAddress
 	}
 	if !isNil(o.HttpAddress) {
 		toSerialize["HttpAddress"] = o.HttpAddress
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableInboundPayload struct {

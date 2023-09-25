@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the Suppression type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Suppression{}
+
 // Suppression Suppression - Email returning Hard Bounces
 type Suppression struct {
 	// Proper email address.
@@ -58,7 +61,7 @@ func (o *Suppression) GetEmail() string {
 // and a boolean to check if the value has been set.
 func (o *Suppression) GetEmailOk() (*string, bool) {
 	if o == nil || isNil(o.Email) {
-    return nil, false
+		return nil, false
 	}
 	return o.Email, true
 }
@@ -90,7 +93,7 @@ func (o *Suppression) GetFriendlyErrorMessage() string {
 // and a boolean to check if the value has been set.
 func (o *Suppression) GetFriendlyErrorMessageOk() (*string, bool) {
 	if o == nil || isNil(o.FriendlyErrorMessage) {
-    return nil, false
+		return nil, false
 	}
 	return o.FriendlyErrorMessage, true
 }
@@ -123,7 +126,7 @@ func (o *Suppression) GetErrorCode() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Suppression) GetErrorCodeOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.ErrorCode.Get(), o.ErrorCode.IsSet()
 }
@@ -165,7 +168,7 @@ func (o *Suppression) GetDateUpdated() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Suppression) GetDateUpdatedOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.DateUpdated.Get(), o.DateUpdated.IsSet()
 }
@@ -194,6 +197,14 @@ func (o *Suppression) UnsetDateUpdated() {
 }
 
 func (o Suppression) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Suppression) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Email) {
 		toSerialize["Email"] = o.Email
@@ -207,7 +218,7 @@ func (o Suppression) MarshalJSON() ([]byte, error) {
 	if o.DateUpdated.IsSet() {
 		toSerialize["DateUpdated"] = o.DateUpdated.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSuppression struct {

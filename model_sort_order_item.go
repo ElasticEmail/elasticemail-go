@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SortOrderItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SortOrderItem{}
+
 // SortOrderItem Change the ordering of this inbound route for when matching the inbound
 type SortOrderItem struct {
 	// ID of the route to change the order of
@@ -56,7 +59,7 @@ func (o *SortOrderItem) GetPublicInboundId() string {
 // and a boolean to check if the value has been set.
 func (o *SortOrderItem) GetPublicInboundIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.PublicInboundId, true
 }
@@ -80,7 +83,7 @@ func (o *SortOrderItem) GetSortOrder() int32 {
 // and a boolean to check if the value has been set.
 func (o *SortOrderItem) GetSortOrderOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.SortOrder, true
 }
@@ -91,14 +94,18 @@ func (o *SortOrderItem) SetSortOrder(v int32) {
 }
 
 func (o SortOrderItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["PublicInboundId"] = o.PublicInboundId
-	}
-	if true {
-		toSerialize["SortOrder"] = o.SortOrder
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SortOrderItem) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["PublicInboundId"] = o.PublicInboundId
+	toSerialize["SortOrder"] = o.SortOrder
+	return toSerialize, nil
 }
 
 type NullableSortOrderItem struct {

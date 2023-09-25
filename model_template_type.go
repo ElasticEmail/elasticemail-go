@@ -24,6 +24,7 @@ const (
 	RAW_HTML TemplateType = "RawHTML"
 	DRAG_DROP_EDITOR TemplateType = "DragDropEditor"
 	LANDING_PAGE_EDITOR TemplateType = "LandingPageEditor"
+	TEMPLATE_EDITOR TemplateType = "TemplateEditor"
 )
 
 // All allowed values of TemplateType enum
@@ -31,6 +32,7 @@ var AllowedTemplateTypeEnumValues = []TemplateType{
 	"RawHTML",
 	"DragDropEditor",
 	"LandingPageEditor",
+	"TemplateEditor",
 }
 
 func (v *TemplateType) UnmarshalJSON(src []byte) error {

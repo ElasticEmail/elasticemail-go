@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the ApiKey type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiKey{}
+
 // ApiKey ApiKey info
 type ApiKey struct {
 	// Access level or permission to be assigned to this ApiKey.
@@ -62,7 +65,7 @@ func (o *ApiKey) GetAccessLevel() []AccessLevel {
 // and a boolean to check if the value has been set.
 func (o *ApiKey) GetAccessLevelOk() ([]AccessLevel, bool) {
 	if o == nil || isNil(o.AccessLevel) {
-    return nil, false
+		return nil, false
 	}
 	return o.AccessLevel, true
 }
@@ -94,7 +97,7 @@ func (o *ApiKey) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *ApiKey) GetNameOk() (*string, bool) {
 	if o == nil || isNil(o.Name) {
-    return nil, false
+		return nil, false
 	}
 	return o.Name, true
 }
@@ -126,7 +129,7 @@ func (o *ApiKey) GetDateCreated() time.Time {
 // and a boolean to check if the value has been set.
 func (o *ApiKey) GetDateCreatedOk() (*time.Time, bool) {
 	if o == nil || isNil(o.DateCreated) {
-    return nil, false
+		return nil, false
 	}
 	return o.DateCreated, true
 }
@@ -159,7 +162,7 @@ func (o *ApiKey) GetLastUse() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ApiKey) GetLastUseOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.LastUse.Get(), o.LastUse.IsSet()
 }
@@ -201,7 +204,7 @@ func (o *ApiKey) GetExpires() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ApiKey) GetExpiresOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Expires.Get(), o.Expires.IsSet()
 }
@@ -242,7 +245,7 @@ func (o *ApiKey) GetRestrictAccessToIPRange() []string {
 // and a boolean to check if the value has been set.
 func (o *ApiKey) GetRestrictAccessToIPRangeOk() ([]string, bool) {
 	if o == nil || isNil(o.RestrictAccessToIPRange) {
-    return nil, false
+		return nil, false
 	}
 	return o.RestrictAccessToIPRange, true
 }
@@ -262,6 +265,14 @@ func (o *ApiKey) SetRestrictAccessToIPRange(v []string) {
 }
 
 func (o ApiKey) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ApiKey) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AccessLevel) {
 		toSerialize["AccessLevel"] = o.AccessLevel
@@ -281,7 +292,7 @@ func (o ApiKey) MarshalJSON() ([]byte, error) {
 	if !isNil(o.RestrictAccessToIPRange) {
 		toSerialize["RestrictAccessToIPRange"] = o.RestrictAccessToIPRange
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableApiKey struct {

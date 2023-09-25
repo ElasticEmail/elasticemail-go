@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the ContactsList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ContactsList{}
+
 // ContactsList List of Lists, with detailed data about its contents.
 type ContactsList struct {
 	// Name of your list.
@@ -58,7 +61,7 @@ func (o *ContactsList) GetListName() string {
 // and a boolean to check if the value has been set.
 func (o *ContactsList) GetListNameOk() (*string, bool) {
 	if o == nil || isNil(o.ListName) {
-    return nil, false
+		return nil, false
 	}
 	return o.ListName, true
 }
@@ -91,7 +94,7 @@ func (o *ContactsList) GetPublicListID() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ContactsList) GetPublicListIDOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.PublicListID.Get(), o.PublicListID.IsSet()
 }
@@ -132,7 +135,7 @@ func (o *ContactsList) GetDateAdded() time.Time {
 // and a boolean to check if the value has been set.
 func (o *ContactsList) GetDateAddedOk() (*time.Time, bool) {
 	if o == nil || isNil(o.DateAdded) {
-    return nil, false
+		return nil, false
 	}
 	return o.DateAdded, true
 }
@@ -164,7 +167,7 @@ func (o *ContactsList) GetAllowUnsubscribe() bool {
 // and a boolean to check if the value has been set.
 func (o *ContactsList) GetAllowUnsubscribeOk() (*bool, bool) {
 	if o == nil || isNil(o.AllowUnsubscribe) {
-    return nil, false
+		return nil, false
 	}
 	return o.AllowUnsubscribe, true
 }
@@ -184,6 +187,14 @@ func (o *ContactsList) SetAllowUnsubscribe(v bool) {
 }
 
 func (o ContactsList) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ContactsList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.ListName) {
 		toSerialize["ListName"] = o.ListName
@@ -197,7 +208,7 @@ func (o ContactsList) MarshalJSON() ([]byte, error) {
 	if !isNil(o.AllowUnsubscribe) {
 		toSerialize["AllowUnsubscribe"] = o.AllowUnsubscribe
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableContactsList struct {

@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the SmtpCredentialsPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SmtpCredentialsPayload{}
+
 // SmtpCredentialsPayload Create new SMTP Credentials
 type SmtpCredentialsPayload struct {
 	// Name of the Credential for ease of reference. It must be a valid email address.
@@ -60,7 +63,7 @@ func (o *SmtpCredentialsPayload) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *SmtpCredentialsPayload) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -84,7 +87,7 @@ func (o *SmtpCredentialsPayload) GetExpires() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SmtpCredentialsPayload) GetExpiresOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Expires.Get(), o.Expires.IsSet()
 }
@@ -125,7 +128,7 @@ func (o *SmtpCredentialsPayload) GetRestrictAccessToIPRange() []string {
 // and a boolean to check if the value has been set.
 func (o *SmtpCredentialsPayload) GetRestrictAccessToIPRangeOk() ([]string, bool) {
 	if o == nil || isNil(o.RestrictAccessToIPRange) {
-    return nil, false
+		return nil, false
 	}
 	return o.RestrictAccessToIPRange, true
 }
@@ -157,7 +160,7 @@ func (o *SmtpCredentialsPayload) GetSubaccount() string {
 // and a boolean to check if the value has been set.
 func (o *SmtpCredentialsPayload) GetSubaccountOk() (*string, bool) {
 	if o == nil || isNil(o.Subaccount) {
-    return nil, false
+		return nil, false
 	}
 	return o.Subaccount, true
 }
@@ -177,10 +180,16 @@ func (o *SmtpCredentialsPayload) SetSubaccount(v string) {
 }
 
 func (o SmtpCredentialsPayload) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["Name"] = o.Name
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SmtpCredentialsPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["Name"] = o.Name
 	if o.Expires.IsSet() {
 		toSerialize["Expires"] = o.Expires.Get()
 	}
@@ -190,7 +199,7 @@ func (o SmtpCredentialsPayload) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Subaccount) {
 		toSerialize["Subaccount"] = o.Subaccount
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSmtpCredentialsPayload struct {

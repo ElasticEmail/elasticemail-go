@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the ConsentData type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ConsentData{}
+
 // ConsentData struct for ConsentData
 type ConsentData struct {
 	// IP address of consent to send this contact(s) your email. If not provided your current public IP address is used for consent.
@@ -59,7 +62,7 @@ func (o *ConsentData) GetConsentIP() string {
 // and a boolean to check if the value has been set.
 func (o *ConsentData) GetConsentIPOk() (*string, bool) {
 	if o == nil || isNil(o.ConsentIP) {
-    return nil, false
+		return nil, false
 	}
 	return o.ConsentIP, true
 }
@@ -92,7 +95,7 @@ func (o *ConsentData) GetConsentDate() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ConsentData) GetConsentDateOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.ConsentDate.Get(), o.ConsentDate.IsSet()
 }
@@ -133,7 +136,7 @@ func (o *ConsentData) GetConsentTracking() ConsentTracking {
 // and a boolean to check if the value has been set.
 func (o *ConsentData) GetConsentTrackingOk() (*ConsentTracking, bool) {
 	if o == nil || isNil(o.ConsentTracking) {
-    return nil, false
+		return nil, false
 	}
 	return o.ConsentTracking, true
 }
@@ -153,6 +156,14 @@ func (o *ConsentData) SetConsentTracking(v ConsentTracking) {
 }
 
 func (o ConsentData) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ConsentData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.ConsentIP) {
 		toSerialize["ConsentIP"] = o.ConsentIP
@@ -163,7 +174,7 @@ func (o ConsentData) MarshalJSON() ([]byte, error) {
 	if !isNil(o.ConsentTracking) {
 		toSerialize["ConsentTracking"] = o.ConsentTracking
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableConsentData struct {

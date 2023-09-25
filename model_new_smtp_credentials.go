@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the NewSmtpCredentials type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NewSmtpCredentials{}
+
 // NewSmtpCredentials Newly generated SMTP Credentials with Token
 type NewSmtpCredentials struct {
 	// Unique token to be used in the system
@@ -67,7 +70,7 @@ func (o *NewSmtpCredentials) GetToken() string {
 // and a boolean to check if the value has been set.
 func (o *NewSmtpCredentials) GetTokenOk() (*string, bool) {
 	if o == nil || isNil(o.Token) {
-    return nil, false
+		return nil, false
 	}
 	return o.Token, true
 }
@@ -99,7 +102,7 @@ func (o *NewSmtpCredentials) GetAccessLevel() AccessLevel {
 // and a boolean to check if the value has been set.
 func (o *NewSmtpCredentials) GetAccessLevelOk() (*AccessLevel, bool) {
 	if o == nil || isNil(o.AccessLevel) {
-    return nil, false
+		return nil, false
 	}
 	return o.AccessLevel, true
 }
@@ -131,7 +134,7 @@ func (o *NewSmtpCredentials) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *NewSmtpCredentials) GetNameOk() (*string, bool) {
 	if o == nil || isNil(o.Name) {
-    return nil, false
+		return nil, false
 	}
 	return o.Name, true
 }
@@ -163,7 +166,7 @@ func (o *NewSmtpCredentials) GetDateCreated() time.Time {
 // and a boolean to check if the value has been set.
 func (o *NewSmtpCredentials) GetDateCreatedOk() (*time.Time, bool) {
 	if o == nil || isNil(o.DateCreated) {
-    return nil, false
+		return nil, false
 	}
 	return o.DateCreated, true
 }
@@ -196,7 +199,7 @@ func (o *NewSmtpCredentials) GetLastUse() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NewSmtpCredentials) GetLastUseOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.LastUse.Get(), o.LastUse.IsSet()
 }
@@ -238,7 +241,7 @@ func (o *NewSmtpCredentials) GetExpires() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NewSmtpCredentials) GetExpiresOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Expires.Get(), o.Expires.IsSet()
 }
@@ -279,7 +282,7 @@ func (o *NewSmtpCredentials) GetRestrictAccessToIPRange() []string {
 // and a boolean to check if the value has been set.
 func (o *NewSmtpCredentials) GetRestrictAccessToIPRangeOk() ([]string, bool) {
 	if o == nil || isNil(o.RestrictAccessToIPRange) {
-    return nil, false
+		return nil, false
 	}
 	return o.RestrictAccessToIPRange, true
 }
@@ -299,6 +302,14 @@ func (o *NewSmtpCredentials) SetRestrictAccessToIPRange(v []string) {
 }
 
 func (o NewSmtpCredentials) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o NewSmtpCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Token) {
 		toSerialize["Token"] = o.Token
@@ -321,7 +332,7 @@ func (o NewSmtpCredentials) MarshalJSON() ([]byte, error) {
 	if !isNil(o.RestrictAccessToIPRange) {
 		toSerialize["RestrictAccessToIPRange"] = o.RestrictAccessToIPRange
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableNewSmtpCredentials struct {

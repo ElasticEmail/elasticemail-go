@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EmailTransactionalMessageData type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmailTransactionalMessageData{}
+
 // EmailTransactionalMessageData Email data
 type EmailTransactionalMessageData struct {
 	Recipients TransactionalRecipient `json:"Recipients"`
@@ -54,7 +57,7 @@ func (o *EmailTransactionalMessageData) GetRecipients() TransactionalRecipient {
 // and a boolean to check if the value has been set.
 func (o *EmailTransactionalMessageData) GetRecipientsOk() (*TransactionalRecipient, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Recipients, true
 }
@@ -77,7 +80,7 @@ func (o *EmailTransactionalMessageData) GetContent() EmailContent {
 // and a boolean to check if the value has been set.
 func (o *EmailTransactionalMessageData) GetContentOk() (*EmailContent, bool) {
 	if o == nil || isNil(o.Content) {
-    return nil, false
+		return nil, false
 	}
 	return o.Content, true
 }
@@ -109,7 +112,7 @@ func (o *EmailTransactionalMessageData) GetOptions() Options {
 // and a boolean to check if the value has been set.
 func (o *EmailTransactionalMessageData) GetOptionsOk() (*Options, bool) {
 	if o == nil || isNil(o.Options) {
-    return nil, false
+		return nil, false
 	}
 	return o.Options, true
 }
@@ -129,17 +132,23 @@ func (o *EmailTransactionalMessageData) SetOptions(v Options) {
 }
 
 func (o EmailTransactionalMessageData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["Recipients"] = o.Recipients
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o EmailTransactionalMessageData) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["Recipients"] = o.Recipients
 	if !isNil(o.Content) {
 		toSerialize["Content"] = o.Content
 	}
 	if !isNil(o.Options) {
 		toSerialize["Options"] = o.Options
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableEmailTransactionalMessageData struct {

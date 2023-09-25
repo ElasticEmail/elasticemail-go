@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FileUploadResult type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FileUploadResult{}
+
 // FileUploadResult struct for FileUploadResult
 type FileUploadResult struct {
 	// How many unique emails were detected the file
@@ -53,7 +56,7 @@ func (o *FileUploadResult) GetEmailsCount() int32 {
 // and a boolean to check if the value has been set.
 func (o *FileUploadResult) GetEmailsCountOk() (*int32, bool) {
 	if o == nil || isNil(o.EmailsCount) {
-    return nil, false
+		return nil, false
 	}
 	return o.EmailsCount, true
 }
@@ -85,7 +88,7 @@ func (o *FileUploadResult) GetDuplicatedEmailsCount() int32 {
 // and a boolean to check if the value has been set.
 func (o *FileUploadResult) GetDuplicatedEmailsCountOk() (*int32, bool) {
 	if o == nil || isNil(o.DuplicatedEmailsCount) {
-    return nil, false
+		return nil, false
 	}
 	return o.DuplicatedEmailsCount, true
 }
@@ -105,6 +108,14 @@ func (o *FileUploadResult) SetDuplicatedEmailsCount(v int32) {
 }
 
 func (o FileUploadResult) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o FileUploadResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.EmailsCount) {
 		toSerialize["EmailsCount"] = o.EmailsCount
@@ -112,7 +123,7 @@ func (o FileUploadResult) MarshalJSON() ([]byte, error) {
 	if !isNil(o.DuplicatedEmailsCount) {
 		toSerialize["DuplicatedEmailsCount"] = o.DuplicatedEmailsCount
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableFileUploadResult struct {

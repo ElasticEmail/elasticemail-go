@@ -72,14 +72,14 @@ func (a *SecurityApiService) SecurityApikeysByNameDeleteExecute(r ApiSecurityApi
 	}
 
 	localVarPath := localBasePath + "/security/apikeys/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
-		localVarQueryParams.Add("subaccount", parameterToString(*r.subaccount, ""))
+		parameterAddToQuery(localVarQueryParams, "subaccount", r.subaccount, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -190,14 +190,14 @@ func (a *SecurityApiService) SecurityApikeysByNameGetExecute(r ApiSecurityApikey
 	}
 
 	localVarPath := localBasePath + "/security/apikeys/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
-		localVarQueryParams.Add("subaccount", parameterToString(*r.subaccount, ""))
+		parameterAddToQuery(localVarQueryParams, "subaccount", r.subaccount, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -316,7 +316,7 @@ func (a *SecurityApiService) SecurityApikeysByNamePutExecute(r ApiSecurityApikey
 	}
 
 	localVarPath := localBasePath + "/security/apikeys/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -448,7 +448,7 @@ func (a *SecurityApiService) SecurityApikeysGetExecute(r ApiSecurityApikeysGetRe
 	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
-		localVarQueryParams.Add("subaccount", parameterToString(*r.subaccount, ""))
+		parameterAddToQuery(localVarQueryParams, "subaccount", r.subaccount, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -690,14 +690,14 @@ func (a *SecurityApiService) SecuritySmtpByNameDeleteExecute(r ApiSecuritySmtpBy
 	}
 
 	localVarPath := localBasePath + "/security/smtp/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
-		localVarQueryParams.Add("subaccount", parameterToString(*r.subaccount, ""))
+		parameterAddToQuery(localVarQueryParams, "subaccount", r.subaccount, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -808,14 +808,14 @@ func (a *SecurityApiService) SecuritySmtpByNameGetExecute(r ApiSecuritySmtpByNam
 	}
 
 	localVarPath := localBasePath + "/security/smtp/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
-		localVarQueryParams.Add("subaccount", parameterToString(*r.subaccount, ""))
+		parameterAddToQuery(localVarQueryParams, "subaccount", r.subaccount, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -934,7 +934,7 @@ func (a *SecurityApiService) SecuritySmtpByNamePutExecute(r ApiSecuritySmtpByNam
 	}
 
 	localVarPath := localBasePath + "/security/smtp/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1066,7 +1066,7 @@ func (a *SecurityApiService) SecuritySmtpGetExecute(r ApiSecuritySmtpGetRequest)
 	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
-		localVarQueryParams.Add("subaccount", parameterToString(*r.subaccount, ""))
+		parameterAddToQuery(localVarQueryParams, "subaccount", r.subaccount, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

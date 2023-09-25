@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MessageAttachment type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MessageAttachment{}
+
 // MessageAttachment struct for MessageAttachment
 type MessageAttachment struct {
 	// File's content as byte array (or a Base64 string)
@@ -23,6 +26,8 @@ type MessageAttachment struct {
 	Name string `json:"Name"`
 	// MIME content type
 	ContentType *string `json:"ContentType,omitempty"`
+	// Size of your attachment (in bytes).
+	Size *int32 `json:"Size,omitempty"`
 }
 
 // NewMessageAttachment instantiates a new MessageAttachment object
@@ -58,7 +63,7 @@ func (o *MessageAttachment) GetBinaryContent() string {
 // and a boolean to check if the value has been set.
 func (o *MessageAttachment) GetBinaryContentOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.BinaryContent, true
 }
@@ -82,7 +87,7 @@ func (o *MessageAttachment) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *MessageAttachment) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -105,7 +110,7 @@ func (o *MessageAttachment) GetContentType() string {
 // and a boolean to check if the value has been set.
 func (o *MessageAttachment) GetContentTypeOk() (*string, bool) {
 	if o == nil || isNil(o.ContentType) {
-    return nil, false
+		return nil, false
 	}
 	return o.ContentType, true
 }
@@ -124,18 +129,57 @@ func (o *MessageAttachment) SetContentType(v string) {
 	o.ContentType = &v
 }
 
+// GetSize returns the Size field value if set, zero value otherwise.
+func (o *MessageAttachment) GetSize() int32 {
+	if o == nil || isNil(o.Size) {
+		var ret int32
+		return ret
+	}
+	return *o.Size
+}
+
+// GetSizeOk returns a tuple with the Size field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MessageAttachment) GetSizeOk() (*int32, bool) {
+	if o == nil || isNil(o.Size) {
+		return nil, false
+	}
+	return o.Size, true
+}
+
+// HasSize returns a boolean if a field has been set.
+func (o *MessageAttachment) HasSize() bool {
+	if o != nil && !isNil(o.Size) {
+		return true
+	}
+
+	return false
+}
+
+// SetSize gets a reference to the given int32 and assigns it to the Size field.
+func (o *MessageAttachment) SetSize(v int32) {
+	o.Size = &v
+}
+
 func (o MessageAttachment) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o MessageAttachment) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["BinaryContent"] = o.BinaryContent
-	}
-	if true {
-		toSerialize["Name"] = o.Name
-	}
+	toSerialize["BinaryContent"] = o.BinaryContent
+	toSerialize["Name"] = o.Name
 	if !isNil(o.ContentType) {
 		toSerialize["ContentType"] = o.ContentType
 	}
-	return json.Marshal(toSerialize)
+	if !isNil(o.Size) {
+		toSerialize["Size"] = o.Size
+	}
+	return toSerialize, nil
 }
 
 type NullableMessageAttachment struct {

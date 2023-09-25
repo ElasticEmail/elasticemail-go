@@ -2858,7 +2858,7 @@ paths:
   /verifications:
     get:
       description: "Returns a results of all verified single emails. Required Access\
-        \ Level: VerifyEmails, ViewEmailVerifications"
+        \ Level: VerifyEmails"
       operationId: verificationsGet
       parameters:
       - description: Maximum number of returned items.
@@ -2918,8 +2918,7 @@ paths:
       tags:
       - Verifications
     get:
-      description: "Returns a result of verified email. Required Access Level: VerifyEmails,\
-        \ ViewEmailVerifications"
+      description: "Returns a result of verified email. Required Access Level: VerifyEmails"
       operationId: verificationsByEmailGet
       parameters:
       - description: Email address to view verification result of
@@ -3016,7 +3015,7 @@ paths:
   /verifications/files/{id}/result:
     get:
       description: "Returns status and results (if verified) of file with given ID.\
-        \ Required Access Level: VerifyEmails, ViewEmailVerifications"
+        \ Required Access Level: VerifyEmails"
       operationId: verificationsFilesByIdResultGet
       parameters:
       - description: ID of the Verification to display status of
@@ -3111,7 +3110,7 @@ paths:
   /verifications/files/result:
     get:
       description: "Returns a list of uploaded files, their statuses and results.\
-        \ Required Access Level: VerifyEmails, ViewEmailVerifications"
+        \ Required Access Level: VerifyEmails"
       operationId: verificationsFilesResultGet
       responses:
         "200":
@@ -3166,19 +3165,21 @@ components:
       - ModifyLanguage
       - ViewSupport
       - SendHttp
-      - Modify2FA
+      - Modify2FAEmail
       - ModifySupport
       - ViewCustomFields
       - ModifyCustomFields
       - ModifyWebNotifications
       - ExtendedLogs
       - VerifyEmails
-      - ViewEmailVerifications
+      - Modify2FASms
       - DisableContactsStore
       - ModifyLandingPages
       - ViewLandingPages
       - ModifySuppressions
       - ViewSuppressions
+      - ViewDragDropEditor
+      - ViewTemplateEditor
       type: string
     AccountStatusEnum:
       default: Disabled
@@ -3301,7 +3302,7 @@ components:
           type: string
         Charset:
           description: "Text value of charset encoding for example: iso-8859-1, windows-1251,\
-            \ utf-8, us-ascii, windows-1250 and more…"
+            \ utf-8, us-ascii, windows-1250 and more..."
           format: string
           type: string
       required:
@@ -3895,9 +3896,11 @@ components:
           Charset: Charset
         Attachments:
         - ContentType: ContentType
+          Size: 100
           BinaryContent: BinaryContent
           Name: Name
         - ContentType: ContentType
+          Size: 100
           BinaryContent: BinaryContent
           Name: Name
         Subject: Hello!
@@ -4060,9 +4063,11 @@ components:
             Charset: Charset
           Attachments:
           - ContentType: ContentType
+            Size: 100
             BinaryContent: BinaryContent
             Name: Name
           - ContentType: ContentType
+            Size: 100
             BinaryContent: BinaryContent
             Name: Name
           Subject: Hello!
@@ -4084,6 +4089,15 @@ components:
       required:
       - Recipients
       type: object
+    EmailPredictedValidationStatus:
+      default: None
+      enum:
+      - None
+      - Valid
+      - LowRisk
+      - HighRisk
+      - Invalid
+      type: string
     EmailRecipient:
       description: List of recipients
       example:
@@ -4253,9 +4267,11 @@ components:
             Charset: Charset
           Attachments:
           - ContentType: ContentType
+            Size: 100
             BinaryContent: BinaryContent
             Name: Name
           - ContentType: ContentType
+            Size: 100
             BinaryContent: BinaryContent
             Name: Name
           Subject: Hello!
@@ -4278,9 +4294,11 @@ components:
       example:
         Disposable: true
         Role: true
+        PredictedStatus: null
         Account: Account
         SuggestedSpelling: SuggestedSpelling
         Email: Email
+        PredictedScore: 0.8008281904610115
         Domain: example.com
         DateAdded: 2000-01-23T04:56:07.000+00:00
         Reason: Reason
@@ -4321,6 +4339,11 @@ components:
           type: string
         Result:
           $ref: '#/components/schemas/EmailValidationStatus'
+        PredictedScore:
+          format: single
+          type: number
+        PredictedStatus:
+          $ref: '#/components/schemas/EmailPredictedValidationStatus'
       type: object
     EmailValidationStatus:
       default: None
@@ -4751,6 +4774,7 @@ components:
           TrackOpens: true
         MergeFile:
           ContentType: ContentType
+          Size: 100
           BinaryContent: BinaryContent
           Name: Name
         Content:
@@ -4775,9 +4799,11 @@ components:
             Charset: Charset
           Attachments:
           - ContentType: ContentType
+            Size: 100
             BinaryContent: BinaryContent
             Name: Name
           - ContentType: ContentType
+            Size: 100
             BinaryContent: BinaryContent
             Name: Name
           Subject: Hello!
@@ -4799,6 +4825,7 @@ components:
     MessageAttachment:
       example:
         ContentType: ContentType
+        Size: 100
         BinaryContent: BinaryContent
         Name: Name
       properties:
@@ -4814,6 +4841,11 @@ components:
           description: MIME content type
           format: string
           type: string
+        Size:
+          description: Size of your attachment (in bytes).
+          example: 100
+          format: int32
+          type: integer
       required:
       - BinaryContent
       - Name
@@ -5565,6 +5597,7 @@ components:
       - RawHTML
       - DragDropEditor
       - LandingPageEditor
+      - TemplateEditor
       type: string
     TransactionalRecipient:
       description: List of transactional recipients
@@ -5668,18 +5701,22 @@ components:
         VerificationResult:
         - Disposable: true
           Role: true
+          PredictedStatus: null
           Account: Account
           SuggestedSpelling: SuggestedSpelling
           Email: Email
+          PredictedScore: 0.8008281904610115
           Domain: example.com
           DateAdded: 2000-01-23T04:56:07.000+00:00
           Reason: Reason
           Result: null
         - Disposable: true
           Role: true
+          PredictedStatus: null
           Account: Account
           SuggestedSpelling: SuggestedSpelling
           Email: Email
+          PredictedScore: 0.8008281904610115
           Domain: example.com
           DateAdded: 2000-01-23T04:56:07.000+00:00
           Reason: Reason

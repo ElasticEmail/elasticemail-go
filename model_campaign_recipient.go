@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CampaignRecipient type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CampaignRecipient{}
+
 // CampaignRecipient A set of lists and segments names to read recipients from
 type CampaignRecipient struct {
 	// Names of lists from your Account to read recipients from
@@ -53,7 +56,7 @@ func (o *CampaignRecipient) GetListNames() []string {
 // and a boolean to check if the value has been set.
 func (o *CampaignRecipient) GetListNamesOk() ([]string, bool) {
 	if o == nil || isNil(o.ListNames) {
-    return nil, false
+		return nil, false
 	}
 	return o.ListNames, true
 }
@@ -85,7 +88,7 @@ func (o *CampaignRecipient) GetSegmentNames() []string {
 // and a boolean to check if the value has been set.
 func (o *CampaignRecipient) GetSegmentNamesOk() ([]string, bool) {
 	if o == nil || isNil(o.SegmentNames) {
-    return nil, false
+		return nil, false
 	}
 	return o.SegmentNames, true
 }
@@ -105,6 +108,14 @@ func (o *CampaignRecipient) SetSegmentNames(v []string) {
 }
 
 func (o CampaignRecipient) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CampaignRecipient) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.ListNames) {
 		toSerialize["ListNames"] = o.ListNames
@@ -112,7 +123,7 @@ func (o CampaignRecipient) MarshalJSON() ([]byte, error) {
 	if !isNil(o.SegmentNames) {
 		toSerialize["SegmentNames"] = o.SegmentNames
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCampaignRecipient struct {

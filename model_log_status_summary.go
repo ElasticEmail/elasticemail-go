@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the LogStatusSummary type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &LogStatusSummary{}
+
 // LogStatusSummary Summary of log status
 type LogStatusSummary struct {
 	// Number of recipients
@@ -75,7 +78,7 @@ func (o *LogStatusSummary) GetRecipients() int64 {
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetRecipientsOk() (*int64, bool) {
 	if o == nil || isNil(o.Recipients) {
-    return nil, false
+		return nil, false
 	}
 	return o.Recipients, true
 }
@@ -107,7 +110,7 @@ func (o *LogStatusSummary) GetEmailTotal() int64 {
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetEmailTotalOk() (*int64, bool) {
 	if o == nil || isNil(o.EmailTotal) {
-    return nil, false
+		return nil, false
 	}
 	return o.EmailTotal, true
 }
@@ -139,7 +142,7 @@ func (o *LogStatusSummary) GetSmsTotal() int64 {
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetSmsTotalOk() (*int64, bool) {
 	if o == nil || isNil(o.SmsTotal) {
-    return nil, false
+		return nil, false
 	}
 	return o.SmsTotal, true
 }
@@ -171,7 +174,7 @@ func (o *LogStatusSummary) GetDelivered() int64 {
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetDeliveredOk() (*int64, bool) {
 	if o == nil || isNil(o.Delivered) {
-    return nil, false
+		return nil, false
 	}
 	return o.Delivered, true
 }
@@ -203,7 +206,7 @@ func (o *LogStatusSummary) GetBounced() int64 {
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetBouncedOk() (*int64, bool) {
 	if o == nil || isNil(o.Bounced) {
-    return nil, false
+		return nil, false
 	}
 	return o.Bounced, true
 }
@@ -235,7 +238,7 @@ func (o *LogStatusSummary) GetInProgress() int64 {
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetInProgressOk() (*int64, bool) {
 	if o == nil || isNil(o.InProgress) {
-    return nil, false
+		return nil, false
 	}
 	return o.InProgress, true
 }
@@ -267,7 +270,7 @@ func (o *LogStatusSummary) GetOpened() int64 {
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetOpenedOk() (*int64, bool) {
 	if o == nil || isNil(o.Opened) {
-    return nil, false
+		return nil, false
 	}
 	return o.Opened, true
 }
@@ -299,7 +302,7 @@ func (o *LogStatusSummary) GetClicked() int64 {
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetClickedOk() (*int64, bool) {
 	if o == nil || isNil(o.Clicked) {
-    return nil, false
+		return nil, false
 	}
 	return o.Clicked, true
 }
@@ -331,7 +334,7 @@ func (o *LogStatusSummary) GetUnsubscribed() int64 {
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetUnsubscribedOk() (*int64, bool) {
 	if o == nil || isNil(o.Unsubscribed) {
-    return nil, false
+		return nil, false
 	}
 	return o.Unsubscribed, true
 }
@@ -363,7 +366,7 @@ func (o *LogStatusSummary) GetComplaints() int64 {
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetComplaintsOk() (*int64, bool) {
 	if o == nil || isNil(o.Complaints) {
-    return nil, false
+		return nil, false
 	}
 	return o.Complaints, true
 }
@@ -395,7 +398,7 @@ func (o *LogStatusSummary) GetInbound() int64 {
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetInboundOk() (*int64, bool) {
 	if o == nil || isNil(o.Inbound) {
-    return nil, false
+		return nil, false
 	}
 	return o.Inbound, true
 }
@@ -427,7 +430,7 @@ func (o *LogStatusSummary) GetManualCancel() int64 {
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetManualCancelOk() (*int64, bool) {
 	if o == nil || isNil(o.ManualCancel) {
-    return nil, false
+		return nil, false
 	}
 	return o.ManualCancel, true
 }
@@ -459,7 +462,7 @@ func (o *LogStatusSummary) GetNotDelivered() int64 {
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetNotDeliveredOk() (*int64, bool) {
 	if o == nil || isNil(o.NotDelivered) {
-    return nil, false
+		return nil, false
 	}
 	return o.NotDelivered, true
 }
@@ -479,6 +482,14 @@ func (o *LogStatusSummary) SetNotDelivered(v int64) {
 }
 
 func (o LogStatusSummary) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o LogStatusSummary) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Recipients) {
 		toSerialize["Recipients"] = o.Recipients
@@ -519,7 +530,7 @@ func (o LogStatusSummary) MarshalJSON() ([]byte, error) {
 	if !isNil(o.NotDelivered) {
 		toSerialize["NotDelivered"] = o.NotDelivered
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableLogStatusSummary struct {

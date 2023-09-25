@@ -103,26 +103,26 @@ func (a *EventsApiService) EventsByTransactionidGetExecute(r ApiEventsByTransact
 	}
 
 	localVarPath := localBasePath + "/events/{transactionid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"transactionid"+"}", url.PathEscape(parameterToString(r.transactionid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"transactionid"+"}", url.PathEscape(parameterValueToString(r.transactionid, "transactionid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+		parameterAddToQuery(localVarQueryParams, "from", r.from, "")
 	}
 	if r.to != nil {
-		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+		parameterAddToQuery(localVarQueryParams, "to", r.to, "")
 	}
 	if r.orderBy != nil {
-		localVarQueryParams.Add("orderBy", parameterToString(*r.orderBy, ""))
+		parameterAddToQuery(localVarQueryParams, "orderBy", r.orderBy, "")
 	}
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -277,7 +277,7 @@ func (a *EventsApiService) EventsChannelsByNameExportPostExecute(r ApiEventsChan
 	}
 
 	localVarPath := localBasePath + "/events/channels/{name}/export"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -288,26 +288,26 @@ func (a *EventsApiService) EventsChannelsByNameExportPostExecute(r ApiEventsChan
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("eventTypes", parameterToString(s.Index(i), "multi"))
+				parameterAddToQuery(localVarQueryParams, "eventTypes", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("eventTypes", parameterToString(t, "multi"))
+			parameterAddToQuery(localVarQueryParams, "eventTypes", t, "multi")
 		}
 	}
 	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+		parameterAddToQuery(localVarQueryParams, "from", r.from, "")
 	}
 	if r.to != nil {
-		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+		parameterAddToQuery(localVarQueryParams, "to", r.to, "")
 	}
 	if r.fileFormat != nil {
-		localVarQueryParams.Add("fileFormat", parameterToString(*r.fileFormat, ""))
+		parameterAddToQuery(localVarQueryParams, "fileFormat", r.fileFormat, "")
 	}
 	if r.compressionFormat != nil {
-		localVarQueryParams.Add("compressionFormat", parameterToString(*r.compressionFormat, ""))
+		parameterAddToQuery(localVarQueryParams, "compressionFormat", r.compressionFormat, "")
 	}
 	if r.fileName != nil {
-		localVarQueryParams.Add("fileName", parameterToString(*r.fileName, ""))
+		parameterAddToQuery(localVarQueryParams, "fileName", r.fileName, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -461,7 +461,7 @@ func (a *EventsApiService) EventsChannelsByNameGetExecute(r ApiEventsChannelsByN
 	}
 
 	localVarPath := localBasePath + "/events/channels/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterToString(r.name, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -472,26 +472,26 @@ func (a *EventsApiService) EventsChannelsByNameGetExecute(r ApiEventsChannelsByN
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("eventTypes", parameterToString(s.Index(i), "multi"))
+				parameterAddToQuery(localVarQueryParams, "eventTypes", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("eventTypes", parameterToString(t, "multi"))
+			parameterAddToQuery(localVarQueryParams, "eventTypes", t, "multi")
 		}
 	}
 	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+		parameterAddToQuery(localVarQueryParams, "from", r.from, "")
 	}
 	if r.to != nil {
-		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+		parameterAddToQuery(localVarQueryParams, "to", r.to, "")
 	}
 	if r.orderBy != nil {
-		localVarQueryParams.Add("orderBy", parameterToString(*r.orderBy, ""))
+		parameterAddToQuery(localVarQueryParams, "orderBy", r.orderBy, "")
 	}
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -604,7 +604,7 @@ func (a *EventsApiService) EventsChannelsExportByIdStatusGetExecute(r ApiEventsC
 	}
 
 	localVarPath := localBasePath + "/events/channels/export/{id}/status"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -721,7 +721,7 @@ func (a *EventsApiService) EventsExportByIdStatusGetExecute(r ApiEventsExportByI
 	}
 
 	localVarPath := localBasePath + "/events/export/{id}/status"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -887,26 +887,26 @@ func (a *EventsApiService) EventsExportPostExecute(r ApiEventsExportPostRequest)
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("eventTypes", parameterToString(s.Index(i), "multi"))
+				parameterAddToQuery(localVarQueryParams, "eventTypes", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("eventTypes", parameterToString(t, "multi"))
+			parameterAddToQuery(localVarQueryParams, "eventTypes", t, "multi")
 		}
 	}
 	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+		parameterAddToQuery(localVarQueryParams, "from", r.from, "")
 	}
 	if r.to != nil {
-		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+		parameterAddToQuery(localVarQueryParams, "to", r.to, "")
 	}
 	if r.fileFormat != nil {
-		localVarQueryParams.Add("fileFormat", parameterToString(*r.fileFormat, ""))
+		parameterAddToQuery(localVarQueryParams, "fileFormat", r.fileFormat, "")
 	}
 	if r.compressionFormat != nil {
-		localVarQueryParams.Add("compressionFormat", parameterToString(*r.compressionFormat, ""))
+		parameterAddToQuery(localVarQueryParams, "compressionFormat", r.compressionFormat, "")
 	}
 	if r.fileName != nil {
-		localVarQueryParams.Add("fileName", parameterToString(*r.fileName, ""))
+		parameterAddToQuery(localVarQueryParams, "fileName", r.fileName, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1067,26 +1067,26 @@ func (a *EventsApiService) EventsGetExecute(r ApiEventsGetRequest) ([]RecipientE
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("eventTypes", parameterToString(s.Index(i), "multi"))
+				parameterAddToQuery(localVarQueryParams, "eventTypes", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("eventTypes", parameterToString(t, "multi"))
+			parameterAddToQuery(localVarQueryParams, "eventTypes", t, "multi")
 		}
 	}
 	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+		parameterAddToQuery(localVarQueryParams, "from", r.from, "")
 	}
 	if r.to != nil {
-		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+		parameterAddToQuery(localVarQueryParams, "to", r.to, "")
 	}
 	if r.orderBy != nil {
-		localVarQueryParams.Add("orderBy", parameterToString(*r.orderBy, ""))
+		parameterAddToQuery(localVarQueryParams, "orderBy", r.orderBy, "")
 	}
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

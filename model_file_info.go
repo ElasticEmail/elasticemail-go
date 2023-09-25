@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the FileInfo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FileInfo{}
+
 // FileInfo File information
 type FileInfo struct {
 	// Name of your file including extension.
@@ -60,7 +63,7 @@ func (o *FileInfo) GetFileName() string {
 // and a boolean to check if the value has been set.
 func (o *FileInfo) GetFileNameOk() (*string, bool) {
 	if o == nil || isNil(o.FileName) {
-    return nil, false
+		return nil, false
 	}
 	return o.FileName, true
 }
@@ -93,7 +96,7 @@ func (o *FileInfo) GetSize() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FileInfo) GetSizeOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Size.Get(), o.Size.IsSet()
 }
@@ -134,7 +137,7 @@ func (o *FileInfo) GetDateAdded() time.Time {
 // and a boolean to check if the value has been set.
 func (o *FileInfo) GetDateAddedOk() (*time.Time, bool) {
 	if o == nil || isNil(o.DateAdded) {
-    return nil, false
+		return nil, false
 	}
 	return o.DateAdded, true
 }
@@ -167,7 +170,7 @@ func (o *FileInfo) GetExpirationDate() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FileInfo) GetExpirationDateOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.ExpirationDate.Get(), o.ExpirationDate.IsSet()
 }
@@ -208,7 +211,7 @@ func (o *FileInfo) GetContentType() string {
 // and a boolean to check if the value has been set.
 func (o *FileInfo) GetContentTypeOk() (*string, bool) {
 	if o == nil || isNil(o.ContentType) {
-    return nil, false
+		return nil, false
 	}
 	return o.ContentType, true
 }
@@ -228,6 +231,14 @@ func (o *FileInfo) SetContentType(v string) {
 }
 
 func (o FileInfo) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o FileInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.FileName) {
 		toSerialize["FileName"] = o.FileName
@@ -244,7 +255,7 @@ func (o FileInfo) MarshalJSON() ([]byte, error) {
 	if !isNil(o.ContentType) {
 		toSerialize["ContentType"] = o.ContentType
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableFileInfo struct {

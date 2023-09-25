@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the EmailStatus type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmailStatus{}
+
 // EmailStatus Status information of the specified email
 type EmailStatus struct {
 	// Email address this email was sent from.
@@ -77,7 +80,7 @@ func (o *EmailStatus) GetFrom() string {
 // and a boolean to check if the value has been set.
 func (o *EmailStatus) GetFromOk() (*string, bool) {
 	if o == nil || isNil(o.From) {
-    return nil, false
+		return nil, false
 	}
 	return o.From, true
 }
@@ -109,7 +112,7 @@ func (o *EmailStatus) GetTo() string {
 // and a boolean to check if the value has been set.
 func (o *EmailStatus) GetToOk() (*string, bool) {
 	if o == nil || isNil(o.To) {
-    return nil, false
+		return nil, false
 	}
 	return o.To, true
 }
@@ -141,7 +144,7 @@ func (o *EmailStatus) GetDate() time.Time {
 // and a boolean to check if the value has been set.
 func (o *EmailStatus) GetDateOk() (*time.Time, bool) {
 	if o == nil || isNil(o.Date) {
-    return nil, false
+		return nil, false
 	}
 	return o.Date, true
 }
@@ -173,7 +176,7 @@ func (o *EmailStatus) GetStatus() LogJobStatus {
 // and a boolean to check if the value has been set.
 func (o *EmailStatus) GetStatusOk() (*LogJobStatus, bool) {
 	if o == nil || isNil(o.Status) {
-    return nil, false
+		return nil, false
 	}
 	return o.Status, true
 }
@@ -205,7 +208,7 @@ func (o *EmailStatus) GetStatusName() string {
 // and a boolean to check if the value has been set.
 func (o *EmailStatus) GetStatusNameOk() (*string, bool) {
 	if o == nil || isNil(o.StatusName) {
-    return nil, false
+		return nil, false
 	}
 	return o.StatusName, true
 }
@@ -237,7 +240,7 @@ func (o *EmailStatus) GetStatusChangeDate() time.Time {
 // and a boolean to check if the value has been set.
 func (o *EmailStatus) GetStatusChangeDateOk() (*time.Time, bool) {
 	if o == nil || isNil(o.StatusChangeDate) {
-    return nil, false
+		return nil, false
 	}
 	return o.StatusChangeDate, true
 }
@@ -269,7 +272,7 @@ func (o *EmailStatus) GetDateSent() time.Time {
 // and a boolean to check if the value has been set.
 func (o *EmailStatus) GetDateSentOk() (*time.Time, bool) {
 	if o == nil || isNil(o.DateSent) {
-    return nil, false
+		return nil, false
 	}
 	return o.DateSent, true
 }
@@ -302,7 +305,7 @@ func (o *EmailStatus) GetDateOpened() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *EmailStatus) GetDateOpenedOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.DateOpened.Get(), o.DateOpened.IsSet()
 }
@@ -344,7 +347,7 @@ func (o *EmailStatus) GetDateClicked() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *EmailStatus) GetDateClickedOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.DateClicked.Get(), o.DateClicked.IsSet()
 }
@@ -385,7 +388,7 @@ func (o *EmailStatus) GetErrorMessage() string {
 // and a boolean to check if the value has been set.
 func (o *EmailStatus) GetErrorMessageOk() (*string, bool) {
 	if o == nil || isNil(o.ErrorMessage) {
-    return nil, false
+		return nil, false
 	}
 	return o.ErrorMessage, true
 }
@@ -417,7 +420,7 @@ func (o *EmailStatus) GetTransactionID() string {
 // and a boolean to check if the value has been set.
 func (o *EmailStatus) GetTransactionIDOk() (*string, bool) {
 	if o == nil || isNil(o.TransactionID) {
-    return nil, false
+		return nil, false
 	}
 	return o.TransactionID, true
 }
@@ -449,7 +452,7 @@ func (o *EmailStatus) GetEnvelopeFrom() string {
 // and a boolean to check if the value has been set.
 func (o *EmailStatus) GetEnvelopeFromOk() (*string, bool) {
 	if o == nil || isNil(o.EnvelopeFrom) {
-    return nil, false
+		return nil, false
 	}
 	return o.EnvelopeFrom, true
 }
@@ -469,6 +472,14 @@ func (o *EmailStatus) SetEnvelopeFrom(v string) {
 }
 
 func (o EmailStatus) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o EmailStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.From) {
 		toSerialize["From"] = o.From
@@ -506,7 +517,7 @@ func (o EmailStatus) MarshalJSON() ([]byte, error) {
 	if !isNil(o.EnvelopeFrom) {
 		toSerialize["EnvelopeFrom"] = o.EnvelopeFrom
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableEmailStatus struct {

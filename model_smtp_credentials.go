@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the SmtpCredentials type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SmtpCredentials{}
+
 // SmtpCredentials SMTP Credentials info
 type SmtpCredentials struct {
 	AccessLevel *AccessLevel `json:"AccessLevel,omitempty"`
@@ -65,7 +68,7 @@ func (o *SmtpCredentials) GetAccessLevel() AccessLevel {
 // and a boolean to check if the value has been set.
 func (o *SmtpCredentials) GetAccessLevelOk() (*AccessLevel, bool) {
 	if o == nil || isNil(o.AccessLevel) {
-    return nil, false
+		return nil, false
 	}
 	return o.AccessLevel, true
 }
@@ -97,7 +100,7 @@ func (o *SmtpCredentials) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *SmtpCredentials) GetNameOk() (*string, bool) {
 	if o == nil || isNil(o.Name) {
-    return nil, false
+		return nil, false
 	}
 	return o.Name, true
 }
@@ -129,7 +132,7 @@ func (o *SmtpCredentials) GetDateCreated() time.Time {
 // and a boolean to check if the value has been set.
 func (o *SmtpCredentials) GetDateCreatedOk() (*time.Time, bool) {
 	if o == nil || isNil(o.DateCreated) {
-    return nil, false
+		return nil, false
 	}
 	return o.DateCreated, true
 }
@@ -162,7 +165,7 @@ func (o *SmtpCredentials) GetLastUse() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SmtpCredentials) GetLastUseOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.LastUse.Get(), o.LastUse.IsSet()
 }
@@ -204,7 +207,7 @@ func (o *SmtpCredentials) GetExpires() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SmtpCredentials) GetExpiresOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Expires.Get(), o.Expires.IsSet()
 }
@@ -245,7 +248,7 @@ func (o *SmtpCredentials) GetRestrictAccessToIPRange() []string {
 // and a boolean to check if the value has been set.
 func (o *SmtpCredentials) GetRestrictAccessToIPRangeOk() ([]string, bool) {
 	if o == nil || isNil(o.RestrictAccessToIPRange) {
-    return nil, false
+		return nil, false
 	}
 	return o.RestrictAccessToIPRange, true
 }
@@ -265,6 +268,14 @@ func (o *SmtpCredentials) SetRestrictAccessToIPRange(v []string) {
 }
 
 func (o SmtpCredentials) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SmtpCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AccessLevel) {
 		toSerialize["AccessLevel"] = o.AccessLevel
@@ -284,7 +295,7 @@ func (o SmtpCredentials) MarshalJSON() ([]byte, error) {
 	if !isNil(o.RestrictAccessToIPRange) {
 		toSerialize["RestrictAccessToIPRange"] = o.RestrictAccessToIPRange
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSmtpCredentials struct {

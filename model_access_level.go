@@ -57,19 +57,21 @@ const (
 	MODIFY_LANGUAGE AccessLevel = "ModifyLanguage"
 	VIEW_SUPPORT AccessLevel = "ViewSupport"
 	SEND_HTTP AccessLevel = "SendHttp"
-	MODIFY2_FA AccessLevel = "Modify2FA"
+	MODIFY2_FA_EMAIL AccessLevel = "Modify2FAEmail"
 	MODIFY_SUPPORT AccessLevel = "ModifySupport"
 	VIEW_CUSTOM_FIELDS AccessLevel = "ViewCustomFields"
 	MODIFY_CUSTOM_FIELDS AccessLevel = "ModifyCustomFields"
 	MODIFY_WEB_NOTIFICATIONS AccessLevel = "ModifyWebNotifications"
 	EXTENDED_LOGS AccessLevel = "ExtendedLogs"
 	VERIFY_EMAILS AccessLevel = "VerifyEmails"
-	VIEW_EMAIL_VERIFICATIONS AccessLevel = "ViewEmailVerifications"
+	MODIFY2_FA_SMS AccessLevel = "Modify2FASms"
 	DISABLE_CONTACTS_STORE AccessLevel = "DisableContactsStore"
 	MODIFY_LANDING_PAGES AccessLevel = "ModifyLandingPages"
 	VIEW_LANDING_PAGES AccessLevel = "ViewLandingPages"
 	MODIFY_SUPPRESSIONS AccessLevel = "ModifySuppressions"
 	VIEW_SUPPRESSIONS AccessLevel = "ViewSuppressions"
+	VIEW_DRAG_DROP_EDITOR AccessLevel = "ViewDragDropEditor"
+	VIEW_TEMPLATE_EDITOR AccessLevel = "ViewTemplateEditor"
 )
 
 // All allowed values of AccessLevel enum
@@ -110,19 +112,21 @@ var AllowedAccessLevelEnumValues = []AccessLevel{
 	"ModifyLanguage",
 	"ViewSupport",
 	"SendHttp",
-	"Modify2FA",
+	"Modify2FAEmail",
 	"ModifySupport",
 	"ViewCustomFields",
 	"ModifyCustomFields",
 	"ModifyWebNotifications",
 	"ExtendedLogs",
 	"VerifyEmails",
-	"ViewEmailVerifications",
+	"Modify2FASms",
 	"DisableContactsStore",
 	"ModifyLandingPages",
 	"ViewLandingPages",
 	"ModifySuppressions",
 	"ViewSuppressions",
+	"ViewDragDropEditor",
+	"ViewTemplateEditor",
 }
 
 func (v *AccessLevel) UnmarshalJSON(src []byte) error {

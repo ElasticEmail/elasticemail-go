@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EmailContent type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmailContent{}
+
 // EmailContent Proper e-mail content
 type EmailContent struct {
 	// List of e-mail body parts, with user-provided MIME types (text/html, text/plain etc)
@@ -72,7 +75,7 @@ func (o *EmailContent) GetBody() []BodyPart {
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetBodyOk() ([]BodyPart, bool) {
 	if o == nil || isNil(o.Body) {
-    return nil, false
+		return nil, false
 	}
 	return o.Body, true
 }
@@ -104,7 +107,7 @@ func (o *EmailContent) GetMerge() map[string]string {
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetMergeOk() (*map[string]string, bool) {
 	if o == nil || isNil(o.Merge) {
-    return nil, false
+		return nil, false
 	}
 	return o.Merge, true
 }
@@ -136,7 +139,7 @@ func (o *EmailContent) GetAttachments() []MessageAttachment {
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetAttachmentsOk() ([]MessageAttachment, bool) {
 	if o == nil || isNil(o.Attachments) {
-    return nil, false
+		return nil, false
 	}
 	return o.Attachments, true
 }
@@ -168,7 +171,7 @@ func (o *EmailContent) GetHeaders() map[string]string {
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetHeadersOk() (*map[string]string, bool) {
 	if o == nil || isNil(o.Headers) {
-    return nil, false
+		return nil, false
 	}
 	return o.Headers, true
 }
@@ -200,7 +203,7 @@ func (o *EmailContent) GetPostback() string {
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetPostbackOk() (*string, bool) {
 	if o == nil || isNil(o.Postback) {
-    return nil, false
+		return nil, false
 	}
 	return o.Postback, true
 }
@@ -232,7 +235,7 @@ func (o *EmailContent) GetEnvelopeFrom() string {
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetEnvelopeFromOk() (*string, bool) {
 	if o == nil || isNil(o.EnvelopeFrom) {
-    return nil, false
+		return nil, false
 	}
 	return o.EnvelopeFrom, true
 }
@@ -264,7 +267,7 @@ func (o *EmailContent) GetFrom() string {
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetFromOk() (*string, bool) {
 	if o == nil || isNil(o.From) {
-    return nil, false
+		return nil, false
 	}
 	return o.From, true
 }
@@ -296,7 +299,7 @@ func (o *EmailContent) GetReplyTo() string {
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetReplyToOk() (*string, bool) {
 	if o == nil || isNil(o.ReplyTo) {
-    return nil, false
+		return nil, false
 	}
 	return o.ReplyTo, true
 }
@@ -328,7 +331,7 @@ func (o *EmailContent) GetSubject() string {
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetSubjectOk() (*string, bool) {
 	if o == nil || isNil(o.Subject) {
-    return nil, false
+		return nil, false
 	}
 	return o.Subject, true
 }
@@ -360,7 +363,7 @@ func (o *EmailContent) GetTemplateName() string {
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetTemplateNameOk() (*string, bool) {
 	if o == nil || isNil(o.TemplateName) {
-    return nil, false
+		return nil, false
 	}
 	return o.TemplateName, true
 }
@@ -392,7 +395,7 @@ func (o *EmailContent) GetAttachFiles() []string {
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetAttachFilesOk() ([]string, bool) {
 	if o == nil || isNil(o.AttachFiles) {
-    return nil, false
+		return nil, false
 	}
 	return o.AttachFiles, true
 }
@@ -424,7 +427,7 @@ func (o *EmailContent) GetUtm() Utm {
 // and a boolean to check if the value has been set.
 func (o *EmailContent) GetUtmOk() (*Utm, bool) {
 	if o == nil || isNil(o.Utm) {
-    return nil, false
+		return nil, false
 	}
 	return o.Utm, true
 }
@@ -444,6 +447,14 @@ func (o *EmailContent) SetUtm(v Utm) {
 }
 
 func (o EmailContent) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o EmailContent) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Body) {
 		toSerialize["Body"] = o.Body
@@ -481,7 +492,7 @@ func (o EmailContent) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Utm) {
 		toSerialize["Utm"] = o.Utm
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableEmailContent struct {

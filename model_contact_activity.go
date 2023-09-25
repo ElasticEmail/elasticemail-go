@@ -16,6 +16,9 @@ import (
 	"time"
 )
 
+// checks if the ContactActivity type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ContactActivity{}
+
 // ContactActivity struct for ContactActivity
 type ContactActivity struct {
 	// Total emails sent.
@@ -72,7 +75,7 @@ func (o *ContactActivity) GetTotalSent() int32 {
 // and a boolean to check if the value has been set.
 func (o *ContactActivity) GetTotalSentOk() (*int32, bool) {
 	if o == nil || isNil(o.TotalSent) {
-    return nil, false
+		return nil, false
 	}
 	return o.TotalSent, true
 }
@@ -104,7 +107,7 @@ func (o *ContactActivity) GetTotalOpened() int32 {
 // and a boolean to check if the value has been set.
 func (o *ContactActivity) GetTotalOpenedOk() (*int32, bool) {
 	if o == nil || isNil(o.TotalOpened) {
-    return nil, false
+		return nil, false
 	}
 	return o.TotalOpened, true
 }
@@ -136,7 +139,7 @@ func (o *ContactActivity) GetTotalClicked() int32 {
 // and a boolean to check if the value has been set.
 func (o *ContactActivity) GetTotalClickedOk() (*int32, bool) {
 	if o == nil || isNil(o.TotalClicked) {
-    return nil, false
+		return nil, false
 	}
 	return o.TotalClicked, true
 }
@@ -168,7 +171,7 @@ func (o *ContactActivity) GetTotalFailed() int32 {
 // and a boolean to check if the value has been set.
 func (o *ContactActivity) GetTotalFailedOk() (*int32, bool) {
 	if o == nil || isNil(o.TotalFailed) {
-    return nil, false
+		return nil, false
 	}
 	return o.TotalFailed, true
 }
@@ -201,7 +204,7 @@ func (o *ContactActivity) GetLastSent() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ContactActivity) GetLastSentOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.LastSent.Get(), o.LastSent.IsSet()
 }
@@ -243,7 +246,7 @@ func (o *ContactActivity) GetLastOpened() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ContactActivity) GetLastOpenedOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.LastOpened.Get(), o.LastOpened.IsSet()
 }
@@ -285,7 +288,7 @@ func (o *ContactActivity) GetLastClicked() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ContactActivity) GetLastClickedOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.LastClicked.Get(), o.LastClicked.IsSet()
 }
@@ -327,7 +330,7 @@ func (o *ContactActivity) GetLastFailed() time.Time {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ContactActivity) GetLastFailedOk() (*time.Time, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.LastFailed.Get(), o.LastFailed.IsSet()
 }
@@ -368,7 +371,7 @@ func (o *ContactActivity) GetLastIP() string {
 // and a boolean to check if the value has been set.
 func (o *ContactActivity) GetLastIPOk() (*string, bool) {
 	if o == nil || isNil(o.LastIP) {
-    return nil, false
+		return nil, false
 	}
 	return o.LastIP, true
 }
@@ -401,7 +404,7 @@ func (o *ContactActivity) GetErrorCode() int32 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ContactActivity) GetErrorCodeOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.ErrorCode.Get(), o.ErrorCode.IsSet()
 }
@@ -442,7 +445,7 @@ func (o *ContactActivity) GetFriendlyErrorMessage() string {
 // and a boolean to check if the value has been set.
 func (o *ContactActivity) GetFriendlyErrorMessageOk() (*string, bool) {
 	if o == nil || isNil(o.FriendlyErrorMessage) {
-    return nil, false
+		return nil, false
 	}
 	return o.FriendlyErrorMessage, true
 }
@@ -462,6 +465,14 @@ func (o *ContactActivity) SetFriendlyErrorMessage(v string) {
 }
 
 func (o ContactActivity) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ContactActivity) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.TotalSent) {
 		toSerialize["TotalSent"] = o.TotalSent
@@ -496,7 +507,7 @@ func (o ContactActivity) MarshalJSON() ([]byte, error) {
 	if !isNil(o.FriendlyErrorMessage) {
 		toSerialize["FriendlyErrorMessage"] = o.FriendlyErrorMessage
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableContactActivity struct {

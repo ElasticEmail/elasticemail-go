@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EmailsPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmailsPayload{}
+
 // EmailsPayload Provide either rule or a list of emails, not both.
 type EmailsPayload struct {
 	// SQL-like rule. Sending 'All' as a value loads all resources of the given type. Help for building a segment rule can be found here: https://help.elasticemail.com/en/articles/5162182-segment-rules
@@ -53,7 +56,7 @@ func (o *EmailsPayload) GetRule() string {
 // and a boolean to check if the value has been set.
 func (o *EmailsPayload) GetRuleOk() (*string, bool) {
 	if o == nil || isNil(o.Rule) {
-    return nil, false
+		return nil, false
 	}
 	return o.Rule, true
 }
@@ -85,7 +88,7 @@ func (o *EmailsPayload) GetEmails() []string {
 // and a boolean to check if the value has been set.
 func (o *EmailsPayload) GetEmailsOk() ([]string, bool) {
 	if o == nil || isNil(o.Emails) {
-    return nil, false
+		return nil, false
 	}
 	return o.Emails, true
 }
@@ -105,6 +108,14 @@ func (o *EmailsPayload) SetEmails(v []string) {
 }
 
 func (o EmailsPayload) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o EmailsPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Rule) {
 		toSerialize["Rule"] = o.Rule
@@ -112,7 +123,7 @@ func (o EmailsPayload) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Emails) {
 		toSerialize["Emails"] = o.Emails
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableEmailsPayload struct {

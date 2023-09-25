@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EmailRecipient type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EmailRecipient{}
+
 // EmailRecipient List of recipients
 type EmailRecipient struct {
 	// Proper email address.
@@ -55,7 +58,7 @@ func (o *EmailRecipient) GetEmail() string {
 // and a boolean to check if the value has been set.
 func (o *EmailRecipient) GetEmailOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Email, true
 }
@@ -78,7 +81,7 @@ func (o *EmailRecipient) GetFields() map[string]string {
 // and a boolean to check if the value has been set.
 func (o *EmailRecipient) GetFieldsOk() (*map[string]string, bool) {
 	if o == nil || isNil(o.Fields) {
-    return nil, false
+		return nil, false
 	}
 	return o.Fields, true
 }
@@ -98,14 +101,20 @@ func (o *EmailRecipient) SetFields(v map[string]string) {
 }
 
 func (o EmailRecipient) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["Email"] = o.Email
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o EmailRecipient) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["Email"] = o.Email
 	if !isNil(o.Fields) {
 		toSerialize["Fields"] = o.Fields
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableEmailRecipient struct {

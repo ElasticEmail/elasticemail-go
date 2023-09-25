@@ -67,7 +67,7 @@ func (a *EmailsApiService) EmailsByMsgidViewGetExecute(r ApiEmailsByMsgidViewGet
 	}
 
 	localVarPath := localBasePath + "/emails/{msgid}/view"
-	localVarPath = strings.Replace(localVarPath, "{"+"msgid"+"}", url.PathEscape(parameterToString(r.msgid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"msgid"+"}", url.PathEscape(parameterValueToString(r.msgid, "msgid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

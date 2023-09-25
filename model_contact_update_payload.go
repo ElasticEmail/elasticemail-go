@@ -15,6 +15,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ContactUpdatePayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ContactUpdatePayload{}
+
 // ContactUpdatePayload struct for ContactUpdatePayload
 type ContactUpdatePayload struct {
 	// First name.
@@ -55,7 +58,7 @@ func (o *ContactUpdatePayload) GetFirstName() string {
 // and a boolean to check if the value has been set.
 func (o *ContactUpdatePayload) GetFirstNameOk() (*string, bool) {
 	if o == nil || isNil(o.FirstName) {
-    return nil, false
+		return nil, false
 	}
 	return o.FirstName, true
 }
@@ -87,7 +90,7 @@ func (o *ContactUpdatePayload) GetLastName() string {
 // and a boolean to check if the value has been set.
 func (o *ContactUpdatePayload) GetLastNameOk() (*string, bool) {
 	if o == nil || isNil(o.LastName) {
-    return nil, false
+		return nil, false
 	}
 	return o.LastName, true
 }
@@ -119,7 +122,7 @@ func (o *ContactUpdatePayload) GetCustomFields() map[string]string {
 // and a boolean to check if the value has been set.
 func (o *ContactUpdatePayload) GetCustomFieldsOk() (*map[string]string, bool) {
 	if o == nil || isNil(o.CustomFields) {
-    return nil, false
+		return nil, false
 	}
 	return o.CustomFields, true
 }
@@ -139,6 +142,14 @@ func (o *ContactUpdatePayload) SetCustomFields(v map[string]string) {
 }
 
 func (o ContactUpdatePayload) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ContactUpdatePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.FirstName) {
 		toSerialize["FirstName"] = o.FirstName
@@ -149,7 +160,7 @@ func (o ContactUpdatePayload) MarshalJSON() ([]byte, error) {
 	if !isNil(o.CustomFields) {
 		toSerialize["CustomFields"] = o.CustomFields
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableContactUpdatePayload struct {
