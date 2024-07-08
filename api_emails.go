@@ -14,19 +14,19 @@ package ElasticEmail
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
 
-// EmailsApiService EmailsApi service
-type EmailsApiService service
+// EmailsAPIService EmailsAPI service
+type EmailsAPIService service
 
 type ApiEmailsByMsgidViewGetRequest struct {
 	ctx context.Context
-	ApiService *EmailsApiService
+	ApiService *EmailsAPIService
 	msgid string
 }
 
@@ -43,7 +43,7 @@ Returns email details for viewing or rendering. Required Access Level: None
  @param msgid Message identifier
  @return ApiEmailsByMsgidViewGetRequest
 */
-func (a *EmailsApiService) EmailsByMsgidViewGet(ctx context.Context, msgid string) ApiEmailsByMsgidViewGetRequest {
+func (a *EmailsAPIService) EmailsByMsgidViewGet(ctx context.Context, msgid string) ApiEmailsByMsgidViewGetRequest {
 	return ApiEmailsByMsgidViewGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -53,7 +53,7 @@ func (a *EmailsApiService) EmailsByMsgidViewGet(ctx context.Context, msgid strin
 
 // Execute executes the request
 //  @return EmailData
-func (a *EmailsApiService) EmailsByMsgidViewGetExecute(r ApiEmailsByMsgidViewGetRequest) (*EmailData, *http.Response, error) {
+func (a *EmailsAPIService) EmailsByMsgidViewGetExecute(r ApiEmailsByMsgidViewGetRequest) (*EmailData, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -61,7 +61,7 @@ func (a *EmailsApiService) EmailsByMsgidViewGetExecute(r ApiEmailsByMsgidViewGet
 		localVarReturnValue  *EmailData
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailsApiService.EmailsByMsgidViewGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailsAPIService.EmailsByMsgidViewGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -114,9 +114,256 @@ func (a *EmailsApiService) EmailsByMsgidViewGetExecute(r ApiEmailsByMsgidViewGet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiEmailsByTransactionidStatusGetRequest struct {
+	ctx context.Context
+	ApiService *EmailsAPIService
+	transactionid string
+	showFailed *bool
+	showSent *bool
+	showDelivered *bool
+	showPending *bool
+	showOpened *bool
+	showClicked *bool
+	showAbuse *bool
+	showUnsubscribed *bool
+	showErrors *bool
+	showMessageIDs *bool
+}
+
+// Include Bounced email addresses.
+func (r ApiEmailsByTransactionidStatusGetRequest) ShowFailed(showFailed bool) ApiEmailsByTransactionidStatusGetRequest {
+	r.showFailed = &showFailed
+	return r
+}
+
+// Include Sent email addresses.
+func (r ApiEmailsByTransactionidStatusGetRequest) ShowSent(showSent bool) ApiEmailsByTransactionidStatusGetRequest {
+	r.showSent = &showSent
+	return r
+}
+
+// Include all delivered email addresses.
+func (r ApiEmailsByTransactionidStatusGetRequest) ShowDelivered(showDelivered bool) ApiEmailsByTransactionidStatusGetRequest {
+	r.showDelivered = &showDelivered
+	return r
+}
+
+// Include Ready to send email addresses.
+func (r ApiEmailsByTransactionidStatusGetRequest) ShowPending(showPending bool) ApiEmailsByTransactionidStatusGetRequest {
+	r.showPending = &showPending
+	return r
+}
+
+// Include Opened email addresses.
+func (r ApiEmailsByTransactionidStatusGetRequest) ShowOpened(showOpened bool) ApiEmailsByTransactionidStatusGetRequest {
+	r.showOpened = &showOpened
+	return r
+}
+
+// Include Clicked email addresses.
+func (r ApiEmailsByTransactionidStatusGetRequest) ShowClicked(showClicked bool) ApiEmailsByTransactionidStatusGetRequest {
+	r.showClicked = &showClicked
+	return r
+}
+
+// Include Reported as abuse email addresses.
+func (r ApiEmailsByTransactionidStatusGetRequest) ShowAbuse(showAbuse bool) ApiEmailsByTransactionidStatusGetRequest {
+	r.showAbuse = &showAbuse
+	return r
+}
+
+// Include Unsubscribed email addresses.
+func (r ApiEmailsByTransactionidStatusGetRequest) ShowUnsubscribed(showUnsubscribed bool) ApiEmailsByTransactionidStatusGetRequest {
+	r.showUnsubscribed = &showUnsubscribed
+	return r
+}
+
+// Include error messages for bounced emails.
+func (r ApiEmailsByTransactionidStatusGetRequest) ShowErrors(showErrors bool) ApiEmailsByTransactionidStatusGetRequest {
+	r.showErrors = &showErrors
+	return r
+}
+
+// Include all MessageIDs for this transaction
+func (r ApiEmailsByTransactionidStatusGetRequest) ShowMessageIDs(showMessageIDs bool) ApiEmailsByTransactionidStatusGetRequest {
+	r.showMessageIDs = &showMessageIDs
+	return r
+}
+
+func (r ApiEmailsByTransactionidStatusGetRequest) Execute() (*EmailJobStatus, *http.Response, error) {
+	return r.ApiService.EmailsByTransactionidStatusGetExecute(r)
+}
+
+/*
+EmailsByTransactionidStatusGet Get Status
+
+Get status details of an email transaction. Required Access Level: ViewReports
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param transactionid Transaction identifier
+ @return ApiEmailsByTransactionidStatusGetRequest
+*/
+func (a *EmailsAPIService) EmailsByTransactionidStatusGet(ctx context.Context, transactionid string) ApiEmailsByTransactionidStatusGetRequest {
+	return ApiEmailsByTransactionidStatusGetRequest{
+		ApiService: a,
+		ctx: ctx,
+		transactionid: transactionid,
+	}
+}
+
+// Execute executes the request
+//  @return EmailJobStatus
+func (a *EmailsAPIService) EmailsByTransactionidStatusGetExecute(r ApiEmailsByTransactionidStatusGetRequest) (*EmailJobStatus, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *EmailJobStatus
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailsAPIService.EmailsByTransactionidStatusGet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/emails/{transactionid}/status"
+	localVarPath = strings.Replace(localVarPath, "{"+"transactionid"+"}", url.PathEscape(parameterValueToString(r.transactionid, "transactionid")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.showFailed != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "showFailed", r.showFailed, "")
+	} else {
+		var defaultValue bool = false
+		r.showFailed = &defaultValue
+	}
+	if r.showSent != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "showSent", r.showSent, "")
+	} else {
+		var defaultValue bool = false
+		r.showSent = &defaultValue
+	}
+	if r.showDelivered != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "showDelivered", r.showDelivered, "")
+	} else {
+		var defaultValue bool = false
+		r.showDelivered = &defaultValue
+	}
+	if r.showPending != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "showPending", r.showPending, "")
+	} else {
+		var defaultValue bool = false
+		r.showPending = &defaultValue
+	}
+	if r.showOpened != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "showOpened", r.showOpened, "")
+	} else {
+		var defaultValue bool = false
+		r.showOpened = &defaultValue
+	}
+	if r.showClicked != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "showClicked", r.showClicked, "")
+	} else {
+		var defaultValue bool = false
+		r.showClicked = &defaultValue
+	}
+	if r.showAbuse != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "showAbuse", r.showAbuse, "")
+	} else {
+		var defaultValue bool = false
+		r.showAbuse = &defaultValue
+	}
+	if r.showUnsubscribed != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "showUnsubscribed", r.showUnsubscribed, "")
+	} else {
+		var defaultValue bool = false
+		r.showUnsubscribed = &defaultValue
+	}
+	if r.showErrors != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "showErrors", r.showErrors, "")
+	} else {
+		var defaultValue bool = false
+		r.showErrors = &defaultValue
+	}
+	if r.showMessageIDs != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "showMessageIDs", r.showMessageIDs, "")
+	} else {
+		var defaultValue bool = false
+		r.showMessageIDs = &defaultValue
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apikey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-ElasticEmail-ApiKey"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -143,7 +390,7 @@ func (a *EmailsApiService) EmailsByMsgidViewGetExecute(r ApiEmailsByMsgidViewGet
 
 type ApiEmailsMergefilePostRequest struct {
 	ctx context.Context
-	ApiService *EmailsApiService
+	ApiService *EmailsAPIService
 	mergeEmailPayload *MergeEmailPayload
 }
 
@@ -165,7 +412,7 @@ Send bulk merge email. Required Access Level: SendHttp
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiEmailsMergefilePostRequest
 */
-func (a *EmailsApiService) EmailsMergefilePost(ctx context.Context) ApiEmailsMergefilePostRequest {
+func (a *EmailsAPIService) EmailsMergefilePost(ctx context.Context) ApiEmailsMergefilePostRequest {
 	return ApiEmailsMergefilePostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -174,7 +421,7 @@ func (a *EmailsApiService) EmailsMergefilePost(ctx context.Context) ApiEmailsMer
 
 // Execute executes the request
 //  @return EmailSend
-func (a *EmailsApiService) EmailsMergefilePostExecute(r ApiEmailsMergefilePostRequest) (*EmailSend, *http.Response, error) {
+func (a *EmailsAPIService) EmailsMergefilePostExecute(r ApiEmailsMergefilePostRequest) (*EmailSend, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -182,7 +429,7 @@ func (a *EmailsApiService) EmailsMergefilePostExecute(r ApiEmailsMergefilePostRe
 		localVarReturnValue  *EmailSend
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailsApiService.EmailsMergefilePost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailsAPIService.EmailsMergefilePost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -239,9 +486,9 @@ func (a *EmailsApiService) EmailsMergefilePostExecute(r ApiEmailsMergefilePostRe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -268,7 +515,7 @@ func (a *EmailsApiService) EmailsMergefilePostExecute(r ApiEmailsMergefilePostRe
 
 type ApiEmailsPostRequest struct {
 	ctx context.Context
-	ApiService *EmailsApiService
+	ApiService *EmailsAPIService
 	emailMessageData *EmailMessageData
 }
 
@@ -290,7 +537,7 @@ Send bulk merge email. Required Access Level: SendHttp
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiEmailsPostRequest
 */
-func (a *EmailsApiService) EmailsPost(ctx context.Context) ApiEmailsPostRequest {
+func (a *EmailsAPIService) EmailsPost(ctx context.Context) ApiEmailsPostRequest {
 	return ApiEmailsPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -299,7 +546,7 @@ func (a *EmailsApiService) EmailsPost(ctx context.Context) ApiEmailsPostRequest 
 
 // Execute executes the request
 //  @return EmailSend
-func (a *EmailsApiService) EmailsPostExecute(r ApiEmailsPostRequest) (*EmailSend, *http.Response, error) {
+func (a *EmailsAPIService) EmailsPostExecute(r ApiEmailsPostRequest) (*EmailSend, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -307,7 +554,7 @@ func (a *EmailsApiService) EmailsPostExecute(r ApiEmailsPostRequest) (*EmailSend
 		localVarReturnValue  *EmailSend
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailsApiService.EmailsPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailsAPIService.EmailsPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -364,9 +611,9 @@ func (a *EmailsApiService) EmailsPostExecute(r ApiEmailsPostRequest) (*EmailSend
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -393,7 +640,7 @@ func (a *EmailsApiService) EmailsPostExecute(r ApiEmailsPostRequest) (*EmailSend
 
 type ApiEmailsTransactionalPostRequest struct {
 	ctx context.Context
-	ApiService *EmailsApiService
+	ApiService *EmailsAPIService
 	emailTransactionalMessageData *EmailTransactionalMessageData
 }
 
@@ -415,7 +662,7 @@ Send transactional emails (recipients will be known to each other). Required Acc
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiEmailsTransactionalPostRequest
 */
-func (a *EmailsApiService) EmailsTransactionalPost(ctx context.Context) ApiEmailsTransactionalPostRequest {
+func (a *EmailsAPIService) EmailsTransactionalPost(ctx context.Context) ApiEmailsTransactionalPostRequest {
 	return ApiEmailsTransactionalPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -424,7 +671,7 @@ func (a *EmailsApiService) EmailsTransactionalPost(ctx context.Context) ApiEmail
 
 // Execute executes the request
 //  @return EmailSend
-func (a *EmailsApiService) EmailsTransactionalPostExecute(r ApiEmailsTransactionalPostRequest) (*EmailSend, *http.Response, error) {
+func (a *EmailsAPIService) EmailsTransactionalPostExecute(r ApiEmailsTransactionalPostRequest) (*EmailSend, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -432,7 +679,7 @@ func (a *EmailsApiService) EmailsTransactionalPostExecute(r ApiEmailsTransaction
 		localVarReturnValue  *EmailSend
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailsApiService.EmailsTransactionalPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailsAPIService.EmailsTransactionalPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -489,9 +736,9 @@ func (a *EmailsApiService) EmailsTransactionalPostExecute(r ApiEmailsTransaction
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

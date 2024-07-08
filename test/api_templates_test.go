@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-Testing TemplatesApiService
+Testing TemplatesAPIService
 
 */
 
@@ -10,82 +10,81 @@ Testing TemplatesApiService
 package ElasticEmail
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "./openapi"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
-func Test_ElasticEmail_TemplatesApiService(t *testing.T) {
+func Test_ElasticEmail_TemplatesAPIService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test TemplatesApiService TemplatesByNameDelete", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplatesByNameDelete", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var name string
 
-        resp, httpRes, err := apiClient.TemplatesApi.TemplatesByNameDelete(context.Background(), name).Execute()
+		httpRes, err := apiClient.TemplatesAPI.TemplatesByNameDelete(context.Background(), name).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test TemplatesApiService TemplatesByNameGet", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplatesByNameGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var name string
 
-        resp, httpRes, err := apiClient.TemplatesApi.TemplatesByNameGet(context.Background(), name).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesByNameGet(context.Background(), name).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test TemplatesApiService TemplatesByNamePut", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplatesByNamePut", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var name string
 
-        resp, httpRes, err := apiClient.TemplatesApi.TemplatesByNamePut(context.Background(), name).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesByNamePut(context.Background(), name).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test TemplatesApiService TemplatesGet", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplatesGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.TemplatesApi.TemplatesGet(context.Background()).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesGet(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test TemplatesApiService TemplatesPost", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplatesPost", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.TemplatesApi.TemplatesPost(context.Background()).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesPost(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

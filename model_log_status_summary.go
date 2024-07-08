@@ -67,7 +67,7 @@ func NewLogStatusSummaryWithDefaults() *LogStatusSummary {
 
 // GetRecipients returns the Recipients field value if set, zero value otherwise.
 func (o *LogStatusSummary) GetRecipients() int64 {
-	if o == nil || isNil(o.Recipients) {
+	if o == nil || IsNil(o.Recipients) {
 		var ret int64
 		return ret
 	}
@@ -77,7 +77,7 @@ func (o *LogStatusSummary) GetRecipients() int64 {
 // GetRecipientsOk returns a tuple with the Recipients field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetRecipientsOk() (*int64, bool) {
-	if o == nil || isNil(o.Recipients) {
+	if o == nil || IsNil(o.Recipients) {
 		return nil, false
 	}
 	return o.Recipients, true
@@ -85,7 +85,7 @@ func (o *LogStatusSummary) GetRecipientsOk() (*int64, bool) {
 
 // HasRecipients returns a boolean if a field has been set.
 func (o *LogStatusSummary) HasRecipients() bool {
-	if o != nil && !isNil(o.Recipients) {
+	if o != nil && !IsNil(o.Recipients) {
 		return true
 	}
 
@@ -99,7 +99,7 @@ func (o *LogStatusSummary) SetRecipients(v int64) {
 
 // GetEmailTotal returns the EmailTotal field value if set, zero value otherwise.
 func (o *LogStatusSummary) GetEmailTotal() int64 {
-	if o == nil || isNil(o.EmailTotal) {
+	if o == nil || IsNil(o.EmailTotal) {
 		var ret int64
 		return ret
 	}
@@ -109,7 +109,7 @@ func (o *LogStatusSummary) GetEmailTotal() int64 {
 // GetEmailTotalOk returns a tuple with the EmailTotal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetEmailTotalOk() (*int64, bool) {
-	if o == nil || isNil(o.EmailTotal) {
+	if o == nil || IsNil(o.EmailTotal) {
 		return nil, false
 	}
 	return o.EmailTotal, true
@@ -117,7 +117,7 @@ func (o *LogStatusSummary) GetEmailTotalOk() (*int64, bool) {
 
 // HasEmailTotal returns a boolean if a field has been set.
 func (o *LogStatusSummary) HasEmailTotal() bool {
-	if o != nil && !isNil(o.EmailTotal) {
+	if o != nil && !IsNil(o.EmailTotal) {
 		return true
 	}
 
@@ -131,7 +131,7 @@ func (o *LogStatusSummary) SetEmailTotal(v int64) {
 
 // GetSmsTotal returns the SmsTotal field value if set, zero value otherwise.
 func (o *LogStatusSummary) GetSmsTotal() int64 {
-	if o == nil || isNil(o.SmsTotal) {
+	if o == nil || IsNil(o.SmsTotal) {
 		var ret int64
 		return ret
 	}
@@ -141,7 +141,7 @@ func (o *LogStatusSummary) GetSmsTotal() int64 {
 // GetSmsTotalOk returns a tuple with the SmsTotal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetSmsTotalOk() (*int64, bool) {
-	if o == nil || isNil(o.SmsTotal) {
+	if o == nil || IsNil(o.SmsTotal) {
 		return nil, false
 	}
 	return o.SmsTotal, true
@@ -149,7 +149,7 @@ func (o *LogStatusSummary) GetSmsTotalOk() (*int64, bool) {
 
 // HasSmsTotal returns a boolean if a field has been set.
 func (o *LogStatusSummary) HasSmsTotal() bool {
-	if o != nil && !isNil(o.SmsTotal) {
+	if o != nil && !IsNil(o.SmsTotal) {
 		return true
 	}
 
@@ -163,7 +163,7 @@ func (o *LogStatusSummary) SetSmsTotal(v int64) {
 
 // GetDelivered returns the Delivered field value if set, zero value otherwise.
 func (o *LogStatusSummary) GetDelivered() int64 {
-	if o == nil || isNil(o.Delivered) {
+	if o == nil || IsNil(o.Delivered) {
 		var ret int64
 		return ret
 	}
@@ -173,7 +173,7 @@ func (o *LogStatusSummary) GetDelivered() int64 {
 // GetDeliveredOk returns a tuple with the Delivered field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetDeliveredOk() (*int64, bool) {
-	if o == nil || isNil(o.Delivered) {
+	if o == nil || IsNil(o.Delivered) {
 		return nil, false
 	}
 	return o.Delivered, true
@@ -181,7 +181,7 @@ func (o *LogStatusSummary) GetDeliveredOk() (*int64, bool) {
 
 // HasDelivered returns a boolean if a field has been set.
 func (o *LogStatusSummary) HasDelivered() bool {
-	if o != nil && !isNil(o.Delivered) {
+	if o != nil && !IsNil(o.Delivered) {
 		return true
 	}
 
@@ -195,7 +195,7 @@ func (o *LogStatusSummary) SetDelivered(v int64) {
 
 // GetBounced returns the Bounced field value if set, zero value otherwise.
 func (o *LogStatusSummary) GetBounced() int64 {
-	if o == nil || isNil(o.Bounced) {
+	if o == nil || IsNil(o.Bounced) {
 		var ret int64
 		return ret
 	}
@@ -205,7 +205,7 @@ func (o *LogStatusSummary) GetBounced() int64 {
 // GetBouncedOk returns a tuple with the Bounced field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetBouncedOk() (*int64, bool) {
-	if o == nil || isNil(o.Bounced) {
+	if o == nil || IsNil(o.Bounced) {
 		return nil, false
 	}
 	return o.Bounced, true
@@ -213,7 +213,7 @@ func (o *LogStatusSummary) GetBouncedOk() (*int64, bool) {
 
 // HasBounced returns a boolean if a field has been set.
 func (o *LogStatusSummary) HasBounced() bool {
-	if o != nil && !isNil(o.Bounced) {
+	if o != nil && !IsNil(o.Bounced) {
 		return true
 	}
 
@@ -227,7 +227,7 @@ func (o *LogStatusSummary) SetBounced(v int64) {
 
 // GetInProgress returns the InProgress field value if set, zero value otherwise.
 func (o *LogStatusSummary) GetInProgress() int64 {
-	if o == nil || isNil(o.InProgress) {
+	if o == nil || IsNil(o.InProgress) {
 		var ret int64
 		return ret
 	}
@@ -237,7 +237,7 @@ func (o *LogStatusSummary) GetInProgress() int64 {
 // GetInProgressOk returns a tuple with the InProgress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetInProgressOk() (*int64, bool) {
-	if o == nil || isNil(o.InProgress) {
+	if o == nil || IsNil(o.InProgress) {
 		return nil, false
 	}
 	return o.InProgress, true
@@ -245,7 +245,7 @@ func (o *LogStatusSummary) GetInProgressOk() (*int64, bool) {
 
 // HasInProgress returns a boolean if a field has been set.
 func (o *LogStatusSummary) HasInProgress() bool {
-	if o != nil && !isNil(o.InProgress) {
+	if o != nil && !IsNil(o.InProgress) {
 		return true
 	}
 
@@ -259,7 +259,7 @@ func (o *LogStatusSummary) SetInProgress(v int64) {
 
 // GetOpened returns the Opened field value if set, zero value otherwise.
 func (o *LogStatusSummary) GetOpened() int64 {
-	if o == nil || isNil(o.Opened) {
+	if o == nil || IsNil(o.Opened) {
 		var ret int64
 		return ret
 	}
@@ -269,7 +269,7 @@ func (o *LogStatusSummary) GetOpened() int64 {
 // GetOpenedOk returns a tuple with the Opened field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetOpenedOk() (*int64, bool) {
-	if o == nil || isNil(o.Opened) {
+	if o == nil || IsNil(o.Opened) {
 		return nil, false
 	}
 	return o.Opened, true
@@ -277,7 +277,7 @@ func (o *LogStatusSummary) GetOpenedOk() (*int64, bool) {
 
 // HasOpened returns a boolean if a field has been set.
 func (o *LogStatusSummary) HasOpened() bool {
-	if o != nil && !isNil(o.Opened) {
+	if o != nil && !IsNil(o.Opened) {
 		return true
 	}
 
@@ -291,7 +291,7 @@ func (o *LogStatusSummary) SetOpened(v int64) {
 
 // GetClicked returns the Clicked field value if set, zero value otherwise.
 func (o *LogStatusSummary) GetClicked() int64 {
-	if o == nil || isNil(o.Clicked) {
+	if o == nil || IsNil(o.Clicked) {
 		var ret int64
 		return ret
 	}
@@ -301,7 +301,7 @@ func (o *LogStatusSummary) GetClicked() int64 {
 // GetClickedOk returns a tuple with the Clicked field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetClickedOk() (*int64, bool) {
-	if o == nil || isNil(o.Clicked) {
+	if o == nil || IsNil(o.Clicked) {
 		return nil, false
 	}
 	return o.Clicked, true
@@ -309,7 +309,7 @@ func (o *LogStatusSummary) GetClickedOk() (*int64, bool) {
 
 // HasClicked returns a boolean if a field has been set.
 func (o *LogStatusSummary) HasClicked() bool {
-	if o != nil && !isNil(o.Clicked) {
+	if o != nil && !IsNil(o.Clicked) {
 		return true
 	}
 
@@ -323,7 +323,7 @@ func (o *LogStatusSummary) SetClicked(v int64) {
 
 // GetUnsubscribed returns the Unsubscribed field value if set, zero value otherwise.
 func (o *LogStatusSummary) GetUnsubscribed() int64 {
-	if o == nil || isNil(o.Unsubscribed) {
+	if o == nil || IsNil(o.Unsubscribed) {
 		var ret int64
 		return ret
 	}
@@ -333,7 +333,7 @@ func (o *LogStatusSummary) GetUnsubscribed() int64 {
 // GetUnsubscribedOk returns a tuple with the Unsubscribed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetUnsubscribedOk() (*int64, bool) {
-	if o == nil || isNil(o.Unsubscribed) {
+	if o == nil || IsNil(o.Unsubscribed) {
 		return nil, false
 	}
 	return o.Unsubscribed, true
@@ -341,7 +341,7 @@ func (o *LogStatusSummary) GetUnsubscribedOk() (*int64, bool) {
 
 // HasUnsubscribed returns a boolean if a field has been set.
 func (o *LogStatusSummary) HasUnsubscribed() bool {
-	if o != nil && !isNil(o.Unsubscribed) {
+	if o != nil && !IsNil(o.Unsubscribed) {
 		return true
 	}
 
@@ -355,7 +355,7 @@ func (o *LogStatusSummary) SetUnsubscribed(v int64) {
 
 // GetComplaints returns the Complaints field value if set, zero value otherwise.
 func (o *LogStatusSummary) GetComplaints() int64 {
-	if o == nil || isNil(o.Complaints) {
+	if o == nil || IsNil(o.Complaints) {
 		var ret int64
 		return ret
 	}
@@ -365,7 +365,7 @@ func (o *LogStatusSummary) GetComplaints() int64 {
 // GetComplaintsOk returns a tuple with the Complaints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetComplaintsOk() (*int64, bool) {
-	if o == nil || isNil(o.Complaints) {
+	if o == nil || IsNil(o.Complaints) {
 		return nil, false
 	}
 	return o.Complaints, true
@@ -373,7 +373,7 @@ func (o *LogStatusSummary) GetComplaintsOk() (*int64, bool) {
 
 // HasComplaints returns a boolean if a field has been set.
 func (o *LogStatusSummary) HasComplaints() bool {
-	if o != nil && !isNil(o.Complaints) {
+	if o != nil && !IsNil(o.Complaints) {
 		return true
 	}
 
@@ -387,7 +387,7 @@ func (o *LogStatusSummary) SetComplaints(v int64) {
 
 // GetInbound returns the Inbound field value if set, zero value otherwise.
 func (o *LogStatusSummary) GetInbound() int64 {
-	if o == nil || isNil(o.Inbound) {
+	if o == nil || IsNil(o.Inbound) {
 		var ret int64
 		return ret
 	}
@@ -397,7 +397,7 @@ func (o *LogStatusSummary) GetInbound() int64 {
 // GetInboundOk returns a tuple with the Inbound field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetInboundOk() (*int64, bool) {
-	if o == nil || isNil(o.Inbound) {
+	if o == nil || IsNil(o.Inbound) {
 		return nil, false
 	}
 	return o.Inbound, true
@@ -405,7 +405,7 @@ func (o *LogStatusSummary) GetInboundOk() (*int64, bool) {
 
 // HasInbound returns a boolean if a field has been set.
 func (o *LogStatusSummary) HasInbound() bool {
-	if o != nil && !isNil(o.Inbound) {
+	if o != nil && !IsNil(o.Inbound) {
 		return true
 	}
 
@@ -419,7 +419,7 @@ func (o *LogStatusSummary) SetInbound(v int64) {
 
 // GetManualCancel returns the ManualCancel field value if set, zero value otherwise.
 func (o *LogStatusSummary) GetManualCancel() int64 {
-	if o == nil || isNil(o.ManualCancel) {
+	if o == nil || IsNil(o.ManualCancel) {
 		var ret int64
 		return ret
 	}
@@ -429,7 +429,7 @@ func (o *LogStatusSummary) GetManualCancel() int64 {
 // GetManualCancelOk returns a tuple with the ManualCancel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetManualCancelOk() (*int64, bool) {
-	if o == nil || isNil(o.ManualCancel) {
+	if o == nil || IsNil(o.ManualCancel) {
 		return nil, false
 	}
 	return o.ManualCancel, true
@@ -437,7 +437,7 @@ func (o *LogStatusSummary) GetManualCancelOk() (*int64, bool) {
 
 // HasManualCancel returns a boolean if a field has been set.
 func (o *LogStatusSummary) HasManualCancel() bool {
-	if o != nil && !isNil(o.ManualCancel) {
+	if o != nil && !IsNil(o.ManualCancel) {
 		return true
 	}
 
@@ -451,7 +451,7 @@ func (o *LogStatusSummary) SetManualCancel(v int64) {
 
 // GetNotDelivered returns the NotDelivered field value if set, zero value otherwise.
 func (o *LogStatusSummary) GetNotDelivered() int64 {
-	if o == nil || isNil(o.NotDelivered) {
+	if o == nil || IsNil(o.NotDelivered) {
 		var ret int64
 		return ret
 	}
@@ -461,7 +461,7 @@ func (o *LogStatusSummary) GetNotDelivered() int64 {
 // GetNotDeliveredOk returns a tuple with the NotDelivered field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LogStatusSummary) GetNotDeliveredOk() (*int64, bool) {
-	if o == nil || isNil(o.NotDelivered) {
+	if o == nil || IsNil(o.NotDelivered) {
 		return nil, false
 	}
 	return o.NotDelivered, true
@@ -469,7 +469,7 @@ func (o *LogStatusSummary) GetNotDeliveredOk() (*int64, bool) {
 
 // HasNotDelivered returns a boolean if a field has been set.
 func (o *LogStatusSummary) HasNotDelivered() bool {
-	if o != nil && !isNil(o.NotDelivered) {
+	if o != nil && !IsNil(o.NotDelivered) {
 		return true
 	}
 
@@ -491,43 +491,43 @@ func (o LogStatusSummary) MarshalJSON() ([]byte, error) {
 
 func (o LogStatusSummary) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Recipients) {
+	if !IsNil(o.Recipients) {
 		toSerialize["Recipients"] = o.Recipients
 	}
-	if !isNil(o.EmailTotal) {
+	if !IsNil(o.EmailTotal) {
 		toSerialize["EmailTotal"] = o.EmailTotal
 	}
-	if !isNil(o.SmsTotal) {
+	if !IsNil(o.SmsTotal) {
 		toSerialize["SmsTotal"] = o.SmsTotal
 	}
-	if !isNil(o.Delivered) {
+	if !IsNil(o.Delivered) {
 		toSerialize["Delivered"] = o.Delivered
 	}
-	if !isNil(o.Bounced) {
+	if !IsNil(o.Bounced) {
 		toSerialize["Bounced"] = o.Bounced
 	}
-	if !isNil(o.InProgress) {
+	if !IsNil(o.InProgress) {
 		toSerialize["InProgress"] = o.InProgress
 	}
-	if !isNil(o.Opened) {
+	if !IsNil(o.Opened) {
 		toSerialize["Opened"] = o.Opened
 	}
-	if !isNil(o.Clicked) {
+	if !IsNil(o.Clicked) {
 		toSerialize["Clicked"] = o.Clicked
 	}
-	if !isNil(o.Unsubscribed) {
+	if !IsNil(o.Unsubscribed) {
 		toSerialize["Unsubscribed"] = o.Unsubscribed
 	}
-	if !isNil(o.Complaints) {
+	if !IsNil(o.Complaints) {
 		toSerialize["Complaints"] = o.Complaints
 	}
-	if !isNil(o.Inbound) {
+	if !IsNil(o.Inbound) {
 		toSerialize["Inbound"] = o.Inbound
 	}
-	if !isNil(o.ManualCancel) {
+	if !IsNil(o.ManualCancel) {
 		toSerialize["ManualCancel"] = o.ManualCancel
 	}
-	if !isNil(o.NotDelivered) {
+	if !IsNil(o.NotDelivered) {
 		toSerialize["NotDelivered"] = o.NotDelivered
 	}
 	return toSerialize, nil

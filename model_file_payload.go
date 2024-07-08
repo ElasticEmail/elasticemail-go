@@ -13,6 +13,8 @@ package ElasticEmail
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the FilePayload type satisfies the MappedNullable interface at compile time
@@ -27,6 +29,8 @@ type FilePayload struct {
 	// Type of file's content (e.g. image/jpeg)
 	ContentType *string `json:"ContentType,omitempty"`
 }
+
+type _FilePayload FilePayload
 
 // NewFilePayload instantiates a new FilePayload object
 // This constructor will assign default values to properties that have it defined,
@@ -72,7 +76,7 @@ func (o *FilePayload) SetBinaryContent(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *FilePayload) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -82,7 +86,7 @@ func (o *FilePayload) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FilePayload) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -90,7 +94,7 @@ func (o *FilePayload) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *FilePayload) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -104,7 +108,7 @@ func (o *FilePayload) SetName(v string) {
 
 // GetContentType returns the ContentType field value if set, zero value otherwise.
 func (o *FilePayload) GetContentType() string {
-	if o == nil || isNil(o.ContentType) {
+	if o == nil || IsNil(o.ContentType) {
 		var ret string
 		return ret
 	}
@@ -114,7 +118,7 @@ func (o *FilePayload) GetContentType() string {
 // GetContentTypeOk returns a tuple with the ContentType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FilePayload) GetContentTypeOk() (*string, bool) {
-	if o == nil || isNil(o.ContentType) {
+	if o == nil || IsNil(o.ContentType) {
 		return nil, false
 	}
 	return o.ContentType, true
@@ -122,7 +126,7 @@ func (o *FilePayload) GetContentTypeOk() (*string, bool) {
 
 // HasContentType returns a boolean if a field has been set.
 func (o *FilePayload) HasContentType() bool {
-	if o != nil && !isNil(o.ContentType) {
+	if o != nil && !IsNil(o.ContentType) {
 		return true
 	}
 
@@ -145,13 +149,50 @@ func (o FilePayload) MarshalJSON() ([]byte, error) {
 func (o FilePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["BinaryContent"] = o.BinaryContent
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["Name"] = o.Name
 	}
-	if !isNil(o.ContentType) {
+	if !IsNil(o.ContentType) {
 		toSerialize["ContentType"] = o.ContentType
 	}
 	return toSerialize, nil
+}
+
+func (o *FilePayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"BinaryContent",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varFilePayload := _FilePayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFilePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FilePayload(varFilePayload)
+
+	return err
 }
 
 type NullableFilePayload struct {

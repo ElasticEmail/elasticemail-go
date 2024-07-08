@@ -45,7 +45,7 @@ func NewEmailsPayloadWithDefaults() *EmailsPayload {
 
 // GetRule returns the Rule field value if set, zero value otherwise.
 func (o *EmailsPayload) GetRule() string {
-	if o == nil || isNil(o.Rule) {
+	if o == nil || IsNil(o.Rule) {
 		var ret string
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *EmailsPayload) GetRule() string {
 // GetRuleOk returns a tuple with the Rule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailsPayload) GetRuleOk() (*string, bool) {
-	if o == nil || isNil(o.Rule) {
+	if o == nil || IsNil(o.Rule) {
 		return nil, false
 	}
 	return o.Rule, true
@@ -63,7 +63,7 @@ func (o *EmailsPayload) GetRuleOk() (*string, bool) {
 
 // HasRule returns a boolean if a field has been set.
 func (o *EmailsPayload) HasRule() bool {
-	if o != nil && !isNil(o.Rule) {
+	if o != nil && !IsNil(o.Rule) {
 		return true
 	}
 
@@ -77,7 +77,7 @@ func (o *EmailsPayload) SetRule(v string) {
 
 // GetEmails returns the Emails field value if set, zero value otherwise.
 func (o *EmailsPayload) GetEmails() []string {
-	if o == nil || isNil(o.Emails) {
+	if o == nil || IsNil(o.Emails) {
 		var ret []string
 		return ret
 	}
@@ -87,7 +87,7 @@ func (o *EmailsPayload) GetEmails() []string {
 // GetEmailsOk returns a tuple with the Emails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailsPayload) GetEmailsOk() ([]string, bool) {
-	if o == nil || isNil(o.Emails) {
+	if o == nil || IsNil(o.Emails) {
 		return nil, false
 	}
 	return o.Emails, true
@@ -95,7 +95,7 @@ func (o *EmailsPayload) GetEmailsOk() ([]string, bool) {
 
 // HasEmails returns a boolean if a field has been set.
 func (o *EmailsPayload) HasEmails() bool {
-	if o != nil && !isNil(o.Emails) {
+	if o != nil && !IsNil(o.Emails) {
 		return true
 	}
 
@@ -117,10 +117,10 @@ func (o EmailsPayload) MarshalJSON() ([]byte, error) {
 
 func (o EmailsPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Rule) {
+	if !IsNil(o.Rule) {
 		toSerialize["Rule"] = o.Rule
 	}
-	if !isNil(o.Emails) {
+	if !IsNil(o.Emails) {
 		toSerialize["Emails"] = o.Emails
 	}
 	return toSerialize, nil

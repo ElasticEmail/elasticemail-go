@@ -13,6 +13,8 @@ package ElasticEmail
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ContactPayload type satisfies the MappedNullable interface at compile time
@@ -31,6 +33,8 @@ type ContactPayload struct {
 	CustomFields *map[string]string `json:"CustomFields,omitempty"`
 	Consent *ConsentData `json:"Consent,omitempty"`
 }
+
+type _ContactPayload ContactPayload
 
 // NewContactPayload instantiates a new ContactPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -80,7 +84,7 @@ func (o *ContactPayload) SetEmail(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *ContactPayload) GetStatus() ContactStatus {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret ContactStatus
 		return ret
 	}
@@ -90,7 +94,7 @@ func (o *ContactPayload) GetStatus() ContactStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactPayload) GetStatusOk() (*ContactStatus, bool) {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -98,7 +102,7 @@ func (o *ContactPayload) GetStatusOk() (*ContactStatus, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *ContactPayload) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -112,7 +116,7 @@ func (o *ContactPayload) SetStatus(v ContactStatus) {
 
 // GetFirstName returns the FirstName field value if set, zero value otherwise.
 func (o *ContactPayload) GetFirstName() string {
-	if o == nil || isNil(o.FirstName) {
+	if o == nil || IsNil(o.FirstName) {
 		var ret string
 		return ret
 	}
@@ -122,7 +126,7 @@ func (o *ContactPayload) GetFirstName() string {
 // GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactPayload) GetFirstNameOk() (*string, bool) {
-	if o == nil || isNil(o.FirstName) {
+	if o == nil || IsNil(o.FirstName) {
 		return nil, false
 	}
 	return o.FirstName, true
@@ -130,7 +134,7 @@ func (o *ContactPayload) GetFirstNameOk() (*string, bool) {
 
 // HasFirstName returns a boolean if a field has been set.
 func (o *ContactPayload) HasFirstName() bool {
-	if o != nil && !isNil(o.FirstName) {
+	if o != nil && !IsNil(o.FirstName) {
 		return true
 	}
 
@@ -144,7 +148,7 @@ func (o *ContactPayload) SetFirstName(v string) {
 
 // GetLastName returns the LastName field value if set, zero value otherwise.
 func (o *ContactPayload) GetLastName() string {
-	if o == nil || isNil(o.LastName) {
+	if o == nil || IsNil(o.LastName) {
 		var ret string
 		return ret
 	}
@@ -154,7 +158,7 @@ func (o *ContactPayload) GetLastName() string {
 // GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactPayload) GetLastNameOk() (*string, bool) {
-	if o == nil || isNil(o.LastName) {
+	if o == nil || IsNil(o.LastName) {
 		return nil, false
 	}
 	return o.LastName, true
@@ -162,7 +166,7 @@ func (o *ContactPayload) GetLastNameOk() (*string, bool) {
 
 // HasLastName returns a boolean if a field has been set.
 func (o *ContactPayload) HasLastName() bool {
-	if o != nil && !isNil(o.LastName) {
+	if o != nil && !IsNil(o.LastName) {
 		return true
 	}
 
@@ -176,7 +180,7 @@ func (o *ContactPayload) SetLastName(v string) {
 
 // GetCustomFields returns the CustomFields field value if set, zero value otherwise.
 func (o *ContactPayload) GetCustomFields() map[string]string {
-	if o == nil || isNil(o.CustomFields) {
+	if o == nil || IsNil(o.CustomFields) {
 		var ret map[string]string
 		return ret
 	}
@@ -186,7 +190,7 @@ func (o *ContactPayload) GetCustomFields() map[string]string {
 // GetCustomFieldsOk returns a tuple with the CustomFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactPayload) GetCustomFieldsOk() (*map[string]string, bool) {
-	if o == nil || isNil(o.CustomFields) {
+	if o == nil || IsNil(o.CustomFields) {
 		return nil, false
 	}
 	return o.CustomFields, true
@@ -194,7 +198,7 @@ func (o *ContactPayload) GetCustomFieldsOk() (*map[string]string, bool) {
 
 // HasCustomFields returns a boolean if a field has been set.
 func (o *ContactPayload) HasCustomFields() bool {
-	if o != nil && !isNil(o.CustomFields) {
+	if o != nil && !IsNil(o.CustomFields) {
 		return true
 	}
 
@@ -208,7 +212,7 @@ func (o *ContactPayload) SetCustomFields(v map[string]string) {
 
 // GetConsent returns the Consent field value if set, zero value otherwise.
 func (o *ContactPayload) GetConsent() ConsentData {
-	if o == nil || isNil(o.Consent) {
+	if o == nil || IsNil(o.Consent) {
 		var ret ConsentData
 		return ret
 	}
@@ -218,7 +222,7 @@ func (o *ContactPayload) GetConsent() ConsentData {
 // GetConsentOk returns a tuple with the Consent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactPayload) GetConsentOk() (*ConsentData, bool) {
-	if o == nil || isNil(o.Consent) {
+	if o == nil || IsNil(o.Consent) {
 		return nil, false
 	}
 	return o.Consent, true
@@ -226,7 +230,7 @@ func (o *ContactPayload) GetConsentOk() (*ConsentData, bool) {
 
 // HasConsent returns a boolean if a field has been set.
 func (o *ContactPayload) HasConsent() bool {
-	if o != nil && !isNil(o.Consent) {
+	if o != nil && !IsNil(o.Consent) {
 		return true
 	}
 
@@ -249,22 +253,59 @@ func (o ContactPayload) MarshalJSON() ([]byte, error) {
 func (o ContactPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["Email"] = o.Email
-	if !isNil(o.Status) {
+	if !IsNil(o.Status) {
 		toSerialize["Status"] = o.Status
 	}
-	if !isNil(o.FirstName) {
+	if !IsNil(o.FirstName) {
 		toSerialize["FirstName"] = o.FirstName
 	}
-	if !isNil(o.LastName) {
+	if !IsNil(o.LastName) {
 		toSerialize["LastName"] = o.LastName
 	}
-	if !isNil(o.CustomFields) {
+	if !IsNil(o.CustomFields) {
 		toSerialize["CustomFields"] = o.CustomFields
 	}
-	if !isNil(o.Consent) {
+	if !IsNil(o.Consent) {
 		toSerialize["Consent"] = o.Consent
 	}
 	return toSerialize, nil
+}
+
+func (o *ContactPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"Email",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varContactPayload := _ContactPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varContactPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ContactPayload(varContactPayload)
+
+	return err
 }
 
 type NullableContactPayload struct {

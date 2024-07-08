@@ -14,19 +14,19 @@ package ElasticEmail
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
 
-// InboundRouteApiService InboundRouteApi service
-type InboundRouteApiService service
+// InboundRouteAPIService InboundRouteAPI service
+type InboundRouteAPIService service
 
 type ApiInboundrouteByIdDeleteRequest struct {
 	ctx context.Context
-	ApiService *InboundRouteApiService
+	ApiService *InboundRouteAPIService
 	id string
 }
 
@@ -43,7 +43,7 @@ Deletes the Inbound Route. Required Access Level: ModifySettings
  @param id
  @return ApiInboundrouteByIdDeleteRequest
 */
-func (a *InboundRouteApiService) InboundrouteByIdDelete(ctx context.Context, id string) ApiInboundrouteByIdDeleteRequest {
+func (a *InboundRouteAPIService) InboundrouteByIdDelete(ctx context.Context, id string) ApiInboundrouteByIdDeleteRequest {
 	return ApiInboundrouteByIdDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -52,14 +52,14 @@ func (a *InboundRouteApiService) InboundrouteByIdDelete(ctx context.Context, id 
 }
 
 // Execute executes the request
-func (a *InboundRouteApiService) InboundrouteByIdDeleteExecute(r ApiInboundrouteByIdDeleteRequest) (*http.Response, error) {
+func (a *InboundRouteAPIService) InboundrouteByIdDeleteExecute(r ApiInboundrouteByIdDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundRouteApiService.InboundrouteByIdDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundRouteAPIService.InboundrouteByIdDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -112,9 +112,9 @@ func (a *InboundRouteApiService) InboundrouteByIdDeleteExecute(r ApiInboundroute
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -132,7 +132,7 @@ func (a *InboundRouteApiService) InboundrouteByIdDeleteExecute(r ApiInboundroute
 
 type ApiInboundrouteByIdGetRequest struct {
 	ctx context.Context
-	ApiService *InboundRouteApiService
+	ApiService *InboundRouteAPIService
 	id string
 }
 
@@ -149,7 +149,7 @@ Load an Inbound Route. Required Access Level: ViewSettings
  @param id ID number of your attachment
  @return ApiInboundrouteByIdGetRequest
 */
-func (a *InboundRouteApiService) InboundrouteByIdGet(ctx context.Context, id string) ApiInboundrouteByIdGetRequest {
+func (a *InboundRouteAPIService) InboundrouteByIdGet(ctx context.Context, id string) ApiInboundrouteByIdGetRequest {
 	return ApiInboundrouteByIdGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -159,7 +159,7 @@ func (a *InboundRouteApiService) InboundrouteByIdGet(ctx context.Context, id str
 
 // Execute executes the request
 //  @return InboundRoute
-func (a *InboundRouteApiService) InboundrouteByIdGetExecute(r ApiInboundrouteByIdGetRequest) (*InboundRoute, *http.Response, error) {
+func (a *InboundRouteAPIService) InboundrouteByIdGetExecute(r ApiInboundrouteByIdGetRequest) (*InboundRoute, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -167,7 +167,7 @@ func (a *InboundRouteApiService) InboundrouteByIdGetExecute(r ApiInboundrouteByI
 		localVarReturnValue  *InboundRoute
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundRouteApiService.InboundrouteByIdGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundRouteAPIService.InboundrouteByIdGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -220,9 +220,9 @@ func (a *InboundRouteApiService) InboundrouteByIdGetExecute(r ApiInboundrouteByI
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -249,7 +249,7 @@ func (a *InboundRouteApiService) InboundrouteByIdGetExecute(r ApiInboundrouteByI
 
 type ApiInboundrouteByIdPutRequest struct {
 	ctx context.Context
-	ApiService *InboundRouteApiService
+	ApiService *InboundRouteAPIService
 	id string
 	inboundPayload *InboundPayload
 }
@@ -272,7 +272,7 @@ Update the Inbound Route. Required Access Level: ModifySettings
  @param id
  @return ApiInboundrouteByIdPutRequest
 */
-func (a *InboundRouteApiService) InboundrouteByIdPut(ctx context.Context, id string) ApiInboundrouteByIdPutRequest {
+func (a *InboundRouteAPIService) InboundrouteByIdPut(ctx context.Context, id string) ApiInboundrouteByIdPutRequest {
 	return ApiInboundrouteByIdPutRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -282,7 +282,7 @@ func (a *InboundRouteApiService) InboundrouteByIdPut(ctx context.Context, id str
 
 // Execute executes the request
 //  @return InboundRoute
-func (a *InboundRouteApiService) InboundrouteByIdPutExecute(r ApiInboundrouteByIdPutRequest) (*InboundRoute, *http.Response, error) {
+func (a *InboundRouteAPIService) InboundrouteByIdPutExecute(r ApiInboundrouteByIdPutRequest) (*InboundRoute, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -290,7 +290,7 @@ func (a *InboundRouteApiService) InboundrouteByIdPutExecute(r ApiInboundrouteByI
 		localVarReturnValue  *InboundRoute
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundRouteApiService.InboundrouteByIdPut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundRouteAPIService.InboundrouteByIdPut")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -348,9 +348,9 @@ func (a *InboundRouteApiService) InboundrouteByIdPutExecute(r ApiInboundrouteByI
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -377,7 +377,7 @@ func (a *InboundRouteApiService) InboundrouteByIdPutExecute(r ApiInboundrouteByI
 
 type ApiInboundrouteGetRequest struct {
 	ctx context.Context
-	ApiService *InboundRouteApiService
+	ApiService *InboundRouteAPIService
 }
 
 func (r ApiInboundrouteGetRequest) Execute() ([]InboundRoute, *http.Response, error) {
@@ -392,7 +392,7 @@ Get all your Inbound Routes. Required Access Level: ViewSettings
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiInboundrouteGetRequest
 */
-func (a *InboundRouteApiService) InboundrouteGet(ctx context.Context) ApiInboundrouteGetRequest {
+func (a *InboundRouteAPIService) InboundrouteGet(ctx context.Context) ApiInboundrouteGetRequest {
 	return ApiInboundrouteGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -401,7 +401,7 @@ func (a *InboundRouteApiService) InboundrouteGet(ctx context.Context) ApiInbound
 
 // Execute executes the request
 //  @return []InboundRoute
-func (a *InboundRouteApiService) InboundrouteGetExecute(r ApiInboundrouteGetRequest) ([]InboundRoute, *http.Response, error) {
+func (a *InboundRouteAPIService) InboundrouteGetExecute(r ApiInboundrouteGetRequest) ([]InboundRoute, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -409,7 +409,7 @@ func (a *InboundRouteApiService) InboundrouteGetExecute(r ApiInboundrouteGetRequ
 		localVarReturnValue  []InboundRoute
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundRouteApiService.InboundrouteGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundRouteAPIService.InboundrouteGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -461,9 +461,9 @@ func (a *InboundRouteApiService) InboundrouteGetExecute(r ApiInboundrouteGetRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -490,7 +490,7 @@ func (a *InboundRouteApiService) InboundrouteGetExecute(r ApiInboundrouteGetRequ
 
 type ApiInboundrouteOrderPutRequest struct {
 	ctx context.Context
-	ApiService *InboundRouteApiService
+	ApiService *InboundRouteAPIService
 	sortOrderItem *[]SortOrderItem
 }
 
@@ -512,7 +512,7 @@ Required Access Level: ViewSettings
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiInboundrouteOrderPutRequest
 */
-func (a *InboundRouteApiService) InboundrouteOrderPut(ctx context.Context) ApiInboundrouteOrderPutRequest {
+func (a *InboundRouteAPIService) InboundrouteOrderPut(ctx context.Context) ApiInboundrouteOrderPutRequest {
 	return ApiInboundrouteOrderPutRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -521,7 +521,7 @@ func (a *InboundRouteApiService) InboundrouteOrderPut(ctx context.Context) ApiIn
 
 // Execute executes the request
 //  @return []InboundRoute
-func (a *InboundRouteApiService) InboundrouteOrderPutExecute(r ApiInboundrouteOrderPutRequest) ([]InboundRoute, *http.Response, error) {
+func (a *InboundRouteAPIService) InboundrouteOrderPutExecute(r ApiInboundrouteOrderPutRequest) ([]InboundRoute, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -529,7 +529,7 @@ func (a *InboundRouteApiService) InboundrouteOrderPutExecute(r ApiInboundrouteOr
 		localVarReturnValue  []InboundRoute
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundRouteApiService.InboundrouteOrderPut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundRouteAPIService.InboundrouteOrderPut")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -586,9 +586,9 @@ func (a *InboundRouteApiService) InboundrouteOrderPutExecute(r ApiInboundrouteOr
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -615,7 +615,7 @@ func (a *InboundRouteApiService) InboundrouteOrderPutExecute(r ApiInboundrouteOr
 
 type ApiInboundroutePostRequest struct {
 	ctx context.Context
-	ApiService *InboundRouteApiService
+	ApiService *InboundRouteAPIService
 	inboundPayload *InboundPayload
 }
 
@@ -636,7 +636,7 @@ Create new Inbound Route. Required Access Level: ModifySettings
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiInboundroutePostRequest
 */
-func (a *InboundRouteApiService) InboundroutePost(ctx context.Context) ApiInboundroutePostRequest {
+func (a *InboundRouteAPIService) InboundroutePost(ctx context.Context) ApiInboundroutePostRequest {
 	return ApiInboundroutePostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -645,7 +645,7 @@ func (a *InboundRouteApiService) InboundroutePost(ctx context.Context) ApiInboun
 
 // Execute executes the request
 //  @return InboundRoute
-func (a *InboundRouteApiService) InboundroutePostExecute(r ApiInboundroutePostRequest) (*InboundRoute, *http.Response, error) {
+func (a *InboundRouteAPIService) InboundroutePostExecute(r ApiInboundroutePostRequest) (*InboundRoute, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -653,7 +653,7 @@ func (a *InboundRouteApiService) InboundroutePostExecute(r ApiInboundroutePostRe
 		localVarReturnValue  *InboundRoute
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundRouteApiService.InboundroutePost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundRouteAPIService.InboundroutePost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -710,9 +710,9 @@ func (a *InboundRouteApiService) InboundroutePostExecute(r ApiInboundroutePostRe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

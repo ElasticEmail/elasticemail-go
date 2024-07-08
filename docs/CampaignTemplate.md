@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Poolname** | Pointer to **string** | Name of your custom IP Pool to be used in the sending process | [optional] 
-**From** | Pointer to **string** | Your e-mail with an optional name (e.g.: John Doe &lt;email@domain.com&gt;) | [optional] 
+**From** | **string** | Your e-mail with an optional name (e.g.: John Doe &lt;email@domain.com&gt;) | 
 **ReplyTo** | Pointer to **string** | To what address should the recipients reply to (e.g. John Doe &lt;email@domain.com&gt;) | [optional] 
 **Subject** | Pointer to **string** | Default subject of email. | [optional] 
 **TemplateName** | Pointer to **string** | Name of template. | [optional] 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewCampaignTemplate
 
-`func NewCampaignTemplate() *CampaignTemplate`
+`func NewCampaignTemplate(from string, ) *CampaignTemplate`
 
 NewCampaignTemplate instantiates a new CampaignTemplate object
 This constructor will assign default values to properties that have it defined,
@@ -75,11 +75,6 @@ and a boolean to check if the value has been set.
 
 SetFrom sets From field to given value.
 
-### HasFrom
-
-`func (o *CampaignTemplate) HasFrom() bool`
-
-HasFrom returns a boolean if a field has been set.
 
 ### GetReplyTo
 

@@ -42,7 +42,7 @@ func NewSubaccountSettingsInfoWithDefaults() *SubaccountSettingsInfo {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *SubaccountSettingsInfo) GetEmail() SubaccountEmailSettings {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		var ret SubaccountEmailSettings
 		return ret
 	}
@@ -52,7 +52,7 @@ func (o *SubaccountSettingsInfo) GetEmail() SubaccountEmailSettings {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubaccountSettingsInfo) GetEmailOk() (*SubaccountEmailSettings, bool) {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
 	return o.Email, true
@@ -60,7 +60,7 @@ func (o *SubaccountSettingsInfo) GetEmailOk() (*SubaccountEmailSettings, bool) {
 
 // HasEmail returns a boolean if a field has been set.
 func (o *SubaccountSettingsInfo) HasEmail() bool {
-	if o != nil && !isNil(o.Email) {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -82,7 +82,7 @@ func (o SubaccountSettingsInfo) MarshalJSON() ([]byte, error) {
 
 func (o SubaccountSettingsInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Email) {
+	if !IsNil(o.Email) {
 		toSerialize["Email"] = o.Email
 	}
 	return toSerialize, nil

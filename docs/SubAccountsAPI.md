@@ -1,15 +1,15 @@
-# \SubAccountsApi
+# \SubAccountsAPI
 
 All URIs are relative to *https://api.elasticemail.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**SubaccountsByEmailCreditsPatch**](SubAccountsApi.md#SubaccountsByEmailCreditsPatch) | **Patch** /subaccounts/{email}/credits | Add, Subtract Email Credits
-[**SubaccountsByEmailDelete**](SubAccountsApi.md#SubaccountsByEmailDelete) | **Delete** /subaccounts/{email} | Delete SubAccount
-[**SubaccountsByEmailGet**](SubAccountsApi.md#SubaccountsByEmailGet) | **Get** /subaccounts/{email} | Load SubAccount
-[**SubaccountsByEmailSettingsEmailPut**](SubAccountsApi.md#SubaccountsByEmailSettingsEmailPut) | **Put** /subaccounts/{email}/settings/email | Update SubAccount Email Settings
-[**SubaccountsGet**](SubAccountsApi.md#SubaccountsGet) | **Get** /subaccounts | Load SubAccounts
-[**SubaccountsPost**](SubAccountsApi.md#SubaccountsPost) | **Post** /subaccounts | Add SubAccount
+[**SubaccountsByEmailCreditsPatch**](SubAccountsAPI.md#SubaccountsByEmailCreditsPatch) | **Patch** /subaccounts/{email}/credits | Add, Subtract Email Credits
+[**SubaccountsByEmailDelete**](SubAccountsAPI.md#SubaccountsByEmailDelete) | **Delete** /subaccounts/{email} | Delete SubAccount
+[**SubaccountsByEmailGet**](SubAccountsAPI.md#SubaccountsByEmailGet) | **Get** /subaccounts/{email} | Load SubAccount
+[**SubaccountsByEmailSettingsEmailPut**](SubAccountsAPI.md#SubaccountsByEmailSettingsEmailPut) | **Put** /subaccounts/{email}/settings/email | Update SubAccount Email Settings
+[**SubaccountsGet**](SubAccountsAPI.md#SubaccountsGet) | **Get** /subaccounts | Load SubAccounts
+[**SubaccountsPost**](SubAccountsAPI.md#SubaccountsPost) | **Post** /subaccounts | Add SubAccount
 
 
 
@@ -27,23 +27,23 @@ Add, Subtract Email Credits
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    email := "mail@example.com" // string | Email address of Sub-Account
-    subaccountEmailCreditsPayload := *openapiclient.NewSubaccountEmailCreditsPayload(int32(123)) // SubaccountEmailCreditsPayload | Amount of email credits to add or subtract from the current SubAccount email credits pool (positive or negative value)
+	email := "mail@example.com" // string | Email address of Sub-Account
+	subaccountEmailCreditsPayload := *openapiclient.NewSubaccountEmailCreditsPayload(int32(123)) // SubaccountEmailCreditsPayload | Amount of email credits to add or subtract from the current SubAccount email credits pool (positive or negative value)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SubAccountsApi.SubaccountsByEmailCreditsPatch(context.Background(), email).SubaccountEmailCreditsPayload(subaccountEmailCreditsPayload).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsApi.SubaccountsByEmailCreditsPatch``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.SubAccountsAPI.SubaccountsByEmailCreditsPatch(context.Background(), email).SubaccountEmailCreditsPayload(subaccountEmailCreditsPayload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsAPI.SubaccountsByEmailCreditsPatch``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -97,22 +97,22 @@ Delete SubAccount
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    email := "mail@example.com" // string | Email address of Sub-Account
+	email := "mail@example.com" // string | Email address of Sub-Account
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SubAccountsApi.SubaccountsByEmailDelete(context.Background(), email).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsApi.SubaccountsByEmailDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.SubAccountsAPI.SubaccountsByEmailDelete(context.Background(), email).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsAPI.SubaccountsByEmailDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -165,24 +165,24 @@ Load SubAccount
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    email := "mail@example.com" // string | Email address of Sub-Account
+	email := "mail@example.com" // string | Email address of Sub-Account
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SubAccountsApi.SubaccountsByEmailGet(context.Background(), email).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsApi.SubaccountsByEmailGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SubaccountsByEmailGet`: SubAccountInfo
-    fmt.Fprintf(os.Stdout, "Response from `SubAccountsApi.SubaccountsByEmailGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubAccountsAPI.SubaccountsByEmailGet(context.Background(), email).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsAPI.SubaccountsByEmailGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SubaccountsByEmailGet`: SubAccountInfo
+	fmt.Fprintf(os.Stdout, "Response from `SubAccountsAPI.SubaccountsByEmailGet`: %v\n", resp)
 }
 ```
 
@@ -235,25 +235,25 @@ Update SubAccount Email Settings
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    email := "email_example" // string | 
-    subaccountEmailSettings := *openapiclient.NewSubaccountEmailSettings() // SubaccountEmailSettings | Updated Email Settings
+	email := "email_example" // string | 
+	subaccountEmailSettings := *openapiclient.NewSubaccountEmailSettings() // SubaccountEmailSettings | Updated Email Settings
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SubAccountsApi.SubaccountsByEmailSettingsEmailPut(context.Background(), email).SubaccountEmailSettings(subaccountEmailSettings).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsApi.SubaccountsByEmailSettingsEmailPut``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SubaccountsByEmailSettingsEmailPut`: SubaccountEmailSettings
-    fmt.Fprintf(os.Stdout, "Response from `SubAccountsApi.SubaccountsByEmailSettingsEmailPut`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubAccountsAPI.SubaccountsByEmailSettingsEmailPut(context.Background(), email).SubaccountEmailSettings(subaccountEmailSettings).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsAPI.SubaccountsByEmailSettingsEmailPut``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SubaccountsByEmailSettingsEmailPut`: SubaccountEmailSettings
+	fmt.Fprintf(os.Stdout, "Response from `SubAccountsAPI.SubaccountsByEmailSettingsEmailPut`: %v\n", resp)
 }
 ```
 
@@ -307,25 +307,25 @@ Load SubAccounts
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    limit := int32(100) // int32 | Maximum number of returned items. (optional)
-    offset := int32(20) // int32 | How many items should be returned ahead. (optional)
+	limit := int32(100) // int32 | Maximum number of returned items. (optional)
+	offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SubAccountsApi.SubaccountsGet(context.Background()).Limit(limit).Offset(offset).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsApi.SubaccountsGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SubaccountsGet`: []SubAccountInfo
-    fmt.Fprintf(os.Stdout, "Response from `SubAccountsApi.SubaccountsGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubAccountsAPI.SubaccountsGet(context.Background()).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsAPI.SubaccountsGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SubaccountsGet`: []SubAccountInfo
+	fmt.Fprintf(os.Stdout, "Response from `SubAccountsAPI.SubaccountsGet`: %v\n", resp)
 }
 ```
 
@@ -375,24 +375,24 @@ Add SubAccount
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    subaccountPayload := *openapiclient.NewSubaccountPayload("mail@example.com", "********") // SubaccountPayload | 
+	subaccountPayload := *openapiclient.NewSubaccountPayload("mail@example.com", "********") // SubaccountPayload | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SubAccountsApi.SubaccountsPost(context.Background()).SubaccountPayload(subaccountPayload).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsApi.SubaccountsPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SubaccountsPost`: SubAccountInfo
-    fmt.Fprintf(os.Stdout, "Response from `SubAccountsApi.SubaccountsPost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubAccountsAPI.SubaccountsPost(context.Background()).SubaccountPayload(subaccountPayload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsAPI.SubaccountsPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SubaccountsPost`: SubAccountInfo
+	fmt.Fprintf(os.Stdout, "Response from `SubAccountsAPI.SubaccountsPost`: %v\n", resp)
 }
 ```
 

@@ -1,14 +1,14 @@
-# \TemplatesApi
+# \TemplatesAPI
 
 All URIs are relative to *https://api.elasticemail.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**TemplatesByNameDelete**](TemplatesApi.md#TemplatesByNameDelete) | **Delete** /templates/{name} | Delete Template
-[**TemplatesByNameGet**](TemplatesApi.md#TemplatesByNameGet) | **Get** /templates/{name} | Load Template
-[**TemplatesByNamePut**](TemplatesApi.md#TemplatesByNamePut) | **Put** /templates/{name} | Update Template
-[**TemplatesGet**](TemplatesApi.md#TemplatesGet) | **Get** /templates | Load Templates
-[**TemplatesPost**](TemplatesApi.md#TemplatesPost) | **Post** /templates | Add Template
+[**TemplatesByNameDelete**](TemplatesAPI.md#TemplatesByNameDelete) | **Delete** /templates/{name} | Delete Template
+[**TemplatesByNameGet**](TemplatesAPI.md#TemplatesByNameGet) | **Get** /templates/{name} | Load Template
+[**TemplatesByNamePut**](TemplatesAPI.md#TemplatesByNamePut) | **Put** /templates/{name} | Update Template
+[**TemplatesGet**](TemplatesAPI.md#TemplatesGet) | **Get** /templates | Load Templates
+[**TemplatesPost**](TemplatesAPI.md#TemplatesPost) | **Post** /templates | Add Template
 
 
 
@@ -26,22 +26,22 @@ Delete Template
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "Template01" // string | Name of template.
+	name := "Template01" // string | Name of template.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TemplatesApi.TemplatesByNameDelete(context.Background(), name).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplatesByNameDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.TemplatesAPI.TemplatesByNameDelete(context.Background(), name).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TemplatesAPI.TemplatesByNameDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -94,24 +94,24 @@ Load Template
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "Template01" // string | Name of template.
+	name := "Template01" // string | Name of template.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TemplatesApi.TemplatesByNameGet(context.Background(), name).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplatesByNameGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TemplatesByNameGet`: Template
-    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.TemplatesByNameGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TemplatesAPI.TemplatesByNameGet(context.Background(), name).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TemplatesAPI.TemplatesByNameGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TemplatesByNameGet`: Template
+	fmt.Fprintf(os.Stdout, "Response from `TemplatesAPI.TemplatesByNameGet`: %v\n", resp)
 }
 ```
 
@@ -164,25 +164,25 @@ Update Template
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "Template01" // string | Name of template.
-    templatePayload := *openapiclient.NewTemplatePayload("Name_example") // TemplatePayload | 
+	name := "Template01" // string | Name of template.
+	templatePayload := *openapiclient.NewTemplatePayload("Name_example") // TemplatePayload | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TemplatesApi.TemplatesByNamePut(context.Background(), name).TemplatePayload(templatePayload).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplatesByNamePut``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TemplatesByNamePut`: Template
-    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.TemplatesByNamePut`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TemplatesAPI.TemplatesByNamePut(context.Background(), name).TemplatePayload(templatePayload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TemplatesAPI.TemplatesByNamePut``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TemplatesByNamePut`: Template
+	fmt.Fprintf(os.Stdout, "Response from `TemplatesAPI.TemplatesByNamePut`: %v\n", resp)
 }
 ```
 
@@ -236,27 +236,27 @@ Load Templates
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    scopeType := []openapiclient.TemplateScope{openapiclient.TemplateScope("Personal")} // []TemplateScope | Return templates with specified scope only
-    templateTypes := []openapiclient.TemplateType{openapiclient.TemplateType("RawHTML")} // []TemplateType | Return templates with specified type only (optional)
-    limit := int32(100) // int32 | Maximum number of returned items. (optional)
-    offset := int32(20) // int32 | How many items should be returned ahead. (optional)
+	scopeType := []openapiclient.TemplateScope{openapiclient.TemplateScope("Personal")} // []TemplateScope | Return templates with specified scope only
+	templateTypes := []openapiclient.TemplateType{openapiclient.TemplateType("RawHTML")} // []TemplateType | Return templates with specified type only (optional)
+	limit := int32(100) // int32 | Maximum number of returned items. (optional)
+	offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TemplatesApi.TemplatesGet(context.Background()).ScopeType(scopeType).TemplateTypes(templateTypes).Limit(limit).Offset(offset).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplatesGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TemplatesGet`: []Template
-    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.TemplatesGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TemplatesAPI.TemplatesGet(context.Background()).ScopeType(scopeType).TemplateTypes(templateTypes).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TemplatesAPI.TemplatesGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TemplatesGet`: []Template
+	fmt.Fprintf(os.Stdout, "Response from `TemplatesAPI.TemplatesGet`: %v\n", resp)
 }
 ```
 
@@ -308,24 +308,24 @@ Add Template
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    templatePayload := *openapiclient.NewTemplatePayload("Name_example") // TemplatePayload | 
+	templatePayload := *openapiclient.NewTemplatePayload("Name_example") // TemplatePayload | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TemplatesApi.TemplatesPost(context.Background()).TemplatePayload(templatePayload).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplatesPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TemplatesPost`: Template
-    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.TemplatesPost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TemplatesAPI.TemplatesPost(context.Background()).TemplatePayload(templatePayload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TemplatesAPI.TemplatesPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TemplatesPost`: Template
+	fmt.Fprintf(os.Stdout, "Response from `TemplatesAPI.TemplatesPost`: %v\n", resp)
 }
 ```
 

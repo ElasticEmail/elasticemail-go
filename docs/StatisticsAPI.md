@@ -1,14 +1,14 @@
-# \StatisticsApi
+# \StatisticsAPI
 
 All URIs are relative to *https://api.elasticemail.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**StatisticsCampaignsByNameGet**](StatisticsApi.md#StatisticsCampaignsByNameGet) | **Get** /statistics/campaigns/{name} | Load Campaign Stats
-[**StatisticsCampaignsGet**](StatisticsApi.md#StatisticsCampaignsGet) | **Get** /statistics/campaigns | Load Campaigns Stats
-[**StatisticsChannelsByNameGet**](StatisticsApi.md#StatisticsChannelsByNameGet) | **Get** /statistics/channels/{name} | Load Channel Stats
-[**StatisticsChannelsGet**](StatisticsApi.md#StatisticsChannelsGet) | **Get** /statistics/channels | Load Channels Stats
-[**StatisticsGet**](StatisticsApi.md#StatisticsGet) | **Get** /statistics | Load Statistics
+[**StatisticsCampaignsByNameGet**](StatisticsAPI.md#StatisticsCampaignsByNameGet) | **Get** /statistics/campaigns/{name} | Load Campaign Stats
+[**StatisticsCampaignsGet**](StatisticsAPI.md#StatisticsCampaignsGet) | **Get** /statistics/campaigns | Load Campaigns Stats
+[**StatisticsChannelsByNameGet**](StatisticsAPI.md#StatisticsChannelsByNameGet) | **Get** /statistics/channels/{name} | Load Channel Stats
+[**StatisticsChannelsGet**](StatisticsAPI.md#StatisticsChannelsGet) | **Get** /statistics/channels | Load Channels Stats
+[**StatisticsGet**](StatisticsAPI.md#StatisticsGet) | **Get** /statistics | Load Statistics
 
 
 
@@ -26,24 +26,24 @@ Load Campaign Stats
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "name_example" // string | The name of the campaign to get.
+	name := "name_example" // string | The name of the campaign to get.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StatisticsApi.StatisticsCampaignsByNameGet(context.Background(), name).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StatisticsApi.StatisticsCampaignsByNameGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `StatisticsCampaignsByNameGet`: ChannelLogStatusSummary
-    fmt.Fprintf(os.Stdout, "Response from `StatisticsApi.StatisticsCampaignsByNameGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.StatisticsAPI.StatisticsCampaignsByNameGet(context.Background(), name).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `StatisticsAPI.StatisticsCampaignsByNameGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `StatisticsCampaignsByNameGet`: ChannelLogStatusSummary
+	fmt.Fprintf(os.Stdout, "Response from `StatisticsAPI.StatisticsCampaignsByNameGet`: %v\n", resp)
 }
 ```
 
@@ -96,25 +96,25 @@ Load Campaigns Stats
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    limit := int32(100) // int32 | Maximum number of returned items. (optional)
-    offset := int32(20) // int32 | How many items should be returned ahead. (optional)
+	limit := int32(100) // int32 | Maximum number of returned items. (optional)
+	offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StatisticsApi.StatisticsCampaignsGet(context.Background()).Limit(limit).Offset(offset).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StatisticsApi.StatisticsCampaignsGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `StatisticsCampaignsGet`: []ChannelLogStatusSummary
-    fmt.Fprintf(os.Stdout, "Response from `StatisticsApi.StatisticsCampaignsGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.StatisticsAPI.StatisticsCampaignsGet(context.Background()).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `StatisticsAPI.StatisticsCampaignsGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `StatisticsCampaignsGet`: []ChannelLogStatusSummary
+	fmt.Fprintf(os.Stdout, "Response from `StatisticsAPI.StatisticsCampaignsGet`: %v\n", resp)
 }
 ```
 
@@ -164,24 +164,24 @@ Load Channel Stats
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "name_example" // string | The name of the channel to get.
+	name := "name_example" // string | The name of the channel to get.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StatisticsApi.StatisticsChannelsByNameGet(context.Background(), name).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StatisticsApi.StatisticsChannelsByNameGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `StatisticsChannelsByNameGet`: ChannelLogStatusSummary
-    fmt.Fprintf(os.Stdout, "Response from `StatisticsApi.StatisticsChannelsByNameGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.StatisticsAPI.StatisticsChannelsByNameGet(context.Background(), name).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `StatisticsAPI.StatisticsChannelsByNameGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `StatisticsChannelsByNameGet`: ChannelLogStatusSummary
+	fmt.Fprintf(os.Stdout, "Response from `StatisticsAPI.StatisticsChannelsByNameGet`: %v\n", resp)
 }
 ```
 
@@ -234,25 +234,25 @@ Load Channels Stats
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    limit := int32(100) // int32 | Maximum number of returned items. (optional)
-    offset := int32(20) // int32 | How many items should be returned ahead. (optional)
+	limit := int32(100) // int32 | Maximum number of returned items. (optional)
+	offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StatisticsApi.StatisticsChannelsGet(context.Background()).Limit(limit).Offset(offset).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StatisticsApi.StatisticsChannelsGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `StatisticsChannelsGet`: []ChannelLogStatusSummary
-    fmt.Fprintf(os.Stdout, "Response from `StatisticsApi.StatisticsChannelsGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.StatisticsAPI.StatisticsChannelsGet(context.Background()).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `StatisticsAPI.StatisticsChannelsGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `StatisticsChannelsGet`: []ChannelLogStatusSummary
+	fmt.Fprintf(os.Stdout, "Response from `StatisticsAPI.StatisticsChannelsGet`: %v\n", resp)
 }
 ```
 
@@ -302,26 +302,26 @@ Load Statistics
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
+	"context"
+	"fmt"
+	"os"
     "time"
-    openapiclient "./openapi"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    from := time.Now() // time.Time | Starting date for search in YYYY-MM-DDThh:mm:ss format.
-    to := time.Now() // time.Time | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
+	from := time.Now() // time.Time | Starting date for search in YYYY-MM-DDThh:mm:ss format.
+	to := time.Now() // time.Time | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StatisticsApi.StatisticsGet(context.Background()).From(from).To(to).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StatisticsApi.StatisticsGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `StatisticsGet`: LogStatusSummary
-    fmt.Fprintf(os.Stdout, "Response from `StatisticsApi.StatisticsGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.StatisticsAPI.StatisticsGet(context.Background()).From(from).To(to).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `StatisticsAPI.StatisticsGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `StatisticsGet`: LogStatusSummary
+	fmt.Fprintf(os.Stdout, "Response from `StatisticsAPI.StatisticsGet`: %v\n", resp)
 }
 ```
 

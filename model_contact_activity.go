@@ -64,7 +64,7 @@ func NewContactActivityWithDefaults() *ContactActivity {
 
 // GetTotalSent returns the TotalSent field value if set, zero value otherwise.
 func (o *ContactActivity) GetTotalSent() int32 {
-	if o == nil || isNil(o.TotalSent) {
+	if o == nil || IsNil(o.TotalSent) {
 		var ret int32
 		return ret
 	}
@@ -74,7 +74,7 @@ func (o *ContactActivity) GetTotalSent() int32 {
 // GetTotalSentOk returns a tuple with the TotalSent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactActivity) GetTotalSentOk() (*int32, bool) {
-	if o == nil || isNil(o.TotalSent) {
+	if o == nil || IsNil(o.TotalSent) {
 		return nil, false
 	}
 	return o.TotalSent, true
@@ -82,7 +82,7 @@ func (o *ContactActivity) GetTotalSentOk() (*int32, bool) {
 
 // HasTotalSent returns a boolean if a field has been set.
 func (o *ContactActivity) HasTotalSent() bool {
-	if o != nil && !isNil(o.TotalSent) {
+	if o != nil && !IsNil(o.TotalSent) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *ContactActivity) SetTotalSent(v int32) {
 
 // GetTotalOpened returns the TotalOpened field value if set, zero value otherwise.
 func (o *ContactActivity) GetTotalOpened() int32 {
-	if o == nil || isNil(o.TotalOpened) {
+	if o == nil || IsNil(o.TotalOpened) {
 		var ret int32
 		return ret
 	}
@@ -106,7 +106,7 @@ func (o *ContactActivity) GetTotalOpened() int32 {
 // GetTotalOpenedOk returns a tuple with the TotalOpened field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactActivity) GetTotalOpenedOk() (*int32, bool) {
-	if o == nil || isNil(o.TotalOpened) {
+	if o == nil || IsNil(o.TotalOpened) {
 		return nil, false
 	}
 	return o.TotalOpened, true
@@ -114,7 +114,7 @@ func (o *ContactActivity) GetTotalOpenedOk() (*int32, bool) {
 
 // HasTotalOpened returns a boolean if a field has been set.
 func (o *ContactActivity) HasTotalOpened() bool {
-	if o != nil && !isNil(o.TotalOpened) {
+	if o != nil && !IsNil(o.TotalOpened) {
 		return true
 	}
 
@@ -128,7 +128,7 @@ func (o *ContactActivity) SetTotalOpened(v int32) {
 
 // GetTotalClicked returns the TotalClicked field value if set, zero value otherwise.
 func (o *ContactActivity) GetTotalClicked() int32 {
-	if o == nil || isNil(o.TotalClicked) {
+	if o == nil || IsNil(o.TotalClicked) {
 		var ret int32
 		return ret
 	}
@@ -138,7 +138,7 @@ func (o *ContactActivity) GetTotalClicked() int32 {
 // GetTotalClickedOk returns a tuple with the TotalClicked field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactActivity) GetTotalClickedOk() (*int32, bool) {
-	if o == nil || isNil(o.TotalClicked) {
+	if o == nil || IsNil(o.TotalClicked) {
 		return nil, false
 	}
 	return o.TotalClicked, true
@@ -146,7 +146,7 @@ func (o *ContactActivity) GetTotalClickedOk() (*int32, bool) {
 
 // HasTotalClicked returns a boolean if a field has been set.
 func (o *ContactActivity) HasTotalClicked() bool {
-	if o != nil && !isNil(o.TotalClicked) {
+	if o != nil && !IsNil(o.TotalClicked) {
 		return true
 	}
 
@@ -160,7 +160,7 @@ func (o *ContactActivity) SetTotalClicked(v int32) {
 
 // GetTotalFailed returns the TotalFailed field value if set, zero value otherwise.
 func (o *ContactActivity) GetTotalFailed() int32 {
-	if o == nil || isNil(o.TotalFailed) {
+	if o == nil || IsNil(o.TotalFailed) {
 		var ret int32
 		return ret
 	}
@@ -170,7 +170,7 @@ func (o *ContactActivity) GetTotalFailed() int32 {
 // GetTotalFailedOk returns a tuple with the TotalFailed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactActivity) GetTotalFailedOk() (*int32, bool) {
-	if o == nil || isNil(o.TotalFailed) {
+	if o == nil || IsNil(o.TotalFailed) {
 		return nil, false
 	}
 	return o.TotalFailed, true
@@ -178,7 +178,7 @@ func (o *ContactActivity) GetTotalFailedOk() (*int32, bool) {
 
 // HasTotalFailed returns a boolean if a field has been set.
 func (o *ContactActivity) HasTotalFailed() bool {
-	if o != nil && !isNil(o.TotalFailed) {
+	if o != nil && !IsNil(o.TotalFailed) {
 		return true
 	}
 
@@ -192,7 +192,7 @@ func (o *ContactActivity) SetTotalFailed(v int32) {
 
 // GetLastSent returns the LastSent field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ContactActivity) GetLastSent() time.Time {
-	if o == nil || isNil(o.LastSent.Get()) {
+	if o == nil || IsNil(o.LastSent.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -234,7 +234,7 @@ func (o *ContactActivity) UnsetLastSent() {
 
 // GetLastOpened returns the LastOpened field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ContactActivity) GetLastOpened() time.Time {
-	if o == nil || isNil(o.LastOpened.Get()) {
+	if o == nil || IsNil(o.LastOpened.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -276,7 +276,7 @@ func (o *ContactActivity) UnsetLastOpened() {
 
 // GetLastClicked returns the LastClicked field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ContactActivity) GetLastClicked() time.Time {
-	if o == nil || isNil(o.LastClicked.Get()) {
+	if o == nil || IsNil(o.LastClicked.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -318,7 +318,7 @@ func (o *ContactActivity) UnsetLastClicked() {
 
 // GetLastFailed returns the LastFailed field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ContactActivity) GetLastFailed() time.Time {
-	if o == nil || isNil(o.LastFailed.Get()) {
+	if o == nil || IsNil(o.LastFailed.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -360,7 +360,7 @@ func (o *ContactActivity) UnsetLastFailed() {
 
 // GetLastIP returns the LastIP field value if set, zero value otherwise.
 func (o *ContactActivity) GetLastIP() string {
-	if o == nil || isNil(o.LastIP) {
+	if o == nil || IsNil(o.LastIP) {
 		var ret string
 		return ret
 	}
@@ -370,7 +370,7 @@ func (o *ContactActivity) GetLastIP() string {
 // GetLastIPOk returns a tuple with the LastIP field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactActivity) GetLastIPOk() (*string, bool) {
-	if o == nil || isNil(o.LastIP) {
+	if o == nil || IsNil(o.LastIP) {
 		return nil, false
 	}
 	return o.LastIP, true
@@ -378,7 +378,7 @@ func (o *ContactActivity) GetLastIPOk() (*string, bool) {
 
 // HasLastIP returns a boolean if a field has been set.
 func (o *ContactActivity) HasLastIP() bool {
-	if o != nil && !isNil(o.LastIP) {
+	if o != nil && !IsNil(o.LastIP) {
 		return true
 	}
 
@@ -392,7 +392,7 @@ func (o *ContactActivity) SetLastIP(v string) {
 
 // GetErrorCode returns the ErrorCode field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ContactActivity) GetErrorCode() int32 {
-	if o == nil || isNil(o.ErrorCode.Get()) {
+	if o == nil || IsNil(o.ErrorCode.Get()) {
 		var ret int32
 		return ret
 	}
@@ -434,7 +434,7 @@ func (o *ContactActivity) UnsetErrorCode() {
 
 // GetFriendlyErrorMessage returns the FriendlyErrorMessage field value if set, zero value otherwise.
 func (o *ContactActivity) GetFriendlyErrorMessage() string {
-	if o == nil || isNil(o.FriendlyErrorMessage) {
+	if o == nil || IsNil(o.FriendlyErrorMessage) {
 		var ret string
 		return ret
 	}
@@ -444,7 +444,7 @@ func (o *ContactActivity) GetFriendlyErrorMessage() string {
 // GetFriendlyErrorMessageOk returns a tuple with the FriendlyErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactActivity) GetFriendlyErrorMessageOk() (*string, bool) {
-	if o == nil || isNil(o.FriendlyErrorMessage) {
+	if o == nil || IsNil(o.FriendlyErrorMessage) {
 		return nil, false
 	}
 	return o.FriendlyErrorMessage, true
@@ -452,7 +452,7 @@ func (o *ContactActivity) GetFriendlyErrorMessageOk() (*string, bool) {
 
 // HasFriendlyErrorMessage returns a boolean if a field has been set.
 func (o *ContactActivity) HasFriendlyErrorMessage() bool {
-	if o != nil && !isNil(o.FriendlyErrorMessage) {
+	if o != nil && !IsNil(o.FriendlyErrorMessage) {
 		return true
 	}
 
@@ -474,16 +474,16 @@ func (o ContactActivity) MarshalJSON() ([]byte, error) {
 
 func (o ContactActivity) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.TotalSent) {
+	if !IsNil(o.TotalSent) {
 		toSerialize["TotalSent"] = o.TotalSent
 	}
-	if !isNil(o.TotalOpened) {
+	if !IsNil(o.TotalOpened) {
 		toSerialize["TotalOpened"] = o.TotalOpened
 	}
-	if !isNil(o.TotalClicked) {
+	if !IsNil(o.TotalClicked) {
 		toSerialize["TotalClicked"] = o.TotalClicked
 	}
-	if !isNil(o.TotalFailed) {
+	if !IsNil(o.TotalFailed) {
 		toSerialize["TotalFailed"] = o.TotalFailed
 	}
 	if o.LastSent.IsSet() {
@@ -498,13 +498,13 @@ func (o ContactActivity) ToMap() (map[string]interface{}, error) {
 	if o.LastFailed.IsSet() {
 		toSerialize["LastFailed"] = o.LastFailed.Get()
 	}
-	if !isNil(o.LastIP) {
+	if !IsNil(o.LastIP) {
 		toSerialize["LastIP"] = o.LastIP
 	}
 	if o.ErrorCode.IsSet() {
 		toSerialize["ErrorCode"] = o.ErrorCode.Get()
 	}
-	if !isNil(o.FriendlyErrorMessage) {
+	if !IsNil(o.FriendlyErrorMessage) {
 		toSerialize["FriendlyErrorMessage"] = o.FriendlyErrorMessage
 	}
 	return toSerialize, nil

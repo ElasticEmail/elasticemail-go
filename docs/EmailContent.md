@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Headers** | Pointer to **map[string]string** | A key-value collection of custom e-mail headers. | [optional] 
 **Postback** | Pointer to **string** | Postback header. | [optional] 
 **EnvelopeFrom** | Pointer to **string** | E-mail with an optional name to be used as the envelope from address (e.g.: John Doe &lt;email@domain.com&gt;) | [optional] 
-**From** | Pointer to **string** | Your e-mail with an optional name (e.g.: John Doe &lt;email@domain.com&gt;) | [optional] 
+**From** | **string** | Your e-mail with an optional name (e.g.: John Doe &lt;email@domain.com&gt;) | 
 **ReplyTo** | Pointer to **string** | To what address should the recipients reply to (e.g. John Doe &lt;email@domain.com&gt;) | [optional] 
 **Subject** | Pointer to **string** | Default subject of email. | [optional] 
 **TemplateName** | Pointer to **string** | Name of template. | [optional] 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewEmailContent
 
-`func NewEmailContent() *EmailContent`
+`func NewEmailContent(from string, ) *EmailContent`
 
 NewEmailContent instantiates a new EmailContent object
 This constructor will assign default values to properties that have it defined,
@@ -205,11 +205,6 @@ and a boolean to check if the value has been set.
 
 SetFrom sets From field to given value.
 
-### HasFrom
-
-`func (o *EmailContent) HasFrom() bool`
-
-HasFrom returns a boolean if a field has been set.
 
 ### GetReplyTo
 

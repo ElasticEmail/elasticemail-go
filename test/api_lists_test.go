@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-Testing ListsApiService
+Testing ListsAPIService
 
 */
 
@@ -10,110 +10,122 @@ Testing ListsApiService
 package ElasticEmail
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "./openapi"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
-func Test_ElasticEmail_ListsApiService(t *testing.T) {
+func Test_ElasticEmail_ListsAPIService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test ListsApiService ListsByNameContactsPost", func(t *testing.T) {
+	t.Run("Test ListsAPIService ListsByListnameContactsGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var listname string
 
-        resp, httpRes, err := apiClient.ListsApi.ListsByNameContactsPost(context.Background(), name).Execute()
+		resp, httpRes, err := apiClient.ListsAPI.ListsByListnameContactsGet(context.Background(), listname).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test ListsApiService ListsByNameContactsRemovePost", func(t *testing.T) {
+	t.Run("Test ListsAPIService ListsByNameContactsPost", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var name string
 
-        resp, httpRes, err := apiClient.ListsApi.ListsByNameContactsRemovePost(context.Background(), name).Execute()
+		resp, httpRes, err := apiClient.ListsAPI.ListsByNameContactsPost(context.Background(), name).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test ListsApiService ListsByNameDelete", func(t *testing.T) {
+	t.Run("Test ListsAPIService ListsByNameContactsRemovePost", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var name string
 
-        resp, httpRes, err := apiClient.ListsApi.ListsByNameDelete(context.Background(), name).Execute()
+		httpRes, err := apiClient.ListsAPI.ListsByNameContactsRemovePost(context.Background(), name).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test ListsApiService ListsByNameGet", func(t *testing.T) {
+	t.Run("Test ListsAPIService ListsByNameDelete", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var name string
 
-        resp, httpRes, err := apiClient.ListsApi.ListsByNameGet(context.Background(), name).Execute()
+		httpRes, err := apiClient.ListsAPI.ListsByNameDelete(context.Background(), name).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test ListsApiService ListsByNamePut", func(t *testing.T) {
+	t.Run("Test ListsAPIService ListsByNameGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var name string
 
-        resp, httpRes, err := apiClient.ListsApi.ListsByNamePut(context.Background(), name).Execute()
+		resp, httpRes, err := apiClient.ListsAPI.ListsByNameGet(context.Background(), name).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test ListsApiService ListsGet", func(t *testing.T) {
+	t.Run("Test ListsAPIService ListsByNamePut", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.ListsApi.ListsGet(context.Background()).Execute()
+		var name string
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		resp, httpRes, err := apiClient.ListsAPI.ListsByNamePut(context.Background(), name).Execute()
 
-    })
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    t.Run("Test ListsApiService ListsPost", func(t *testing.T) {
+	})
 
-        t.Skip("skip test")  // remove to run test
+	t.Run("Test ListsAPIService ListsGet", func(t *testing.T) {
 
-        resp, httpRes, err := apiClient.ListsApi.ListsPost(context.Background()).Execute()
+		t.Skip("skip test")  // remove to run test
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		resp, httpRes, err := apiClient.ListsAPI.ListsGet(context.Background()).Execute()
 
-    })
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ListsAPIService ListsPost", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.ListsAPI.ListsPost(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
 
 }

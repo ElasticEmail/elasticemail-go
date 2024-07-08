@@ -45,7 +45,7 @@ func NewEmailSendWithDefaults() *EmailSend {
 
 // GetTransactionID returns the TransactionID field value if set, zero value otherwise.
 func (o *EmailSend) GetTransactionID() string {
-	if o == nil || isNil(o.TransactionID) {
+	if o == nil || IsNil(o.TransactionID) {
 		var ret string
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *EmailSend) GetTransactionID() string {
 // GetTransactionIDOk returns a tuple with the TransactionID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailSend) GetTransactionIDOk() (*string, bool) {
-	if o == nil || isNil(o.TransactionID) {
+	if o == nil || IsNil(o.TransactionID) {
 		return nil, false
 	}
 	return o.TransactionID, true
@@ -63,7 +63,7 @@ func (o *EmailSend) GetTransactionIDOk() (*string, bool) {
 
 // HasTransactionID returns a boolean if a field has been set.
 func (o *EmailSend) HasTransactionID() bool {
-	if o != nil && !isNil(o.TransactionID) {
+	if o != nil && !IsNil(o.TransactionID) {
 		return true
 	}
 
@@ -77,7 +77,7 @@ func (o *EmailSend) SetTransactionID(v string) {
 
 // GetMessageID returns the MessageID field value if set, zero value otherwise.
 func (o *EmailSend) GetMessageID() string {
-	if o == nil || isNil(o.MessageID) {
+	if o == nil || IsNil(o.MessageID) {
 		var ret string
 		return ret
 	}
@@ -87,7 +87,7 @@ func (o *EmailSend) GetMessageID() string {
 // GetMessageIDOk returns a tuple with the MessageID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailSend) GetMessageIDOk() (*string, bool) {
-	if o == nil || isNil(o.MessageID) {
+	if o == nil || IsNil(o.MessageID) {
 		return nil, false
 	}
 	return o.MessageID, true
@@ -95,7 +95,7 @@ func (o *EmailSend) GetMessageIDOk() (*string, bool) {
 
 // HasMessageID returns a boolean if a field has been set.
 func (o *EmailSend) HasMessageID() bool {
-	if o != nil && !isNil(o.MessageID) {
+	if o != nil && !IsNil(o.MessageID) {
 		return true
 	}
 
@@ -117,10 +117,10 @@ func (o EmailSend) MarshalJSON() ([]byte, error) {
 
 func (o EmailSend) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.TransactionID) {
+	if !IsNil(o.TransactionID) {
 		toSerialize["TransactionID"] = o.TransactionID
 	}
-	if !isNil(o.MessageID) {
+	if !IsNil(o.MessageID) {
 		toSerialize["MessageID"] = o.MessageID
 	}
 	return toSerialize, nil

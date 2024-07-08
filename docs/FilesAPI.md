@@ -1,14 +1,14 @@
-# \FilesApi
+# \FilesAPI
 
 All URIs are relative to *https://api.elasticemail.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**FilesByNameDelete**](FilesApi.md#FilesByNameDelete) | **Delete** /files/{name} | Delete File
-[**FilesByNameGet**](FilesApi.md#FilesByNameGet) | **Get** /files/{name} | Download File
-[**FilesByNameInfoGet**](FilesApi.md#FilesByNameInfoGet) | **Get** /files/{name}/info | Load File Details
-[**FilesGet**](FilesApi.md#FilesGet) | **Get** /files | List Files
-[**FilesPost**](FilesApi.md#FilesPost) | **Post** /files | Upload File
+[**FilesByNameDelete**](FilesAPI.md#FilesByNameDelete) | **Delete** /files/{name} | Delete File
+[**FilesByNameGet**](FilesAPI.md#FilesByNameGet) | **Get** /files/{name} | Download File
+[**FilesByNameInfoGet**](FilesAPI.md#FilesByNameInfoGet) | **Get** /files/{name}/info | Load File Details
+[**FilesGet**](FilesAPI.md#FilesGet) | **Get** /files | List Files
+[**FilesPost**](FilesAPI.md#FilesPost) | **Post** /files | Upload File
 
 
 
@@ -26,22 +26,22 @@ Delete File
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "filename.txt" // string | Name of your file including extension.
+	name := "filename.txt" // string | Name of your file including extension.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FilesApi.FilesByNameDelete(context.Background(), name).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FilesApi.FilesByNameDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.FilesAPI.FilesByNameDelete(context.Background(), name).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FilesAPI.FilesByNameDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -94,24 +94,24 @@ Download File
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "filename.txt" // string | Name of your file including extension.
+	name := "filename.txt" // string | Name of your file including extension.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FilesApi.FilesByNameGet(context.Background(), name).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FilesApi.FilesByNameGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `FilesByNameGet`: *os.File
-    fmt.Fprintf(os.Stdout, "Response from `FilesApi.FilesByNameGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FilesAPI.FilesByNameGet(context.Background(), name).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FilesAPI.FilesByNameGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `FilesByNameGet`: *os.File
+	fmt.Fprintf(os.Stdout, "Response from `FilesAPI.FilesByNameGet`: %v\n", resp)
 }
 ```
 
@@ -164,24 +164,24 @@ Load File Details
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "filename.txt" // string | Name of your file including extension.
+	name := "filename.txt" // string | Name of your file including extension.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FilesApi.FilesByNameInfoGet(context.Background(), name).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FilesApi.FilesByNameInfoGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `FilesByNameInfoGet`: FileInfo
-    fmt.Fprintf(os.Stdout, "Response from `FilesApi.FilesByNameInfoGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FilesAPI.FilesByNameInfoGet(context.Background(), name).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FilesAPI.FilesByNameInfoGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `FilesByNameInfoGet`: FileInfo
+	fmt.Fprintf(os.Stdout, "Response from `FilesAPI.FilesByNameInfoGet`: %v\n", resp)
 }
 ```
 
@@ -234,25 +234,25 @@ List Files
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    limit := int32(100) // int32 | Maximum number of returned items. (optional)
-    offset := int32(20) // int32 | How many items should be returned ahead. (optional)
+	limit := int32(100) // int32 | Maximum number of returned items. (optional)
+	offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FilesApi.FilesGet(context.Background()).Limit(limit).Offset(offset).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FilesApi.FilesGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `FilesGet`: []FileInfo
-    fmt.Fprintf(os.Stdout, "Response from `FilesApi.FilesGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FilesAPI.FilesGet(context.Background()).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FilesAPI.FilesGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `FilesGet`: []FileInfo
+	fmt.Fprintf(os.Stdout, "Response from `FilesAPI.FilesGet`: %v\n", resp)
 }
 ```
 
@@ -302,25 +302,25 @@ Upload File
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    filePayload := *openapiclient.NewFilePayload(string(123)) // FilePayload | 
-    expiresAfterDays := int32(56) // int32 | After how many days should the file be deleted. (optional)
+	filePayload := *openapiclient.NewFilePayload(string(123)) // FilePayload | 
+	expiresAfterDays := int32(56) // int32 | After how many days should the file be deleted. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FilesApi.FilesPost(context.Background()).FilePayload(filePayload).ExpiresAfterDays(expiresAfterDays).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `FilesApi.FilesPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `FilesPost`: FileInfo
-    fmt.Fprintf(os.Stdout, "Response from `FilesApi.FilesPost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FilesAPI.FilesPost(context.Background()).FilePayload(filePayload).ExpiresAfterDays(expiresAfterDays).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FilesAPI.FilesPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `FilesPost`: FileInfo
+	fmt.Fprintf(os.Stdout, "Response from `FilesAPI.FilesPost`: %v\n", resp)
 }
 ```
 

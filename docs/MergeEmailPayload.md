@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **MergeFile** | [**MessageAttachment**](MessageAttachment.md) |  | 
-**Content** | Pointer to [**EmailContent**](EmailContent.md) |  | [optional] 
+**Content** | [**EmailContent**](EmailContent.md) |  | 
 **Options** | Pointer to [**Options**](Options.md) |  | [optional] 
 
 ## Methods
 
 ### NewMergeEmailPayload
 
-`func NewMergeEmailPayload(mergeFile MessageAttachment, ) *MergeEmailPayload`
+`func NewMergeEmailPayload(mergeFile MessageAttachment, content EmailContent, ) *MergeEmailPayload`
 
 NewMergeEmailPayload instantiates a new MergeEmailPayload object
 This constructor will assign default values to properties that have it defined,
@@ -66,11 +66,6 @@ and a boolean to check if the value has been set.
 
 SetContent sets Content field to given value.
 
-### HasContent
-
-`func (o *MergeEmailPayload) HasContent() bool`
-
-HasContent returns a boolean if a field has been set.
 
 ### GetOptions
 

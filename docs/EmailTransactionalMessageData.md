@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Recipients** | [**TransactionalRecipient**](TransactionalRecipient.md) |  | 
-**Content** | Pointer to [**EmailContent**](EmailContent.md) |  | [optional] 
+**Content** | [**EmailContent**](EmailContent.md) |  | 
 **Options** | Pointer to [**Options**](Options.md) |  | [optional] 
 
 ## Methods
 
 ### NewEmailTransactionalMessageData
 
-`func NewEmailTransactionalMessageData(recipients TransactionalRecipient, ) *EmailTransactionalMessageData`
+`func NewEmailTransactionalMessageData(recipients TransactionalRecipient, content EmailContent, ) *EmailTransactionalMessageData`
 
 NewEmailTransactionalMessageData instantiates a new EmailTransactionalMessageData object
 This constructor will assign default values to properties that have it defined,
@@ -66,11 +66,6 @@ and a boolean to check if the value has been set.
 
 SetContent sets Content field to given value.
 
-### HasContent
-
-`func (o *EmailTransactionalMessageData) HasContent() bool`
-
-HasContent returns a boolean if a field has been set.
 
 ### GetOptions
 

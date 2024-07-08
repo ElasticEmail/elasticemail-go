@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **TrackOpens** | Pointer to **NullableBool** | Should the opens be tracked? If no value has been provided, Account&#39;s default setting will be used. | [optional] 
 **TrackClicks** | Pointer to **NullableBool** | Should the clicks be tracked? If no value has been provided, Account&#39;s default setting will be used. | [optional] 
 **ScheduleFor** | Pointer to **NullableTime** | Date when this Campaign is scheduled to be sent on | [optional] 
+**TriggerFrequency** | Pointer to **float64** | How often (in minutes) to send the campaign | [optional] 
+**TriggerCount** | Pointer to **int32** | How many times send the campaign | [optional] 
 **SplitOptions** | Pointer to [**SplitOptions**](SplitOptions.md) |  | [optional] 
 
 ## Methods
@@ -159,6 +161,56 @@ HasScheduleFor returns a boolean if a field has been set.
 `func (o *CampaignOptions) UnsetScheduleFor()`
 
 UnsetScheduleFor ensures that no value is present for ScheduleFor, not even an explicit nil
+### GetTriggerFrequency
+
+`func (o *CampaignOptions) GetTriggerFrequency() float64`
+
+GetTriggerFrequency returns the TriggerFrequency field if non-nil, zero value otherwise.
+
+### GetTriggerFrequencyOk
+
+`func (o *CampaignOptions) GetTriggerFrequencyOk() (*float64, bool)`
+
+GetTriggerFrequencyOk returns a tuple with the TriggerFrequency field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTriggerFrequency
+
+`func (o *CampaignOptions) SetTriggerFrequency(v float64)`
+
+SetTriggerFrequency sets TriggerFrequency field to given value.
+
+### HasTriggerFrequency
+
+`func (o *CampaignOptions) HasTriggerFrequency() bool`
+
+HasTriggerFrequency returns a boolean if a field has been set.
+
+### GetTriggerCount
+
+`func (o *CampaignOptions) GetTriggerCount() int32`
+
+GetTriggerCount returns the TriggerCount field if non-nil, zero value otherwise.
+
+### GetTriggerCountOk
+
+`func (o *CampaignOptions) GetTriggerCountOk() (*int32, bool)`
+
+GetTriggerCountOk returns a tuple with the TriggerCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTriggerCount
+
+`func (o *CampaignOptions) SetTriggerCount(v int32)`
+
+SetTriggerCount sets TriggerCount field to given value.
+
+### HasTriggerCount
+
+`func (o *CampaignOptions) HasTriggerCount() bool`
+
+HasTriggerCount returns a boolean if a field has been set.
+
 ### GetSplitOptions
 
 `func (o *CampaignOptions) GetSplitOptions() SplitOptions`

@@ -13,6 +13,8 @@ package ElasticEmail
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the TransactionalRecipient type satisfies the MappedNullable interface at compile time
@@ -27,6 +29,8 @@ type TransactionalRecipient struct {
 	// List of Blind Carbon Copy recipients (hidden from other recipients)
 	BCC []string `json:"BCC,omitempty"`
 }
+
+type _TransactionalRecipient TransactionalRecipient
 
 // NewTransactionalRecipient instantiates a new TransactionalRecipient object
 // This constructor will assign default values to properties that have it defined,
@@ -72,7 +76,7 @@ func (o *TransactionalRecipient) SetTo(v []string) {
 
 // GetCC returns the CC field value if set, zero value otherwise.
 func (o *TransactionalRecipient) GetCC() []string {
-	if o == nil || isNil(o.CC) {
+	if o == nil || IsNil(o.CC) {
 		var ret []string
 		return ret
 	}
@@ -82,7 +86,7 @@ func (o *TransactionalRecipient) GetCC() []string {
 // GetCCOk returns a tuple with the CC field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TransactionalRecipient) GetCCOk() ([]string, bool) {
-	if o == nil || isNil(o.CC) {
+	if o == nil || IsNil(o.CC) {
 		return nil, false
 	}
 	return o.CC, true
@@ -90,7 +94,7 @@ func (o *TransactionalRecipient) GetCCOk() ([]string, bool) {
 
 // HasCC returns a boolean if a field has been set.
 func (o *TransactionalRecipient) HasCC() bool {
-	if o != nil && !isNil(o.CC) {
+	if o != nil && !IsNil(o.CC) {
 		return true
 	}
 
@@ -104,7 +108,7 @@ func (o *TransactionalRecipient) SetCC(v []string) {
 
 // GetBCC returns the BCC field value if set, zero value otherwise.
 func (o *TransactionalRecipient) GetBCC() []string {
-	if o == nil || isNil(o.BCC) {
+	if o == nil || IsNil(o.BCC) {
 		var ret []string
 		return ret
 	}
@@ -114,7 +118,7 @@ func (o *TransactionalRecipient) GetBCC() []string {
 // GetBCCOk returns a tuple with the BCC field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TransactionalRecipient) GetBCCOk() ([]string, bool) {
-	if o == nil || isNil(o.BCC) {
+	if o == nil || IsNil(o.BCC) {
 		return nil, false
 	}
 	return o.BCC, true
@@ -122,7 +126,7 @@ func (o *TransactionalRecipient) GetBCCOk() ([]string, bool) {
 
 // HasBCC returns a boolean if a field has been set.
 func (o *TransactionalRecipient) HasBCC() bool {
-	if o != nil && !isNil(o.BCC) {
+	if o != nil && !IsNil(o.BCC) {
 		return true
 	}
 
@@ -145,13 +149,50 @@ func (o TransactionalRecipient) MarshalJSON() ([]byte, error) {
 func (o TransactionalRecipient) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["To"] = o.To
-	if !isNil(o.CC) {
+	if !IsNil(o.CC) {
 		toSerialize["CC"] = o.CC
 	}
-	if !isNil(o.BCC) {
+	if !IsNil(o.BCC) {
 		toSerialize["BCC"] = o.BCC
 	}
 	return toSerialize, nil
+}
+
+func (o *TransactionalRecipient) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"To",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varTransactionalRecipient := _TransactionalRecipient{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varTransactionalRecipient)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TransactionalRecipient(varTransactionalRecipient)
+
+	return err
 }
 
 type NullableTransactionalRecipient struct {

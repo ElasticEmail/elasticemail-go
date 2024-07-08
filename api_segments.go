@@ -14,19 +14,19 @@ package ElasticEmail
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
 
-// SegmentsApiService SegmentsApi service
-type SegmentsApiService service
+// SegmentsAPIService SegmentsAPI service
+type SegmentsAPIService service
 
 type ApiSegmentsByNameDeleteRequest struct {
 	ctx context.Context
-	ApiService *SegmentsApiService
+	ApiService *SegmentsAPIService
 	name string
 }
 
@@ -43,7 +43,7 @@ Delete an existing segment. Required Access Level: ModifyContacts
  @param name Name of your segment.
  @return ApiSegmentsByNameDeleteRequest
 */
-func (a *SegmentsApiService) SegmentsByNameDelete(ctx context.Context, name string) ApiSegmentsByNameDeleteRequest {
+func (a *SegmentsAPIService) SegmentsByNameDelete(ctx context.Context, name string) ApiSegmentsByNameDeleteRequest {
 	return ApiSegmentsByNameDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -52,14 +52,14 @@ func (a *SegmentsApiService) SegmentsByNameDelete(ctx context.Context, name stri
 }
 
 // Execute executes the request
-func (a *SegmentsApiService) SegmentsByNameDeleteExecute(r ApiSegmentsByNameDeleteRequest) (*http.Response, error) {
+func (a *SegmentsAPIService) SegmentsByNameDeleteExecute(r ApiSegmentsByNameDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SegmentsApiService.SegmentsByNameDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SegmentsAPIService.SegmentsByNameDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -112,9 +112,9 @@ func (a *SegmentsApiService) SegmentsByNameDeleteExecute(r ApiSegmentsByNameDele
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -132,7 +132,7 @@ func (a *SegmentsApiService) SegmentsByNameDeleteExecute(r ApiSegmentsByNameDele
 
 type ApiSegmentsByNameGetRequest struct {
 	ctx context.Context
-	ApiService *SegmentsApiService
+	ApiService *SegmentsAPIService
 	name string
 }
 
@@ -149,7 +149,7 @@ Returns details for the specified segment. Required Access Level: ViewContacts
  @param name Name of the segment you want to load. Will load all contacts if the 'All Contacts' name has been provided
  @return ApiSegmentsByNameGetRequest
 */
-func (a *SegmentsApiService) SegmentsByNameGet(ctx context.Context, name string) ApiSegmentsByNameGetRequest {
+func (a *SegmentsAPIService) SegmentsByNameGet(ctx context.Context, name string) ApiSegmentsByNameGetRequest {
 	return ApiSegmentsByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -159,7 +159,7 @@ func (a *SegmentsApiService) SegmentsByNameGet(ctx context.Context, name string)
 
 // Execute executes the request
 //  @return Segment
-func (a *SegmentsApiService) SegmentsByNameGetExecute(r ApiSegmentsByNameGetRequest) (*Segment, *http.Response, error) {
+func (a *SegmentsAPIService) SegmentsByNameGetExecute(r ApiSegmentsByNameGetRequest) (*Segment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -167,7 +167,7 @@ func (a *SegmentsApiService) SegmentsByNameGetExecute(r ApiSegmentsByNameGetRequ
 		localVarReturnValue  *Segment
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SegmentsApiService.SegmentsByNameGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SegmentsAPIService.SegmentsByNameGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -220,9 +220,9 @@ func (a *SegmentsApiService) SegmentsByNameGetExecute(r ApiSegmentsByNameGetRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -249,7 +249,7 @@ func (a *SegmentsApiService) SegmentsByNameGetExecute(r ApiSegmentsByNameGetRequ
 
 type ApiSegmentsByNamePutRequest struct {
 	ctx context.Context
-	ApiService *SegmentsApiService
+	ApiService *SegmentsAPIService
 	name string
 	segmentPayload *SegmentPayload
 }
@@ -272,7 +272,7 @@ Rename or change RULE for your segment. Required Access Level: ModifyContacts
  @param name Name of your segment.
  @return ApiSegmentsByNamePutRequest
 */
-func (a *SegmentsApiService) SegmentsByNamePut(ctx context.Context, name string) ApiSegmentsByNamePutRequest {
+func (a *SegmentsAPIService) SegmentsByNamePut(ctx context.Context, name string) ApiSegmentsByNamePutRequest {
 	return ApiSegmentsByNamePutRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -282,7 +282,7 @@ func (a *SegmentsApiService) SegmentsByNamePut(ctx context.Context, name string)
 
 // Execute executes the request
 //  @return Segment
-func (a *SegmentsApiService) SegmentsByNamePutExecute(r ApiSegmentsByNamePutRequest) (*Segment, *http.Response, error) {
+func (a *SegmentsAPIService) SegmentsByNamePutExecute(r ApiSegmentsByNamePutRequest) (*Segment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -290,7 +290,7 @@ func (a *SegmentsApiService) SegmentsByNamePutExecute(r ApiSegmentsByNamePutRequ
 		localVarReturnValue  *Segment
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SegmentsApiService.SegmentsByNamePut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SegmentsAPIService.SegmentsByNamePut")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -348,9 +348,9 @@ func (a *SegmentsApiService) SegmentsByNamePutExecute(r ApiSegmentsByNamePutRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -377,7 +377,7 @@ func (a *SegmentsApiService) SegmentsByNamePutExecute(r ApiSegmentsByNamePutRequ
 
 type ApiSegmentsGetRequest struct {
 	ctx context.Context
-	ApiService *SegmentsApiService
+	ApiService *SegmentsAPIService
 	limit *int32
 	offset *int32
 }
@@ -406,7 +406,7 @@ Returns a list of all your available Segments. Required Access Level: ViewContac
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSegmentsGetRequest
 */
-func (a *SegmentsApiService) SegmentsGet(ctx context.Context) ApiSegmentsGetRequest {
+func (a *SegmentsAPIService) SegmentsGet(ctx context.Context) ApiSegmentsGetRequest {
 	return ApiSegmentsGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -415,7 +415,7 @@ func (a *SegmentsApiService) SegmentsGet(ctx context.Context) ApiSegmentsGetRequ
 
 // Execute executes the request
 //  @return []Segment
-func (a *SegmentsApiService) SegmentsGetExecute(r ApiSegmentsGetRequest) ([]Segment, *http.Response, error) {
+func (a *SegmentsAPIService) SegmentsGetExecute(r ApiSegmentsGetRequest) ([]Segment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -423,7 +423,7 @@ func (a *SegmentsApiService) SegmentsGetExecute(r ApiSegmentsGetRequest) ([]Segm
 		localVarReturnValue  []Segment
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SegmentsApiService.SegmentsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SegmentsAPIService.SegmentsGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -435,10 +435,10 @@ func (a *SegmentsApiService) SegmentsGetExecute(r ApiSegmentsGetRequest) ([]Segm
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -481,9 +481,9 @@ func (a *SegmentsApiService) SegmentsGetExecute(r ApiSegmentsGetRequest) ([]Segm
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -510,7 +510,7 @@ func (a *SegmentsApiService) SegmentsGetExecute(r ApiSegmentsGetRequest) ([]Segm
 
 type ApiSegmentsPostRequest struct {
 	ctx context.Context
-	ApiService *SegmentsApiService
+	ApiService *SegmentsAPIService
 	segmentPayload *SegmentPayload
 }
 
@@ -531,7 +531,7 @@ Add a new segment, based on specified RULE. Required Access Level: ModifyContact
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSegmentsPostRequest
 */
-func (a *SegmentsApiService) SegmentsPost(ctx context.Context) ApiSegmentsPostRequest {
+func (a *SegmentsAPIService) SegmentsPost(ctx context.Context) ApiSegmentsPostRequest {
 	return ApiSegmentsPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -540,7 +540,7 @@ func (a *SegmentsApiService) SegmentsPost(ctx context.Context) ApiSegmentsPostRe
 
 // Execute executes the request
 //  @return Segment
-func (a *SegmentsApiService) SegmentsPostExecute(r ApiSegmentsPostRequest) (*Segment, *http.Response, error) {
+func (a *SegmentsAPIService) SegmentsPostExecute(r ApiSegmentsPostRequest) (*Segment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -548,7 +548,7 @@ func (a *SegmentsApiService) SegmentsPostExecute(r ApiSegmentsPostRequest) (*Seg
 		localVarReturnValue  *Segment
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SegmentsApiService.SegmentsPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SegmentsAPIService.SegmentsPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -605,9 +605,9 @@ func (a *SegmentsApiService) SegmentsPostExecute(r ApiSegmentsPostRequest) (*Seg
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

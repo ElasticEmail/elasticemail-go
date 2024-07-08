@@ -13,6 +13,8 @@ package ElasticEmail
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the TemplatePayload type satisfies the MappedNullable interface at compile time
@@ -28,6 +30,8 @@ type TemplatePayload struct {
 	Body []BodyPart `json:"Body,omitempty"`
 	TemplateScope *TemplateScope `json:"TemplateScope,omitempty"`
 }
+
+type _TemplatePayload TemplatePayload
 
 // NewTemplatePayload instantiates a new TemplatePayload object
 // This constructor will assign default values to properties that have it defined,
@@ -77,7 +81,7 @@ func (o *TemplatePayload) SetName(v string) {
 
 // GetSubject returns the Subject field value if set, zero value otherwise.
 func (o *TemplatePayload) GetSubject() string {
-	if o == nil || isNil(o.Subject) {
+	if o == nil || IsNil(o.Subject) {
 		var ret string
 		return ret
 	}
@@ -87,7 +91,7 @@ func (o *TemplatePayload) GetSubject() string {
 // GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TemplatePayload) GetSubjectOk() (*string, bool) {
-	if o == nil || isNil(o.Subject) {
+	if o == nil || IsNil(o.Subject) {
 		return nil, false
 	}
 	return o.Subject, true
@@ -95,7 +99,7 @@ func (o *TemplatePayload) GetSubjectOk() (*string, bool) {
 
 // HasSubject returns a boolean if a field has been set.
 func (o *TemplatePayload) HasSubject() bool {
-	if o != nil && !isNil(o.Subject) {
+	if o != nil && !IsNil(o.Subject) {
 		return true
 	}
 
@@ -109,7 +113,7 @@ func (o *TemplatePayload) SetSubject(v string) {
 
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *TemplatePayload) GetBody() []BodyPart {
-	if o == nil || isNil(o.Body) {
+	if o == nil || IsNil(o.Body) {
 		var ret []BodyPart
 		return ret
 	}
@@ -119,7 +123,7 @@ func (o *TemplatePayload) GetBody() []BodyPart {
 // GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TemplatePayload) GetBodyOk() ([]BodyPart, bool) {
-	if o == nil || isNil(o.Body) {
+	if o == nil || IsNil(o.Body) {
 		return nil, false
 	}
 	return o.Body, true
@@ -127,7 +131,7 @@ func (o *TemplatePayload) GetBodyOk() ([]BodyPart, bool) {
 
 // HasBody returns a boolean if a field has been set.
 func (o *TemplatePayload) HasBody() bool {
-	if o != nil && !isNil(o.Body) {
+	if o != nil && !IsNil(o.Body) {
 		return true
 	}
 
@@ -141,7 +145,7 @@ func (o *TemplatePayload) SetBody(v []BodyPart) {
 
 // GetTemplateScope returns the TemplateScope field value if set, zero value otherwise.
 func (o *TemplatePayload) GetTemplateScope() TemplateScope {
-	if o == nil || isNil(o.TemplateScope) {
+	if o == nil || IsNil(o.TemplateScope) {
 		var ret TemplateScope
 		return ret
 	}
@@ -151,7 +155,7 @@ func (o *TemplatePayload) GetTemplateScope() TemplateScope {
 // GetTemplateScopeOk returns a tuple with the TemplateScope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TemplatePayload) GetTemplateScopeOk() (*TemplateScope, bool) {
-	if o == nil || isNil(o.TemplateScope) {
+	if o == nil || IsNil(o.TemplateScope) {
 		return nil, false
 	}
 	return o.TemplateScope, true
@@ -159,7 +163,7 @@ func (o *TemplatePayload) GetTemplateScopeOk() (*TemplateScope, bool) {
 
 // HasTemplateScope returns a boolean if a field has been set.
 func (o *TemplatePayload) HasTemplateScope() bool {
-	if o != nil && !isNil(o.TemplateScope) {
+	if o != nil && !IsNil(o.TemplateScope) {
 		return true
 	}
 
@@ -182,16 +186,53 @@ func (o TemplatePayload) MarshalJSON() ([]byte, error) {
 func (o TemplatePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["Name"] = o.Name
-	if !isNil(o.Subject) {
+	if !IsNil(o.Subject) {
 		toSerialize["Subject"] = o.Subject
 	}
-	if !isNil(o.Body) {
+	if !IsNil(o.Body) {
 		toSerialize["Body"] = o.Body
 	}
-	if !isNil(o.TemplateScope) {
+	if !IsNil(o.TemplateScope) {
 		toSerialize["TemplateScope"] = o.TemplateScope
 	}
 	return toSerialize, nil
+}
+
+func (o *TemplatePayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"Name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varTemplatePayload := _TemplatePayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varTemplatePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TemplatePayload(varTemplatePayload)
+
+	return err
 }
 
 type NullableTemplatePayload struct {

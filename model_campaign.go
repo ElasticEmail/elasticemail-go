@@ -13,6 +13,8 @@ package ElasticEmail
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the Campaign type satisfies the MappedNullable interface at compile time
@@ -28,6 +30,8 @@ type Campaign struct {
 	Recipients CampaignRecipient `json:"Recipients"`
 	Options *CampaignOptions `json:"Options,omitempty"`
 }
+
+type _Campaign Campaign
 
 // NewCampaign instantiates a new Campaign object
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +58,7 @@ func NewCampaignWithDefaults() *Campaign {
 
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *Campaign) GetContent() []CampaignTemplate {
-	if o == nil || isNil(o.Content) {
+	if o == nil || IsNil(o.Content) {
 		var ret []CampaignTemplate
 		return ret
 	}
@@ -64,7 +68,7 @@ func (o *Campaign) GetContent() []CampaignTemplate {
 // GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Campaign) GetContentOk() ([]CampaignTemplate, bool) {
-	if o == nil || isNil(o.Content) {
+	if o == nil || IsNil(o.Content) {
 		return nil, false
 	}
 	return o.Content, true
@@ -72,7 +76,7 @@ func (o *Campaign) GetContentOk() ([]CampaignTemplate, bool) {
 
 // HasContent returns a boolean if a field has been set.
 func (o *Campaign) HasContent() bool {
-	if o != nil && !isNil(o.Content) {
+	if o != nil && !IsNil(o.Content) {
 		return true
 	}
 
@@ -110,7 +114,7 @@ func (o *Campaign) SetName(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *Campaign) GetStatus() CampaignStatus {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret CampaignStatus
 		return ret
 	}
@@ -120,7 +124,7 @@ func (o *Campaign) GetStatus() CampaignStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Campaign) GetStatusOk() (*CampaignStatus, bool) {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -128,7 +132,7 @@ func (o *Campaign) GetStatusOk() (*CampaignStatus, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Campaign) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -166,7 +170,7 @@ func (o *Campaign) SetRecipients(v CampaignRecipient) {
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *Campaign) GetOptions() CampaignOptions {
-	if o == nil || isNil(o.Options) {
+	if o == nil || IsNil(o.Options) {
 		var ret CampaignOptions
 		return ret
 	}
@@ -176,7 +180,7 @@ func (o *Campaign) GetOptions() CampaignOptions {
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Campaign) GetOptionsOk() (*CampaignOptions, bool) {
-	if o == nil || isNil(o.Options) {
+	if o == nil || IsNil(o.Options) {
 		return nil, false
 	}
 	return o.Options, true
@@ -184,7 +188,7 @@ func (o *Campaign) GetOptionsOk() (*CampaignOptions, bool) {
 
 // HasOptions returns a boolean if a field has been set.
 func (o *Campaign) HasOptions() bool {
-	if o != nil && !isNil(o.Options) {
+	if o != nil && !IsNil(o.Options) {
 		return true
 	}
 
@@ -206,18 +210,56 @@ func (o Campaign) MarshalJSON() ([]byte, error) {
 
 func (o Campaign) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Content) {
+	if !IsNil(o.Content) {
 		toSerialize["Content"] = o.Content
 	}
 	toSerialize["Name"] = o.Name
-	if !isNil(o.Status) {
+	if !IsNil(o.Status) {
 		toSerialize["Status"] = o.Status
 	}
 	toSerialize["Recipients"] = o.Recipients
-	if !isNil(o.Options) {
+	if !IsNil(o.Options) {
 		toSerialize["Options"] = o.Options
 	}
 	return toSerialize, nil
+}
+
+func (o *Campaign) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"Name",
+		"Recipients",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCampaign := _Campaign{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCampaign)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Campaign(varCampaign)
+
+	return err
 }
 
 type NullableCampaign struct {

@@ -11,9 +11,9 @@ Name | Type | Description | Notes
 **Disposable** | Pointer to **bool** | Does the email have a temporary domain | [optional] 
 **Role** | Pointer to **bool** | Is an email a role email (e.g. info@, noreply@ etc.) | [optional] 
 **Reason** | Pointer to **string** | All detected issues | [optional] 
-**DateAdded** | Pointer to **time.Time** | Date of creation in YYYY-MM-DDThh:ii:ss format | [optional] 
+**DateAdded** | Pointer to **time.Time** | Added date | [optional] 
 **Result** | Pointer to [**EmailValidationStatus**](EmailValidationStatus.md) |  | [optional] [default to NONE]
-**PredictedScore** | Pointer to **float32** |  | [optional] 
+**PredictedScore** | Pointer to **float32** | Predicted score | [optional] 
 **PredictedStatus** | Pointer to [**EmailPredictedValidationStatus**](EmailPredictedValidationStatus.md) |  | [optional] [default to NONE]
 
 ## Methods

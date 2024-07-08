@@ -410,7 +410,8 @@ paths:
         required: false
         schema:
           description: array
-          example: "mail@contact.com,mail1@contact.com,mail2@contact.com"
+          example:
+          - "mail@contact.com,mail1@contact.com,mail2@contact.com"
           items:
             format: string
             type: string
@@ -567,6 +568,142 @@ paths:
                 $ref: '#/components/schemas/EmailData'
           description: OK
       summary: View Email
+      tags:
+      - Emails
+  /emails/{transactionid}/status:
+    get:
+      description: "Get status details of an email transaction. Required Access Level:\
+        \ ViewReports"
+      operationId: emailsByTransactionidStatusGet
+      parameters:
+      - description: Transaction identifier
+        explode: false
+        in: path
+        name: transactionid
+        required: true
+        schema:
+          description: string
+          format: string
+          type: string
+        style: simple
+      - description: Include Bounced email addresses.
+        explode: true
+        in: query
+        name: showFailed
+        required: false
+        schema:
+          default: false
+          description: boolean
+          format: boolean
+          type: boolean
+        style: form
+      - description: Include Sent email addresses.
+        explode: true
+        in: query
+        name: showSent
+        required: false
+        schema:
+          default: false
+          description: boolean
+          format: boolean
+          type: boolean
+        style: form
+      - description: Include all delivered email addresses.
+        explode: true
+        in: query
+        name: showDelivered
+        required: false
+        schema:
+          default: false
+          description: boolean
+          format: boolean
+          type: boolean
+        style: form
+      - description: Include Ready to send email addresses.
+        explode: true
+        in: query
+        name: showPending
+        required: false
+        schema:
+          default: false
+          description: boolean
+          format: boolean
+          type: boolean
+        style: form
+      - description: Include Opened email addresses.
+        explode: true
+        in: query
+        name: showOpened
+        required: false
+        schema:
+          default: false
+          description: boolean
+          format: boolean
+          type: boolean
+        style: form
+      - description: Include Clicked email addresses.
+        explode: true
+        in: query
+        name: showClicked
+        required: false
+        schema:
+          default: false
+          description: boolean
+          format: boolean
+          type: boolean
+        style: form
+      - description: Include Reported as abuse email addresses.
+        explode: true
+        in: query
+        name: showAbuse
+        required: false
+        schema:
+          default: false
+          description: boolean
+          format: boolean
+          type: boolean
+        style: form
+      - description: Include Unsubscribed email addresses.
+        explode: true
+        in: query
+        name: showUnsubscribed
+        required: false
+        schema:
+          default: false
+          description: boolean
+          format: boolean
+          type: boolean
+        style: form
+      - description: Include error messages for bounced emails.
+        explode: true
+        in: query
+        name: showErrors
+        required: false
+        schema:
+          default: false
+          description: boolean
+          format: boolean
+          type: boolean
+        style: form
+      - description: Include all MessageIDs for this transaction
+        explode: true
+        in: query
+        name: showMessageIDs
+        required: false
+        schema:
+          default: false
+          description: boolean
+          format: boolean
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailJobStatus'
+          description: OK
+      summary: Get Status
       tags:
       - Emails
   /emails/mergefile:
@@ -1415,6 +1552,56 @@ paths:
                 $ref: '#/components/schemas/ContactsList'
           description: Created
       summary: Add List
+      tags:
+      - Lists
+  /lists/{listname}/contacts:
+    get:
+      description: "Returns a list of contacts. Required Access Level: ViewContacts"
+      operationId: listsByListnameContactsGet
+      parameters:
+      - description: Name of your list.
+        explode: false
+        in: path
+        name: listname
+        required: true
+        schema:
+          description: string
+          example: My List 1
+          format: string
+          type: string
+        style: simple
+      - description: Maximum number of returned items.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          description: integer
+          example: 100
+          format: int32
+          type: integer
+        style: form
+      - description: How many items should be returned ahead.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          description: integer
+          example: 20
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Contact'
+                type: array
+          description: OK
+      summary: Load Contacts in List
       tags:
       - Lists
   /lists/{name}:
@@ -3173,13 +3360,13 @@ components:
       - ExtendedLogs
       - VerifyEmails
       - Modify2FASms
-      - DisableContactsStore
       - ModifyLandingPages
       - ViewLandingPages
       - ModifySuppressions
       - ViewSuppressions
       - ViewDragDropEditor
       - ViewTemplateEditor
+      - ViewAITools
       type: string
     AccountStatusEnum:
       default: Disabled
@@ -3199,8 +3386,8 @@ components:
         LastUse: 2000-01-23T04:56:07.000+00:00
         Expires: 2000-01-23T04:56:07.000+00:00
         AccessLevel:
-        - null
-        - null
+        - None
+        - None
         Name: Name
       properties:
         AccessLevel:
@@ -3244,8 +3431,8 @@ components:
         - RestrictAccessToIPRange
         Expires: 2000-01-23T04:56:07.000+00:00
         AccessLevel:
-        - null
-        - null
+        - None
+        - None
         Name: Name
       properties:
         Name:
@@ -3290,7 +3477,7 @@ components:
       description: "Email body part with user-provided MIME type (text/html, text/plain,\
         \ etc)"
       example:
-        ContentType: null
+        ContentType: HTML
         Content: Content
         Charset: Charset
       properties:
@@ -3310,14 +3497,16 @@ components:
       type: object
     Campaign:
       example:
-        Status: null
+        Status: Deleted
         Options:
           TrackClicks: true
+          TriggerCount: 6
           ScheduleFor: 2000-01-23T04:56:07.000+00:00
-          DeliveryOptimization: null
+          TriggerFrequency: 0.8008281904610115
+          DeliveryOptimization: None
           TrackOpens: true
           SplitOptions:
-            OptimizeFor: null
+            OptimizeFor: Opens
             OptimizePeriodMinutes: 30
         Recipients:
           SegmentNames:
@@ -3331,7 +3520,8 @@ components:
           Poolname: My Custom Pool
           TemplateName: Template01
           From: John Doe <email@domain.com>
-          AttachFiles: "[ \"preuploaded.jpg\" ]"
+          AttachFiles:
+          - preuploaded.jpg
           Subject: Hello!
           Utm:
             Campaign: Campaign
@@ -3342,7 +3532,8 @@ components:
           Poolname: My Custom Pool
           TemplateName: Template01
           From: John Doe <email@domain.com>
-          AttachFiles: "[ \"preuploaded.jpg\" ]"
+          AttachFiles:
+          - preuploaded.jpg
           Subject: Hello!
           Utm:
             Campaign: Campaign
@@ -3375,11 +3566,13 @@ components:
       description: Different send options for a Campaign
       example:
         TrackClicks: true
+        TriggerCount: 6
         ScheduleFor: 2000-01-23T04:56:07.000+00:00
-        DeliveryOptimization: null
+        TriggerFrequency: 0.8008281904610115
+        DeliveryOptimization: None
         TrackOpens: true
         SplitOptions:
-          OptimizeFor: null
+          OptimizeFor: Opens
           OptimizePeriodMinutes: 30
       properties:
         DeliveryOptimization:
@@ -3404,6 +3597,14 @@ components:
           nullable: true
           type: string
           example: null
+        TriggerFrequency:
+          description: How often (in minutes) to send the campaign
+          format: double
+          type: number
+        TriggerCount:
+          description: How many times send the campaign
+          format: int32
+          type: integer
         SplitOptions:
           $ref: '#/components/schemas/SplitOptions'
       type: object
@@ -3449,7 +3650,8 @@ components:
         Poolname: My Custom Pool
         TemplateName: Template01
         From: John Doe <email@domain.com>
-        AttachFiles: "[ \"preuploaded.jpg\" ]"
+        AttachFiles:
+        - preuploaded.jpg
         Subject: Hello!
         Utm:
           Campaign: Campaign
@@ -3486,13 +3688,16 @@ components:
         AttachFiles:
           description: Names of previously uploaded files that should be sent as downloadable
             attachments
-          example: "[ \"preuploaded.jpg\" ]"
+          example:
+          - preuploaded.jpg
           items:
             format: string
             type: string
           type: array
         Utm:
           $ref: '#/components/schemas/Utm'
+      required:
+      - From
       type: object
     ChannelLogStatusSummary:
       description: Summary of channel log status
@@ -3591,7 +3796,7 @@ components:
       type: string
     ConsentData:
       example:
-        ConsentTracking: null
+        ConsentTracking: Unknown
         ConsentDate: 2000-01-23T04:56:07.000+00:00
         ConsentIP: 192.168.0.1
       properties:
@@ -3620,14 +3825,14 @@ components:
     Contact:
       description: Contact
       example:
-        Status: null
+        Status: Transactional
         CustomFields:
           city: New York
           age: "34"
         Email: mail@example.com
         StatusChangeDate: 2000-01-23T04:56:07.000+00:00
         Consent:
-          ConsentTracking: null
+          ConsentTracking: Unknown
           ConsentDate: 2000-01-23T04:56:07.000+00:00
           ConsentIP: 192.168.0.1
         FirstName: Fred
@@ -3646,7 +3851,7 @@ components:
           TotalOpened: 1000
         LastName: Flintstone
         DateAdded: 2000-01-23T04:56:07.000+00:00
-        Source: null
+        Source: DeliveryApi
       properties:
         Email:
           description: Proper email address.
@@ -3770,13 +3975,13 @@ components:
       type: object
     ContactPayload:
       example:
-        Status: null
+        Status: Transactional
         CustomFields:
           city: New York
           age: "34"
         Email: mail@example.com
         Consent:
-          ConsentTracking: null
+          ConsentTracking: Unknown
           ConsentDate: 2000-01-23T04:56:07.000+00:00
           ConsentIP: 192.168.0.1
         FirstName: Fred
@@ -3886,12 +4091,13 @@ components:
         EnvelopeFrom: John Doe <email@domain.com>
         TemplateName: Template01
         From: John Doe <email@domain.com>
-        AttachFiles: "[ \"preuploaded.jpg\" ]"
+        AttachFiles:
+        - preuploaded.jpg
         Body:
-        - ContentType: null
+        - ContentType: HTML
           Content: Content
           Charset: Charset
-        - ContentType: null
+        - ContentType: HTML
           Content: Content
           Charset: Charset
         Attachments:
@@ -3973,18 +4179,21 @@ components:
         AttachFiles:
           description: Names of previously uploaded files that should be sent as downloadable
             attachments
-          example: "[ \"preuploaded.jpg\" ]"
+          example:
+          - preuploaded.jpg
           items:
             format: string
             type: string
           type: array
         Utm:
           $ref: '#/components/schemas/Utm'
+      required:
+      - From
       type: object
     EmailData:
       example:
         Status:
-          Status: null
+          Status: All
           DateOpened: 2000-01-23T04:56:07.000+00:00
           DateSent: 2000-01-23T04:56:07.000+00:00
           StatusChangeDate: 2000-01-23T04:56:07.000+00:00
@@ -4022,6 +4231,175 @@ components:
         Status:
           $ref: '#/components/schemas/EmailStatus'
       type: object
+    EmailJobFailedStatus:
+      example:
+        Category: Category
+        Address: Address
+        Error: Error
+        ErrorCode: 550
+      properties:
+        Address:
+          format: string
+          type: string
+        Error:
+          format: string
+          type: string
+        ErrorCode:
+          description: RFC Error code
+          example: 550
+          format: int32
+          type: integer
+        Category:
+          format: string
+          type: string
+      type: object
+    EmailJobStatus:
+      example:
+        Status: Status
+        PendingCount: 1
+        RecipientsCount: 0
+        Opened:
+        - "1000"
+        Delivered:
+        - "1000"
+        Clicked:
+        - "1000"
+        ClickedCount: 1000
+        Failed:
+        - Category: Category
+          Address: Address
+          Error: Error
+          ErrorCode: 550
+        - Category: Category
+          Address: Address
+          Error: Error
+          ErrorCode: 550
+        AbuseReportsCount: 5
+        OpenedCount: 1000
+        DeliveredCount: 6
+        FailedCount: 1000
+        AbuseReports:
+        - AbuseReports
+        - AbuseReports
+        MessageIDs:
+        - MessageIDs
+        - MessageIDs
+        ID: "123456"
+        UnsubscribedCount: 1000
+        SentCount: 1000
+        Pending:
+        - Pending
+        - Pending
+        Sent:
+        - Sent
+        - Sent
+        Unsubscribed:
+        - "1000"
+      properties:
+        ID:
+          description: ID number of your attachment
+          example: "123456"
+          format: string
+          type: string
+        Status:
+          description: "Name of status: submitted, complete, in_progress"
+          format: string
+          type: string
+        RecipientsCount:
+          format: int32
+          type: integer
+        Failed:
+          items:
+            $ref: '#/components/schemas/EmailJobFailedStatus'
+          type: array
+        FailedCount:
+          description: Total emails failed.
+          example: 1000
+          format: int32
+          type: integer
+        Sent:
+          items:
+            format: string
+            type: string
+          type: array
+        SentCount:
+          description: Total emails sent.
+          example: 1000
+          format: int32
+          type: integer
+        Delivered:
+          description: Number of delivered messages
+          example:
+          - "1000"
+          items:
+            format: string
+            type: string
+          type: array
+        DeliveredCount:
+          format: int32
+          type: integer
+        Pending:
+          items:
+            format: string
+            type: string
+          type: array
+        PendingCount:
+          format: int32
+          type: integer
+        Opened:
+          description: Number of opened messages
+          example:
+          - "1000"
+          items:
+            format: string
+            type: string
+          type: array
+        OpenedCount:
+          description: Total emails opened.
+          example: 1000
+          format: int32
+          type: integer
+        Clicked:
+          description: Number of clicked messages
+          example:
+          - "1000"
+          items:
+            format: string
+            type: string
+          type: array
+        ClickedCount:
+          description: Total emails clicked
+          example: 1000
+          format: int32
+          type: integer
+        Unsubscribed:
+          description: Number of unsubscribed messages
+          example:
+          - "1000"
+          items:
+            format: string
+            type: string
+          type: array
+        UnsubscribedCount:
+          description: Total emails unsubscribed
+          example: 1000
+          format: int32
+          type: integer
+        AbuseReports:
+          items:
+            format: string
+            type: string
+          type: array
+        AbuseReportsCount:
+          format: int32
+          type: integer
+        MessageIDs:
+          description: List of all MessageIDs for this job.
+          items:
+            format: string
+            type: string
+          type: array
+      type: object
     EmailMessageData:
       description: Email data
       example:
@@ -4029,7 +4407,7 @@ components:
           TrackClicks: true
           ChannelName: Channel01
           PoolName: My Custom Pool
-          Encoding: null
+          Encoding: UserProvided
           TimeOffset: 0
           TrackOpens: true
         Recipients:
@@ -4053,12 +4431,13 @@ components:
           EnvelopeFrom: John Doe <email@domain.com>
           TemplateName: Template01
           From: John Doe <email@domain.com>
-          AttachFiles: "[ \"preuploaded.jpg\" ]"
+          AttachFiles:
+          - preuploaded.jpg
           Body:
-          - ContentType: null
+          - ContentType: HTML
             Content: Content
             Charset: Charset
-          - ContentType: null
+          - ContentType: HTML
             Content: Content
             Charset: Charset
           Attachments:
@@ -4087,6 +4466,7 @@ components:
         Options:
           $ref: '#/components/schemas/Options'
       required:
+      - Content
       - Recipients
       type: object
     EmailPredictedValidationStatus:
@@ -4143,7 +4523,8 @@ components:
       description: "Provide either rule or a list of emails, not both."
       example:
         Rule: Rule
-        Emails: "[ \"john.doe@sample.com\" ]"
+        Emails:
+        - john.doe@sample.com
       properties:
         Rule:
           description: "SQL-like rule. Sending 'All' as a value loads all resources\
@@ -4153,7 +4534,8 @@ components:
           type: string
         Emails:
           description: Comma delimited list of contact emails
-          example: "[ \"john.doe@sample.com\" ]"
+          example:
+          - john.doe@sample.com
           items:
             format: string
             type: string
@@ -4162,7 +4544,7 @@ components:
     EmailStatus:
       description: Status information of the specified email
       example:
-        Status: null
+        Status: All
         DateOpened: 2000-01-23T04:56:07.000+00:00
         DateSent: 2000-01-23T04:56:07.000+00:00
         StatusChangeDate: 2000-01-23T04:56:07.000+00:00
@@ -4232,7 +4614,7 @@ components:
           TrackClicks: true
           ChannelName: Channel01
           PoolName: My Custom Pool
-          Encoding: null
+          Encoding: UserProvided
           TimeOffset: 0
           TrackOpens: true
         Recipients:
@@ -4257,12 +4639,13 @@ components:
           EnvelopeFrom: John Doe <email@domain.com>
           TemplateName: Template01
           From: John Doe <email@domain.com>
-          AttachFiles: "[ \"preuploaded.jpg\" ]"
+          AttachFiles:
+          - preuploaded.jpg
           Body:
-          - ContentType: null
+          - ContentType: HTML
             Content: Content
             Charset: Charset
-          - ContentType: null
+          - ContentType: HTML
             Content: Content
             Charset: Charset
           Attachments:
@@ -4288,13 +4671,14 @@ components:
         Options:
           $ref: '#/components/schemas/Options'
       required:
+      - Content
       - Recipients
       type: object
     EmailValidationResult:
       example:
         Disposable: true
         Role: true
-        PredictedStatus: null
+        PredictedStatus: None
         Account: Account
         SuggestedSpelling: SuggestedSpelling
         Email: Email
@@ -4302,7 +4686,7 @@ components:
         Domain: example.com
         DateAdded: 2000-01-23T04:56:07.000+00:00
         Reason: Reason
-        Result: null
+        Result: None
       properties:
         Account:
           description: Local part of an email
@@ -4334,12 +4718,13 @@ components:
           format: string
           type: string
         DateAdded:
-          description: Date of creation in YYYY-MM-DDThh:ii:ss format
+          description: Added date
           format: date-time
           type: string
         Result:
           $ref: '#/components/schemas/EmailValidationStatus'
         PredictedScore:
+          description: Predicted score
           format: single
           type: number
         PredictedStatus:
@@ -4512,8 +4897,8 @@ components:
       type: object
     InboundPayload:
       example:
-        FilterType: null
-        ActionType: null
+        FilterType: EmailAddress
+        ActionType: ForwardToEmail
         HttpAddress: HttpAddress
         Filter: Filter
         EmailAddress: EmailAddress
@@ -4548,8 +4933,8 @@ components:
     InboundRoute:
       example:
         PublicId: PublicId
-        FilterType: null
-        ActionType: null
+        FilterType: EmailAddress
+        ActionType: ForwardToEmail
         Filter: Filter
         SortOrder: 0
         ActionParameter: ActionParameter
@@ -4627,8 +5012,7 @@ components:
         AllowUnsubscribe: false
         ListName: My List 1
         Emails:
-        - Emails
-        - Emails
+        - john.doe@sample.com
       properties:
         ListName:
           description: Name of your list.
@@ -4643,6 +5027,8 @@ components:
         Emails:
           description: Comma delimited list of existing contact emails that should
             be added to this list. Leave empty for all contacts
+          example:
+          - john.doe@sample.com
           items:
             format: string
             type: string
@@ -4769,7 +5155,7 @@ components:
           TrackClicks: true
           ChannelName: Channel01
           PoolName: My Custom Pool
-          Encoding: null
+          Encoding: UserProvided
           TimeOffset: 0
           TrackOpens: true
         MergeFile:
@@ -4789,12 +5175,13 @@ components:
           EnvelopeFrom: John Doe <email@domain.com>
           TemplateName: Template01
           From: John Doe <email@domain.com>
-          AttachFiles: "[ \"preuploaded.jpg\" ]"
+          AttachFiles:
+          - preuploaded.jpg
           Body:
-          - ContentType: null
+          - ContentType: HTML
             Content: Content
             Charset: Charset
-          - ContentType: null
+          - ContentType: HTML
             Content: Content
             Charset: Charset
           Attachments:
@@ -4820,6 +5207,7 @@ components:
         Options:
           $ref: '#/components/schemas/Options'
       required:
+      - Content
       - MergeFile
       type: object
     MessageAttachment:
@@ -4882,8 +5270,8 @@ components:
         LastUse: 2000-01-23T04:56:07.000+00:00
         Expires: 2000-01-23T04:56:07.000+00:00
         AccessLevel:
-        - null
-        - null
+        - None
+        - None
         Name: Name
       properties:
         Token:
@@ -4932,7 +5320,7 @@ components:
         Token: Token
         LastUse: 2000-01-23T04:56:07.000+00:00
         Expires: 2000-01-23T04:56:07.000+00:00
-        AccessLevel: null
+        AccessLevel: None
         Name: Name
       properties:
         Token:
@@ -4974,7 +5362,7 @@ components:
         TrackClicks: true
         ChannelName: Channel01
         PoolName: My Custom Pool
-        Encoding: null
+        Encoding: UserProvided
         TimeOffset: 0
         TrackOpens: true
       properties:
@@ -5002,12 +5390,14 @@ components:
             \ Account's default setting will be used."
           example: true
           format: boolean
+          nullable: true
           type: boolean
         TrackClicks:
           description: "Should the clicks be tracked? If no value has been provided,\
             \ Account's default setting will be used."
           example: true
           format: boolean
+          nullable: true
           type: boolean
       type: object
     RecipientEvent:
@@ -5016,14 +5406,14 @@ components:
         EventDate: 2000-01-23T04:56:07.000+00:00
         NextTryOn: 2000-01-23T04:56:07.000+00:00
         Message: Lorem ipsum
-        EventType: null
+        EventType: Submission
         MsgID: ABCDE_9RPhSWiaJq_ab1g1
         Subject: Hello!
         TransactionID: TransactionID
         ChannelName: Channel01
         PoolName: PoolName
         To: 2001-01-01T01:01:01
-        MessageCategory: null
+        MessageCategory: Unknown
         IPAddress: IPAddress
         FromEmail: sender@yourdomain.com
       properties:
@@ -5126,7 +5516,7 @@ components:
         DateCreated: 2000-01-23T04:56:07.000+00:00
         LastUse: 2000-01-23T04:56:07.000+00:00
         Expires: 2000-01-23T04:56:07.000+00:00
-        AccessLevel: null
+        AccessLevel: None
         Name: Name
       properties:
         AccessLevel:
@@ -5221,7 +5611,7 @@ components:
     SplitOptions:
       description: Optional A/X split campaign options
       example:
-        OptimizeFor: null
+        OptimizeFor: Opens
         OptimizePeriodMinutes: 30
       properties:
         OptimizeFor:
@@ -5356,7 +5746,7 @@ components:
       description: Detailed information about SubAccount.
       example:
         EmailCredits: 1000
-        Status: null
+        Status: Disabled
         Email: mail@example.com
         PublicAccountID: EB3EBB7A-C20D-4D39-8F2F-5E6842F58E6F
         ContactsCount: 6
@@ -5515,14 +5905,14 @@ components:
     Template:
       description: Template info
       example:
-        TemplateScope: null
-        TemplateType: null
+        TemplateScope: Personal
+        TemplateType: RawHTML
         DateAdded: 2000-01-23T04:56:07.000+00:00
         Body:
-        - ContentType: null
+        - ContentType: HTML
           Content: Content
           Charset: Charset
-        - ContentType: null
+        - ContentType: HTML
           Content: Content
           Charset: Charset
         Subject: Hello!
@@ -5554,12 +5944,12 @@ components:
     TemplatePayload:
       description: New template object
       example:
-        TemplateScope: null
+        TemplateScope: Personal
         Body:
-        - ContentType: null
+        - ContentType: HTML
           Content: Content
           Charset: Charset
-        - ContentType: null
+        - ContentType: HTML
           Content: Content
           Charset: Charset
         Subject: Hello!
@@ -5598,6 +5988,7 @@ components:
       - DragDropEditor
       - LandingPageEditor
       - TemplateEditor
+      - FormTemplate
       type: string
     TransactionalRecipient:
       description: List of transactional recipients
@@ -5661,7 +6052,7 @@ components:
     VerificationFileResult:
       description: Simple verification file result info
       example:
-        VerificationStatus: null
+        VerificationStatus: Processing
         FileUploadResult:
           EmailsCount: 0
           DuplicatedEmailsCount: 6
@@ -5694,14 +6085,14 @@ components:
     VerificationFileResultDetails:
       description: Detailed verification file result info
       example:
-        VerificationStatus: null
+        VerificationStatus: Processing
         FileUploadResult:
           EmailsCount: 0
           DuplicatedEmailsCount: 6
         VerificationResult:
         - Disposable: true
           Role: true
-          PredictedStatus: null
+          PredictedStatus: None
           Account: Account
           SuggestedSpelling: SuggestedSpelling
           Email: Email
@@ -5709,10 +6100,10 @@ components:
           Domain: example.com
           DateAdded: 2000-01-23T04:56:07.000+00:00
           Reason: Reason
-          Result: null
+          Result: None
         - Disposable: true
           Role: true
-          PredictedStatus: null
+          PredictedStatus: None
           Account: Account
           SuggestedSpelling: SuggestedSpelling
           Email: Email
@@ -5720,7 +6111,7 @@ components:
           Domain: example.com
           DateAdded: 2000-01-23T04:56:07.000+00:00
           Reason: Reason
-          Result: null
+          Result: None
         VerificationID: VerificationID
         Filename: Filename
         DateAdded: 2000-01-23T04:56:07.000+00:00

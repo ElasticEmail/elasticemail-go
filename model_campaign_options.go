@@ -28,6 +28,10 @@ type CampaignOptions struct {
 	TrackClicks NullableBool `json:"TrackClicks,omitempty"`
 	// Date when this Campaign is scheduled to be sent on
 	ScheduleFor NullableTime `json:"ScheduleFor,omitempty"`
+	// How often (in minutes) to send the campaign
+	TriggerFrequency *float64 `json:"TriggerFrequency,omitempty"`
+	// How many times send the campaign
+	TriggerCount *int32 `json:"TriggerCount,omitempty"`
 	SplitOptions *SplitOptions `json:"SplitOptions,omitempty"`
 }
 
@@ -54,7 +58,7 @@ func NewCampaignOptionsWithDefaults() *CampaignOptions {
 
 // GetDeliveryOptimization returns the DeliveryOptimization field value if set, zero value otherwise.
 func (o *CampaignOptions) GetDeliveryOptimization() DeliveryOptimizationType {
-	if o == nil || isNil(o.DeliveryOptimization) {
+	if o == nil || IsNil(o.DeliveryOptimization) {
 		var ret DeliveryOptimizationType
 		return ret
 	}
@@ -64,7 +68,7 @@ func (o *CampaignOptions) GetDeliveryOptimization() DeliveryOptimizationType {
 // GetDeliveryOptimizationOk returns a tuple with the DeliveryOptimization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CampaignOptions) GetDeliveryOptimizationOk() (*DeliveryOptimizationType, bool) {
-	if o == nil || isNil(o.DeliveryOptimization) {
+	if o == nil || IsNil(o.DeliveryOptimization) {
 		return nil, false
 	}
 	return o.DeliveryOptimization, true
@@ -72,7 +76,7 @@ func (o *CampaignOptions) GetDeliveryOptimizationOk() (*DeliveryOptimizationType
 
 // HasDeliveryOptimization returns a boolean if a field has been set.
 func (o *CampaignOptions) HasDeliveryOptimization() bool {
-	if o != nil && !isNil(o.DeliveryOptimization) {
+	if o != nil && !IsNil(o.DeliveryOptimization) {
 		return true
 	}
 
@@ -86,7 +90,7 @@ func (o *CampaignOptions) SetDeliveryOptimization(v DeliveryOptimizationType) {
 
 // GetTrackOpens returns the TrackOpens field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CampaignOptions) GetTrackOpens() bool {
-	if o == nil || isNil(o.TrackOpens.Get()) {
+	if o == nil || IsNil(o.TrackOpens.Get()) {
 		var ret bool
 		return ret
 	}
@@ -128,7 +132,7 @@ func (o *CampaignOptions) UnsetTrackOpens() {
 
 // GetTrackClicks returns the TrackClicks field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CampaignOptions) GetTrackClicks() bool {
-	if o == nil || isNil(o.TrackClicks.Get()) {
+	if o == nil || IsNil(o.TrackClicks.Get()) {
 		var ret bool
 		return ret
 	}
@@ -170,7 +174,7 @@ func (o *CampaignOptions) UnsetTrackClicks() {
 
 // GetScheduleFor returns the ScheduleFor field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CampaignOptions) GetScheduleFor() time.Time {
-	if o == nil || isNil(o.ScheduleFor.Get()) {
+	if o == nil || IsNil(o.ScheduleFor.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -210,9 +214,73 @@ func (o *CampaignOptions) UnsetScheduleFor() {
 	o.ScheduleFor.Unset()
 }
 
+// GetTriggerFrequency returns the TriggerFrequency field value if set, zero value otherwise.
+func (o *CampaignOptions) GetTriggerFrequency() float64 {
+	if o == nil || IsNil(o.TriggerFrequency) {
+		var ret float64
+		return ret
+	}
+	return *o.TriggerFrequency
+}
+
+// GetTriggerFrequencyOk returns a tuple with the TriggerFrequency field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CampaignOptions) GetTriggerFrequencyOk() (*float64, bool) {
+	if o == nil || IsNil(o.TriggerFrequency) {
+		return nil, false
+	}
+	return o.TriggerFrequency, true
+}
+
+// HasTriggerFrequency returns a boolean if a field has been set.
+func (o *CampaignOptions) HasTriggerFrequency() bool {
+	if o != nil && !IsNil(o.TriggerFrequency) {
+		return true
+	}
+
+	return false
+}
+
+// SetTriggerFrequency gets a reference to the given float64 and assigns it to the TriggerFrequency field.
+func (o *CampaignOptions) SetTriggerFrequency(v float64) {
+	o.TriggerFrequency = &v
+}
+
+// GetTriggerCount returns the TriggerCount field value if set, zero value otherwise.
+func (o *CampaignOptions) GetTriggerCount() int32 {
+	if o == nil || IsNil(o.TriggerCount) {
+		var ret int32
+		return ret
+	}
+	return *o.TriggerCount
+}
+
+// GetTriggerCountOk returns a tuple with the TriggerCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CampaignOptions) GetTriggerCountOk() (*int32, bool) {
+	if o == nil || IsNil(o.TriggerCount) {
+		return nil, false
+	}
+	return o.TriggerCount, true
+}
+
+// HasTriggerCount returns a boolean if a field has been set.
+func (o *CampaignOptions) HasTriggerCount() bool {
+	if o != nil && !IsNil(o.TriggerCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetTriggerCount gets a reference to the given int32 and assigns it to the TriggerCount field.
+func (o *CampaignOptions) SetTriggerCount(v int32) {
+	o.TriggerCount = &v
+}
+
 // GetSplitOptions returns the SplitOptions field value if set, zero value otherwise.
 func (o *CampaignOptions) GetSplitOptions() SplitOptions {
-	if o == nil || isNil(o.SplitOptions) {
+	if o == nil || IsNil(o.SplitOptions) {
 		var ret SplitOptions
 		return ret
 	}
@@ -222,7 +290,7 @@ func (o *CampaignOptions) GetSplitOptions() SplitOptions {
 // GetSplitOptionsOk returns a tuple with the SplitOptions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CampaignOptions) GetSplitOptionsOk() (*SplitOptions, bool) {
-	if o == nil || isNil(o.SplitOptions) {
+	if o == nil || IsNil(o.SplitOptions) {
 		return nil, false
 	}
 	return o.SplitOptions, true
@@ -230,7 +298,7 @@ func (o *CampaignOptions) GetSplitOptionsOk() (*SplitOptions, bool) {
 
 // HasSplitOptions returns a boolean if a field has been set.
 func (o *CampaignOptions) HasSplitOptions() bool {
-	if o != nil && !isNil(o.SplitOptions) {
+	if o != nil && !IsNil(o.SplitOptions) {
 		return true
 	}
 
@@ -252,7 +320,7 @@ func (o CampaignOptions) MarshalJSON() ([]byte, error) {
 
 func (o CampaignOptions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.DeliveryOptimization) {
+	if !IsNil(o.DeliveryOptimization) {
 		toSerialize["DeliveryOptimization"] = o.DeliveryOptimization
 	}
 	if o.TrackOpens.IsSet() {
@@ -264,7 +332,13 @@ func (o CampaignOptions) ToMap() (map[string]interface{}, error) {
 	if o.ScheduleFor.IsSet() {
 		toSerialize["ScheduleFor"] = o.ScheduleFor.Get()
 	}
-	if !isNil(o.SplitOptions) {
+	if !IsNil(o.TriggerFrequency) {
+		toSerialize["TriggerFrequency"] = o.TriggerFrequency
+	}
+	if !IsNil(o.TriggerCount) {
+		toSerialize["TriggerCount"] = o.TriggerCount
+	}
+	if !IsNil(o.SplitOptions) {
 		toSerialize["SplitOptions"] = o.SplitOptions
 	}
 	return toSerialize, nil

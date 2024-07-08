@@ -1,14 +1,14 @@
-# \SegmentsApi
+# \SegmentsAPI
 
 All URIs are relative to *https://api.elasticemail.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**SegmentsByNameDelete**](SegmentsApi.md#SegmentsByNameDelete) | **Delete** /segments/{name} | Delete Segment
-[**SegmentsByNameGet**](SegmentsApi.md#SegmentsByNameGet) | **Get** /segments/{name} | Load Segment
-[**SegmentsByNamePut**](SegmentsApi.md#SegmentsByNamePut) | **Put** /segments/{name} | Update Segment
-[**SegmentsGet**](SegmentsApi.md#SegmentsGet) | **Get** /segments | Load Segments
-[**SegmentsPost**](SegmentsApi.md#SegmentsPost) | **Post** /segments | Add Segment
+[**SegmentsByNameDelete**](SegmentsAPI.md#SegmentsByNameDelete) | **Delete** /segments/{name} | Delete Segment
+[**SegmentsByNameGet**](SegmentsAPI.md#SegmentsByNameGet) | **Get** /segments/{name} | Load Segment
+[**SegmentsByNamePut**](SegmentsAPI.md#SegmentsByNamePut) | **Put** /segments/{name} | Update Segment
+[**SegmentsGet**](SegmentsAPI.md#SegmentsGet) | **Get** /segments | Load Segments
+[**SegmentsPost**](SegmentsAPI.md#SegmentsPost) | **Post** /segments | Add Segment
 
 
 
@@ -26,22 +26,22 @@ Delete Segment
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "My Segment 1" // string | Name of your segment.
+	name := "My Segment 1" // string | Name of your segment.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SegmentsApi.SegmentsByNameDelete(context.Background(), name).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SegmentsApi.SegmentsByNameDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.SegmentsAPI.SegmentsByNameDelete(context.Background(), name).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SegmentsAPI.SegmentsByNameDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -94,24 +94,24 @@ Load Segment
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "name_example" // string | Name of the segment you want to load. Will load all contacts if the 'All Contacts' name has been provided
+	name := "name_example" // string | Name of the segment you want to load. Will load all contacts if the 'All Contacts' name has been provided
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SegmentsApi.SegmentsByNameGet(context.Background(), name).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SegmentsApi.SegmentsByNameGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SegmentsByNameGet`: Segment
-    fmt.Fprintf(os.Stdout, "Response from `SegmentsApi.SegmentsByNameGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SegmentsAPI.SegmentsByNameGet(context.Background(), name).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SegmentsAPI.SegmentsByNameGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SegmentsByNameGet`: Segment
+	fmt.Fprintf(os.Stdout, "Response from `SegmentsAPI.SegmentsByNameGet`: %v\n", resp)
 }
 ```
 
@@ -164,25 +164,25 @@ Update Segment
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "My Segment 1" // string | Name of your segment.
-    segmentPayload := *openapiclient.NewSegmentPayload("Name_example", "Rule_example") // SegmentPayload | 
+	name := "My Segment 1" // string | Name of your segment.
+	segmentPayload := *openapiclient.NewSegmentPayload("Name_example", "Rule_example") // SegmentPayload | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SegmentsApi.SegmentsByNamePut(context.Background(), name).SegmentPayload(segmentPayload).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SegmentsApi.SegmentsByNamePut``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SegmentsByNamePut`: Segment
-    fmt.Fprintf(os.Stdout, "Response from `SegmentsApi.SegmentsByNamePut`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SegmentsAPI.SegmentsByNamePut(context.Background(), name).SegmentPayload(segmentPayload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SegmentsAPI.SegmentsByNamePut``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SegmentsByNamePut`: Segment
+	fmt.Fprintf(os.Stdout, "Response from `SegmentsAPI.SegmentsByNamePut`: %v\n", resp)
 }
 ```
 
@@ -236,25 +236,25 @@ Load Segments
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    limit := int32(100) // int32 | Maximum number of returned items. (optional)
-    offset := int32(20) // int32 | How many items should be returned ahead. (optional)
+	limit := int32(100) // int32 | Maximum number of returned items. (optional)
+	offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SegmentsApi.SegmentsGet(context.Background()).Limit(limit).Offset(offset).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SegmentsApi.SegmentsGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SegmentsGet`: []Segment
-    fmt.Fprintf(os.Stdout, "Response from `SegmentsApi.SegmentsGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SegmentsAPI.SegmentsGet(context.Background()).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SegmentsAPI.SegmentsGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SegmentsGet`: []Segment
+	fmt.Fprintf(os.Stdout, "Response from `SegmentsAPI.SegmentsGet`: %v\n", resp)
 }
 ```
 
@@ -304,24 +304,24 @@ Add Segment
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    segmentPayload := *openapiclient.NewSegmentPayload("Name_example", "Rule_example") // SegmentPayload | 
+	segmentPayload := *openapiclient.NewSegmentPayload("Name_example", "Rule_example") // SegmentPayload | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SegmentsApi.SegmentsPost(context.Background()).SegmentPayload(segmentPayload).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SegmentsApi.SegmentsPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SegmentsPost`: Segment
-    fmt.Fprintf(os.Stdout, "Response from `SegmentsApi.SegmentsPost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SegmentsAPI.SegmentsPost(context.Background()).SegmentPayload(segmentPayload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SegmentsAPI.SegmentsPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SegmentsPost`: Segment
+	fmt.Fprintf(os.Stdout, "Response from `SegmentsAPI.SegmentsPost`: %v\n", resp)
 }
 ```
 

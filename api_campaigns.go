@@ -14,19 +14,19 @@ package ElasticEmail
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
 
-// CampaignsApiService CampaignsApi service
-type CampaignsApiService service
+// CampaignsAPIService CampaignsAPI service
+type CampaignsAPIService service
 
 type ApiCampaignsByNameDeleteRequest struct {
 	ctx context.Context
-	ApiService *CampaignsApiService
+	ApiService *CampaignsAPIService
 	name string
 }
 
@@ -43,7 +43,7 @@ Delete the specific campaign.  This does not cancel in progress email, see Cance
  @param name Name of Campaign to delete
  @return ApiCampaignsByNameDeleteRequest
 */
-func (a *CampaignsApiService) CampaignsByNameDelete(ctx context.Context, name string) ApiCampaignsByNameDeleteRequest {
+func (a *CampaignsAPIService) CampaignsByNameDelete(ctx context.Context, name string) ApiCampaignsByNameDeleteRequest {
 	return ApiCampaignsByNameDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -52,14 +52,14 @@ func (a *CampaignsApiService) CampaignsByNameDelete(ctx context.Context, name st
 }
 
 // Execute executes the request
-func (a *CampaignsApiService) CampaignsByNameDeleteExecute(r ApiCampaignsByNameDeleteRequest) (*http.Response, error) {
+func (a *CampaignsAPIService) CampaignsByNameDeleteExecute(r ApiCampaignsByNameDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsApiService.CampaignsByNameDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsAPIService.CampaignsByNameDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -112,9 +112,9 @@ func (a *CampaignsApiService) CampaignsByNameDeleteExecute(r ApiCampaignsByNameD
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -132,7 +132,7 @@ func (a *CampaignsApiService) CampaignsByNameDeleteExecute(r ApiCampaignsByNameD
 
 type ApiCampaignsByNameGetRequest struct {
 	ctx context.Context
-	ApiService *CampaignsApiService
+	ApiService *CampaignsAPIService
 	name string
 }
 
@@ -149,7 +149,7 @@ Returns the specified campaign details. Required Access Level: ViewCampaigns
  @param name Name of Campaign to get
  @return ApiCampaignsByNameGetRequest
 */
-func (a *CampaignsApiService) CampaignsByNameGet(ctx context.Context, name string) ApiCampaignsByNameGetRequest {
+func (a *CampaignsAPIService) CampaignsByNameGet(ctx context.Context, name string) ApiCampaignsByNameGetRequest {
 	return ApiCampaignsByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -159,7 +159,7 @@ func (a *CampaignsApiService) CampaignsByNameGet(ctx context.Context, name strin
 
 // Execute executes the request
 //  @return Campaign
-func (a *CampaignsApiService) CampaignsByNameGetExecute(r ApiCampaignsByNameGetRequest) (*Campaign, *http.Response, error) {
+func (a *CampaignsAPIService) CampaignsByNameGetExecute(r ApiCampaignsByNameGetRequest) (*Campaign, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -167,7 +167,7 @@ func (a *CampaignsApiService) CampaignsByNameGetExecute(r ApiCampaignsByNameGetR
 		localVarReturnValue  *Campaign
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsApiService.CampaignsByNameGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsAPIService.CampaignsByNameGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -220,9 +220,9 @@ func (a *CampaignsApiService) CampaignsByNameGetExecute(r ApiCampaignsByNameGetR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -249,7 +249,7 @@ func (a *CampaignsApiService) CampaignsByNameGetExecute(r ApiCampaignsByNameGetR
 
 type ApiCampaignsByNamePutRequest struct {
 	ctx context.Context
-	ApiService *CampaignsApiService
+	ApiService *CampaignsAPIService
 	name string
 	campaign *Campaign
 }
@@ -273,7 +273,7 @@ Updates a previously added campaign.  Only Active and Paused campaigns can be up
  @param name Name of Campaign to update
  @return ApiCampaignsByNamePutRequest
 */
-func (a *CampaignsApiService) CampaignsByNamePut(ctx context.Context, name string) ApiCampaignsByNamePutRequest {
+func (a *CampaignsAPIService) CampaignsByNamePut(ctx context.Context, name string) ApiCampaignsByNamePutRequest {
 	return ApiCampaignsByNamePutRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -283,7 +283,7 @@ func (a *CampaignsApiService) CampaignsByNamePut(ctx context.Context, name strin
 
 // Execute executes the request
 //  @return Campaign
-func (a *CampaignsApiService) CampaignsByNamePutExecute(r ApiCampaignsByNamePutRequest) (*Campaign, *http.Response, error) {
+func (a *CampaignsAPIService) CampaignsByNamePutExecute(r ApiCampaignsByNamePutRequest) (*Campaign, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -291,7 +291,7 @@ func (a *CampaignsApiService) CampaignsByNamePutExecute(r ApiCampaignsByNamePutR
 		localVarReturnValue  *Campaign
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsApiService.CampaignsByNamePut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsAPIService.CampaignsByNamePut")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -349,9 +349,9 @@ func (a *CampaignsApiService) CampaignsByNamePutExecute(r ApiCampaignsByNamePutR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -378,7 +378,7 @@ func (a *CampaignsApiService) CampaignsByNamePutExecute(r ApiCampaignsByNamePutR
 
 type ApiCampaignsGetRequest struct {
 	ctx context.Context
-	ApiService *CampaignsApiService
+	ApiService *CampaignsAPIService
 	search *string
 	offset *int32
 	limit *int32
@@ -414,7 +414,7 @@ Returns a list all of your campaigns. Limited to 1000 results. Required Access L
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCampaignsGetRequest
 */
-func (a *CampaignsApiService) CampaignsGet(ctx context.Context) ApiCampaignsGetRequest {
+func (a *CampaignsAPIService) CampaignsGet(ctx context.Context) ApiCampaignsGetRequest {
 	return ApiCampaignsGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -423,7 +423,7 @@ func (a *CampaignsApiService) CampaignsGet(ctx context.Context) ApiCampaignsGetR
 
 // Execute executes the request
 //  @return []Campaign
-func (a *CampaignsApiService) CampaignsGetExecute(r ApiCampaignsGetRequest) ([]Campaign, *http.Response, error) {
+func (a *CampaignsAPIService) CampaignsGetExecute(r ApiCampaignsGetRequest) ([]Campaign, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -431,7 +431,7 @@ func (a *CampaignsApiService) CampaignsGetExecute(r ApiCampaignsGetRequest) ([]C
 		localVarReturnValue  []Campaign
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsApiService.CampaignsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsAPIService.CampaignsGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -443,13 +443,13 @@ func (a *CampaignsApiService) CampaignsGetExecute(r ApiCampaignsGetRequest) ([]C
 	localVarFormParams := url.Values{}
 
 	if r.search != nil {
-		parameterAddToQuery(localVarQueryParams, "search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	if r.offset != nil {
-		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	if r.limit != nil {
-		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -492,9 +492,9 @@ func (a *CampaignsApiService) CampaignsGetExecute(r ApiCampaignsGetRequest) ([]C
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -521,7 +521,7 @@ func (a *CampaignsApiService) CampaignsGetExecute(r ApiCampaignsGetRequest) ([]C
 
 type ApiCampaignsPostRequest struct {
 	ctx context.Context
-	ApiService *CampaignsApiService
+	ApiService *CampaignsAPIService
 	campaign *Campaign
 }
 
@@ -543,7 +543,7 @@ Add a campaign for processing. Required Access Level: ModifyCampaigns
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCampaignsPostRequest
 */
-func (a *CampaignsApiService) CampaignsPost(ctx context.Context) ApiCampaignsPostRequest {
+func (a *CampaignsAPIService) CampaignsPost(ctx context.Context) ApiCampaignsPostRequest {
 	return ApiCampaignsPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -552,7 +552,7 @@ func (a *CampaignsApiService) CampaignsPost(ctx context.Context) ApiCampaignsPos
 
 // Execute executes the request
 //  @return Campaign
-func (a *CampaignsApiService) CampaignsPostExecute(r ApiCampaignsPostRequest) (*Campaign, *http.Response, error) {
+func (a *CampaignsAPIService) CampaignsPostExecute(r ApiCampaignsPostRequest) (*Campaign, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -560,7 +560,7 @@ func (a *CampaignsApiService) CampaignsPostExecute(r ApiCampaignsPostRequest) (*
 		localVarReturnValue  *Campaign
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsApiService.CampaignsPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsAPIService.CampaignsPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -617,9 +617,9 @@ func (a *CampaignsApiService) CampaignsPostExecute(r ApiCampaignsPostRequest) (*
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

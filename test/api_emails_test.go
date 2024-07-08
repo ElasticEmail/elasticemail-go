@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-Testing EmailsApiService
+Testing EmailsAPIService
 
 */
 
@@ -10,66 +10,80 @@ Testing EmailsApiService
 package ElasticEmail
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "./openapi"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
-func Test_ElasticEmail_EmailsApiService(t *testing.T) {
+func Test_ElasticEmail_EmailsAPIService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test EmailsApiService EmailsByMsgidViewGet", func(t *testing.T) {
+	t.Run("Test EmailsAPIService EmailsByMsgidViewGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var msgid string
+		var msgid string
 
-        resp, httpRes, err := apiClient.EmailsApi.EmailsByMsgidViewGet(context.Background(), msgid).Execute()
+		resp, httpRes, err := apiClient.EmailsAPI.EmailsByMsgidViewGet(context.Background(), msgid).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test EmailsApiService EmailsMergefilePost", func(t *testing.T) {
+	t.Run("Test EmailsAPIService EmailsByTransactionidStatusGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.EmailsApi.EmailsMergefilePost(context.Background()).Execute()
+		var transactionid string
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		resp, httpRes, err := apiClient.EmailsAPI.EmailsByTransactionidStatusGet(context.Background(), transactionid).Execute()
 
-    })
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    t.Run("Test EmailsApiService EmailsPost", func(t *testing.T) {
+	})
 
-        t.Skip("skip test")  // remove to run test
+	t.Run("Test EmailsAPIService EmailsMergefilePost", func(t *testing.T) {
 
-        resp, httpRes, err := apiClient.EmailsApi.EmailsPost(context.Background()).Execute()
+		t.Skip("skip test")  // remove to run test
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		resp, httpRes, err := apiClient.EmailsAPI.EmailsMergefilePost(context.Background()).Execute()
 
-    })
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    t.Run("Test EmailsApiService EmailsTransactionalPost", func(t *testing.T) {
+	})
 
-        t.Skip("skip test")  // remove to run test
+	t.Run("Test EmailsAPIService EmailsPost", func(t *testing.T) {
 
-        resp, httpRes, err := apiClient.EmailsApi.EmailsTransactionalPost(context.Background()).Execute()
+		t.Skip("skip test")  // remove to run test
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		resp, httpRes, err := apiClient.EmailsAPI.EmailsPost(context.Background()).Execute()
 
-    })
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test EmailsAPIService EmailsTransactionalPost", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.EmailsAPI.EmailsTransactionalPost(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
 
 }

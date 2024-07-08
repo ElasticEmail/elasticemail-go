@@ -13,6 +13,8 @@ package ElasticEmail
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ListPayload type satisfies the MappedNullable interface at compile time
@@ -27,6 +29,8 @@ type ListPayload struct {
 	// Comma delimited list of existing contact emails that should be added to this list. Leave empty for all contacts
 	Emails []string `json:"Emails,omitempty"`
 }
+
+type _ListPayload ListPayload
 
 // NewListPayload instantiates a new ListPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -72,7 +76,7 @@ func (o *ListPayload) SetListName(v string) {
 
 // GetAllowUnsubscribe returns the AllowUnsubscribe field value if set, zero value otherwise.
 func (o *ListPayload) GetAllowUnsubscribe() bool {
-	if o == nil || isNil(o.AllowUnsubscribe) {
+	if o == nil || IsNil(o.AllowUnsubscribe) {
 		var ret bool
 		return ret
 	}
@@ -82,7 +86,7 @@ func (o *ListPayload) GetAllowUnsubscribe() bool {
 // GetAllowUnsubscribeOk returns a tuple with the AllowUnsubscribe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListPayload) GetAllowUnsubscribeOk() (*bool, bool) {
-	if o == nil || isNil(o.AllowUnsubscribe) {
+	if o == nil || IsNil(o.AllowUnsubscribe) {
 		return nil, false
 	}
 	return o.AllowUnsubscribe, true
@@ -90,7 +94,7 @@ func (o *ListPayload) GetAllowUnsubscribeOk() (*bool, bool) {
 
 // HasAllowUnsubscribe returns a boolean if a field has been set.
 func (o *ListPayload) HasAllowUnsubscribe() bool {
-	if o != nil && !isNil(o.AllowUnsubscribe) {
+	if o != nil && !IsNil(o.AllowUnsubscribe) {
 		return true
 	}
 
@@ -104,7 +108,7 @@ func (o *ListPayload) SetAllowUnsubscribe(v bool) {
 
 // GetEmails returns the Emails field value if set, zero value otherwise.
 func (o *ListPayload) GetEmails() []string {
-	if o == nil || isNil(o.Emails) {
+	if o == nil || IsNil(o.Emails) {
 		var ret []string
 		return ret
 	}
@@ -114,7 +118,7 @@ func (o *ListPayload) GetEmails() []string {
 // GetEmailsOk returns a tuple with the Emails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListPayload) GetEmailsOk() ([]string, bool) {
-	if o == nil || isNil(o.Emails) {
+	if o == nil || IsNil(o.Emails) {
 		return nil, false
 	}
 	return o.Emails, true
@@ -122,7 +126,7 @@ func (o *ListPayload) GetEmailsOk() ([]string, bool) {
 
 // HasEmails returns a boolean if a field has been set.
 func (o *ListPayload) HasEmails() bool {
-	if o != nil && !isNil(o.Emails) {
+	if o != nil && !IsNil(o.Emails) {
 		return true
 	}
 
@@ -145,13 +149,50 @@ func (o ListPayload) MarshalJSON() ([]byte, error) {
 func (o ListPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["ListName"] = o.ListName
-	if !isNil(o.AllowUnsubscribe) {
+	if !IsNil(o.AllowUnsubscribe) {
 		toSerialize["AllowUnsubscribe"] = o.AllowUnsubscribe
 	}
-	if !isNil(o.Emails) {
+	if !IsNil(o.Emails) {
 		toSerialize["Emails"] = o.Emails
 	}
 	return toSerialize, nil
+}
+
+func (o *ListPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"ListName",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varListPayload := _ListPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varListPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListPayload(varListPayload)
+
+	return err
 }
 
 type NullableListPayload struct {

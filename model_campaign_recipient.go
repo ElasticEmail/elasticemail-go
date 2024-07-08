@@ -45,7 +45,7 @@ func NewCampaignRecipientWithDefaults() *CampaignRecipient {
 
 // GetListNames returns the ListNames field value if set, zero value otherwise.
 func (o *CampaignRecipient) GetListNames() []string {
-	if o == nil || isNil(o.ListNames) {
+	if o == nil || IsNil(o.ListNames) {
 		var ret []string
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *CampaignRecipient) GetListNames() []string {
 // GetListNamesOk returns a tuple with the ListNames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CampaignRecipient) GetListNamesOk() ([]string, bool) {
-	if o == nil || isNil(o.ListNames) {
+	if o == nil || IsNil(o.ListNames) {
 		return nil, false
 	}
 	return o.ListNames, true
@@ -63,7 +63,7 @@ func (o *CampaignRecipient) GetListNamesOk() ([]string, bool) {
 
 // HasListNames returns a boolean if a field has been set.
 func (o *CampaignRecipient) HasListNames() bool {
-	if o != nil && !isNil(o.ListNames) {
+	if o != nil && !IsNil(o.ListNames) {
 		return true
 	}
 
@@ -77,7 +77,7 @@ func (o *CampaignRecipient) SetListNames(v []string) {
 
 // GetSegmentNames returns the SegmentNames field value if set, zero value otherwise.
 func (o *CampaignRecipient) GetSegmentNames() []string {
-	if o == nil || isNil(o.SegmentNames) {
+	if o == nil || IsNil(o.SegmentNames) {
 		var ret []string
 		return ret
 	}
@@ -87,7 +87,7 @@ func (o *CampaignRecipient) GetSegmentNames() []string {
 // GetSegmentNamesOk returns a tuple with the SegmentNames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CampaignRecipient) GetSegmentNamesOk() ([]string, bool) {
-	if o == nil || isNil(o.SegmentNames) {
+	if o == nil || IsNil(o.SegmentNames) {
 		return nil, false
 	}
 	return o.SegmentNames, true
@@ -95,7 +95,7 @@ func (o *CampaignRecipient) GetSegmentNamesOk() ([]string, bool) {
 
 // HasSegmentNames returns a boolean if a field has been set.
 func (o *CampaignRecipient) HasSegmentNames() bool {
-	if o != nil && !isNil(o.SegmentNames) {
+	if o != nil && !IsNil(o.SegmentNames) {
 		return true
 	}
 
@@ -117,10 +117,10 @@ func (o CampaignRecipient) MarshalJSON() ([]byte, error) {
 
 func (o CampaignRecipient) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.ListNames) {
+	if !IsNil(o.ListNames) {
 		toSerialize["ListNames"] = o.ListNames
 	}
-	if !isNil(o.SegmentNames) {
+	if !IsNil(o.SegmentNames) {
 		toSerialize["SegmentNames"] = o.SegmentNames
 	}
 	return toSerialize, nil

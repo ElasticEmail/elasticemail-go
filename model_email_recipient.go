@@ -13,6 +13,8 @@ package ElasticEmail
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the EmailRecipient type satisfies the MappedNullable interface at compile time
@@ -25,6 +27,8 @@ type EmailRecipient struct {
 	// A key-value collection of merge fields which can be used in e-mail body.
 	Fields *map[string]string `json:"Fields,omitempty"`
 }
+
+type _EmailRecipient EmailRecipient
 
 // NewEmailRecipient instantiates a new EmailRecipient object
 // This constructor will assign default values to properties that have it defined,
@@ -70,7 +74,7 @@ func (o *EmailRecipient) SetEmail(v string) {
 
 // GetFields returns the Fields field value if set, zero value otherwise.
 func (o *EmailRecipient) GetFields() map[string]string {
-	if o == nil || isNil(o.Fields) {
+	if o == nil || IsNil(o.Fields) {
 		var ret map[string]string
 		return ret
 	}
@@ -80,7 +84,7 @@ func (o *EmailRecipient) GetFields() map[string]string {
 // GetFieldsOk returns a tuple with the Fields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailRecipient) GetFieldsOk() (*map[string]string, bool) {
-	if o == nil || isNil(o.Fields) {
+	if o == nil || IsNil(o.Fields) {
 		return nil, false
 	}
 	return o.Fields, true
@@ -88,7 +92,7 @@ func (o *EmailRecipient) GetFieldsOk() (*map[string]string, bool) {
 
 // HasFields returns a boolean if a field has been set.
 func (o *EmailRecipient) HasFields() bool {
-	if o != nil && !isNil(o.Fields) {
+	if o != nil && !IsNil(o.Fields) {
 		return true
 	}
 
@@ -111,10 +115,47 @@ func (o EmailRecipient) MarshalJSON() ([]byte, error) {
 func (o EmailRecipient) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["Email"] = o.Email
-	if !isNil(o.Fields) {
+	if !IsNil(o.Fields) {
 		toSerialize["Fields"] = o.Fields
 	}
 	return toSerialize, nil
+}
+
+func (o *EmailRecipient) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"Email",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varEmailRecipient := _EmailRecipient{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varEmailRecipient)
+
+	if err != nil {
+		return err
+	}
+
+	*o = EmailRecipient(varEmailRecipient)
+
+	return err
 }
 
 type NullableEmailRecipient struct {

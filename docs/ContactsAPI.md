@@ -1,18 +1,18 @@
-# \ContactsApi
+# \ContactsAPI
 
 All URIs are relative to *https://api.elasticemail.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ContactsByEmailDelete**](ContactsApi.md#ContactsByEmailDelete) | **Delete** /contacts/{email} | Delete Contact
-[**ContactsByEmailGet**](ContactsApi.md#ContactsByEmailGet) | **Get** /contacts/{email} | Load Contact
-[**ContactsByEmailPut**](ContactsApi.md#ContactsByEmailPut) | **Put** /contacts/{email} | Update Contact
-[**ContactsDeletePost**](ContactsApi.md#ContactsDeletePost) | **Post** /contacts/delete | Delete Contacts Bulk
-[**ContactsExportByIdStatusGet**](ContactsApi.md#ContactsExportByIdStatusGet) | **Get** /contacts/export/{id}/status | Check Export Status
-[**ContactsExportPost**](ContactsApi.md#ContactsExportPost) | **Post** /contacts/export | Export Contacts
-[**ContactsGet**](ContactsApi.md#ContactsGet) | **Get** /contacts | Load Contacts
-[**ContactsImportPost**](ContactsApi.md#ContactsImportPost) | **Post** /contacts/import | Upload Contacts
-[**ContactsPost**](ContactsApi.md#ContactsPost) | **Post** /contacts | Add Contact
+[**ContactsByEmailDelete**](ContactsAPI.md#ContactsByEmailDelete) | **Delete** /contacts/{email} | Delete Contact
+[**ContactsByEmailGet**](ContactsAPI.md#ContactsByEmailGet) | **Get** /contacts/{email} | Load Contact
+[**ContactsByEmailPut**](ContactsAPI.md#ContactsByEmailPut) | **Put** /contacts/{email} | Update Contact
+[**ContactsDeletePost**](ContactsAPI.md#ContactsDeletePost) | **Post** /contacts/delete | Delete Contacts Bulk
+[**ContactsExportByIdStatusGet**](ContactsAPI.md#ContactsExportByIdStatusGet) | **Get** /contacts/export/{id}/status | Check Export Status
+[**ContactsExportPost**](ContactsAPI.md#ContactsExportPost) | **Post** /contacts/export | Export Contacts
+[**ContactsGet**](ContactsAPI.md#ContactsGet) | **Get** /contacts | Load Contacts
+[**ContactsImportPost**](ContactsAPI.md#ContactsImportPost) | **Post** /contacts/import | Upload Contacts
+[**ContactsPost**](ContactsAPI.md#ContactsPost) | **Post** /contacts | Add Contact
 
 
 
@@ -30,22 +30,22 @@ Delete Contact
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    email := "mail@example.com" // string | Proper email address.
+	email := "mail@example.com" // string | Proper email address.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContactsApi.ContactsByEmailDelete(context.Background(), email).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsByEmailDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ContactsAPI.ContactsByEmailDelete(context.Background(), email).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContactsAPI.ContactsByEmailDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -98,24 +98,24 @@ Load Contact
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    email := "mail@example.com" // string | Proper email address.
+	email := "mail@example.com" // string | Proper email address.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContactsApi.ContactsByEmailGet(context.Background(), email).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsByEmailGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContactsByEmailGet`: Contact
-    fmt.Fprintf(os.Stdout, "Response from `ContactsApi.ContactsByEmailGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContactsAPI.ContactsByEmailGet(context.Background(), email).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContactsAPI.ContactsByEmailGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContactsByEmailGet`: Contact
+	fmt.Fprintf(os.Stdout, "Response from `ContactsAPI.ContactsByEmailGet`: %v\n", resp)
 }
 ```
 
@@ -168,25 +168,25 @@ Update Contact
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    email := "mail@example.com" // string | Proper email address.
-    contactUpdatePayload := *openapiclient.NewContactUpdatePayload() // ContactUpdatePayload | 
+	email := "mail@example.com" // string | Proper email address.
+	contactUpdatePayload := *openapiclient.NewContactUpdatePayload() // ContactUpdatePayload | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContactsApi.ContactsByEmailPut(context.Background(), email).ContactUpdatePayload(contactUpdatePayload).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsByEmailPut``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContactsByEmailPut`: Contact
-    fmt.Fprintf(os.Stdout, "Response from `ContactsApi.ContactsByEmailPut`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContactsAPI.ContactsByEmailPut(context.Background(), email).ContactUpdatePayload(contactUpdatePayload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContactsAPI.ContactsByEmailPut``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContactsByEmailPut`: Contact
+	fmt.Fprintf(os.Stdout, "Response from `ContactsAPI.ContactsByEmailPut`: %v\n", resp)
 }
 ```
 
@@ -240,22 +240,22 @@ Delete Contacts Bulk
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    emailsPayload := *openapiclient.NewEmailsPayload() // EmailsPayload | Provide either rule or a list of emails, not both.
+	emailsPayload := *openapiclient.NewEmailsPayload() // EmailsPayload | Provide either rule or a list of emails, not both.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContactsApi.ContactsDeletePost(context.Background()).EmailsPayload(emailsPayload).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsDeletePost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ContactsAPI.ContactsDeletePost(context.Background()).EmailsPayload(emailsPayload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContactsAPI.ContactsDeletePost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -304,24 +304,24 @@ Check Export Status
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    id := "E33EBA7A-C20D-4D3D-8F2F-5EEF42F58E6F" // string | ID of the exported file
+	id := "E33EBA7A-C20D-4D3D-8F2F-5EEF42F58E6F" // string | ID of the exported file
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContactsApi.ContactsExportByIdStatusGet(context.Background(), id).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsExportByIdStatusGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContactsExportByIdStatusGet`: ExportStatus
-    fmt.Fprintf(os.Stdout, "Response from `ContactsApi.ContactsExportByIdStatusGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContactsAPI.ContactsExportByIdStatusGet(context.Background(), id).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContactsAPI.ContactsExportByIdStatusGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContactsExportByIdStatusGet`: ExportStatus
+	fmt.Fprintf(os.Stdout, "Response from `ContactsAPI.ContactsExportByIdStatusGet`: %v\n", resp)
 }
 ```
 
@@ -374,28 +374,28 @@ Export Contacts
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    fileFormat := openapiclient.ExportFileFormats("Csv") // ExportFileFormats | Format of the exported file (optional) (default to "Csv")
-    rule := "Status%20=%20Engaged" // string | Query used for filtering. (optional)
-    emails := []string{"Inner_example"} // []string | Comma delimited list of contact emails (optional)
-    compressionFormat := openapiclient.CompressionFormat("None") // CompressionFormat | FileResponse compression format. None or Zip. (optional) (default to "None")
-    fileName := "filename.txt" // string | Name of your file including extension. (optional)
+	fileFormat := openapiclient.ExportFileFormats("Csv") // ExportFileFormats | Format of the exported file (optional) (default to "Csv")
+	rule := "Status%20=%20Engaged" // string | Query used for filtering. (optional)
+	emails := []string{"Inner_example"} // []string | Comma delimited list of contact emails (optional)
+	compressionFormat := openapiclient.CompressionFormat("None") // CompressionFormat | FileResponse compression format. None or Zip. (optional) (default to "None")
+	fileName := "filename.txt" // string | Name of your file including extension. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContactsApi.ContactsExportPost(context.Background()).FileFormat(fileFormat).Rule(rule).Emails(emails).CompressionFormat(compressionFormat).FileName(fileName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsExportPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContactsExportPost`: ExportLink
-    fmt.Fprintf(os.Stdout, "Response from `ContactsApi.ContactsExportPost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContactsAPI.ContactsExportPost(context.Background()).FileFormat(fileFormat).Rule(rule).Emails(emails).CompressionFormat(compressionFormat).FileName(fileName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContactsAPI.ContactsExportPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContactsExportPost`: ExportLink
+	fmt.Fprintf(os.Stdout, "Response from `ContactsAPI.ContactsExportPost`: %v\n", resp)
 }
 ```
 
@@ -448,25 +448,25 @@ Load Contacts
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    limit := int32(100) // int32 | Maximum number of returned items. (optional)
-    offset := int32(20) // int32 | How many items should be returned ahead. (optional)
+	limit := int32(100) // int32 | Maximum number of returned items. (optional)
+	offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContactsApi.ContactsGet(context.Background()).Limit(limit).Offset(offset).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContactsGet`: []Contact
-    fmt.Fprintf(os.Stdout, "Response from `ContactsApi.ContactsGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContactsAPI.ContactsGet(context.Background()).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContactsAPI.ContactsGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContactsGet`: []Contact
+	fmt.Fprintf(os.Stdout, "Response from `ContactsAPI.ContactsGet`: %v\n", resp)
 }
 ```
 
@@ -516,25 +516,25 @@ Upload Contacts
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    listName := "listName_example" // string | Name of an existing list to add these contacts to (optional)
-    encodingName := "encodingName_example" // string | In what encoding the file is uploaded (optional)
-    fileUrl := "fileUrl_example" // string | Optional url of csv to import (optional)
-    file := os.NewFile(1234, "some_file") // *os.File |  (optional)
+	listName := "listName_example" // string | Name of an existing list to add these contacts to (optional)
+	encodingName := "encodingName_example" // string | In what encoding the file is uploaded (optional)
+	fileUrl := "fileUrl_example" // string | Optional url of csv to import (optional)
+	file := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContactsApi.ContactsImportPost(context.Background()).ListName(listName).EncodingName(encodingName).FileUrl(fileUrl).File(file).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsImportPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ContactsAPI.ContactsImportPost(context.Background()).ListName(listName).EncodingName(encodingName).FileUrl(fileUrl).File(file).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContactsAPI.ContactsImportPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -586,25 +586,25 @@ Add Contact
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    contactPayload := []openapiclient.ContactPayload{*openapiclient.NewContactPayload("mail@example.com")} // []ContactPayload | 
-    listnames := []string{"Inner_example"} // []string | Names of lists to which the uploaded contacts should be added to (optional)
+	contactPayload := []openapiclient.ContactPayload{*openapiclient.NewContactPayload("mail@example.com")} // []ContactPayload | 
+	listnames := []string{"Inner_example"} // []string | Names of lists to which the uploaded contacts should be added to (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContactsApi.ContactsPost(context.Background()).ContactPayload(contactPayload).Listnames(listnames).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContactsApi.ContactsPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContactsPost`: []Contact
-    fmt.Fprintf(os.Stdout, "Response from `ContactsApi.ContactsPost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContactsAPI.ContactsPost(context.Background()).ContactPayload(contactPayload).Listnames(listnames).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContactsAPI.ContactsPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContactsPost`: []Contact
+	fmt.Fprintf(os.Stdout, "Response from `ContactsAPI.ContactsPost`: %v\n", resp)
 }
 ```
 

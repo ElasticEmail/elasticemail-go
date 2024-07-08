@@ -14,7 +14,7 @@ package ElasticEmail
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -22,12 +22,12 @@ import (
 )
 
 
-// FilesApiService FilesApi service
-type FilesApiService service
+// FilesAPIService FilesAPI service
+type FilesAPIService service
 
 type ApiFilesByNameDeleteRequest struct {
 	ctx context.Context
-	ApiService *FilesApiService
+	ApiService *FilesAPIService
 	name string
 }
 
@@ -44,7 +44,7 @@ Permanently deletes the file from your Account. Required Access Level: ModifyFil
  @param name Name of your file including extension.
  @return ApiFilesByNameDeleteRequest
 */
-func (a *FilesApiService) FilesByNameDelete(ctx context.Context, name string) ApiFilesByNameDeleteRequest {
+func (a *FilesAPIService) FilesByNameDelete(ctx context.Context, name string) ApiFilesByNameDeleteRequest {
 	return ApiFilesByNameDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -53,14 +53,14 @@ func (a *FilesApiService) FilesByNameDelete(ctx context.Context, name string) Ap
 }
 
 // Execute executes the request
-func (a *FilesApiService) FilesByNameDeleteExecute(r ApiFilesByNameDeleteRequest) (*http.Response, error) {
+func (a *FilesAPIService) FilesByNameDeleteExecute(r ApiFilesByNameDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesApiService.FilesByNameDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesAPIService.FilesByNameDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -113,9 +113,9 @@ func (a *FilesApiService) FilesByNameDeleteExecute(r ApiFilesByNameDeleteRequest
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -133,7 +133,7 @@ func (a *FilesApiService) FilesByNameDeleteExecute(r ApiFilesByNameDeleteRequest
 
 type ApiFilesByNameGetRequest struct {
 	ctx context.Context
-	ApiService *FilesApiService
+	ApiService *FilesAPIService
 	name string
 }
 
@@ -150,7 +150,7 @@ Gets content of the specified File. Required Access Level: ViewFiles
  @param name Name of your file including extension.
  @return ApiFilesByNameGetRequest
 */
-func (a *FilesApiService) FilesByNameGet(ctx context.Context, name string) ApiFilesByNameGetRequest {
+func (a *FilesAPIService) FilesByNameGet(ctx context.Context, name string) ApiFilesByNameGetRequest {
 	return ApiFilesByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -160,7 +160,7 @@ func (a *FilesApiService) FilesByNameGet(ctx context.Context, name string) ApiFi
 
 // Execute executes the request
 //  @return *os.File
-func (a *FilesApiService) FilesByNameGetExecute(r ApiFilesByNameGetRequest) (*os.File, *http.Response, error) {
+func (a *FilesAPIService) FilesByNameGetExecute(r ApiFilesByNameGetRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -168,7 +168,7 @@ func (a *FilesApiService) FilesByNameGetExecute(r ApiFilesByNameGetRequest) (*os
 		localVarReturnValue  *os.File
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesApiService.FilesByNameGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesAPIService.FilesByNameGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -221,9 +221,9 @@ func (a *FilesApiService) FilesByNameGetExecute(r ApiFilesByNameGetRequest) (*os
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -250,7 +250,7 @@ func (a *FilesApiService) FilesByNameGetExecute(r ApiFilesByNameGetRequest) (*os
 
 type ApiFilesByNameInfoGetRequest struct {
 	ctx context.Context
-	ApiService *FilesApiService
+	ApiService *FilesAPIService
 	name string
 }
 
@@ -267,7 +267,7 @@ Returns the specified File's details. Required Access Level: ViewFiles
  @param name Name of your file including extension.
  @return ApiFilesByNameInfoGetRequest
 */
-func (a *FilesApiService) FilesByNameInfoGet(ctx context.Context, name string) ApiFilesByNameInfoGetRequest {
+func (a *FilesAPIService) FilesByNameInfoGet(ctx context.Context, name string) ApiFilesByNameInfoGetRequest {
 	return ApiFilesByNameInfoGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -277,7 +277,7 @@ func (a *FilesApiService) FilesByNameInfoGet(ctx context.Context, name string) A
 
 // Execute executes the request
 //  @return FileInfo
-func (a *FilesApiService) FilesByNameInfoGetExecute(r ApiFilesByNameInfoGetRequest) (*FileInfo, *http.Response, error) {
+func (a *FilesAPIService) FilesByNameInfoGetExecute(r ApiFilesByNameInfoGetRequest) (*FileInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -285,7 +285,7 @@ func (a *FilesApiService) FilesByNameInfoGetExecute(r ApiFilesByNameInfoGetReque
 		localVarReturnValue  *FileInfo
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesApiService.FilesByNameInfoGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesAPIService.FilesByNameInfoGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -338,9 +338,9 @@ func (a *FilesApiService) FilesByNameInfoGetExecute(r ApiFilesByNameInfoGetReque
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -367,7 +367,7 @@ func (a *FilesApiService) FilesByNameInfoGetExecute(r ApiFilesByNameInfoGetReque
 
 type ApiFilesGetRequest struct {
 	ctx context.Context
-	ApiService *FilesApiService
+	ApiService *FilesAPIService
 	limit *int32
 	offset *int32
 }
@@ -396,7 +396,7 @@ Returns a list of all your available files. Required Access Level: ViewFiles
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiFilesGetRequest
 */
-func (a *FilesApiService) FilesGet(ctx context.Context) ApiFilesGetRequest {
+func (a *FilesAPIService) FilesGet(ctx context.Context) ApiFilesGetRequest {
 	return ApiFilesGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -405,7 +405,7 @@ func (a *FilesApiService) FilesGet(ctx context.Context) ApiFilesGetRequest {
 
 // Execute executes the request
 //  @return []FileInfo
-func (a *FilesApiService) FilesGetExecute(r ApiFilesGetRequest) ([]FileInfo, *http.Response, error) {
+func (a *FilesAPIService) FilesGetExecute(r ApiFilesGetRequest) ([]FileInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -413,7 +413,7 @@ func (a *FilesApiService) FilesGetExecute(r ApiFilesGetRequest) ([]FileInfo, *ht
 		localVarReturnValue  []FileInfo
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesApiService.FilesGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesAPIService.FilesGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -425,10 +425,10 @@ func (a *FilesApiService) FilesGetExecute(r ApiFilesGetRequest) ([]FileInfo, *ht
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -471,9 +471,9 @@ func (a *FilesApiService) FilesGetExecute(r ApiFilesGetRequest) ([]FileInfo, *ht
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -500,7 +500,7 @@ func (a *FilesApiService) FilesGetExecute(r ApiFilesGetRequest) ([]FileInfo, *ht
 
 type ApiFilesPostRequest struct {
 	ctx context.Context
-	ApiService *FilesApiService
+	ApiService *FilesAPIService
 	filePayload *FilePayload
 	expiresAfterDays *int32
 }
@@ -528,7 +528,7 @@ Uploads selected file to the server. Required Access Level: ModifyFiles
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiFilesPostRequest
 */
-func (a *FilesApiService) FilesPost(ctx context.Context) ApiFilesPostRequest {
+func (a *FilesAPIService) FilesPost(ctx context.Context) ApiFilesPostRequest {
 	return ApiFilesPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -537,7 +537,7 @@ func (a *FilesApiService) FilesPost(ctx context.Context) ApiFilesPostRequest {
 
 // Execute executes the request
 //  @return FileInfo
-func (a *FilesApiService) FilesPostExecute(r ApiFilesPostRequest) (*FileInfo, *http.Response, error) {
+func (a *FilesAPIService) FilesPostExecute(r ApiFilesPostRequest) (*FileInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -545,7 +545,7 @@ func (a *FilesApiService) FilesPostExecute(r ApiFilesPostRequest) (*FileInfo, *h
 		localVarReturnValue  *FileInfo
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesApiService.FilesPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesAPIService.FilesPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -560,7 +560,7 @@ func (a *FilesApiService) FilesPostExecute(r ApiFilesPostRequest) (*FileInfo, *h
 	}
 
 	if r.expiresAfterDays != nil {
-		parameterAddToQuery(localVarQueryParams, "expiresAfterDays", r.expiresAfterDays, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expiresAfterDays", r.expiresAfterDays, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -605,9 +605,9 @@ func (a *FilesApiService) FilesPostExecute(r ApiFilesPostRequest) (*FileInfo, *h
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

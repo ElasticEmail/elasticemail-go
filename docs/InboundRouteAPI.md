@@ -1,15 +1,15 @@
-# \InboundRouteApi
+# \InboundRouteAPI
 
 All URIs are relative to *https://api.elasticemail.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**InboundrouteByIdDelete**](InboundRouteApi.md#InboundrouteByIdDelete) | **Delete** /inboundroute/{id} | Delete Route
-[**InboundrouteByIdGet**](InboundRouteApi.md#InboundrouteByIdGet) | **Get** /inboundroute/{id} | Get Route
-[**InboundrouteByIdPut**](InboundRouteApi.md#InboundrouteByIdPut) | **Put** /inboundroute/{id} | Update Route
-[**InboundrouteGet**](InboundRouteApi.md#InboundrouteGet) | **Get** /inboundroute | Get Routes
-[**InboundrouteOrderPut**](InboundRouteApi.md#InboundrouteOrderPut) | **Put** /inboundroute/order | Update Sorting
-[**InboundroutePost**](InboundRouteApi.md#InboundroutePost) | **Post** /inboundroute | Create Route
+[**InboundrouteByIdDelete**](InboundRouteAPI.md#InboundrouteByIdDelete) | **Delete** /inboundroute/{id} | Delete Route
+[**InboundrouteByIdGet**](InboundRouteAPI.md#InboundrouteByIdGet) | **Get** /inboundroute/{id} | Get Route
+[**InboundrouteByIdPut**](InboundRouteAPI.md#InboundrouteByIdPut) | **Put** /inboundroute/{id} | Update Route
+[**InboundrouteGet**](InboundRouteAPI.md#InboundrouteGet) | **Get** /inboundroute | Get Routes
+[**InboundrouteOrderPut**](InboundRouteAPI.md#InboundrouteOrderPut) | **Put** /inboundroute/order | Update Sorting
+[**InboundroutePost**](InboundRouteAPI.md#InboundroutePost) | **Post** /inboundroute | Create Route
 
 
 
@@ -27,22 +27,22 @@ Delete Route
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    id := "id_example" // string | 
+	id := "id_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InboundRouteApi.InboundrouteByIdDelete(context.Background(), id).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InboundRouteApi.InboundrouteByIdDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.InboundRouteAPI.InboundrouteByIdDelete(context.Background(), id).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InboundRouteAPI.InboundrouteByIdDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -95,24 +95,24 @@ Get Route
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    id := "123456" // string | ID number of your attachment
+	id := "123456" // string | ID number of your attachment
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InboundRouteApi.InboundrouteByIdGet(context.Background(), id).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InboundRouteApi.InboundrouteByIdGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `InboundrouteByIdGet`: InboundRoute
-    fmt.Fprintf(os.Stdout, "Response from `InboundRouteApi.InboundrouteByIdGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InboundRouteAPI.InboundrouteByIdGet(context.Background(), id).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InboundRouteAPI.InboundrouteByIdGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `InboundrouteByIdGet`: InboundRoute
+	fmt.Fprintf(os.Stdout, "Response from `InboundRouteAPI.InboundrouteByIdGet`: %v\n", resp)
 }
 ```
 
@@ -165,25 +165,25 @@ Update Route
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    id := "id_example" // string | 
-    inboundPayload := *openapiclient.NewInboundPayload("Filter_example", "Name_example", openapiclient.InboundRouteFilterType("EmailAddress"), openapiclient.InboundRouteActionType("ForwardToEmail")) // InboundPayload | 
+	id := "id_example" // string | 
+	inboundPayload := *openapiclient.NewInboundPayload("Filter_example", "Name_example", openapiclient.InboundRouteFilterType("EmailAddress"), openapiclient.InboundRouteActionType("ForwardToEmail")) // InboundPayload | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InboundRouteApi.InboundrouteByIdPut(context.Background(), id).InboundPayload(inboundPayload).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InboundRouteApi.InboundrouteByIdPut``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `InboundrouteByIdPut`: InboundRoute
-    fmt.Fprintf(os.Stdout, "Response from `InboundRouteApi.InboundrouteByIdPut`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InboundRouteAPI.InboundrouteByIdPut(context.Background(), id).InboundPayload(inboundPayload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InboundRouteAPI.InboundrouteByIdPut``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `InboundrouteByIdPut`: InboundRoute
+	fmt.Fprintf(os.Stdout, "Response from `InboundRouteAPI.InboundrouteByIdPut`: %v\n", resp)
 }
 ```
 
@@ -237,23 +237,23 @@ Get Routes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InboundRouteApi.InboundrouteGet(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InboundRouteApi.InboundrouteGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `InboundrouteGet`: []InboundRoute
-    fmt.Fprintf(os.Stdout, "Response from `InboundRouteApi.InboundrouteGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InboundRouteAPI.InboundrouteGet(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InboundRouteAPI.InboundrouteGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `InboundrouteGet`: []InboundRoute
+	fmt.Fprintf(os.Stdout, "Response from `InboundRouteAPI.InboundrouteGet`: %v\n", resp)
 }
 ```
 
@@ -298,24 +298,24 @@ Update Sorting
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    sortOrderItem := []openapiclient.SortOrderItem{*openapiclient.NewSortOrderItem("PublicInboundId_example", int32(123))} // []SortOrderItem | Change the ordering of inbound routes for when matching the inbound
+	sortOrderItem := []openapiclient.SortOrderItem{*openapiclient.NewSortOrderItem("PublicInboundId_example", int32(123))} // []SortOrderItem | Change the ordering of inbound routes for when matching the inbound
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InboundRouteApi.InboundrouteOrderPut(context.Background()).SortOrderItem(sortOrderItem).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InboundRouteApi.InboundrouteOrderPut``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `InboundrouteOrderPut`: []InboundRoute
-    fmt.Fprintf(os.Stdout, "Response from `InboundRouteApi.InboundrouteOrderPut`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InboundRouteAPI.InboundrouteOrderPut(context.Background()).SortOrderItem(sortOrderItem).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InboundRouteAPI.InboundrouteOrderPut``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `InboundrouteOrderPut`: []InboundRoute
+	fmt.Fprintf(os.Stdout, "Response from `InboundRouteAPI.InboundrouteOrderPut`: %v\n", resp)
 }
 ```
 
@@ -364,24 +364,24 @@ Create Route
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    inboundPayload := *openapiclient.NewInboundPayload("Filter_example", "Name_example", openapiclient.InboundRouteFilterType("EmailAddress"), openapiclient.InboundRouteActionType("ForwardToEmail")) // InboundPayload | 
+	inboundPayload := *openapiclient.NewInboundPayload("Filter_example", "Name_example", openapiclient.InboundRouteFilterType("EmailAddress"), openapiclient.InboundRouteActionType("ForwardToEmail")) // InboundPayload | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InboundRouteApi.InboundroutePost(context.Background()).InboundPayload(inboundPayload).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InboundRouteApi.InboundroutePost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `InboundroutePost`: InboundRoute
-    fmt.Fprintf(os.Stdout, "Response from `InboundRouteApi.InboundroutePost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InboundRouteAPI.InboundroutePost(context.Background()).InboundPayload(inboundPayload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InboundRouteAPI.InboundroutePost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `InboundroutePost`: InboundRoute
+	fmt.Fprintf(os.Stdout, "Response from `InboundRouteAPI.InboundroutePost`: %v\n", resp)
 }
 ```
 

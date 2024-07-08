@@ -14,7 +14,7 @@ package ElasticEmail
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -22,12 +22,12 @@ import (
 )
 
 
-// SuppressionsApiService SuppressionsApi service
-type SuppressionsApiService service
+// SuppressionsAPIService SuppressionsAPI service
+type SuppressionsAPIService service
 
 type ApiSuppressionsBouncesGetRequest struct {
 	ctx context.Context
-	ApiService *SuppressionsApiService
+	ApiService *SuppressionsAPIService
 	search *string
 	limit *int32
 	offset *int32
@@ -63,7 +63,7 @@ Retrieve your list of bounced emails. Required Access Level: ViewContacts, ViewS
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSuppressionsBouncesGetRequest
 */
-func (a *SuppressionsApiService) SuppressionsBouncesGet(ctx context.Context) ApiSuppressionsBouncesGetRequest {
+func (a *SuppressionsAPIService) SuppressionsBouncesGet(ctx context.Context) ApiSuppressionsBouncesGetRequest {
 	return ApiSuppressionsBouncesGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -72,7 +72,7 @@ func (a *SuppressionsApiService) SuppressionsBouncesGet(ctx context.Context) Api
 
 // Execute executes the request
 //  @return []Suppression
-func (a *SuppressionsApiService) SuppressionsBouncesGetExecute(r ApiSuppressionsBouncesGetRequest) ([]Suppression, *http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsBouncesGetExecute(r ApiSuppressionsBouncesGetRequest) ([]Suppression, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -80,7 +80,7 @@ func (a *SuppressionsApiService) SuppressionsBouncesGetExecute(r ApiSuppressions
 		localVarReturnValue  []Suppression
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsApiService.SuppressionsBouncesGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsAPIService.SuppressionsBouncesGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -92,13 +92,13 @@ func (a *SuppressionsApiService) SuppressionsBouncesGetExecute(r ApiSuppressions
 	localVarFormParams := url.Values{}
 
 	if r.search != nil {
-		parameterAddToQuery(localVarQueryParams, "search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	if r.limit != nil {
-		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -141,9 +141,9 @@ func (a *SuppressionsApiService) SuppressionsBouncesGetExecute(r ApiSuppressions
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -170,7 +170,7 @@ func (a *SuppressionsApiService) SuppressionsBouncesGetExecute(r ApiSuppressions
 
 type ApiSuppressionsBouncesImportPostRequest struct {
 	ctx context.Context
-	ApiService *SuppressionsApiService
+	ApiService *SuppressionsAPIService
 	file *os.File
 }
 
@@ -191,7 +191,7 @@ Add Bounced. Required Access Level: ModifyContacts, ModifySuppressions
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSuppressionsBouncesImportPostRequest
 */
-func (a *SuppressionsApiService) SuppressionsBouncesImportPost(ctx context.Context) ApiSuppressionsBouncesImportPostRequest {
+func (a *SuppressionsAPIService) SuppressionsBouncesImportPost(ctx context.Context) ApiSuppressionsBouncesImportPostRequest {
 	return ApiSuppressionsBouncesImportPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -199,14 +199,14 @@ func (a *SuppressionsApiService) SuppressionsBouncesImportPost(ctx context.Conte
 }
 
 // Execute executes the request
-func (a *SuppressionsApiService) SuppressionsBouncesImportPostExecute(r ApiSuppressionsBouncesImportPostRequest) (*http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsBouncesImportPostExecute(r ApiSuppressionsBouncesImportPostRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsApiService.SuppressionsBouncesImportPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsAPIService.SuppressionsBouncesImportPost")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -239,12 +239,10 @@ func (a *SuppressionsApiService) SuppressionsBouncesImportPostExecute(r ApiSuppr
 	var fileLocalVarFileBytes    []byte
 
 	fileLocalVarFormFileName = "file"
-
-
 	fileLocalVarFile := r.file
 
 	if fileLocalVarFile != nil {
-		fbs, _ := ioutil.ReadAll(fileLocalVarFile)
+		fbs, _ := io.ReadAll(fileLocalVarFile)
 
 		fileLocalVarFileBytes = fbs
 		fileLocalVarFileName = fileLocalVarFile.Name()
@@ -275,9 +273,9 @@ func (a *SuppressionsApiService) SuppressionsBouncesImportPostExecute(r ApiSuppr
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -295,7 +293,7 @@ func (a *SuppressionsApiService) SuppressionsBouncesImportPostExecute(r ApiSuppr
 
 type ApiSuppressionsBouncesPostRequest struct {
 	ctx context.Context
-	ApiService *SuppressionsApiService
+	ApiService *SuppressionsAPIService
 	requestBody *[]string
 }
 
@@ -317,7 +315,7 @@ Add Bounced. Required Access Level: ModifyContacts, ModifySuppressions
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSuppressionsBouncesPostRequest
 */
-func (a *SuppressionsApiService) SuppressionsBouncesPost(ctx context.Context) ApiSuppressionsBouncesPostRequest {
+func (a *SuppressionsAPIService) SuppressionsBouncesPost(ctx context.Context) ApiSuppressionsBouncesPostRequest {
 	return ApiSuppressionsBouncesPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -326,7 +324,7 @@ func (a *SuppressionsApiService) SuppressionsBouncesPost(ctx context.Context) Ap
 
 // Execute executes the request
 //  @return []Suppression
-func (a *SuppressionsApiService) SuppressionsBouncesPostExecute(r ApiSuppressionsBouncesPostRequest) ([]Suppression, *http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsBouncesPostExecute(r ApiSuppressionsBouncesPostRequest) ([]Suppression, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -334,7 +332,7 @@ func (a *SuppressionsApiService) SuppressionsBouncesPostExecute(r ApiSuppression
 		localVarReturnValue  []Suppression
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsApiService.SuppressionsBouncesPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsAPIService.SuppressionsBouncesPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -391,9 +389,9 @@ func (a *SuppressionsApiService) SuppressionsBouncesPostExecute(r ApiSuppression
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -420,7 +418,7 @@ func (a *SuppressionsApiService) SuppressionsBouncesPostExecute(r ApiSuppression
 
 type ApiSuppressionsByEmailDeleteRequest struct {
 	ctx context.Context
-	ApiService *SuppressionsApiService
+	ApiService *SuppressionsAPIService
 	email string
 }
 
@@ -437,7 +435,7 @@ Delete Suppression. Required Access Level: ViewContacts, ViewSuppressions
  @param email Proper email address.
  @return ApiSuppressionsByEmailDeleteRequest
 */
-func (a *SuppressionsApiService) SuppressionsByEmailDelete(ctx context.Context, email string) ApiSuppressionsByEmailDeleteRequest {
+func (a *SuppressionsAPIService) SuppressionsByEmailDelete(ctx context.Context, email string) ApiSuppressionsByEmailDeleteRequest {
 	return ApiSuppressionsByEmailDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -446,14 +444,14 @@ func (a *SuppressionsApiService) SuppressionsByEmailDelete(ctx context.Context, 
 }
 
 // Execute executes the request
-func (a *SuppressionsApiService) SuppressionsByEmailDeleteExecute(r ApiSuppressionsByEmailDeleteRequest) (*http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsByEmailDeleteExecute(r ApiSuppressionsByEmailDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsApiService.SuppressionsByEmailDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsAPIService.SuppressionsByEmailDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -506,9 +504,9 @@ func (a *SuppressionsApiService) SuppressionsByEmailDeleteExecute(r ApiSuppressi
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -526,7 +524,7 @@ func (a *SuppressionsApiService) SuppressionsByEmailDeleteExecute(r ApiSuppressi
 
 type ApiSuppressionsByEmailGetRequest struct {
 	ctx context.Context
-	ApiService *SuppressionsApiService
+	ApiService *SuppressionsAPIService
 	email string
 }
 
@@ -543,7 +541,7 @@ Retrieve your suppression. Required Access Level: ViewContacts, ViewSuppressions
  @param email Proper email address.
  @return ApiSuppressionsByEmailGetRequest
 */
-func (a *SuppressionsApiService) SuppressionsByEmailGet(ctx context.Context, email string) ApiSuppressionsByEmailGetRequest {
+func (a *SuppressionsAPIService) SuppressionsByEmailGet(ctx context.Context, email string) ApiSuppressionsByEmailGetRequest {
 	return ApiSuppressionsByEmailGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -553,7 +551,7 @@ func (a *SuppressionsApiService) SuppressionsByEmailGet(ctx context.Context, ema
 
 // Execute executes the request
 //  @return Suppression
-func (a *SuppressionsApiService) SuppressionsByEmailGetExecute(r ApiSuppressionsByEmailGetRequest) (*Suppression, *http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsByEmailGetExecute(r ApiSuppressionsByEmailGetRequest) (*Suppression, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -561,7 +559,7 @@ func (a *SuppressionsApiService) SuppressionsByEmailGetExecute(r ApiSuppressions
 		localVarReturnValue  *Suppression
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsApiService.SuppressionsByEmailGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsAPIService.SuppressionsByEmailGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -614,9 +612,9 @@ func (a *SuppressionsApiService) SuppressionsByEmailGetExecute(r ApiSuppressions
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -643,7 +641,7 @@ func (a *SuppressionsApiService) SuppressionsByEmailGetExecute(r ApiSuppressions
 
 type ApiSuppressionsComplaintsGetRequest struct {
 	ctx context.Context
-	ApiService *SuppressionsApiService
+	ApiService *SuppressionsAPIService
 	search *string
 	limit *int32
 	offset *int32
@@ -679,7 +677,7 @@ Retrieve your list of complaints. Required Access Level: ViewContacts, ViewSuppr
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSuppressionsComplaintsGetRequest
 */
-func (a *SuppressionsApiService) SuppressionsComplaintsGet(ctx context.Context) ApiSuppressionsComplaintsGetRequest {
+func (a *SuppressionsAPIService) SuppressionsComplaintsGet(ctx context.Context) ApiSuppressionsComplaintsGetRequest {
 	return ApiSuppressionsComplaintsGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -688,7 +686,7 @@ func (a *SuppressionsApiService) SuppressionsComplaintsGet(ctx context.Context) 
 
 // Execute executes the request
 //  @return []Suppression
-func (a *SuppressionsApiService) SuppressionsComplaintsGetExecute(r ApiSuppressionsComplaintsGetRequest) ([]Suppression, *http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsComplaintsGetExecute(r ApiSuppressionsComplaintsGetRequest) ([]Suppression, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -696,7 +694,7 @@ func (a *SuppressionsApiService) SuppressionsComplaintsGetExecute(r ApiSuppressi
 		localVarReturnValue  []Suppression
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsApiService.SuppressionsComplaintsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsAPIService.SuppressionsComplaintsGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -708,13 +706,13 @@ func (a *SuppressionsApiService) SuppressionsComplaintsGetExecute(r ApiSuppressi
 	localVarFormParams := url.Values{}
 
 	if r.search != nil {
-		parameterAddToQuery(localVarQueryParams, "search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	if r.limit != nil {
-		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -757,9 +755,9 @@ func (a *SuppressionsApiService) SuppressionsComplaintsGetExecute(r ApiSuppressi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -786,7 +784,7 @@ func (a *SuppressionsApiService) SuppressionsComplaintsGetExecute(r ApiSuppressi
 
 type ApiSuppressionsComplaintsImportPostRequest struct {
 	ctx context.Context
-	ApiService *SuppressionsApiService
+	ApiService *SuppressionsAPIService
 	file *os.File
 }
 
@@ -807,7 +805,7 @@ Add Complaints. Required Access Level: ModifyContacts, ModifySuppressions
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSuppressionsComplaintsImportPostRequest
 */
-func (a *SuppressionsApiService) SuppressionsComplaintsImportPost(ctx context.Context) ApiSuppressionsComplaintsImportPostRequest {
+func (a *SuppressionsAPIService) SuppressionsComplaintsImportPost(ctx context.Context) ApiSuppressionsComplaintsImportPostRequest {
 	return ApiSuppressionsComplaintsImportPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -815,14 +813,14 @@ func (a *SuppressionsApiService) SuppressionsComplaintsImportPost(ctx context.Co
 }
 
 // Execute executes the request
-func (a *SuppressionsApiService) SuppressionsComplaintsImportPostExecute(r ApiSuppressionsComplaintsImportPostRequest) (*http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsComplaintsImportPostExecute(r ApiSuppressionsComplaintsImportPostRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsApiService.SuppressionsComplaintsImportPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsAPIService.SuppressionsComplaintsImportPost")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -855,12 +853,10 @@ func (a *SuppressionsApiService) SuppressionsComplaintsImportPostExecute(r ApiSu
 	var fileLocalVarFileBytes    []byte
 
 	fileLocalVarFormFileName = "file"
-
-
 	fileLocalVarFile := r.file
 
 	if fileLocalVarFile != nil {
-		fbs, _ := ioutil.ReadAll(fileLocalVarFile)
+		fbs, _ := io.ReadAll(fileLocalVarFile)
 
 		fileLocalVarFileBytes = fbs
 		fileLocalVarFileName = fileLocalVarFile.Name()
@@ -891,9 +887,9 @@ func (a *SuppressionsApiService) SuppressionsComplaintsImportPostExecute(r ApiSu
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -911,7 +907,7 @@ func (a *SuppressionsApiService) SuppressionsComplaintsImportPostExecute(r ApiSu
 
 type ApiSuppressionsComplaintsPostRequest struct {
 	ctx context.Context
-	ApiService *SuppressionsApiService
+	ApiService *SuppressionsAPIService
 	requestBody *[]string
 }
 
@@ -933,7 +929,7 @@ Add Complaints. Required Access Level: ModifyContacts, ModifySuppressions
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSuppressionsComplaintsPostRequest
 */
-func (a *SuppressionsApiService) SuppressionsComplaintsPost(ctx context.Context) ApiSuppressionsComplaintsPostRequest {
+func (a *SuppressionsAPIService) SuppressionsComplaintsPost(ctx context.Context) ApiSuppressionsComplaintsPostRequest {
 	return ApiSuppressionsComplaintsPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -942,7 +938,7 @@ func (a *SuppressionsApiService) SuppressionsComplaintsPost(ctx context.Context)
 
 // Execute executes the request
 //  @return []Suppression
-func (a *SuppressionsApiService) SuppressionsComplaintsPostExecute(r ApiSuppressionsComplaintsPostRequest) ([]Suppression, *http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsComplaintsPostExecute(r ApiSuppressionsComplaintsPostRequest) ([]Suppression, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -950,7 +946,7 @@ func (a *SuppressionsApiService) SuppressionsComplaintsPostExecute(r ApiSuppress
 		localVarReturnValue  []Suppression
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsApiService.SuppressionsComplaintsPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsAPIService.SuppressionsComplaintsPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1007,9 +1003,9 @@ func (a *SuppressionsApiService) SuppressionsComplaintsPostExecute(r ApiSuppress
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1036,7 +1032,7 @@ func (a *SuppressionsApiService) SuppressionsComplaintsPostExecute(r ApiSuppress
 
 type ApiSuppressionsGetRequest struct {
 	ctx context.Context
-	ApiService *SuppressionsApiService
+	ApiService *SuppressionsAPIService
 	limit *int32
 	offset *int32
 }
@@ -1065,7 +1061,7 @@ Retrieve your suppressions. Required Access Level: ViewContacts, ViewSuppression
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSuppressionsGetRequest
 */
-func (a *SuppressionsApiService) SuppressionsGet(ctx context.Context) ApiSuppressionsGetRequest {
+func (a *SuppressionsAPIService) SuppressionsGet(ctx context.Context) ApiSuppressionsGetRequest {
 	return ApiSuppressionsGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1074,7 +1070,7 @@ func (a *SuppressionsApiService) SuppressionsGet(ctx context.Context) ApiSuppres
 
 // Execute executes the request
 //  @return []Suppression
-func (a *SuppressionsApiService) SuppressionsGetExecute(r ApiSuppressionsGetRequest) ([]Suppression, *http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsGetExecute(r ApiSuppressionsGetRequest) ([]Suppression, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1082,7 +1078,7 @@ func (a *SuppressionsApiService) SuppressionsGetExecute(r ApiSuppressionsGetRequ
 		localVarReturnValue  []Suppression
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsApiService.SuppressionsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsAPIService.SuppressionsGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1094,10 +1090,10 @@ func (a *SuppressionsApiService) SuppressionsGetExecute(r ApiSuppressionsGetRequ
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1140,9 +1136,9 @@ func (a *SuppressionsApiService) SuppressionsGetExecute(r ApiSuppressionsGetRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1169,7 +1165,7 @@ func (a *SuppressionsApiService) SuppressionsGetExecute(r ApiSuppressionsGetRequ
 
 type ApiSuppressionsUnsubscribesGetRequest struct {
 	ctx context.Context
-	ApiService *SuppressionsApiService
+	ApiService *SuppressionsAPIService
 	search *string
 	limit *int32
 	offset *int32
@@ -1205,7 +1201,7 @@ Retrieve your list of unsubscribes. Required Access Level: ViewContacts, ViewSup
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSuppressionsUnsubscribesGetRequest
 */
-func (a *SuppressionsApiService) SuppressionsUnsubscribesGet(ctx context.Context) ApiSuppressionsUnsubscribesGetRequest {
+func (a *SuppressionsAPIService) SuppressionsUnsubscribesGet(ctx context.Context) ApiSuppressionsUnsubscribesGetRequest {
 	return ApiSuppressionsUnsubscribesGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1214,7 +1210,7 @@ func (a *SuppressionsApiService) SuppressionsUnsubscribesGet(ctx context.Context
 
 // Execute executes the request
 //  @return []Suppression
-func (a *SuppressionsApiService) SuppressionsUnsubscribesGetExecute(r ApiSuppressionsUnsubscribesGetRequest) ([]Suppression, *http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsUnsubscribesGetExecute(r ApiSuppressionsUnsubscribesGetRequest) ([]Suppression, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1222,7 +1218,7 @@ func (a *SuppressionsApiService) SuppressionsUnsubscribesGetExecute(r ApiSuppres
 		localVarReturnValue  []Suppression
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsApiService.SuppressionsUnsubscribesGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsAPIService.SuppressionsUnsubscribesGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1234,13 +1230,13 @@ func (a *SuppressionsApiService) SuppressionsUnsubscribesGetExecute(r ApiSuppres
 	localVarFormParams := url.Values{}
 
 	if r.search != nil {
-		parameterAddToQuery(localVarQueryParams, "search", r.search, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	if r.limit != nil {
-		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1283,9 +1279,9 @@ func (a *SuppressionsApiService) SuppressionsUnsubscribesGetExecute(r ApiSuppres
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1312,7 +1308,7 @@ func (a *SuppressionsApiService) SuppressionsUnsubscribesGetExecute(r ApiSuppres
 
 type ApiSuppressionsUnsubscribesImportPostRequest struct {
 	ctx context.Context
-	ApiService *SuppressionsApiService
+	ApiService *SuppressionsAPIService
 	file *os.File
 }
 
@@ -1333,7 +1329,7 @@ Add Unsubscribes. Required Access Level: ModifyContacts, ModifySuppressions
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSuppressionsUnsubscribesImportPostRequest
 */
-func (a *SuppressionsApiService) SuppressionsUnsubscribesImportPost(ctx context.Context) ApiSuppressionsUnsubscribesImportPostRequest {
+func (a *SuppressionsAPIService) SuppressionsUnsubscribesImportPost(ctx context.Context) ApiSuppressionsUnsubscribesImportPostRequest {
 	return ApiSuppressionsUnsubscribesImportPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1341,14 +1337,14 @@ func (a *SuppressionsApiService) SuppressionsUnsubscribesImportPost(ctx context.
 }
 
 // Execute executes the request
-func (a *SuppressionsApiService) SuppressionsUnsubscribesImportPostExecute(r ApiSuppressionsUnsubscribesImportPostRequest) (*http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsUnsubscribesImportPostExecute(r ApiSuppressionsUnsubscribesImportPostRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsApiService.SuppressionsUnsubscribesImportPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsAPIService.SuppressionsUnsubscribesImportPost")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1381,12 +1377,10 @@ func (a *SuppressionsApiService) SuppressionsUnsubscribesImportPostExecute(r Api
 	var fileLocalVarFileBytes    []byte
 
 	fileLocalVarFormFileName = "file"
-
-
 	fileLocalVarFile := r.file
 
 	if fileLocalVarFile != nil {
-		fbs, _ := ioutil.ReadAll(fileLocalVarFile)
+		fbs, _ := io.ReadAll(fileLocalVarFile)
 
 		fileLocalVarFileBytes = fbs
 		fileLocalVarFileName = fileLocalVarFile.Name()
@@ -1417,9 +1411,9 @@ func (a *SuppressionsApiService) SuppressionsUnsubscribesImportPostExecute(r Api
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -1437,7 +1431,7 @@ func (a *SuppressionsApiService) SuppressionsUnsubscribesImportPostExecute(r Api
 
 type ApiSuppressionsUnsubscribesPostRequest struct {
 	ctx context.Context
-	ApiService *SuppressionsApiService
+	ApiService *SuppressionsAPIService
 	requestBody *[]string
 }
 
@@ -1459,7 +1453,7 @@ Add Unsubscribes. Required Access Level: ModifyContacts, ModifySuppressions
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSuppressionsUnsubscribesPostRequest
 */
-func (a *SuppressionsApiService) SuppressionsUnsubscribesPost(ctx context.Context) ApiSuppressionsUnsubscribesPostRequest {
+func (a *SuppressionsAPIService) SuppressionsUnsubscribesPost(ctx context.Context) ApiSuppressionsUnsubscribesPostRequest {
 	return ApiSuppressionsUnsubscribesPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1468,7 +1462,7 @@ func (a *SuppressionsApiService) SuppressionsUnsubscribesPost(ctx context.Contex
 
 // Execute executes the request
 //  @return []Suppression
-func (a *SuppressionsApiService) SuppressionsUnsubscribesPostExecute(r ApiSuppressionsUnsubscribesPostRequest) ([]Suppression, *http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsUnsubscribesPostExecute(r ApiSuppressionsUnsubscribesPostRequest) ([]Suppression, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1476,7 +1470,7 @@ func (a *SuppressionsApiService) SuppressionsUnsubscribesPostExecute(r ApiSuppre
 		localVarReturnValue  []Suppression
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsApiService.SuppressionsUnsubscribesPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SuppressionsAPIService.SuppressionsUnsubscribesPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1533,9 +1527,9 @@ func (a *SuppressionsApiService) SuppressionsUnsubscribesPostExecute(r ApiSuppre
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

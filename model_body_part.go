@@ -13,6 +13,8 @@ package ElasticEmail
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the BodyPart type satisfies the MappedNullable interface at compile time
@@ -26,6 +28,8 @@ type BodyPart struct {
 	// Text value of charset encoding for example: iso-8859-1, windows-1251, utf-8, us-ascii, windows-1250 and more...
 	Charset *string `json:"Charset,omitempty"`
 }
+
+type _BodyPart BodyPart
 
 // NewBodyPart instantiates a new BodyPart object
 // This constructor will assign default values to properties that have it defined,
@@ -73,7 +77,7 @@ func (o *BodyPart) SetContentType(v BodyContentType) {
 
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *BodyPart) GetContent() string {
-	if o == nil || isNil(o.Content) {
+	if o == nil || IsNil(o.Content) {
 		var ret string
 		return ret
 	}
@@ -83,7 +87,7 @@ func (o *BodyPart) GetContent() string {
 // GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BodyPart) GetContentOk() (*string, bool) {
-	if o == nil || isNil(o.Content) {
+	if o == nil || IsNil(o.Content) {
 		return nil, false
 	}
 	return o.Content, true
@@ -91,7 +95,7 @@ func (o *BodyPart) GetContentOk() (*string, bool) {
 
 // HasContent returns a boolean if a field has been set.
 func (o *BodyPart) HasContent() bool {
-	if o != nil && !isNil(o.Content) {
+	if o != nil && !IsNil(o.Content) {
 		return true
 	}
 
@@ -105,7 +109,7 @@ func (o *BodyPart) SetContent(v string) {
 
 // GetCharset returns the Charset field value if set, zero value otherwise.
 func (o *BodyPart) GetCharset() string {
-	if o == nil || isNil(o.Charset) {
+	if o == nil || IsNil(o.Charset) {
 		var ret string
 		return ret
 	}
@@ -115,7 +119,7 @@ func (o *BodyPart) GetCharset() string {
 // GetCharsetOk returns a tuple with the Charset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BodyPart) GetCharsetOk() (*string, bool) {
-	if o == nil || isNil(o.Charset) {
+	if o == nil || IsNil(o.Charset) {
 		return nil, false
 	}
 	return o.Charset, true
@@ -123,7 +127,7 @@ func (o *BodyPart) GetCharsetOk() (*string, bool) {
 
 // HasCharset returns a boolean if a field has been set.
 func (o *BodyPart) HasCharset() bool {
-	if o != nil && !isNil(o.Charset) {
+	if o != nil && !IsNil(o.Charset) {
 		return true
 	}
 
@@ -146,13 +150,50 @@ func (o BodyPart) MarshalJSON() ([]byte, error) {
 func (o BodyPart) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["ContentType"] = o.ContentType
-	if !isNil(o.Content) {
+	if !IsNil(o.Content) {
 		toSerialize["Content"] = o.Content
 	}
-	if !isNil(o.Charset) {
+	if !IsNil(o.Charset) {
 		toSerialize["Charset"] = o.Charset
 	}
 	return toSerialize, nil
+}
+
+func (o *BodyPart) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"ContentType",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varBodyPart := _BodyPart{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varBodyPart)
+
+	if err != nil {
+		return err
+	}
+
+	*o = BodyPart(varBodyPart)
+
+	return err
 }
 
 type NullableBodyPart struct {

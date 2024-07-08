@@ -14,19 +14,19 @@ package ElasticEmail
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
 
-// SubAccountsApiService SubAccountsApi service
-type SubAccountsApiService service
+// SubAccountsAPIService SubAccountsAPI service
+type SubAccountsAPIService service
 
 type ApiSubaccountsByEmailCreditsPatchRequest struct {
 	ctx context.Context
-	ApiService *SubAccountsApiService
+	ApiService *SubAccountsAPIService
 	email string
 	subaccountEmailCreditsPayload *SubaccountEmailCreditsPayload
 }
@@ -50,7 +50,7 @@ Update email credits of a subaccount by the given amount. Required Access Level:
  @param email Email address of Sub-Account
  @return ApiSubaccountsByEmailCreditsPatchRequest
 */
-func (a *SubAccountsApiService) SubaccountsByEmailCreditsPatch(ctx context.Context, email string) ApiSubaccountsByEmailCreditsPatchRequest {
+func (a *SubAccountsAPIService) SubaccountsByEmailCreditsPatch(ctx context.Context, email string) ApiSubaccountsByEmailCreditsPatchRequest {
 	return ApiSubaccountsByEmailCreditsPatchRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -59,14 +59,14 @@ func (a *SubAccountsApiService) SubaccountsByEmailCreditsPatch(ctx context.Conte
 }
 
 // Execute executes the request
-func (a *SubAccountsApiService) SubaccountsByEmailCreditsPatchExecute(r ApiSubaccountsByEmailCreditsPatchRequest) (*http.Response, error) {
+func (a *SubAccountsAPIService) SubaccountsByEmailCreditsPatchExecute(r ApiSubaccountsByEmailCreditsPatchRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubAccountsApiService.SubaccountsByEmailCreditsPatch")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubAccountsAPIService.SubaccountsByEmailCreditsPatch")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -124,9 +124,9 @@ func (a *SubAccountsApiService) SubaccountsByEmailCreditsPatchExecute(r ApiSubac
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -144,7 +144,7 @@ func (a *SubAccountsApiService) SubaccountsByEmailCreditsPatchExecute(r ApiSubac
 
 type ApiSubaccountsByEmailDeleteRequest struct {
 	ctx context.Context
-	ApiService *SubAccountsApiService
+	ApiService *SubAccountsAPIService
 	email string
 }
 
@@ -161,7 +161,7 @@ Deletes specified SubAccount. An email will be sent to confirm this change. Requ
  @param email Email address of Sub-Account
  @return ApiSubaccountsByEmailDeleteRequest
 */
-func (a *SubAccountsApiService) SubaccountsByEmailDelete(ctx context.Context, email string) ApiSubaccountsByEmailDeleteRequest {
+func (a *SubAccountsAPIService) SubaccountsByEmailDelete(ctx context.Context, email string) ApiSubaccountsByEmailDeleteRequest {
 	return ApiSubaccountsByEmailDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -170,14 +170,14 @@ func (a *SubAccountsApiService) SubaccountsByEmailDelete(ctx context.Context, em
 }
 
 // Execute executes the request
-func (a *SubAccountsApiService) SubaccountsByEmailDeleteExecute(r ApiSubaccountsByEmailDeleteRequest) (*http.Response, error) {
+func (a *SubAccountsAPIService) SubaccountsByEmailDeleteExecute(r ApiSubaccountsByEmailDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubAccountsApiService.SubaccountsByEmailDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubAccountsAPIService.SubaccountsByEmailDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -230,9 +230,9 @@ func (a *SubAccountsApiService) SubaccountsByEmailDeleteExecute(r ApiSubaccounts
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -250,7 +250,7 @@ func (a *SubAccountsApiService) SubaccountsByEmailDeleteExecute(r ApiSubaccounts
 
 type ApiSubaccountsByEmailGetRequest struct {
 	ctx context.Context
-	ApiService *SubAccountsApiService
+	ApiService *SubAccountsAPIService
 	email string
 }
 
@@ -267,7 +267,7 @@ Returns details for the specified SubAccount. Required Access Level: ViewSubAcco
  @param email Email address of Sub-Account
  @return ApiSubaccountsByEmailGetRequest
 */
-func (a *SubAccountsApiService) SubaccountsByEmailGet(ctx context.Context, email string) ApiSubaccountsByEmailGetRequest {
+func (a *SubAccountsAPIService) SubaccountsByEmailGet(ctx context.Context, email string) ApiSubaccountsByEmailGetRequest {
 	return ApiSubaccountsByEmailGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -277,7 +277,7 @@ func (a *SubAccountsApiService) SubaccountsByEmailGet(ctx context.Context, email
 
 // Execute executes the request
 //  @return SubAccountInfo
-func (a *SubAccountsApiService) SubaccountsByEmailGetExecute(r ApiSubaccountsByEmailGetRequest) (*SubAccountInfo, *http.Response, error) {
+func (a *SubAccountsAPIService) SubaccountsByEmailGetExecute(r ApiSubaccountsByEmailGetRequest) (*SubAccountInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -285,7 +285,7 @@ func (a *SubAccountsApiService) SubaccountsByEmailGetExecute(r ApiSubaccountsByE
 		localVarReturnValue  *SubAccountInfo
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubAccountsApiService.SubaccountsByEmailGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubAccountsAPIService.SubaccountsByEmailGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -338,9 +338,9 @@ func (a *SubAccountsApiService) SubaccountsByEmailGetExecute(r ApiSubaccountsByE
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -367,7 +367,7 @@ func (a *SubAccountsApiService) SubaccountsByEmailGetExecute(r ApiSubaccountsByE
 
 type ApiSubaccountsByEmailSettingsEmailPutRequest struct {
 	ctx context.Context
-	ApiService *SubAccountsApiService
+	ApiService *SubAccountsAPIService
 	email string
 	subaccountEmailSettings *SubaccountEmailSettings
 }
@@ -391,7 +391,7 @@ Update SubAccount email settings. Required Access Level: ModifySubAccounts
  @param email
  @return ApiSubaccountsByEmailSettingsEmailPutRequest
 */
-func (a *SubAccountsApiService) SubaccountsByEmailSettingsEmailPut(ctx context.Context, email string) ApiSubaccountsByEmailSettingsEmailPutRequest {
+func (a *SubAccountsAPIService) SubaccountsByEmailSettingsEmailPut(ctx context.Context, email string) ApiSubaccountsByEmailSettingsEmailPutRequest {
 	return ApiSubaccountsByEmailSettingsEmailPutRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -401,7 +401,7 @@ func (a *SubAccountsApiService) SubaccountsByEmailSettingsEmailPut(ctx context.C
 
 // Execute executes the request
 //  @return SubaccountEmailSettings
-func (a *SubAccountsApiService) SubaccountsByEmailSettingsEmailPutExecute(r ApiSubaccountsByEmailSettingsEmailPutRequest) (*SubaccountEmailSettings, *http.Response, error) {
+func (a *SubAccountsAPIService) SubaccountsByEmailSettingsEmailPutExecute(r ApiSubaccountsByEmailSettingsEmailPutRequest) (*SubaccountEmailSettings, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -409,7 +409,7 @@ func (a *SubAccountsApiService) SubaccountsByEmailSettingsEmailPutExecute(r ApiS
 		localVarReturnValue  *SubaccountEmailSettings
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubAccountsApiService.SubaccountsByEmailSettingsEmailPut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubAccountsAPIService.SubaccountsByEmailSettingsEmailPut")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -467,9 +467,9 @@ func (a *SubAccountsApiService) SubaccountsByEmailSettingsEmailPutExecute(r ApiS
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -496,7 +496,7 @@ func (a *SubAccountsApiService) SubaccountsByEmailSettingsEmailPutExecute(r ApiS
 
 type ApiSubaccountsGetRequest struct {
 	ctx context.Context
-	ApiService *SubAccountsApiService
+	ApiService *SubAccountsAPIService
 	limit *int32
 	offset *int32
 }
@@ -525,7 +525,7 @@ Returns a list of all your SubAccounts. Required Access Level: ViewSubAccounts
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSubaccountsGetRequest
 */
-func (a *SubAccountsApiService) SubaccountsGet(ctx context.Context) ApiSubaccountsGetRequest {
+func (a *SubAccountsAPIService) SubaccountsGet(ctx context.Context) ApiSubaccountsGetRequest {
 	return ApiSubaccountsGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -534,7 +534,7 @@ func (a *SubAccountsApiService) SubaccountsGet(ctx context.Context) ApiSubaccoun
 
 // Execute executes the request
 //  @return []SubAccountInfo
-func (a *SubAccountsApiService) SubaccountsGetExecute(r ApiSubaccountsGetRequest) ([]SubAccountInfo, *http.Response, error) {
+func (a *SubAccountsAPIService) SubaccountsGetExecute(r ApiSubaccountsGetRequest) ([]SubAccountInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -542,7 +542,7 @@ func (a *SubAccountsApiService) SubaccountsGetExecute(r ApiSubaccountsGetRequest
 		localVarReturnValue  []SubAccountInfo
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubAccountsApiService.SubaccountsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubAccountsAPIService.SubaccountsGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -554,10 +554,10 @@ func (a *SubAccountsApiService) SubaccountsGetExecute(r ApiSubaccountsGetRequest
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -600,9 +600,9 @@ func (a *SubAccountsApiService) SubaccountsGetExecute(r ApiSubaccountsGetRequest
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -629,7 +629,7 @@ func (a *SubAccountsApiService) SubaccountsGetExecute(r ApiSubaccountsGetRequest
 
 type ApiSubaccountsPostRequest struct {
 	ctx context.Context
-	ApiService *SubAccountsApiService
+	ApiService *SubAccountsAPIService
 	subaccountPayload *SubaccountPayload
 }
 
@@ -650,7 +650,7 @@ Add a new SubAccount to your Account. To receive an access token for this SubAcc
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSubaccountsPostRequest
 */
-func (a *SubAccountsApiService) SubaccountsPost(ctx context.Context) ApiSubaccountsPostRequest {
+func (a *SubAccountsAPIService) SubaccountsPost(ctx context.Context) ApiSubaccountsPostRequest {
 	return ApiSubaccountsPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -659,7 +659,7 @@ func (a *SubAccountsApiService) SubaccountsPost(ctx context.Context) ApiSubaccou
 
 // Execute executes the request
 //  @return SubAccountInfo
-func (a *SubAccountsApiService) SubaccountsPostExecute(r ApiSubaccountsPostRequest) (*SubAccountInfo, *http.Response, error) {
+func (a *SubAccountsAPIService) SubaccountsPostExecute(r ApiSubaccountsPostRequest) (*SubAccountInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -667,7 +667,7 @@ func (a *SubAccountsApiService) SubaccountsPostExecute(r ApiSubaccountsPostReque
 		localVarReturnValue  *SubAccountInfo
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubAccountsApiService.SubaccountsPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubAccountsAPIService.SubaccountsPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -724,9 +724,9 @@ func (a *SubAccountsApiService) SubaccountsPostExecute(r ApiSubaccountsPostReque
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

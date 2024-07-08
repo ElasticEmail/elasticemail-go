@@ -65,13 +65,13 @@ const (
 	EXTENDED_LOGS AccessLevel = "ExtendedLogs"
 	VERIFY_EMAILS AccessLevel = "VerifyEmails"
 	MODIFY2_FA_SMS AccessLevel = "Modify2FASms"
-	DISABLE_CONTACTS_STORE AccessLevel = "DisableContactsStore"
 	MODIFY_LANDING_PAGES AccessLevel = "ModifyLandingPages"
 	VIEW_LANDING_PAGES AccessLevel = "ViewLandingPages"
 	MODIFY_SUPPRESSIONS AccessLevel = "ModifySuppressions"
 	VIEW_SUPPRESSIONS AccessLevel = "ViewSuppressions"
 	VIEW_DRAG_DROP_EDITOR AccessLevel = "ViewDragDropEditor"
 	VIEW_TEMPLATE_EDITOR AccessLevel = "ViewTemplateEditor"
+	VIEW_AI_TOOLS AccessLevel = "ViewAITools"
 )
 
 // All allowed values of AccessLevel enum
@@ -120,13 +120,13 @@ var AllowedAccessLevelEnumValues = []AccessLevel{
 	"ExtendedLogs",
 	"VerifyEmails",
 	"Modify2FASms",
-	"DisableContactsStore",
 	"ModifyLandingPages",
 	"ViewLandingPages",
 	"ModifySuppressions",
 	"ViewSuppressions",
 	"ViewDragDropEditor",
 	"ViewTemplateEditor",
+	"ViewAITools",
 }
 
 func (v *AccessLevel) UnmarshalJSON(src []byte) error {

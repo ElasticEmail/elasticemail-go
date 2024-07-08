@@ -13,6 +13,8 @@ package ElasticEmail
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the SubaccountPayload type satisfies the MappedNullable interface at compile time
@@ -28,6 +30,8 @@ type SubaccountPayload struct {
 	SendActivation *bool `json:"SendActivation,omitempty"`
 	Settings *SubaccountSettingsInfoPayload `json:"Settings,omitempty"`
 }
+
+type _SubaccountPayload SubaccountPayload
 
 // NewSubaccountPayload instantiates a new SubaccountPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -98,7 +102,7 @@ func (o *SubaccountPayload) SetPassword(v string) {
 
 // GetSendActivation returns the SendActivation field value if set, zero value otherwise.
 func (o *SubaccountPayload) GetSendActivation() bool {
-	if o == nil || isNil(o.SendActivation) {
+	if o == nil || IsNil(o.SendActivation) {
 		var ret bool
 		return ret
 	}
@@ -108,7 +112,7 @@ func (o *SubaccountPayload) GetSendActivation() bool {
 // GetSendActivationOk returns a tuple with the SendActivation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubaccountPayload) GetSendActivationOk() (*bool, bool) {
-	if o == nil || isNil(o.SendActivation) {
+	if o == nil || IsNil(o.SendActivation) {
 		return nil, false
 	}
 	return o.SendActivation, true
@@ -116,7 +120,7 @@ func (o *SubaccountPayload) GetSendActivationOk() (*bool, bool) {
 
 // HasSendActivation returns a boolean if a field has been set.
 func (o *SubaccountPayload) HasSendActivation() bool {
-	if o != nil && !isNil(o.SendActivation) {
+	if o != nil && !IsNil(o.SendActivation) {
 		return true
 	}
 
@@ -130,7 +134,7 @@ func (o *SubaccountPayload) SetSendActivation(v bool) {
 
 // GetSettings returns the Settings field value if set, zero value otherwise.
 func (o *SubaccountPayload) GetSettings() SubaccountSettingsInfoPayload {
-	if o == nil || isNil(o.Settings) {
+	if o == nil || IsNil(o.Settings) {
 		var ret SubaccountSettingsInfoPayload
 		return ret
 	}
@@ -140,7 +144,7 @@ func (o *SubaccountPayload) GetSettings() SubaccountSettingsInfoPayload {
 // GetSettingsOk returns a tuple with the Settings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubaccountPayload) GetSettingsOk() (*SubaccountSettingsInfoPayload, bool) {
-	if o == nil || isNil(o.Settings) {
+	if o == nil || IsNil(o.Settings) {
 		return nil, false
 	}
 	return o.Settings, true
@@ -148,7 +152,7 @@ func (o *SubaccountPayload) GetSettingsOk() (*SubaccountSettingsInfoPayload, boo
 
 // HasSettings returns a boolean if a field has been set.
 func (o *SubaccountPayload) HasSettings() bool {
-	if o != nil && !isNil(o.Settings) {
+	if o != nil && !IsNil(o.Settings) {
 		return true
 	}
 
@@ -172,13 +176,51 @@ func (o SubaccountPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["Email"] = o.Email
 	toSerialize["Password"] = o.Password
-	if !isNil(o.SendActivation) {
+	if !IsNil(o.SendActivation) {
 		toSerialize["SendActivation"] = o.SendActivation
 	}
-	if !isNil(o.Settings) {
+	if !IsNil(o.Settings) {
 		toSerialize["Settings"] = o.Settings
 	}
 	return toSerialize, nil
+}
+
+func (o *SubaccountPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"Email",
+		"Password",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSubaccountPayload := _SubaccountPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varSubaccountPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SubaccountPayload(varSubaccountPayload)
+
+	return err
 }
 
 type NullableSubaccountPayload struct {

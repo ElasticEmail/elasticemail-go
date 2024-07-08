@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-Testing SubAccountsApiService
+Testing SubAccountsAPIService
 
 */
 
@@ -10,96 +10,94 @@ Testing SubAccountsApiService
 package ElasticEmail
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "./openapi"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
-func Test_ElasticEmail_SubAccountsApiService(t *testing.T) {
+func Test_ElasticEmail_SubAccountsAPIService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test SubAccountsApiService SubaccountsByEmailCreditsPatch", func(t *testing.T) {
+	t.Run("Test SubAccountsAPIService SubaccountsByEmailCreditsPatch", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var email string
+		var email string
 
-        resp, httpRes, err := apiClient.SubAccountsApi.SubaccountsByEmailCreditsPatch(context.Background(), email).Execute()
+		httpRes, err := apiClient.SubAccountsAPI.SubaccountsByEmailCreditsPatch(context.Background(), email).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test SubAccountsApiService SubaccountsByEmailDelete", func(t *testing.T) {
+	t.Run("Test SubAccountsAPIService SubaccountsByEmailDelete", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var email string
+		var email string
 
-        resp, httpRes, err := apiClient.SubAccountsApi.SubaccountsByEmailDelete(context.Background(), email).Execute()
+		httpRes, err := apiClient.SubAccountsAPI.SubaccountsByEmailDelete(context.Background(), email).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test SubAccountsApiService SubaccountsByEmailGet", func(t *testing.T) {
+	t.Run("Test SubAccountsAPIService SubaccountsByEmailGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var email string
+		var email string
 
-        resp, httpRes, err := apiClient.SubAccountsApi.SubaccountsByEmailGet(context.Background(), email).Execute()
+		resp, httpRes, err := apiClient.SubAccountsAPI.SubaccountsByEmailGet(context.Background(), email).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test SubAccountsApiService SubaccountsByEmailSettingsEmailPut", func(t *testing.T) {
+	t.Run("Test SubAccountsAPIService SubaccountsByEmailSettingsEmailPut", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var email string
+		var email string
 
-        resp, httpRes, err := apiClient.SubAccountsApi.SubaccountsByEmailSettingsEmailPut(context.Background(), email).Execute()
+		resp, httpRes, err := apiClient.SubAccountsAPI.SubaccountsByEmailSettingsEmailPut(context.Background(), email).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test SubAccountsApiService SubaccountsGet", func(t *testing.T) {
+	t.Run("Test SubAccountsAPIService SubaccountsGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.SubAccountsApi.SubaccountsGet(context.Background()).Execute()
+		resp, httpRes, err := apiClient.SubAccountsAPI.SubaccountsGet(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test SubAccountsApiService SubaccountsPost", func(t *testing.T) {
+	t.Run("Test SubAccountsAPIService SubaccountsPost", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.SubAccountsApi.SubaccountsPost(context.Background()).Execute()
+		resp, httpRes, err := apiClient.SubAccountsAPI.SubaccountsPost(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

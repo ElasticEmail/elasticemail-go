@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-Testing SecurityApiService
+Testing SecurityAPIService
 
 */
 
@@ -10,148 +10,146 @@ Testing SecurityApiService
 package ElasticEmail
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "./openapi"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
-func Test_ElasticEmail_SecurityApiService(t *testing.T) {
+func Test_ElasticEmail_SecurityAPIService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test SecurityApiService SecurityApikeysByNameDelete", func(t *testing.T) {
+	t.Run("Test SecurityAPIService SecurityApikeysByNameDelete", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var name string
 
-        resp, httpRes, err := apiClient.SecurityApi.SecurityApikeysByNameDelete(context.Background(), name).Execute()
+		httpRes, err := apiClient.SecurityAPI.SecurityApikeysByNameDelete(context.Background(), name).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test SecurityApiService SecurityApikeysByNameGet", func(t *testing.T) {
+	t.Run("Test SecurityAPIService SecurityApikeysByNameGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var name string
 
-        resp, httpRes, err := apiClient.SecurityApi.SecurityApikeysByNameGet(context.Background(), name).Execute()
+		resp, httpRes, err := apiClient.SecurityAPI.SecurityApikeysByNameGet(context.Background(), name).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test SecurityApiService SecurityApikeysByNamePut", func(t *testing.T) {
+	t.Run("Test SecurityAPIService SecurityApikeysByNamePut", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var name string
 
-        resp, httpRes, err := apiClient.SecurityApi.SecurityApikeysByNamePut(context.Background(), name).Execute()
+		resp, httpRes, err := apiClient.SecurityAPI.SecurityApikeysByNamePut(context.Background(), name).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test SecurityApiService SecurityApikeysGet", func(t *testing.T) {
+	t.Run("Test SecurityAPIService SecurityApikeysGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.SecurityApi.SecurityApikeysGet(context.Background()).Execute()
+		resp, httpRes, err := apiClient.SecurityAPI.SecurityApikeysGet(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test SecurityApiService SecurityApikeysPost", func(t *testing.T) {
+	t.Run("Test SecurityAPIService SecurityApikeysPost", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.SecurityApi.SecurityApikeysPost(context.Background()).Execute()
+		resp, httpRes, err := apiClient.SecurityAPI.SecurityApikeysPost(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test SecurityApiService SecuritySmtpByNameDelete", func(t *testing.T) {
+	t.Run("Test SecurityAPIService SecuritySmtpByNameDelete", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var name string
 
-        resp, httpRes, err := apiClient.SecurityApi.SecuritySmtpByNameDelete(context.Background(), name).Execute()
+		httpRes, err := apiClient.SecurityAPI.SecuritySmtpByNameDelete(context.Background(), name).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test SecurityApiService SecuritySmtpByNameGet", func(t *testing.T) {
+	t.Run("Test SecurityAPIService SecuritySmtpByNameGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var name string
 
-        resp, httpRes, err := apiClient.SecurityApi.SecuritySmtpByNameGet(context.Background(), name).Execute()
+		resp, httpRes, err := apiClient.SecurityAPI.SecuritySmtpByNameGet(context.Background(), name).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test SecurityApiService SecuritySmtpByNamePut", func(t *testing.T) {
+	t.Run("Test SecurityAPIService SecuritySmtpByNamePut", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var name string
 
-        resp, httpRes, err := apiClient.SecurityApi.SecuritySmtpByNamePut(context.Background(), name).Execute()
+		resp, httpRes, err := apiClient.SecurityAPI.SecuritySmtpByNamePut(context.Background(), name).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test SecurityApiService SecuritySmtpGet", func(t *testing.T) {
+	t.Run("Test SecurityAPIService SecuritySmtpGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.SecurityApi.SecuritySmtpGet(context.Background()).Execute()
+		resp, httpRes, err := apiClient.SecurityAPI.SecuritySmtpGet(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test SecurityApiService SecuritySmtpPost", func(t *testing.T) {
+	t.Run("Test SecurityAPIService SecuritySmtpPost", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.SecurityApi.SecuritySmtpPost(context.Background()).Execute()
+		resp, httpRes, err := apiClient.SecurityAPI.SecuritySmtpPost(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-Testing EventsApiService
+Testing EventsAPIService
 
 */
 
@@ -10,110 +10,110 @@ Testing EventsApiService
 package ElasticEmail
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "./openapi"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
-func Test_ElasticEmail_EventsApiService(t *testing.T) {
+func Test_ElasticEmail_EventsAPIService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test EventsApiService EventsByTransactionidGet", func(t *testing.T) {
+	t.Run("Test EventsAPIService EventsByTransactionidGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var transactionid string
+		var transactionid string
 
-        resp, httpRes, err := apiClient.EventsApi.EventsByTransactionidGet(context.Background(), transactionid).Execute()
+		resp, httpRes, err := apiClient.EventsAPI.EventsByTransactionidGet(context.Background(), transactionid).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test EventsApiService EventsChannelsByNameExportPost", func(t *testing.T) {
+	t.Run("Test EventsAPIService EventsChannelsByNameExportPost", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var name string
 
-        resp, httpRes, err := apiClient.EventsApi.EventsChannelsByNameExportPost(context.Background(), name).Execute()
+		resp, httpRes, err := apiClient.EventsAPI.EventsChannelsByNameExportPost(context.Background(), name).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test EventsApiService EventsChannelsByNameGet", func(t *testing.T) {
+	t.Run("Test EventsAPIService EventsChannelsByNameGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var name string
 
-        resp, httpRes, err := apiClient.EventsApi.EventsChannelsByNameGet(context.Background(), name).Execute()
+		resp, httpRes, err := apiClient.EventsAPI.EventsChannelsByNameGet(context.Background(), name).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test EventsApiService EventsChannelsExportByIdStatusGet", func(t *testing.T) {
+	t.Run("Test EventsAPIService EventsChannelsExportByIdStatusGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var id string
+		var id string
 
-        resp, httpRes, err := apiClient.EventsApi.EventsChannelsExportByIdStatusGet(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.EventsAPI.EventsChannelsExportByIdStatusGet(context.Background(), id).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test EventsApiService EventsExportByIdStatusGet", func(t *testing.T) {
+	t.Run("Test EventsAPIService EventsExportByIdStatusGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var id string
+		var id string
 
-        resp, httpRes, err := apiClient.EventsApi.EventsExportByIdStatusGet(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.EventsAPI.EventsExportByIdStatusGet(context.Background(), id).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test EventsApiService EventsExportPost", func(t *testing.T) {
+	t.Run("Test EventsAPIService EventsExportPost", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.EventsApi.EventsExportPost(context.Background()).Execute()
+		resp, httpRes, err := apiClient.EventsAPI.EventsExportPost(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test EventsApiService EventsGet", func(t *testing.T) {
+	t.Run("Test EventsAPIService EventsGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.EventsApi.EventsGet(context.Background()).Execute()
+		resp, httpRes, err := apiClient.EventsAPI.EventsGet(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

@@ -14,7 +14,7 @@ package ElasticEmail
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -23,12 +23,12 @@ import (
 )
 
 
-// EventsApiService EventsApi service
-type EventsApiService service
+// EventsAPIService EventsAPI service
+type EventsAPIService service
 
 type ApiEventsByTransactionidGetRequest struct {
 	ctx context.Context
-	ApiService *EventsApiService
+	ApiService *EventsAPIService
 	transactionid string
 	from *time.Time
 	to *time.Time
@@ -79,7 +79,7 @@ Returns a log of delivery events for the specific transaction ID. Required Acces
  @param transactionid ID number of transaction
  @return ApiEventsByTransactionidGetRequest
 */
-func (a *EventsApiService) EventsByTransactionidGet(ctx context.Context, transactionid string) ApiEventsByTransactionidGetRequest {
+func (a *EventsAPIService) EventsByTransactionidGet(ctx context.Context, transactionid string) ApiEventsByTransactionidGetRequest {
 	return ApiEventsByTransactionidGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -89,7 +89,7 @@ func (a *EventsApiService) EventsByTransactionidGet(ctx context.Context, transac
 
 // Execute executes the request
 //  @return []RecipientEvent
-func (a *EventsApiService) EventsByTransactionidGetExecute(r ApiEventsByTransactionidGetRequest) ([]RecipientEvent, *http.Response, error) {
+func (a *EventsAPIService) EventsByTransactionidGetExecute(r ApiEventsByTransactionidGetRequest) ([]RecipientEvent, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -97,7 +97,7 @@ func (a *EventsApiService) EventsByTransactionidGetExecute(r ApiEventsByTransact
 		localVarReturnValue  []RecipientEvent
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.EventsByTransactionidGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.EventsByTransactionidGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -110,19 +110,22 @@ func (a *EventsApiService) EventsByTransactionidGetExecute(r ApiEventsByTransact
 	localVarFormParams := url.Values{}
 
 	if r.from != nil {
-		parameterAddToQuery(localVarQueryParams, "from", r.from, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "")
 	}
 	if r.to != nil {
-		parameterAddToQuery(localVarQueryParams, "to", r.to, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "")
 	}
 	if r.orderBy != nil {
-		parameterAddToQuery(localVarQueryParams, "orderBy", r.orderBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "orderBy", r.orderBy, "")
+	} else {
+		var defaultValue EventsOrderBy = "DateDescending"
+		r.orderBy = &defaultValue
 	}
 	if r.limit != nil {
-		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -165,9 +168,9 @@ func (a *EventsApiService) EventsByTransactionidGetExecute(r ApiEventsByTransact
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -194,7 +197,7 @@ func (a *EventsApiService) EventsByTransactionidGetExecute(r ApiEventsByTransact
 
 type ApiEventsChannelsByNameExportPostRequest struct {
 	ctx context.Context
-	ApiService *EventsApiService
+	ApiService *EventsAPIService
 	name string
 	eventTypes *[]EventType
 	from *time.Time
@@ -253,7 +256,7 @@ Export delivery events log information to the specified file format. Required Ac
  @param name Name of selected channel.
  @return ApiEventsChannelsByNameExportPostRequest
 */
-func (a *EventsApiService) EventsChannelsByNameExportPost(ctx context.Context, name string) ApiEventsChannelsByNameExportPostRequest {
+func (a *EventsAPIService) EventsChannelsByNameExportPost(ctx context.Context, name string) ApiEventsChannelsByNameExportPostRequest {
 	return ApiEventsChannelsByNameExportPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -263,7 +266,7 @@ func (a *EventsApiService) EventsChannelsByNameExportPost(ctx context.Context, n
 
 // Execute executes the request
 //  @return ExportLink
-func (a *EventsApiService) EventsChannelsByNameExportPostExecute(r ApiEventsChannelsByNameExportPostRequest) (*ExportLink, *http.Response, error) {
+func (a *EventsAPIService) EventsChannelsByNameExportPostExecute(r ApiEventsChannelsByNameExportPostRequest) (*ExportLink, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -271,7 +274,7 @@ func (a *EventsApiService) EventsChannelsByNameExportPostExecute(r ApiEventsChan
 		localVarReturnValue  *ExportLink
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.EventsChannelsByNameExportPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.EventsChannelsByNameExportPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -288,26 +291,32 @@ func (a *EventsApiService) EventsChannelsByNameExportPostExecute(r ApiEventsChan
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToQuery(localVarQueryParams, "eventTypes", s.Index(i), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", s.Index(i).Interface(), "multi")
 			}
 		} else {
-			parameterAddToQuery(localVarQueryParams, "eventTypes", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", t, "multi")
 		}
 	}
 	if r.from != nil {
-		parameterAddToQuery(localVarQueryParams, "from", r.from, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "")
 	}
 	if r.to != nil {
-		parameterAddToQuery(localVarQueryParams, "to", r.to, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "")
 	}
 	if r.fileFormat != nil {
-		parameterAddToQuery(localVarQueryParams, "fileFormat", r.fileFormat, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fileFormat", r.fileFormat, "")
+	} else {
+		var defaultValue ExportFileFormats = "Csv"
+		r.fileFormat = &defaultValue
 	}
 	if r.compressionFormat != nil {
-		parameterAddToQuery(localVarQueryParams, "compressionFormat", r.compressionFormat, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "compressionFormat", r.compressionFormat, "")
+	} else {
+		var defaultValue CompressionFormat = "None"
+		r.compressionFormat = &defaultValue
 	}
 	if r.fileName != nil {
-		parameterAddToQuery(localVarQueryParams, "fileName", r.fileName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fileName", r.fileName, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -350,9 +359,9 @@ func (a *EventsApiService) EventsChannelsByNameExportPostExecute(r ApiEventsChan
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -379,7 +388,7 @@ func (a *EventsApiService) EventsChannelsByNameExportPostExecute(r ApiEventsChan
 
 type ApiEventsChannelsByNameGetRequest struct {
 	ctx context.Context
-	ApiService *EventsApiService
+	ApiService *EventsAPIService
 	name string
 	eventTypes *[]EventType
 	from *time.Time
@@ -437,7 +446,7 @@ Returns a log of delivery events filtered by specified parameters. Required Acce
  @param name Name of selected channel.
  @return ApiEventsChannelsByNameGetRequest
 */
-func (a *EventsApiService) EventsChannelsByNameGet(ctx context.Context, name string) ApiEventsChannelsByNameGetRequest {
+func (a *EventsAPIService) EventsChannelsByNameGet(ctx context.Context, name string) ApiEventsChannelsByNameGetRequest {
 	return ApiEventsChannelsByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -447,7 +456,7 @@ func (a *EventsApiService) EventsChannelsByNameGet(ctx context.Context, name str
 
 // Execute executes the request
 //  @return []RecipientEvent
-func (a *EventsApiService) EventsChannelsByNameGetExecute(r ApiEventsChannelsByNameGetRequest) ([]RecipientEvent, *http.Response, error) {
+func (a *EventsAPIService) EventsChannelsByNameGetExecute(r ApiEventsChannelsByNameGetRequest) ([]RecipientEvent, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -455,7 +464,7 @@ func (a *EventsApiService) EventsChannelsByNameGetExecute(r ApiEventsChannelsByN
 		localVarReturnValue  []RecipientEvent
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.EventsChannelsByNameGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.EventsChannelsByNameGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -472,26 +481,29 @@ func (a *EventsApiService) EventsChannelsByNameGetExecute(r ApiEventsChannelsByN
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToQuery(localVarQueryParams, "eventTypes", s.Index(i), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", s.Index(i).Interface(), "multi")
 			}
 		} else {
-			parameterAddToQuery(localVarQueryParams, "eventTypes", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", t, "multi")
 		}
 	}
 	if r.from != nil {
-		parameterAddToQuery(localVarQueryParams, "from", r.from, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "")
 	}
 	if r.to != nil {
-		parameterAddToQuery(localVarQueryParams, "to", r.to, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "")
 	}
 	if r.orderBy != nil {
-		parameterAddToQuery(localVarQueryParams, "orderBy", r.orderBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "orderBy", r.orderBy, "")
+	} else {
+		var defaultValue EventsOrderBy = "DateDescending"
+		r.orderBy = &defaultValue
 	}
 	if r.limit != nil {
-		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -534,9 +546,9 @@ func (a *EventsApiService) EventsChannelsByNameGetExecute(r ApiEventsChannelsByN
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -563,7 +575,7 @@ func (a *EventsApiService) EventsChannelsByNameGetExecute(r ApiEventsChannelsByN
 
 type ApiEventsChannelsExportByIdStatusGetRequest struct {
 	ctx context.Context
-	ApiService *EventsApiService
+	ApiService *EventsAPIService
 	id string
 }
 
@@ -580,7 +592,7 @@ Check the current status of the channel export. Required Access Level: Export
  @param id ID of the exported file
  @return ApiEventsChannelsExportByIdStatusGetRequest
 */
-func (a *EventsApiService) EventsChannelsExportByIdStatusGet(ctx context.Context, id string) ApiEventsChannelsExportByIdStatusGetRequest {
+func (a *EventsAPIService) EventsChannelsExportByIdStatusGet(ctx context.Context, id string) ApiEventsChannelsExportByIdStatusGetRequest {
 	return ApiEventsChannelsExportByIdStatusGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -590,7 +602,7 @@ func (a *EventsApiService) EventsChannelsExportByIdStatusGet(ctx context.Context
 
 // Execute executes the request
 //  @return ExportStatus
-func (a *EventsApiService) EventsChannelsExportByIdStatusGetExecute(r ApiEventsChannelsExportByIdStatusGetRequest) (*ExportStatus, *http.Response, error) {
+func (a *EventsAPIService) EventsChannelsExportByIdStatusGetExecute(r ApiEventsChannelsExportByIdStatusGetRequest) (*ExportStatus, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -598,7 +610,7 @@ func (a *EventsApiService) EventsChannelsExportByIdStatusGetExecute(r ApiEventsC
 		localVarReturnValue  *ExportStatus
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.EventsChannelsExportByIdStatusGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.EventsChannelsExportByIdStatusGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -651,9 +663,9 @@ func (a *EventsApiService) EventsChannelsExportByIdStatusGetExecute(r ApiEventsC
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -680,7 +692,7 @@ func (a *EventsApiService) EventsChannelsExportByIdStatusGetExecute(r ApiEventsC
 
 type ApiEventsExportByIdStatusGetRequest struct {
 	ctx context.Context
-	ApiService *EventsApiService
+	ApiService *EventsAPIService
 	id string
 }
 
@@ -697,7 +709,7 @@ Check the current status of the export. Required Access Level: Export
  @param id ID of the exported file
  @return ApiEventsExportByIdStatusGetRequest
 */
-func (a *EventsApiService) EventsExportByIdStatusGet(ctx context.Context, id string) ApiEventsExportByIdStatusGetRequest {
+func (a *EventsAPIService) EventsExportByIdStatusGet(ctx context.Context, id string) ApiEventsExportByIdStatusGetRequest {
 	return ApiEventsExportByIdStatusGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -707,7 +719,7 @@ func (a *EventsApiService) EventsExportByIdStatusGet(ctx context.Context, id str
 
 // Execute executes the request
 //  @return ExportStatus
-func (a *EventsApiService) EventsExportByIdStatusGetExecute(r ApiEventsExportByIdStatusGetRequest) (*ExportStatus, *http.Response, error) {
+func (a *EventsAPIService) EventsExportByIdStatusGetExecute(r ApiEventsExportByIdStatusGetRequest) (*ExportStatus, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -715,7 +727,7 @@ func (a *EventsApiService) EventsExportByIdStatusGetExecute(r ApiEventsExportByI
 		localVarReturnValue  *ExportStatus
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.EventsExportByIdStatusGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.EventsExportByIdStatusGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -768,9 +780,9 @@ func (a *EventsApiService) EventsExportByIdStatusGetExecute(r ApiEventsExportByI
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -797,7 +809,7 @@ func (a *EventsApiService) EventsExportByIdStatusGetExecute(r ApiEventsExportByI
 
 type ApiEventsExportPostRequest struct {
 	ctx context.Context
-	ApiService *EventsApiService
+	ApiService *EventsAPIService
 	eventTypes *[]EventType
 	from *time.Time
 	to *time.Time
@@ -854,7 +866,7 @@ Export delivery events log information to the specified file format. Required Ac
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiEventsExportPostRequest
 */
-func (a *EventsApiService) EventsExportPost(ctx context.Context) ApiEventsExportPostRequest {
+func (a *EventsAPIService) EventsExportPost(ctx context.Context) ApiEventsExportPostRequest {
 	return ApiEventsExportPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -863,7 +875,7 @@ func (a *EventsApiService) EventsExportPost(ctx context.Context) ApiEventsExport
 
 // Execute executes the request
 //  @return ExportLink
-func (a *EventsApiService) EventsExportPostExecute(r ApiEventsExportPostRequest) (*ExportLink, *http.Response, error) {
+func (a *EventsAPIService) EventsExportPostExecute(r ApiEventsExportPostRequest) (*ExportLink, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -871,7 +883,7 @@ func (a *EventsApiService) EventsExportPostExecute(r ApiEventsExportPostRequest)
 		localVarReturnValue  *ExportLink
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.EventsExportPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.EventsExportPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -887,26 +899,32 @@ func (a *EventsApiService) EventsExportPostExecute(r ApiEventsExportPostRequest)
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToQuery(localVarQueryParams, "eventTypes", s.Index(i), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", s.Index(i).Interface(), "multi")
 			}
 		} else {
-			parameterAddToQuery(localVarQueryParams, "eventTypes", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", t, "multi")
 		}
 	}
 	if r.from != nil {
-		parameterAddToQuery(localVarQueryParams, "from", r.from, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "")
 	}
 	if r.to != nil {
-		parameterAddToQuery(localVarQueryParams, "to", r.to, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "")
 	}
 	if r.fileFormat != nil {
-		parameterAddToQuery(localVarQueryParams, "fileFormat", r.fileFormat, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fileFormat", r.fileFormat, "")
+	} else {
+		var defaultValue ExportFileFormats = "Csv"
+		r.fileFormat = &defaultValue
 	}
 	if r.compressionFormat != nil {
-		parameterAddToQuery(localVarQueryParams, "compressionFormat", r.compressionFormat, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "compressionFormat", r.compressionFormat, "")
+	} else {
+		var defaultValue CompressionFormat = "None"
+		r.compressionFormat = &defaultValue
 	}
 	if r.fileName != nil {
-		parameterAddToQuery(localVarQueryParams, "fileName", r.fileName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fileName", r.fileName, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -949,9 +967,9 @@ func (a *EventsApiService) EventsExportPostExecute(r ApiEventsExportPostRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -978,7 +996,7 @@ func (a *EventsApiService) EventsExportPostExecute(r ApiEventsExportPostRequest)
 
 type ApiEventsGetRequest struct {
 	ctx context.Context
-	ApiService *EventsApiService
+	ApiService *EventsAPIService
 	eventTypes *[]EventType
 	from *time.Time
 	to *time.Time
@@ -1034,7 +1052,7 @@ Returns a log of delivery events filtered by specified parameters. Required Acce
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiEventsGetRequest
 */
-func (a *EventsApiService) EventsGet(ctx context.Context) ApiEventsGetRequest {
+func (a *EventsAPIService) EventsGet(ctx context.Context) ApiEventsGetRequest {
 	return ApiEventsGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1043,7 +1061,7 @@ func (a *EventsApiService) EventsGet(ctx context.Context) ApiEventsGetRequest {
 
 // Execute executes the request
 //  @return []RecipientEvent
-func (a *EventsApiService) EventsGetExecute(r ApiEventsGetRequest) ([]RecipientEvent, *http.Response, error) {
+func (a *EventsAPIService) EventsGetExecute(r ApiEventsGetRequest) ([]RecipientEvent, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1051,7 +1069,7 @@ func (a *EventsApiService) EventsGetExecute(r ApiEventsGetRequest) ([]RecipientE
 		localVarReturnValue  []RecipientEvent
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.EventsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.EventsGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1067,26 +1085,29 @@ func (a *EventsApiService) EventsGetExecute(r ApiEventsGetRequest) ([]RecipientE
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToQuery(localVarQueryParams, "eventTypes", s.Index(i), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", s.Index(i).Interface(), "multi")
 			}
 		} else {
-			parameterAddToQuery(localVarQueryParams, "eventTypes", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", t, "multi")
 		}
 	}
 	if r.from != nil {
-		parameterAddToQuery(localVarQueryParams, "from", r.from, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "")
 	}
 	if r.to != nil {
-		parameterAddToQuery(localVarQueryParams, "to", r.to, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "")
 	}
 	if r.orderBy != nil {
-		parameterAddToQuery(localVarQueryParams, "orderBy", r.orderBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "orderBy", r.orderBy, "")
+	} else {
+		var defaultValue EventsOrderBy = "DateDescending"
+		r.orderBy = &defaultValue
 	}
 	if r.limit != nil {
-		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1129,9 +1150,9 @@ func (a *EventsApiService) EventsGetExecute(r ApiEventsGetRequest) ([]RecipientE
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

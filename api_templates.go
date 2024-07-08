@@ -14,7 +14,7 @@ package ElasticEmail
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -22,12 +22,12 @@ import (
 )
 
 
-// TemplatesApiService TemplatesApi service
-type TemplatesApiService service
+// TemplatesAPIService TemplatesAPI service
+type TemplatesAPIService service
 
 type ApiTemplatesByNameDeleteRequest struct {
 	ctx context.Context
-	ApiService *TemplatesApiService
+	ApiService *TemplatesAPIService
 	name string
 }
 
@@ -44,7 +44,7 @@ Delete template with the specified name. Required Access Level: ModifyTemplates
  @param name Name of template.
  @return ApiTemplatesByNameDeleteRequest
 */
-func (a *TemplatesApiService) TemplatesByNameDelete(ctx context.Context, name string) ApiTemplatesByNameDeleteRequest {
+func (a *TemplatesAPIService) TemplatesByNameDelete(ctx context.Context, name string) ApiTemplatesByNameDeleteRequest {
 	return ApiTemplatesByNameDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -53,14 +53,14 @@ func (a *TemplatesApiService) TemplatesByNameDelete(ctx context.Context, name st
 }
 
 // Execute executes the request
-func (a *TemplatesApiService) TemplatesByNameDeleteExecute(r ApiTemplatesByNameDeleteRequest) (*http.Response, error) {
+func (a *TemplatesAPIService) TemplatesByNameDeleteExecute(r ApiTemplatesByNameDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TemplatesApiService.TemplatesByNameDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TemplatesAPIService.TemplatesByNameDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -113,9 +113,9 @@ func (a *TemplatesApiService) TemplatesByNameDeleteExecute(r ApiTemplatesByNameD
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -133,7 +133,7 @@ func (a *TemplatesApiService) TemplatesByNameDeleteExecute(r ApiTemplatesByNameD
 
 type ApiTemplatesByNameGetRequest struct {
 	ctx context.Context
-	ApiService *TemplatesApiService
+	ApiService *TemplatesAPIService
 	name string
 }
 
@@ -150,7 +150,7 @@ Load detailed information of the specified template. Required Access Level: View
  @param name Name of template.
  @return ApiTemplatesByNameGetRequest
 */
-func (a *TemplatesApiService) TemplatesByNameGet(ctx context.Context, name string) ApiTemplatesByNameGetRequest {
+func (a *TemplatesAPIService) TemplatesByNameGet(ctx context.Context, name string) ApiTemplatesByNameGetRequest {
 	return ApiTemplatesByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -160,7 +160,7 @@ func (a *TemplatesApiService) TemplatesByNameGet(ctx context.Context, name strin
 
 // Execute executes the request
 //  @return Template
-func (a *TemplatesApiService) TemplatesByNameGetExecute(r ApiTemplatesByNameGetRequest) (*Template, *http.Response, error) {
+func (a *TemplatesAPIService) TemplatesByNameGetExecute(r ApiTemplatesByNameGetRequest) (*Template, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -168,7 +168,7 @@ func (a *TemplatesApiService) TemplatesByNameGetExecute(r ApiTemplatesByNameGetR
 		localVarReturnValue  *Template
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TemplatesApiService.TemplatesByNameGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TemplatesAPIService.TemplatesByNameGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -221,9 +221,9 @@ func (a *TemplatesApiService) TemplatesByNameGetExecute(r ApiTemplatesByNameGetR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -250,7 +250,7 @@ func (a *TemplatesApiService) TemplatesByNameGetExecute(r ApiTemplatesByNameGetR
 
 type ApiTemplatesByNamePutRequest struct {
 	ctx context.Context
-	ApiService *TemplatesApiService
+	ApiService *TemplatesAPIService
 	name string
 	templatePayload *TemplatePayload
 }
@@ -273,7 +273,7 @@ Update existing template, overwriting existing data. Required Access Level: Modi
  @param name Name of template.
  @return ApiTemplatesByNamePutRequest
 */
-func (a *TemplatesApiService) TemplatesByNamePut(ctx context.Context, name string) ApiTemplatesByNamePutRequest {
+func (a *TemplatesAPIService) TemplatesByNamePut(ctx context.Context, name string) ApiTemplatesByNamePutRequest {
 	return ApiTemplatesByNamePutRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -283,7 +283,7 @@ func (a *TemplatesApiService) TemplatesByNamePut(ctx context.Context, name strin
 
 // Execute executes the request
 //  @return Template
-func (a *TemplatesApiService) TemplatesByNamePutExecute(r ApiTemplatesByNamePutRequest) (*Template, *http.Response, error) {
+func (a *TemplatesAPIService) TemplatesByNamePutExecute(r ApiTemplatesByNamePutRequest) (*Template, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -291,7 +291,7 @@ func (a *TemplatesApiService) TemplatesByNamePutExecute(r ApiTemplatesByNamePutR
 		localVarReturnValue  *Template
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TemplatesApiService.TemplatesByNamePut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TemplatesAPIService.TemplatesByNamePut")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -349,9 +349,9 @@ func (a *TemplatesApiService) TemplatesByNamePutExecute(r ApiTemplatesByNamePutR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -378,7 +378,7 @@ func (a *TemplatesApiService) TemplatesByNamePutExecute(r ApiTemplatesByNamePutR
 
 type ApiTemplatesGetRequest struct {
 	ctx context.Context
-	ApiService *TemplatesApiService
+	ApiService *TemplatesAPIService
 	scopeType *[]TemplateScope
 	templateTypes *[]TemplateType
 	limit *int32
@@ -421,7 +421,7 @@ Returns a list of templates for the specified type. Required Access Level: ViewT
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiTemplatesGetRequest
 */
-func (a *TemplatesApiService) TemplatesGet(ctx context.Context) ApiTemplatesGetRequest {
+func (a *TemplatesAPIService) TemplatesGet(ctx context.Context) ApiTemplatesGetRequest {
 	return ApiTemplatesGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -430,7 +430,7 @@ func (a *TemplatesApiService) TemplatesGet(ctx context.Context) ApiTemplatesGetR
 
 // Execute executes the request
 //  @return []Template
-func (a *TemplatesApiService) TemplatesGetExecute(r ApiTemplatesGetRequest) ([]Template, *http.Response, error) {
+func (a *TemplatesAPIService) TemplatesGetExecute(r ApiTemplatesGetRequest) ([]Template, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -438,7 +438,7 @@ func (a *TemplatesApiService) TemplatesGetExecute(r ApiTemplatesGetRequest) ([]T
 		localVarReturnValue  []Template
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TemplatesApiService.TemplatesGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TemplatesAPIService.TemplatesGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -457,10 +457,10 @@ func (a *TemplatesApiService) TemplatesGetExecute(r ApiTemplatesGetRequest) ([]T
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToQuery(localVarQueryParams, "scopeType", s.Index(i), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "scopeType", s.Index(i).Interface(), "multi")
 			}
 		} else {
-			parameterAddToQuery(localVarQueryParams, "scopeType", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "scopeType", t, "multi")
 		}
 	}
 	if r.templateTypes != nil {
@@ -468,17 +468,17 @@ func (a *TemplatesApiService) TemplatesGetExecute(r ApiTemplatesGetRequest) ([]T
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToQuery(localVarQueryParams, "templateTypes", s.Index(i), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "templateTypes", s.Index(i).Interface(), "multi")
 			}
 		} else {
-			parameterAddToQuery(localVarQueryParams, "templateTypes", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "templateTypes", t, "multi")
 		}
 	}
 	if r.limit != nil {
-		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -521,9 +521,9 @@ func (a *TemplatesApiService) TemplatesGetExecute(r ApiTemplatesGetRequest) ([]T
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -550,7 +550,7 @@ func (a *TemplatesApiService) TemplatesGetExecute(r ApiTemplatesGetRequest) ([]T
 
 type ApiTemplatesPostRequest struct {
 	ctx context.Context
-	ApiService *TemplatesApiService
+	ApiService *TemplatesAPIService
 	templatePayload *TemplatePayload
 }
 
@@ -571,7 +571,7 @@ Add a new Template. Required Access Level: ModifyTemplates
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiTemplatesPostRequest
 */
-func (a *TemplatesApiService) TemplatesPost(ctx context.Context) ApiTemplatesPostRequest {
+func (a *TemplatesAPIService) TemplatesPost(ctx context.Context) ApiTemplatesPostRequest {
 	return ApiTemplatesPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -580,7 +580,7 @@ func (a *TemplatesApiService) TemplatesPost(ctx context.Context) ApiTemplatesPos
 
 // Execute executes the request
 //  @return Template
-func (a *TemplatesApiService) TemplatesPostExecute(r ApiTemplatesPostRequest) (*Template, *http.Response, error) {
+func (a *TemplatesAPIService) TemplatesPostExecute(r ApiTemplatesPostRequest) (*Template, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -588,7 +588,7 @@ func (a *TemplatesApiService) TemplatesPostExecute(r ApiTemplatesPostRequest) (*
 		localVarReturnValue  *Template
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TemplatesApiService.TemplatesPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TemplatesAPIService.TemplatesPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -645,9 +645,9 @@ func (a *TemplatesApiService) TemplatesPostExecute(r ApiTemplatesPostRequest) (*
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

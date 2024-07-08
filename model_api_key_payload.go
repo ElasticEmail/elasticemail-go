@@ -14,6 +14,8 @@ package ElasticEmail
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ApiKeyPayload type satisfies the MappedNullable interface at compile time
@@ -32,6 +34,8 @@ type ApiKeyPayload struct {
 	// Email of the subaccount for which this ApiKey should be created
 	Subaccount *string `json:"Subaccount,omitempty"`
 }
+
+type _ApiKeyPayload ApiKeyPayload
 
 // NewApiKeyPayload instantiates a new ApiKeyPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -102,7 +106,7 @@ func (o *ApiKeyPayload) SetAccessLevel(v []AccessLevel) {
 
 // GetExpires returns the Expires field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ApiKeyPayload) GetExpires() time.Time {
-	if o == nil || isNil(o.Expires.Get()) {
+	if o == nil || IsNil(o.Expires.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -144,7 +148,7 @@ func (o *ApiKeyPayload) UnsetExpires() {
 
 // GetRestrictAccessToIPRange returns the RestrictAccessToIPRange field value if set, zero value otherwise.
 func (o *ApiKeyPayload) GetRestrictAccessToIPRange() []string {
-	if o == nil || isNil(o.RestrictAccessToIPRange) {
+	if o == nil || IsNil(o.RestrictAccessToIPRange) {
 		var ret []string
 		return ret
 	}
@@ -154,7 +158,7 @@ func (o *ApiKeyPayload) GetRestrictAccessToIPRange() []string {
 // GetRestrictAccessToIPRangeOk returns a tuple with the RestrictAccessToIPRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiKeyPayload) GetRestrictAccessToIPRangeOk() ([]string, bool) {
-	if o == nil || isNil(o.RestrictAccessToIPRange) {
+	if o == nil || IsNil(o.RestrictAccessToIPRange) {
 		return nil, false
 	}
 	return o.RestrictAccessToIPRange, true
@@ -162,7 +166,7 @@ func (o *ApiKeyPayload) GetRestrictAccessToIPRangeOk() ([]string, bool) {
 
 // HasRestrictAccessToIPRange returns a boolean if a field has been set.
 func (o *ApiKeyPayload) HasRestrictAccessToIPRange() bool {
-	if o != nil && !isNil(o.RestrictAccessToIPRange) {
+	if o != nil && !IsNil(o.RestrictAccessToIPRange) {
 		return true
 	}
 
@@ -176,7 +180,7 @@ func (o *ApiKeyPayload) SetRestrictAccessToIPRange(v []string) {
 
 // GetSubaccount returns the Subaccount field value if set, zero value otherwise.
 func (o *ApiKeyPayload) GetSubaccount() string {
-	if o == nil || isNil(o.Subaccount) {
+	if o == nil || IsNil(o.Subaccount) {
 		var ret string
 		return ret
 	}
@@ -186,7 +190,7 @@ func (o *ApiKeyPayload) GetSubaccount() string {
 // GetSubaccountOk returns a tuple with the Subaccount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApiKeyPayload) GetSubaccountOk() (*string, bool) {
-	if o == nil || isNil(o.Subaccount) {
+	if o == nil || IsNil(o.Subaccount) {
 		return nil, false
 	}
 	return o.Subaccount, true
@@ -194,7 +198,7 @@ func (o *ApiKeyPayload) GetSubaccountOk() (*string, bool) {
 
 // HasSubaccount returns a boolean if a field has been set.
 func (o *ApiKeyPayload) HasSubaccount() bool {
-	if o != nil && !isNil(o.Subaccount) {
+	if o != nil && !IsNil(o.Subaccount) {
 		return true
 	}
 
@@ -221,13 +225,51 @@ func (o ApiKeyPayload) ToMap() (map[string]interface{}, error) {
 	if o.Expires.IsSet() {
 		toSerialize["Expires"] = o.Expires.Get()
 	}
-	if !isNil(o.RestrictAccessToIPRange) {
+	if !IsNil(o.RestrictAccessToIPRange) {
 		toSerialize["RestrictAccessToIPRange"] = o.RestrictAccessToIPRange
 	}
-	if !isNil(o.Subaccount) {
+	if !IsNil(o.Subaccount) {
 		toSerialize["Subaccount"] = o.Subaccount
 	}
 	return toSerialize, nil
+}
+
+func (o *ApiKeyPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"Name",
+		"AccessLevel",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varApiKeyPayload := _ApiKeyPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varApiKeyPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ApiKeyPayload(varApiKeyPayload)
+
+	return err
 }
 
 type NullableApiKeyPayload struct {

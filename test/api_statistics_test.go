@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-Testing StatisticsApiService
+Testing StatisticsAPIService
 
 */
 
@@ -10,80 +10,80 @@ Testing StatisticsApiService
 package ElasticEmail
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "./openapi"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
-func Test_ElasticEmail_StatisticsApiService(t *testing.T) {
+func Test_ElasticEmail_StatisticsAPIService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test StatisticsApiService StatisticsCampaignsByNameGet", func(t *testing.T) {
+	t.Run("Test StatisticsAPIService StatisticsCampaignsByNameGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var name string
 
-        resp, httpRes, err := apiClient.StatisticsApi.StatisticsCampaignsByNameGet(context.Background(), name).Execute()
+		resp, httpRes, err := apiClient.StatisticsAPI.StatisticsCampaignsByNameGet(context.Background(), name).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StatisticsApiService StatisticsCampaignsGet", func(t *testing.T) {
+	t.Run("Test StatisticsAPIService StatisticsCampaignsGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.StatisticsApi.StatisticsCampaignsGet(context.Background()).Execute()
+		resp, httpRes, err := apiClient.StatisticsAPI.StatisticsCampaignsGet(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StatisticsApiService StatisticsChannelsByNameGet", func(t *testing.T) {
+	t.Run("Test StatisticsAPIService StatisticsChannelsByNameGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var name string
 
-        resp, httpRes, err := apiClient.StatisticsApi.StatisticsChannelsByNameGet(context.Background(), name).Execute()
+		resp, httpRes, err := apiClient.StatisticsAPI.StatisticsChannelsByNameGet(context.Background(), name).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StatisticsApiService StatisticsChannelsGet", func(t *testing.T) {
+	t.Run("Test StatisticsAPIService StatisticsChannelsGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.StatisticsApi.StatisticsChannelsGet(context.Background()).Execute()
+		resp, httpRes, err := apiClient.StatisticsAPI.StatisticsChannelsGet(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StatisticsApiService StatisticsGet", func(t *testing.T) {
+	t.Run("Test StatisticsAPIService StatisticsGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.StatisticsApi.StatisticsGet(context.Background()).Execute()
+		resp, httpRes, err := apiClient.StatisticsAPI.StatisticsGet(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

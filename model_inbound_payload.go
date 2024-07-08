@@ -13,6 +13,8 @@ package ElasticEmail
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the InboundPayload type satisfies the MappedNullable interface at compile time
@@ -31,6 +33,8 @@ type InboundPayload struct {
 	// Address to notify about the inbound
 	HttpAddress *string `json:"HttpAddress,omitempty"`
 }
+
+type _InboundPayload InboundPayload
 
 // NewInboundPayload instantiates a new InboundPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -155,7 +159,7 @@ func (o *InboundPayload) SetActionType(v InboundRouteActionType) {
 
 // GetEmailAddress returns the EmailAddress field value if set, zero value otherwise.
 func (o *InboundPayload) GetEmailAddress() string {
-	if o == nil || isNil(o.EmailAddress) {
+	if o == nil || IsNil(o.EmailAddress) {
 		var ret string
 		return ret
 	}
@@ -165,7 +169,7 @@ func (o *InboundPayload) GetEmailAddress() string {
 // GetEmailAddressOk returns a tuple with the EmailAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InboundPayload) GetEmailAddressOk() (*string, bool) {
-	if o == nil || isNil(o.EmailAddress) {
+	if o == nil || IsNil(o.EmailAddress) {
 		return nil, false
 	}
 	return o.EmailAddress, true
@@ -173,7 +177,7 @@ func (o *InboundPayload) GetEmailAddressOk() (*string, bool) {
 
 // HasEmailAddress returns a boolean if a field has been set.
 func (o *InboundPayload) HasEmailAddress() bool {
-	if o != nil && !isNil(o.EmailAddress) {
+	if o != nil && !IsNil(o.EmailAddress) {
 		return true
 	}
 
@@ -187,7 +191,7 @@ func (o *InboundPayload) SetEmailAddress(v string) {
 
 // GetHttpAddress returns the HttpAddress field value if set, zero value otherwise.
 func (o *InboundPayload) GetHttpAddress() string {
-	if o == nil || isNil(o.HttpAddress) {
+	if o == nil || IsNil(o.HttpAddress) {
 		var ret string
 		return ret
 	}
@@ -197,7 +201,7 @@ func (o *InboundPayload) GetHttpAddress() string {
 // GetHttpAddressOk returns a tuple with the HttpAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InboundPayload) GetHttpAddressOk() (*string, bool) {
-	if o == nil || isNil(o.HttpAddress) {
+	if o == nil || IsNil(o.HttpAddress) {
 		return nil, false
 	}
 	return o.HttpAddress, true
@@ -205,7 +209,7 @@ func (o *InboundPayload) GetHttpAddressOk() (*string, bool) {
 
 // HasHttpAddress returns a boolean if a field has been set.
 func (o *InboundPayload) HasHttpAddress() bool {
-	if o != nil && !isNil(o.HttpAddress) {
+	if o != nil && !IsNil(o.HttpAddress) {
 		return true
 	}
 
@@ -231,13 +235,53 @@ func (o InboundPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize["Name"] = o.Name
 	toSerialize["FilterType"] = o.FilterType
 	toSerialize["ActionType"] = o.ActionType
-	if !isNil(o.EmailAddress) {
+	if !IsNil(o.EmailAddress) {
 		toSerialize["EmailAddress"] = o.EmailAddress
 	}
-	if !isNil(o.HttpAddress) {
+	if !IsNil(o.HttpAddress) {
 		toSerialize["HttpAddress"] = o.HttpAddress
 	}
 	return toSerialize, nil
+}
+
+func (o *InboundPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"Filter",
+		"Name",
+		"FilterType",
+		"ActionType",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varInboundPayload := _InboundPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varInboundPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InboundPayload(varInboundPayload)
+
+	return err
 }
 
 type NullableInboundPayload struct {

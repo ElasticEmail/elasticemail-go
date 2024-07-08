@@ -13,6 +13,8 @@ package ElasticEmail
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the SegmentPayload type satisfies the MappedNullable interface at compile time
@@ -25,6 +27,8 @@ type SegmentPayload struct {
 	// SQL-like rule to determine which Contacts belong to this Segment. Help for building a segment rule can be found here: https://help.elasticemail.com/en/articles/5162182-segment-rules
 	Rule string `json:"Rule"`
 }
+
+type _SegmentPayload SegmentPayload
 
 // NewSegmentPayload instantiates a new SegmentPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -106,6 +110,44 @@ func (o SegmentPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize["Name"] = o.Name
 	toSerialize["Rule"] = o.Rule
 	return toSerialize, nil
+}
+
+func (o *SegmentPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"Name",
+		"Rule",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSegmentPayload := _SegmentPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varSegmentPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SegmentPayload(varSegmentPayload)
+
+	return err
 }
 
 type NullableSegmentPayload struct {

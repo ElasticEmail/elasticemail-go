@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-Testing CampaignsApiService
+Testing CampaignsAPIService
 
 */
 
@@ -10,82 +10,81 @@ Testing CampaignsApiService
 package ElasticEmail
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "./openapi"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
-func Test_ElasticEmail_CampaignsApiService(t *testing.T) {
+func Test_ElasticEmail_CampaignsAPIService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test CampaignsApiService CampaignsByNameDelete", func(t *testing.T) {
+	t.Run("Test CampaignsAPIService CampaignsByNameDelete", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var name string
 
-        resp, httpRes, err := apiClient.CampaignsApi.CampaignsByNameDelete(context.Background(), name).Execute()
+		httpRes, err := apiClient.CampaignsAPI.CampaignsByNameDelete(context.Background(), name).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test CampaignsApiService CampaignsByNameGet", func(t *testing.T) {
+	t.Run("Test CampaignsAPIService CampaignsByNameGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var name string
 
-        resp, httpRes, err := apiClient.CampaignsApi.CampaignsByNameGet(context.Background(), name).Execute()
+		resp, httpRes, err := apiClient.CampaignsAPI.CampaignsByNameGet(context.Background(), name).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test CampaignsApiService CampaignsByNamePut", func(t *testing.T) {
+	t.Run("Test CampaignsAPIService CampaignsByNamePut", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var name string
+		var name string
 
-        resp, httpRes, err := apiClient.CampaignsApi.CampaignsByNamePut(context.Background(), name).Execute()
+		resp, httpRes, err := apiClient.CampaignsAPI.CampaignsByNamePut(context.Background(), name).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test CampaignsApiService CampaignsGet", func(t *testing.T) {
+	t.Run("Test CampaignsAPIService CampaignsGet", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.CampaignsApi.CampaignsGet(context.Background()).Execute()
+		resp, httpRes, err := apiClient.CampaignsAPI.CampaignsGet(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test CampaignsApiService CampaignsPost", func(t *testing.T) {
+	t.Run("Test CampaignsAPIService CampaignsPost", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.CampaignsApi.CampaignsPost(context.Background()).Execute()
+		resp, httpRes, err := apiClient.CampaignsAPI.CampaignsPost(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

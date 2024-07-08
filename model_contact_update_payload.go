@@ -47,7 +47,7 @@ func NewContactUpdatePayloadWithDefaults() *ContactUpdatePayload {
 
 // GetFirstName returns the FirstName field value if set, zero value otherwise.
 func (o *ContactUpdatePayload) GetFirstName() string {
-	if o == nil || isNil(o.FirstName) {
+	if o == nil || IsNil(o.FirstName) {
 		var ret string
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *ContactUpdatePayload) GetFirstName() string {
 // GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactUpdatePayload) GetFirstNameOk() (*string, bool) {
-	if o == nil || isNil(o.FirstName) {
+	if o == nil || IsNil(o.FirstName) {
 		return nil, false
 	}
 	return o.FirstName, true
@@ -65,7 +65,7 @@ func (o *ContactUpdatePayload) GetFirstNameOk() (*string, bool) {
 
 // HasFirstName returns a boolean if a field has been set.
 func (o *ContactUpdatePayload) HasFirstName() bool {
-	if o != nil && !isNil(o.FirstName) {
+	if o != nil && !IsNil(o.FirstName) {
 		return true
 	}
 
@@ -79,7 +79,7 @@ func (o *ContactUpdatePayload) SetFirstName(v string) {
 
 // GetLastName returns the LastName field value if set, zero value otherwise.
 func (o *ContactUpdatePayload) GetLastName() string {
-	if o == nil || isNil(o.LastName) {
+	if o == nil || IsNil(o.LastName) {
 		var ret string
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *ContactUpdatePayload) GetLastName() string {
 // GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactUpdatePayload) GetLastNameOk() (*string, bool) {
-	if o == nil || isNil(o.LastName) {
+	if o == nil || IsNil(o.LastName) {
 		return nil, false
 	}
 	return o.LastName, true
@@ -97,7 +97,7 @@ func (o *ContactUpdatePayload) GetLastNameOk() (*string, bool) {
 
 // HasLastName returns a boolean if a field has been set.
 func (o *ContactUpdatePayload) HasLastName() bool {
-	if o != nil && !isNil(o.LastName) {
+	if o != nil && !IsNil(o.LastName) {
 		return true
 	}
 
@@ -111,7 +111,7 @@ func (o *ContactUpdatePayload) SetLastName(v string) {
 
 // GetCustomFields returns the CustomFields field value if set, zero value otherwise.
 func (o *ContactUpdatePayload) GetCustomFields() map[string]string {
-	if o == nil || isNil(o.CustomFields) {
+	if o == nil || IsNil(o.CustomFields) {
 		var ret map[string]string
 		return ret
 	}
@@ -121,7 +121,7 @@ func (o *ContactUpdatePayload) GetCustomFields() map[string]string {
 // GetCustomFieldsOk returns a tuple with the CustomFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ContactUpdatePayload) GetCustomFieldsOk() (*map[string]string, bool) {
-	if o == nil || isNil(o.CustomFields) {
+	if o == nil || IsNil(o.CustomFields) {
 		return nil, false
 	}
 	return o.CustomFields, true
@@ -129,7 +129,7 @@ func (o *ContactUpdatePayload) GetCustomFieldsOk() (*map[string]string, bool) {
 
 // HasCustomFields returns a boolean if a field has been set.
 func (o *ContactUpdatePayload) HasCustomFields() bool {
-	if o != nil && !isNil(o.CustomFields) {
+	if o != nil && !IsNil(o.CustomFields) {
 		return true
 	}
 
@@ -151,13 +151,13 @@ func (o ContactUpdatePayload) MarshalJSON() ([]byte, error) {
 
 func (o ContactUpdatePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.FirstName) {
+	if !IsNil(o.FirstName) {
 		toSerialize["FirstName"] = o.FirstName
 	}
-	if !isNil(o.LastName) {
+	if !IsNil(o.LastName) {
 		toSerialize["LastName"] = o.LastName
 	}
-	if !isNil(o.CustomFields) {
+	if !IsNil(o.CustomFields) {
 		toSerialize["CustomFields"] = o.CustomFields
 	}
 	return toSerialize, nil

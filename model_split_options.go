@@ -48,7 +48,7 @@ func NewSplitOptionsWithDefaults() *SplitOptions {
 
 // GetOptimizeFor returns the OptimizeFor field value if set, zero value otherwise.
 func (o *SplitOptions) GetOptimizeFor() SplitOptimizationType {
-	if o == nil || isNil(o.OptimizeFor) {
+	if o == nil || IsNil(o.OptimizeFor) {
 		var ret SplitOptimizationType
 		return ret
 	}
@@ -58,7 +58,7 @@ func (o *SplitOptions) GetOptimizeFor() SplitOptimizationType {
 // GetOptimizeForOk returns a tuple with the OptimizeFor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SplitOptions) GetOptimizeForOk() (*SplitOptimizationType, bool) {
-	if o == nil || isNil(o.OptimizeFor) {
+	if o == nil || IsNil(o.OptimizeFor) {
 		return nil, false
 	}
 	return o.OptimizeFor, true
@@ -66,7 +66,7 @@ func (o *SplitOptions) GetOptimizeForOk() (*SplitOptimizationType, bool) {
 
 // HasOptimizeFor returns a boolean if a field has been set.
 func (o *SplitOptions) HasOptimizeFor() bool {
-	if o != nil && !isNil(o.OptimizeFor) {
+	if o != nil && !IsNil(o.OptimizeFor) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *SplitOptions) SetOptimizeFor(v SplitOptimizationType) {
 
 // GetOptimizePeriodMinutes returns the OptimizePeriodMinutes field value if set, zero value otherwise.
 func (o *SplitOptions) GetOptimizePeriodMinutes() int32 {
-	if o == nil || isNil(o.OptimizePeriodMinutes) {
+	if o == nil || IsNil(o.OptimizePeriodMinutes) {
 		var ret int32
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *SplitOptions) GetOptimizePeriodMinutes() int32 {
 // GetOptimizePeriodMinutesOk returns a tuple with the OptimizePeriodMinutes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SplitOptions) GetOptimizePeriodMinutesOk() (*int32, bool) {
-	if o == nil || isNil(o.OptimizePeriodMinutes) {
+	if o == nil || IsNil(o.OptimizePeriodMinutes) {
 		return nil, false
 	}
 	return o.OptimizePeriodMinutes, true
@@ -98,7 +98,7 @@ func (o *SplitOptions) GetOptimizePeriodMinutesOk() (*int32, bool) {
 
 // HasOptimizePeriodMinutes returns a boolean if a field has been set.
 func (o *SplitOptions) HasOptimizePeriodMinutes() bool {
-	if o != nil && !isNil(o.OptimizePeriodMinutes) {
+	if o != nil && !IsNil(o.OptimizePeriodMinutes) {
 		return true
 	}
 
@@ -120,10 +120,10 @@ func (o SplitOptions) MarshalJSON() ([]byte, error) {
 
 func (o SplitOptions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.OptimizeFor) {
+	if !IsNil(o.OptimizeFor) {
 		toSerialize["OptimizeFor"] = o.OptimizeFor
 	}
-	if !isNil(o.OptimizePeriodMinutes) {
+	if !IsNil(o.OptimizePeriodMinutes) {
 		toSerialize["OptimizePeriodMinutes"] = o.OptimizePeriodMinutes
 	}
 	return toSerialize, nil

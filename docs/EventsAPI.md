@@ -1,16 +1,16 @@
-# \EventsApi
+# \EventsAPI
 
 All URIs are relative to *https://api.elasticemail.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**EventsByTransactionidGet**](EventsApi.md#EventsByTransactionidGet) | **Get** /events/{transactionid} | Load Email Events
-[**EventsChannelsByNameExportPost**](EventsApi.md#EventsChannelsByNameExportPost) | **Post** /events/channels/{name}/export | Export Channel Events
-[**EventsChannelsByNameGet**](EventsApi.md#EventsChannelsByNameGet) | **Get** /events/channels/{name} | Load Channel Events
-[**EventsChannelsExportByIdStatusGet**](EventsApi.md#EventsChannelsExportByIdStatusGet) | **Get** /events/channels/export/{id}/status | Check Channel Export Status
-[**EventsExportByIdStatusGet**](EventsApi.md#EventsExportByIdStatusGet) | **Get** /events/export/{id}/status | Check Export Status
-[**EventsExportPost**](EventsApi.md#EventsExportPost) | **Post** /events/export | Export Events
-[**EventsGet**](EventsApi.md#EventsGet) | **Get** /events | Load Events
+[**EventsByTransactionidGet**](EventsAPI.md#EventsByTransactionidGet) | **Get** /events/{transactionid} | Load Email Events
+[**EventsChannelsByNameExportPost**](EventsAPI.md#EventsChannelsByNameExportPost) | **Post** /events/channels/{name}/export | Export Channel Events
+[**EventsChannelsByNameGet**](EventsAPI.md#EventsChannelsByNameGet) | **Get** /events/channels/{name} | Load Channel Events
+[**EventsChannelsExportByIdStatusGet**](EventsAPI.md#EventsChannelsExportByIdStatusGet) | **Get** /events/channels/export/{id}/status | Check Channel Export Status
+[**EventsExportByIdStatusGet**](EventsAPI.md#EventsExportByIdStatusGet) | **Get** /events/export/{id}/status | Check Export Status
+[**EventsExportPost**](EventsAPI.md#EventsExportPost) | **Post** /events/export | Export Events
+[**EventsGet**](EventsAPI.md#EventsGet) | **Get** /events | Load Events
 
 
 
@@ -28,30 +28,30 @@ Load Email Events
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
+	"context"
+	"fmt"
+	"os"
     "time"
-    openapiclient "./openapi"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    transactionid := "TransactionID" // string | ID number of transaction
-    from := time.Now() // time.Time | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    to := time.Now() // time.Time | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    orderBy := openapiclient.EventsOrderBy("DateDescending") // EventsOrderBy |  (optional) (default to "DateDescending")
-    limit := int32(100) // int32 | Maximum number of returned items. (optional)
-    offset := int32(20) // int32 | How many items should be returned ahead. (optional)
+	transactionid := "TransactionID" // string | ID number of transaction
+	from := time.Now() // time.Time | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
+	to := time.Now() // time.Time | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
+	orderBy := openapiclient.EventsOrderBy("DateDescending") // EventsOrderBy |  (optional) (default to "DateDescending")
+	limit := int32(100) // int32 | Maximum number of returned items. (optional)
+	offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsApi.EventsByTransactionidGet(context.Background(), transactionid).From(from).To(to).OrderBy(orderBy).Limit(limit).Offset(offset).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.EventsByTransactionidGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `EventsByTransactionidGet`: []RecipientEvent
-    fmt.Fprintf(os.Stdout, "Response from `EventsApi.EventsByTransactionidGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.EventsByTransactionidGet(context.Background(), transactionid).From(from).To(to).OrderBy(orderBy).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.EventsByTransactionidGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EventsByTransactionidGet`: []RecipientEvent
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.EventsByTransactionidGet`: %v\n", resp)
 }
 ```
 
@@ -109,31 +109,31 @@ Export Channel Events
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
+	"context"
+	"fmt"
+	"os"
     "time"
-    openapiclient "./openapi"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "Channel01" // string | Name of selected channel.
-    eventTypes := []openapiclient.EventType{openapiclient.EventType("Submission")} // []EventType | Types of Events to return (optional)
-    from := time.Now() // time.Time | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    to := time.Now() // time.Time | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    fileFormat := openapiclient.ExportFileFormats("Csv") // ExportFileFormats | Format of the exported file (optional) (default to "Csv")
-    compressionFormat := openapiclient.CompressionFormat("None") // CompressionFormat | FileResponse compression format. None or Zip. (optional) (default to "None")
-    fileName := "filename.txt" // string | Name of your file including extension. (optional)
+	name := "Channel01" // string | Name of selected channel.
+	eventTypes := []openapiclient.EventType{openapiclient.EventType("Submission")} // []EventType | Types of Events to return (optional)
+	from := time.Now() // time.Time | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
+	to := time.Now() // time.Time | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
+	fileFormat := openapiclient.ExportFileFormats("Csv") // ExportFileFormats | Format of the exported file (optional) (default to "Csv")
+	compressionFormat := openapiclient.CompressionFormat("None") // CompressionFormat | FileResponse compression format. None or Zip. (optional) (default to "None")
+	fileName := "filename.txt" // string | Name of your file including extension. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsApi.EventsChannelsByNameExportPost(context.Background(), name).EventTypes(eventTypes).From(from).To(to).FileFormat(fileFormat).CompressionFormat(compressionFormat).FileName(fileName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.EventsChannelsByNameExportPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `EventsChannelsByNameExportPost`: ExportLink
-    fmt.Fprintf(os.Stdout, "Response from `EventsApi.EventsChannelsByNameExportPost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.EventsChannelsByNameExportPost(context.Background(), name).EventTypes(eventTypes).From(from).To(to).FileFormat(fileFormat).CompressionFormat(compressionFormat).FileName(fileName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.EventsChannelsByNameExportPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EventsChannelsByNameExportPost`: ExportLink
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.EventsChannelsByNameExportPost`: %v\n", resp)
 }
 ```
 
@@ -192,31 +192,31 @@ Load Channel Events
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
+	"context"
+	"fmt"
+	"os"
     "time"
-    openapiclient "./openapi"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "Channel01" // string | Name of selected channel.
-    eventTypes := []openapiclient.EventType{openapiclient.EventType("Submission")} // []EventType | Types of Events to return (optional)
-    from := time.Now() // time.Time | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    to := time.Now() // time.Time | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    orderBy := openapiclient.EventsOrderBy("DateDescending") // EventsOrderBy |  (optional) (default to "DateDescending")
-    limit := int32(56) // int32 | How many items to load. Maximum for this request is 1000 items (optional)
-    offset := int32(20) // int32 | How many items should be returned ahead. (optional)
+	name := "Channel01" // string | Name of selected channel.
+	eventTypes := []openapiclient.EventType{openapiclient.EventType("Submission")} // []EventType | Types of Events to return (optional)
+	from := time.Now() // time.Time | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
+	to := time.Now() // time.Time | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
+	orderBy := openapiclient.EventsOrderBy("DateDescending") // EventsOrderBy |  (optional) (default to "DateDescending")
+	limit := int32(56) // int32 | How many items to load. Maximum for this request is 1000 items (optional)
+	offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsApi.EventsChannelsByNameGet(context.Background(), name).EventTypes(eventTypes).From(from).To(to).OrderBy(orderBy).Limit(limit).Offset(offset).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.EventsChannelsByNameGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `EventsChannelsByNameGet`: []RecipientEvent
-    fmt.Fprintf(os.Stdout, "Response from `EventsApi.EventsChannelsByNameGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.EventsChannelsByNameGet(context.Background(), name).EventTypes(eventTypes).From(from).To(to).OrderBy(orderBy).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.EventsChannelsByNameGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EventsChannelsByNameGet`: []RecipientEvent
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.EventsChannelsByNameGet`: %v\n", resp)
 }
 ```
 
@@ -275,24 +275,24 @@ Check Channel Export Status
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    id := "E33EBA7A-C20D-4D3D-8F2F-5EEF42F58E6F" // string | ID of the exported file
+	id := "E33EBA7A-C20D-4D3D-8F2F-5EEF42F58E6F" // string | ID of the exported file
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsApi.EventsChannelsExportByIdStatusGet(context.Background(), id).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.EventsChannelsExportByIdStatusGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `EventsChannelsExportByIdStatusGet`: ExportStatus
-    fmt.Fprintf(os.Stdout, "Response from `EventsApi.EventsChannelsExportByIdStatusGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.EventsChannelsExportByIdStatusGet(context.Background(), id).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.EventsChannelsExportByIdStatusGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EventsChannelsExportByIdStatusGet`: ExportStatus
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.EventsChannelsExportByIdStatusGet`: %v\n", resp)
 }
 ```
 
@@ -345,24 +345,24 @@ Check Export Status
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    id := "E33EBA7A-C20D-4D3D-8F2F-5EEF42F58E6F" // string | ID of the exported file
+	id := "E33EBA7A-C20D-4D3D-8F2F-5EEF42F58E6F" // string | ID of the exported file
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsApi.EventsExportByIdStatusGet(context.Background(), id).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.EventsExportByIdStatusGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `EventsExportByIdStatusGet`: ExportStatus
-    fmt.Fprintf(os.Stdout, "Response from `EventsApi.EventsExportByIdStatusGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.EventsExportByIdStatusGet(context.Background(), id).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.EventsExportByIdStatusGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EventsExportByIdStatusGet`: ExportStatus
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.EventsExportByIdStatusGet`: %v\n", resp)
 }
 ```
 
@@ -415,30 +415,30 @@ Export Events
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
+	"context"
+	"fmt"
+	"os"
     "time"
-    openapiclient "./openapi"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    eventTypes := []openapiclient.EventType{openapiclient.EventType("Submission")} // []EventType | Types of Events to return (optional)
-    from := time.Now() // time.Time | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    to := time.Now() // time.Time | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    fileFormat := openapiclient.ExportFileFormats("Csv") // ExportFileFormats | Format of the exported file (optional) (default to "Csv")
-    compressionFormat := openapiclient.CompressionFormat("None") // CompressionFormat | FileResponse compression format. None or Zip. (optional) (default to "None")
-    fileName := "filename.txt" // string | Name of your file including extension. (optional)
+	eventTypes := []openapiclient.EventType{openapiclient.EventType("Submission")} // []EventType | Types of Events to return (optional)
+	from := time.Now() // time.Time | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
+	to := time.Now() // time.Time | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
+	fileFormat := openapiclient.ExportFileFormats("Csv") // ExportFileFormats | Format of the exported file (optional) (default to "Csv")
+	compressionFormat := openapiclient.CompressionFormat("None") // CompressionFormat | FileResponse compression format. None or Zip. (optional) (default to "None")
+	fileName := "filename.txt" // string | Name of your file including extension. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsApi.EventsExportPost(context.Background()).EventTypes(eventTypes).From(from).To(to).FileFormat(fileFormat).CompressionFormat(compressionFormat).FileName(fileName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.EventsExportPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `EventsExportPost`: ExportLink
-    fmt.Fprintf(os.Stdout, "Response from `EventsApi.EventsExportPost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.EventsExportPost(context.Background()).EventTypes(eventTypes).From(from).To(to).FileFormat(fileFormat).CompressionFormat(compressionFormat).FileName(fileName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.EventsExportPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EventsExportPost`: ExportLink
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.EventsExportPost`: %v\n", resp)
 }
 ```
 
@@ -492,30 +492,30 @@ Load Events
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
+	"context"
+	"fmt"
+	"os"
     "time"
-    openapiclient "./openapi"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    eventTypes := []openapiclient.EventType{openapiclient.EventType("Submission")} // []EventType | Types of Events to return (optional)
-    from := time.Now() // time.Time | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    to := time.Now() // time.Time | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
-    orderBy := openapiclient.EventsOrderBy("DateDescending") // EventsOrderBy |  (optional) (default to "DateDescending")
-    limit := int32(56) // int32 | How many items to load. Maximum for this request is 1000 items (optional)
-    offset := int32(20) // int32 | How many items should be returned ahead. (optional)
+	eventTypes := []openapiclient.EventType{openapiclient.EventType("Submission")} // []EventType | Types of Events to return (optional)
+	from := time.Now() // time.Time | Starting date for search in YYYY-MM-DDThh:mm:ss format. (optional)
+	to := time.Now() // time.Time | Ending date for search in YYYY-MM-DDThh:mm:ss format. (optional)
+	orderBy := openapiclient.EventsOrderBy("DateDescending") // EventsOrderBy |  (optional) (default to "DateDescending")
+	limit := int32(56) // int32 | How many items to load. Maximum for this request is 1000 items (optional)
+	offset := int32(20) // int32 | How many items should be returned ahead. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsApi.EventsGet(context.Background()).EventTypes(eventTypes).From(from).To(to).OrderBy(orderBy).Limit(limit).Offset(offset).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.EventsGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `EventsGet`: []RecipientEvent
-    fmt.Fprintf(os.Stdout, "Response from `EventsApi.EventsGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.EventsGet(context.Background()).EventTypes(eventTypes).From(from).To(to).OrderBy(orderBy).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.EventsGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EventsGet`: []RecipientEvent
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.EventsGet`: %v\n", resp)
 }
 ```
 

@@ -13,6 +13,8 @@ package ElasticEmail
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the EmailTransactionalMessageData type satisfies the MappedNullable interface at compile time
@@ -21,17 +23,20 @@ var _ MappedNullable = &EmailTransactionalMessageData{}
 // EmailTransactionalMessageData Email data
 type EmailTransactionalMessageData struct {
 	Recipients TransactionalRecipient `json:"Recipients"`
-	Content *EmailContent `json:"Content,omitempty"`
+	Content EmailContent `json:"Content"`
 	Options *Options `json:"Options,omitempty"`
 }
+
+type _EmailTransactionalMessageData EmailTransactionalMessageData
 
 // NewEmailTransactionalMessageData instantiates a new EmailTransactionalMessageData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEmailTransactionalMessageData(recipients TransactionalRecipient) *EmailTransactionalMessageData {
+func NewEmailTransactionalMessageData(recipients TransactionalRecipient, content EmailContent) *EmailTransactionalMessageData {
 	this := EmailTransactionalMessageData{}
 	this.Recipients = recipients
+	this.Content = content
 	return &this
 }
 
@@ -67,41 +72,33 @@ func (o *EmailTransactionalMessageData) SetRecipients(v TransactionalRecipient) 
 	o.Recipients = v
 }
 
-// GetContent returns the Content field value if set, zero value otherwise.
+// GetContent returns the Content field value
 func (o *EmailTransactionalMessageData) GetContent() EmailContent {
-	if o == nil || isNil(o.Content) {
+	if o == nil {
 		var ret EmailContent
 		return ret
 	}
-	return *o.Content
+
+	return o.Content
 }
 
-// GetContentOk returns a tuple with the Content field value if set, nil otherwise
+// GetContentOk returns a tuple with the Content field value
 // and a boolean to check if the value has been set.
 func (o *EmailTransactionalMessageData) GetContentOk() (*EmailContent, bool) {
-	if o == nil || isNil(o.Content) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Content, true
+	return &o.Content, true
 }
 
-// HasContent returns a boolean if a field has been set.
-func (o *EmailTransactionalMessageData) HasContent() bool {
-	if o != nil && !isNil(o.Content) {
-		return true
-	}
-
-	return false
-}
-
-// SetContent gets a reference to the given EmailContent and assigns it to the Content field.
+// SetContent sets field value
 func (o *EmailTransactionalMessageData) SetContent(v EmailContent) {
-	o.Content = &v
+	o.Content = v
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *EmailTransactionalMessageData) GetOptions() Options {
-	if o == nil || isNil(o.Options) {
+	if o == nil || IsNil(o.Options) {
 		var ret Options
 		return ret
 	}
@@ -111,7 +108,7 @@ func (o *EmailTransactionalMessageData) GetOptions() Options {
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EmailTransactionalMessageData) GetOptionsOk() (*Options, bool) {
-	if o == nil || isNil(o.Options) {
+	if o == nil || IsNil(o.Options) {
 		return nil, false
 	}
 	return o.Options, true
@@ -119,7 +116,7 @@ func (o *EmailTransactionalMessageData) GetOptionsOk() (*Options, bool) {
 
 // HasOptions returns a boolean if a field has been set.
 func (o *EmailTransactionalMessageData) HasOptions() bool {
-	if o != nil && !isNil(o.Options) {
+	if o != nil && !IsNil(o.Options) {
 		return true
 	}
 
@@ -142,13 +139,49 @@ func (o EmailTransactionalMessageData) MarshalJSON() ([]byte, error) {
 func (o EmailTransactionalMessageData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["Recipients"] = o.Recipients
-	if !isNil(o.Content) {
-		toSerialize["Content"] = o.Content
-	}
-	if !isNil(o.Options) {
+	toSerialize["Content"] = o.Content
+	if !IsNil(o.Options) {
 		toSerialize["Options"] = o.Options
 	}
 	return toSerialize, nil
+}
+
+func (o *EmailTransactionalMessageData) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"Recipients",
+		"Content",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varEmailTransactionalMessageData := _EmailTransactionalMessageData{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varEmailTransactionalMessageData)
+
+	if err != nil {
+		return err
+	}
+
+	*o = EmailTransactionalMessageData(varEmailTransactionalMessageData)
+
+	return err
 }
 
 type NullableEmailTransactionalMessageData struct {

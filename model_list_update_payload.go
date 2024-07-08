@@ -45,7 +45,7 @@ func NewListUpdatePayloadWithDefaults() *ListUpdatePayload {
 
 // GetNewListName returns the NewListName field value if set, zero value otherwise.
 func (o *ListUpdatePayload) GetNewListName() string {
-	if o == nil || isNil(o.NewListName) {
+	if o == nil || IsNil(o.NewListName) {
 		var ret string
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *ListUpdatePayload) GetNewListName() string {
 // GetNewListNameOk returns a tuple with the NewListName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListUpdatePayload) GetNewListNameOk() (*string, bool) {
-	if o == nil || isNil(o.NewListName) {
+	if o == nil || IsNil(o.NewListName) {
 		return nil, false
 	}
 	return o.NewListName, true
@@ -63,7 +63,7 @@ func (o *ListUpdatePayload) GetNewListNameOk() (*string, bool) {
 
 // HasNewListName returns a boolean if a field has been set.
 func (o *ListUpdatePayload) HasNewListName() bool {
-	if o != nil && !isNil(o.NewListName) {
+	if o != nil && !IsNil(o.NewListName) {
 		return true
 	}
 
@@ -77,7 +77,7 @@ func (o *ListUpdatePayload) SetNewListName(v string) {
 
 // GetAllowUnsubscribe returns the AllowUnsubscribe field value if set, zero value otherwise.
 func (o *ListUpdatePayload) GetAllowUnsubscribe() bool {
-	if o == nil || isNil(o.AllowUnsubscribe) {
+	if o == nil || IsNil(o.AllowUnsubscribe) {
 		var ret bool
 		return ret
 	}
@@ -87,7 +87,7 @@ func (o *ListUpdatePayload) GetAllowUnsubscribe() bool {
 // GetAllowUnsubscribeOk returns a tuple with the AllowUnsubscribe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListUpdatePayload) GetAllowUnsubscribeOk() (*bool, bool) {
-	if o == nil || isNil(o.AllowUnsubscribe) {
+	if o == nil || IsNil(o.AllowUnsubscribe) {
 		return nil, false
 	}
 	return o.AllowUnsubscribe, true
@@ -95,7 +95,7 @@ func (o *ListUpdatePayload) GetAllowUnsubscribeOk() (*bool, bool) {
 
 // HasAllowUnsubscribe returns a boolean if a field has been set.
 func (o *ListUpdatePayload) HasAllowUnsubscribe() bool {
-	if o != nil && !isNil(o.AllowUnsubscribe) {
+	if o != nil && !IsNil(o.AllowUnsubscribe) {
 		return true
 	}
 
@@ -117,10 +117,10 @@ func (o ListUpdatePayload) MarshalJSON() ([]byte, error) {
 
 func (o ListUpdatePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.NewListName) {
+	if !IsNil(o.NewListName) {
 		toSerialize["NewListName"] = o.NewListName
 	}
-	if !isNil(o.AllowUnsubscribe) {
+	if !IsNil(o.AllowUnsubscribe) {
 		toSerialize["AllowUnsubscribe"] = o.AllowUnsubscribe
 	}
 	return toSerialize, nil

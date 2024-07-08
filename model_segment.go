@@ -45,7 +45,7 @@ func NewSegmentWithDefaults() *Segment {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Segment) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *Segment) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Segment) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -63,7 +63,7 @@ func (o *Segment) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Segment) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -77,7 +77,7 @@ func (o *Segment) SetName(v string) {
 
 // GetRule returns the Rule field value if set, zero value otherwise.
 func (o *Segment) GetRule() string {
-	if o == nil || isNil(o.Rule) {
+	if o == nil || IsNil(o.Rule) {
 		var ret string
 		return ret
 	}
@@ -87,7 +87,7 @@ func (o *Segment) GetRule() string {
 // GetRuleOk returns a tuple with the Rule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Segment) GetRuleOk() (*string, bool) {
-	if o == nil || isNil(o.Rule) {
+	if o == nil || IsNil(o.Rule) {
 		return nil, false
 	}
 	return o.Rule, true
@@ -95,7 +95,7 @@ func (o *Segment) GetRuleOk() (*string, bool) {
 
 // HasRule returns a boolean if a field has been set.
 func (o *Segment) HasRule() bool {
-	if o != nil && !isNil(o.Rule) {
+	if o != nil && !IsNil(o.Rule) {
 		return true
 	}
 
@@ -117,10 +117,10 @@ func (o Segment) MarshalJSON() ([]byte, error) {
 
 func (o Segment) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
+	if !IsNil(o.Name) {
 		toSerialize["Name"] = o.Name
 	}
-	if !isNil(o.Rule) {
+	if !IsNil(o.Rule) {
 		toSerialize["Rule"] = o.Rule
 	}
 	return toSerialize, nil

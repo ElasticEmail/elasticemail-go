@@ -14,19 +14,156 @@ package ElasticEmail
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
 
-// ListsApiService ListsApi service
-type ListsApiService service
+// ListsAPIService ListsAPI service
+type ListsAPIService service
+
+type ApiListsByListnameContactsGetRequest struct {
+	ctx context.Context
+	ApiService *ListsAPIService
+	listname string
+	limit *int32
+	offset *int32
+}
+
+// Maximum number of returned items.
+func (r ApiListsByListnameContactsGetRequest) Limit(limit int32) ApiListsByListnameContactsGetRequest {
+	r.limit = &limit
+	return r
+}
+
+// How many items should be returned ahead.
+func (r ApiListsByListnameContactsGetRequest) Offset(offset int32) ApiListsByListnameContactsGetRequest {
+	r.offset = &offset
+	return r
+}
+
+func (r ApiListsByListnameContactsGetRequest) Execute() ([]Contact, *http.Response, error) {
+	return r.ApiService.ListsByListnameContactsGetExecute(r)
+}
+
+/*
+ListsByListnameContactsGet Load Contacts in List
+
+Returns a list of contacts. Required Access Level: ViewContacts
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param listname Name of your list.
+ @return ApiListsByListnameContactsGetRequest
+*/
+func (a *ListsAPIService) ListsByListnameContactsGet(ctx context.Context, listname string) ApiListsByListnameContactsGetRequest {
+	return ApiListsByListnameContactsGetRequest{
+		ApiService: a,
+		ctx: ctx,
+		listname: listname,
+	}
+}
+
+// Execute executes the request
+//  @return []Contact
+func (a *ListsAPIService) ListsByListnameContactsGetExecute(r ApiListsByListnameContactsGetRequest) ([]Contact, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []Contact
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsAPIService.ListsByListnameContactsGet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/lists/{listname}/contacts"
+	localVarPath = strings.Replace(localVarPath, "{"+"listname"+"}", url.PathEscape(parameterValueToString(r.listname, "listname")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	}
+	if r.offset != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apikey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-ElasticEmail-ApiKey"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type ApiListsByNameContactsPostRequest struct {
 	ctx context.Context
-	ApiService *ListsApiService
+	ApiService *ListsAPIService
 	name string
 	emailsPayload *EmailsPayload
 }
@@ -50,7 +187,7 @@ Add existing Contacts to specified list. Required Access Level: ModifyContacts
  @param name Name of your list.
  @return ApiListsByNameContactsPostRequest
 */
-func (a *ListsApiService) ListsByNameContactsPost(ctx context.Context, name string) ApiListsByNameContactsPostRequest {
+func (a *ListsAPIService) ListsByNameContactsPost(ctx context.Context, name string) ApiListsByNameContactsPostRequest {
 	return ApiListsByNameContactsPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -60,7 +197,7 @@ func (a *ListsApiService) ListsByNameContactsPost(ctx context.Context, name stri
 
 // Execute executes the request
 //  @return ContactsList
-func (a *ListsApiService) ListsByNameContactsPostExecute(r ApiListsByNameContactsPostRequest) (*ContactsList, *http.Response, error) {
+func (a *ListsAPIService) ListsByNameContactsPostExecute(r ApiListsByNameContactsPostRequest) (*ContactsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -68,7 +205,7 @@ func (a *ListsApiService) ListsByNameContactsPostExecute(r ApiListsByNameContact
 		localVarReturnValue  *ContactsList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsApiService.ListsByNameContactsPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsAPIService.ListsByNameContactsPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -126,9 +263,9 @@ func (a *ListsApiService) ListsByNameContactsPostExecute(r ApiListsByNameContact
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -155,7 +292,7 @@ func (a *ListsApiService) ListsByNameContactsPostExecute(r ApiListsByNameContact
 
 type ApiListsByNameContactsRemovePostRequest struct {
 	ctx context.Context
-	ApiService *ListsApiService
+	ApiService *ListsAPIService
 	name string
 	emailsPayload *EmailsPayload
 }
@@ -179,7 +316,7 @@ Remove specified Contacts from your list. Required Access Level: ModifyContacts
  @param name Name of your list.
  @return ApiListsByNameContactsRemovePostRequest
 */
-func (a *ListsApiService) ListsByNameContactsRemovePost(ctx context.Context, name string) ApiListsByNameContactsRemovePostRequest {
+func (a *ListsAPIService) ListsByNameContactsRemovePost(ctx context.Context, name string) ApiListsByNameContactsRemovePostRequest {
 	return ApiListsByNameContactsRemovePostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -188,14 +325,14 @@ func (a *ListsApiService) ListsByNameContactsRemovePost(ctx context.Context, nam
 }
 
 // Execute executes the request
-func (a *ListsApiService) ListsByNameContactsRemovePostExecute(r ApiListsByNameContactsRemovePostRequest) (*http.Response, error) {
+func (a *ListsAPIService) ListsByNameContactsRemovePostExecute(r ApiListsByNameContactsRemovePostRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsApiService.ListsByNameContactsRemovePost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsAPIService.ListsByNameContactsRemovePost")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -253,9 +390,9 @@ func (a *ListsApiService) ListsByNameContactsRemovePostExecute(r ApiListsByNameC
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -273,7 +410,7 @@ func (a *ListsApiService) ListsByNameContactsRemovePostExecute(r ApiListsByNameC
 
 type ApiListsByNameDeleteRequest struct {
 	ctx context.Context
-	ApiService *ListsApiService
+	ApiService *ListsAPIService
 	name string
 }
 
@@ -290,7 +427,7 @@ Deletes List and removes all the Contacts from it (does not delete Contacts). Re
  @param name Name of your list.
  @return ApiListsByNameDeleteRequest
 */
-func (a *ListsApiService) ListsByNameDelete(ctx context.Context, name string) ApiListsByNameDeleteRequest {
+func (a *ListsAPIService) ListsByNameDelete(ctx context.Context, name string) ApiListsByNameDeleteRequest {
 	return ApiListsByNameDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -299,14 +436,14 @@ func (a *ListsApiService) ListsByNameDelete(ctx context.Context, name string) Ap
 }
 
 // Execute executes the request
-func (a *ListsApiService) ListsByNameDeleteExecute(r ApiListsByNameDeleteRequest) (*http.Response, error) {
+func (a *ListsAPIService) ListsByNameDeleteExecute(r ApiListsByNameDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsApiService.ListsByNameDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsAPIService.ListsByNameDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -359,9 +496,9 @@ func (a *ListsApiService) ListsByNameDeleteExecute(r ApiListsByNameDeleteRequest
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -379,7 +516,7 @@ func (a *ListsApiService) ListsByNameDeleteExecute(r ApiListsByNameDeleteRequest
 
 type ApiListsByNameGetRequest struct {
 	ctx context.Context
-	ApiService *ListsApiService
+	ApiService *ListsAPIService
 	name string
 }
 
@@ -396,7 +533,7 @@ Returns detailed information about specified list. Required Access Level: ViewCo
  @param name Name of your list.
  @return ApiListsByNameGetRequest
 */
-func (a *ListsApiService) ListsByNameGet(ctx context.Context, name string) ApiListsByNameGetRequest {
+func (a *ListsAPIService) ListsByNameGet(ctx context.Context, name string) ApiListsByNameGetRequest {
 	return ApiListsByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -406,7 +543,7 @@ func (a *ListsApiService) ListsByNameGet(ctx context.Context, name string) ApiLi
 
 // Execute executes the request
 //  @return ContactsList
-func (a *ListsApiService) ListsByNameGetExecute(r ApiListsByNameGetRequest) (*ContactsList, *http.Response, error) {
+func (a *ListsAPIService) ListsByNameGetExecute(r ApiListsByNameGetRequest) (*ContactsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -414,7 +551,7 @@ func (a *ListsApiService) ListsByNameGetExecute(r ApiListsByNameGetRequest) (*Co
 		localVarReturnValue  *ContactsList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsApiService.ListsByNameGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsAPIService.ListsByNameGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -467,9 +604,9 @@ func (a *ListsApiService) ListsByNameGetExecute(r ApiListsByNameGetRequest) (*Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -496,7 +633,7 @@ func (a *ListsApiService) ListsByNameGetExecute(r ApiListsByNameGetRequest) (*Co
 
 type ApiListsByNamePutRequest struct {
 	ctx context.Context
-	ApiService *ListsApiService
+	ApiService *ListsAPIService
 	name string
 	listUpdatePayload *ListUpdatePayload
 }
@@ -519,7 +656,7 @@ Update existing list. Required Access Level: ModifyContacts
  @param name Name of your list.
  @return ApiListsByNamePutRequest
 */
-func (a *ListsApiService) ListsByNamePut(ctx context.Context, name string) ApiListsByNamePutRequest {
+func (a *ListsAPIService) ListsByNamePut(ctx context.Context, name string) ApiListsByNamePutRequest {
 	return ApiListsByNamePutRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -529,7 +666,7 @@ func (a *ListsApiService) ListsByNamePut(ctx context.Context, name string) ApiLi
 
 // Execute executes the request
 //  @return ContactsList
-func (a *ListsApiService) ListsByNamePutExecute(r ApiListsByNamePutRequest) (*ContactsList, *http.Response, error) {
+func (a *ListsAPIService) ListsByNamePutExecute(r ApiListsByNamePutRequest) (*ContactsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -537,7 +674,7 @@ func (a *ListsApiService) ListsByNamePutExecute(r ApiListsByNamePutRequest) (*Co
 		localVarReturnValue  *ContactsList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsApiService.ListsByNamePut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsAPIService.ListsByNamePut")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -595,9 +732,9 @@ func (a *ListsApiService) ListsByNamePutExecute(r ApiListsByNamePutRequest) (*Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -624,7 +761,7 @@ func (a *ListsApiService) ListsByNamePutExecute(r ApiListsByNamePutRequest) (*Co
 
 type ApiListsGetRequest struct {
 	ctx context.Context
-	ApiService *ListsApiService
+	ApiService *ListsAPIService
 	limit *int32
 	offset *int32
 }
@@ -653,7 +790,7 @@ Returns all your existing lists. Required Access Level: ViewContacts
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListsGetRequest
 */
-func (a *ListsApiService) ListsGet(ctx context.Context) ApiListsGetRequest {
+func (a *ListsAPIService) ListsGet(ctx context.Context) ApiListsGetRequest {
 	return ApiListsGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -662,7 +799,7 @@ func (a *ListsApiService) ListsGet(ctx context.Context) ApiListsGetRequest {
 
 // Execute executes the request
 //  @return []ContactsList
-func (a *ListsApiService) ListsGetExecute(r ApiListsGetRequest) ([]ContactsList, *http.Response, error) {
+func (a *ListsAPIService) ListsGetExecute(r ApiListsGetRequest) ([]ContactsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -670,7 +807,7 @@ func (a *ListsApiService) ListsGetExecute(r ApiListsGetRequest) ([]ContactsList,
 		localVarReturnValue  []ContactsList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsApiService.ListsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsAPIService.ListsGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -682,10 +819,10 @@ func (a *ListsApiService) ListsGetExecute(r ApiListsGetRequest) ([]ContactsList,
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		parameterAddToQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -728,9 +865,9 @@ func (a *ListsApiService) ListsGetExecute(r ApiListsGetRequest) ([]ContactsList,
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -757,7 +894,7 @@ func (a *ListsApiService) ListsGetExecute(r ApiListsGetRequest) ([]ContactsList,
 
 type ApiListsPostRequest struct {
 	ctx context.Context
-	ApiService *ListsApiService
+	ApiService *ListsAPIService
 	listPayload *ListPayload
 }
 
@@ -778,7 +915,7 @@ Add a new list. Required Access Level: ModifyContacts
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListsPostRequest
 */
-func (a *ListsApiService) ListsPost(ctx context.Context) ApiListsPostRequest {
+func (a *ListsAPIService) ListsPost(ctx context.Context) ApiListsPostRequest {
 	return ApiListsPostRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -787,7 +924,7 @@ func (a *ListsApiService) ListsPost(ctx context.Context) ApiListsPostRequest {
 
 // Execute executes the request
 //  @return ContactsList
-func (a *ListsApiService) ListsPostExecute(r ApiListsPostRequest) (*ContactsList, *http.Response, error) {
+func (a *ListsAPIService) ListsPostExecute(r ApiListsPostRequest) (*ContactsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -795,7 +932,7 @@ func (a *ListsApiService) ListsPostExecute(r ApiListsPostRequest) (*ContactsList
 		localVarReturnValue  *ContactsList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsApiService.ListsPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsAPIService.ListsPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -852,9 +989,9 @@ func (a *ListsApiService) ListsPostExecute(r ApiListsPostRequest) (*ContactsList
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

@@ -13,6 +13,8 @@ package ElasticEmail
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the MessageAttachment type satisfies the MappedNullable interface at compile time
@@ -29,6 +31,8 @@ type MessageAttachment struct {
 	// Size of your attachment (in bytes).
 	Size *int32 `json:"Size,omitempty"`
 }
+
+type _MessageAttachment MessageAttachment
 
 // NewMessageAttachment instantiates a new MessageAttachment object
 // This constructor will assign default values to properties that have it defined,
@@ -99,7 +103,7 @@ func (o *MessageAttachment) SetName(v string) {
 
 // GetContentType returns the ContentType field value if set, zero value otherwise.
 func (o *MessageAttachment) GetContentType() string {
-	if o == nil || isNil(o.ContentType) {
+	if o == nil || IsNil(o.ContentType) {
 		var ret string
 		return ret
 	}
@@ -109,7 +113,7 @@ func (o *MessageAttachment) GetContentType() string {
 // GetContentTypeOk returns a tuple with the ContentType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageAttachment) GetContentTypeOk() (*string, bool) {
-	if o == nil || isNil(o.ContentType) {
+	if o == nil || IsNil(o.ContentType) {
 		return nil, false
 	}
 	return o.ContentType, true
@@ -117,7 +121,7 @@ func (o *MessageAttachment) GetContentTypeOk() (*string, bool) {
 
 // HasContentType returns a boolean if a field has been set.
 func (o *MessageAttachment) HasContentType() bool {
-	if o != nil && !isNil(o.ContentType) {
+	if o != nil && !IsNil(o.ContentType) {
 		return true
 	}
 
@@ -131,7 +135,7 @@ func (o *MessageAttachment) SetContentType(v string) {
 
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *MessageAttachment) GetSize() int32 {
-	if o == nil || isNil(o.Size) {
+	if o == nil || IsNil(o.Size) {
 		var ret int32
 		return ret
 	}
@@ -141,7 +145,7 @@ func (o *MessageAttachment) GetSize() int32 {
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageAttachment) GetSizeOk() (*int32, bool) {
-	if o == nil || isNil(o.Size) {
+	if o == nil || IsNil(o.Size) {
 		return nil, false
 	}
 	return o.Size, true
@@ -149,7 +153,7 @@ func (o *MessageAttachment) GetSizeOk() (*int32, bool) {
 
 // HasSize returns a boolean if a field has been set.
 func (o *MessageAttachment) HasSize() bool {
-	if o != nil && !isNil(o.Size) {
+	if o != nil && !IsNil(o.Size) {
 		return true
 	}
 
@@ -173,13 +177,51 @@ func (o MessageAttachment) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["BinaryContent"] = o.BinaryContent
 	toSerialize["Name"] = o.Name
-	if !isNil(o.ContentType) {
+	if !IsNil(o.ContentType) {
 		toSerialize["ContentType"] = o.ContentType
 	}
-	if !isNil(o.Size) {
+	if !IsNil(o.Size) {
 		toSerialize["Size"] = o.Size
 	}
 	return toSerialize, nil
+}
+
+func (o *MessageAttachment) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"BinaryContent",
+		"Name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varMessageAttachment := _MessageAttachment{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varMessageAttachment)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MessageAttachment(varMessageAttachment)
+
+	return err
 }
 
 type NullableMessageAttachment struct {

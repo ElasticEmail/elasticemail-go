@@ -1,14 +1,14 @@
-# \CampaignsApi
+# \CampaignsAPI
 
 All URIs are relative to *https://api.elasticemail.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CampaignsByNameDelete**](CampaignsApi.md#CampaignsByNameDelete) | **Delete** /campaigns/{name} | Delete Campaign
-[**CampaignsByNameGet**](CampaignsApi.md#CampaignsByNameGet) | **Get** /campaigns/{name} | Load Campaign
-[**CampaignsByNamePut**](CampaignsApi.md#CampaignsByNamePut) | **Put** /campaigns/{name} | Update Campaign
-[**CampaignsGet**](CampaignsApi.md#CampaignsGet) | **Get** /campaigns | Load Campaigns
-[**CampaignsPost**](CampaignsApi.md#CampaignsPost) | **Post** /campaigns | Add Campaign
+[**CampaignsByNameDelete**](CampaignsAPI.md#CampaignsByNameDelete) | **Delete** /campaigns/{name} | Delete Campaign
+[**CampaignsByNameGet**](CampaignsAPI.md#CampaignsByNameGet) | **Get** /campaigns/{name} | Load Campaign
+[**CampaignsByNamePut**](CampaignsAPI.md#CampaignsByNamePut) | **Put** /campaigns/{name} | Update Campaign
+[**CampaignsGet**](CampaignsAPI.md#CampaignsGet) | **Get** /campaigns | Load Campaigns
+[**CampaignsPost**](CampaignsAPI.md#CampaignsPost) | **Post** /campaigns | Add Campaign
 
 
 
@@ -26,22 +26,22 @@ Delete Campaign
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "name_example" // string | Name of Campaign to delete
+	name := "name_example" // string | Name of Campaign to delete
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CampaignsApi.CampaignsByNameDelete(context.Background(), name).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CampaignsApi.CampaignsByNameDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CampaignsAPI.CampaignsByNameDelete(context.Background(), name).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CampaignsAPI.CampaignsByNameDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -94,24 +94,24 @@ Load Campaign
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "name_example" // string | Name of Campaign to get
+	name := "name_example" // string | Name of Campaign to get
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CampaignsApi.CampaignsByNameGet(context.Background(), name).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CampaignsApi.CampaignsByNameGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CampaignsByNameGet`: Campaign
-    fmt.Fprintf(os.Stdout, "Response from `CampaignsApi.CampaignsByNameGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CampaignsAPI.CampaignsByNameGet(context.Background(), name).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CampaignsAPI.CampaignsByNameGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CampaignsByNameGet`: Campaign
+	fmt.Fprintf(os.Stdout, "Response from `CampaignsAPI.CampaignsByNameGet`: %v\n", resp)
 }
 ```
 
@@ -164,25 +164,25 @@ Update Campaign
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "name_example" // string | Name of Campaign to update
-    campaign := *openapiclient.NewCampaign("Name_example", *openapiclient.NewCampaignRecipient()) // Campaign | JSON representation of a campaign
+	name := "name_example" // string | Name of Campaign to update
+	campaign := *openapiclient.NewCampaign("Name_example", *openapiclient.NewCampaignRecipient()) // Campaign | JSON representation of a campaign
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CampaignsApi.CampaignsByNamePut(context.Background(), name).Campaign(campaign).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CampaignsApi.CampaignsByNamePut``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CampaignsByNamePut`: Campaign
-    fmt.Fprintf(os.Stdout, "Response from `CampaignsApi.CampaignsByNamePut`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CampaignsAPI.CampaignsByNamePut(context.Background(), name).Campaign(campaign).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CampaignsAPI.CampaignsByNamePut``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CampaignsByNamePut`: Campaign
+	fmt.Fprintf(os.Stdout, "Response from `CampaignsAPI.CampaignsByNamePut`: %v\n", resp)
 }
 ```
 
@@ -236,26 +236,26 @@ Load Campaigns
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    search := "search_example" // string | Text fragment used for searching in Campaign name (using the 'contains' rule) (optional)
-    offset := int32(20) // int32 | How many items should be returned ahead. (optional)
-    limit := int32(100) // int32 | Maximum number of returned items. (optional)
+	search := "search_example" // string | Text fragment used for searching in Campaign name (using the 'contains' rule) (optional)
+	offset := int32(20) // int32 | How many items should be returned ahead. (optional)
+	limit := int32(100) // int32 | Maximum number of returned items. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CampaignsApi.CampaignsGet(context.Background()).Search(search).Offset(offset).Limit(limit).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CampaignsApi.CampaignsGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CampaignsGet`: []Campaign
-    fmt.Fprintf(os.Stdout, "Response from `CampaignsApi.CampaignsGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CampaignsAPI.CampaignsGet(context.Background()).Search(search).Offset(offset).Limit(limit).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CampaignsAPI.CampaignsGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CampaignsGet`: []Campaign
+	fmt.Fprintf(os.Stdout, "Response from `CampaignsAPI.CampaignsGet`: %v\n", resp)
 }
 ```
 
@@ -306,24 +306,24 @@ Add Campaign
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    campaign := *openapiclient.NewCampaign("Name_example", *openapiclient.NewCampaignRecipient()) // Campaign | JSON representation of a campaign
+	campaign := *openapiclient.NewCampaign("Name_example", *openapiclient.NewCampaignRecipient()) // Campaign | JSON representation of a campaign
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CampaignsApi.CampaignsPost(context.Background()).Campaign(campaign).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CampaignsApi.CampaignsPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CampaignsPost`: Campaign
-    fmt.Fprintf(os.Stdout, "Response from `CampaignsApi.CampaignsPost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CampaignsAPI.CampaignsPost(context.Background()).Campaign(campaign).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CampaignsAPI.CampaignsPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CampaignsPost`: Campaign
+	fmt.Fprintf(os.Stdout, "Response from `CampaignsAPI.CampaignsPost`: %v\n", resp)
 }
 ```
 

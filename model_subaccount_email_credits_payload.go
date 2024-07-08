@@ -13,6 +13,8 @@ package ElasticEmail
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the SubaccountEmailCreditsPayload type satisfies the MappedNullable interface at compile time
@@ -25,6 +27,8 @@ type SubaccountEmailCreditsPayload struct {
 	// Note to append to this credits change, for history.
 	Notes *string `json:"Notes,omitempty"`
 }
+
+type _SubaccountEmailCreditsPayload SubaccountEmailCreditsPayload
 
 // NewSubaccountEmailCreditsPayload instantiates a new SubaccountEmailCreditsPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -70,7 +74,7 @@ func (o *SubaccountEmailCreditsPayload) SetCredits(v int32) {
 
 // GetNotes returns the Notes field value if set, zero value otherwise.
 func (o *SubaccountEmailCreditsPayload) GetNotes() string {
-	if o == nil || isNil(o.Notes) {
+	if o == nil || IsNil(o.Notes) {
 		var ret string
 		return ret
 	}
@@ -80,7 +84,7 @@ func (o *SubaccountEmailCreditsPayload) GetNotes() string {
 // GetNotesOk returns a tuple with the Notes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubaccountEmailCreditsPayload) GetNotesOk() (*string, bool) {
-	if o == nil || isNil(o.Notes) {
+	if o == nil || IsNil(o.Notes) {
 		return nil, false
 	}
 	return o.Notes, true
@@ -88,7 +92,7 @@ func (o *SubaccountEmailCreditsPayload) GetNotesOk() (*string, bool) {
 
 // HasNotes returns a boolean if a field has been set.
 func (o *SubaccountEmailCreditsPayload) HasNotes() bool {
-	if o != nil && !isNil(o.Notes) {
+	if o != nil && !IsNil(o.Notes) {
 		return true
 	}
 
@@ -111,10 +115,47 @@ func (o SubaccountEmailCreditsPayload) MarshalJSON() ([]byte, error) {
 func (o SubaccountEmailCreditsPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["Credits"] = o.Credits
-	if !isNil(o.Notes) {
+	if !IsNil(o.Notes) {
 		toSerialize["Notes"] = o.Notes
 	}
 	return toSerialize, nil
+}
+
+func (o *SubaccountEmailCreditsPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"Credits",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSubaccountEmailCreditsPayload := _SubaccountEmailCreditsPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varSubaccountEmailCreditsPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SubaccountEmailCreditsPayload(varSubaccountEmailCreditsPayload)
+
+	return err
 }
 
 type NullableSubaccountEmailCreditsPayload struct {

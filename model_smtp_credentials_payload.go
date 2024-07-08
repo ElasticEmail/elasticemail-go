@@ -14,6 +14,8 @@ package ElasticEmail
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the SmtpCredentialsPayload type satisfies the MappedNullable interface at compile time
@@ -30,6 +32,8 @@ type SmtpCredentialsPayload struct {
 	// Email of the subaccount for which this SmtpCredential should be created
 	Subaccount *string `json:"Subaccount,omitempty"`
 }
+
+type _SmtpCredentialsPayload SmtpCredentialsPayload
 
 // NewSmtpCredentialsPayload instantiates a new SmtpCredentialsPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -75,7 +79,7 @@ func (o *SmtpCredentialsPayload) SetName(v string) {
 
 // GetExpires returns the Expires field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SmtpCredentialsPayload) GetExpires() time.Time {
-	if o == nil || isNil(o.Expires.Get()) {
+	if o == nil || IsNil(o.Expires.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -117,7 +121,7 @@ func (o *SmtpCredentialsPayload) UnsetExpires() {
 
 // GetRestrictAccessToIPRange returns the RestrictAccessToIPRange field value if set, zero value otherwise.
 func (o *SmtpCredentialsPayload) GetRestrictAccessToIPRange() []string {
-	if o == nil || isNil(o.RestrictAccessToIPRange) {
+	if o == nil || IsNil(o.RestrictAccessToIPRange) {
 		var ret []string
 		return ret
 	}
@@ -127,7 +131,7 @@ func (o *SmtpCredentialsPayload) GetRestrictAccessToIPRange() []string {
 // GetRestrictAccessToIPRangeOk returns a tuple with the RestrictAccessToIPRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SmtpCredentialsPayload) GetRestrictAccessToIPRangeOk() ([]string, bool) {
-	if o == nil || isNil(o.RestrictAccessToIPRange) {
+	if o == nil || IsNil(o.RestrictAccessToIPRange) {
 		return nil, false
 	}
 	return o.RestrictAccessToIPRange, true
@@ -135,7 +139,7 @@ func (o *SmtpCredentialsPayload) GetRestrictAccessToIPRangeOk() ([]string, bool)
 
 // HasRestrictAccessToIPRange returns a boolean if a field has been set.
 func (o *SmtpCredentialsPayload) HasRestrictAccessToIPRange() bool {
-	if o != nil && !isNil(o.RestrictAccessToIPRange) {
+	if o != nil && !IsNil(o.RestrictAccessToIPRange) {
 		return true
 	}
 
@@ -149,7 +153,7 @@ func (o *SmtpCredentialsPayload) SetRestrictAccessToIPRange(v []string) {
 
 // GetSubaccount returns the Subaccount field value if set, zero value otherwise.
 func (o *SmtpCredentialsPayload) GetSubaccount() string {
-	if o == nil || isNil(o.Subaccount) {
+	if o == nil || IsNil(o.Subaccount) {
 		var ret string
 		return ret
 	}
@@ -159,7 +163,7 @@ func (o *SmtpCredentialsPayload) GetSubaccount() string {
 // GetSubaccountOk returns a tuple with the Subaccount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SmtpCredentialsPayload) GetSubaccountOk() (*string, bool) {
-	if o == nil || isNil(o.Subaccount) {
+	if o == nil || IsNil(o.Subaccount) {
 		return nil, false
 	}
 	return o.Subaccount, true
@@ -167,7 +171,7 @@ func (o *SmtpCredentialsPayload) GetSubaccountOk() (*string, bool) {
 
 // HasSubaccount returns a boolean if a field has been set.
 func (o *SmtpCredentialsPayload) HasSubaccount() bool {
-	if o != nil && !isNil(o.Subaccount) {
+	if o != nil && !IsNil(o.Subaccount) {
 		return true
 	}
 
@@ -193,13 +197,50 @@ func (o SmtpCredentialsPayload) ToMap() (map[string]interface{}, error) {
 	if o.Expires.IsSet() {
 		toSerialize["Expires"] = o.Expires.Get()
 	}
-	if !isNil(o.RestrictAccessToIPRange) {
+	if !IsNil(o.RestrictAccessToIPRange) {
 		toSerialize["RestrictAccessToIPRange"] = o.RestrictAccessToIPRange
 	}
-	if !isNil(o.Subaccount) {
+	if !IsNil(o.Subaccount) {
 		toSerialize["Subaccount"] = o.Subaccount
 	}
 	return toSerialize, nil
+}
+
+func (o *SmtpCredentialsPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"Name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSmtpCredentialsPayload := _SmtpCredentialsPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varSmtpCredentialsPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SmtpCredentialsPayload(varSmtpCredentialsPayload)
+
+	return err
 }
 
 type NullableSmtpCredentialsPayload struct {

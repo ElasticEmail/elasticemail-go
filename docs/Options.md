@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **PoolName** | Pointer to **string** | Name of your custom IP Pool to be used in the sending process | [optional] 
 **ChannelName** | Pointer to **string** | Name of selected channel. | [optional] 
 **Encoding** | Pointer to [**EncodingType**](EncodingType.md) |  | [optional] [default to USER_PROVIDED]
-**TrackOpens** | Pointer to **bool** | Should the opens be tracked? If no value has been provided, Account&#39;s default setting will be used. | [optional] 
-**TrackClicks** | Pointer to **bool** | Should the clicks be tracked? If no value has been provided, Account&#39;s default setting will be used. | [optional] 
+**TrackOpens** | Pointer to **NullableBool** | Should the opens be tracked? If no value has been provided, Account&#39;s default setting will be used. | [optional] 
+**TrackClicks** | Pointer to **NullableBool** | Should the clicks be tracked? If no value has been provided, Account&#39;s default setting will be used. | [optional] 
 
 ## Methods
 
@@ -165,6 +165,16 @@ SetTrackOpens sets TrackOpens field to given value.
 
 HasTrackOpens returns a boolean if a field has been set.
 
+### SetTrackOpensNil
+
+`func (o *Options) SetTrackOpensNil(b bool)`
+
+ SetTrackOpensNil sets the value for TrackOpens to be an explicit nil
+
+### UnsetTrackOpens
+`func (o *Options) UnsetTrackOpens()`
+
+UnsetTrackOpens ensures that no value is present for TrackOpens, not even an explicit nil
 ### GetTrackClicks
 
 `func (o *Options) GetTrackClicks() bool`
@@ -190,6 +200,16 @@ SetTrackClicks sets TrackClicks field to given value.
 
 HasTrackClicks returns a boolean if a field has been set.
 
+### SetTrackClicksNil
+
+`func (o *Options) SetTrackClicksNil(b bool)`
+
+ SetTrackClicksNil sets the value for TrackClicks to be an explicit nil
+
+### UnsetTrackClicks
+`func (o *Options) UnsetTrackClicks()`
+
+UnsetTrackClicks ensures that no value is present for TrackClicks, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

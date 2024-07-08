@@ -1,19 +1,19 @@
-# \SecurityApi
+# \SecurityAPI
 
 All URIs are relative to *https://api.elasticemail.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**SecurityApikeysByNameDelete**](SecurityApi.md#SecurityApikeysByNameDelete) | **Delete** /security/apikeys/{name} | Delete ApiKey
-[**SecurityApikeysByNameGet**](SecurityApi.md#SecurityApikeysByNameGet) | **Get** /security/apikeys/{name} | Load ApiKey
-[**SecurityApikeysByNamePut**](SecurityApi.md#SecurityApikeysByNamePut) | **Put** /security/apikeys/{name} | Update ApiKey
-[**SecurityApikeysGet**](SecurityApi.md#SecurityApikeysGet) | **Get** /security/apikeys | List ApiKeys
-[**SecurityApikeysPost**](SecurityApi.md#SecurityApikeysPost) | **Post** /security/apikeys | Add ApiKey
-[**SecuritySmtpByNameDelete**](SecurityApi.md#SecuritySmtpByNameDelete) | **Delete** /security/smtp/{name} | Delete SMTP Credential
-[**SecuritySmtpByNameGet**](SecurityApi.md#SecuritySmtpByNameGet) | **Get** /security/smtp/{name} | Load SMTP Credential
-[**SecuritySmtpByNamePut**](SecurityApi.md#SecuritySmtpByNamePut) | **Put** /security/smtp/{name} | Update SMTP Credential
-[**SecuritySmtpGet**](SecurityApi.md#SecuritySmtpGet) | **Get** /security/smtp | List SMTP Credentials
-[**SecuritySmtpPost**](SecurityApi.md#SecuritySmtpPost) | **Post** /security/smtp | Add SMTP Credential
+[**SecurityApikeysByNameDelete**](SecurityAPI.md#SecurityApikeysByNameDelete) | **Delete** /security/apikeys/{name} | Delete ApiKey
+[**SecurityApikeysByNameGet**](SecurityAPI.md#SecurityApikeysByNameGet) | **Get** /security/apikeys/{name} | Load ApiKey
+[**SecurityApikeysByNamePut**](SecurityAPI.md#SecurityApikeysByNamePut) | **Put** /security/apikeys/{name} | Update ApiKey
+[**SecurityApikeysGet**](SecurityAPI.md#SecurityApikeysGet) | **Get** /security/apikeys | List ApiKeys
+[**SecurityApikeysPost**](SecurityAPI.md#SecurityApikeysPost) | **Post** /security/apikeys | Add ApiKey
+[**SecuritySmtpByNameDelete**](SecurityAPI.md#SecuritySmtpByNameDelete) | **Delete** /security/smtp/{name} | Delete SMTP Credential
+[**SecuritySmtpByNameGet**](SecurityAPI.md#SecuritySmtpByNameGet) | **Get** /security/smtp/{name} | Load SMTP Credential
+[**SecuritySmtpByNamePut**](SecurityAPI.md#SecuritySmtpByNamePut) | **Put** /security/smtp/{name} | Update SMTP Credential
+[**SecuritySmtpGet**](SecurityAPI.md#SecuritySmtpGet) | **Get** /security/smtp | List SMTP Credentials
+[**SecuritySmtpPost**](SecurityAPI.md#SecuritySmtpPost) | **Post** /security/smtp | Add SMTP Credential
 
 
 
@@ -31,23 +31,23 @@ Delete ApiKey
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "name_example" // string | Name of the ApiKey
-    subaccount := "subaccount_example" // string | Email of the subaccount of which ApiKey should be deleted (optional)
+	name := "name_example" // string | Name of the ApiKey
+	subaccount := "subaccount_example" // string | Email of the subaccount of which ApiKey should be deleted (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityApi.SecurityApikeysByNameDelete(context.Background(), name).Subaccount(subaccount).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecurityApikeysByNameDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.SecurityAPI.SecurityApikeysByNameDelete(context.Background(), name).Subaccount(subaccount).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityAPI.SecurityApikeysByNameDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -101,25 +101,25 @@ Load ApiKey
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "name_example" // string | Name of the ApiKey
-    subaccount := "subaccount_example" // string | Email of the subaccount of which ApiKey should be loaded (optional)
+	name := "name_example" // string | Name of the ApiKey
+	subaccount := "subaccount_example" // string | Email of the subaccount of which ApiKey should be loaded (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityApi.SecurityApikeysByNameGet(context.Background(), name).Subaccount(subaccount).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecurityApikeysByNameGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SecurityApikeysByNameGet`: ApiKey
-    fmt.Fprintf(os.Stdout, "Response from `SecurityApi.SecurityApikeysByNameGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SecurityAPI.SecurityApikeysByNameGet(context.Background(), name).Subaccount(subaccount).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityAPI.SecurityApikeysByNameGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SecurityApikeysByNameGet`: ApiKey
+	fmt.Fprintf(os.Stdout, "Response from `SecurityAPI.SecurityApikeysByNameGet`: %v\n", resp)
 }
 ```
 
@@ -173,25 +173,25 @@ Update ApiKey
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "name_example" // string | Name of the ApiKey
-    apiKeyPayload := *openapiclient.NewApiKeyPayload("Name_example", []openapiclient.AccessLevel{openapiclient.AccessLevel("None")}) // ApiKeyPayload | 
+	name := "name_example" // string | Name of the ApiKey
+	apiKeyPayload := *openapiclient.NewApiKeyPayload("Name_example", []openapiclient.AccessLevel{openapiclient.AccessLevel("None")}) // ApiKeyPayload | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityApi.SecurityApikeysByNamePut(context.Background(), name).ApiKeyPayload(apiKeyPayload).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecurityApikeysByNamePut``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SecurityApikeysByNamePut`: ApiKey
-    fmt.Fprintf(os.Stdout, "Response from `SecurityApi.SecurityApikeysByNamePut`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SecurityAPI.SecurityApikeysByNamePut(context.Background(), name).ApiKeyPayload(apiKeyPayload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityAPI.SecurityApikeysByNamePut``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SecurityApikeysByNamePut`: ApiKey
+	fmt.Fprintf(os.Stdout, "Response from `SecurityAPI.SecurityApikeysByNamePut`: %v\n", resp)
 }
 ```
 
@@ -245,24 +245,24 @@ List ApiKeys
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    subaccount := "subaccount_example" // string | Email of the subaccount of which ApiKeys should be loaded (optional)
+	subaccount := "subaccount_example" // string | Email of the subaccount of which ApiKeys should be loaded (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityApi.SecurityApikeysGet(context.Background()).Subaccount(subaccount).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecurityApikeysGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SecurityApikeysGet`: []ApiKey
-    fmt.Fprintf(os.Stdout, "Response from `SecurityApi.SecurityApikeysGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SecurityAPI.SecurityApikeysGet(context.Background()).Subaccount(subaccount).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityAPI.SecurityApikeysGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SecurityApikeysGet`: []ApiKey
+	fmt.Fprintf(os.Stdout, "Response from `SecurityAPI.SecurityApikeysGet`: %v\n", resp)
 }
 ```
 
@@ -311,24 +311,24 @@ Add ApiKey
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    apiKeyPayload := *openapiclient.NewApiKeyPayload("Name_example", []openapiclient.AccessLevel{openapiclient.AccessLevel("None")}) // ApiKeyPayload | 
+	apiKeyPayload := *openapiclient.NewApiKeyPayload("Name_example", []openapiclient.AccessLevel{openapiclient.AccessLevel("None")}) // ApiKeyPayload | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityApi.SecurityApikeysPost(context.Background()).ApiKeyPayload(apiKeyPayload).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecurityApikeysPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SecurityApikeysPost`: NewApiKey
-    fmt.Fprintf(os.Stdout, "Response from `SecurityApi.SecurityApikeysPost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SecurityAPI.SecurityApikeysPost(context.Background()).ApiKeyPayload(apiKeyPayload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityAPI.SecurityApikeysPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SecurityApikeysPost`: NewApiKey
+	fmt.Fprintf(os.Stdout, "Response from `SecurityAPI.SecurityApikeysPost`: %v\n", resp)
 }
 ```
 
@@ -377,23 +377,23 @@ Delete SMTP Credential
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "name_example" // string | Name of the SMTP Credential
-    subaccount := "subaccount_example" // string | Email of the subaccount of which credential should be deleted (optional)
+	name := "name_example" // string | Name of the SMTP Credential
+	subaccount := "subaccount_example" // string | Email of the subaccount of which credential should be deleted (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityApi.SecuritySmtpByNameDelete(context.Background(), name).Subaccount(subaccount).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecuritySmtpByNameDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.SecurityAPI.SecuritySmtpByNameDelete(context.Background(), name).Subaccount(subaccount).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityAPI.SecuritySmtpByNameDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -447,25 +447,25 @@ Load SMTP Credential
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "name_example" // string | Name of the SMTP Credential
-    subaccount := "subaccount_example" // string | Email of the subaccount of which credential should be loaded (optional)
+	name := "name_example" // string | Name of the SMTP Credential
+	subaccount := "subaccount_example" // string | Email of the subaccount of which credential should be loaded (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityApi.SecuritySmtpByNameGet(context.Background(), name).Subaccount(subaccount).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecuritySmtpByNameGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SecuritySmtpByNameGet`: SmtpCredentials
-    fmt.Fprintf(os.Stdout, "Response from `SecurityApi.SecuritySmtpByNameGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SecurityAPI.SecuritySmtpByNameGet(context.Background(), name).Subaccount(subaccount).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityAPI.SecuritySmtpByNameGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SecuritySmtpByNameGet`: SmtpCredentials
+	fmt.Fprintf(os.Stdout, "Response from `SecurityAPI.SecuritySmtpByNameGet`: %v\n", resp)
 }
 ```
 
@@ -519,25 +519,25 @@ Update SMTP Credential
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    name := "name_example" // string | Name of the SMTP Credential
-    smtpCredentialsPayload := *openapiclient.NewSmtpCredentialsPayload("Name_example") // SmtpCredentialsPayload | 
+	name := "name_example" // string | Name of the SMTP Credential
+	smtpCredentialsPayload := *openapiclient.NewSmtpCredentialsPayload("Name_example") // SmtpCredentialsPayload | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityApi.SecuritySmtpByNamePut(context.Background(), name).SmtpCredentialsPayload(smtpCredentialsPayload).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecuritySmtpByNamePut``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SecuritySmtpByNamePut`: SmtpCredentials
-    fmt.Fprintf(os.Stdout, "Response from `SecurityApi.SecuritySmtpByNamePut`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SecurityAPI.SecuritySmtpByNamePut(context.Background(), name).SmtpCredentialsPayload(smtpCredentialsPayload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityAPI.SecuritySmtpByNamePut``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SecuritySmtpByNamePut`: SmtpCredentials
+	fmt.Fprintf(os.Stdout, "Response from `SecurityAPI.SecuritySmtpByNamePut`: %v\n", resp)
 }
 ```
 
@@ -591,24 +591,24 @@ List SMTP Credentials
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    subaccount := "subaccount_example" // string | Email of the subaccount of which credentials should be listed (optional)
+	subaccount := "subaccount_example" // string | Email of the subaccount of which credentials should be listed (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityApi.SecuritySmtpGet(context.Background()).Subaccount(subaccount).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecuritySmtpGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SecuritySmtpGet`: []SmtpCredentials
-    fmt.Fprintf(os.Stdout, "Response from `SecurityApi.SecuritySmtpGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SecurityAPI.SecuritySmtpGet(context.Background()).Subaccount(subaccount).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityAPI.SecuritySmtpGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SecuritySmtpGet`: []SmtpCredentials
+	fmt.Fprintf(os.Stdout, "Response from `SecurityAPI.SecuritySmtpGet`: %v\n", resp)
 }
 ```
 
@@ -657,24 +657,24 @@ Add SMTP Credential
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
-    smtpCredentialsPayload := *openapiclient.NewSmtpCredentialsPayload("Name_example") // SmtpCredentialsPayload | 
+	smtpCredentialsPayload := *openapiclient.NewSmtpCredentialsPayload("Name_example") // SmtpCredentialsPayload | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityApi.SecuritySmtpPost(context.Background()).SmtpCredentialsPayload(smtpCredentialsPayload).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityApi.SecuritySmtpPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SecuritySmtpPost`: NewSmtpCredentials
-    fmt.Fprintf(os.Stdout, "Response from `SecurityApi.SecuritySmtpPost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SecurityAPI.SecuritySmtpPost(context.Background()).SmtpCredentialsPayload(smtpCredentialsPayload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityAPI.SecuritySmtpPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SecuritySmtpPost`: NewSmtpCredentials
+	fmt.Fprintf(os.Stdout, "Response from `SecurityAPI.SecuritySmtpPost`: %v\n", resp)
 }
 ```
 

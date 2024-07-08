@@ -28,9 +28,9 @@ type Options struct {
 	ChannelName *string `json:"ChannelName,omitempty"`
 	Encoding *EncodingType `json:"Encoding,omitempty"`
 	// Should the opens be tracked? If no value has been provided, Account's default setting will be used.
-	TrackOpens *bool `json:"TrackOpens,omitempty"`
+	TrackOpens NullableBool `json:"TrackOpens,omitempty"`
 	// Should the clicks be tracked? If no value has been provided, Account's default setting will be used.
-	TrackClicks *bool `json:"TrackClicks,omitempty"`
+	TrackClicks NullableBool `json:"TrackClicks,omitempty"`
 }
 
 // NewOptions instantiates a new Options object
@@ -56,7 +56,7 @@ func NewOptionsWithDefaults() *Options {
 
 // GetTimeOffset returns the TimeOffset field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Options) GetTimeOffset() int32 {
-	if o == nil || isNil(o.TimeOffset.Get()) {
+	if o == nil || IsNil(o.TimeOffset.Get()) {
 		var ret int32
 		return ret
 	}
@@ -98,7 +98,7 @@ func (o *Options) UnsetTimeOffset() {
 
 // GetPoolName returns the PoolName field value if set, zero value otherwise.
 func (o *Options) GetPoolName() string {
-	if o == nil || isNil(o.PoolName) {
+	if o == nil || IsNil(o.PoolName) {
 		var ret string
 		return ret
 	}
@@ -108,7 +108,7 @@ func (o *Options) GetPoolName() string {
 // GetPoolNameOk returns a tuple with the PoolName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Options) GetPoolNameOk() (*string, bool) {
-	if o == nil || isNil(o.PoolName) {
+	if o == nil || IsNil(o.PoolName) {
 		return nil, false
 	}
 	return o.PoolName, true
@@ -116,7 +116,7 @@ func (o *Options) GetPoolNameOk() (*string, bool) {
 
 // HasPoolName returns a boolean if a field has been set.
 func (o *Options) HasPoolName() bool {
-	if o != nil && !isNil(o.PoolName) {
+	if o != nil && !IsNil(o.PoolName) {
 		return true
 	}
 
@@ -130,7 +130,7 @@ func (o *Options) SetPoolName(v string) {
 
 // GetChannelName returns the ChannelName field value if set, zero value otherwise.
 func (o *Options) GetChannelName() string {
-	if o == nil || isNil(o.ChannelName) {
+	if o == nil || IsNil(o.ChannelName) {
 		var ret string
 		return ret
 	}
@@ -140,7 +140,7 @@ func (o *Options) GetChannelName() string {
 // GetChannelNameOk returns a tuple with the ChannelName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Options) GetChannelNameOk() (*string, bool) {
-	if o == nil || isNil(o.ChannelName) {
+	if o == nil || IsNil(o.ChannelName) {
 		return nil, false
 	}
 	return o.ChannelName, true
@@ -148,7 +148,7 @@ func (o *Options) GetChannelNameOk() (*string, bool) {
 
 // HasChannelName returns a boolean if a field has been set.
 func (o *Options) HasChannelName() bool {
-	if o != nil && !isNil(o.ChannelName) {
+	if o != nil && !IsNil(o.ChannelName) {
 		return true
 	}
 
@@ -162,7 +162,7 @@ func (o *Options) SetChannelName(v string) {
 
 // GetEncoding returns the Encoding field value if set, zero value otherwise.
 func (o *Options) GetEncoding() EncodingType {
-	if o == nil || isNil(o.Encoding) {
+	if o == nil || IsNil(o.Encoding) {
 		var ret EncodingType
 		return ret
 	}
@@ -172,7 +172,7 @@ func (o *Options) GetEncoding() EncodingType {
 // GetEncodingOk returns a tuple with the Encoding field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Options) GetEncodingOk() (*EncodingType, bool) {
-	if o == nil || isNil(o.Encoding) {
+	if o == nil || IsNil(o.Encoding) {
 		return nil, false
 	}
 	return o.Encoding, true
@@ -180,7 +180,7 @@ func (o *Options) GetEncodingOk() (*EncodingType, bool) {
 
 // HasEncoding returns a boolean if a field has been set.
 func (o *Options) HasEncoding() bool {
-	if o != nil && !isNil(o.Encoding) {
+	if o != nil && !IsNil(o.Encoding) {
 		return true
 	}
 
@@ -192,68 +192,88 @@ func (o *Options) SetEncoding(v EncodingType) {
 	o.Encoding = &v
 }
 
-// GetTrackOpens returns the TrackOpens field value if set, zero value otherwise.
+// GetTrackOpens returns the TrackOpens field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Options) GetTrackOpens() bool {
-	if o == nil || isNil(o.TrackOpens) {
+	if o == nil || IsNil(o.TrackOpens.Get()) {
 		var ret bool
 		return ret
 	}
-	return *o.TrackOpens
+	return *o.TrackOpens.Get()
 }
 
 // GetTrackOpensOk returns a tuple with the TrackOpens field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Options) GetTrackOpensOk() (*bool, bool) {
-	if o == nil || isNil(o.TrackOpens) {
+	if o == nil {
 		return nil, false
 	}
-	return o.TrackOpens, true
+	return o.TrackOpens.Get(), o.TrackOpens.IsSet()
 }
 
 // HasTrackOpens returns a boolean if a field has been set.
 func (o *Options) HasTrackOpens() bool {
-	if o != nil && !isNil(o.TrackOpens) {
+	if o != nil && o.TrackOpens.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetTrackOpens gets a reference to the given bool and assigns it to the TrackOpens field.
+// SetTrackOpens gets a reference to the given NullableBool and assigns it to the TrackOpens field.
 func (o *Options) SetTrackOpens(v bool) {
-	o.TrackOpens = &v
+	o.TrackOpens.Set(&v)
+}
+// SetTrackOpensNil sets the value for TrackOpens to be an explicit nil
+func (o *Options) SetTrackOpensNil() {
+	o.TrackOpens.Set(nil)
 }
 
-// GetTrackClicks returns the TrackClicks field value if set, zero value otherwise.
+// UnsetTrackOpens ensures that no value is present for TrackOpens, not even an explicit nil
+func (o *Options) UnsetTrackOpens() {
+	o.TrackOpens.Unset()
+}
+
+// GetTrackClicks returns the TrackClicks field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Options) GetTrackClicks() bool {
-	if o == nil || isNil(o.TrackClicks) {
+	if o == nil || IsNil(o.TrackClicks.Get()) {
 		var ret bool
 		return ret
 	}
-	return *o.TrackClicks
+	return *o.TrackClicks.Get()
 }
 
 // GetTrackClicksOk returns a tuple with the TrackClicks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Options) GetTrackClicksOk() (*bool, bool) {
-	if o == nil || isNil(o.TrackClicks) {
+	if o == nil {
 		return nil, false
 	}
-	return o.TrackClicks, true
+	return o.TrackClicks.Get(), o.TrackClicks.IsSet()
 }
 
 // HasTrackClicks returns a boolean if a field has been set.
 func (o *Options) HasTrackClicks() bool {
-	if o != nil && !isNil(o.TrackClicks) {
+	if o != nil && o.TrackClicks.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetTrackClicks gets a reference to the given bool and assigns it to the TrackClicks field.
+// SetTrackClicks gets a reference to the given NullableBool and assigns it to the TrackClicks field.
 func (o *Options) SetTrackClicks(v bool) {
-	o.TrackClicks = &v
+	o.TrackClicks.Set(&v)
+}
+// SetTrackClicksNil sets the value for TrackClicks to be an explicit nil
+func (o *Options) SetTrackClicksNil() {
+	o.TrackClicks.Set(nil)
+}
+
+// UnsetTrackClicks ensures that no value is present for TrackClicks, not even an explicit nil
+func (o *Options) UnsetTrackClicks() {
+	o.TrackClicks.Unset()
 }
 
 func (o Options) MarshalJSON() ([]byte, error) {
@@ -269,20 +289,20 @@ func (o Options) ToMap() (map[string]interface{}, error) {
 	if o.TimeOffset.IsSet() {
 		toSerialize["TimeOffset"] = o.TimeOffset.Get()
 	}
-	if !isNil(o.PoolName) {
+	if !IsNil(o.PoolName) {
 		toSerialize["PoolName"] = o.PoolName
 	}
-	if !isNil(o.ChannelName) {
+	if !IsNil(o.ChannelName) {
 		toSerialize["ChannelName"] = o.ChannelName
 	}
-	if !isNil(o.Encoding) {
+	if !IsNil(o.Encoding) {
 		toSerialize["Encoding"] = o.Encoding
 	}
-	if !isNil(o.TrackOpens) {
-		toSerialize["TrackOpens"] = o.TrackOpens
+	if o.TrackOpens.IsSet() {
+		toSerialize["TrackOpens"] = o.TrackOpens.Get()
 	}
-	if !isNil(o.TrackClicks) {
-		toSerialize["TrackClicks"] = o.TrackClicks
+	if o.TrackClicks.IsSet() {
+		toSerialize["TrackClicks"] = o.TrackClicks.Get()
 	}
 	return toSerialize, nil
 }

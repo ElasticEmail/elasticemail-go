@@ -91,8 +91,6 @@
 
 * `MODIFY2_FA_SMS` (value: `"Modify2FASms"`)
 
-* `DISABLE_CONTACTS_STORE` (value: `"DisableContactsStore"`)
-
 * `MODIFY_LANDING_PAGES` (value: `"ModifyLandingPages"`)
 
 * `VIEW_LANDING_PAGES` (value: `"ViewLandingPages"`)
@@ -104,6 +102,8 @@
 * `VIEW_DRAG_DROP_EDITOR` (value: `"ViewDragDropEditor"`)
 
 * `VIEW_TEMPLATE_EDITOR` (value: `"ViewTemplateEditor"`)
+
+* `VIEW_AI_TOOLS` (value: `"ViewAITools"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
