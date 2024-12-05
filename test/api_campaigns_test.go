@@ -49,6 +49,19 @@ func Test_ElasticEmail_CampaignsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test CampaignsAPIService CampaignsByNamePausePut", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var name string
+
+		httpRes, err := apiClient.CampaignsAPI.CampaignsByNamePausePut(context.Background(), name).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test CampaignsAPIService CampaignsByNamePut", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

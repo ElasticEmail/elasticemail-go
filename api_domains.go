@@ -21,51 +21,51 @@ import (
 )
 
 
-// CampaignsAPIService CampaignsAPI service
-type CampaignsAPIService service
+// DomainsAPIService DomainsAPI service
+type DomainsAPIService service
 
-type ApiCampaignsByNameDeleteRequest struct {
+type ApiDomainsByDomainDeleteRequest struct {
 	ctx context.Context
-	ApiService *CampaignsAPIService
-	name string
+	ApiService *DomainsAPIService
+	domain string
 }
 
-func (r ApiCampaignsByNameDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.CampaignsByNameDeleteExecute(r)
+func (r ApiDomainsByDomainDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DomainsByDomainDeleteExecute(r)
 }
 
 /*
-CampaignsByNameDelete Delete Campaign
+DomainsByDomainDelete Delete Domain
 
-Delete the specific campaign.  This does not cancel in progress email, see Cancel In Progress. Required Access Level: ModifyCampaigns
+Deletes configured domain from Account. Required Access Level: ModifySettings
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param name Name of Campaign to delete
- @return ApiCampaignsByNameDeleteRequest
+ @param domain Name of the given domain
+ @return ApiDomainsByDomainDeleteRequest
 */
-func (a *CampaignsAPIService) CampaignsByNameDelete(ctx context.Context, name string) ApiCampaignsByNameDeleteRequest {
-	return ApiCampaignsByNameDeleteRequest{
+func (a *DomainsAPIService) DomainsByDomainDelete(ctx context.Context, domain string) ApiDomainsByDomainDeleteRequest {
+	return ApiDomainsByDomainDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
-		name: name,
+		domain: domain,
 	}
 }
 
 // Execute executes the request
-func (a *CampaignsAPIService) CampaignsByNameDeleteExecute(r ApiCampaignsByNameDeleteRequest) (*http.Response, error) {
+func (a *DomainsAPIService) DomainsByDomainDeleteExecute(r ApiDomainsByDomainDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsAPIService.CampaignsByNameDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DomainsAPIService.DomainsByDomainDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/campaigns/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
+	localVarPath := localBasePath + "/domains/{domain}"
+	localVarPath = strings.Replace(localVarPath, "{"+"domain"+"}", url.PathEscape(parameterValueToString(r.domain, "domain")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -130,50 +130,50 @@ func (a *CampaignsAPIService) CampaignsByNameDeleteExecute(r ApiCampaignsByNameD
 	return localVarHTTPResponse, nil
 }
 
-type ApiCampaignsByNameGetRequest struct {
+type ApiDomainsByDomainGetRequest struct {
 	ctx context.Context
-	ApiService *CampaignsAPIService
-	name string
+	ApiService *DomainsAPIService
+	domain string
 }
 
-func (r ApiCampaignsByNameGetRequest) Execute() (*Campaign, *http.Response, error) {
-	return r.ApiService.CampaignsByNameGetExecute(r)
+func (r ApiDomainsByDomainGetRequest) Execute() (*DomainData, *http.Response, error) {
+	return r.ApiService.DomainsByDomainGetExecute(r)
 }
 
 /*
-CampaignsByNameGet Load Campaign
+DomainsByDomainGet Load Domain
 
-Returns the specified campaign details. Required Access Level: ViewCampaigns
+Retrieve a domain configured for this Account. Required Access Level: ViewSettings
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param name Name of Campaign to get
- @return ApiCampaignsByNameGetRequest
+ @param domain Name of the given domain
+ @return ApiDomainsByDomainGetRequest
 */
-func (a *CampaignsAPIService) CampaignsByNameGet(ctx context.Context, name string) ApiCampaignsByNameGetRequest {
-	return ApiCampaignsByNameGetRequest{
+func (a *DomainsAPIService) DomainsByDomainGet(ctx context.Context, domain string) ApiDomainsByDomainGetRequest {
+	return ApiDomainsByDomainGetRequest{
 		ApiService: a,
 		ctx: ctx,
-		name: name,
+		domain: domain,
 	}
 }
 
 // Execute executes the request
-//  @return Campaign
-func (a *CampaignsAPIService) CampaignsByNameGetExecute(r ApiCampaignsByNameGetRequest) (*Campaign, *http.Response, error) {
+//  @return DomainData
+func (a *DomainsAPIService) DomainsByDomainGetExecute(r ApiDomainsByDomainGetRequest) (*DomainData, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Campaign
+		localVarReturnValue  *DomainData
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsAPIService.CampaignsByNameGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DomainsAPIService.DomainsByDomainGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/campaigns/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
+	localVarPath := localBasePath + "/domains/{domain}"
+	localVarPath = strings.Replace(localVarPath, "{"+"domain"+"}", url.PathEscape(parameterValueToString(r.domain, "domain")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -247,169 +247,63 @@ func (a *CampaignsAPIService) CampaignsByNameGetExecute(r ApiCampaignsByNameGetR
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCampaignsByNamePausePutRequest struct {
+type ApiDomainsByDomainPutRequest struct {
 	ctx context.Context
-	ApiService *CampaignsAPIService
-	name string
+	ApiService *DomainsAPIService
+	domain string
+	domainUpdatePayload *DomainUpdatePayload
 }
 
-func (r ApiCampaignsByNamePausePutRequest) Execute() (*http.Response, error) {
-	return r.ApiService.CampaignsByNamePausePutExecute(r)
-}
-
-/*
-CampaignsByNamePausePut Pause Campaign
-
-Pauses the specific campaign, cancelling emails that are waiting to be sent. Required Access Level: ModifyCampaigns
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param name Name of Campaign to pause
- @return ApiCampaignsByNamePausePutRequest
-*/
-func (a *CampaignsAPIService) CampaignsByNamePausePut(ctx context.Context, name string) ApiCampaignsByNamePausePutRequest {
-	return ApiCampaignsByNamePausePutRequest{
-		ApiService: a,
-		ctx: ctx,
-		name: name,
-	}
-}
-
-// Execute executes the request
-func (a *CampaignsAPIService) CampaignsByNamePausePutExecute(r ApiCampaignsByNamePausePutRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsAPIService.CampaignsByNamePausePut")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/campaigns/{name}/pause"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apikey"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-ElasticEmail-ApiKey"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiCampaignsByNamePutRequest struct {
-	ctx context.Context
-	ApiService *CampaignsAPIService
-	name string
-	campaign *Campaign
-}
-
-// JSON representation of a campaign
-func (r ApiCampaignsByNamePutRequest) Campaign(campaign Campaign) ApiCampaignsByNamePutRequest {
-	r.campaign = &campaign
+// Updated Domain resource
+func (r ApiDomainsByDomainPutRequest) DomainUpdatePayload(domainUpdatePayload DomainUpdatePayload) ApiDomainsByDomainPutRequest {
+	r.domainUpdatePayload = &domainUpdatePayload
 	return r
 }
 
-func (r ApiCampaignsByNamePutRequest) Execute() (*Campaign, *http.Response, error) {
-	return r.ApiService.CampaignsByNamePutExecute(r)
+func (r ApiDomainsByDomainPutRequest) Execute() (*DomainDetail, *http.Response, error) {
+	return r.ApiService.DomainsByDomainPutExecute(r)
 }
 
 /*
-CampaignsByNamePut Update Campaign
+DomainsByDomainPut Update Domain
 
-Updates a previously added campaign.  Only Active and Paused campaigns can be updated. Required Access Level: ModifyCampaigns
+Updates the specified domain. Required Access Level: ModifySettings
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param name Name of Campaign to update
- @return ApiCampaignsByNamePutRequest
+ @param domain Name of the given domain
+ @return ApiDomainsByDomainPutRequest
 */
-func (a *CampaignsAPIService) CampaignsByNamePut(ctx context.Context, name string) ApiCampaignsByNamePutRequest {
-	return ApiCampaignsByNamePutRequest{
+func (a *DomainsAPIService) DomainsByDomainPut(ctx context.Context, domain string) ApiDomainsByDomainPutRequest {
+	return ApiDomainsByDomainPutRequest{
 		ApiService: a,
 		ctx: ctx,
-		name: name,
+		domain: domain,
 	}
 }
 
 // Execute executes the request
-//  @return Campaign
-func (a *CampaignsAPIService) CampaignsByNamePutExecute(r ApiCampaignsByNamePutRequest) (*Campaign, *http.Response, error) {
+//  @return DomainDetail
+func (a *DomainsAPIService) DomainsByDomainPutExecute(r ApiDomainsByDomainPutRequest) (*DomainDetail, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Campaign
+		localVarReturnValue  *DomainDetail
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsAPIService.CampaignsByNamePut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DomainsAPIService.DomainsByDomainPut")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/campaigns/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
+	localVarPath := localBasePath + "/domains/{domain}"
+	localVarPath = strings.Replace(localVarPath, "{"+"domain"+"}", url.PathEscape(parameterValueToString(r.domain, "domain")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.campaign == nil {
-		return localVarReturnValue, nil, reportError("campaign is required and must be specified")
+	if r.domainUpdatePayload == nil {
+		return localVarReturnValue, nil, reportError("domainUpdatePayload is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -430,7 +324,7 @@ func (a *CampaignsAPIService) CampaignsByNamePutExecute(r ApiCampaignsByNamePutR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.campaign
+	localVarPostBody = r.domainUpdatePayload
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -482,81 +376,55 @@ func (a *CampaignsAPIService) CampaignsByNamePutExecute(r ApiCampaignsByNamePutR
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCampaignsGetRequest struct {
+type ApiDomainsByDomainRestrictedGetRequest struct {
 	ctx context.Context
-	ApiService *CampaignsAPIService
-	search *string
-	offset *int32
-	limit *int32
+	ApiService *DomainsAPIService
+	domain string
 }
 
-// Text fragment used for searching in Campaign name (using the &#39;contains&#39; rule)
-func (r ApiCampaignsGetRequest) Search(search string) ApiCampaignsGetRequest {
-	r.search = &search
-	return r
-}
-
-// How many items should be returned ahead.
-func (r ApiCampaignsGetRequest) Offset(offset int32) ApiCampaignsGetRequest {
-	r.offset = &offset
-	return r
-}
-
-// Maximum number of returned items.
-func (r ApiCampaignsGetRequest) Limit(limit int32) ApiCampaignsGetRequest {
-	r.limit = &limit
-	return r
-}
-
-func (r ApiCampaignsGetRequest) Execute() ([]Campaign, *http.Response, error) {
-	return r.ApiService.CampaignsGetExecute(r)
+func (r ApiDomainsByDomainRestrictedGetRequest) Execute() (bool, *http.Response, error) {
+	return r.ApiService.DomainsByDomainRestrictedGetExecute(r)
 }
 
 /*
-CampaignsGet Load Campaigns
+DomainsByDomainRestrictedGet Check for domain restriction
 
-Returns a list all of your campaigns. Limited to 1000 results. Required Access Level: ViewCampaigns
+Checking if domain is from free provider, or restricted. Required Access Level: ViewSettings
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCampaignsGetRequest
+ @param domain Name of the given domain
+ @return ApiDomainsByDomainRestrictedGetRequest
 */
-func (a *CampaignsAPIService) CampaignsGet(ctx context.Context) ApiCampaignsGetRequest {
-	return ApiCampaignsGetRequest{
+func (a *DomainsAPIService) DomainsByDomainRestrictedGet(ctx context.Context, domain string) ApiDomainsByDomainRestrictedGetRequest {
+	return ApiDomainsByDomainRestrictedGetRequest{
 		ApiService: a,
 		ctx: ctx,
+		domain: domain,
 	}
 }
 
 // Execute executes the request
-//  @return []Campaign
-func (a *CampaignsAPIService) CampaignsGetExecute(r ApiCampaignsGetRequest) ([]Campaign, *http.Response, error) {
+//  @return bool
+func (a *DomainsAPIService) DomainsByDomainRestrictedGetExecute(r ApiDomainsByDomainRestrictedGetRequest) (bool, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []Campaign
+		localVarReturnValue  bool
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsAPIService.CampaignsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DomainsAPIService.DomainsByDomainRestrictedGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/campaigns"
+	localVarPath := localBasePath + "/domains/{domain}/restricted"
+	localVarPath = strings.Replace(localVarPath, "{"+"domain"+"}", url.PathEscape(parameterValueToString(r.domain, "domain")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
-	}
-	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
-	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -625,59 +493,418 @@ func (a *CampaignsAPIService) CampaignsGetExecute(r ApiCampaignsGetRequest) ([]C
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCampaignsPostRequest struct {
+type ApiDomainsByDomainVerificationPutRequest struct {
 	ctx context.Context
-	ApiService *CampaignsAPIService
-	campaign *Campaign
+	ApiService *DomainsAPIService
+	domain string
+	body *string
 }
 
-// JSON representation of a campaign
-func (r ApiCampaignsPostRequest) Campaign(campaign Campaign) ApiCampaignsPostRequest {
-	r.campaign = &campaign
+// Tracking type used in the Tracking verification
+func (r ApiDomainsByDomainVerificationPutRequest) Body(body string) ApiDomainsByDomainVerificationPutRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiCampaignsPostRequest) Execute() (*Campaign, *http.Response, error) {
-	return r.ApiService.CampaignsPostExecute(r)
+func (r ApiDomainsByDomainVerificationPutRequest) Execute() (*DomainData, *http.Response, error) {
+	return r.ApiService.DomainsByDomainVerificationPutExecute(r)
 }
 
 /*
-CampaignsPost Add Campaign
+DomainsByDomainVerificationPut Verify Domain
 
-Add a campaign for processing. Required Access Level: ModifyCampaigns
+Verifies that required DNS records exist for specified domain. Required Access Level: ModifySettings
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCampaignsPostRequest
+ @param domain Name of the given domain
+ @return ApiDomainsByDomainVerificationPutRequest
 */
-func (a *CampaignsAPIService) CampaignsPost(ctx context.Context) ApiCampaignsPostRequest {
-	return ApiCampaignsPostRequest{
+func (a *DomainsAPIService) DomainsByDomainVerificationPut(ctx context.Context, domain string) ApiDomainsByDomainVerificationPutRequest {
+	return ApiDomainsByDomainVerificationPutRequest{
+		ApiService: a,
+		ctx: ctx,
+		domain: domain,
+	}
+}
+
+// Execute executes the request
+//  @return DomainData
+func (a *DomainsAPIService) DomainsByDomainVerificationPutExecute(r ApiDomainsByDomainVerificationPutRequest) (*DomainData, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DomainData
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DomainsAPIService.DomainsByDomainVerificationPut")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/domains/{domain}/verification"
+	localVarPath = strings.Replace(localVarPath, "{"+"domain"+"}", url.PathEscape(parameterValueToString(r.domain, "domain")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apikey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-ElasticEmail-ApiKey"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDomainsByEmailDefaultPatchRequest struct {
+	ctx context.Context
+	ApiService *DomainsAPIService
+	email string
+}
+
+func (r ApiDomainsByEmailDefaultPatchRequest) Execute() (*DomainDetail, *http.Response, error) {
+	return r.ApiService.DomainsByEmailDefaultPatchExecute(r)
+}
+
+/*
+DomainsByEmailDefaultPatch Set Default
+
+Sets a verified email address as default sender. Required Access Level: ModifySettings
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param email Default email sender, example: mail@yourdomain.com
+ @return ApiDomainsByEmailDefaultPatchRequest
+*/
+func (a *DomainsAPIService) DomainsByEmailDefaultPatch(ctx context.Context, email string) ApiDomainsByEmailDefaultPatchRequest {
+	return ApiDomainsByEmailDefaultPatchRequest{
+		ApiService: a,
+		ctx: ctx,
+		email: email,
+	}
+}
+
+// Execute executes the request
+//  @return DomainDetail
+func (a *DomainsAPIService) DomainsByEmailDefaultPatchExecute(r ApiDomainsByEmailDefaultPatchRequest) (*DomainDetail, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DomainDetail
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DomainsAPIService.DomainsByEmailDefaultPatch")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/domains/{email}/default"
+	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterValueToString(r.email, "email")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apikey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-ElasticEmail-ApiKey"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDomainsGetRequest struct {
+	ctx context.Context
+	ApiService *DomainsAPIService
+}
+
+func (r ApiDomainsGetRequest) Execute() ([]DomainDetail, *http.Response, error) {
+	return r.ApiService.DomainsGetExecute(r)
+}
+
+/*
+DomainsGet Load Domains
+
+Returns a list of all domains configured for this Account. Required Access Level: ViewSettings
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiDomainsGetRequest
+*/
+func (a *DomainsAPIService) DomainsGet(ctx context.Context) ApiDomainsGetRequest {
+	return ApiDomainsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Campaign
-func (a *CampaignsAPIService) CampaignsPostExecute(r ApiCampaignsPostRequest) (*Campaign, *http.Response, error) {
+//  @return []DomainDetail
+func (a *DomainsAPIService) DomainsGetExecute(r ApiDomainsGetRequest) ([]DomainDetail, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []DomainDetail
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DomainsAPIService.DomainsGet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/domains"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apikey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-ElasticEmail-ApiKey"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDomainsPostRequest struct {
+	ctx context.Context
+	ApiService *DomainsAPIService
+	domainPayload *DomainPayload
+}
+
+// Domain to add
+func (r ApiDomainsPostRequest) DomainPayload(domainPayload DomainPayload) ApiDomainsPostRequest {
+	r.domainPayload = &domainPayload
+	return r
+}
+
+func (r ApiDomainsPostRequest) Execute() (*DomainDetail, *http.Response, error) {
+	return r.ApiService.DomainsPostExecute(r)
+}
+
+/*
+DomainsPost Add Domain
+
+Add new domain to Account. Required Access Level: ModifySettings
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiDomainsPostRequest
+*/
+func (a *DomainsAPIService) DomainsPost(ctx context.Context) ApiDomainsPostRequest {
+	return ApiDomainsPostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return DomainDetail
+func (a *DomainsAPIService) DomainsPostExecute(r ApiDomainsPostRequest) (*DomainDetail, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Campaign
+		localVarReturnValue  *DomainDetail
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsAPIService.CampaignsPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DomainsAPIService.DomainsPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/campaigns"
+	localVarPath := localBasePath + "/domains"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.campaign == nil {
-		return localVarReturnValue, nil, reportError("campaign is required and must be specified")
+	if r.domainPayload == nil {
+		return localVarReturnValue, nil, reportError("domainPayload is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -698,7 +925,7 @@ func (a *CampaignsAPIService) CampaignsPostExecute(r ApiCampaignsPostRequest) (*
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.campaign
+	localVarPostBody = r.domainPayload
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

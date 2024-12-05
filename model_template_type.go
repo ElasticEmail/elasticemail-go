@@ -26,6 +26,7 @@ const (
 	LANDING_PAGE_EDITOR TemplateType = "LandingPageEditor"
 	TEMPLATE_EDITOR TemplateType = "TemplateEditor"
 	FORM_TEMPLATE TemplateType = "FormTemplate"
+	LANDING_PAGE_TEMPLATE TemplateType = "LandingPageTemplate"
 )
 
 // All allowed values of TemplateType enum
@@ -35,6 +36,7 @@ var AllowedTemplateTypeEnumValues = []TemplateType{
 	"LandingPageEditor",
 	"TemplateEditor",
 	"FormTemplate",
+	"LandingPageTemplate",
 }
 
 func (v *TemplateType) UnmarshalJSON(src []byte) error {

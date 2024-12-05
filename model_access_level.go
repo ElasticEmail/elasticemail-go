@@ -72,6 +72,7 @@ const (
 	VIEW_DRAG_DROP_EDITOR AccessLevel = "ViewDragDropEditor"
 	VIEW_TEMPLATE_EDITOR AccessLevel = "ViewTemplateEditor"
 	VIEW_AI_TOOLS AccessLevel = "ViewAITools"
+	MODIFY_SUBSCRIPTION_ANTI_SPAM AccessLevel = "ModifySubscriptionAntiSpam"
 )
 
 // All allowed values of AccessLevel enum
@@ -127,6 +128,7 @@ var AllowedAccessLevelEnumValues = []AccessLevel{
 	"ViewDragDropEditor",
 	"ViewTemplateEditor",
 	"ViewAITools",
+	"ModifySubscriptionAntiSpam",
 }
 
 func (v *AccessLevel) UnmarshalJSON(src []byte) error {

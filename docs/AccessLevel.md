@@ -105,6 +105,8 @@
 
 * `VIEW_AI_TOOLS` (value: `"ViewAITools"`)
 
+* `MODIFY_SUBSCRIPTION_ANTI_SPAM` (value: `"ModifySubscriptionAntiSpam"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

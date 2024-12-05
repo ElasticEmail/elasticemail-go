@@ -44,6 +44,7 @@ type EmailStatus struct {
 	TransactionID *string `json:"TransactionID,omitempty"`
 	// Envelope from address
 	EnvelopeFrom *string `json:"EnvelopeFrom,omitempty"`
+	ErrorCategory *MessageCategoryEnum `json:"ErrorCategory,omitempty"`
 }
 
 // NewEmailStatus instantiates a new EmailStatus object
@@ -54,6 +55,8 @@ func NewEmailStatus() *EmailStatus {
 	this := EmailStatus{}
 	var status LogJobStatus = ALL
 	this.Status = &status
+	var errorCategory MessageCategoryEnum = UNKNOWN
+	this.ErrorCategory = &errorCategory
 	return &this
 }
 
@@ -64,6 +67,8 @@ func NewEmailStatusWithDefaults() *EmailStatus {
 	this := EmailStatus{}
 	var status LogJobStatus = ALL
 	this.Status = &status
+	var errorCategory MessageCategoryEnum = UNKNOWN
+	this.ErrorCategory = &errorCategory
 	return &this
 }
 
@@ -471,6 +476,38 @@ func (o *EmailStatus) SetEnvelopeFrom(v string) {
 	o.EnvelopeFrom = &v
 }
 
+// GetErrorCategory returns the ErrorCategory field value if set, zero value otherwise.
+func (o *EmailStatus) GetErrorCategory() MessageCategoryEnum {
+	if o == nil || IsNil(o.ErrorCategory) {
+		var ret MessageCategoryEnum
+		return ret
+	}
+	return *o.ErrorCategory
+}
+
+// GetErrorCategoryOk returns a tuple with the ErrorCategory field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EmailStatus) GetErrorCategoryOk() (*MessageCategoryEnum, bool) {
+	if o == nil || IsNil(o.ErrorCategory) {
+		return nil, false
+	}
+	return o.ErrorCategory, true
+}
+
+// HasErrorCategory returns a boolean if a field has been set.
+func (o *EmailStatus) HasErrorCategory() bool {
+	if o != nil && !IsNil(o.ErrorCategory) {
+		return true
+	}
+
+	return false
+}
+
+// SetErrorCategory gets a reference to the given MessageCategoryEnum and assigns it to the ErrorCategory field.
+func (o *EmailStatus) SetErrorCategory(v MessageCategoryEnum) {
+	o.ErrorCategory = &v
+}
+
 func (o EmailStatus) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -516,6 +553,9 @@ func (o EmailStatus) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.EnvelopeFrom) {
 		toSerialize["EnvelopeFrom"] = o.EnvelopeFrom
+	}
+	if !IsNil(o.ErrorCategory) {
+		toSerialize["ErrorCategory"] = o.ErrorCategory
 	}
 	return toSerialize, nil
 }

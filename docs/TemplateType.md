@@ -13,6 +13,8 @@
 
 * `FORM_TEMPLATE` (value: `"FormTemplate"`)
 
+* `LANDING_PAGE_TEMPLATE` (value: `"LandingPageTemplate"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **ErrorMessage** | Pointer to **string** | Detailed error or bounced message. | [optional] 
 **TransactionID** | Pointer to **string** | ID number of transaction | [optional] 
 **EnvelopeFrom** | Pointer to **string** | Envelope from address | [optional] 
+**ErrorCategory** | Pointer to [**MessageCategoryEnum**](MessageCategoryEnum.md) |  | [optional] [default to UNKNOWN]
 
 ## Methods
 
@@ -355,6 +356,31 @@ SetEnvelopeFrom sets EnvelopeFrom field to given value.
 `func (o *EmailStatus) HasEnvelopeFrom() bool`
 
 HasEnvelopeFrom returns a boolean if a field has been set.
+
+### GetErrorCategory
+
+`func (o *EmailStatus) GetErrorCategory() MessageCategoryEnum`
+
+GetErrorCategory returns the ErrorCategory field if non-nil, zero value otherwise.
+
+### GetErrorCategoryOk
+
+`func (o *EmailStatus) GetErrorCategoryOk() (*MessageCategoryEnum, bool)`
+
+GetErrorCategoryOk returns a tuple with the ErrorCategory field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetErrorCategory
+
+`func (o *EmailStatus) SetErrorCategory(v MessageCategoryEnum)`
+
+SetErrorCategory sets ErrorCategory field to given value.
+
+### HasErrorCategory
+
+`func (o *EmailStatus) HasErrorCategory() bool`
+
+HasErrorCategory returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
