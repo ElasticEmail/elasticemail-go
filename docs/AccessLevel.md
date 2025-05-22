@@ -107,6 +107,18 @@
 
 * `MODIFY_SUBSCRIPTION_ANTI_SPAM` (value: `"ModifySubscriptionAntiSpam"`)
 
+* `VIEW_LANDING_PAGES_CHECKOUT` (value: `"ViewLandingPagesCheckout"`)
+
+* `MODIFY_LANDING_PAGES_CHECKOUT` (value: `"ModifyLandingPagesCheckout"`)
+
+* `VIEW_HTML_EDITOR` (value: `"ViewHTMLEditor"`)
+
+* `MODIFY_ACCESS_TOKENS` (value: `"ModifyAccessTokens"`)
+
+* `VIEW_PAID_NEWSLETTERS` (value: `"ViewPaidNewsletters"`)
+
+* `MODIFY_PAID_NEWSLETTERS` (value: `"ModifyPaidNewsletters"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

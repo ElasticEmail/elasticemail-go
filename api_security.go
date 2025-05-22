@@ -44,7 +44,7 @@ func (r ApiSecurityApikeysByNameDeleteRequest) Execute() (*http.Response, error)
 /*
 SecurityApikeysByNameDelete Delete ApiKey
 
-Delete your existing ApiKey. Required Access Level: Security
+Delete your existing ApiKey. Required Access Level: ModifyAccessTokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of the ApiKey
@@ -286,7 +286,7 @@ func (r ApiSecurityApikeysByNamePutRequest) Execute() (*ApiKey, *http.Response, 
 /*
 SecurityApikeysByNamePut Update ApiKey
 
-Update your existing ApiKey. Required Access Level: Security
+Update your existing ApiKey. Required Access Level: ModifyAccessTokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of the ApiKey
@@ -536,7 +536,7 @@ func (r ApiSecurityApikeysPostRequest) Execute() (*NewApiKey, *http.Response, er
 /*
 SecurityApikeysPost Add ApiKey
 
-Add a new ApiKey. Required Access Level: Security
+Add a new ApiKey. Required Access Level: ModifyAccessTokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSecurityApikeysPostRequest
@@ -662,7 +662,7 @@ func (r ApiSecuritySmtpByNameDeleteRequest) Execute() (*http.Response, error) {
 /*
 SecuritySmtpByNameDelete Delete SMTP Credential
 
-Delete your existing SMTP Credentials. Required Access Level: Security
+Delete your existing SMTP Credentials. Required Access Level: ModifyAccessTokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of the SMTP Credential
@@ -904,7 +904,7 @@ func (r ApiSecuritySmtpByNamePutRequest) Execute() (*SmtpCredentials, *http.Resp
 /*
 SecuritySmtpByNamePut Update SMTP Credential
 
-Update your existing SMTP Credentials. Required Access Level: Security
+Update your existing SMTP Credentials. Required Access Level: ModifyAccessTokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of the SMTP Credential
@@ -1154,7 +1154,7 @@ func (r ApiSecuritySmtpPostRequest) Execute() (*NewSmtpCredentials, *http.Respon
 /*
 SecuritySmtpPost Add SMTP Credential
 
-Add new SMTP Credential. Required Access Level: Security
+Add new SMTP Credential. Required Access Level: ModifyAccessTokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSecuritySmtpPostRequest
