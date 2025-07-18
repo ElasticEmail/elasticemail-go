@@ -31,6 +31,9 @@ const (
 	LANDING_PAGE_PRODUCT_TEMPLATE TemplateType = "LandingPageProductTemplate"
 	LANDING_PAGE_CHECKOUT_TEMPLATE TemplateType = "LandingPageCheckoutTemplate"
 	LANDING_PAGE_PAYMENT_CONFIRMATION_TEMPLATE TemplateType = "LandingPagePaymentConfirmationTemplate"
+	LANDING_PAGE_NEWSLETTER_PRODUCT_TEMPLATE TemplateType = "LandingPageNewsletterProductTemplate"
+	LANDING_PAGE_NEWSLETTER_PAYMENT_CONFIRMATION_TEMPLATE TemplateType = "LandingPageNewsletterPaymentConfirmationTemplate"
+	NEWSLETTER_SUBSCRIPTION_CANCELLATION_TEMPLATE TemplateType = "NewsletterSubscriptionCancellationTemplate"
 )
 
 // All allowed values of TemplateType enum
@@ -45,6 +48,9 @@ var AllowedTemplateTypeEnumValues = []TemplateType{
 	"LandingPageProductTemplate",
 	"LandingPageCheckoutTemplate",
 	"LandingPagePaymentConfirmationTemplate",
+	"LandingPageNewsletterProductTemplate",
+	"LandingPageNewsletterPaymentConfirmationTemplate",
+	"NewsletterSubscriptionCancellationTemplate",
 }
 
 func (v *TemplateType) UnmarshalJSON(src []byte) error {

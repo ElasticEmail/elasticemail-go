@@ -144,7 +144,7 @@ func (r ApiVerificationsByEmailGetRequest) Execute() (*EmailValidationResult, *h
 /*
 VerificationsByEmailGet Get Email Verification Result
 
-Returns a result of verified email. Required Access Level: VerifyEmails
+Returns a result of verified email. Required Access Level: ViewVerifyEmails
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email Email address to view verification result of
@@ -484,7 +484,7 @@ func (r ApiVerificationsFilesByIdResultDownloadGetRequest) Execute() (*os.File, 
 /*
 VerificationsFilesByIdResultDownloadGet Download File Verification Result
 
-Download verification results as a ZIP file. Required Access Level: VerifyEmails
+Download verification results as a ZIP file. Required Access Level: ViewVerifyEmails
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Verification ID to download
@@ -615,7 +615,7 @@ func (r ApiVerificationsFilesByIdResultGetRequest) Execute() (*VerificationFileR
 /*
 VerificationsFilesByIdResultGet Get Detailed File Verification Result
 
-Returns status and results (if verified) of file with given ID. Required Access Level: VerifyEmails
+Returns status and results (if verified) of file with given ID. Required Access Level: ViewVerifyEmails
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID of the Verification to display status of
@@ -652,10 +652,10 @@ func (a *VerificationsAPIService) VerificationsFilesByIdResultGetExecute(r ApiVe
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -977,7 +977,7 @@ func (r ApiVerificationsFilesResultGetRequest) Execute() ([]VerificationFileResu
 /*
 VerificationsFilesResultGet Get Files Verification Results
 
-Returns a list of uploaded files, their statuses and results. Required Access Level: VerifyEmails
+Returns a list of uploaded files, their statuses and results. Required Access Level: ViewVerifyEmails
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiVerificationsFilesResultGetRequest
@@ -1104,7 +1104,7 @@ func (r ApiVerificationsGetRequest) Execute() ([]EmailValidationResult, *http.Re
 /*
 VerificationsGet Get Emails Verification Results
 
-Returns a results of all verified single emails. Required Access Level: VerifyEmails
+Returns a results of all verified single emails. Required Access Level: ViewVerifyEmails
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiVerificationsGetRequest
@@ -1138,10 +1138,10 @@ func (a *VerificationsAPIService) VerificationsGetExecute(r ApiVerificationsGetR
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

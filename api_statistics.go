@@ -202,10 +202,10 @@ func (a *StatisticsAPIService) StatisticsCampaignsGetExecute(r ApiStatisticsCamp
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -452,10 +452,10 @@ func (a *StatisticsAPIService) StatisticsChannelsGetExecute(r ApiStatisticsChann
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -587,9 +587,9 @@ func (a *StatisticsAPIService) StatisticsGetExecute(r ApiStatisticsGetRequest) (
 		return localVarReturnValue, nil, reportError("from is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "form", "")
 	if r.to != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

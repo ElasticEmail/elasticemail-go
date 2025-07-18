@@ -28,6 +28,8 @@ const (
 	CONTACT_API ContactSource = "ContactApi"
 	VERIFICATION_API ContactSource = "VerificationApi"
 	FILE_VERIFICATION_API ContactSource = "FileVerificationApi"
+	PILOT_BILLING_PLAN ContactSource = "PilotBillingPlan"
+	PAID_NEWSLETTER ContactSource = "PaidNewsletter"
 )
 
 // All allowed values of ContactSource enum
@@ -39,6 +41,8 @@ var AllowedContactSourceEnumValues = []ContactSource{
 	"ContactApi",
 	"VerificationApi",
 	"FileVerificationApi",
+	"PilotBillingPlan",
+	"PaidNewsletter",
 }
 
 func (v *ContactSource) UnmarshalJSON(src []byte) error {

@@ -79,7 +79,7 @@ func (a *SecurityAPIService) SecurityApikeysByNameDeleteExecute(r ApiSecurityApi
 	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "subaccount", r.subaccount, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subaccount", r.subaccount, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -160,7 +160,7 @@ func (r ApiSecurityApikeysByNameGetRequest) Execute() (*ApiKey, *http.Response, 
 /*
 SecurityApikeysByNameGet Load ApiKey
 
-Load your existing ApiKey info. Required Access Level: Security
+Load your existing ApiKey info. Required Access Level: ViewAccessTokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of the ApiKey
@@ -197,7 +197,7 @@ func (a *SecurityAPIService) SecurityApikeysByNameGetExecute(r ApiSecurityApikey
 	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "subaccount", r.subaccount, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subaccount", r.subaccount, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -414,7 +414,7 @@ func (r ApiSecurityApikeysGetRequest) Execute() ([]ApiKey, *http.Response, error
 /*
 SecurityApikeysGet List ApiKeys
 
-List all your existing ApiKeys. Required Access Level: Security
+List all your existing ApiKeys. Required Access Level: ViewAccessTokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSecurityApikeysGetRequest
@@ -448,7 +448,7 @@ func (a *SecurityAPIService) SecurityApikeysGetExecute(r ApiSecurityApikeysGetRe
 	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "subaccount", r.subaccount, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subaccount", r.subaccount, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -697,7 +697,7 @@ func (a *SecurityAPIService) SecuritySmtpByNameDeleteExecute(r ApiSecuritySmtpBy
 	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "subaccount", r.subaccount, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subaccount", r.subaccount, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -778,7 +778,7 @@ func (r ApiSecuritySmtpByNameGetRequest) Execute() (*SmtpCredentials, *http.Resp
 /*
 SecuritySmtpByNameGet Load SMTP Credential
 
-Load your existing SMTP Credential info. Required Access Level: Security
+Load your existing SMTP Credential info. Required Access Level: ViewAccessTokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of the SMTP Credential
@@ -815,7 +815,7 @@ func (a *SecurityAPIService) SecuritySmtpByNameGetExecute(r ApiSecuritySmtpByNam
 	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "subaccount", r.subaccount, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subaccount", r.subaccount, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1032,7 +1032,7 @@ func (r ApiSecuritySmtpGetRequest) Execute() ([]SmtpCredentials, *http.Response,
 /*
 SecuritySmtpGet List SMTP Credentials
 
-List all your existing SMTP Credentials. Required Access Level: Security
+List all your existing SMTP Credentials. Required Access Level: ViewAccessTokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSecuritySmtpGetRequest
@@ -1066,7 +1066,7 @@ func (a *SecurityAPIService) SecuritySmtpGetExecute(r ApiSecuritySmtpGetRequest)
 	localVarFormParams := url.Values{}
 
 	if r.subaccount != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "subaccount", r.subaccount, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subaccount", r.subaccount, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

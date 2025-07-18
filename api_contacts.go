@@ -689,33 +689,33 @@ func (a *ContactsAPIService) ContactsExportPostExecute(r ApiContactsExportPostRe
 	localVarFormParams := url.Values{}
 
 	if r.fileFormat != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "fileFormat", r.fileFormat, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fileFormat", r.fileFormat, "form", "")
 	} else {
 		var defaultValue ExportFileFormats = "Csv"
 		r.fileFormat = &defaultValue
 	}
 	if r.rule != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "rule", r.rule, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "rule", r.rule, "form", "")
 	}
 	if r.emails != nil {
 		t := *r.emails
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "emails", s.Index(i).Interface(), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "emails", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "emails", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "emails", t, "form", "multi")
 		}
 	}
 	if r.compressionFormat != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "compressionFormat", r.compressionFormat, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "compressionFormat", r.compressionFormat, "form", "")
 	} else {
 		var defaultValue CompressionFormat = "None"
 		r.compressionFormat = &defaultValue
 	}
 	if r.fileName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "fileName", r.fileName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fileName", r.fileName, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -845,10 +845,10 @@ func (a *ContactsAPIService) ContactsGetExecute(r ApiContactsGetRequest) ([]Cont
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -989,13 +989,13 @@ func (a *ContactsAPIService) ContactsImportPostExecute(r ApiContactsImportPostRe
 	localVarFormParams := url.Values{}
 
 	if r.listName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "listName", r.listName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "listName", r.listName, "form", "")
 	}
 	if r.encodingName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "encodingName", r.encodingName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "encodingName", r.encodingName, "form", "")
 	}
 	if r.fileUrl != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "fileUrl", r.fileUrl, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fileUrl", r.fileUrl, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"multipart/form-data"}
@@ -1137,10 +1137,10 @@ func (a *ContactsAPIService) ContactsPostExecute(r ApiContactsPostRequest) ([]Co
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "listnames", s.Index(i).Interface(), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "listnames", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "listnames", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "listnames", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header

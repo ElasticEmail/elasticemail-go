@@ -23,6 +23,12 @@
 
 * `LANDING_PAGE_PAYMENT_CONFIRMATION_TEMPLATE` (value: `"LandingPagePaymentConfirmationTemplate"`)
 
+* `LANDING_PAGE_NEWSLETTER_PRODUCT_TEMPLATE` (value: `"LandingPageNewsletterProductTemplate"`)
+
+* `LANDING_PAGE_NEWSLETTER_PAYMENT_CONFIRMATION_TEMPLATE` (value: `"LandingPageNewsletterPaymentConfirmationTemplate"`)
+
+* `NEWSLETTER_SUBSCRIPTION_CANCELLATION_TEMPLATE` (value: `"NewsletterSubscriptionCancellationTemplate"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

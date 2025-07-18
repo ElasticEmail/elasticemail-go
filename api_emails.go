@@ -261,61 +261,61 @@ func (a *EmailsAPIService) EmailsByTransactionidStatusGetExecute(r ApiEmailsByTr
 	localVarFormParams := url.Values{}
 
 	if r.showFailed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "showFailed", r.showFailed, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "showFailed", r.showFailed, "form", "")
 	} else {
 		var defaultValue bool = false
 		r.showFailed = &defaultValue
 	}
 	if r.showSent != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "showSent", r.showSent, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "showSent", r.showSent, "form", "")
 	} else {
 		var defaultValue bool = false
 		r.showSent = &defaultValue
 	}
 	if r.showDelivered != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "showDelivered", r.showDelivered, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "showDelivered", r.showDelivered, "form", "")
 	} else {
 		var defaultValue bool = false
 		r.showDelivered = &defaultValue
 	}
 	if r.showPending != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "showPending", r.showPending, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "showPending", r.showPending, "form", "")
 	} else {
 		var defaultValue bool = false
 		r.showPending = &defaultValue
 	}
 	if r.showOpened != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "showOpened", r.showOpened, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "showOpened", r.showOpened, "form", "")
 	} else {
 		var defaultValue bool = false
 		r.showOpened = &defaultValue
 	}
 	if r.showClicked != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "showClicked", r.showClicked, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "showClicked", r.showClicked, "form", "")
 	} else {
 		var defaultValue bool = false
 		r.showClicked = &defaultValue
 	}
 	if r.showAbuse != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "showAbuse", r.showAbuse, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "showAbuse", r.showAbuse, "form", "")
 	} else {
 		var defaultValue bool = false
 		r.showAbuse = &defaultValue
 	}
 	if r.showUnsubscribed != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "showUnsubscribed", r.showUnsubscribed, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "showUnsubscribed", r.showUnsubscribed, "form", "")
 	} else {
 		var defaultValue bool = false
 		r.showUnsubscribed = &defaultValue
 	}
 	if r.showErrors != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "showErrors", r.showErrors, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "showErrors", r.showErrors, "form", "")
 	} else {
 		var defaultValue bool = false
 		r.showErrors = &defaultValue
 	}
 	if r.showMessageIDs != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "showMessageIDs", r.showMessageIDs, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "showMessageIDs", r.showMessageIDs, "form", "")
 	} else {
 		var defaultValue bool = false
 		r.showMessageIDs = &defaultValue

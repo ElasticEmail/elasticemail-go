@@ -65,6 +65,9 @@ const (
 	EXTENDED_LOGS AccessLevel = "ExtendedLogs"
 	VERIFY_EMAILS AccessLevel = "VerifyEmails"
 	MODIFY2_FA_SMS AccessLevel = "Modify2FASms"
+	VIEW_VERIFY_EMAILS AccessLevel = "ViewVerifyEmails"
+	VIEW_ACCESS_TOKENS AccessLevel = "ViewAccessTokens"
+	VIEW_WEB_NOTIFICATIONS AccessLevel = "ViewWebNotifications"
 	MODIFY_LANDING_PAGES AccessLevel = "ModifyLandingPages"
 	VIEW_LANDING_PAGES AccessLevel = "ViewLandingPages"
 	MODIFY_SUPPRESSIONS AccessLevel = "ModifySuppressions"
@@ -127,6 +130,9 @@ var AllowedAccessLevelEnumValues = []AccessLevel{
 	"ExtendedLogs",
 	"VerifyEmails",
 	"Modify2FASms",
+	"ViewVerifyEmails",
+	"ViewAccessTokens",
+	"ViewWebNotifications",
 	"ModifyLandingPages",
 	"ViewLandingPages",
 	"ModifySuppressions",

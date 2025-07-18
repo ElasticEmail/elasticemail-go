@@ -110,22 +110,22 @@ func (a *EventsAPIService) EventsByTransactionidGetExecute(r ApiEventsByTransact
 	localVarFormParams := url.Values{}
 
 	if r.from != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "form", "")
 	}
 	if r.to != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "form", "")
 	}
 	if r.orderBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "orderBy", r.orderBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "orderBy", r.orderBy, "form", "")
 	} else {
 		var defaultValue EventsOrderBy = "DateDescending"
 		r.orderBy = &defaultValue
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -291,32 +291,32 @@ func (a *EventsAPIService) EventsChannelsByNameExportPostExecute(r ApiEventsChan
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", s.Index(i).Interface(), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", t, "form", "multi")
 		}
 	}
 	if r.from != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "form", "")
 	}
 	if r.to != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "form", "")
 	}
 	if r.fileFormat != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "fileFormat", r.fileFormat, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fileFormat", r.fileFormat, "form", "")
 	} else {
 		var defaultValue ExportFileFormats = "Csv"
 		r.fileFormat = &defaultValue
 	}
 	if r.compressionFormat != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "compressionFormat", r.compressionFormat, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "compressionFormat", r.compressionFormat, "form", "")
 	} else {
 		var defaultValue CompressionFormat = "None"
 		r.compressionFormat = &defaultValue
 	}
 	if r.fileName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "fileName", r.fileName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fileName", r.fileName, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -481,29 +481,29 @@ func (a *EventsAPIService) EventsChannelsByNameGetExecute(r ApiEventsChannelsByN
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", s.Index(i).Interface(), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", t, "form", "multi")
 		}
 	}
 	if r.from != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "form", "")
 	}
 	if r.to != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "form", "")
 	}
 	if r.orderBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "orderBy", r.orderBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "orderBy", r.orderBy, "form", "")
 	} else {
 		var defaultValue EventsOrderBy = "DateDescending"
 		r.orderBy = &defaultValue
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -899,32 +899,32 @@ func (a *EventsAPIService) EventsExportPostExecute(r ApiEventsExportPostRequest)
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", s.Index(i).Interface(), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", t, "form", "multi")
 		}
 	}
 	if r.from != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "form", "")
 	}
 	if r.to != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "form", "")
 	}
 	if r.fileFormat != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "fileFormat", r.fileFormat, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fileFormat", r.fileFormat, "form", "")
 	} else {
 		var defaultValue ExportFileFormats = "Csv"
 		r.fileFormat = &defaultValue
 	}
 	if r.compressionFormat != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "compressionFormat", r.compressionFormat, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "compressionFormat", r.compressionFormat, "form", "")
 	} else {
 		var defaultValue CompressionFormat = "None"
 		r.compressionFormat = &defaultValue
 	}
 	if r.fileName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "fileName", r.fileName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fileName", r.fileName, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1085,29 +1085,29 @@ func (a *EventsAPIService) EventsGetExecute(r ApiEventsGetRequest) ([]RecipientE
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", s.Index(i).Interface(), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "eventTypes", t, "form", "multi")
 		}
 	}
 	if r.from != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "form", "")
 	}
 	if r.to != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "form", "")
 	}
 	if r.orderBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "orderBy", r.orderBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "orderBy", r.orderBy, "form", "")
 	} else {
 		var defaultValue EventsOrderBy = "DateDescending"
 		r.orderBy = &defaultValue
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

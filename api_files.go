@@ -425,10 +425,10 @@ func (a *FilesAPIService) FilesGetExecute(r ApiFilesGetRequest) ([]FileInfo, *ht
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -560,7 +560,7 @@ func (a *FilesAPIService) FilesPostExecute(r ApiFilesPostRequest) (*FileInfo, *h
 	}
 
 	if r.expiresAfterDays != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expiresAfterDays", r.expiresAfterDays, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expiresAfterDays", r.expiresAfterDays, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}

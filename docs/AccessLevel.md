@@ -91,6 +91,12 @@
 
 * `MODIFY2_FA_SMS` (value: `"Modify2FASms"`)
 
+* `VIEW_VERIFY_EMAILS` (value: `"ViewVerifyEmails"`)
+
+* `VIEW_ACCESS_TOKENS` (value: `"ViewAccessTokens"`)
+
+* `VIEW_WEB_NOTIFICATIONS` (value: `"ViewWebNotifications"`)
+
 * `MODIFY_LANDING_PAGES` (value: `"ModifyLandingPages"`)
 
 * `VIEW_LANDING_PAGES` (value: `"ViewLandingPages"`)

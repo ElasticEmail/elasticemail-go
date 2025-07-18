@@ -17,6 +17,10 @@
 
 * `FILE_VERIFICATION_API` (value: `"FileVerificationApi"`)
 
+* `PILOT_BILLING_PLAN` (value: `"PilotBillingPlan"`)
+
+* `PAID_NEWSLETTER` (value: `"PaidNewsletter"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
