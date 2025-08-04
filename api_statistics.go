@@ -25,13 +25,13 @@ import (
 // StatisticsAPIService StatisticsAPI service
 type StatisticsAPIService service
 
-type ApiStatisticsCampaignsByNameGetRequest struct {
+type StatisticsAPIStatisticsCampaignsByNameGetRequest struct {
 	ctx context.Context
 	ApiService *StatisticsAPIService
 	name string
 }
 
-func (r ApiStatisticsCampaignsByNameGetRequest) Execute() (*ChannelLogStatusSummary, *http.Response, error) {
+func (r StatisticsAPIStatisticsCampaignsByNameGetRequest) Execute() (*ChannelLogStatusSummary, *http.Response, error) {
 	return r.ApiService.StatisticsCampaignsByNameGetExecute(r)
 }
 
@@ -42,10 +42,10 @@ Retrieve stats of an existing campaign. Required Access Level: ViewChannels
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name The name of the campaign to get.
- @return ApiStatisticsCampaignsByNameGetRequest
+ @return StatisticsAPIStatisticsCampaignsByNameGetRequest
 */
-func (a *StatisticsAPIService) StatisticsCampaignsByNameGet(ctx context.Context, name string) ApiStatisticsCampaignsByNameGetRequest {
-	return ApiStatisticsCampaignsByNameGetRequest{
+func (a *StatisticsAPIService) StatisticsCampaignsByNameGet(ctx context.Context, name string) StatisticsAPIStatisticsCampaignsByNameGetRequest {
+	return StatisticsAPIStatisticsCampaignsByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -54,7 +54,7 @@ func (a *StatisticsAPIService) StatisticsCampaignsByNameGet(ctx context.Context,
 
 // Execute executes the request
 //  @return ChannelLogStatusSummary
-func (a *StatisticsAPIService) StatisticsCampaignsByNameGetExecute(r ApiStatisticsCampaignsByNameGetRequest) (*ChannelLogStatusSummary, *http.Response, error) {
+func (a *StatisticsAPIService) StatisticsCampaignsByNameGetExecute(r StatisticsAPIStatisticsCampaignsByNameGetRequest) (*ChannelLogStatusSummary, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -142,7 +142,7 @@ func (a *StatisticsAPIService) StatisticsCampaignsByNameGetExecute(r ApiStatisti
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiStatisticsCampaignsGetRequest struct {
+type StatisticsAPIStatisticsCampaignsGetRequest struct {
 	ctx context.Context
 	ApiService *StatisticsAPIService
 	limit *int32
@@ -150,18 +150,18 @@ type ApiStatisticsCampaignsGetRequest struct {
 }
 
 // Maximum number of returned items.
-func (r ApiStatisticsCampaignsGetRequest) Limit(limit int32) ApiStatisticsCampaignsGetRequest {
+func (r StatisticsAPIStatisticsCampaignsGetRequest) Limit(limit int32) StatisticsAPIStatisticsCampaignsGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // How many items should be returned ahead.
-func (r ApiStatisticsCampaignsGetRequest) Offset(offset int32) ApiStatisticsCampaignsGetRequest {
+func (r StatisticsAPIStatisticsCampaignsGetRequest) Offset(offset int32) StatisticsAPIStatisticsCampaignsGetRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiStatisticsCampaignsGetRequest) Execute() ([]ChannelLogStatusSummary, *http.Response, error) {
+func (r StatisticsAPIStatisticsCampaignsGetRequest) Execute() ([]ChannelLogStatusSummary, *http.Response, error) {
 	return r.ApiService.StatisticsCampaignsGetExecute(r)
 }
 
@@ -171,10 +171,10 @@ StatisticsCampaignsGet Load Campaigns Stats
 Returns a list of your Campaigns' stats. Required Access Level: ViewChannels
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiStatisticsCampaignsGetRequest
+ @return StatisticsAPIStatisticsCampaignsGetRequest
 */
-func (a *StatisticsAPIService) StatisticsCampaignsGet(ctx context.Context) ApiStatisticsCampaignsGetRequest {
-	return ApiStatisticsCampaignsGetRequest{
+func (a *StatisticsAPIService) StatisticsCampaignsGet(ctx context.Context) StatisticsAPIStatisticsCampaignsGetRequest {
+	return StatisticsAPIStatisticsCampaignsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -182,7 +182,7 @@ func (a *StatisticsAPIService) StatisticsCampaignsGet(ctx context.Context) ApiSt
 
 // Execute executes the request
 //  @return []ChannelLogStatusSummary
-func (a *StatisticsAPIService) StatisticsCampaignsGetExecute(r ApiStatisticsCampaignsGetRequest) ([]ChannelLogStatusSummary, *http.Response, error) {
+func (a *StatisticsAPIService) StatisticsCampaignsGetExecute(r StatisticsAPIStatisticsCampaignsGetRequest) ([]ChannelLogStatusSummary, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -275,13 +275,13 @@ func (a *StatisticsAPIService) StatisticsCampaignsGetExecute(r ApiStatisticsCamp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiStatisticsChannelsByNameGetRequest struct {
+type StatisticsAPIStatisticsChannelsByNameGetRequest struct {
 	ctx context.Context
 	ApiService *StatisticsAPIService
 	name string
 }
 
-func (r ApiStatisticsChannelsByNameGetRequest) Execute() (*ChannelLogStatusSummary, *http.Response, error) {
+func (r StatisticsAPIStatisticsChannelsByNameGetRequest) Execute() (*ChannelLogStatusSummary, *http.Response, error) {
 	return r.ApiService.StatisticsChannelsByNameGetExecute(r)
 }
 
@@ -292,10 +292,10 @@ Retrieve an existing channel stats. Required Access Level: ViewChannels
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name The name of the channel to get.
- @return ApiStatisticsChannelsByNameGetRequest
+ @return StatisticsAPIStatisticsChannelsByNameGetRequest
 */
-func (a *StatisticsAPIService) StatisticsChannelsByNameGet(ctx context.Context, name string) ApiStatisticsChannelsByNameGetRequest {
-	return ApiStatisticsChannelsByNameGetRequest{
+func (a *StatisticsAPIService) StatisticsChannelsByNameGet(ctx context.Context, name string) StatisticsAPIStatisticsChannelsByNameGetRequest {
+	return StatisticsAPIStatisticsChannelsByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -304,7 +304,7 @@ func (a *StatisticsAPIService) StatisticsChannelsByNameGet(ctx context.Context, 
 
 // Execute executes the request
 //  @return ChannelLogStatusSummary
-func (a *StatisticsAPIService) StatisticsChannelsByNameGetExecute(r ApiStatisticsChannelsByNameGetRequest) (*ChannelLogStatusSummary, *http.Response, error) {
+func (a *StatisticsAPIService) StatisticsChannelsByNameGetExecute(r StatisticsAPIStatisticsChannelsByNameGetRequest) (*ChannelLogStatusSummary, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -392,7 +392,7 @@ func (a *StatisticsAPIService) StatisticsChannelsByNameGetExecute(r ApiStatistic
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiStatisticsChannelsGetRequest struct {
+type StatisticsAPIStatisticsChannelsGetRequest struct {
 	ctx context.Context
 	ApiService *StatisticsAPIService
 	limit *int32
@@ -400,18 +400,18 @@ type ApiStatisticsChannelsGetRequest struct {
 }
 
 // Maximum number of returned items.
-func (r ApiStatisticsChannelsGetRequest) Limit(limit int32) ApiStatisticsChannelsGetRequest {
+func (r StatisticsAPIStatisticsChannelsGetRequest) Limit(limit int32) StatisticsAPIStatisticsChannelsGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // How many items should be returned ahead.
-func (r ApiStatisticsChannelsGetRequest) Offset(offset int32) ApiStatisticsChannelsGetRequest {
+func (r StatisticsAPIStatisticsChannelsGetRequest) Offset(offset int32) StatisticsAPIStatisticsChannelsGetRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiStatisticsChannelsGetRequest) Execute() ([]ChannelLogStatusSummary, *http.Response, error) {
+func (r StatisticsAPIStatisticsChannelsGetRequest) Execute() ([]ChannelLogStatusSummary, *http.Response, error) {
 	return r.ApiService.StatisticsChannelsGetExecute(r)
 }
 
@@ -421,10 +421,10 @@ StatisticsChannelsGet Load Channels Stats
 Returns a list of your Channels' stats. Required Access Level: ViewChannels
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiStatisticsChannelsGetRequest
+ @return StatisticsAPIStatisticsChannelsGetRequest
 */
-func (a *StatisticsAPIService) StatisticsChannelsGet(ctx context.Context) ApiStatisticsChannelsGetRequest {
-	return ApiStatisticsChannelsGetRequest{
+func (a *StatisticsAPIService) StatisticsChannelsGet(ctx context.Context) StatisticsAPIStatisticsChannelsGetRequest {
+	return StatisticsAPIStatisticsChannelsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -432,7 +432,7 @@ func (a *StatisticsAPIService) StatisticsChannelsGet(ctx context.Context) ApiSta
 
 // Execute executes the request
 //  @return []ChannelLogStatusSummary
-func (a *StatisticsAPIService) StatisticsChannelsGetExecute(r ApiStatisticsChannelsGetRequest) ([]ChannelLogStatusSummary, *http.Response, error) {
+func (a *StatisticsAPIService) StatisticsChannelsGetExecute(r StatisticsAPIStatisticsChannelsGetRequest) ([]ChannelLogStatusSummary, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -525,7 +525,7 @@ func (a *StatisticsAPIService) StatisticsChannelsGetExecute(r ApiStatisticsChann
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiStatisticsGetRequest struct {
+type StatisticsAPIStatisticsGetRequest struct {
 	ctx context.Context
 	ApiService *StatisticsAPIService
 	from *time.Time
@@ -533,18 +533,18 @@ type ApiStatisticsGetRequest struct {
 }
 
 // Starting date for search in YYYY-MM-DDThh:mm:ss format.
-func (r ApiStatisticsGetRequest) From(from time.Time) ApiStatisticsGetRequest {
+func (r StatisticsAPIStatisticsGetRequest) From(from time.Time) StatisticsAPIStatisticsGetRequest {
 	r.from = &from
 	return r
 }
 
 // Ending date for search in YYYY-MM-DDThh:mm:ss format.
-func (r ApiStatisticsGetRequest) To(to time.Time) ApiStatisticsGetRequest {
+func (r StatisticsAPIStatisticsGetRequest) To(to time.Time) StatisticsAPIStatisticsGetRequest {
 	r.to = &to
 	return r
 }
 
-func (r ApiStatisticsGetRequest) Execute() (*LogStatusSummary, *http.Response, error) {
+func (r StatisticsAPIStatisticsGetRequest) Execute() (*LogStatusSummary, *http.Response, error) {
 	return r.ApiService.StatisticsGetExecute(r)
 }
 
@@ -554,10 +554,10 @@ StatisticsGet Load Statistics
 Returns basic statistics. Required Access Level: ViewReports
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiStatisticsGetRequest
+ @return StatisticsAPIStatisticsGetRequest
 */
-func (a *StatisticsAPIService) StatisticsGet(ctx context.Context) ApiStatisticsGetRequest {
-	return ApiStatisticsGetRequest{
+func (a *StatisticsAPIService) StatisticsGet(ctx context.Context) StatisticsAPIStatisticsGetRequest {
+	return StatisticsAPIStatisticsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -565,7 +565,7 @@ func (a *StatisticsAPIService) StatisticsGet(ctx context.Context) ApiStatisticsG
 
 // Execute executes the request
 //  @return LogStatusSummary
-func (a *StatisticsAPIService) StatisticsGetExecute(r ApiStatisticsGetRequest) (*LogStatusSummary, *http.Response, error) {
+func (a *StatisticsAPIService) StatisticsGetExecute(r StatisticsAPIStatisticsGetRequest) (*LogStatusSummary, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}

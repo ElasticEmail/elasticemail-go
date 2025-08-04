@@ -24,13 +24,13 @@ import (
 // CampaignsAPIService CampaignsAPI service
 type CampaignsAPIService service
 
-type ApiCampaignsByNameDeleteRequest struct {
+type CampaignsAPICampaignsByNameDeleteRequest struct {
 	ctx context.Context
 	ApiService *CampaignsAPIService
 	name string
 }
 
-func (r ApiCampaignsByNameDeleteRequest) Execute() (*http.Response, error) {
+func (r CampaignsAPICampaignsByNameDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.CampaignsByNameDeleteExecute(r)
 }
 
@@ -41,10 +41,10 @@ Delete the specific campaign.  This does not cancel in progress email, see Cance
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of Campaign to delete
- @return ApiCampaignsByNameDeleteRequest
+ @return CampaignsAPICampaignsByNameDeleteRequest
 */
-func (a *CampaignsAPIService) CampaignsByNameDelete(ctx context.Context, name string) ApiCampaignsByNameDeleteRequest {
-	return ApiCampaignsByNameDeleteRequest{
+func (a *CampaignsAPIService) CampaignsByNameDelete(ctx context.Context, name string) CampaignsAPICampaignsByNameDeleteRequest {
+	return CampaignsAPICampaignsByNameDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -52,7 +52,7 @@ func (a *CampaignsAPIService) CampaignsByNameDelete(ctx context.Context, name st
 }
 
 // Execute executes the request
-func (a *CampaignsAPIService) CampaignsByNameDeleteExecute(r ApiCampaignsByNameDeleteRequest) (*http.Response, error) {
+func (a *CampaignsAPIService) CampaignsByNameDeleteExecute(r CampaignsAPICampaignsByNameDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -130,13 +130,13 @@ func (a *CampaignsAPIService) CampaignsByNameDeleteExecute(r ApiCampaignsByNameD
 	return localVarHTTPResponse, nil
 }
 
-type ApiCampaignsByNameGetRequest struct {
+type CampaignsAPICampaignsByNameGetRequest struct {
 	ctx context.Context
 	ApiService *CampaignsAPIService
 	name string
 }
 
-func (r ApiCampaignsByNameGetRequest) Execute() (*Campaign, *http.Response, error) {
+func (r CampaignsAPICampaignsByNameGetRequest) Execute() (*Campaign, *http.Response, error) {
 	return r.ApiService.CampaignsByNameGetExecute(r)
 }
 
@@ -147,10 +147,10 @@ Returns the specified campaign details. Required Access Level: ViewCampaigns
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of Campaign to get
- @return ApiCampaignsByNameGetRequest
+ @return CampaignsAPICampaignsByNameGetRequest
 */
-func (a *CampaignsAPIService) CampaignsByNameGet(ctx context.Context, name string) ApiCampaignsByNameGetRequest {
-	return ApiCampaignsByNameGetRequest{
+func (a *CampaignsAPIService) CampaignsByNameGet(ctx context.Context, name string) CampaignsAPICampaignsByNameGetRequest {
+	return CampaignsAPICampaignsByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -159,7 +159,7 @@ func (a *CampaignsAPIService) CampaignsByNameGet(ctx context.Context, name strin
 
 // Execute executes the request
 //  @return Campaign
-func (a *CampaignsAPIService) CampaignsByNameGetExecute(r ApiCampaignsByNameGetRequest) (*Campaign, *http.Response, error) {
+func (a *CampaignsAPIService) CampaignsByNameGetExecute(r CampaignsAPICampaignsByNameGetRequest) (*Campaign, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -247,13 +247,13 @@ func (a *CampaignsAPIService) CampaignsByNameGetExecute(r ApiCampaignsByNameGetR
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCampaignsByNamePausePutRequest struct {
+type CampaignsAPICampaignsByNamePausePutRequest struct {
 	ctx context.Context
 	ApiService *CampaignsAPIService
 	name string
 }
 
-func (r ApiCampaignsByNamePausePutRequest) Execute() (*http.Response, error) {
+func (r CampaignsAPICampaignsByNamePausePutRequest) Execute() (*http.Response, error) {
 	return r.ApiService.CampaignsByNamePausePutExecute(r)
 }
 
@@ -264,10 +264,10 @@ Pauses the specific campaign, cancelling emails that are waiting to be sent. Req
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of Campaign to pause
- @return ApiCampaignsByNamePausePutRequest
+ @return CampaignsAPICampaignsByNamePausePutRequest
 */
-func (a *CampaignsAPIService) CampaignsByNamePausePut(ctx context.Context, name string) ApiCampaignsByNamePausePutRequest {
-	return ApiCampaignsByNamePausePutRequest{
+func (a *CampaignsAPIService) CampaignsByNamePausePut(ctx context.Context, name string) CampaignsAPICampaignsByNamePausePutRequest {
+	return CampaignsAPICampaignsByNamePausePutRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -275,7 +275,7 @@ func (a *CampaignsAPIService) CampaignsByNamePausePut(ctx context.Context, name 
 }
 
 // Execute executes the request
-func (a *CampaignsAPIService) CampaignsByNamePausePutExecute(r ApiCampaignsByNamePausePutRequest) (*http.Response, error) {
+func (a *CampaignsAPIService) CampaignsByNamePausePutExecute(r CampaignsAPICampaignsByNamePausePutRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -353,7 +353,7 @@ func (a *CampaignsAPIService) CampaignsByNamePausePutExecute(r ApiCampaignsByNam
 	return localVarHTTPResponse, nil
 }
 
-type ApiCampaignsByNamePutRequest struct {
+type CampaignsAPICampaignsByNamePutRequest struct {
 	ctx context.Context
 	ApiService *CampaignsAPIService
 	name string
@@ -361,12 +361,12 @@ type ApiCampaignsByNamePutRequest struct {
 }
 
 // JSON representation of a campaign
-func (r ApiCampaignsByNamePutRequest) Campaign(campaign Campaign) ApiCampaignsByNamePutRequest {
+func (r CampaignsAPICampaignsByNamePutRequest) Campaign(campaign Campaign) CampaignsAPICampaignsByNamePutRequest {
 	r.campaign = &campaign
 	return r
 }
 
-func (r ApiCampaignsByNamePutRequest) Execute() (*Campaign, *http.Response, error) {
+func (r CampaignsAPICampaignsByNamePutRequest) Execute() (*Campaign, *http.Response, error) {
 	return r.ApiService.CampaignsByNamePutExecute(r)
 }
 
@@ -377,10 +377,10 @@ Updates a previously added campaign.  Only Active and Paused campaigns can be up
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of Campaign to update
- @return ApiCampaignsByNamePutRequest
+ @return CampaignsAPICampaignsByNamePutRequest
 */
-func (a *CampaignsAPIService) CampaignsByNamePut(ctx context.Context, name string) ApiCampaignsByNamePutRequest {
-	return ApiCampaignsByNamePutRequest{
+func (a *CampaignsAPIService) CampaignsByNamePut(ctx context.Context, name string) CampaignsAPICampaignsByNamePutRequest {
+	return CampaignsAPICampaignsByNamePutRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -389,7 +389,7 @@ func (a *CampaignsAPIService) CampaignsByNamePut(ctx context.Context, name strin
 
 // Execute executes the request
 //  @return Campaign
-func (a *CampaignsAPIService) CampaignsByNamePutExecute(r ApiCampaignsByNamePutRequest) (*Campaign, *http.Response, error) {
+func (a *CampaignsAPIService) CampaignsByNamePutExecute(r CampaignsAPICampaignsByNamePutRequest) (*Campaign, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -482,7 +482,7 @@ func (a *CampaignsAPIService) CampaignsByNamePutExecute(r ApiCampaignsByNamePutR
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCampaignsGetRequest struct {
+type CampaignsAPICampaignsGetRequest struct {
 	ctx context.Context
 	ApiService *CampaignsAPIService
 	search *string
@@ -491,24 +491,24 @@ type ApiCampaignsGetRequest struct {
 }
 
 // Text fragment used for searching in Campaign name (using the &#39;contains&#39; rule)
-func (r ApiCampaignsGetRequest) Search(search string) ApiCampaignsGetRequest {
+func (r CampaignsAPICampaignsGetRequest) Search(search string) CampaignsAPICampaignsGetRequest {
 	r.search = &search
 	return r
 }
 
 // How many items should be returned ahead.
-func (r ApiCampaignsGetRequest) Offset(offset int32) ApiCampaignsGetRequest {
+func (r CampaignsAPICampaignsGetRequest) Offset(offset int32) CampaignsAPICampaignsGetRequest {
 	r.offset = &offset
 	return r
 }
 
 // Maximum number of returned items.
-func (r ApiCampaignsGetRequest) Limit(limit int32) ApiCampaignsGetRequest {
+func (r CampaignsAPICampaignsGetRequest) Limit(limit int32) CampaignsAPICampaignsGetRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiCampaignsGetRequest) Execute() ([]Campaign, *http.Response, error) {
+func (r CampaignsAPICampaignsGetRequest) Execute() ([]Campaign, *http.Response, error) {
 	return r.ApiService.CampaignsGetExecute(r)
 }
 
@@ -518,10 +518,10 @@ CampaignsGet Load Campaigns
 Returns a list all of your campaigns. Limited to 1000 results. Required Access Level: ViewCampaigns
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCampaignsGetRequest
+ @return CampaignsAPICampaignsGetRequest
 */
-func (a *CampaignsAPIService) CampaignsGet(ctx context.Context) ApiCampaignsGetRequest {
-	return ApiCampaignsGetRequest{
+func (a *CampaignsAPIService) CampaignsGet(ctx context.Context) CampaignsAPICampaignsGetRequest {
+	return CampaignsAPICampaignsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -529,7 +529,7 @@ func (a *CampaignsAPIService) CampaignsGet(ctx context.Context) ApiCampaignsGetR
 
 // Execute executes the request
 //  @return []Campaign
-func (a *CampaignsAPIService) CampaignsGetExecute(r ApiCampaignsGetRequest) ([]Campaign, *http.Response, error) {
+func (a *CampaignsAPIService) CampaignsGetExecute(r CampaignsAPICampaignsGetRequest) ([]Campaign, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -625,19 +625,19 @@ func (a *CampaignsAPIService) CampaignsGetExecute(r ApiCampaignsGetRequest) ([]C
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCampaignsPostRequest struct {
+type CampaignsAPICampaignsPostRequest struct {
 	ctx context.Context
 	ApiService *CampaignsAPIService
 	campaign *Campaign
 }
 
 // JSON representation of a campaign
-func (r ApiCampaignsPostRequest) Campaign(campaign Campaign) ApiCampaignsPostRequest {
+func (r CampaignsAPICampaignsPostRequest) Campaign(campaign Campaign) CampaignsAPICampaignsPostRequest {
 	r.campaign = &campaign
 	return r
 }
 
-func (r ApiCampaignsPostRequest) Execute() (*Campaign, *http.Response, error) {
+func (r CampaignsAPICampaignsPostRequest) Execute() (*Campaign, *http.Response, error) {
 	return r.ApiService.CampaignsPostExecute(r)
 }
 
@@ -647,10 +647,10 @@ CampaignsPost Add Campaign
 Add a campaign for processing. Required Access Level: ModifyCampaigns
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCampaignsPostRequest
+ @return CampaignsAPICampaignsPostRequest
 */
-func (a *CampaignsAPIService) CampaignsPost(ctx context.Context) ApiCampaignsPostRequest {
-	return ApiCampaignsPostRequest{
+func (a *CampaignsAPIService) CampaignsPost(ctx context.Context) CampaignsAPICampaignsPostRequest {
+	return CampaignsAPICampaignsPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -658,7 +658,7 @@ func (a *CampaignsAPIService) CampaignsPost(ctx context.Context) ApiCampaignsPos
 
 // Execute executes the request
 //  @return Campaign
-func (a *CampaignsAPIService) CampaignsPostExecute(r ApiCampaignsPostRequest) (*Campaign, *http.Response, error) {
+func (a *CampaignsAPIService) CampaignsPostExecute(r CampaignsAPICampaignsPostRequest) (*Campaign, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}

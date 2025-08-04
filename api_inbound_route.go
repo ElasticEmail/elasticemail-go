@@ -24,13 +24,13 @@ import (
 // InboundRouteAPIService InboundRouteAPI service
 type InboundRouteAPIService service
 
-type ApiInboundrouteByIdDeleteRequest struct {
+type InboundRouteAPIInboundrouteByIdDeleteRequest struct {
 	ctx context.Context
 	ApiService *InboundRouteAPIService
 	id string
 }
 
-func (r ApiInboundrouteByIdDeleteRequest) Execute() (*http.Response, error) {
+func (r InboundRouteAPIInboundrouteByIdDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.InboundrouteByIdDeleteExecute(r)
 }
 
@@ -41,10 +41,10 @@ Deletes the Inbound Route. Required Access Level: ModifySettings
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiInboundrouteByIdDeleteRequest
+ @return InboundRouteAPIInboundrouteByIdDeleteRequest
 */
-func (a *InboundRouteAPIService) InboundrouteByIdDelete(ctx context.Context, id string) ApiInboundrouteByIdDeleteRequest {
-	return ApiInboundrouteByIdDeleteRequest{
+func (a *InboundRouteAPIService) InboundrouteByIdDelete(ctx context.Context, id string) InboundRouteAPIInboundrouteByIdDeleteRequest {
+	return InboundRouteAPIInboundrouteByIdDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -52,7 +52,7 @@ func (a *InboundRouteAPIService) InboundrouteByIdDelete(ctx context.Context, id 
 }
 
 // Execute executes the request
-func (a *InboundRouteAPIService) InboundrouteByIdDeleteExecute(r ApiInboundrouteByIdDeleteRequest) (*http.Response, error) {
+func (a *InboundRouteAPIService) InboundrouteByIdDeleteExecute(r InboundRouteAPIInboundrouteByIdDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -130,13 +130,13 @@ func (a *InboundRouteAPIService) InboundrouteByIdDeleteExecute(r ApiInboundroute
 	return localVarHTTPResponse, nil
 }
 
-type ApiInboundrouteByIdGetRequest struct {
+type InboundRouteAPIInboundrouteByIdGetRequest struct {
 	ctx context.Context
 	ApiService *InboundRouteAPIService
 	id string
 }
 
-func (r ApiInboundrouteByIdGetRequest) Execute() (*InboundRoute, *http.Response, error) {
+func (r InboundRouteAPIInboundrouteByIdGetRequest) Execute() (*InboundRoute, *http.Response, error) {
 	return r.ApiService.InboundrouteByIdGetExecute(r)
 }
 
@@ -147,10 +147,10 @@ Load an Inbound Route. Required Access Level: ViewSettings
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID number of your attachment
- @return ApiInboundrouteByIdGetRequest
+ @return InboundRouteAPIInboundrouteByIdGetRequest
 */
-func (a *InboundRouteAPIService) InboundrouteByIdGet(ctx context.Context, id string) ApiInboundrouteByIdGetRequest {
-	return ApiInboundrouteByIdGetRequest{
+func (a *InboundRouteAPIService) InboundrouteByIdGet(ctx context.Context, id string) InboundRouteAPIInboundrouteByIdGetRequest {
+	return InboundRouteAPIInboundrouteByIdGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -159,7 +159,7 @@ func (a *InboundRouteAPIService) InboundrouteByIdGet(ctx context.Context, id str
 
 // Execute executes the request
 //  @return InboundRoute
-func (a *InboundRouteAPIService) InboundrouteByIdGetExecute(r ApiInboundrouteByIdGetRequest) (*InboundRoute, *http.Response, error) {
+func (a *InboundRouteAPIService) InboundrouteByIdGetExecute(r InboundRouteAPIInboundrouteByIdGetRequest) (*InboundRoute, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -247,19 +247,19 @@ func (a *InboundRouteAPIService) InboundrouteByIdGetExecute(r ApiInboundrouteByI
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiInboundrouteByIdPutRequest struct {
+type InboundRouteAPIInboundrouteByIdPutRequest struct {
 	ctx context.Context
 	ApiService *InboundRouteAPIService
 	id string
 	inboundPayload *InboundPayload
 }
 
-func (r ApiInboundrouteByIdPutRequest) InboundPayload(inboundPayload InboundPayload) ApiInboundrouteByIdPutRequest {
+func (r InboundRouteAPIInboundrouteByIdPutRequest) InboundPayload(inboundPayload InboundPayload) InboundRouteAPIInboundrouteByIdPutRequest {
 	r.inboundPayload = &inboundPayload
 	return r
 }
 
-func (r ApiInboundrouteByIdPutRequest) Execute() (*InboundRoute, *http.Response, error) {
+func (r InboundRouteAPIInboundrouteByIdPutRequest) Execute() (*InboundRoute, *http.Response, error) {
 	return r.ApiService.InboundrouteByIdPutExecute(r)
 }
 
@@ -270,10 +270,10 @@ Update the Inbound Route. Required Access Level: ModifySettings
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiInboundrouteByIdPutRequest
+ @return InboundRouteAPIInboundrouteByIdPutRequest
 */
-func (a *InboundRouteAPIService) InboundrouteByIdPut(ctx context.Context, id string) ApiInboundrouteByIdPutRequest {
-	return ApiInboundrouteByIdPutRequest{
+func (a *InboundRouteAPIService) InboundrouteByIdPut(ctx context.Context, id string) InboundRouteAPIInboundrouteByIdPutRequest {
+	return InboundRouteAPIInboundrouteByIdPutRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -282,7 +282,7 @@ func (a *InboundRouteAPIService) InboundrouteByIdPut(ctx context.Context, id str
 
 // Execute executes the request
 //  @return InboundRoute
-func (a *InboundRouteAPIService) InboundrouteByIdPutExecute(r ApiInboundrouteByIdPutRequest) (*InboundRoute, *http.Response, error) {
+func (a *InboundRouteAPIService) InboundrouteByIdPutExecute(r InboundRouteAPIInboundrouteByIdPutRequest) (*InboundRoute, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -375,12 +375,12 @@ func (a *InboundRouteAPIService) InboundrouteByIdPutExecute(r ApiInboundrouteByI
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiInboundrouteGetRequest struct {
+type InboundRouteAPIInboundrouteGetRequest struct {
 	ctx context.Context
 	ApiService *InboundRouteAPIService
 }
 
-func (r ApiInboundrouteGetRequest) Execute() ([]InboundRoute, *http.Response, error) {
+func (r InboundRouteAPIInboundrouteGetRequest) Execute() ([]InboundRoute, *http.Response, error) {
 	return r.ApiService.InboundrouteGetExecute(r)
 }
 
@@ -390,10 +390,10 @@ InboundrouteGet Get Routes
 Get all your Inbound Routes. Required Access Level: ViewSettings
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiInboundrouteGetRequest
+ @return InboundRouteAPIInboundrouteGetRequest
 */
-func (a *InboundRouteAPIService) InboundrouteGet(ctx context.Context) ApiInboundrouteGetRequest {
-	return ApiInboundrouteGetRequest{
+func (a *InboundRouteAPIService) InboundrouteGet(ctx context.Context) InboundRouteAPIInboundrouteGetRequest {
+	return InboundRouteAPIInboundrouteGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -401,7 +401,7 @@ func (a *InboundRouteAPIService) InboundrouteGet(ctx context.Context) ApiInbound
 
 // Execute executes the request
 //  @return []InboundRoute
-func (a *InboundRouteAPIService) InboundrouteGetExecute(r ApiInboundrouteGetRequest) ([]InboundRoute, *http.Response, error) {
+func (a *InboundRouteAPIService) InboundrouteGetExecute(r InboundRouteAPIInboundrouteGetRequest) ([]InboundRoute, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -488,19 +488,19 @@ func (a *InboundRouteAPIService) InboundrouteGetExecute(r ApiInboundrouteGetRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiInboundrouteOrderPutRequest struct {
+type InboundRouteAPIInboundrouteOrderPutRequest struct {
 	ctx context.Context
 	ApiService *InboundRouteAPIService
 	sortOrderItem *[]SortOrderItem
 }
 
 // Change the ordering of inbound routes for when matching the inbound
-func (r ApiInboundrouteOrderPutRequest) SortOrderItem(sortOrderItem []SortOrderItem) ApiInboundrouteOrderPutRequest {
+func (r InboundRouteAPIInboundrouteOrderPutRequest) SortOrderItem(sortOrderItem []SortOrderItem) InboundRouteAPIInboundrouteOrderPutRequest {
 	r.sortOrderItem = &sortOrderItem
 	return r
 }
 
-func (r ApiInboundrouteOrderPutRequest) Execute() ([]InboundRoute, *http.Response, error) {
+func (r InboundRouteAPIInboundrouteOrderPutRequest) Execute() ([]InboundRoute, *http.Response, error) {
 	return r.ApiService.InboundrouteOrderPutExecute(r)
 }
 
@@ -510,10 +510,10 @@ InboundrouteOrderPut Update Sorting
 Required Access Level: ViewSettings
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiInboundrouteOrderPutRequest
+ @return InboundRouteAPIInboundrouteOrderPutRequest
 */
-func (a *InboundRouteAPIService) InboundrouteOrderPut(ctx context.Context) ApiInboundrouteOrderPutRequest {
-	return ApiInboundrouteOrderPutRequest{
+func (a *InboundRouteAPIService) InboundrouteOrderPut(ctx context.Context) InboundRouteAPIInboundrouteOrderPutRequest {
+	return InboundRouteAPIInboundrouteOrderPutRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -521,7 +521,7 @@ func (a *InboundRouteAPIService) InboundrouteOrderPut(ctx context.Context) ApiIn
 
 // Execute executes the request
 //  @return []InboundRoute
-func (a *InboundRouteAPIService) InboundrouteOrderPutExecute(r ApiInboundrouteOrderPutRequest) ([]InboundRoute, *http.Response, error) {
+func (a *InboundRouteAPIService) InboundrouteOrderPutExecute(r InboundRouteAPIInboundrouteOrderPutRequest) ([]InboundRoute, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -613,18 +613,18 @@ func (a *InboundRouteAPIService) InboundrouteOrderPutExecute(r ApiInboundrouteOr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiInboundroutePostRequest struct {
+type InboundRouteAPIInboundroutePostRequest struct {
 	ctx context.Context
 	ApiService *InboundRouteAPIService
 	inboundPayload *InboundPayload
 }
 
-func (r ApiInboundroutePostRequest) InboundPayload(inboundPayload InboundPayload) ApiInboundroutePostRequest {
+func (r InboundRouteAPIInboundroutePostRequest) InboundPayload(inboundPayload InboundPayload) InboundRouteAPIInboundroutePostRequest {
 	r.inboundPayload = &inboundPayload
 	return r
 }
 
-func (r ApiInboundroutePostRequest) Execute() (*InboundRoute, *http.Response, error) {
+func (r InboundRouteAPIInboundroutePostRequest) Execute() (*InboundRoute, *http.Response, error) {
 	return r.ApiService.InboundroutePostExecute(r)
 }
 
@@ -634,10 +634,10 @@ InboundroutePost Create Route
 Create new Inbound Route. Required Access Level: ModifySettings
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiInboundroutePostRequest
+ @return InboundRouteAPIInboundroutePostRequest
 */
-func (a *InboundRouteAPIService) InboundroutePost(ctx context.Context) ApiInboundroutePostRequest {
-	return ApiInboundroutePostRequest{
+func (a *InboundRouteAPIService) InboundroutePost(ctx context.Context) InboundRouteAPIInboundroutePostRequest {
+	return InboundRouteAPIInboundroutePostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -645,7 +645,7 @@ func (a *InboundRouteAPIService) InboundroutePost(ctx context.Context) ApiInboun
 
 // Execute executes the request
 //  @return InboundRoute
-func (a *InboundRouteAPIService) InboundroutePostExecute(r ApiInboundroutePostRequest) (*InboundRoute, *http.Response, error) {
+func (a *InboundRouteAPIService) InboundroutePostExecute(r InboundRouteAPIInboundroutePostRequest) (*InboundRoute, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}

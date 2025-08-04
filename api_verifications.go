@@ -25,13 +25,13 @@ import (
 // VerificationsAPIService VerificationsAPI service
 type VerificationsAPIService service
 
-type ApiVerificationsByEmailDeleteRequest struct {
+type VerificationsAPIVerificationsByEmailDeleteRequest struct {
 	ctx context.Context
 	ApiService *VerificationsAPIService
 	email string
 }
 
-func (r ApiVerificationsByEmailDeleteRequest) Execute() (*http.Response, error) {
+func (r VerificationsAPIVerificationsByEmailDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.VerificationsByEmailDeleteExecute(r)
 }
 
@@ -42,10 +42,10 @@ Delete a result with given email if exists. Required Access Level: VerifyEmails
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email Email address to verification
- @return ApiVerificationsByEmailDeleteRequest
+ @return VerificationsAPIVerificationsByEmailDeleteRequest
 */
-func (a *VerificationsAPIService) VerificationsByEmailDelete(ctx context.Context, email string) ApiVerificationsByEmailDeleteRequest {
-	return ApiVerificationsByEmailDeleteRequest{
+func (a *VerificationsAPIService) VerificationsByEmailDelete(ctx context.Context, email string) VerificationsAPIVerificationsByEmailDeleteRequest {
+	return VerificationsAPIVerificationsByEmailDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		email: email,
@@ -53,7 +53,7 @@ func (a *VerificationsAPIService) VerificationsByEmailDelete(ctx context.Context
 }
 
 // Execute executes the request
-func (a *VerificationsAPIService) VerificationsByEmailDeleteExecute(r ApiVerificationsByEmailDeleteRequest) (*http.Response, error) {
+func (a *VerificationsAPIService) VerificationsByEmailDeleteExecute(r VerificationsAPIVerificationsByEmailDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -131,13 +131,13 @@ func (a *VerificationsAPIService) VerificationsByEmailDeleteExecute(r ApiVerific
 	return localVarHTTPResponse, nil
 }
 
-type ApiVerificationsByEmailGetRequest struct {
+type VerificationsAPIVerificationsByEmailGetRequest struct {
 	ctx context.Context
 	ApiService *VerificationsAPIService
 	email string
 }
 
-func (r ApiVerificationsByEmailGetRequest) Execute() (*EmailValidationResult, *http.Response, error) {
+func (r VerificationsAPIVerificationsByEmailGetRequest) Execute() (*EmailValidationResult, *http.Response, error) {
 	return r.ApiService.VerificationsByEmailGetExecute(r)
 }
 
@@ -148,10 +148,10 @@ Returns a result of verified email. Required Access Level: ViewVerifyEmails
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email Email address to view verification result of
- @return ApiVerificationsByEmailGetRequest
+ @return VerificationsAPIVerificationsByEmailGetRequest
 */
-func (a *VerificationsAPIService) VerificationsByEmailGet(ctx context.Context, email string) ApiVerificationsByEmailGetRequest {
-	return ApiVerificationsByEmailGetRequest{
+func (a *VerificationsAPIService) VerificationsByEmailGet(ctx context.Context, email string) VerificationsAPIVerificationsByEmailGetRequest {
+	return VerificationsAPIVerificationsByEmailGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		email: email,
@@ -160,7 +160,7 @@ func (a *VerificationsAPIService) VerificationsByEmailGet(ctx context.Context, e
 
 // Execute executes the request
 //  @return EmailValidationResult
-func (a *VerificationsAPIService) VerificationsByEmailGetExecute(r ApiVerificationsByEmailGetRequest) (*EmailValidationResult, *http.Response, error) {
+func (a *VerificationsAPIService) VerificationsByEmailGetExecute(r VerificationsAPIVerificationsByEmailGetRequest) (*EmailValidationResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -248,13 +248,13 @@ func (a *VerificationsAPIService) VerificationsByEmailGetExecute(r ApiVerificati
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiVerificationsByEmailPostRequest struct {
+type VerificationsAPIVerificationsByEmailPostRequest struct {
 	ctx context.Context
 	ApiService *VerificationsAPIService
 	email string
 }
 
-func (r ApiVerificationsByEmailPostRequest) Execute() (*EmailValidationResult, *http.Response, error) {
+func (r VerificationsAPIVerificationsByEmailPostRequest) Execute() (*EmailValidationResult, *http.Response, error) {
 	return r.ApiService.VerificationsByEmailPostExecute(r)
 }
 
@@ -265,10 +265,10 @@ Verify single email address and returns result of verification. Required Access 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email Email address to verify
- @return ApiVerificationsByEmailPostRequest
+ @return VerificationsAPIVerificationsByEmailPostRequest
 */
-func (a *VerificationsAPIService) VerificationsByEmailPost(ctx context.Context, email string) ApiVerificationsByEmailPostRequest {
-	return ApiVerificationsByEmailPostRequest{
+func (a *VerificationsAPIService) VerificationsByEmailPost(ctx context.Context, email string) VerificationsAPIVerificationsByEmailPostRequest {
+	return VerificationsAPIVerificationsByEmailPostRequest{
 		ApiService: a,
 		ctx: ctx,
 		email: email,
@@ -277,7 +277,7 @@ func (a *VerificationsAPIService) VerificationsByEmailPost(ctx context.Context, 
 
 // Execute executes the request
 //  @return EmailValidationResult
-func (a *VerificationsAPIService) VerificationsByEmailPostExecute(r ApiVerificationsByEmailPostRequest) (*EmailValidationResult, *http.Response, error) {
+func (a *VerificationsAPIService) VerificationsByEmailPostExecute(r VerificationsAPIVerificationsByEmailPostRequest) (*EmailValidationResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -365,13 +365,13 @@ func (a *VerificationsAPIService) VerificationsByEmailPostExecute(r ApiVerificat
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiVerificationsFilesByIdDeleteRequest struct {
+type VerificationsAPIVerificationsFilesByIdDeleteRequest struct {
 	ctx context.Context
 	ApiService *VerificationsAPIService
 	id string
 }
 
-func (r ApiVerificationsFilesByIdDeleteRequest) Execute() (*http.Response, error) {
+func (r VerificationsAPIVerificationsFilesByIdDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.VerificationsFilesByIdDeleteExecute(r)
 }
 
@@ -382,10 +382,10 @@ Delete Verification Results if they exist. Required Access Level: VerifyEmails
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID of the exported file
- @return ApiVerificationsFilesByIdDeleteRequest
+ @return VerificationsAPIVerificationsFilesByIdDeleteRequest
 */
-func (a *VerificationsAPIService) VerificationsFilesByIdDelete(ctx context.Context, id string) ApiVerificationsFilesByIdDeleteRequest {
-	return ApiVerificationsFilesByIdDeleteRequest{
+func (a *VerificationsAPIService) VerificationsFilesByIdDelete(ctx context.Context, id string) VerificationsAPIVerificationsFilesByIdDeleteRequest {
+	return VerificationsAPIVerificationsFilesByIdDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -393,7 +393,7 @@ func (a *VerificationsAPIService) VerificationsFilesByIdDelete(ctx context.Conte
 }
 
 // Execute executes the request
-func (a *VerificationsAPIService) VerificationsFilesByIdDeleteExecute(r ApiVerificationsFilesByIdDeleteRequest) (*http.Response, error) {
+func (a *VerificationsAPIService) VerificationsFilesByIdDeleteExecute(r VerificationsAPIVerificationsFilesByIdDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -471,13 +471,13 @@ func (a *VerificationsAPIService) VerificationsFilesByIdDeleteExecute(r ApiVerif
 	return localVarHTTPResponse, nil
 }
 
-type ApiVerificationsFilesByIdResultDownloadGetRequest struct {
+type VerificationsAPIVerificationsFilesByIdResultDownloadGetRequest struct {
 	ctx context.Context
 	ApiService *VerificationsAPIService
 	id string
 }
 
-func (r ApiVerificationsFilesByIdResultDownloadGetRequest) Execute() (*os.File, *http.Response, error) {
+func (r VerificationsAPIVerificationsFilesByIdResultDownloadGetRequest) Execute() (*os.File, *http.Response, error) {
 	return r.ApiService.VerificationsFilesByIdResultDownloadGetExecute(r)
 }
 
@@ -488,10 +488,10 @@ Download verification results as a ZIP file. Required Access Level: ViewVerifyEm
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Verification ID to download
- @return ApiVerificationsFilesByIdResultDownloadGetRequest
+ @return VerificationsAPIVerificationsFilesByIdResultDownloadGetRequest
 */
-func (a *VerificationsAPIService) VerificationsFilesByIdResultDownloadGet(ctx context.Context, id string) ApiVerificationsFilesByIdResultDownloadGetRequest {
-	return ApiVerificationsFilesByIdResultDownloadGetRequest{
+func (a *VerificationsAPIService) VerificationsFilesByIdResultDownloadGet(ctx context.Context, id string) VerificationsAPIVerificationsFilesByIdResultDownloadGetRequest {
+	return VerificationsAPIVerificationsFilesByIdResultDownloadGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -500,7 +500,7 @@ func (a *VerificationsAPIService) VerificationsFilesByIdResultDownloadGet(ctx co
 
 // Execute executes the request
 //  @return *os.File
-func (a *VerificationsAPIService) VerificationsFilesByIdResultDownloadGetExecute(r ApiVerificationsFilesByIdResultDownloadGetRequest) (*os.File, *http.Response, error) {
+func (a *VerificationsAPIService) VerificationsFilesByIdResultDownloadGetExecute(r VerificationsAPIVerificationsFilesByIdResultDownloadGetRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -588,7 +588,7 @@ func (a *VerificationsAPIService) VerificationsFilesByIdResultDownloadGetExecute
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiVerificationsFilesByIdResultGetRequest struct {
+type VerificationsAPIVerificationsFilesByIdResultGetRequest struct {
 	ctx context.Context
 	ApiService *VerificationsAPIService
 	id string
@@ -597,18 +597,18 @@ type ApiVerificationsFilesByIdResultGetRequest struct {
 }
 
 // Maximum number of returned email verification results
-func (r ApiVerificationsFilesByIdResultGetRequest) Limit(limit int32) ApiVerificationsFilesByIdResultGetRequest {
+func (r VerificationsAPIVerificationsFilesByIdResultGetRequest) Limit(limit int32) VerificationsAPIVerificationsFilesByIdResultGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // How many result items should be returned ahead
-func (r ApiVerificationsFilesByIdResultGetRequest) Offset(offset int32) ApiVerificationsFilesByIdResultGetRequest {
+func (r VerificationsAPIVerificationsFilesByIdResultGetRequest) Offset(offset int32) VerificationsAPIVerificationsFilesByIdResultGetRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiVerificationsFilesByIdResultGetRequest) Execute() (*VerificationFileResultDetails, *http.Response, error) {
+func (r VerificationsAPIVerificationsFilesByIdResultGetRequest) Execute() (*VerificationFileResultDetails, *http.Response, error) {
 	return r.ApiService.VerificationsFilesByIdResultGetExecute(r)
 }
 
@@ -619,10 +619,10 @@ Returns status and results (if verified) of file with given ID. Required Access 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID of the Verification to display status of
- @return ApiVerificationsFilesByIdResultGetRequest
+ @return VerificationsAPIVerificationsFilesByIdResultGetRequest
 */
-func (a *VerificationsAPIService) VerificationsFilesByIdResultGet(ctx context.Context, id string) ApiVerificationsFilesByIdResultGetRequest {
-	return ApiVerificationsFilesByIdResultGetRequest{
+func (a *VerificationsAPIService) VerificationsFilesByIdResultGet(ctx context.Context, id string) VerificationsAPIVerificationsFilesByIdResultGetRequest {
+	return VerificationsAPIVerificationsFilesByIdResultGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -631,7 +631,7 @@ func (a *VerificationsAPIService) VerificationsFilesByIdResultGet(ctx context.Co
 
 // Execute executes the request
 //  @return VerificationFileResultDetails
-func (a *VerificationsAPIService) VerificationsFilesByIdResultGetExecute(r ApiVerificationsFilesByIdResultGetRequest) (*VerificationFileResultDetails, *http.Response, error) {
+func (a *VerificationsAPIService) VerificationsFilesByIdResultGetExecute(r VerificationsAPIVerificationsFilesByIdResultGetRequest) (*VerificationFileResultDetails, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -725,13 +725,13 @@ func (a *VerificationsAPIService) VerificationsFilesByIdResultGetExecute(r ApiVe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiVerificationsFilesByIdVerificationPostRequest struct {
+type VerificationsAPIVerificationsFilesByIdVerificationPostRequest struct {
 	ctx context.Context
 	ApiService *VerificationsAPIService
 	id string
 }
 
-func (r ApiVerificationsFilesByIdVerificationPostRequest) Execute() (*http.Response, error) {
+func (r VerificationsAPIVerificationsFilesByIdVerificationPostRequest) Execute() (*http.Response, error) {
 	return r.ApiService.VerificationsFilesByIdVerificationPostExecute(r)
 }
 
@@ -742,10 +742,10 @@ Start a verification of the previously uploaded file with emails. Required Acces
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id File ID to start verification
- @return ApiVerificationsFilesByIdVerificationPostRequest
+ @return VerificationsAPIVerificationsFilesByIdVerificationPostRequest
 */
-func (a *VerificationsAPIService) VerificationsFilesByIdVerificationPost(ctx context.Context, id string) ApiVerificationsFilesByIdVerificationPostRequest {
-	return ApiVerificationsFilesByIdVerificationPostRequest{
+func (a *VerificationsAPIService) VerificationsFilesByIdVerificationPost(ctx context.Context, id string) VerificationsAPIVerificationsFilesByIdVerificationPostRequest {
+	return VerificationsAPIVerificationsFilesByIdVerificationPostRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -753,7 +753,7 @@ func (a *VerificationsAPIService) VerificationsFilesByIdVerificationPost(ctx con
 }
 
 // Execute executes the request
-func (a *VerificationsAPIService) VerificationsFilesByIdVerificationPostExecute(r ApiVerificationsFilesByIdVerificationPostRequest) (*http.Response, error) {
+func (a *VerificationsAPIService) VerificationsFilesByIdVerificationPostExecute(r VerificationsAPIVerificationsFilesByIdVerificationPostRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -831,18 +831,18 @@ func (a *VerificationsAPIService) VerificationsFilesByIdVerificationPostExecute(
 	return localVarHTTPResponse, nil
 }
 
-type ApiVerificationsFilesPostRequest struct {
+type VerificationsAPIVerificationsFilesPostRequest struct {
 	ctx context.Context
 	ApiService *VerificationsAPIService
 	file *os.File
 }
 
-func (r ApiVerificationsFilesPostRequest) File(file *os.File) ApiVerificationsFilesPostRequest {
+func (r VerificationsAPIVerificationsFilesPostRequest) File(file *os.File) VerificationsAPIVerificationsFilesPostRequest {
 	r.file = file
 	return r
 }
 
-func (r ApiVerificationsFilesPostRequest) Execute() (*VerificationFileResult, *http.Response, error) {
+func (r VerificationsAPIVerificationsFilesPostRequest) Execute() (*VerificationFileResult, *http.Response, error) {
 	return r.ApiService.VerificationsFilesPostExecute(r)
 }
 
@@ -852,10 +852,10 @@ VerificationsFilesPost Upload File with Emails
 Uploads a CSV file with list of emails that can then be triggered for verification. An 'email' column is required. Required Access Level: VerifyEmails
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiVerificationsFilesPostRequest
+ @return VerificationsAPIVerificationsFilesPostRequest
 */
-func (a *VerificationsAPIService) VerificationsFilesPost(ctx context.Context) ApiVerificationsFilesPostRequest {
-	return ApiVerificationsFilesPostRequest{
+func (a *VerificationsAPIService) VerificationsFilesPost(ctx context.Context) VerificationsAPIVerificationsFilesPostRequest {
+	return VerificationsAPIVerificationsFilesPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -863,7 +863,7 @@ func (a *VerificationsAPIService) VerificationsFilesPost(ctx context.Context) Ap
 
 // Execute executes the request
 //  @return VerificationFileResult
-func (a *VerificationsAPIService) VerificationsFilesPostExecute(r ApiVerificationsFilesPostRequest) (*VerificationFileResult, *http.Response, error) {
+func (a *VerificationsAPIService) VerificationsFilesPostExecute(r VerificationsAPIVerificationsFilesPostRequest) (*VerificationFileResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -965,12 +965,12 @@ func (a *VerificationsAPIService) VerificationsFilesPostExecute(r ApiVerificatio
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiVerificationsFilesResultGetRequest struct {
+type VerificationsAPIVerificationsFilesResultGetRequest struct {
 	ctx context.Context
 	ApiService *VerificationsAPIService
 }
 
-func (r ApiVerificationsFilesResultGetRequest) Execute() ([]VerificationFileResult, *http.Response, error) {
+func (r VerificationsAPIVerificationsFilesResultGetRequest) Execute() ([]VerificationFileResult, *http.Response, error) {
 	return r.ApiService.VerificationsFilesResultGetExecute(r)
 }
 
@@ -980,10 +980,10 @@ VerificationsFilesResultGet Get Files Verification Results
 Returns a list of uploaded files, their statuses and results. Required Access Level: ViewVerifyEmails
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiVerificationsFilesResultGetRequest
+ @return VerificationsAPIVerificationsFilesResultGetRequest
 */
-func (a *VerificationsAPIService) VerificationsFilesResultGet(ctx context.Context) ApiVerificationsFilesResultGetRequest {
-	return ApiVerificationsFilesResultGetRequest{
+func (a *VerificationsAPIService) VerificationsFilesResultGet(ctx context.Context) VerificationsAPIVerificationsFilesResultGetRequest {
+	return VerificationsAPIVerificationsFilesResultGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -991,7 +991,7 @@ func (a *VerificationsAPIService) VerificationsFilesResultGet(ctx context.Contex
 
 // Execute executes the request
 //  @return []VerificationFileResult
-func (a *VerificationsAPIService) VerificationsFilesResultGetExecute(r ApiVerificationsFilesResultGetRequest) ([]VerificationFileResult, *http.Response, error) {
+func (a *VerificationsAPIService) VerificationsFilesResultGetExecute(r VerificationsAPIVerificationsFilesResultGetRequest) ([]VerificationFileResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1078,7 +1078,7 @@ func (a *VerificationsAPIService) VerificationsFilesResultGetExecute(r ApiVerifi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiVerificationsGetRequest struct {
+type VerificationsAPIVerificationsGetRequest struct {
 	ctx context.Context
 	ApiService *VerificationsAPIService
 	limit *int32
@@ -1086,18 +1086,18 @@ type ApiVerificationsGetRequest struct {
 }
 
 // Maximum number of returned items.
-func (r ApiVerificationsGetRequest) Limit(limit int32) ApiVerificationsGetRequest {
+func (r VerificationsAPIVerificationsGetRequest) Limit(limit int32) VerificationsAPIVerificationsGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // How many items should be returned ahead.
-func (r ApiVerificationsGetRequest) Offset(offset int32) ApiVerificationsGetRequest {
+func (r VerificationsAPIVerificationsGetRequest) Offset(offset int32) VerificationsAPIVerificationsGetRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiVerificationsGetRequest) Execute() ([]EmailValidationResult, *http.Response, error) {
+func (r VerificationsAPIVerificationsGetRequest) Execute() ([]EmailValidationResult, *http.Response, error) {
 	return r.ApiService.VerificationsGetExecute(r)
 }
 
@@ -1107,10 +1107,10 @@ VerificationsGet Get Emails Verification Results
 Returns a results of all verified single emails. Required Access Level: ViewVerifyEmails
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiVerificationsGetRequest
+ @return VerificationsAPIVerificationsGetRequest
 */
-func (a *VerificationsAPIService) VerificationsGet(ctx context.Context) ApiVerificationsGetRequest {
-	return ApiVerificationsGetRequest{
+func (a *VerificationsAPIService) VerificationsGet(ctx context.Context) VerificationsAPIVerificationsGetRequest {
+	return VerificationsAPIVerificationsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1118,7 +1118,7 @@ func (a *VerificationsAPIService) VerificationsGet(ctx context.Context) ApiVerif
 
 // Execute executes the request
 //  @return []EmailValidationResult
-func (a *VerificationsAPIService) VerificationsGetExecute(r ApiVerificationsGetRequest) ([]EmailValidationResult, *http.Response, error) {
+func (a *VerificationsAPIService) VerificationsGetExecute(r VerificationsAPIVerificationsGetRequest) ([]EmailValidationResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}

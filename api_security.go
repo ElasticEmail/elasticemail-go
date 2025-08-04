@@ -24,7 +24,7 @@ import (
 // SecurityAPIService SecurityAPI service
 type SecurityAPIService service
 
-type ApiSecurityApikeysByNameDeleteRequest struct {
+type SecurityAPISecurityApikeysByNameDeleteRequest struct {
 	ctx context.Context
 	ApiService *SecurityAPIService
 	name string
@@ -32,12 +32,12 @@ type ApiSecurityApikeysByNameDeleteRequest struct {
 }
 
 // Email of the subaccount of which ApiKey should be deleted
-func (r ApiSecurityApikeysByNameDeleteRequest) Subaccount(subaccount string) ApiSecurityApikeysByNameDeleteRequest {
+func (r SecurityAPISecurityApikeysByNameDeleteRequest) Subaccount(subaccount string) SecurityAPISecurityApikeysByNameDeleteRequest {
 	r.subaccount = &subaccount
 	return r
 }
 
-func (r ApiSecurityApikeysByNameDeleteRequest) Execute() (*http.Response, error) {
+func (r SecurityAPISecurityApikeysByNameDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SecurityApikeysByNameDeleteExecute(r)
 }
 
@@ -48,10 +48,10 @@ Delete your existing ApiKey. Required Access Level: ModifyAccessTokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of the ApiKey
- @return ApiSecurityApikeysByNameDeleteRequest
+ @return SecurityAPISecurityApikeysByNameDeleteRequest
 */
-func (a *SecurityAPIService) SecurityApikeysByNameDelete(ctx context.Context, name string) ApiSecurityApikeysByNameDeleteRequest {
-	return ApiSecurityApikeysByNameDeleteRequest{
+func (a *SecurityAPIService) SecurityApikeysByNameDelete(ctx context.Context, name string) SecurityAPISecurityApikeysByNameDeleteRequest {
+	return SecurityAPISecurityApikeysByNameDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -59,7 +59,7 @@ func (a *SecurityAPIService) SecurityApikeysByNameDelete(ctx context.Context, na
 }
 
 // Execute executes the request
-func (a *SecurityAPIService) SecurityApikeysByNameDeleteExecute(r ApiSecurityApikeysByNameDeleteRequest) (*http.Response, error) {
+func (a *SecurityAPIService) SecurityApikeysByNameDeleteExecute(r SecurityAPISecurityApikeysByNameDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -140,7 +140,7 @@ func (a *SecurityAPIService) SecurityApikeysByNameDeleteExecute(r ApiSecurityApi
 	return localVarHTTPResponse, nil
 }
 
-type ApiSecurityApikeysByNameGetRequest struct {
+type SecurityAPISecurityApikeysByNameGetRequest struct {
 	ctx context.Context
 	ApiService *SecurityAPIService
 	name string
@@ -148,12 +148,12 @@ type ApiSecurityApikeysByNameGetRequest struct {
 }
 
 // Email of the subaccount of which ApiKey should be loaded
-func (r ApiSecurityApikeysByNameGetRequest) Subaccount(subaccount string) ApiSecurityApikeysByNameGetRequest {
+func (r SecurityAPISecurityApikeysByNameGetRequest) Subaccount(subaccount string) SecurityAPISecurityApikeysByNameGetRequest {
 	r.subaccount = &subaccount
 	return r
 }
 
-func (r ApiSecurityApikeysByNameGetRequest) Execute() (*ApiKey, *http.Response, error) {
+func (r SecurityAPISecurityApikeysByNameGetRequest) Execute() (*ApiKey, *http.Response, error) {
 	return r.ApiService.SecurityApikeysByNameGetExecute(r)
 }
 
@@ -164,10 +164,10 @@ Load your existing ApiKey info. Required Access Level: ViewAccessTokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of the ApiKey
- @return ApiSecurityApikeysByNameGetRequest
+ @return SecurityAPISecurityApikeysByNameGetRequest
 */
-func (a *SecurityAPIService) SecurityApikeysByNameGet(ctx context.Context, name string) ApiSecurityApikeysByNameGetRequest {
-	return ApiSecurityApikeysByNameGetRequest{
+func (a *SecurityAPIService) SecurityApikeysByNameGet(ctx context.Context, name string) SecurityAPISecurityApikeysByNameGetRequest {
+	return SecurityAPISecurityApikeysByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -176,7 +176,7 @@ func (a *SecurityAPIService) SecurityApikeysByNameGet(ctx context.Context, name 
 
 // Execute executes the request
 //  @return ApiKey
-func (a *SecurityAPIService) SecurityApikeysByNameGetExecute(r ApiSecurityApikeysByNameGetRequest) (*ApiKey, *http.Response, error) {
+func (a *SecurityAPIService) SecurityApikeysByNameGetExecute(r SecurityAPISecurityApikeysByNameGetRequest) (*ApiKey, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -267,19 +267,19 @@ func (a *SecurityAPIService) SecurityApikeysByNameGetExecute(r ApiSecurityApikey
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSecurityApikeysByNamePutRequest struct {
+type SecurityAPISecurityApikeysByNamePutRequest struct {
 	ctx context.Context
 	ApiService *SecurityAPIService
 	name string
 	apiKeyPayload *ApiKeyPayload
 }
 
-func (r ApiSecurityApikeysByNamePutRequest) ApiKeyPayload(apiKeyPayload ApiKeyPayload) ApiSecurityApikeysByNamePutRequest {
+func (r SecurityAPISecurityApikeysByNamePutRequest) ApiKeyPayload(apiKeyPayload ApiKeyPayload) SecurityAPISecurityApikeysByNamePutRequest {
 	r.apiKeyPayload = &apiKeyPayload
 	return r
 }
 
-func (r ApiSecurityApikeysByNamePutRequest) Execute() (*ApiKey, *http.Response, error) {
+func (r SecurityAPISecurityApikeysByNamePutRequest) Execute() (*ApiKey, *http.Response, error) {
 	return r.ApiService.SecurityApikeysByNamePutExecute(r)
 }
 
@@ -290,10 +290,10 @@ Update your existing ApiKey. Required Access Level: ModifyAccessTokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of the ApiKey
- @return ApiSecurityApikeysByNamePutRequest
+ @return SecurityAPISecurityApikeysByNamePutRequest
 */
-func (a *SecurityAPIService) SecurityApikeysByNamePut(ctx context.Context, name string) ApiSecurityApikeysByNamePutRequest {
-	return ApiSecurityApikeysByNamePutRequest{
+func (a *SecurityAPIService) SecurityApikeysByNamePut(ctx context.Context, name string) SecurityAPISecurityApikeysByNamePutRequest {
+	return SecurityAPISecurityApikeysByNamePutRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -302,7 +302,7 @@ func (a *SecurityAPIService) SecurityApikeysByNamePut(ctx context.Context, name 
 
 // Execute executes the request
 //  @return ApiKey
-func (a *SecurityAPIService) SecurityApikeysByNamePutExecute(r ApiSecurityApikeysByNamePutRequest) (*ApiKey, *http.Response, error) {
+func (a *SecurityAPIService) SecurityApikeysByNamePutExecute(r SecurityAPISecurityApikeysByNamePutRequest) (*ApiKey, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -395,19 +395,19 @@ func (a *SecurityAPIService) SecurityApikeysByNamePutExecute(r ApiSecurityApikey
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSecurityApikeysGetRequest struct {
+type SecurityAPISecurityApikeysGetRequest struct {
 	ctx context.Context
 	ApiService *SecurityAPIService
 	subaccount *string
 }
 
 // Email of the subaccount of which ApiKeys should be loaded
-func (r ApiSecurityApikeysGetRequest) Subaccount(subaccount string) ApiSecurityApikeysGetRequest {
+func (r SecurityAPISecurityApikeysGetRequest) Subaccount(subaccount string) SecurityAPISecurityApikeysGetRequest {
 	r.subaccount = &subaccount
 	return r
 }
 
-func (r ApiSecurityApikeysGetRequest) Execute() ([]ApiKey, *http.Response, error) {
+func (r SecurityAPISecurityApikeysGetRequest) Execute() ([]ApiKey, *http.Response, error) {
 	return r.ApiService.SecurityApikeysGetExecute(r)
 }
 
@@ -417,10 +417,10 @@ SecurityApikeysGet List ApiKeys
 List all your existing ApiKeys. Required Access Level: ViewAccessTokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSecurityApikeysGetRequest
+ @return SecurityAPISecurityApikeysGetRequest
 */
-func (a *SecurityAPIService) SecurityApikeysGet(ctx context.Context) ApiSecurityApikeysGetRequest {
-	return ApiSecurityApikeysGetRequest{
+func (a *SecurityAPIService) SecurityApikeysGet(ctx context.Context) SecurityAPISecurityApikeysGetRequest {
+	return SecurityAPISecurityApikeysGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -428,7 +428,7 @@ func (a *SecurityAPIService) SecurityApikeysGet(ctx context.Context) ApiSecurity
 
 // Execute executes the request
 //  @return []ApiKey
-func (a *SecurityAPIService) SecurityApikeysGetExecute(r ApiSecurityApikeysGetRequest) ([]ApiKey, *http.Response, error) {
+func (a *SecurityAPIService) SecurityApikeysGetExecute(r SecurityAPISecurityApikeysGetRequest) ([]ApiKey, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -518,18 +518,18 @@ func (a *SecurityAPIService) SecurityApikeysGetExecute(r ApiSecurityApikeysGetRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSecurityApikeysPostRequest struct {
+type SecurityAPISecurityApikeysPostRequest struct {
 	ctx context.Context
 	ApiService *SecurityAPIService
 	apiKeyPayload *ApiKeyPayload
 }
 
-func (r ApiSecurityApikeysPostRequest) ApiKeyPayload(apiKeyPayload ApiKeyPayload) ApiSecurityApikeysPostRequest {
+func (r SecurityAPISecurityApikeysPostRequest) ApiKeyPayload(apiKeyPayload ApiKeyPayload) SecurityAPISecurityApikeysPostRequest {
 	r.apiKeyPayload = &apiKeyPayload
 	return r
 }
 
-func (r ApiSecurityApikeysPostRequest) Execute() (*NewApiKey, *http.Response, error) {
+func (r SecurityAPISecurityApikeysPostRequest) Execute() (*NewApiKey, *http.Response, error) {
 	return r.ApiService.SecurityApikeysPostExecute(r)
 }
 
@@ -539,10 +539,10 @@ SecurityApikeysPost Add ApiKey
 Add a new ApiKey. Required Access Level: ModifyAccessTokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSecurityApikeysPostRequest
+ @return SecurityAPISecurityApikeysPostRequest
 */
-func (a *SecurityAPIService) SecurityApikeysPost(ctx context.Context) ApiSecurityApikeysPostRequest {
-	return ApiSecurityApikeysPostRequest{
+func (a *SecurityAPIService) SecurityApikeysPost(ctx context.Context) SecurityAPISecurityApikeysPostRequest {
+	return SecurityAPISecurityApikeysPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -550,7 +550,7 @@ func (a *SecurityAPIService) SecurityApikeysPost(ctx context.Context) ApiSecurit
 
 // Execute executes the request
 //  @return NewApiKey
-func (a *SecurityAPIService) SecurityApikeysPostExecute(r ApiSecurityApikeysPostRequest) (*NewApiKey, *http.Response, error) {
+func (a *SecurityAPIService) SecurityApikeysPostExecute(r SecurityAPISecurityApikeysPostRequest) (*NewApiKey, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -642,7 +642,7 @@ func (a *SecurityAPIService) SecurityApikeysPostExecute(r ApiSecurityApikeysPost
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSecuritySmtpByNameDeleteRequest struct {
+type SecurityAPISecuritySmtpByNameDeleteRequest struct {
 	ctx context.Context
 	ApiService *SecurityAPIService
 	name string
@@ -650,12 +650,12 @@ type ApiSecuritySmtpByNameDeleteRequest struct {
 }
 
 // Email of the subaccount of which credential should be deleted
-func (r ApiSecuritySmtpByNameDeleteRequest) Subaccount(subaccount string) ApiSecuritySmtpByNameDeleteRequest {
+func (r SecurityAPISecuritySmtpByNameDeleteRequest) Subaccount(subaccount string) SecurityAPISecuritySmtpByNameDeleteRequest {
 	r.subaccount = &subaccount
 	return r
 }
 
-func (r ApiSecuritySmtpByNameDeleteRequest) Execute() (*http.Response, error) {
+func (r SecurityAPISecuritySmtpByNameDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SecuritySmtpByNameDeleteExecute(r)
 }
 
@@ -666,10 +666,10 @@ Delete your existing SMTP Credentials. Required Access Level: ModifyAccessTokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of the SMTP Credential
- @return ApiSecuritySmtpByNameDeleteRequest
+ @return SecurityAPISecuritySmtpByNameDeleteRequest
 */
-func (a *SecurityAPIService) SecuritySmtpByNameDelete(ctx context.Context, name string) ApiSecuritySmtpByNameDeleteRequest {
-	return ApiSecuritySmtpByNameDeleteRequest{
+func (a *SecurityAPIService) SecuritySmtpByNameDelete(ctx context.Context, name string) SecurityAPISecuritySmtpByNameDeleteRequest {
+	return SecurityAPISecuritySmtpByNameDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -677,7 +677,7 @@ func (a *SecurityAPIService) SecuritySmtpByNameDelete(ctx context.Context, name 
 }
 
 // Execute executes the request
-func (a *SecurityAPIService) SecuritySmtpByNameDeleteExecute(r ApiSecuritySmtpByNameDeleteRequest) (*http.Response, error) {
+func (a *SecurityAPIService) SecuritySmtpByNameDeleteExecute(r SecurityAPISecuritySmtpByNameDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -758,7 +758,7 @@ func (a *SecurityAPIService) SecuritySmtpByNameDeleteExecute(r ApiSecuritySmtpBy
 	return localVarHTTPResponse, nil
 }
 
-type ApiSecuritySmtpByNameGetRequest struct {
+type SecurityAPISecuritySmtpByNameGetRequest struct {
 	ctx context.Context
 	ApiService *SecurityAPIService
 	name string
@@ -766,12 +766,12 @@ type ApiSecuritySmtpByNameGetRequest struct {
 }
 
 // Email of the subaccount of which credential should be loaded
-func (r ApiSecuritySmtpByNameGetRequest) Subaccount(subaccount string) ApiSecuritySmtpByNameGetRequest {
+func (r SecurityAPISecuritySmtpByNameGetRequest) Subaccount(subaccount string) SecurityAPISecuritySmtpByNameGetRequest {
 	r.subaccount = &subaccount
 	return r
 }
 
-func (r ApiSecuritySmtpByNameGetRequest) Execute() (*SmtpCredentials, *http.Response, error) {
+func (r SecurityAPISecuritySmtpByNameGetRequest) Execute() (*SmtpCredentials, *http.Response, error) {
 	return r.ApiService.SecuritySmtpByNameGetExecute(r)
 }
 
@@ -782,10 +782,10 @@ Load your existing SMTP Credential info. Required Access Level: ViewAccessTokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of the SMTP Credential
- @return ApiSecuritySmtpByNameGetRequest
+ @return SecurityAPISecuritySmtpByNameGetRequest
 */
-func (a *SecurityAPIService) SecuritySmtpByNameGet(ctx context.Context, name string) ApiSecuritySmtpByNameGetRequest {
-	return ApiSecuritySmtpByNameGetRequest{
+func (a *SecurityAPIService) SecuritySmtpByNameGet(ctx context.Context, name string) SecurityAPISecuritySmtpByNameGetRequest {
+	return SecurityAPISecuritySmtpByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -794,7 +794,7 @@ func (a *SecurityAPIService) SecuritySmtpByNameGet(ctx context.Context, name str
 
 // Execute executes the request
 //  @return SmtpCredentials
-func (a *SecurityAPIService) SecuritySmtpByNameGetExecute(r ApiSecuritySmtpByNameGetRequest) (*SmtpCredentials, *http.Response, error) {
+func (a *SecurityAPIService) SecuritySmtpByNameGetExecute(r SecurityAPISecuritySmtpByNameGetRequest) (*SmtpCredentials, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -885,19 +885,19 @@ func (a *SecurityAPIService) SecuritySmtpByNameGetExecute(r ApiSecuritySmtpByNam
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSecuritySmtpByNamePutRequest struct {
+type SecurityAPISecuritySmtpByNamePutRequest struct {
 	ctx context.Context
 	ApiService *SecurityAPIService
 	name string
 	smtpCredentialsPayload *SmtpCredentialsPayload
 }
 
-func (r ApiSecuritySmtpByNamePutRequest) SmtpCredentialsPayload(smtpCredentialsPayload SmtpCredentialsPayload) ApiSecuritySmtpByNamePutRequest {
+func (r SecurityAPISecuritySmtpByNamePutRequest) SmtpCredentialsPayload(smtpCredentialsPayload SmtpCredentialsPayload) SecurityAPISecuritySmtpByNamePutRequest {
 	r.smtpCredentialsPayload = &smtpCredentialsPayload
 	return r
 }
 
-func (r ApiSecuritySmtpByNamePutRequest) Execute() (*SmtpCredentials, *http.Response, error) {
+func (r SecurityAPISecuritySmtpByNamePutRequest) Execute() (*SmtpCredentials, *http.Response, error) {
 	return r.ApiService.SecuritySmtpByNamePutExecute(r)
 }
 
@@ -908,10 +908,10 @@ Update your existing SMTP Credentials. Required Access Level: ModifyAccessTokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of the SMTP Credential
- @return ApiSecuritySmtpByNamePutRequest
+ @return SecurityAPISecuritySmtpByNamePutRequest
 */
-func (a *SecurityAPIService) SecuritySmtpByNamePut(ctx context.Context, name string) ApiSecuritySmtpByNamePutRequest {
-	return ApiSecuritySmtpByNamePutRequest{
+func (a *SecurityAPIService) SecuritySmtpByNamePut(ctx context.Context, name string) SecurityAPISecuritySmtpByNamePutRequest {
+	return SecurityAPISecuritySmtpByNamePutRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -920,7 +920,7 @@ func (a *SecurityAPIService) SecuritySmtpByNamePut(ctx context.Context, name str
 
 // Execute executes the request
 //  @return SmtpCredentials
-func (a *SecurityAPIService) SecuritySmtpByNamePutExecute(r ApiSecuritySmtpByNamePutRequest) (*SmtpCredentials, *http.Response, error) {
+func (a *SecurityAPIService) SecuritySmtpByNamePutExecute(r SecurityAPISecuritySmtpByNamePutRequest) (*SmtpCredentials, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -1013,19 +1013,19 @@ func (a *SecurityAPIService) SecuritySmtpByNamePutExecute(r ApiSecuritySmtpByNam
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSecuritySmtpGetRequest struct {
+type SecurityAPISecuritySmtpGetRequest struct {
 	ctx context.Context
 	ApiService *SecurityAPIService
 	subaccount *string
 }
 
 // Email of the subaccount of which credentials should be listed
-func (r ApiSecuritySmtpGetRequest) Subaccount(subaccount string) ApiSecuritySmtpGetRequest {
+func (r SecurityAPISecuritySmtpGetRequest) Subaccount(subaccount string) SecurityAPISecuritySmtpGetRequest {
 	r.subaccount = &subaccount
 	return r
 }
 
-func (r ApiSecuritySmtpGetRequest) Execute() ([]SmtpCredentials, *http.Response, error) {
+func (r SecurityAPISecuritySmtpGetRequest) Execute() ([]SmtpCredentials, *http.Response, error) {
 	return r.ApiService.SecuritySmtpGetExecute(r)
 }
 
@@ -1035,10 +1035,10 @@ SecuritySmtpGet List SMTP Credentials
 List all your existing SMTP Credentials. Required Access Level: ViewAccessTokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSecuritySmtpGetRequest
+ @return SecurityAPISecuritySmtpGetRequest
 */
-func (a *SecurityAPIService) SecuritySmtpGet(ctx context.Context) ApiSecuritySmtpGetRequest {
-	return ApiSecuritySmtpGetRequest{
+func (a *SecurityAPIService) SecuritySmtpGet(ctx context.Context) SecurityAPISecuritySmtpGetRequest {
+	return SecurityAPISecuritySmtpGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1046,7 +1046,7 @@ func (a *SecurityAPIService) SecuritySmtpGet(ctx context.Context) ApiSecuritySmt
 
 // Execute executes the request
 //  @return []SmtpCredentials
-func (a *SecurityAPIService) SecuritySmtpGetExecute(r ApiSecuritySmtpGetRequest) ([]SmtpCredentials, *http.Response, error) {
+func (a *SecurityAPIService) SecuritySmtpGetExecute(r SecurityAPISecuritySmtpGetRequest) ([]SmtpCredentials, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1136,18 +1136,18 @@ func (a *SecurityAPIService) SecuritySmtpGetExecute(r ApiSecuritySmtpGetRequest)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSecuritySmtpPostRequest struct {
+type SecurityAPISecuritySmtpPostRequest struct {
 	ctx context.Context
 	ApiService *SecurityAPIService
 	smtpCredentialsPayload *SmtpCredentialsPayload
 }
 
-func (r ApiSecuritySmtpPostRequest) SmtpCredentialsPayload(smtpCredentialsPayload SmtpCredentialsPayload) ApiSecuritySmtpPostRequest {
+func (r SecurityAPISecuritySmtpPostRequest) SmtpCredentialsPayload(smtpCredentialsPayload SmtpCredentialsPayload) SecurityAPISecuritySmtpPostRequest {
 	r.smtpCredentialsPayload = &smtpCredentialsPayload
 	return r
 }
 
-func (r ApiSecuritySmtpPostRequest) Execute() (*NewSmtpCredentials, *http.Response, error) {
+func (r SecurityAPISecuritySmtpPostRequest) Execute() (*NewSmtpCredentials, *http.Response, error) {
 	return r.ApiService.SecuritySmtpPostExecute(r)
 }
 
@@ -1157,10 +1157,10 @@ SecuritySmtpPost Add SMTP Credential
 Add new SMTP Credential. Required Access Level: ModifyAccessTokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSecuritySmtpPostRequest
+ @return SecurityAPISecuritySmtpPostRequest
 */
-func (a *SecurityAPIService) SecuritySmtpPost(ctx context.Context) ApiSecuritySmtpPostRequest {
-	return ApiSecuritySmtpPostRequest{
+func (a *SecurityAPIService) SecuritySmtpPost(ctx context.Context) SecurityAPISecuritySmtpPostRequest {
+	return SecurityAPISecuritySmtpPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1168,7 +1168,7 @@ func (a *SecurityAPIService) SecuritySmtpPost(ctx context.Context) ApiSecuritySm
 
 // Execute executes the request
 //  @return NewSmtpCredentials
-func (a *SecurityAPIService) SecuritySmtpPostExecute(r ApiSecuritySmtpPostRequest) (*NewSmtpCredentials, *http.Response, error) {
+func (a *SecurityAPIService) SecuritySmtpPostExecute(r SecurityAPISecuritySmtpPostRequest) (*NewSmtpCredentials, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}

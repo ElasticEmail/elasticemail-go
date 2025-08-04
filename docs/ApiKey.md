@@ -13,20 +13,20 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewApiKey
+### NewStdApiKey
 
-`func NewApiKey() *ApiKey`
+`func NewStdApiKey() *ApiKey`
 
-NewApiKey instantiates a new ApiKey object
+NewStdApiKey instantiates a new ApiKey object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewApiKeyWithDefaults
+### NewStdApiKeyWithDefaults
 
-`func NewApiKeyWithDefaults() *ApiKey`
+`func NewStdApiKeyWithDefaults() *ApiKey`
 
-NewApiKeyWithDefaults instantiates a new ApiKey object
+NewStdApiKeyWithDefaults instantiates a new ApiKey object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 

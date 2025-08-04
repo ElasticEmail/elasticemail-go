@@ -24,13 +24,13 @@ import (
 // DomainsAPIService DomainsAPI service
 type DomainsAPIService service
 
-type ApiDomainsByDomainDeleteRequest struct {
+type DomainsAPIDomainsByDomainDeleteRequest struct {
 	ctx context.Context
 	ApiService *DomainsAPIService
 	domain string
 }
 
-func (r ApiDomainsByDomainDeleteRequest) Execute() (*http.Response, error) {
+func (r DomainsAPIDomainsByDomainDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DomainsByDomainDeleteExecute(r)
 }
 
@@ -41,10 +41,10 @@ Deletes configured domain from Account. Required Access Level: ModifySettings
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param domain Name of the given domain
- @return ApiDomainsByDomainDeleteRequest
+ @return DomainsAPIDomainsByDomainDeleteRequest
 */
-func (a *DomainsAPIService) DomainsByDomainDelete(ctx context.Context, domain string) ApiDomainsByDomainDeleteRequest {
-	return ApiDomainsByDomainDeleteRequest{
+func (a *DomainsAPIService) DomainsByDomainDelete(ctx context.Context, domain string) DomainsAPIDomainsByDomainDeleteRequest {
+	return DomainsAPIDomainsByDomainDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		domain: domain,
@@ -52,7 +52,7 @@ func (a *DomainsAPIService) DomainsByDomainDelete(ctx context.Context, domain st
 }
 
 // Execute executes the request
-func (a *DomainsAPIService) DomainsByDomainDeleteExecute(r ApiDomainsByDomainDeleteRequest) (*http.Response, error) {
+func (a *DomainsAPIService) DomainsByDomainDeleteExecute(r DomainsAPIDomainsByDomainDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -130,13 +130,13 @@ func (a *DomainsAPIService) DomainsByDomainDeleteExecute(r ApiDomainsByDomainDel
 	return localVarHTTPResponse, nil
 }
 
-type ApiDomainsByDomainGetRequest struct {
+type DomainsAPIDomainsByDomainGetRequest struct {
 	ctx context.Context
 	ApiService *DomainsAPIService
 	domain string
 }
 
-func (r ApiDomainsByDomainGetRequest) Execute() (*DomainData, *http.Response, error) {
+func (r DomainsAPIDomainsByDomainGetRequest) Execute() (*DomainData, *http.Response, error) {
 	return r.ApiService.DomainsByDomainGetExecute(r)
 }
 
@@ -147,10 +147,10 @@ Retrieve a domain configured for this Account. Required Access Level: ViewSettin
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param domain Name of the given domain
- @return ApiDomainsByDomainGetRequest
+ @return DomainsAPIDomainsByDomainGetRequest
 */
-func (a *DomainsAPIService) DomainsByDomainGet(ctx context.Context, domain string) ApiDomainsByDomainGetRequest {
-	return ApiDomainsByDomainGetRequest{
+func (a *DomainsAPIService) DomainsByDomainGet(ctx context.Context, domain string) DomainsAPIDomainsByDomainGetRequest {
+	return DomainsAPIDomainsByDomainGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		domain: domain,
@@ -159,7 +159,7 @@ func (a *DomainsAPIService) DomainsByDomainGet(ctx context.Context, domain strin
 
 // Execute executes the request
 //  @return DomainData
-func (a *DomainsAPIService) DomainsByDomainGetExecute(r ApiDomainsByDomainGetRequest) (*DomainData, *http.Response, error) {
+func (a *DomainsAPIService) DomainsByDomainGetExecute(r DomainsAPIDomainsByDomainGetRequest) (*DomainData, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -247,7 +247,7 @@ func (a *DomainsAPIService) DomainsByDomainGetExecute(r ApiDomainsByDomainGetReq
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDomainsByDomainPutRequest struct {
+type DomainsAPIDomainsByDomainPutRequest struct {
 	ctx context.Context
 	ApiService *DomainsAPIService
 	domain string
@@ -255,12 +255,12 @@ type ApiDomainsByDomainPutRequest struct {
 }
 
 // Updated Domain resource
-func (r ApiDomainsByDomainPutRequest) DomainUpdatePayload(domainUpdatePayload DomainUpdatePayload) ApiDomainsByDomainPutRequest {
+func (r DomainsAPIDomainsByDomainPutRequest) DomainUpdatePayload(domainUpdatePayload DomainUpdatePayload) DomainsAPIDomainsByDomainPutRequest {
 	r.domainUpdatePayload = &domainUpdatePayload
 	return r
 }
 
-func (r ApiDomainsByDomainPutRequest) Execute() (*DomainDetail, *http.Response, error) {
+func (r DomainsAPIDomainsByDomainPutRequest) Execute() (*DomainDetail, *http.Response, error) {
 	return r.ApiService.DomainsByDomainPutExecute(r)
 }
 
@@ -271,10 +271,10 @@ Updates the specified domain. Required Access Level: ModifySettings
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param domain Name of the given domain
- @return ApiDomainsByDomainPutRequest
+ @return DomainsAPIDomainsByDomainPutRequest
 */
-func (a *DomainsAPIService) DomainsByDomainPut(ctx context.Context, domain string) ApiDomainsByDomainPutRequest {
-	return ApiDomainsByDomainPutRequest{
+func (a *DomainsAPIService) DomainsByDomainPut(ctx context.Context, domain string) DomainsAPIDomainsByDomainPutRequest {
+	return DomainsAPIDomainsByDomainPutRequest{
 		ApiService: a,
 		ctx: ctx,
 		domain: domain,
@@ -283,7 +283,7 @@ func (a *DomainsAPIService) DomainsByDomainPut(ctx context.Context, domain strin
 
 // Execute executes the request
 //  @return DomainDetail
-func (a *DomainsAPIService) DomainsByDomainPutExecute(r ApiDomainsByDomainPutRequest) (*DomainDetail, *http.Response, error) {
+func (a *DomainsAPIService) DomainsByDomainPutExecute(r DomainsAPIDomainsByDomainPutRequest) (*DomainDetail, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -376,13 +376,13 @@ func (a *DomainsAPIService) DomainsByDomainPutExecute(r ApiDomainsByDomainPutReq
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDomainsByDomainRestrictedGetRequest struct {
+type DomainsAPIDomainsByDomainRestrictedGetRequest struct {
 	ctx context.Context
 	ApiService *DomainsAPIService
 	domain string
 }
 
-func (r ApiDomainsByDomainRestrictedGetRequest) Execute() (bool, *http.Response, error) {
+func (r DomainsAPIDomainsByDomainRestrictedGetRequest) Execute() (bool, *http.Response, error) {
 	return r.ApiService.DomainsByDomainRestrictedGetExecute(r)
 }
 
@@ -393,10 +393,10 @@ Checking if domain is from free provider, or restricted. Required Access Level: 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param domain Name of the given domain
- @return ApiDomainsByDomainRestrictedGetRequest
+ @return DomainsAPIDomainsByDomainRestrictedGetRequest
 */
-func (a *DomainsAPIService) DomainsByDomainRestrictedGet(ctx context.Context, domain string) ApiDomainsByDomainRestrictedGetRequest {
-	return ApiDomainsByDomainRestrictedGetRequest{
+func (a *DomainsAPIService) DomainsByDomainRestrictedGet(ctx context.Context, domain string) DomainsAPIDomainsByDomainRestrictedGetRequest {
+	return DomainsAPIDomainsByDomainRestrictedGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		domain: domain,
@@ -405,7 +405,7 @@ func (a *DomainsAPIService) DomainsByDomainRestrictedGet(ctx context.Context, do
 
 // Execute executes the request
 //  @return bool
-func (a *DomainsAPIService) DomainsByDomainRestrictedGetExecute(r ApiDomainsByDomainRestrictedGetRequest) (bool, *http.Response, error) {
+func (a *DomainsAPIService) DomainsByDomainRestrictedGetExecute(r DomainsAPIDomainsByDomainRestrictedGetRequest) (bool, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -493,7 +493,7 @@ func (a *DomainsAPIService) DomainsByDomainRestrictedGetExecute(r ApiDomainsByDo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDomainsByDomainVerificationPutRequest struct {
+type DomainsAPIDomainsByDomainVerificationPutRequest struct {
 	ctx context.Context
 	ApiService *DomainsAPIService
 	domain string
@@ -501,12 +501,12 @@ type ApiDomainsByDomainVerificationPutRequest struct {
 }
 
 // Tracking type used in the Tracking verification
-func (r ApiDomainsByDomainVerificationPutRequest) Body(body string) ApiDomainsByDomainVerificationPutRequest {
+func (r DomainsAPIDomainsByDomainVerificationPutRequest) Body(body string) DomainsAPIDomainsByDomainVerificationPutRequest {
 	r.body = &body
 	return r
 }
 
-func (r ApiDomainsByDomainVerificationPutRequest) Execute() (*DomainData, *http.Response, error) {
+func (r DomainsAPIDomainsByDomainVerificationPutRequest) Execute() (*DomainData, *http.Response, error) {
 	return r.ApiService.DomainsByDomainVerificationPutExecute(r)
 }
 
@@ -517,10 +517,10 @@ Verifies that required DNS records exist for specified domain. Required Access L
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param domain Name of the given domain
- @return ApiDomainsByDomainVerificationPutRequest
+ @return DomainsAPIDomainsByDomainVerificationPutRequest
 */
-func (a *DomainsAPIService) DomainsByDomainVerificationPut(ctx context.Context, domain string) ApiDomainsByDomainVerificationPutRequest {
-	return ApiDomainsByDomainVerificationPutRequest{
+func (a *DomainsAPIService) DomainsByDomainVerificationPut(ctx context.Context, domain string) DomainsAPIDomainsByDomainVerificationPutRequest {
+	return DomainsAPIDomainsByDomainVerificationPutRequest{
 		ApiService: a,
 		ctx: ctx,
 		domain: domain,
@@ -529,7 +529,7 @@ func (a *DomainsAPIService) DomainsByDomainVerificationPut(ctx context.Context, 
 
 // Execute executes the request
 //  @return DomainData
-func (a *DomainsAPIService) DomainsByDomainVerificationPutExecute(r ApiDomainsByDomainVerificationPutRequest) (*DomainData, *http.Response, error) {
+func (a *DomainsAPIService) DomainsByDomainVerificationPutExecute(r DomainsAPIDomainsByDomainVerificationPutRequest) (*DomainData, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -622,13 +622,13 @@ func (a *DomainsAPIService) DomainsByDomainVerificationPutExecute(r ApiDomainsBy
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDomainsByEmailDefaultPatchRequest struct {
+type DomainsAPIDomainsByEmailDefaultPatchRequest struct {
 	ctx context.Context
 	ApiService *DomainsAPIService
 	email string
 }
 
-func (r ApiDomainsByEmailDefaultPatchRequest) Execute() (*DomainDetail, *http.Response, error) {
+func (r DomainsAPIDomainsByEmailDefaultPatchRequest) Execute() (*DomainDetail, *http.Response, error) {
 	return r.ApiService.DomainsByEmailDefaultPatchExecute(r)
 }
 
@@ -639,10 +639,10 @@ Sets a verified email address as default sender. Required Access Level: ModifySe
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email Default email sender, example: mail@yourdomain.com
- @return ApiDomainsByEmailDefaultPatchRequest
+ @return DomainsAPIDomainsByEmailDefaultPatchRequest
 */
-func (a *DomainsAPIService) DomainsByEmailDefaultPatch(ctx context.Context, email string) ApiDomainsByEmailDefaultPatchRequest {
-	return ApiDomainsByEmailDefaultPatchRequest{
+func (a *DomainsAPIService) DomainsByEmailDefaultPatch(ctx context.Context, email string) DomainsAPIDomainsByEmailDefaultPatchRequest {
+	return DomainsAPIDomainsByEmailDefaultPatchRequest{
 		ApiService: a,
 		ctx: ctx,
 		email: email,
@@ -651,7 +651,7 @@ func (a *DomainsAPIService) DomainsByEmailDefaultPatch(ctx context.Context, emai
 
 // Execute executes the request
 //  @return DomainDetail
-func (a *DomainsAPIService) DomainsByEmailDefaultPatchExecute(r ApiDomainsByEmailDefaultPatchRequest) (*DomainDetail, *http.Response, error) {
+func (a *DomainsAPIService) DomainsByEmailDefaultPatchExecute(r DomainsAPIDomainsByEmailDefaultPatchRequest) (*DomainDetail, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -739,12 +739,12 @@ func (a *DomainsAPIService) DomainsByEmailDefaultPatchExecute(r ApiDomainsByEmai
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDomainsGetRequest struct {
+type DomainsAPIDomainsGetRequest struct {
 	ctx context.Context
 	ApiService *DomainsAPIService
 }
 
-func (r ApiDomainsGetRequest) Execute() ([]DomainDetail, *http.Response, error) {
+func (r DomainsAPIDomainsGetRequest) Execute() ([]DomainDetail, *http.Response, error) {
 	return r.ApiService.DomainsGetExecute(r)
 }
 
@@ -754,10 +754,10 @@ DomainsGet Load Domains
 Returns a list of all domains configured for this Account. Required Access Level: ViewSettings
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDomainsGetRequest
+ @return DomainsAPIDomainsGetRequest
 */
-func (a *DomainsAPIService) DomainsGet(ctx context.Context) ApiDomainsGetRequest {
-	return ApiDomainsGetRequest{
+func (a *DomainsAPIService) DomainsGet(ctx context.Context) DomainsAPIDomainsGetRequest {
+	return DomainsAPIDomainsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -765,7 +765,7 @@ func (a *DomainsAPIService) DomainsGet(ctx context.Context) ApiDomainsGetRequest
 
 // Execute executes the request
 //  @return []DomainDetail
-func (a *DomainsAPIService) DomainsGetExecute(r ApiDomainsGetRequest) ([]DomainDetail, *http.Response, error) {
+func (a *DomainsAPIService) DomainsGetExecute(r DomainsAPIDomainsGetRequest) ([]DomainDetail, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -852,19 +852,19 @@ func (a *DomainsAPIService) DomainsGetExecute(r ApiDomainsGetRequest) ([]DomainD
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDomainsPostRequest struct {
+type DomainsAPIDomainsPostRequest struct {
 	ctx context.Context
 	ApiService *DomainsAPIService
 	domainPayload *DomainPayload
 }
 
 // Domain to add
-func (r ApiDomainsPostRequest) DomainPayload(domainPayload DomainPayload) ApiDomainsPostRequest {
+func (r DomainsAPIDomainsPostRequest) DomainPayload(domainPayload DomainPayload) DomainsAPIDomainsPostRequest {
 	r.domainPayload = &domainPayload
 	return r
 }
 
-func (r ApiDomainsPostRequest) Execute() (*DomainDetail, *http.Response, error) {
+func (r DomainsAPIDomainsPostRequest) Execute() (*DomainDetail, *http.Response, error) {
 	return r.ApiService.DomainsPostExecute(r)
 }
 
@@ -874,10 +874,10 @@ DomainsPost Add Domain
 Add new domain to Account. Required Access Level: ModifySettings
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDomainsPostRequest
+ @return DomainsAPIDomainsPostRequest
 */
-func (a *DomainsAPIService) DomainsPost(ctx context.Context) ApiDomainsPostRequest {
-	return ApiDomainsPostRequest{
+func (a *DomainsAPIService) DomainsPost(ctx context.Context) DomainsAPIDomainsPostRequest {
+	return DomainsAPIDomainsPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -885,7 +885,7 @@ func (a *DomainsAPIService) DomainsPost(ctx context.Context) ApiDomainsPostReque
 
 // Execute executes the request
 //  @return DomainDetail
-func (a *DomainsAPIService) DomainsPostExecute(r ApiDomainsPostRequest) (*DomainDetail, *http.Response, error) {
+func (a *DomainsAPIService) DomainsPostExecute(r DomainsAPIDomainsPostRequest) (*DomainDetail, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}

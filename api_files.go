@@ -25,13 +25,13 @@ import (
 // FilesAPIService FilesAPI service
 type FilesAPIService service
 
-type ApiFilesByNameDeleteRequest struct {
+type FilesAPIFilesByNameDeleteRequest struct {
 	ctx context.Context
 	ApiService *FilesAPIService
 	name string
 }
 
-func (r ApiFilesByNameDeleteRequest) Execute() (*http.Response, error) {
+func (r FilesAPIFilesByNameDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.FilesByNameDeleteExecute(r)
 }
 
@@ -42,10 +42,10 @@ Permanently deletes the file from your Account. Required Access Level: ModifyFil
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of your file including extension.
- @return ApiFilesByNameDeleteRequest
+ @return FilesAPIFilesByNameDeleteRequest
 */
-func (a *FilesAPIService) FilesByNameDelete(ctx context.Context, name string) ApiFilesByNameDeleteRequest {
-	return ApiFilesByNameDeleteRequest{
+func (a *FilesAPIService) FilesByNameDelete(ctx context.Context, name string) FilesAPIFilesByNameDeleteRequest {
+	return FilesAPIFilesByNameDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -53,7 +53,7 @@ func (a *FilesAPIService) FilesByNameDelete(ctx context.Context, name string) Ap
 }
 
 // Execute executes the request
-func (a *FilesAPIService) FilesByNameDeleteExecute(r ApiFilesByNameDeleteRequest) (*http.Response, error) {
+func (a *FilesAPIService) FilesByNameDeleteExecute(r FilesAPIFilesByNameDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -131,13 +131,13 @@ func (a *FilesAPIService) FilesByNameDeleteExecute(r ApiFilesByNameDeleteRequest
 	return localVarHTTPResponse, nil
 }
 
-type ApiFilesByNameGetRequest struct {
+type FilesAPIFilesByNameGetRequest struct {
 	ctx context.Context
 	ApiService *FilesAPIService
 	name string
 }
 
-func (r ApiFilesByNameGetRequest) Execute() (*os.File, *http.Response, error) {
+func (r FilesAPIFilesByNameGetRequest) Execute() (*os.File, *http.Response, error) {
 	return r.ApiService.FilesByNameGetExecute(r)
 }
 
@@ -148,10 +148,10 @@ Gets content of the specified File. Required Access Level: ViewFiles
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of your file including extension.
- @return ApiFilesByNameGetRequest
+ @return FilesAPIFilesByNameGetRequest
 */
-func (a *FilesAPIService) FilesByNameGet(ctx context.Context, name string) ApiFilesByNameGetRequest {
-	return ApiFilesByNameGetRequest{
+func (a *FilesAPIService) FilesByNameGet(ctx context.Context, name string) FilesAPIFilesByNameGetRequest {
+	return FilesAPIFilesByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -160,7 +160,7 @@ func (a *FilesAPIService) FilesByNameGet(ctx context.Context, name string) ApiFi
 
 // Execute executes the request
 //  @return *os.File
-func (a *FilesAPIService) FilesByNameGetExecute(r ApiFilesByNameGetRequest) (*os.File, *http.Response, error) {
+func (a *FilesAPIService) FilesByNameGetExecute(r FilesAPIFilesByNameGetRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -248,13 +248,13 @@ func (a *FilesAPIService) FilesByNameGetExecute(r ApiFilesByNameGetRequest) (*os
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiFilesByNameInfoGetRequest struct {
+type FilesAPIFilesByNameInfoGetRequest struct {
 	ctx context.Context
 	ApiService *FilesAPIService
 	name string
 }
 
-func (r ApiFilesByNameInfoGetRequest) Execute() (*FileInfo, *http.Response, error) {
+func (r FilesAPIFilesByNameInfoGetRequest) Execute() (*FileInfo, *http.Response, error) {
 	return r.ApiService.FilesByNameInfoGetExecute(r)
 }
 
@@ -265,10 +265,10 @@ Returns the specified File's details. Required Access Level: ViewFiles
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of your file including extension.
- @return ApiFilesByNameInfoGetRequest
+ @return FilesAPIFilesByNameInfoGetRequest
 */
-func (a *FilesAPIService) FilesByNameInfoGet(ctx context.Context, name string) ApiFilesByNameInfoGetRequest {
-	return ApiFilesByNameInfoGetRequest{
+func (a *FilesAPIService) FilesByNameInfoGet(ctx context.Context, name string) FilesAPIFilesByNameInfoGetRequest {
+	return FilesAPIFilesByNameInfoGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -277,7 +277,7 @@ func (a *FilesAPIService) FilesByNameInfoGet(ctx context.Context, name string) A
 
 // Execute executes the request
 //  @return FileInfo
-func (a *FilesAPIService) FilesByNameInfoGetExecute(r ApiFilesByNameInfoGetRequest) (*FileInfo, *http.Response, error) {
+func (a *FilesAPIService) FilesByNameInfoGetExecute(r FilesAPIFilesByNameInfoGetRequest) (*FileInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -365,7 +365,7 @@ func (a *FilesAPIService) FilesByNameInfoGetExecute(r ApiFilesByNameInfoGetReque
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiFilesGetRequest struct {
+type FilesAPIFilesGetRequest struct {
 	ctx context.Context
 	ApiService *FilesAPIService
 	limit *int32
@@ -373,18 +373,18 @@ type ApiFilesGetRequest struct {
 }
 
 // Maximum number of returned items.
-func (r ApiFilesGetRequest) Limit(limit int32) ApiFilesGetRequest {
+func (r FilesAPIFilesGetRequest) Limit(limit int32) FilesAPIFilesGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // How many items should be returned ahead.
-func (r ApiFilesGetRequest) Offset(offset int32) ApiFilesGetRequest {
+func (r FilesAPIFilesGetRequest) Offset(offset int32) FilesAPIFilesGetRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiFilesGetRequest) Execute() ([]FileInfo, *http.Response, error) {
+func (r FilesAPIFilesGetRequest) Execute() ([]FileInfo, *http.Response, error) {
 	return r.ApiService.FilesGetExecute(r)
 }
 
@@ -394,10 +394,10 @@ FilesGet List Files
 Returns a list of all your available files. Required Access Level: ViewFiles
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFilesGetRequest
+ @return FilesAPIFilesGetRequest
 */
-func (a *FilesAPIService) FilesGet(ctx context.Context) ApiFilesGetRequest {
-	return ApiFilesGetRequest{
+func (a *FilesAPIService) FilesGet(ctx context.Context) FilesAPIFilesGetRequest {
+	return FilesAPIFilesGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -405,7 +405,7 @@ func (a *FilesAPIService) FilesGet(ctx context.Context) ApiFilesGetRequest {
 
 // Execute executes the request
 //  @return []FileInfo
-func (a *FilesAPIService) FilesGetExecute(r ApiFilesGetRequest) ([]FileInfo, *http.Response, error) {
+func (a *FilesAPIService) FilesGetExecute(r FilesAPIFilesGetRequest) ([]FileInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -498,25 +498,25 @@ func (a *FilesAPIService) FilesGetExecute(r ApiFilesGetRequest) ([]FileInfo, *ht
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiFilesPostRequest struct {
+type FilesAPIFilesPostRequest struct {
 	ctx context.Context
 	ApiService *FilesAPIService
 	filePayload *FilePayload
 	expiresAfterDays *int32
 }
 
-func (r ApiFilesPostRequest) FilePayload(filePayload FilePayload) ApiFilesPostRequest {
+func (r FilesAPIFilesPostRequest) FilePayload(filePayload FilePayload) FilesAPIFilesPostRequest {
 	r.filePayload = &filePayload
 	return r
 }
 
 // After how many days should the file be deleted.
-func (r ApiFilesPostRequest) ExpiresAfterDays(expiresAfterDays int32) ApiFilesPostRequest {
+func (r FilesAPIFilesPostRequest) ExpiresAfterDays(expiresAfterDays int32) FilesAPIFilesPostRequest {
 	r.expiresAfterDays = &expiresAfterDays
 	return r
 }
 
-func (r ApiFilesPostRequest) Execute() (*FileInfo, *http.Response, error) {
+func (r FilesAPIFilesPostRequest) Execute() (*FileInfo, *http.Response, error) {
 	return r.ApiService.FilesPostExecute(r)
 }
 
@@ -526,10 +526,10 @@ FilesPost Upload File
 Uploads selected file to the server. Required Access Level: ModifyFiles
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFilesPostRequest
+ @return FilesAPIFilesPostRequest
 */
-func (a *FilesAPIService) FilesPost(ctx context.Context) ApiFilesPostRequest {
-	return ApiFilesPostRequest{
+func (a *FilesAPIService) FilesPost(ctx context.Context) FilesAPIFilesPostRequest {
+	return FilesAPIFilesPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -537,7 +537,7 @@ func (a *FilesAPIService) FilesPost(ctx context.Context) ApiFilesPostRequest {
 
 // Execute executes the request
 //  @return FileInfo
-func (a *FilesAPIService) FilesPostExecute(r ApiFilesPostRequest) (*FileInfo, *http.Response, error) {
+func (a *FilesAPIService) FilesPostExecute(r FilesAPIFilesPostRequest) (*FileInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}

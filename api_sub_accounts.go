@@ -24,7 +24,7 @@ import (
 // SubAccountsAPIService SubAccountsAPI service
 type SubAccountsAPIService service
 
-type ApiSubaccountsByEmailCreditsPatchRequest struct {
+type SubAccountsAPISubaccountsByEmailCreditsPatchRequest struct {
 	ctx context.Context
 	ApiService *SubAccountsAPIService
 	email string
@@ -32,12 +32,12 @@ type ApiSubaccountsByEmailCreditsPatchRequest struct {
 }
 
 // Amount of email credits to add or subtract from the current SubAccount email credits pool (positive or negative value)
-func (r ApiSubaccountsByEmailCreditsPatchRequest) SubaccountEmailCreditsPayload(subaccountEmailCreditsPayload SubaccountEmailCreditsPayload) ApiSubaccountsByEmailCreditsPatchRequest {
+func (r SubAccountsAPISubaccountsByEmailCreditsPatchRequest) SubaccountEmailCreditsPayload(subaccountEmailCreditsPayload SubaccountEmailCreditsPayload) SubAccountsAPISubaccountsByEmailCreditsPatchRequest {
 	r.subaccountEmailCreditsPayload = &subaccountEmailCreditsPayload
 	return r
 }
 
-func (r ApiSubaccountsByEmailCreditsPatchRequest) Execute() (*http.Response, error) {
+func (r SubAccountsAPISubaccountsByEmailCreditsPatchRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SubaccountsByEmailCreditsPatchExecute(r)
 }
 
@@ -48,10 +48,10 @@ Update email credits of a subaccount by the given amount. Required Access Level:
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email Email address of Sub-Account
- @return ApiSubaccountsByEmailCreditsPatchRequest
+ @return SubAccountsAPISubaccountsByEmailCreditsPatchRequest
 */
-func (a *SubAccountsAPIService) SubaccountsByEmailCreditsPatch(ctx context.Context, email string) ApiSubaccountsByEmailCreditsPatchRequest {
-	return ApiSubaccountsByEmailCreditsPatchRequest{
+func (a *SubAccountsAPIService) SubaccountsByEmailCreditsPatch(ctx context.Context, email string) SubAccountsAPISubaccountsByEmailCreditsPatchRequest {
+	return SubAccountsAPISubaccountsByEmailCreditsPatchRequest{
 		ApiService: a,
 		ctx: ctx,
 		email: email,
@@ -59,7 +59,7 @@ func (a *SubAccountsAPIService) SubaccountsByEmailCreditsPatch(ctx context.Conte
 }
 
 // Execute executes the request
-func (a *SubAccountsAPIService) SubaccountsByEmailCreditsPatchExecute(r ApiSubaccountsByEmailCreditsPatchRequest) (*http.Response, error) {
+func (a *SubAccountsAPIService) SubaccountsByEmailCreditsPatchExecute(r SubAccountsAPISubaccountsByEmailCreditsPatchRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -142,13 +142,13 @@ func (a *SubAccountsAPIService) SubaccountsByEmailCreditsPatchExecute(r ApiSubac
 	return localVarHTTPResponse, nil
 }
 
-type ApiSubaccountsByEmailDeleteRequest struct {
+type SubAccountsAPISubaccountsByEmailDeleteRequest struct {
 	ctx context.Context
 	ApiService *SubAccountsAPIService
 	email string
 }
 
-func (r ApiSubaccountsByEmailDeleteRequest) Execute() (*http.Response, error) {
+func (r SubAccountsAPISubaccountsByEmailDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SubaccountsByEmailDeleteExecute(r)
 }
 
@@ -159,10 +159,10 @@ Deletes specified SubAccount. An email will be sent to confirm this change. Requ
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email Email address of Sub-Account
- @return ApiSubaccountsByEmailDeleteRequest
+ @return SubAccountsAPISubaccountsByEmailDeleteRequest
 */
-func (a *SubAccountsAPIService) SubaccountsByEmailDelete(ctx context.Context, email string) ApiSubaccountsByEmailDeleteRequest {
-	return ApiSubaccountsByEmailDeleteRequest{
+func (a *SubAccountsAPIService) SubaccountsByEmailDelete(ctx context.Context, email string) SubAccountsAPISubaccountsByEmailDeleteRequest {
+	return SubAccountsAPISubaccountsByEmailDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		email: email,
@@ -170,7 +170,7 @@ func (a *SubAccountsAPIService) SubaccountsByEmailDelete(ctx context.Context, em
 }
 
 // Execute executes the request
-func (a *SubAccountsAPIService) SubaccountsByEmailDeleteExecute(r ApiSubaccountsByEmailDeleteRequest) (*http.Response, error) {
+func (a *SubAccountsAPIService) SubaccountsByEmailDeleteExecute(r SubAccountsAPISubaccountsByEmailDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -248,13 +248,13 @@ func (a *SubAccountsAPIService) SubaccountsByEmailDeleteExecute(r ApiSubaccounts
 	return localVarHTTPResponse, nil
 }
 
-type ApiSubaccountsByEmailGetRequest struct {
+type SubAccountsAPISubaccountsByEmailGetRequest struct {
 	ctx context.Context
 	ApiService *SubAccountsAPIService
 	email string
 }
 
-func (r ApiSubaccountsByEmailGetRequest) Execute() (*SubAccountInfo, *http.Response, error) {
+func (r SubAccountsAPISubaccountsByEmailGetRequest) Execute() (*SubAccountInfo, *http.Response, error) {
 	return r.ApiService.SubaccountsByEmailGetExecute(r)
 }
 
@@ -265,10 +265,10 @@ Returns details for the specified SubAccount. Required Access Level: ViewSubAcco
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email Email address of Sub-Account
- @return ApiSubaccountsByEmailGetRequest
+ @return SubAccountsAPISubaccountsByEmailGetRequest
 */
-func (a *SubAccountsAPIService) SubaccountsByEmailGet(ctx context.Context, email string) ApiSubaccountsByEmailGetRequest {
-	return ApiSubaccountsByEmailGetRequest{
+func (a *SubAccountsAPIService) SubaccountsByEmailGet(ctx context.Context, email string) SubAccountsAPISubaccountsByEmailGetRequest {
+	return SubAccountsAPISubaccountsByEmailGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		email: email,
@@ -277,7 +277,7 @@ func (a *SubAccountsAPIService) SubaccountsByEmailGet(ctx context.Context, email
 
 // Execute executes the request
 //  @return SubAccountInfo
-func (a *SubAccountsAPIService) SubaccountsByEmailGetExecute(r ApiSubaccountsByEmailGetRequest) (*SubAccountInfo, *http.Response, error) {
+func (a *SubAccountsAPIService) SubaccountsByEmailGetExecute(r SubAccountsAPISubaccountsByEmailGetRequest) (*SubAccountInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -365,7 +365,7 @@ func (a *SubAccountsAPIService) SubaccountsByEmailGetExecute(r ApiSubaccountsByE
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSubaccountsByEmailSettingsEmailPutRequest struct {
+type SubAccountsAPISubaccountsByEmailSettingsEmailPutRequest struct {
 	ctx context.Context
 	ApiService *SubAccountsAPIService
 	email string
@@ -373,12 +373,12 @@ type ApiSubaccountsByEmailSettingsEmailPutRequest struct {
 }
 
 // Updated Email Settings
-func (r ApiSubaccountsByEmailSettingsEmailPutRequest) SubaccountEmailSettings(subaccountEmailSettings SubaccountEmailSettings) ApiSubaccountsByEmailSettingsEmailPutRequest {
+func (r SubAccountsAPISubaccountsByEmailSettingsEmailPutRequest) SubaccountEmailSettings(subaccountEmailSettings SubaccountEmailSettings) SubAccountsAPISubaccountsByEmailSettingsEmailPutRequest {
 	r.subaccountEmailSettings = &subaccountEmailSettings
 	return r
 }
 
-func (r ApiSubaccountsByEmailSettingsEmailPutRequest) Execute() (*SubaccountEmailSettings, *http.Response, error) {
+func (r SubAccountsAPISubaccountsByEmailSettingsEmailPutRequest) Execute() (*SubaccountEmailSettings, *http.Response, error) {
 	return r.ApiService.SubaccountsByEmailSettingsEmailPutExecute(r)
 }
 
@@ -389,10 +389,10 @@ Update SubAccount email settings. Required Access Level: ModifySubAccounts
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email
- @return ApiSubaccountsByEmailSettingsEmailPutRequest
+ @return SubAccountsAPISubaccountsByEmailSettingsEmailPutRequest
 */
-func (a *SubAccountsAPIService) SubaccountsByEmailSettingsEmailPut(ctx context.Context, email string) ApiSubaccountsByEmailSettingsEmailPutRequest {
-	return ApiSubaccountsByEmailSettingsEmailPutRequest{
+func (a *SubAccountsAPIService) SubaccountsByEmailSettingsEmailPut(ctx context.Context, email string) SubAccountsAPISubaccountsByEmailSettingsEmailPutRequest {
+	return SubAccountsAPISubaccountsByEmailSettingsEmailPutRequest{
 		ApiService: a,
 		ctx: ctx,
 		email: email,
@@ -401,7 +401,7 @@ func (a *SubAccountsAPIService) SubaccountsByEmailSettingsEmailPut(ctx context.C
 
 // Execute executes the request
 //  @return SubaccountEmailSettings
-func (a *SubAccountsAPIService) SubaccountsByEmailSettingsEmailPutExecute(r ApiSubaccountsByEmailSettingsEmailPutRequest) (*SubaccountEmailSettings, *http.Response, error) {
+func (a *SubAccountsAPIService) SubaccountsByEmailSettingsEmailPutExecute(r SubAccountsAPISubaccountsByEmailSettingsEmailPutRequest) (*SubaccountEmailSettings, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -494,7 +494,7 @@ func (a *SubAccountsAPIService) SubaccountsByEmailSettingsEmailPutExecute(r ApiS
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSubaccountsGetRequest struct {
+type SubAccountsAPISubaccountsGetRequest struct {
 	ctx context.Context
 	ApiService *SubAccountsAPIService
 	limit *int32
@@ -502,18 +502,18 @@ type ApiSubaccountsGetRequest struct {
 }
 
 // Maximum number of returned items.
-func (r ApiSubaccountsGetRequest) Limit(limit int32) ApiSubaccountsGetRequest {
+func (r SubAccountsAPISubaccountsGetRequest) Limit(limit int32) SubAccountsAPISubaccountsGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // How many items should be returned ahead.
-func (r ApiSubaccountsGetRequest) Offset(offset int32) ApiSubaccountsGetRequest {
+func (r SubAccountsAPISubaccountsGetRequest) Offset(offset int32) SubAccountsAPISubaccountsGetRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiSubaccountsGetRequest) Execute() ([]SubAccountInfo, *http.Response, error) {
+func (r SubAccountsAPISubaccountsGetRequest) Execute() ([]SubAccountInfo, *http.Response, error) {
 	return r.ApiService.SubaccountsGetExecute(r)
 }
 
@@ -523,10 +523,10 @@ SubaccountsGet Load SubAccounts
 Returns a list of all your SubAccounts. Required Access Level: ViewSubAccounts
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSubaccountsGetRequest
+ @return SubAccountsAPISubaccountsGetRequest
 */
-func (a *SubAccountsAPIService) SubaccountsGet(ctx context.Context) ApiSubaccountsGetRequest {
-	return ApiSubaccountsGetRequest{
+func (a *SubAccountsAPIService) SubaccountsGet(ctx context.Context) SubAccountsAPISubaccountsGetRequest {
+	return SubAccountsAPISubaccountsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -534,7 +534,7 @@ func (a *SubAccountsAPIService) SubaccountsGet(ctx context.Context) ApiSubaccoun
 
 // Execute executes the request
 //  @return []SubAccountInfo
-func (a *SubAccountsAPIService) SubaccountsGetExecute(r ApiSubaccountsGetRequest) ([]SubAccountInfo, *http.Response, error) {
+func (a *SubAccountsAPIService) SubaccountsGetExecute(r SubAccountsAPISubaccountsGetRequest) ([]SubAccountInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -627,18 +627,18 @@ func (a *SubAccountsAPIService) SubaccountsGetExecute(r ApiSubaccountsGetRequest
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSubaccountsPostRequest struct {
+type SubAccountsAPISubaccountsPostRequest struct {
 	ctx context.Context
 	ApiService *SubAccountsAPIService
 	subaccountPayload *SubaccountPayload
 }
 
-func (r ApiSubaccountsPostRequest) SubaccountPayload(subaccountPayload SubaccountPayload) ApiSubaccountsPostRequest {
+func (r SubAccountsAPISubaccountsPostRequest) SubaccountPayload(subaccountPayload SubaccountPayload) SubAccountsAPISubaccountsPostRequest {
 	r.subaccountPayload = &subaccountPayload
 	return r
 }
 
-func (r ApiSubaccountsPostRequest) Execute() (*SubAccountInfo, *http.Response, error) {
+func (r SubAccountsAPISubaccountsPostRequest) Execute() (*SubAccountInfo, *http.Response, error) {
 	return r.ApiService.SubaccountsPostExecute(r)
 }
 
@@ -648,10 +648,10 @@ SubaccountsPost Add SubAccount
 Add a new SubAccount to your Account. To receive an access token for this SubAccount, make a POST security/apikeys request using the 'subaccount' parameter. Required Access Level: ModifySubAccounts
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSubaccountsPostRequest
+ @return SubAccountsAPISubaccountsPostRequest
 */
-func (a *SubAccountsAPIService) SubaccountsPost(ctx context.Context) ApiSubaccountsPostRequest {
-	return ApiSubaccountsPostRequest{
+func (a *SubAccountsAPIService) SubaccountsPost(ctx context.Context) SubAccountsAPISubaccountsPostRequest {
+	return SubAccountsAPISubaccountsPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -659,7 +659,7 @@ func (a *SubAccountsAPIService) SubaccountsPost(ctx context.Context) ApiSubaccou
 
 // Execute executes the request
 //  @return SubAccountInfo
-func (a *SubAccountsAPIService) SubaccountsPostExecute(r ApiSubaccountsPostRequest) (*SubAccountInfo, *http.Response, error) {
+func (a *SubAccountsAPIService) SubaccountsPostExecute(r SubAccountsAPISubaccountsPostRequest) (*SubAccountInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}

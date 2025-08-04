@@ -26,7 +26,7 @@ import (
 // EventsAPIService EventsAPI service
 type EventsAPIService service
 
-type ApiEventsByTransactionidGetRequest struct {
+type EventsAPIEventsByTransactionidGetRequest struct {
 	ctx context.Context
 	ApiService *EventsAPIService
 	transactionid string
@@ -38,35 +38,35 @@ type ApiEventsByTransactionidGetRequest struct {
 }
 
 // Starting date for search in YYYY-MM-DDThh:mm:ss format.
-func (r ApiEventsByTransactionidGetRequest) From(from time.Time) ApiEventsByTransactionidGetRequest {
+func (r EventsAPIEventsByTransactionidGetRequest) From(from time.Time) EventsAPIEventsByTransactionidGetRequest {
 	r.from = &from
 	return r
 }
 
 // Ending date for search in YYYY-MM-DDThh:mm:ss format.
-func (r ApiEventsByTransactionidGetRequest) To(to time.Time) ApiEventsByTransactionidGetRequest {
+func (r EventsAPIEventsByTransactionidGetRequest) To(to time.Time) EventsAPIEventsByTransactionidGetRequest {
 	r.to = &to
 	return r
 }
 
-func (r ApiEventsByTransactionidGetRequest) OrderBy(orderBy EventsOrderBy) ApiEventsByTransactionidGetRequest {
+func (r EventsAPIEventsByTransactionidGetRequest) OrderBy(orderBy EventsOrderBy) EventsAPIEventsByTransactionidGetRequest {
 	r.orderBy = &orderBy
 	return r
 }
 
 // Maximum number of returned items.
-func (r ApiEventsByTransactionidGetRequest) Limit(limit int32) ApiEventsByTransactionidGetRequest {
+func (r EventsAPIEventsByTransactionidGetRequest) Limit(limit int32) EventsAPIEventsByTransactionidGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // How many items should be returned ahead.
-func (r ApiEventsByTransactionidGetRequest) Offset(offset int32) ApiEventsByTransactionidGetRequest {
+func (r EventsAPIEventsByTransactionidGetRequest) Offset(offset int32) EventsAPIEventsByTransactionidGetRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiEventsByTransactionidGetRequest) Execute() ([]RecipientEvent, *http.Response, error) {
+func (r EventsAPIEventsByTransactionidGetRequest) Execute() ([]RecipientEvent, *http.Response, error) {
 	return r.ApiService.EventsByTransactionidGetExecute(r)
 }
 
@@ -77,10 +77,10 @@ Returns a log of delivery events for the specific transaction ID. Required Acces
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param transactionid ID number of transaction
- @return ApiEventsByTransactionidGetRequest
+ @return EventsAPIEventsByTransactionidGetRequest
 */
-func (a *EventsAPIService) EventsByTransactionidGet(ctx context.Context, transactionid string) ApiEventsByTransactionidGetRequest {
-	return ApiEventsByTransactionidGetRequest{
+func (a *EventsAPIService) EventsByTransactionidGet(ctx context.Context, transactionid string) EventsAPIEventsByTransactionidGetRequest {
+	return EventsAPIEventsByTransactionidGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		transactionid: transactionid,
@@ -89,7 +89,7 @@ func (a *EventsAPIService) EventsByTransactionidGet(ctx context.Context, transac
 
 // Execute executes the request
 //  @return []RecipientEvent
-func (a *EventsAPIService) EventsByTransactionidGetExecute(r ApiEventsByTransactionidGetRequest) ([]RecipientEvent, *http.Response, error) {
+func (a *EventsAPIService) EventsByTransactionidGetExecute(r EventsAPIEventsByTransactionidGetRequest) ([]RecipientEvent, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -195,7 +195,7 @@ func (a *EventsAPIService) EventsByTransactionidGetExecute(r ApiEventsByTransact
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiEventsChannelsByNameExportPostRequest struct {
+type EventsAPIEventsChannelsByNameExportPostRequest struct {
 	ctx context.Context
 	ApiService *EventsAPIService
 	name string
@@ -208,42 +208,42 @@ type ApiEventsChannelsByNameExportPostRequest struct {
 }
 
 // Types of Events to return
-func (r ApiEventsChannelsByNameExportPostRequest) EventTypes(eventTypes []EventType) ApiEventsChannelsByNameExportPostRequest {
+func (r EventsAPIEventsChannelsByNameExportPostRequest) EventTypes(eventTypes []EventType) EventsAPIEventsChannelsByNameExportPostRequest {
 	r.eventTypes = &eventTypes
 	return r
 }
 
 // Starting date for search in YYYY-MM-DDThh:mm:ss format.
-func (r ApiEventsChannelsByNameExportPostRequest) From(from time.Time) ApiEventsChannelsByNameExportPostRequest {
+func (r EventsAPIEventsChannelsByNameExportPostRequest) From(from time.Time) EventsAPIEventsChannelsByNameExportPostRequest {
 	r.from = &from
 	return r
 }
 
 // Ending date for search in YYYY-MM-DDThh:mm:ss format.
-func (r ApiEventsChannelsByNameExportPostRequest) To(to time.Time) ApiEventsChannelsByNameExportPostRequest {
+func (r EventsAPIEventsChannelsByNameExportPostRequest) To(to time.Time) EventsAPIEventsChannelsByNameExportPostRequest {
 	r.to = &to
 	return r
 }
 
 // Format of the exported file
-func (r ApiEventsChannelsByNameExportPostRequest) FileFormat(fileFormat ExportFileFormats) ApiEventsChannelsByNameExportPostRequest {
+func (r EventsAPIEventsChannelsByNameExportPostRequest) FileFormat(fileFormat ExportFileFormats) EventsAPIEventsChannelsByNameExportPostRequest {
 	r.fileFormat = &fileFormat
 	return r
 }
 
 // FileResponse compression format. None or Zip.
-func (r ApiEventsChannelsByNameExportPostRequest) CompressionFormat(compressionFormat CompressionFormat) ApiEventsChannelsByNameExportPostRequest {
+func (r EventsAPIEventsChannelsByNameExportPostRequest) CompressionFormat(compressionFormat CompressionFormat) EventsAPIEventsChannelsByNameExportPostRequest {
 	r.compressionFormat = &compressionFormat
 	return r
 }
 
 // Name of your file including extension.
-func (r ApiEventsChannelsByNameExportPostRequest) FileName(fileName string) ApiEventsChannelsByNameExportPostRequest {
+func (r EventsAPIEventsChannelsByNameExportPostRequest) FileName(fileName string) EventsAPIEventsChannelsByNameExportPostRequest {
 	r.fileName = &fileName
 	return r
 }
 
-func (r ApiEventsChannelsByNameExportPostRequest) Execute() (*ExportLink, *http.Response, error) {
+func (r EventsAPIEventsChannelsByNameExportPostRequest) Execute() (*ExportLink, *http.Response, error) {
 	return r.ApiService.EventsChannelsByNameExportPostExecute(r)
 }
 
@@ -254,10 +254,10 @@ Export delivery events log information to the specified file format. Required Ac
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of selected channel.
- @return ApiEventsChannelsByNameExportPostRequest
+ @return EventsAPIEventsChannelsByNameExportPostRequest
 */
-func (a *EventsAPIService) EventsChannelsByNameExportPost(ctx context.Context, name string) ApiEventsChannelsByNameExportPostRequest {
-	return ApiEventsChannelsByNameExportPostRequest{
+func (a *EventsAPIService) EventsChannelsByNameExportPost(ctx context.Context, name string) EventsAPIEventsChannelsByNameExportPostRequest {
+	return EventsAPIEventsChannelsByNameExportPostRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -266,7 +266,7 @@ func (a *EventsAPIService) EventsChannelsByNameExportPost(ctx context.Context, n
 
 // Execute executes the request
 //  @return ExportLink
-func (a *EventsAPIService) EventsChannelsByNameExportPostExecute(r ApiEventsChannelsByNameExportPostRequest) (*ExportLink, *http.Response, error) {
+func (a *EventsAPIService) EventsChannelsByNameExportPostExecute(r EventsAPIEventsChannelsByNameExportPostRequest) (*ExportLink, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -386,7 +386,7 @@ func (a *EventsAPIService) EventsChannelsByNameExportPostExecute(r ApiEventsChan
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiEventsChannelsByNameGetRequest struct {
+type EventsAPIEventsChannelsByNameGetRequest struct {
 	ctx context.Context
 	ApiService *EventsAPIService
 	name string
@@ -399,41 +399,41 @@ type ApiEventsChannelsByNameGetRequest struct {
 }
 
 // Types of Events to return
-func (r ApiEventsChannelsByNameGetRequest) EventTypes(eventTypes []EventType) ApiEventsChannelsByNameGetRequest {
+func (r EventsAPIEventsChannelsByNameGetRequest) EventTypes(eventTypes []EventType) EventsAPIEventsChannelsByNameGetRequest {
 	r.eventTypes = &eventTypes
 	return r
 }
 
 // Starting date for search in YYYY-MM-DDThh:mm:ss format.
-func (r ApiEventsChannelsByNameGetRequest) From(from time.Time) ApiEventsChannelsByNameGetRequest {
+func (r EventsAPIEventsChannelsByNameGetRequest) From(from time.Time) EventsAPIEventsChannelsByNameGetRequest {
 	r.from = &from
 	return r
 }
 
 // Ending date for search in YYYY-MM-DDThh:mm:ss format.
-func (r ApiEventsChannelsByNameGetRequest) To(to time.Time) ApiEventsChannelsByNameGetRequest {
+func (r EventsAPIEventsChannelsByNameGetRequest) To(to time.Time) EventsAPIEventsChannelsByNameGetRequest {
 	r.to = &to
 	return r
 }
 
-func (r ApiEventsChannelsByNameGetRequest) OrderBy(orderBy EventsOrderBy) ApiEventsChannelsByNameGetRequest {
+func (r EventsAPIEventsChannelsByNameGetRequest) OrderBy(orderBy EventsOrderBy) EventsAPIEventsChannelsByNameGetRequest {
 	r.orderBy = &orderBy
 	return r
 }
 
 // How many items to load. Maximum for this request is 1000 items
-func (r ApiEventsChannelsByNameGetRequest) Limit(limit int32) ApiEventsChannelsByNameGetRequest {
+func (r EventsAPIEventsChannelsByNameGetRequest) Limit(limit int32) EventsAPIEventsChannelsByNameGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // How many items should be returned ahead.
-func (r ApiEventsChannelsByNameGetRequest) Offset(offset int32) ApiEventsChannelsByNameGetRequest {
+func (r EventsAPIEventsChannelsByNameGetRequest) Offset(offset int32) EventsAPIEventsChannelsByNameGetRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiEventsChannelsByNameGetRequest) Execute() ([]RecipientEvent, *http.Response, error) {
+func (r EventsAPIEventsChannelsByNameGetRequest) Execute() ([]RecipientEvent, *http.Response, error) {
 	return r.ApiService.EventsChannelsByNameGetExecute(r)
 }
 
@@ -444,10 +444,10 @@ Returns a log of delivery events filtered by specified parameters. Required Acce
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of selected channel.
- @return ApiEventsChannelsByNameGetRequest
+ @return EventsAPIEventsChannelsByNameGetRequest
 */
-func (a *EventsAPIService) EventsChannelsByNameGet(ctx context.Context, name string) ApiEventsChannelsByNameGetRequest {
-	return ApiEventsChannelsByNameGetRequest{
+func (a *EventsAPIService) EventsChannelsByNameGet(ctx context.Context, name string) EventsAPIEventsChannelsByNameGetRequest {
+	return EventsAPIEventsChannelsByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -456,7 +456,7 @@ func (a *EventsAPIService) EventsChannelsByNameGet(ctx context.Context, name str
 
 // Execute executes the request
 //  @return []RecipientEvent
-func (a *EventsAPIService) EventsChannelsByNameGetExecute(r ApiEventsChannelsByNameGetRequest) ([]RecipientEvent, *http.Response, error) {
+func (a *EventsAPIService) EventsChannelsByNameGetExecute(r EventsAPIEventsChannelsByNameGetRequest) ([]RecipientEvent, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -573,13 +573,13 @@ func (a *EventsAPIService) EventsChannelsByNameGetExecute(r ApiEventsChannelsByN
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiEventsChannelsExportByIdStatusGetRequest struct {
+type EventsAPIEventsChannelsExportByIdStatusGetRequest struct {
 	ctx context.Context
 	ApiService *EventsAPIService
 	id string
 }
 
-func (r ApiEventsChannelsExportByIdStatusGetRequest) Execute() (*ExportStatus, *http.Response, error) {
+func (r EventsAPIEventsChannelsExportByIdStatusGetRequest) Execute() (*ExportStatus, *http.Response, error) {
 	return r.ApiService.EventsChannelsExportByIdStatusGetExecute(r)
 }
 
@@ -590,10 +590,10 @@ Check the current status of the channel export. Required Access Level: Export
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID of the exported file
- @return ApiEventsChannelsExportByIdStatusGetRequest
+ @return EventsAPIEventsChannelsExportByIdStatusGetRequest
 */
-func (a *EventsAPIService) EventsChannelsExportByIdStatusGet(ctx context.Context, id string) ApiEventsChannelsExportByIdStatusGetRequest {
-	return ApiEventsChannelsExportByIdStatusGetRequest{
+func (a *EventsAPIService) EventsChannelsExportByIdStatusGet(ctx context.Context, id string) EventsAPIEventsChannelsExportByIdStatusGetRequest {
+	return EventsAPIEventsChannelsExportByIdStatusGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -602,7 +602,7 @@ func (a *EventsAPIService) EventsChannelsExportByIdStatusGet(ctx context.Context
 
 // Execute executes the request
 //  @return ExportStatus
-func (a *EventsAPIService) EventsChannelsExportByIdStatusGetExecute(r ApiEventsChannelsExportByIdStatusGetRequest) (*ExportStatus, *http.Response, error) {
+func (a *EventsAPIService) EventsChannelsExportByIdStatusGetExecute(r EventsAPIEventsChannelsExportByIdStatusGetRequest) (*ExportStatus, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -690,13 +690,13 @@ func (a *EventsAPIService) EventsChannelsExportByIdStatusGetExecute(r ApiEventsC
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiEventsExportByIdStatusGetRequest struct {
+type EventsAPIEventsExportByIdStatusGetRequest struct {
 	ctx context.Context
 	ApiService *EventsAPIService
 	id string
 }
 
-func (r ApiEventsExportByIdStatusGetRequest) Execute() (*ExportStatus, *http.Response, error) {
+func (r EventsAPIEventsExportByIdStatusGetRequest) Execute() (*ExportStatus, *http.Response, error) {
 	return r.ApiService.EventsExportByIdStatusGetExecute(r)
 }
 
@@ -707,10 +707,10 @@ Check the current status of the export. Required Access Level: Export
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID of the exported file
- @return ApiEventsExportByIdStatusGetRequest
+ @return EventsAPIEventsExportByIdStatusGetRequest
 */
-func (a *EventsAPIService) EventsExportByIdStatusGet(ctx context.Context, id string) ApiEventsExportByIdStatusGetRequest {
-	return ApiEventsExportByIdStatusGetRequest{
+func (a *EventsAPIService) EventsExportByIdStatusGet(ctx context.Context, id string) EventsAPIEventsExportByIdStatusGetRequest {
+	return EventsAPIEventsExportByIdStatusGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -719,7 +719,7 @@ func (a *EventsAPIService) EventsExportByIdStatusGet(ctx context.Context, id str
 
 // Execute executes the request
 //  @return ExportStatus
-func (a *EventsAPIService) EventsExportByIdStatusGetExecute(r ApiEventsExportByIdStatusGetRequest) (*ExportStatus, *http.Response, error) {
+func (a *EventsAPIService) EventsExportByIdStatusGetExecute(r EventsAPIEventsExportByIdStatusGetRequest) (*ExportStatus, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -807,7 +807,7 @@ func (a *EventsAPIService) EventsExportByIdStatusGetExecute(r ApiEventsExportByI
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiEventsExportPostRequest struct {
+type EventsAPIEventsExportPostRequest struct {
 	ctx context.Context
 	ApiService *EventsAPIService
 	eventTypes *[]EventType
@@ -819,42 +819,42 @@ type ApiEventsExportPostRequest struct {
 }
 
 // Types of Events to return
-func (r ApiEventsExportPostRequest) EventTypes(eventTypes []EventType) ApiEventsExportPostRequest {
+func (r EventsAPIEventsExportPostRequest) EventTypes(eventTypes []EventType) EventsAPIEventsExportPostRequest {
 	r.eventTypes = &eventTypes
 	return r
 }
 
 // Starting date for search in YYYY-MM-DDThh:mm:ss format.
-func (r ApiEventsExportPostRequest) From(from time.Time) ApiEventsExportPostRequest {
+func (r EventsAPIEventsExportPostRequest) From(from time.Time) EventsAPIEventsExportPostRequest {
 	r.from = &from
 	return r
 }
 
 // Ending date for search in YYYY-MM-DDThh:mm:ss format.
-func (r ApiEventsExportPostRequest) To(to time.Time) ApiEventsExportPostRequest {
+func (r EventsAPIEventsExportPostRequest) To(to time.Time) EventsAPIEventsExportPostRequest {
 	r.to = &to
 	return r
 }
 
 // Format of the exported file
-func (r ApiEventsExportPostRequest) FileFormat(fileFormat ExportFileFormats) ApiEventsExportPostRequest {
+func (r EventsAPIEventsExportPostRequest) FileFormat(fileFormat ExportFileFormats) EventsAPIEventsExportPostRequest {
 	r.fileFormat = &fileFormat
 	return r
 }
 
 // FileResponse compression format. None or Zip.
-func (r ApiEventsExportPostRequest) CompressionFormat(compressionFormat CompressionFormat) ApiEventsExportPostRequest {
+func (r EventsAPIEventsExportPostRequest) CompressionFormat(compressionFormat CompressionFormat) EventsAPIEventsExportPostRequest {
 	r.compressionFormat = &compressionFormat
 	return r
 }
 
 // Name of your file including extension.
-func (r ApiEventsExportPostRequest) FileName(fileName string) ApiEventsExportPostRequest {
+func (r EventsAPIEventsExportPostRequest) FileName(fileName string) EventsAPIEventsExportPostRequest {
 	r.fileName = &fileName
 	return r
 }
 
-func (r ApiEventsExportPostRequest) Execute() (*ExportLink, *http.Response, error) {
+func (r EventsAPIEventsExportPostRequest) Execute() (*ExportLink, *http.Response, error) {
 	return r.ApiService.EventsExportPostExecute(r)
 }
 
@@ -864,10 +864,10 @@ EventsExportPost Export Events
 Export delivery events log information to the specified file format. Required Access Level: Export
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiEventsExportPostRequest
+ @return EventsAPIEventsExportPostRequest
 */
-func (a *EventsAPIService) EventsExportPost(ctx context.Context) ApiEventsExportPostRequest {
-	return ApiEventsExportPostRequest{
+func (a *EventsAPIService) EventsExportPost(ctx context.Context) EventsAPIEventsExportPostRequest {
+	return EventsAPIEventsExportPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -875,7 +875,7 @@ func (a *EventsAPIService) EventsExportPost(ctx context.Context) ApiEventsExport
 
 // Execute executes the request
 //  @return ExportLink
-func (a *EventsAPIService) EventsExportPostExecute(r ApiEventsExportPostRequest) (*ExportLink, *http.Response, error) {
+func (a *EventsAPIService) EventsExportPostExecute(r EventsAPIEventsExportPostRequest) (*ExportLink, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -994,7 +994,7 @@ func (a *EventsAPIService) EventsExportPostExecute(r ApiEventsExportPostRequest)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiEventsGetRequest struct {
+type EventsAPIEventsGetRequest struct {
 	ctx context.Context
 	ApiService *EventsAPIService
 	eventTypes *[]EventType
@@ -1006,41 +1006,41 @@ type ApiEventsGetRequest struct {
 }
 
 // Types of Events to return
-func (r ApiEventsGetRequest) EventTypes(eventTypes []EventType) ApiEventsGetRequest {
+func (r EventsAPIEventsGetRequest) EventTypes(eventTypes []EventType) EventsAPIEventsGetRequest {
 	r.eventTypes = &eventTypes
 	return r
 }
 
 // Starting date for search in YYYY-MM-DDThh:mm:ss format.
-func (r ApiEventsGetRequest) From(from time.Time) ApiEventsGetRequest {
+func (r EventsAPIEventsGetRequest) From(from time.Time) EventsAPIEventsGetRequest {
 	r.from = &from
 	return r
 }
 
 // Ending date for search in YYYY-MM-DDThh:mm:ss format.
-func (r ApiEventsGetRequest) To(to time.Time) ApiEventsGetRequest {
+func (r EventsAPIEventsGetRequest) To(to time.Time) EventsAPIEventsGetRequest {
 	r.to = &to
 	return r
 }
 
-func (r ApiEventsGetRequest) OrderBy(orderBy EventsOrderBy) ApiEventsGetRequest {
+func (r EventsAPIEventsGetRequest) OrderBy(orderBy EventsOrderBy) EventsAPIEventsGetRequest {
 	r.orderBy = &orderBy
 	return r
 }
 
 // How many items to load. Maximum for this request is 1000 items
-func (r ApiEventsGetRequest) Limit(limit int32) ApiEventsGetRequest {
+func (r EventsAPIEventsGetRequest) Limit(limit int32) EventsAPIEventsGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // How many items should be returned ahead.
-func (r ApiEventsGetRequest) Offset(offset int32) ApiEventsGetRequest {
+func (r EventsAPIEventsGetRequest) Offset(offset int32) EventsAPIEventsGetRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiEventsGetRequest) Execute() ([]RecipientEvent, *http.Response, error) {
+func (r EventsAPIEventsGetRequest) Execute() ([]RecipientEvent, *http.Response, error) {
 	return r.ApiService.EventsGetExecute(r)
 }
 
@@ -1050,10 +1050,10 @@ EventsGet Load Events
 Returns a log of delivery events filtered by specified parameters. Required Access Level: ViewReports
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiEventsGetRequest
+ @return EventsAPIEventsGetRequest
 */
-func (a *EventsAPIService) EventsGet(ctx context.Context) ApiEventsGetRequest {
-	return ApiEventsGetRequest{
+func (a *EventsAPIService) EventsGet(ctx context.Context) EventsAPIEventsGetRequest {
+	return EventsAPIEventsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1061,7 +1061,7 @@ func (a *EventsAPIService) EventsGet(ctx context.Context) ApiEventsGetRequest {
 
 // Execute executes the request
 //  @return []RecipientEvent
-func (a *EventsAPIService) EventsGetExecute(r ApiEventsGetRequest) ([]RecipientEvent, *http.Response, error) {
+func (a *EventsAPIService) EventsGetExecute(r EventsAPIEventsGetRequest) ([]RecipientEvent, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}

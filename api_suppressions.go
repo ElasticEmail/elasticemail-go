@@ -25,7 +25,7 @@ import (
 // SuppressionsAPIService SuppressionsAPI service
 type SuppressionsAPIService service
 
-type ApiSuppressionsBouncesGetRequest struct {
+type SuppressionsAPISuppressionsBouncesGetRequest struct {
 	ctx context.Context
 	ApiService *SuppressionsAPIService
 	search *string
@@ -34,24 +34,24 @@ type ApiSuppressionsBouncesGetRequest struct {
 }
 
 // Text fragment used for searching.
-func (r ApiSuppressionsBouncesGetRequest) Search(search string) ApiSuppressionsBouncesGetRequest {
+func (r SuppressionsAPISuppressionsBouncesGetRequest) Search(search string) SuppressionsAPISuppressionsBouncesGetRequest {
 	r.search = &search
 	return r
 }
 
 // Maximum number of returned items.
-func (r ApiSuppressionsBouncesGetRequest) Limit(limit int32) ApiSuppressionsBouncesGetRequest {
+func (r SuppressionsAPISuppressionsBouncesGetRequest) Limit(limit int32) SuppressionsAPISuppressionsBouncesGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // How many items should be returned ahead.
-func (r ApiSuppressionsBouncesGetRequest) Offset(offset int32) ApiSuppressionsBouncesGetRequest {
+func (r SuppressionsAPISuppressionsBouncesGetRequest) Offset(offset int32) SuppressionsAPISuppressionsBouncesGetRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiSuppressionsBouncesGetRequest) Execute() ([]Suppression, *http.Response, error) {
+func (r SuppressionsAPISuppressionsBouncesGetRequest) Execute() ([]Suppression, *http.Response, error) {
 	return r.ApiService.SuppressionsBouncesGetExecute(r)
 }
 
@@ -61,10 +61,10 @@ SuppressionsBouncesGet Get Bounce List
 Retrieve your list of bounced emails. Required Access Level: ViewContacts, ViewSuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSuppressionsBouncesGetRequest
+ @return SuppressionsAPISuppressionsBouncesGetRequest
 */
-func (a *SuppressionsAPIService) SuppressionsBouncesGet(ctx context.Context) ApiSuppressionsBouncesGetRequest {
-	return ApiSuppressionsBouncesGetRequest{
+func (a *SuppressionsAPIService) SuppressionsBouncesGet(ctx context.Context) SuppressionsAPISuppressionsBouncesGetRequest {
+	return SuppressionsAPISuppressionsBouncesGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -72,7 +72,7 @@ func (a *SuppressionsAPIService) SuppressionsBouncesGet(ctx context.Context) Api
 
 // Execute executes the request
 //  @return []Suppression
-func (a *SuppressionsAPIService) SuppressionsBouncesGetExecute(r ApiSuppressionsBouncesGetRequest) ([]Suppression, *http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsBouncesGetExecute(r SuppressionsAPISuppressionsBouncesGetRequest) ([]Suppression, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -168,18 +168,18 @@ func (a *SuppressionsAPIService) SuppressionsBouncesGetExecute(r ApiSuppressions
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSuppressionsBouncesImportPostRequest struct {
+type SuppressionsAPISuppressionsBouncesImportPostRequest struct {
 	ctx context.Context
 	ApiService *SuppressionsAPIService
 	file *os.File
 }
 
-func (r ApiSuppressionsBouncesImportPostRequest) File(file *os.File) ApiSuppressionsBouncesImportPostRequest {
+func (r SuppressionsAPISuppressionsBouncesImportPostRequest) File(file *os.File) SuppressionsAPISuppressionsBouncesImportPostRequest {
 	r.file = file
 	return r
 }
 
-func (r ApiSuppressionsBouncesImportPostRequest) Execute() (*http.Response, error) {
+func (r SuppressionsAPISuppressionsBouncesImportPostRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SuppressionsBouncesImportPostExecute(r)
 }
 
@@ -189,17 +189,17 @@ SuppressionsBouncesImportPost Add Bounces Async
 Add Bounced. Required Access Level: ModifyContacts, ModifySuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSuppressionsBouncesImportPostRequest
+ @return SuppressionsAPISuppressionsBouncesImportPostRequest
 */
-func (a *SuppressionsAPIService) SuppressionsBouncesImportPost(ctx context.Context) ApiSuppressionsBouncesImportPostRequest {
-	return ApiSuppressionsBouncesImportPostRequest{
+func (a *SuppressionsAPIService) SuppressionsBouncesImportPost(ctx context.Context) SuppressionsAPISuppressionsBouncesImportPostRequest {
+	return SuppressionsAPISuppressionsBouncesImportPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-func (a *SuppressionsAPIService) SuppressionsBouncesImportPostExecute(r ApiSuppressionsBouncesImportPostRequest) (*http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsBouncesImportPostExecute(r SuppressionsAPISuppressionsBouncesImportPostRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -291,19 +291,19 @@ func (a *SuppressionsAPIService) SuppressionsBouncesImportPostExecute(r ApiSuppr
 	return localVarHTTPResponse, nil
 }
 
-type ApiSuppressionsBouncesPostRequest struct {
+type SuppressionsAPISuppressionsBouncesPostRequest struct {
 	ctx context.Context
 	ApiService *SuppressionsAPIService
 	requestBody *[]string
 }
 
 // Emails to add as bounces. Limited to 1000 per request
-func (r ApiSuppressionsBouncesPostRequest) RequestBody(requestBody []string) ApiSuppressionsBouncesPostRequest {
+func (r SuppressionsAPISuppressionsBouncesPostRequest) RequestBody(requestBody []string) SuppressionsAPISuppressionsBouncesPostRequest {
 	r.requestBody = &requestBody
 	return r
 }
 
-func (r ApiSuppressionsBouncesPostRequest) Execute() ([]Suppression, *http.Response, error) {
+func (r SuppressionsAPISuppressionsBouncesPostRequest) Execute() ([]Suppression, *http.Response, error) {
 	return r.ApiService.SuppressionsBouncesPostExecute(r)
 }
 
@@ -313,10 +313,10 @@ SuppressionsBouncesPost Add Bounces
 Add Bounced. Required Access Level: ModifyContacts, ModifySuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSuppressionsBouncesPostRequest
+ @return SuppressionsAPISuppressionsBouncesPostRequest
 */
-func (a *SuppressionsAPIService) SuppressionsBouncesPost(ctx context.Context) ApiSuppressionsBouncesPostRequest {
-	return ApiSuppressionsBouncesPostRequest{
+func (a *SuppressionsAPIService) SuppressionsBouncesPost(ctx context.Context) SuppressionsAPISuppressionsBouncesPostRequest {
+	return SuppressionsAPISuppressionsBouncesPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -324,7 +324,7 @@ func (a *SuppressionsAPIService) SuppressionsBouncesPost(ctx context.Context) Ap
 
 // Execute executes the request
 //  @return []Suppression
-func (a *SuppressionsAPIService) SuppressionsBouncesPostExecute(r ApiSuppressionsBouncesPostRequest) ([]Suppression, *http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsBouncesPostExecute(r SuppressionsAPISuppressionsBouncesPostRequest) ([]Suppression, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -416,13 +416,13 @@ func (a *SuppressionsAPIService) SuppressionsBouncesPostExecute(r ApiSuppression
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSuppressionsByEmailDeleteRequest struct {
+type SuppressionsAPISuppressionsByEmailDeleteRequest struct {
 	ctx context.Context
 	ApiService *SuppressionsAPIService
 	email string
 }
 
-func (r ApiSuppressionsByEmailDeleteRequest) Execute() (*http.Response, error) {
+func (r SuppressionsAPISuppressionsByEmailDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SuppressionsByEmailDeleteExecute(r)
 }
 
@@ -433,10 +433,10 @@ Delete Suppression. Required Access Level: ViewContacts, ViewSuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email Proper email address.
- @return ApiSuppressionsByEmailDeleteRequest
+ @return SuppressionsAPISuppressionsByEmailDeleteRequest
 */
-func (a *SuppressionsAPIService) SuppressionsByEmailDelete(ctx context.Context, email string) ApiSuppressionsByEmailDeleteRequest {
-	return ApiSuppressionsByEmailDeleteRequest{
+func (a *SuppressionsAPIService) SuppressionsByEmailDelete(ctx context.Context, email string) SuppressionsAPISuppressionsByEmailDeleteRequest {
+	return SuppressionsAPISuppressionsByEmailDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		email: email,
@@ -444,7 +444,7 @@ func (a *SuppressionsAPIService) SuppressionsByEmailDelete(ctx context.Context, 
 }
 
 // Execute executes the request
-func (a *SuppressionsAPIService) SuppressionsByEmailDeleteExecute(r ApiSuppressionsByEmailDeleteRequest) (*http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsByEmailDeleteExecute(r SuppressionsAPISuppressionsByEmailDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -522,13 +522,13 @@ func (a *SuppressionsAPIService) SuppressionsByEmailDeleteExecute(r ApiSuppressi
 	return localVarHTTPResponse, nil
 }
 
-type ApiSuppressionsByEmailGetRequest struct {
+type SuppressionsAPISuppressionsByEmailGetRequest struct {
 	ctx context.Context
 	ApiService *SuppressionsAPIService
 	email string
 }
 
-func (r ApiSuppressionsByEmailGetRequest) Execute() (*Suppression, *http.Response, error) {
+func (r SuppressionsAPISuppressionsByEmailGetRequest) Execute() (*Suppression, *http.Response, error) {
 	return r.ApiService.SuppressionsByEmailGetExecute(r)
 }
 
@@ -539,10 +539,10 @@ Retrieve your suppression. Required Access Level: ViewContacts, ViewSuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param email Proper email address.
- @return ApiSuppressionsByEmailGetRequest
+ @return SuppressionsAPISuppressionsByEmailGetRequest
 */
-func (a *SuppressionsAPIService) SuppressionsByEmailGet(ctx context.Context, email string) ApiSuppressionsByEmailGetRequest {
-	return ApiSuppressionsByEmailGetRequest{
+func (a *SuppressionsAPIService) SuppressionsByEmailGet(ctx context.Context, email string) SuppressionsAPISuppressionsByEmailGetRequest {
+	return SuppressionsAPISuppressionsByEmailGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		email: email,
@@ -551,7 +551,7 @@ func (a *SuppressionsAPIService) SuppressionsByEmailGet(ctx context.Context, ema
 
 // Execute executes the request
 //  @return Suppression
-func (a *SuppressionsAPIService) SuppressionsByEmailGetExecute(r ApiSuppressionsByEmailGetRequest) (*Suppression, *http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsByEmailGetExecute(r SuppressionsAPISuppressionsByEmailGetRequest) (*Suppression, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -639,7 +639,7 @@ func (a *SuppressionsAPIService) SuppressionsByEmailGetExecute(r ApiSuppressions
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSuppressionsComplaintsGetRequest struct {
+type SuppressionsAPISuppressionsComplaintsGetRequest struct {
 	ctx context.Context
 	ApiService *SuppressionsAPIService
 	search *string
@@ -648,24 +648,24 @@ type ApiSuppressionsComplaintsGetRequest struct {
 }
 
 // Text fragment used for searching.
-func (r ApiSuppressionsComplaintsGetRequest) Search(search string) ApiSuppressionsComplaintsGetRequest {
+func (r SuppressionsAPISuppressionsComplaintsGetRequest) Search(search string) SuppressionsAPISuppressionsComplaintsGetRequest {
 	r.search = &search
 	return r
 }
 
 // Maximum number of returned items.
-func (r ApiSuppressionsComplaintsGetRequest) Limit(limit int32) ApiSuppressionsComplaintsGetRequest {
+func (r SuppressionsAPISuppressionsComplaintsGetRequest) Limit(limit int32) SuppressionsAPISuppressionsComplaintsGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // How many items should be returned ahead.
-func (r ApiSuppressionsComplaintsGetRequest) Offset(offset int32) ApiSuppressionsComplaintsGetRequest {
+func (r SuppressionsAPISuppressionsComplaintsGetRequest) Offset(offset int32) SuppressionsAPISuppressionsComplaintsGetRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiSuppressionsComplaintsGetRequest) Execute() ([]Suppression, *http.Response, error) {
+func (r SuppressionsAPISuppressionsComplaintsGetRequest) Execute() ([]Suppression, *http.Response, error) {
 	return r.ApiService.SuppressionsComplaintsGetExecute(r)
 }
 
@@ -675,10 +675,10 @@ SuppressionsComplaintsGet Get Complaints List
 Retrieve your list of complaints. Required Access Level: ViewContacts, ViewSuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSuppressionsComplaintsGetRequest
+ @return SuppressionsAPISuppressionsComplaintsGetRequest
 */
-func (a *SuppressionsAPIService) SuppressionsComplaintsGet(ctx context.Context) ApiSuppressionsComplaintsGetRequest {
-	return ApiSuppressionsComplaintsGetRequest{
+func (a *SuppressionsAPIService) SuppressionsComplaintsGet(ctx context.Context) SuppressionsAPISuppressionsComplaintsGetRequest {
+	return SuppressionsAPISuppressionsComplaintsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -686,7 +686,7 @@ func (a *SuppressionsAPIService) SuppressionsComplaintsGet(ctx context.Context) 
 
 // Execute executes the request
 //  @return []Suppression
-func (a *SuppressionsAPIService) SuppressionsComplaintsGetExecute(r ApiSuppressionsComplaintsGetRequest) ([]Suppression, *http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsComplaintsGetExecute(r SuppressionsAPISuppressionsComplaintsGetRequest) ([]Suppression, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -782,18 +782,18 @@ func (a *SuppressionsAPIService) SuppressionsComplaintsGetExecute(r ApiSuppressi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSuppressionsComplaintsImportPostRequest struct {
+type SuppressionsAPISuppressionsComplaintsImportPostRequest struct {
 	ctx context.Context
 	ApiService *SuppressionsAPIService
 	file *os.File
 }
 
-func (r ApiSuppressionsComplaintsImportPostRequest) File(file *os.File) ApiSuppressionsComplaintsImportPostRequest {
+func (r SuppressionsAPISuppressionsComplaintsImportPostRequest) File(file *os.File) SuppressionsAPISuppressionsComplaintsImportPostRequest {
 	r.file = file
 	return r
 }
 
-func (r ApiSuppressionsComplaintsImportPostRequest) Execute() (*http.Response, error) {
+func (r SuppressionsAPISuppressionsComplaintsImportPostRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SuppressionsComplaintsImportPostExecute(r)
 }
 
@@ -803,17 +803,17 @@ SuppressionsComplaintsImportPost Add Complaints Async
 Add Complaints. Required Access Level: ModifyContacts, ModifySuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSuppressionsComplaintsImportPostRequest
+ @return SuppressionsAPISuppressionsComplaintsImportPostRequest
 */
-func (a *SuppressionsAPIService) SuppressionsComplaintsImportPost(ctx context.Context) ApiSuppressionsComplaintsImportPostRequest {
-	return ApiSuppressionsComplaintsImportPostRequest{
+func (a *SuppressionsAPIService) SuppressionsComplaintsImportPost(ctx context.Context) SuppressionsAPISuppressionsComplaintsImportPostRequest {
+	return SuppressionsAPISuppressionsComplaintsImportPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-func (a *SuppressionsAPIService) SuppressionsComplaintsImportPostExecute(r ApiSuppressionsComplaintsImportPostRequest) (*http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsComplaintsImportPostExecute(r SuppressionsAPISuppressionsComplaintsImportPostRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -905,19 +905,19 @@ func (a *SuppressionsAPIService) SuppressionsComplaintsImportPostExecute(r ApiSu
 	return localVarHTTPResponse, nil
 }
 
-type ApiSuppressionsComplaintsPostRequest struct {
+type SuppressionsAPISuppressionsComplaintsPostRequest struct {
 	ctx context.Context
 	ApiService *SuppressionsAPIService
 	requestBody *[]string
 }
 
 // Emails to add as complaints. Limited to 1000 per request
-func (r ApiSuppressionsComplaintsPostRequest) RequestBody(requestBody []string) ApiSuppressionsComplaintsPostRequest {
+func (r SuppressionsAPISuppressionsComplaintsPostRequest) RequestBody(requestBody []string) SuppressionsAPISuppressionsComplaintsPostRequest {
 	r.requestBody = &requestBody
 	return r
 }
 
-func (r ApiSuppressionsComplaintsPostRequest) Execute() ([]Suppression, *http.Response, error) {
+func (r SuppressionsAPISuppressionsComplaintsPostRequest) Execute() ([]Suppression, *http.Response, error) {
 	return r.ApiService.SuppressionsComplaintsPostExecute(r)
 }
 
@@ -927,10 +927,10 @@ SuppressionsComplaintsPost Add Complaints
 Add Complaints. Required Access Level: ModifyContacts, ModifySuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSuppressionsComplaintsPostRequest
+ @return SuppressionsAPISuppressionsComplaintsPostRequest
 */
-func (a *SuppressionsAPIService) SuppressionsComplaintsPost(ctx context.Context) ApiSuppressionsComplaintsPostRequest {
-	return ApiSuppressionsComplaintsPostRequest{
+func (a *SuppressionsAPIService) SuppressionsComplaintsPost(ctx context.Context) SuppressionsAPISuppressionsComplaintsPostRequest {
+	return SuppressionsAPISuppressionsComplaintsPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -938,7 +938,7 @@ func (a *SuppressionsAPIService) SuppressionsComplaintsPost(ctx context.Context)
 
 // Execute executes the request
 //  @return []Suppression
-func (a *SuppressionsAPIService) SuppressionsComplaintsPostExecute(r ApiSuppressionsComplaintsPostRequest) ([]Suppression, *http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsComplaintsPostExecute(r SuppressionsAPISuppressionsComplaintsPostRequest) ([]Suppression, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1030,7 +1030,7 @@ func (a *SuppressionsAPIService) SuppressionsComplaintsPostExecute(r ApiSuppress
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSuppressionsGetRequest struct {
+type SuppressionsAPISuppressionsGetRequest struct {
 	ctx context.Context
 	ApiService *SuppressionsAPIService
 	limit *int32
@@ -1038,18 +1038,18 @@ type ApiSuppressionsGetRequest struct {
 }
 
 // Maximum number of returned items.
-func (r ApiSuppressionsGetRequest) Limit(limit int32) ApiSuppressionsGetRequest {
+func (r SuppressionsAPISuppressionsGetRequest) Limit(limit int32) SuppressionsAPISuppressionsGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // How many items should be returned ahead.
-func (r ApiSuppressionsGetRequest) Offset(offset int32) ApiSuppressionsGetRequest {
+func (r SuppressionsAPISuppressionsGetRequest) Offset(offset int32) SuppressionsAPISuppressionsGetRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiSuppressionsGetRequest) Execute() ([]Suppression, *http.Response, error) {
+func (r SuppressionsAPISuppressionsGetRequest) Execute() ([]Suppression, *http.Response, error) {
 	return r.ApiService.SuppressionsGetExecute(r)
 }
 
@@ -1059,10 +1059,10 @@ SuppressionsGet Get Suppressions
 Retrieve your suppressions. Required Access Level: ViewContacts, ViewSuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSuppressionsGetRequest
+ @return SuppressionsAPISuppressionsGetRequest
 */
-func (a *SuppressionsAPIService) SuppressionsGet(ctx context.Context) ApiSuppressionsGetRequest {
-	return ApiSuppressionsGetRequest{
+func (a *SuppressionsAPIService) SuppressionsGet(ctx context.Context) SuppressionsAPISuppressionsGetRequest {
+	return SuppressionsAPISuppressionsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1070,7 +1070,7 @@ func (a *SuppressionsAPIService) SuppressionsGet(ctx context.Context) ApiSuppres
 
 // Execute executes the request
 //  @return []Suppression
-func (a *SuppressionsAPIService) SuppressionsGetExecute(r ApiSuppressionsGetRequest) ([]Suppression, *http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsGetExecute(r SuppressionsAPISuppressionsGetRequest) ([]Suppression, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1163,7 +1163,7 @@ func (a *SuppressionsAPIService) SuppressionsGetExecute(r ApiSuppressionsGetRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSuppressionsUnsubscribesGetRequest struct {
+type SuppressionsAPISuppressionsUnsubscribesGetRequest struct {
 	ctx context.Context
 	ApiService *SuppressionsAPIService
 	search *string
@@ -1172,24 +1172,24 @@ type ApiSuppressionsUnsubscribesGetRequest struct {
 }
 
 // Text fragment used for searching.
-func (r ApiSuppressionsUnsubscribesGetRequest) Search(search string) ApiSuppressionsUnsubscribesGetRequest {
+func (r SuppressionsAPISuppressionsUnsubscribesGetRequest) Search(search string) SuppressionsAPISuppressionsUnsubscribesGetRequest {
 	r.search = &search
 	return r
 }
 
 // Maximum number of returned items.
-func (r ApiSuppressionsUnsubscribesGetRequest) Limit(limit int32) ApiSuppressionsUnsubscribesGetRequest {
+func (r SuppressionsAPISuppressionsUnsubscribesGetRequest) Limit(limit int32) SuppressionsAPISuppressionsUnsubscribesGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // How many items should be returned ahead.
-func (r ApiSuppressionsUnsubscribesGetRequest) Offset(offset int32) ApiSuppressionsUnsubscribesGetRequest {
+func (r SuppressionsAPISuppressionsUnsubscribesGetRequest) Offset(offset int32) SuppressionsAPISuppressionsUnsubscribesGetRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiSuppressionsUnsubscribesGetRequest) Execute() ([]Suppression, *http.Response, error) {
+func (r SuppressionsAPISuppressionsUnsubscribesGetRequest) Execute() ([]Suppression, *http.Response, error) {
 	return r.ApiService.SuppressionsUnsubscribesGetExecute(r)
 }
 
@@ -1199,10 +1199,10 @@ SuppressionsUnsubscribesGet Get Unsubscribes List
 Retrieve your list of unsubscribes. Required Access Level: ViewContacts, ViewSuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSuppressionsUnsubscribesGetRequest
+ @return SuppressionsAPISuppressionsUnsubscribesGetRequest
 */
-func (a *SuppressionsAPIService) SuppressionsUnsubscribesGet(ctx context.Context) ApiSuppressionsUnsubscribesGetRequest {
-	return ApiSuppressionsUnsubscribesGetRequest{
+func (a *SuppressionsAPIService) SuppressionsUnsubscribesGet(ctx context.Context) SuppressionsAPISuppressionsUnsubscribesGetRequest {
+	return SuppressionsAPISuppressionsUnsubscribesGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1210,7 +1210,7 @@ func (a *SuppressionsAPIService) SuppressionsUnsubscribesGet(ctx context.Context
 
 // Execute executes the request
 //  @return []Suppression
-func (a *SuppressionsAPIService) SuppressionsUnsubscribesGetExecute(r ApiSuppressionsUnsubscribesGetRequest) ([]Suppression, *http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsUnsubscribesGetExecute(r SuppressionsAPISuppressionsUnsubscribesGetRequest) ([]Suppression, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1306,18 +1306,18 @@ func (a *SuppressionsAPIService) SuppressionsUnsubscribesGetExecute(r ApiSuppres
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSuppressionsUnsubscribesImportPostRequest struct {
+type SuppressionsAPISuppressionsUnsubscribesImportPostRequest struct {
 	ctx context.Context
 	ApiService *SuppressionsAPIService
 	file *os.File
 }
 
-func (r ApiSuppressionsUnsubscribesImportPostRequest) File(file *os.File) ApiSuppressionsUnsubscribesImportPostRequest {
+func (r SuppressionsAPISuppressionsUnsubscribesImportPostRequest) File(file *os.File) SuppressionsAPISuppressionsUnsubscribesImportPostRequest {
 	r.file = file
 	return r
 }
 
-func (r ApiSuppressionsUnsubscribesImportPostRequest) Execute() (*http.Response, error) {
+func (r SuppressionsAPISuppressionsUnsubscribesImportPostRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SuppressionsUnsubscribesImportPostExecute(r)
 }
 
@@ -1327,17 +1327,17 @@ SuppressionsUnsubscribesImportPost Add Unsubscribes Async
 Add Unsubscribes. Required Access Level: ModifyContacts, ModifySuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSuppressionsUnsubscribesImportPostRequest
+ @return SuppressionsAPISuppressionsUnsubscribesImportPostRequest
 */
-func (a *SuppressionsAPIService) SuppressionsUnsubscribesImportPost(ctx context.Context) ApiSuppressionsUnsubscribesImportPostRequest {
-	return ApiSuppressionsUnsubscribesImportPostRequest{
+func (a *SuppressionsAPIService) SuppressionsUnsubscribesImportPost(ctx context.Context) SuppressionsAPISuppressionsUnsubscribesImportPostRequest {
+	return SuppressionsAPISuppressionsUnsubscribesImportPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-func (a *SuppressionsAPIService) SuppressionsUnsubscribesImportPostExecute(r ApiSuppressionsUnsubscribesImportPostRequest) (*http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsUnsubscribesImportPostExecute(r SuppressionsAPISuppressionsUnsubscribesImportPostRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1429,19 +1429,19 @@ func (a *SuppressionsAPIService) SuppressionsUnsubscribesImportPostExecute(r Api
 	return localVarHTTPResponse, nil
 }
 
-type ApiSuppressionsUnsubscribesPostRequest struct {
+type SuppressionsAPISuppressionsUnsubscribesPostRequest struct {
 	ctx context.Context
 	ApiService *SuppressionsAPIService
 	requestBody *[]string
 }
 
 // Emails to add as unsubscribes. Limited to 1000 per request
-func (r ApiSuppressionsUnsubscribesPostRequest) RequestBody(requestBody []string) ApiSuppressionsUnsubscribesPostRequest {
+func (r SuppressionsAPISuppressionsUnsubscribesPostRequest) RequestBody(requestBody []string) SuppressionsAPISuppressionsUnsubscribesPostRequest {
 	r.requestBody = &requestBody
 	return r
 }
 
-func (r ApiSuppressionsUnsubscribesPostRequest) Execute() ([]Suppression, *http.Response, error) {
+func (r SuppressionsAPISuppressionsUnsubscribesPostRequest) Execute() ([]Suppression, *http.Response, error) {
 	return r.ApiService.SuppressionsUnsubscribesPostExecute(r)
 }
 
@@ -1451,10 +1451,10 @@ SuppressionsUnsubscribesPost Add Unsubscribes
 Add Unsubscribes. Required Access Level: ModifyContacts, ModifySuppressions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSuppressionsUnsubscribesPostRequest
+ @return SuppressionsAPISuppressionsUnsubscribesPostRequest
 */
-func (a *SuppressionsAPIService) SuppressionsUnsubscribesPost(ctx context.Context) ApiSuppressionsUnsubscribesPostRequest {
-	return ApiSuppressionsUnsubscribesPostRequest{
+func (a *SuppressionsAPIService) SuppressionsUnsubscribesPost(ctx context.Context) SuppressionsAPISuppressionsUnsubscribesPostRequest {
+	return SuppressionsAPISuppressionsUnsubscribesPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1462,7 +1462,7 @@ func (a *SuppressionsAPIService) SuppressionsUnsubscribesPost(ctx context.Contex
 
 // Execute executes the request
 //  @return []Suppression
-func (a *SuppressionsAPIService) SuppressionsUnsubscribesPostExecute(r ApiSuppressionsUnsubscribesPostRequest) ([]Suppression, *http.Response, error) {
+func (a *SuppressionsAPIService) SuppressionsUnsubscribesPostExecute(r SuppressionsAPISuppressionsUnsubscribesPostRequest) ([]Suppression, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}

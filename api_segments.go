@@ -24,13 +24,13 @@ import (
 // SegmentsAPIService SegmentsAPI service
 type SegmentsAPIService service
 
-type ApiSegmentsByNameDeleteRequest struct {
+type SegmentsAPISegmentsByNameDeleteRequest struct {
 	ctx context.Context
 	ApiService *SegmentsAPIService
 	name string
 }
 
-func (r ApiSegmentsByNameDeleteRequest) Execute() (*http.Response, error) {
+func (r SegmentsAPISegmentsByNameDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SegmentsByNameDeleteExecute(r)
 }
 
@@ -41,10 +41,10 @@ Delete an existing segment. Required Access Level: ModifyContacts
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of your segment.
- @return ApiSegmentsByNameDeleteRequest
+ @return SegmentsAPISegmentsByNameDeleteRequest
 */
-func (a *SegmentsAPIService) SegmentsByNameDelete(ctx context.Context, name string) ApiSegmentsByNameDeleteRequest {
-	return ApiSegmentsByNameDeleteRequest{
+func (a *SegmentsAPIService) SegmentsByNameDelete(ctx context.Context, name string) SegmentsAPISegmentsByNameDeleteRequest {
+	return SegmentsAPISegmentsByNameDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -52,7 +52,7 @@ func (a *SegmentsAPIService) SegmentsByNameDelete(ctx context.Context, name stri
 }
 
 // Execute executes the request
-func (a *SegmentsAPIService) SegmentsByNameDeleteExecute(r ApiSegmentsByNameDeleteRequest) (*http.Response, error) {
+func (a *SegmentsAPIService) SegmentsByNameDeleteExecute(r SegmentsAPISegmentsByNameDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -130,13 +130,13 @@ func (a *SegmentsAPIService) SegmentsByNameDeleteExecute(r ApiSegmentsByNameDele
 	return localVarHTTPResponse, nil
 }
 
-type ApiSegmentsByNameGetRequest struct {
+type SegmentsAPISegmentsByNameGetRequest struct {
 	ctx context.Context
 	ApiService *SegmentsAPIService
 	name string
 }
 
-func (r ApiSegmentsByNameGetRequest) Execute() (*Segment, *http.Response, error) {
+func (r SegmentsAPISegmentsByNameGetRequest) Execute() (*Segment, *http.Response, error) {
 	return r.ApiService.SegmentsByNameGetExecute(r)
 }
 
@@ -147,10 +147,10 @@ Returns details for the specified segment. Required Access Level: ViewContacts
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of the segment you want to load. Will load all contacts if the 'All Contacts' name has been provided
- @return ApiSegmentsByNameGetRequest
+ @return SegmentsAPISegmentsByNameGetRequest
 */
-func (a *SegmentsAPIService) SegmentsByNameGet(ctx context.Context, name string) ApiSegmentsByNameGetRequest {
-	return ApiSegmentsByNameGetRequest{
+func (a *SegmentsAPIService) SegmentsByNameGet(ctx context.Context, name string) SegmentsAPISegmentsByNameGetRequest {
+	return SegmentsAPISegmentsByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -159,7 +159,7 @@ func (a *SegmentsAPIService) SegmentsByNameGet(ctx context.Context, name string)
 
 // Execute executes the request
 //  @return Segment
-func (a *SegmentsAPIService) SegmentsByNameGetExecute(r ApiSegmentsByNameGetRequest) (*Segment, *http.Response, error) {
+func (a *SegmentsAPIService) SegmentsByNameGetExecute(r SegmentsAPISegmentsByNameGetRequest) (*Segment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -247,19 +247,19 @@ func (a *SegmentsAPIService) SegmentsByNameGetExecute(r ApiSegmentsByNameGetRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSegmentsByNamePutRequest struct {
+type SegmentsAPISegmentsByNamePutRequest struct {
 	ctx context.Context
 	ApiService *SegmentsAPIService
 	name string
 	segmentPayload *SegmentPayload
 }
 
-func (r ApiSegmentsByNamePutRequest) SegmentPayload(segmentPayload SegmentPayload) ApiSegmentsByNamePutRequest {
+func (r SegmentsAPISegmentsByNamePutRequest) SegmentPayload(segmentPayload SegmentPayload) SegmentsAPISegmentsByNamePutRequest {
 	r.segmentPayload = &segmentPayload
 	return r
 }
 
-func (r ApiSegmentsByNamePutRequest) Execute() (*Segment, *http.Response, error) {
+func (r SegmentsAPISegmentsByNamePutRequest) Execute() (*Segment, *http.Response, error) {
 	return r.ApiService.SegmentsByNamePutExecute(r)
 }
 
@@ -270,10 +270,10 @@ Rename or change RULE for your segment. Required Access Level: ModifyContacts
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of your segment.
- @return ApiSegmentsByNamePutRequest
+ @return SegmentsAPISegmentsByNamePutRequest
 */
-func (a *SegmentsAPIService) SegmentsByNamePut(ctx context.Context, name string) ApiSegmentsByNamePutRequest {
-	return ApiSegmentsByNamePutRequest{
+func (a *SegmentsAPIService) SegmentsByNamePut(ctx context.Context, name string) SegmentsAPISegmentsByNamePutRequest {
+	return SegmentsAPISegmentsByNamePutRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -282,7 +282,7 @@ func (a *SegmentsAPIService) SegmentsByNamePut(ctx context.Context, name string)
 
 // Execute executes the request
 //  @return Segment
-func (a *SegmentsAPIService) SegmentsByNamePutExecute(r ApiSegmentsByNamePutRequest) (*Segment, *http.Response, error) {
+func (a *SegmentsAPIService) SegmentsByNamePutExecute(r SegmentsAPISegmentsByNamePutRequest) (*Segment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -375,7 +375,7 @@ func (a *SegmentsAPIService) SegmentsByNamePutExecute(r ApiSegmentsByNamePutRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSegmentsGetRequest struct {
+type SegmentsAPISegmentsGetRequest struct {
 	ctx context.Context
 	ApiService *SegmentsAPIService
 	limit *int32
@@ -383,18 +383,18 @@ type ApiSegmentsGetRequest struct {
 }
 
 // Maximum number of returned items.
-func (r ApiSegmentsGetRequest) Limit(limit int32) ApiSegmentsGetRequest {
+func (r SegmentsAPISegmentsGetRequest) Limit(limit int32) SegmentsAPISegmentsGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // How many items should be returned ahead.
-func (r ApiSegmentsGetRequest) Offset(offset int32) ApiSegmentsGetRequest {
+func (r SegmentsAPISegmentsGetRequest) Offset(offset int32) SegmentsAPISegmentsGetRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiSegmentsGetRequest) Execute() ([]Segment, *http.Response, error) {
+func (r SegmentsAPISegmentsGetRequest) Execute() ([]Segment, *http.Response, error) {
 	return r.ApiService.SegmentsGetExecute(r)
 }
 
@@ -404,10 +404,10 @@ SegmentsGet Load Segments
 Returns a list of all your available Segments. Required Access Level: ViewContacts
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSegmentsGetRequest
+ @return SegmentsAPISegmentsGetRequest
 */
-func (a *SegmentsAPIService) SegmentsGet(ctx context.Context) ApiSegmentsGetRequest {
-	return ApiSegmentsGetRequest{
+func (a *SegmentsAPIService) SegmentsGet(ctx context.Context) SegmentsAPISegmentsGetRequest {
+	return SegmentsAPISegmentsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -415,7 +415,7 @@ func (a *SegmentsAPIService) SegmentsGet(ctx context.Context) ApiSegmentsGetRequ
 
 // Execute executes the request
 //  @return []Segment
-func (a *SegmentsAPIService) SegmentsGetExecute(r ApiSegmentsGetRequest) ([]Segment, *http.Response, error) {
+func (a *SegmentsAPIService) SegmentsGetExecute(r SegmentsAPISegmentsGetRequest) ([]Segment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -508,18 +508,18 @@ func (a *SegmentsAPIService) SegmentsGetExecute(r ApiSegmentsGetRequest) ([]Segm
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSegmentsPostRequest struct {
+type SegmentsAPISegmentsPostRequest struct {
 	ctx context.Context
 	ApiService *SegmentsAPIService
 	segmentPayload *SegmentPayload
 }
 
-func (r ApiSegmentsPostRequest) SegmentPayload(segmentPayload SegmentPayload) ApiSegmentsPostRequest {
+func (r SegmentsAPISegmentsPostRequest) SegmentPayload(segmentPayload SegmentPayload) SegmentsAPISegmentsPostRequest {
 	r.segmentPayload = &segmentPayload
 	return r
 }
 
-func (r ApiSegmentsPostRequest) Execute() (*Segment, *http.Response, error) {
+func (r SegmentsAPISegmentsPostRequest) Execute() (*Segment, *http.Response, error) {
 	return r.ApiService.SegmentsPostExecute(r)
 }
 
@@ -529,10 +529,10 @@ SegmentsPost Add Segment
 Add a new segment, based on specified RULE. Required Access Level: ModifyContacts
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSegmentsPostRequest
+ @return SegmentsAPISegmentsPostRequest
 */
-func (a *SegmentsAPIService) SegmentsPost(ctx context.Context) ApiSegmentsPostRequest {
-	return ApiSegmentsPostRequest{
+func (a *SegmentsAPIService) SegmentsPost(ctx context.Context) SegmentsAPISegmentsPostRequest {
+	return SegmentsAPISegmentsPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -540,7 +540,7 @@ func (a *SegmentsAPIService) SegmentsPost(ctx context.Context) ApiSegmentsPostRe
 
 // Execute executes the request
 //  @return Segment
-func (a *SegmentsAPIService) SegmentsPostExecute(r ApiSegmentsPostRequest) (*Segment, *http.Response, error) {
+func (a *SegmentsAPIService) SegmentsPostExecute(r SegmentsAPISegmentsPostRequest) (*Segment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}

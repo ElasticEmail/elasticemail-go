@@ -25,13 +25,13 @@ import (
 // TemplatesAPIService TemplatesAPI service
 type TemplatesAPIService service
 
-type ApiTemplatesByNameDeleteRequest struct {
+type TemplatesAPITemplatesByNameDeleteRequest struct {
 	ctx context.Context
 	ApiService *TemplatesAPIService
 	name string
 }
 
-func (r ApiTemplatesByNameDeleteRequest) Execute() (*http.Response, error) {
+func (r TemplatesAPITemplatesByNameDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.TemplatesByNameDeleteExecute(r)
 }
 
@@ -42,10 +42,10 @@ Delete template with the specified name. Required Access Level: ModifyTemplates
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of template.
- @return ApiTemplatesByNameDeleteRequest
+ @return TemplatesAPITemplatesByNameDeleteRequest
 */
-func (a *TemplatesAPIService) TemplatesByNameDelete(ctx context.Context, name string) ApiTemplatesByNameDeleteRequest {
-	return ApiTemplatesByNameDeleteRequest{
+func (a *TemplatesAPIService) TemplatesByNameDelete(ctx context.Context, name string) TemplatesAPITemplatesByNameDeleteRequest {
+	return TemplatesAPITemplatesByNameDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -53,7 +53,7 @@ func (a *TemplatesAPIService) TemplatesByNameDelete(ctx context.Context, name st
 }
 
 // Execute executes the request
-func (a *TemplatesAPIService) TemplatesByNameDeleteExecute(r ApiTemplatesByNameDeleteRequest) (*http.Response, error) {
+func (a *TemplatesAPIService) TemplatesByNameDeleteExecute(r TemplatesAPITemplatesByNameDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -131,13 +131,13 @@ func (a *TemplatesAPIService) TemplatesByNameDeleteExecute(r ApiTemplatesByNameD
 	return localVarHTTPResponse, nil
 }
 
-type ApiTemplatesByNameGetRequest struct {
+type TemplatesAPITemplatesByNameGetRequest struct {
 	ctx context.Context
 	ApiService *TemplatesAPIService
 	name string
 }
 
-func (r ApiTemplatesByNameGetRequest) Execute() (*Template, *http.Response, error) {
+func (r TemplatesAPITemplatesByNameGetRequest) Execute() (*Template, *http.Response, error) {
 	return r.ApiService.TemplatesByNameGetExecute(r)
 }
 
@@ -148,10 +148,10 @@ Load detailed information of the specified template. Required Access Level: View
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of template.
- @return ApiTemplatesByNameGetRequest
+ @return TemplatesAPITemplatesByNameGetRequest
 */
-func (a *TemplatesAPIService) TemplatesByNameGet(ctx context.Context, name string) ApiTemplatesByNameGetRequest {
-	return ApiTemplatesByNameGetRequest{
+func (a *TemplatesAPIService) TemplatesByNameGet(ctx context.Context, name string) TemplatesAPITemplatesByNameGetRequest {
+	return TemplatesAPITemplatesByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -160,7 +160,7 @@ func (a *TemplatesAPIService) TemplatesByNameGet(ctx context.Context, name strin
 
 // Execute executes the request
 //  @return Template
-func (a *TemplatesAPIService) TemplatesByNameGetExecute(r ApiTemplatesByNameGetRequest) (*Template, *http.Response, error) {
+func (a *TemplatesAPIService) TemplatesByNameGetExecute(r TemplatesAPITemplatesByNameGetRequest) (*Template, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -248,19 +248,19 @@ func (a *TemplatesAPIService) TemplatesByNameGetExecute(r ApiTemplatesByNameGetR
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiTemplatesByNamePutRequest struct {
+type TemplatesAPITemplatesByNamePutRequest struct {
 	ctx context.Context
 	ApiService *TemplatesAPIService
 	name string
 	templatePayload *TemplatePayload
 }
 
-func (r ApiTemplatesByNamePutRequest) TemplatePayload(templatePayload TemplatePayload) ApiTemplatesByNamePutRequest {
+func (r TemplatesAPITemplatesByNamePutRequest) TemplatePayload(templatePayload TemplatePayload) TemplatesAPITemplatesByNamePutRequest {
 	r.templatePayload = &templatePayload
 	return r
 }
 
-func (r ApiTemplatesByNamePutRequest) Execute() (*Template, *http.Response, error) {
+func (r TemplatesAPITemplatesByNamePutRequest) Execute() (*Template, *http.Response, error) {
 	return r.ApiService.TemplatesByNamePutExecute(r)
 }
 
@@ -271,10 +271,10 @@ Update existing template, overwriting existing data. Required Access Level: Modi
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of template.
- @return ApiTemplatesByNamePutRequest
+ @return TemplatesAPITemplatesByNamePutRequest
 */
-func (a *TemplatesAPIService) TemplatesByNamePut(ctx context.Context, name string) ApiTemplatesByNamePutRequest {
-	return ApiTemplatesByNamePutRequest{
+func (a *TemplatesAPIService) TemplatesByNamePut(ctx context.Context, name string) TemplatesAPITemplatesByNamePutRequest {
+	return TemplatesAPITemplatesByNamePutRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -283,7 +283,7 @@ func (a *TemplatesAPIService) TemplatesByNamePut(ctx context.Context, name strin
 
 // Execute executes the request
 //  @return Template
-func (a *TemplatesAPIService) TemplatesByNamePutExecute(r ApiTemplatesByNamePutRequest) (*Template, *http.Response, error) {
+func (a *TemplatesAPIService) TemplatesByNamePutExecute(r TemplatesAPITemplatesByNamePutRequest) (*Template, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -376,7 +376,7 @@ func (a *TemplatesAPIService) TemplatesByNamePutExecute(r ApiTemplatesByNamePutR
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiTemplatesGetRequest struct {
+type TemplatesAPITemplatesGetRequest struct {
 	ctx context.Context
 	ApiService *TemplatesAPIService
 	scopeType *[]TemplateScope
@@ -386,30 +386,30 @@ type ApiTemplatesGetRequest struct {
 }
 
 // Return templates with specified scope only
-func (r ApiTemplatesGetRequest) ScopeType(scopeType []TemplateScope) ApiTemplatesGetRequest {
+func (r TemplatesAPITemplatesGetRequest) ScopeType(scopeType []TemplateScope) TemplatesAPITemplatesGetRequest {
 	r.scopeType = &scopeType
 	return r
 }
 
 // Return templates with specified type only
-func (r ApiTemplatesGetRequest) TemplateTypes(templateTypes []TemplateType) ApiTemplatesGetRequest {
+func (r TemplatesAPITemplatesGetRequest) TemplateTypes(templateTypes []TemplateType) TemplatesAPITemplatesGetRequest {
 	r.templateTypes = &templateTypes
 	return r
 }
 
 // Maximum number of returned items.
-func (r ApiTemplatesGetRequest) Limit(limit int32) ApiTemplatesGetRequest {
+func (r TemplatesAPITemplatesGetRequest) Limit(limit int32) TemplatesAPITemplatesGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // How many items should be returned ahead.
-func (r ApiTemplatesGetRequest) Offset(offset int32) ApiTemplatesGetRequest {
+func (r TemplatesAPITemplatesGetRequest) Offset(offset int32) TemplatesAPITemplatesGetRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiTemplatesGetRequest) Execute() ([]Template, *http.Response, error) {
+func (r TemplatesAPITemplatesGetRequest) Execute() ([]Template, *http.Response, error) {
 	return r.ApiService.TemplatesGetExecute(r)
 }
 
@@ -419,10 +419,10 @@ TemplatesGet Load Templates
 Returns a list of templates for the specified type. Required Access Level: ViewTemplates
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiTemplatesGetRequest
+ @return TemplatesAPITemplatesGetRequest
 */
-func (a *TemplatesAPIService) TemplatesGet(ctx context.Context) ApiTemplatesGetRequest {
-	return ApiTemplatesGetRequest{
+func (a *TemplatesAPIService) TemplatesGet(ctx context.Context) TemplatesAPITemplatesGetRequest {
+	return TemplatesAPITemplatesGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -430,7 +430,7 @@ func (a *TemplatesAPIService) TemplatesGet(ctx context.Context) ApiTemplatesGetR
 
 // Execute executes the request
 //  @return []Template
-func (a *TemplatesAPIService) TemplatesGetExecute(r ApiTemplatesGetRequest) ([]Template, *http.Response, error) {
+func (a *TemplatesAPIService) TemplatesGetExecute(r TemplatesAPITemplatesGetRequest) ([]Template, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -548,18 +548,18 @@ func (a *TemplatesAPIService) TemplatesGetExecute(r ApiTemplatesGetRequest) ([]T
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiTemplatesPostRequest struct {
+type TemplatesAPITemplatesPostRequest struct {
 	ctx context.Context
 	ApiService *TemplatesAPIService
 	templatePayload *TemplatePayload
 }
 
-func (r ApiTemplatesPostRequest) TemplatePayload(templatePayload TemplatePayload) ApiTemplatesPostRequest {
+func (r TemplatesAPITemplatesPostRequest) TemplatePayload(templatePayload TemplatePayload) TemplatesAPITemplatesPostRequest {
 	r.templatePayload = &templatePayload
 	return r
 }
 
-func (r ApiTemplatesPostRequest) Execute() (*Template, *http.Response, error) {
+func (r TemplatesAPITemplatesPostRequest) Execute() (*Template, *http.Response, error) {
 	return r.ApiService.TemplatesPostExecute(r)
 }
 
@@ -569,10 +569,10 @@ TemplatesPost Add Template
 Add a new Template. Required Access Level: ModifyTemplates
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiTemplatesPostRequest
+ @return TemplatesAPITemplatesPostRequest
 */
-func (a *TemplatesAPIService) TemplatesPost(ctx context.Context) ApiTemplatesPostRequest {
-	return ApiTemplatesPostRequest{
+func (a *TemplatesAPIService) TemplatesPost(ctx context.Context) TemplatesAPITemplatesPostRequest {
+	return TemplatesAPITemplatesPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -580,7 +580,7 @@ func (a *TemplatesAPIService) TemplatesPost(ctx context.Context) ApiTemplatesPos
 
 // Execute executes the request
 //  @return Template
-func (a *TemplatesAPIService) TemplatesPostExecute(r ApiTemplatesPostRequest) (*Template, *http.Response, error) {
+func (a *TemplatesAPIService) TemplatesPostExecute(r TemplatesAPITemplatesPostRequest) (*Template, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}

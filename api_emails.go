@@ -24,13 +24,13 @@ import (
 // EmailsAPIService EmailsAPI service
 type EmailsAPIService service
 
-type ApiEmailsByMsgidViewGetRequest struct {
+type EmailsAPIEmailsByMsgidViewGetRequest struct {
 	ctx context.Context
 	ApiService *EmailsAPIService
 	msgid string
 }
 
-func (r ApiEmailsByMsgidViewGetRequest) Execute() (*EmailData, *http.Response, error) {
+func (r EmailsAPIEmailsByMsgidViewGetRequest) Execute() (*EmailData, *http.Response, error) {
 	return r.ApiService.EmailsByMsgidViewGetExecute(r)
 }
 
@@ -41,10 +41,10 @@ Returns email details for viewing or rendering. Required Access Level: None
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param msgid Message identifier
- @return ApiEmailsByMsgidViewGetRequest
+ @return EmailsAPIEmailsByMsgidViewGetRequest
 */
-func (a *EmailsAPIService) EmailsByMsgidViewGet(ctx context.Context, msgid string) ApiEmailsByMsgidViewGetRequest {
-	return ApiEmailsByMsgidViewGetRequest{
+func (a *EmailsAPIService) EmailsByMsgidViewGet(ctx context.Context, msgid string) EmailsAPIEmailsByMsgidViewGetRequest {
+	return EmailsAPIEmailsByMsgidViewGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		msgid: msgid,
@@ -53,7 +53,7 @@ func (a *EmailsAPIService) EmailsByMsgidViewGet(ctx context.Context, msgid strin
 
 // Execute executes the request
 //  @return EmailData
-func (a *EmailsAPIService) EmailsByMsgidViewGetExecute(r ApiEmailsByMsgidViewGetRequest) (*EmailData, *http.Response, error) {
+func (a *EmailsAPIService) EmailsByMsgidViewGetExecute(r EmailsAPIEmailsByMsgidViewGetRequest) (*EmailData, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -141,7 +141,7 @@ func (a *EmailsAPIService) EmailsByMsgidViewGetExecute(r ApiEmailsByMsgidViewGet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiEmailsByTransactionidStatusGetRequest struct {
+type EmailsAPIEmailsByTransactionidStatusGetRequest struct {
 	ctx context.Context
 	ApiService *EmailsAPIService
 	transactionid string
@@ -158,66 +158,66 @@ type ApiEmailsByTransactionidStatusGetRequest struct {
 }
 
 // Include Bounced email addresses.
-func (r ApiEmailsByTransactionidStatusGetRequest) ShowFailed(showFailed bool) ApiEmailsByTransactionidStatusGetRequest {
+func (r EmailsAPIEmailsByTransactionidStatusGetRequest) ShowFailed(showFailed bool) EmailsAPIEmailsByTransactionidStatusGetRequest {
 	r.showFailed = &showFailed
 	return r
 }
 
 // Include Sent email addresses.
-func (r ApiEmailsByTransactionidStatusGetRequest) ShowSent(showSent bool) ApiEmailsByTransactionidStatusGetRequest {
+func (r EmailsAPIEmailsByTransactionidStatusGetRequest) ShowSent(showSent bool) EmailsAPIEmailsByTransactionidStatusGetRequest {
 	r.showSent = &showSent
 	return r
 }
 
 // Include all delivered email addresses.
-func (r ApiEmailsByTransactionidStatusGetRequest) ShowDelivered(showDelivered bool) ApiEmailsByTransactionidStatusGetRequest {
+func (r EmailsAPIEmailsByTransactionidStatusGetRequest) ShowDelivered(showDelivered bool) EmailsAPIEmailsByTransactionidStatusGetRequest {
 	r.showDelivered = &showDelivered
 	return r
 }
 
 // Include Ready to send email addresses.
-func (r ApiEmailsByTransactionidStatusGetRequest) ShowPending(showPending bool) ApiEmailsByTransactionidStatusGetRequest {
+func (r EmailsAPIEmailsByTransactionidStatusGetRequest) ShowPending(showPending bool) EmailsAPIEmailsByTransactionidStatusGetRequest {
 	r.showPending = &showPending
 	return r
 }
 
 // Include Opened email addresses.
-func (r ApiEmailsByTransactionidStatusGetRequest) ShowOpened(showOpened bool) ApiEmailsByTransactionidStatusGetRequest {
+func (r EmailsAPIEmailsByTransactionidStatusGetRequest) ShowOpened(showOpened bool) EmailsAPIEmailsByTransactionidStatusGetRequest {
 	r.showOpened = &showOpened
 	return r
 }
 
 // Include Clicked email addresses.
-func (r ApiEmailsByTransactionidStatusGetRequest) ShowClicked(showClicked bool) ApiEmailsByTransactionidStatusGetRequest {
+func (r EmailsAPIEmailsByTransactionidStatusGetRequest) ShowClicked(showClicked bool) EmailsAPIEmailsByTransactionidStatusGetRequest {
 	r.showClicked = &showClicked
 	return r
 }
 
 // Include Reported as abuse email addresses.
-func (r ApiEmailsByTransactionidStatusGetRequest) ShowAbuse(showAbuse bool) ApiEmailsByTransactionidStatusGetRequest {
+func (r EmailsAPIEmailsByTransactionidStatusGetRequest) ShowAbuse(showAbuse bool) EmailsAPIEmailsByTransactionidStatusGetRequest {
 	r.showAbuse = &showAbuse
 	return r
 }
 
 // Include Unsubscribed email addresses.
-func (r ApiEmailsByTransactionidStatusGetRequest) ShowUnsubscribed(showUnsubscribed bool) ApiEmailsByTransactionidStatusGetRequest {
+func (r EmailsAPIEmailsByTransactionidStatusGetRequest) ShowUnsubscribed(showUnsubscribed bool) EmailsAPIEmailsByTransactionidStatusGetRequest {
 	r.showUnsubscribed = &showUnsubscribed
 	return r
 }
 
 // Include error messages for bounced emails.
-func (r ApiEmailsByTransactionidStatusGetRequest) ShowErrors(showErrors bool) ApiEmailsByTransactionidStatusGetRequest {
+func (r EmailsAPIEmailsByTransactionidStatusGetRequest) ShowErrors(showErrors bool) EmailsAPIEmailsByTransactionidStatusGetRequest {
 	r.showErrors = &showErrors
 	return r
 }
 
 // Include all MessageIDs for this transaction
-func (r ApiEmailsByTransactionidStatusGetRequest) ShowMessageIDs(showMessageIDs bool) ApiEmailsByTransactionidStatusGetRequest {
+func (r EmailsAPIEmailsByTransactionidStatusGetRequest) ShowMessageIDs(showMessageIDs bool) EmailsAPIEmailsByTransactionidStatusGetRequest {
 	r.showMessageIDs = &showMessageIDs
 	return r
 }
 
-func (r ApiEmailsByTransactionidStatusGetRequest) Execute() (*EmailJobStatus, *http.Response, error) {
+func (r EmailsAPIEmailsByTransactionidStatusGetRequest) Execute() (*EmailJobStatus, *http.Response, error) {
 	return r.ApiService.EmailsByTransactionidStatusGetExecute(r)
 }
 
@@ -228,10 +228,10 @@ Get status details of an email transaction. Required Access Level: ViewReports
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param transactionid Transaction identifier
- @return ApiEmailsByTransactionidStatusGetRequest
+ @return EmailsAPIEmailsByTransactionidStatusGetRequest
 */
-func (a *EmailsAPIService) EmailsByTransactionidStatusGet(ctx context.Context, transactionid string) ApiEmailsByTransactionidStatusGetRequest {
-	return ApiEmailsByTransactionidStatusGetRequest{
+func (a *EmailsAPIService) EmailsByTransactionidStatusGet(ctx context.Context, transactionid string) EmailsAPIEmailsByTransactionidStatusGetRequest {
+	return EmailsAPIEmailsByTransactionidStatusGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		transactionid: transactionid,
@@ -240,7 +240,7 @@ func (a *EmailsAPIService) EmailsByTransactionidStatusGet(ctx context.Context, t
 
 // Execute executes the request
 //  @return EmailJobStatus
-func (a *EmailsAPIService) EmailsByTransactionidStatusGetExecute(r ApiEmailsByTransactionidStatusGetRequest) (*EmailJobStatus, *http.Response, error) {
+func (a *EmailsAPIService) EmailsByTransactionidStatusGetExecute(r EmailsAPIEmailsByTransactionidStatusGetRequest) (*EmailJobStatus, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -388,19 +388,19 @@ func (a *EmailsAPIService) EmailsByTransactionidStatusGetExecute(r ApiEmailsByTr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiEmailsMergefilePostRequest struct {
+type EmailsAPIEmailsMergefilePostRequest struct {
 	ctx context.Context
 	ApiService *EmailsAPIService
 	mergeEmailPayload *MergeEmailPayload
 }
 
 // Email data
-func (r ApiEmailsMergefilePostRequest) MergeEmailPayload(mergeEmailPayload MergeEmailPayload) ApiEmailsMergefilePostRequest {
+func (r EmailsAPIEmailsMergefilePostRequest) MergeEmailPayload(mergeEmailPayload MergeEmailPayload) EmailsAPIEmailsMergefilePostRequest {
 	r.mergeEmailPayload = &mergeEmailPayload
 	return r
 }
 
-func (r ApiEmailsMergefilePostRequest) Execute() (*EmailSend, *http.Response, error) {
+func (r EmailsAPIEmailsMergefilePostRequest) Execute() (*EmailSend, *http.Response, error) {
 	return r.ApiService.EmailsMergefilePostExecute(r)
 }
 
@@ -418,10 +418,10 @@ Send to a list of contacts submitted in a CSV data file. The first column in the
              Merge file must not be empty. Required Access Level: SendHttp
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiEmailsMergefilePostRequest
+ @return EmailsAPIEmailsMergefilePostRequest
 */
-func (a *EmailsAPIService) EmailsMergefilePost(ctx context.Context) ApiEmailsMergefilePostRequest {
-	return ApiEmailsMergefilePostRequest{
+func (a *EmailsAPIService) EmailsMergefilePost(ctx context.Context) EmailsAPIEmailsMergefilePostRequest {
+	return EmailsAPIEmailsMergefilePostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -429,7 +429,7 @@ func (a *EmailsAPIService) EmailsMergefilePost(ctx context.Context) ApiEmailsMer
 
 // Execute executes the request
 //  @return EmailSend
-func (a *EmailsAPIService) EmailsMergefilePostExecute(r ApiEmailsMergefilePostRequest) (*EmailSend, *http.Response, error) {
+func (a *EmailsAPIService) EmailsMergefilePostExecute(r EmailsAPIEmailsMergefilePostRequest) (*EmailSend, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -521,19 +521,19 @@ func (a *EmailsAPIService) EmailsMergefilePostExecute(r ApiEmailsMergefilePostRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiEmailsPostRequest struct {
+type EmailsAPIEmailsPostRequest struct {
 	ctx context.Context
 	ApiService *EmailsAPIService
 	emailMessageData *EmailMessageData
 }
 
 // Email data
-func (r ApiEmailsPostRequest) EmailMessageData(emailMessageData EmailMessageData) ApiEmailsPostRequest {
+func (r EmailsAPIEmailsPostRequest) EmailMessageData(emailMessageData EmailMessageData) EmailsAPIEmailsPostRequest {
 	r.emailMessageData = &emailMessageData
 	return r
 }
 
-func (r ApiEmailsPostRequest) Execute() (*EmailSend, *http.Response, error) {
+func (r EmailsAPIEmailsPostRequest) Execute() (*EmailSend, *http.Response, error) {
 	return r.ApiService.EmailsPostExecute(r)
 }
 
@@ -543,10 +543,10 @@ EmailsPost Send Bulk Emails
 Send bulk merge email. Required Access Level: SendHttp
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiEmailsPostRequest
+ @return EmailsAPIEmailsPostRequest
 */
-func (a *EmailsAPIService) EmailsPost(ctx context.Context) ApiEmailsPostRequest {
-	return ApiEmailsPostRequest{
+func (a *EmailsAPIService) EmailsPost(ctx context.Context) EmailsAPIEmailsPostRequest {
+	return EmailsAPIEmailsPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -554,7 +554,7 @@ func (a *EmailsAPIService) EmailsPost(ctx context.Context) ApiEmailsPostRequest 
 
 // Execute executes the request
 //  @return EmailSend
-func (a *EmailsAPIService) EmailsPostExecute(r ApiEmailsPostRequest) (*EmailSend, *http.Response, error) {
+func (a *EmailsAPIService) EmailsPostExecute(r EmailsAPIEmailsPostRequest) (*EmailSend, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -646,19 +646,19 @@ func (a *EmailsAPIService) EmailsPostExecute(r ApiEmailsPostRequest) (*EmailSend
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiEmailsTransactionalPostRequest struct {
+type EmailsAPIEmailsTransactionalPostRequest struct {
 	ctx context.Context
 	ApiService *EmailsAPIService
 	emailTransactionalMessageData *EmailTransactionalMessageData
 }
 
 // Email data
-func (r ApiEmailsTransactionalPostRequest) EmailTransactionalMessageData(emailTransactionalMessageData EmailTransactionalMessageData) ApiEmailsTransactionalPostRequest {
+func (r EmailsAPIEmailsTransactionalPostRequest) EmailTransactionalMessageData(emailTransactionalMessageData EmailTransactionalMessageData) EmailsAPIEmailsTransactionalPostRequest {
 	r.emailTransactionalMessageData = &emailTransactionalMessageData
 	return r
 }
 
-func (r ApiEmailsTransactionalPostRequest) Execute() (*EmailSend, *http.Response, error) {
+func (r EmailsAPIEmailsTransactionalPostRequest) Execute() (*EmailSend, *http.Response, error) {
 	return r.ApiService.EmailsTransactionalPostExecute(r)
 }
 
@@ -668,10 +668,10 @@ EmailsTransactionalPost Send Transactional Email
 Send transactional emails (recipients will be known to each other). Required Access Level: SendHttp
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiEmailsTransactionalPostRequest
+ @return EmailsAPIEmailsTransactionalPostRequest
 */
-func (a *EmailsAPIService) EmailsTransactionalPost(ctx context.Context) ApiEmailsTransactionalPostRequest {
-	return ApiEmailsTransactionalPostRequest{
+func (a *EmailsAPIService) EmailsTransactionalPost(ctx context.Context) EmailsAPIEmailsTransactionalPostRequest {
+	return EmailsAPIEmailsTransactionalPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -679,7 +679,7 @@ func (a *EmailsAPIService) EmailsTransactionalPost(ctx context.Context) ApiEmail
 
 // Execute executes the request
 //  @return EmailSend
-func (a *EmailsAPIService) EmailsTransactionalPostExecute(r ApiEmailsTransactionalPostRequest) (*EmailSend, *http.Response, error) {
+func (a *EmailsAPIService) EmailsTransactionalPostExecute(r EmailsAPIEmailsTransactionalPostRequest) (*EmailSend, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}

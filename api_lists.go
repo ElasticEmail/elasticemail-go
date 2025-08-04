@@ -24,7 +24,7 @@ import (
 // ListsAPIService ListsAPI service
 type ListsAPIService service
 
-type ApiListsByListnameContactsGetRequest struct {
+type ListsAPIListsByListnameContactsGetRequest struct {
 	ctx context.Context
 	ApiService *ListsAPIService
 	listname string
@@ -33,18 +33,18 @@ type ApiListsByListnameContactsGetRequest struct {
 }
 
 // Maximum number of returned items.
-func (r ApiListsByListnameContactsGetRequest) Limit(limit int32) ApiListsByListnameContactsGetRequest {
+func (r ListsAPIListsByListnameContactsGetRequest) Limit(limit int32) ListsAPIListsByListnameContactsGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // How many items should be returned ahead.
-func (r ApiListsByListnameContactsGetRequest) Offset(offset int32) ApiListsByListnameContactsGetRequest {
+func (r ListsAPIListsByListnameContactsGetRequest) Offset(offset int32) ListsAPIListsByListnameContactsGetRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiListsByListnameContactsGetRequest) Execute() ([]Contact, *http.Response, error) {
+func (r ListsAPIListsByListnameContactsGetRequest) Execute() ([]Contact, *http.Response, error) {
 	return r.ApiService.ListsByListnameContactsGetExecute(r)
 }
 
@@ -55,10 +55,10 @@ Returns a list of contacts. Required Access Level: ViewContacts
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param listname Name of your list.
- @return ApiListsByListnameContactsGetRequest
+ @return ListsAPIListsByListnameContactsGetRequest
 */
-func (a *ListsAPIService) ListsByListnameContactsGet(ctx context.Context, listname string) ApiListsByListnameContactsGetRequest {
-	return ApiListsByListnameContactsGetRequest{
+func (a *ListsAPIService) ListsByListnameContactsGet(ctx context.Context, listname string) ListsAPIListsByListnameContactsGetRequest {
+	return ListsAPIListsByListnameContactsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		listname: listname,
@@ -67,7 +67,7 @@ func (a *ListsAPIService) ListsByListnameContactsGet(ctx context.Context, listna
 
 // Execute executes the request
 //  @return []Contact
-func (a *ListsAPIService) ListsByListnameContactsGetExecute(r ApiListsByListnameContactsGetRequest) ([]Contact, *http.Response, error) {
+func (a *ListsAPIService) ListsByListnameContactsGetExecute(r ListsAPIListsByListnameContactsGetRequest) ([]Contact, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -161,7 +161,7 @@ func (a *ListsAPIService) ListsByListnameContactsGetExecute(r ApiListsByListname
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListsByNameContactsPostRequest struct {
+type ListsAPIListsByNameContactsPostRequest struct {
 	ctx context.Context
 	ApiService *ListsAPIService
 	name string
@@ -169,12 +169,12 @@ type ApiListsByNameContactsPostRequest struct {
 }
 
 // Provide either rule or a list of emails, not both.
-func (r ApiListsByNameContactsPostRequest) EmailsPayload(emailsPayload EmailsPayload) ApiListsByNameContactsPostRequest {
+func (r ListsAPIListsByNameContactsPostRequest) EmailsPayload(emailsPayload EmailsPayload) ListsAPIListsByNameContactsPostRequest {
 	r.emailsPayload = &emailsPayload
 	return r
 }
 
-func (r ApiListsByNameContactsPostRequest) Execute() (*ContactsList, *http.Response, error) {
+func (r ListsAPIListsByNameContactsPostRequest) Execute() (*ContactsList, *http.Response, error) {
 	return r.ApiService.ListsByNameContactsPostExecute(r)
 }
 
@@ -185,10 +185,10 @@ Add existing Contacts to specified list. Required Access Level: ModifyContacts
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of your list.
- @return ApiListsByNameContactsPostRequest
+ @return ListsAPIListsByNameContactsPostRequest
 */
-func (a *ListsAPIService) ListsByNameContactsPost(ctx context.Context, name string) ApiListsByNameContactsPostRequest {
-	return ApiListsByNameContactsPostRequest{
+func (a *ListsAPIService) ListsByNameContactsPost(ctx context.Context, name string) ListsAPIListsByNameContactsPostRequest {
+	return ListsAPIListsByNameContactsPostRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -197,7 +197,7 @@ func (a *ListsAPIService) ListsByNameContactsPost(ctx context.Context, name stri
 
 // Execute executes the request
 //  @return ContactsList
-func (a *ListsAPIService) ListsByNameContactsPostExecute(r ApiListsByNameContactsPostRequest) (*ContactsList, *http.Response, error) {
+func (a *ListsAPIService) ListsByNameContactsPostExecute(r ListsAPIListsByNameContactsPostRequest) (*ContactsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -290,7 +290,7 @@ func (a *ListsAPIService) ListsByNameContactsPostExecute(r ApiListsByNameContact
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListsByNameContactsRemovePostRequest struct {
+type ListsAPIListsByNameContactsRemovePostRequest struct {
 	ctx context.Context
 	ApiService *ListsAPIService
 	name string
@@ -298,12 +298,12 @@ type ApiListsByNameContactsRemovePostRequest struct {
 }
 
 // Provide either rule or a list of emails, not both.
-func (r ApiListsByNameContactsRemovePostRequest) EmailsPayload(emailsPayload EmailsPayload) ApiListsByNameContactsRemovePostRequest {
+func (r ListsAPIListsByNameContactsRemovePostRequest) EmailsPayload(emailsPayload EmailsPayload) ListsAPIListsByNameContactsRemovePostRequest {
 	r.emailsPayload = &emailsPayload
 	return r
 }
 
-func (r ApiListsByNameContactsRemovePostRequest) Execute() (*http.Response, error) {
+func (r ListsAPIListsByNameContactsRemovePostRequest) Execute() (*http.Response, error) {
 	return r.ApiService.ListsByNameContactsRemovePostExecute(r)
 }
 
@@ -314,10 +314,10 @@ Remove specified Contacts from your list. Required Access Level: ModifyContacts
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of your list.
- @return ApiListsByNameContactsRemovePostRequest
+ @return ListsAPIListsByNameContactsRemovePostRequest
 */
-func (a *ListsAPIService) ListsByNameContactsRemovePost(ctx context.Context, name string) ApiListsByNameContactsRemovePostRequest {
-	return ApiListsByNameContactsRemovePostRequest{
+func (a *ListsAPIService) ListsByNameContactsRemovePost(ctx context.Context, name string) ListsAPIListsByNameContactsRemovePostRequest {
+	return ListsAPIListsByNameContactsRemovePostRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -325,7 +325,7 @@ func (a *ListsAPIService) ListsByNameContactsRemovePost(ctx context.Context, nam
 }
 
 // Execute executes the request
-func (a *ListsAPIService) ListsByNameContactsRemovePostExecute(r ApiListsByNameContactsRemovePostRequest) (*http.Response, error) {
+func (a *ListsAPIService) ListsByNameContactsRemovePostExecute(r ListsAPIListsByNameContactsRemovePostRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -408,13 +408,13 @@ func (a *ListsAPIService) ListsByNameContactsRemovePostExecute(r ApiListsByNameC
 	return localVarHTTPResponse, nil
 }
 
-type ApiListsByNameDeleteRequest struct {
+type ListsAPIListsByNameDeleteRequest struct {
 	ctx context.Context
 	ApiService *ListsAPIService
 	name string
 }
 
-func (r ApiListsByNameDeleteRequest) Execute() (*http.Response, error) {
+func (r ListsAPIListsByNameDeleteRequest) Execute() (*http.Response, error) {
 	return r.ApiService.ListsByNameDeleteExecute(r)
 }
 
@@ -425,10 +425,10 @@ Deletes List and removes all the Contacts from it (does not delete Contacts). Re
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of your list.
- @return ApiListsByNameDeleteRequest
+ @return ListsAPIListsByNameDeleteRequest
 */
-func (a *ListsAPIService) ListsByNameDelete(ctx context.Context, name string) ApiListsByNameDeleteRequest {
-	return ApiListsByNameDeleteRequest{
+func (a *ListsAPIService) ListsByNameDelete(ctx context.Context, name string) ListsAPIListsByNameDeleteRequest {
+	return ListsAPIListsByNameDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -436,7 +436,7 @@ func (a *ListsAPIService) ListsByNameDelete(ctx context.Context, name string) Ap
 }
 
 // Execute executes the request
-func (a *ListsAPIService) ListsByNameDeleteExecute(r ApiListsByNameDeleteRequest) (*http.Response, error) {
+func (a *ListsAPIService) ListsByNameDeleteExecute(r ListsAPIListsByNameDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -514,13 +514,13 @@ func (a *ListsAPIService) ListsByNameDeleteExecute(r ApiListsByNameDeleteRequest
 	return localVarHTTPResponse, nil
 }
 
-type ApiListsByNameGetRequest struct {
+type ListsAPIListsByNameGetRequest struct {
 	ctx context.Context
 	ApiService *ListsAPIService
 	name string
 }
 
-func (r ApiListsByNameGetRequest) Execute() (*ContactsList, *http.Response, error) {
+func (r ListsAPIListsByNameGetRequest) Execute() (*ContactsList, *http.Response, error) {
 	return r.ApiService.ListsByNameGetExecute(r)
 }
 
@@ -531,10 +531,10 @@ Returns detailed information about specified list. Required Access Level: ViewCo
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of your list.
- @return ApiListsByNameGetRequest
+ @return ListsAPIListsByNameGetRequest
 */
-func (a *ListsAPIService) ListsByNameGet(ctx context.Context, name string) ApiListsByNameGetRequest {
-	return ApiListsByNameGetRequest{
+func (a *ListsAPIService) ListsByNameGet(ctx context.Context, name string) ListsAPIListsByNameGetRequest {
+	return ListsAPIListsByNameGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -543,7 +543,7 @@ func (a *ListsAPIService) ListsByNameGet(ctx context.Context, name string) ApiLi
 
 // Execute executes the request
 //  @return ContactsList
-func (a *ListsAPIService) ListsByNameGetExecute(r ApiListsByNameGetRequest) (*ContactsList, *http.Response, error) {
+func (a *ListsAPIService) ListsByNameGetExecute(r ListsAPIListsByNameGetRequest) (*ContactsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -631,19 +631,19 @@ func (a *ListsAPIService) ListsByNameGetExecute(r ApiListsByNameGetRequest) (*Co
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListsByNamePutRequest struct {
+type ListsAPIListsByNamePutRequest struct {
 	ctx context.Context
 	ApiService *ListsAPIService
 	name string
 	listUpdatePayload *ListUpdatePayload
 }
 
-func (r ApiListsByNamePutRequest) ListUpdatePayload(listUpdatePayload ListUpdatePayload) ApiListsByNamePutRequest {
+func (r ListsAPIListsByNamePutRequest) ListUpdatePayload(listUpdatePayload ListUpdatePayload) ListsAPIListsByNamePutRequest {
 	r.listUpdatePayload = &listUpdatePayload
 	return r
 }
 
-func (r ApiListsByNamePutRequest) Execute() (*ContactsList, *http.Response, error) {
+func (r ListsAPIListsByNamePutRequest) Execute() (*ContactsList, *http.Response, error) {
 	return r.ApiService.ListsByNamePutExecute(r)
 }
 
@@ -654,10 +654,10 @@ Update existing list. Required Access Level: ModifyContacts
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name Name of your list.
- @return ApiListsByNamePutRequest
+ @return ListsAPIListsByNamePutRequest
 */
-func (a *ListsAPIService) ListsByNamePut(ctx context.Context, name string) ApiListsByNamePutRequest {
-	return ApiListsByNamePutRequest{
+func (a *ListsAPIService) ListsByNamePut(ctx context.Context, name string) ListsAPIListsByNamePutRequest {
+	return ListsAPIListsByNamePutRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
@@ -666,7 +666,7 @@ func (a *ListsAPIService) ListsByNamePut(ctx context.Context, name string) ApiLi
 
 // Execute executes the request
 //  @return ContactsList
-func (a *ListsAPIService) ListsByNamePutExecute(r ApiListsByNamePutRequest) (*ContactsList, *http.Response, error) {
+func (a *ListsAPIService) ListsByNamePutExecute(r ListsAPIListsByNamePutRequest) (*ContactsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -759,7 +759,7 @@ func (a *ListsAPIService) ListsByNamePutExecute(r ApiListsByNamePutRequest) (*Co
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListsGetRequest struct {
+type ListsAPIListsGetRequest struct {
 	ctx context.Context
 	ApiService *ListsAPIService
 	limit *int32
@@ -767,18 +767,18 @@ type ApiListsGetRequest struct {
 }
 
 // Maximum number of returned items.
-func (r ApiListsGetRequest) Limit(limit int32) ApiListsGetRequest {
+func (r ListsAPIListsGetRequest) Limit(limit int32) ListsAPIListsGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // How many items should be returned ahead.
-func (r ApiListsGetRequest) Offset(offset int32) ApiListsGetRequest {
+func (r ListsAPIListsGetRequest) Offset(offset int32) ListsAPIListsGetRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiListsGetRequest) Execute() ([]ContactsList, *http.Response, error) {
+func (r ListsAPIListsGetRequest) Execute() ([]ContactsList, *http.Response, error) {
 	return r.ApiService.ListsGetExecute(r)
 }
 
@@ -788,10 +788,10 @@ ListsGet Load Lists
 Returns all your existing lists. Required Access Level: ViewContacts
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListsGetRequest
+ @return ListsAPIListsGetRequest
 */
-func (a *ListsAPIService) ListsGet(ctx context.Context) ApiListsGetRequest {
-	return ApiListsGetRequest{
+func (a *ListsAPIService) ListsGet(ctx context.Context) ListsAPIListsGetRequest {
+	return ListsAPIListsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -799,7 +799,7 @@ func (a *ListsAPIService) ListsGet(ctx context.Context) ApiListsGetRequest {
 
 // Execute executes the request
 //  @return []ContactsList
-func (a *ListsAPIService) ListsGetExecute(r ApiListsGetRequest) ([]ContactsList, *http.Response, error) {
+func (a *ListsAPIService) ListsGetExecute(r ListsAPIListsGetRequest) ([]ContactsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -892,18 +892,18 @@ func (a *ListsAPIService) ListsGetExecute(r ApiListsGetRequest) ([]ContactsList,
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListsPostRequest struct {
+type ListsAPIListsPostRequest struct {
 	ctx context.Context
 	ApiService *ListsAPIService
 	listPayload *ListPayload
 }
 
-func (r ApiListsPostRequest) ListPayload(listPayload ListPayload) ApiListsPostRequest {
+func (r ListsAPIListsPostRequest) ListPayload(listPayload ListPayload) ListsAPIListsPostRequest {
 	r.listPayload = &listPayload
 	return r
 }
 
-func (r ApiListsPostRequest) Execute() (*ContactsList, *http.Response, error) {
+func (r ListsAPIListsPostRequest) Execute() (*ContactsList, *http.Response, error) {
 	return r.ApiService.ListsPostExecute(r)
 }
 
@@ -913,10 +913,10 @@ ListsPost Add List
 Add a new list. Required Access Level: ModifyContacts
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListsPostRequest
+ @return ListsAPIListsPostRequest
 */
-func (a *ListsAPIService) ListsPost(ctx context.Context) ApiListsPostRequest {
-	return ApiListsPostRequest{
+func (a *ListsAPIService) ListsPost(ctx context.Context) ListsAPIListsPostRequest {
+	return ListsAPIListsPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -924,7 +924,7 @@ func (a *ListsAPIService) ListsPost(ctx context.Context) ApiListsPostRequest {
 
 // Execute executes the request
 //  @return ContactsList
-func (a *ListsAPIService) ListsPostExecute(r ApiListsPostRequest) (*ContactsList, *http.Response, error) {
+func (a *ListsAPIService) ListsPostExecute(r ListsAPIListsPostRequest) (*ContactsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}

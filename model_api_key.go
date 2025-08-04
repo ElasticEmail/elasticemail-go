@@ -35,19 +35,19 @@ type ApiKey struct {
 	RestrictAccessToIPRange []string `json:"RestrictAccessToIPRange,omitempty"`
 }
 
-// NewApiKey instantiates a new ApiKey object
+// NewStdApiKey instantiates a new ApiKey object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApiKey() *ApiKey {
+func NewStdApiKey() *ApiKey {
 	this := ApiKey{}
 	return &this
 }
 
-// NewApiKeyWithDefaults instantiates a new ApiKey object
+// NewStdApiKeyWithDefaults instantiates a new ApiKey object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewApiKeyWithDefaults() *ApiKey {
+func NewStdApiKeyWithDefaults() *ApiKey {
 	this := ApiKey{}
 	return &this
 }
