@@ -13,20 +13,20 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSmtpCredentials
+### NewStdSmtpCredentials
 
-`func NewSmtpCredentials() *SmtpCredentials`
+`func NewStdSmtpCredentials() *SmtpCredentials`
 
-NewSmtpCredentials instantiates a new SmtpCredentials object
+NewStdSmtpCredentials instantiates a new SmtpCredentials object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewSmtpCredentialsWithDefaults
+### NewStdSmtpCredentialsWithDefaults
 
-`func NewSmtpCredentialsWithDefaults() *SmtpCredentials`
+`func NewStdSmtpCredentialsWithDefaults() *SmtpCredentials`
 
-NewSmtpCredentialsWithDefaults instantiates a new SmtpCredentials object
+NewStdSmtpCredentialsWithDefaults instantiates a new SmtpCredentials object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 

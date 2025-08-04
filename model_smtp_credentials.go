@@ -34,21 +34,21 @@ type SmtpCredentials struct {
 	RestrictAccessToIPRange []string `json:"RestrictAccessToIPRange,omitempty"`
 }
 
-// NewSmtpCredentials instantiates a new SmtpCredentials object
+// NewStdSmtpCredentials instantiates a new SmtpCredentials object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSmtpCredentials() *SmtpCredentials {
+func NewStdSmtpCredentials() *SmtpCredentials {
 	this := SmtpCredentials{}
 	var accessLevel AccessLevel = ACCESSLEVEL_NONE
 	this.AccessLevel = &accessLevel
 	return &this
 }
 
-// NewSmtpCredentialsWithDefaults instantiates a new SmtpCredentials object
+// NewStdSmtpCredentialsWithDefaults instantiates a new SmtpCredentials object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSmtpCredentialsWithDefaults() *SmtpCredentials {
+func NewStdSmtpCredentialsWithDefaults() *SmtpCredentials {
 	this := SmtpCredentials{}
 	var accessLevel AccessLevel = ACCESSLEVEL_NONE
 	this.AccessLevel = &accessLevel
