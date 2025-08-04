@@ -49,9 +49,9 @@ type EmailValidationResult struct {
 // will change when the set of required properties is changed
 func NewEmailValidationResult() *EmailValidationResult {
 	this := EmailValidationResult{}
-	var result EmailValidationStatus = NONE
+	var result EmailValidationStatus = EMAILVALIDATIONSTATUS_NONE
 	this.Result = &result
-	var predictedStatus EmailPredictedValidationStatus = NONE
+	var predictedStatus EmailPredictedValidationStatus = EMAILPREDICTEDVALIDATIONSTATUS_NONE
 	this.PredictedStatus = &predictedStatus
 	return &this
 }
@@ -61,9 +61,9 @@ func NewEmailValidationResult() *EmailValidationResult {
 // but it doesn't guarantee that properties required by API are set
 func NewEmailValidationResultWithDefaults() *EmailValidationResult {
 	this := EmailValidationResult{}
-	var result EmailValidationStatus = NONE
+	var result EmailValidationStatus = EMAILVALIDATIONSTATUS_NONE
 	this.Result = &result
-	var predictedStatus EmailPredictedValidationStatus = NONE
+	var predictedStatus EmailPredictedValidationStatus = EMAILPREDICTEDVALIDATIONSTATUS_NONE
 	this.PredictedStatus = &predictedStatus
 	return &this
 }

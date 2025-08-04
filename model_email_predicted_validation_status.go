@@ -21,11 +21,11 @@ type EmailPredictedValidationStatus string
 
 // List of EmailPredictedValidationStatus
 const (
-	NONE EmailPredictedValidationStatus = "None"
-	VALID EmailPredictedValidationStatus = "Valid"
-	LOW_RISK EmailPredictedValidationStatus = "LowRisk"
-	HIGH_RISK EmailPredictedValidationStatus = "HighRisk"
-	INVALID EmailPredictedValidationStatus = "Invalid"
+	EMAILPREDICTEDVALIDATIONSTATUS_NONE EmailPredictedValidationStatus = "None"
+	EMAILPREDICTEDVALIDATIONSTATUS_VALID EmailPredictedValidationStatus = "Valid"
+	EMAILPREDICTEDVALIDATIONSTATUS_LOW_RISK EmailPredictedValidationStatus = "LowRisk"
+	EMAILPREDICTEDVALIDATIONSTATUS_HIGH_RISK EmailPredictedValidationStatus = "HighRisk"
+	EMAILPREDICTEDVALIDATIONSTATUS_INVALID EmailPredictedValidationStatus = "Invalid"
 )
 
 // All allowed values of EmailPredictedValidationStatus enum

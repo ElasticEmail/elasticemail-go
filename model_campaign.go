@@ -40,7 +40,7 @@ type _Campaign Campaign
 func NewCampaign(name string, recipients CampaignRecipient) *Campaign {
 	this := Campaign{}
 	this.Name = name
-	var status CampaignStatus = DELETED
+	var status CampaignStatus = CAMPAIGNSTATUS_DELETED
 	this.Status = &status
 	this.Recipients = recipients
 	return &this
@@ -51,7 +51,7 @@ func NewCampaign(name string, recipients CampaignRecipient) *Campaign {
 // but it doesn't guarantee that properties required by API are set
 func NewCampaignWithDefaults() *Campaign {
 	this := Campaign{}
-	var status CampaignStatus = DELETED
+	var status CampaignStatus = CAMPAIGNSTATUS_DELETED
 	this.Status = &status
 	return &this
 }

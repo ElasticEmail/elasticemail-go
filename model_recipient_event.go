@@ -53,9 +53,9 @@ type RecipientEvent struct {
 // will change when the set of required properties is changed
 func NewRecipientEvent() *RecipientEvent {
 	this := RecipientEvent{}
-	var eventType EventType = SUBMISSION
+	var eventType EventType = EVENTTYPE_SUBMISSION
 	this.EventType = &eventType
-	var messageCategory MessageCategory = UNKNOWN
+	var messageCategory MessageCategory = MESSAGECATEGORY_UNKNOWN
 	this.MessageCategory = &messageCategory
 	return &this
 }
@@ -65,9 +65,9 @@ func NewRecipientEvent() *RecipientEvent {
 // but it doesn't guarantee that properties required by API are set
 func NewRecipientEventWithDefaults() *RecipientEvent {
 	this := RecipientEvent{}
-	var eventType EventType = SUBMISSION
+	var eventType EventType = EVENTTYPE_SUBMISSION
 	this.EventType = &eventType
-	var messageCategory MessageCategory = UNKNOWN
+	var messageCategory MessageCategory = MESSAGECATEGORY_UNKNOWN
 	this.MessageCategory = &messageCategory
 	return &this
 }

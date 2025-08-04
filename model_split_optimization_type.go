@@ -21,8 +21,8 @@ type SplitOptimizationType string
 
 // List of SplitOptimizationType
 const (
-	OPENS SplitOptimizationType = "Opens"
-	CLICKS SplitOptimizationType = "Clicks"
+	SPLITOPTIMIZATIONTYPE_OPENS SplitOptimizationType = "Opens"
+	SPLITOPTIMIZATIONTYPE_CLICKS SplitOptimizationType = "Clicks"
 )
 
 // All allowed values of SplitOptimizationType enum

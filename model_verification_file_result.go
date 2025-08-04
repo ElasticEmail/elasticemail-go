@@ -39,7 +39,7 @@ type VerificationFileResult struct {
 // will change when the set of required properties is changed
 func NewVerificationFileResult() *VerificationFileResult {
 	this := VerificationFileResult{}
-	var verificationStatus VerificationStatus = PROCESSING
+	var verificationStatus VerificationStatus = VERIFICATIONSTATUS_PROCESSING
 	this.VerificationStatus = &verificationStatus
 	return &this
 }
@@ -49,7 +49,7 @@ func NewVerificationFileResult() *VerificationFileResult {
 // but it doesn't guarantee that properties required by API are set
 func NewVerificationFileResultWithDefaults() *VerificationFileResult {
 	this := VerificationFileResult{}
-	var verificationStatus VerificationStatus = PROCESSING
+	var verificationStatus VerificationStatus = VERIFICATIONSTATUS_PROCESSING
 	this.VerificationStatus = &verificationStatus
 	return &this
 }

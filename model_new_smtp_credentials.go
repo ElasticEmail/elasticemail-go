@@ -42,7 +42,7 @@ type NewSmtpCredentials struct {
 // will change when the set of required properties is changed
 func NewNewSmtpCredentials() *NewSmtpCredentials {
 	this := NewSmtpCredentials{}
-	var accessLevel AccessLevel = NONE
+	var accessLevel AccessLevel = ACCESSLEVEL_NONE
 	this.AccessLevel = &accessLevel
 	return &this
 }
@@ -52,7 +52,7 @@ func NewNewSmtpCredentials() *NewSmtpCredentials {
 // but it doesn't guarantee that properties required by API are set
 func NewNewSmtpCredentialsWithDefaults() *NewSmtpCredentials {
 	this := NewSmtpCredentials{}
-	var accessLevel AccessLevel = NONE
+	var accessLevel AccessLevel = ACCESSLEVEL_NONE
 	this.AccessLevel = &accessLevel
 	return &this
 }

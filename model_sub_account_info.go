@@ -45,7 +45,7 @@ type SubAccountInfo struct {
 // will change when the set of required properties is changed
 func NewSubAccountInfo() *SubAccountInfo {
 	this := SubAccountInfo{}
-	var status AccountStatusEnum = DISABLED
+	var status AccountStatusEnum = ACCOUNTSTATUSENUM_DISABLED
 	this.Status = &status
 	return &this
 }
@@ -55,7 +55,7 @@ func NewSubAccountInfo() *SubAccountInfo {
 // but it doesn't guarantee that properties required by API are set
 func NewSubAccountInfoWithDefaults() *SubAccountInfo {
 	this := SubAccountInfo{}
-	var status AccountStatusEnum = DISABLED
+	var status AccountStatusEnum = ACCOUNTSTATUSENUM_DISABLED
 	this.Status = &status
 	return &this
 }

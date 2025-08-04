@@ -12,9 +12,9 @@ Name | Type | Description | Notes
 **Role** | Pointer to **bool** | Is an email a role email (e.g. info@, noreply@ etc.) | [optional] 
 **Reason** | Pointer to **string** | All detected issues | [optional] 
 **DateAdded** | Pointer to **time.Time** | Added date | [optional] 
-**Result** | Pointer to [**EmailValidationStatus**](EmailValidationStatus.md) |  | [optional] [default to NONE]
+**Result** | Pointer to [**EmailValidationStatus**](EmailValidationStatus.md) |  | [optional] [default to EMAILVALIDATIONSTATUS_NONE]
 **PredictedScore** | Pointer to **float32** | Predicted score | [optional] 
-**PredictedStatus** | Pointer to [**EmailPredictedValidationStatus**](EmailPredictedValidationStatus.md) |  | [optional] [default to NONE]
+**PredictedStatus** | Pointer to [**EmailPredictedValidationStatus**](EmailPredictedValidationStatus.md) |  | [optional] [default to EMAILPREDICTEDVALIDATIONSTATUS_NONE]
 
 ## Methods
 

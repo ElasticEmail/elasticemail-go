@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **VerificationResult** | Pointer to [**[]EmailValidationResult**](EmailValidationResult.md) | Verification result&#39;s details | [optional] 
 **VerificationID** | Pointer to **string** | Identifier of this verification result | [optional] 
 **Filename** | Pointer to **string** | Origin file name | [optional] 
-**VerificationStatus** | Pointer to [**VerificationStatus**](VerificationStatus.md) |  | [optional] [default to PROCESSING]
+**VerificationStatus** | Pointer to [**VerificationStatus**](VerificationStatus.md) |  | [optional] [default to VERIFICATIONSTATUS_PROCESSING]
 **FileUploadResult** | Pointer to [**FileUploadResult**](FileUploadResult.md) |  | [optional] 
 **DateAdded** | Pointer to **time.Time** | Date of creation in YYYY-MM-DDThh:ii:ss format | [optional] 
 **Source** | Pointer to **string** | Origin file extension | [optional] 

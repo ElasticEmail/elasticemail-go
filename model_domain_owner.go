@@ -21,8 +21,8 @@ type DomainOwner string
 
 // List of DomainOwner
 const (
-	CURRENT DomainOwner = "Current"
-	PARENT DomainOwner = "Parent"
+	DOMAINOWNER_CURRENT DomainOwner = "Current"
+	DOMAINOWNER_PARENT DomainOwner = "Parent"
 )
 
 // All allowed values of DomainOwner enum

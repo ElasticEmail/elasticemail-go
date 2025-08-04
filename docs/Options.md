@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **TimeOffset** | Pointer to **NullableInt32** | By how long should an e-mail be delayed (in minutes). Maximum is 35 days. | [optional] 
 **PoolName** | Pointer to **string** | Name of your custom IP Pool to be used in the sending process | [optional] 
 **ChannelName** | Pointer to **string** | Name of selected channel. | [optional] 
-**Encoding** | Pointer to [**EncodingType**](EncodingType.md) |  | [optional] [default to USER_PROVIDED]
+**Encoding** | Pointer to [**EncodingType**](EncodingType.md) |  | [optional] [default to ENCODINGTYPE_USER_PROVIDED]
 **TrackOpens** | Pointer to **NullableBool** | Should the opens be tracked? If no value has been provided, Account&#39;s default setting will be used. | [optional] 
 **TrackClicks** | Pointer to **NullableBool** | Should the clicks be tracked? If no value has been provided, Account&#39;s default setting will be used. | [optional] 
 

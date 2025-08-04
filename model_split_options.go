@@ -31,7 +31,7 @@ type SplitOptions struct {
 // will change when the set of required properties is changed
 func NewSplitOptions() *SplitOptions {
 	this := SplitOptions{}
-	var optimizeFor SplitOptimizationType = OPENS
+	var optimizeFor SplitOptimizationType = SPLITOPTIMIZATIONTYPE_OPENS
 	this.OptimizeFor = &optimizeFor
 	return &this
 }
@@ -41,7 +41,7 @@ func NewSplitOptions() *SplitOptions {
 // but it doesn't guarantee that properties required by API are set
 func NewSplitOptionsWithDefaults() *SplitOptions {
 	this := SplitOptions{}
-	var optimizeFor SplitOptimizationType = OPENS
+	var optimizeFor SplitOptimizationType = SPLITOPTIMIZATIONTYPE_OPENS
 	this.OptimizeFor = &optimizeFor
 	return &this
 }

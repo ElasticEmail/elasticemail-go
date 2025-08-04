@@ -53,9 +53,9 @@ type EmailStatus struct {
 // will change when the set of required properties is changed
 func NewEmailStatus() *EmailStatus {
 	this := EmailStatus{}
-	var status LogJobStatus = ALL
+	var status LogJobStatus = LOGJOBSTATUS_ALL
 	this.Status = &status
-	var errorCategory MessageCategoryEnum = UNKNOWN
+	var errorCategory MessageCategoryEnum = MESSAGECATEGORYENUM_UNKNOWN
 	this.ErrorCategory = &errorCategory
 	return &this
 }
@@ -65,9 +65,9 @@ func NewEmailStatus() *EmailStatus {
 // but it doesn't guarantee that properties required by API are set
 func NewEmailStatusWithDefaults() *EmailStatus {
 	this := EmailStatus{}
-	var status LogJobStatus = ALL
+	var status LogJobStatus = LOGJOBSTATUS_ALL
 	this.Status = &status
-	var errorCategory MessageCategoryEnum = UNKNOWN
+	var errorCategory MessageCategoryEnum = MESSAGECATEGORYENUM_UNKNOWN
 	this.ErrorCategory = &errorCategory
 	return &this
 }

@@ -12,16 +12,16 @@ Name | Type | Description | Notes
 **DMARC** | Pointer to **bool** |  | [optional] 
 **IsRewriteDomainValid** | Pointer to **bool** | True, if tracking CNAME record is verified | [optional] 
 **Verify** | Pointer to **bool** | True, if DKIM, SPF, or tracking are still to be verified | [optional] 
-**Type** | Pointer to [**TrackingType**](TrackingType.md) |  | [optional] [default to NONE]
-**TrackingStatus** | Pointer to [**TrackingValidationStatus**](TrackingValidationStatus.md) |  | [optional] [default to VALIDATED]
-**CertificateStatus** | Pointer to [**CertificateValidationStatus**](CertificateValidationStatus.md) |  | [optional] [default to ERROR_OCCURED]
+**Type** | Pointer to [**TrackingType**](TrackingType.md) |  | [optional] [default to TRACKINGTYPE_NONE]
+**TrackingStatus** | Pointer to [**TrackingValidationStatus**](TrackingValidationStatus.md) |  | [optional] [default to TRACKINGVALIDATIONSTATUS_VALIDATED]
+**CertificateStatus** | Pointer to [**CertificateValidationStatus**](CertificateValidationStatus.md) |  | [optional] [default to CERTIFICATEVALIDATIONSTATUS_ERROR_OCCURED]
 **CertificateValidationError** | Pointer to **string** |  | [optional] 
-**TrackingTypeUserRequest** | Pointer to [**TrackingType**](TrackingType.md) |  | [optional] [default to NONE]
+**TrackingTypeUserRequest** | Pointer to [**TrackingType**](TrackingType.md) |  | [optional] [default to TRACKINGTYPE_NONE]
 **VERP** | Pointer to **bool** |  | [optional] 
 **CustomBouncesDomain** | Pointer to **string** |  | [optional] 
 **IsCustomBouncesDomainDefault** | Pointer to **bool** |  | [optional] 
 **IsMarkedForDeletion** | Pointer to **bool** |  | [optional] 
-**Ownership** | Pointer to [**DomainOwner**](DomainOwner.md) |  | [optional] [default to CURRENT]
+**Ownership** | Pointer to [**DomainOwner**](DomainOwner.md) |  | [optional] [default to DOMAINOWNER_CURRENT]
 
 ## Methods
 

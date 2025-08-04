@@ -21,10 +21,10 @@ type TrackingValidationStatus string
 
 // List of TrackingValidationStatus
 const (
-	VALIDATED TrackingValidationStatus = "Validated"
-	NOT_VALIDATED TrackingValidationStatus = "NotValidated"
-	INVALID TrackingValidationStatus = "Invalid"
-	BROKEN TrackingValidationStatus = "Broken"
+	TRACKINGVALIDATIONSTATUS_VALIDATED TrackingValidationStatus = "Validated"
+	TRACKINGVALIDATIONSTATUS_NOT_VALIDATED TrackingValidationStatus = "NotValidated"
+	TRACKINGVALIDATIONSTATUS_INVALID TrackingValidationStatus = "Invalid"
+	TRACKINGVALIDATIONSTATUS_BROKEN TrackingValidationStatus = "Broken"
 )
 
 // All allowed values of TrackingValidationStatus enum

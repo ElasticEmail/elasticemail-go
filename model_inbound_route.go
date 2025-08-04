@@ -39,9 +39,9 @@ type InboundRoute struct {
 // will change when the set of required properties is changed
 func NewInboundRoute() *InboundRoute {
 	this := InboundRoute{}
-	var filterType InboundRouteFilterType = EMAIL_ADDRESS
+	var filterType InboundRouteFilterType = INBOUNDROUTEFILTERTYPE_EMAIL_ADDRESS
 	this.FilterType = &filterType
-	var actionType InboundRouteActionType = FORWARD_TO_EMAIL
+	var actionType InboundRouteActionType = INBOUNDROUTEACTIONTYPE_FORWARD_TO_EMAIL
 	this.ActionType = &actionType
 	return &this
 }
@@ -51,9 +51,9 @@ func NewInboundRoute() *InboundRoute {
 // but it doesn't guarantee that properties required by API are set
 func NewInboundRouteWithDefaults() *InboundRoute {
 	this := InboundRoute{}
-	var filterType InboundRouteFilterType = EMAIL_ADDRESS
+	var filterType InboundRouteFilterType = INBOUNDROUTEFILTERTYPE_EMAIL_ADDRESS
 	this.FilterType = &filterType
-	var actionType InboundRouteActionType = FORWARD_TO_EMAIL
+	var actionType InboundRouteActionType = INBOUNDROUTEACTIONTYPE_FORWARD_TO_EMAIL
 	this.ActionType = &actionType
 	return &this
 }

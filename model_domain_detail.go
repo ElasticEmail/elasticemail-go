@@ -53,15 +53,15 @@ type DomainDetail struct {
 // will change when the set of required properties is changed
 func NewDomainDetail() *DomainDetail {
 	this := DomainDetail{}
-	var type_ TrackingType = NONE
+	var type_ TrackingType = TRACKINGTYPE_NONE
 	this.Type = &type_
-	var trackingStatus TrackingValidationStatus = VALIDATED
+	var trackingStatus TrackingValidationStatus = TRACKINGVALIDATIONSTATUS_VALIDATED
 	this.TrackingStatus = &trackingStatus
-	var certificateStatus CertificateValidationStatus = ERROR_OCCURED
+	var certificateStatus CertificateValidationStatus = CERTIFICATEVALIDATIONSTATUS_ERROR_OCCURED
 	this.CertificateStatus = &certificateStatus
-	var trackingTypeUserRequest TrackingType = NONE
+	var trackingTypeUserRequest TrackingType = TRACKINGTYPE_NONE
 	this.TrackingTypeUserRequest = &trackingTypeUserRequest
-	var ownership DomainOwner = CURRENT
+	var ownership DomainOwner = DOMAINOWNER_CURRENT
 	this.Ownership = &ownership
 	return &this
 }
@@ -71,15 +71,15 @@ func NewDomainDetail() *DomainDetail {
 // but it doesn't guarantee that properties required by API are set
 func NewDomainDetailWithDefaults() *DomainDetail {
 	this := DomainDetail{}
-	var type_ TrackingType = NONE
+	var type_ TrackingType = TRACKINGTYPE_NONE
 	this.Type = &type_
-	var trackingStatus TrackingValidationStatus = VALIDATED
+	var trackingStatus TrackingValidationStatus = TRACKINGVALIDATIONSTATUS_VALIDATED
 	this.TrackingStatus = &trackingStatus
-	var certificateStatus CertificateValidationStatus = ERROR_OCCURED
+	var certificateStatus CertificateValidationStatus = CERTIFICATEVALIDATIONSTATUS_ERROR_OCCURED
 	this.CertificateStatus = &certificateStatus
-	var trackingTypeUserRequest TrackingType = NONE
+	var trackingTypeUserRequest TrackingType = TRACKINGTYPE_NONE
 	this.TrackingTypeUserRequest = &trackingTypeUserRequest
-	var ownership DomainOwner = CURRENT
+	var ownership DomainOwner = DOMAINOWNER_CURRENT
 	this.Ownership = &ownership
 	return &this
 }

@@ -36,7 +36,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/radzawee/elasticemail-go"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -106,7 +106,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/radzawee/elasticemail-go"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -170,7 +170,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/radzawee/elasticemail-go"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -236,7 +236,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/radzawee/elasticemail-go"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -304,7 +304,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/radzawee/elasticemail-go"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -374,7 +374,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/radzawee/elasticemail-go"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -444,7 +444,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/radzawee/elasticemail-go"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -508,7 +508,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/radzawee/elasticemail-go"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -574,7 +574,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/radzawee/elasticemail-go"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -642,7 +642,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/radzawee/elasticemail-go"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -712,7 +712,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/radzawee/elasticemail-go"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {
@@ -776,7 +776,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/radzawee/elasticemail-go"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func main() {

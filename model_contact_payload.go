@@ -43,7 +43,7 @@ type _ContactPayload ContactPayload
 func NewContactPayload(email string) *ContactPayload {
 	this := ContactPayload{}
 	this.Email = email
-	var status ContactStatus = TRANSACTIONAL
+	var status ContactStatus = CONTACTSTATUS_TRANSACTIONAL
 	this.Status = &status
 	return &this
 }
@@ -53,7 +53,7 @@ func NewContactPayload(email string) *ContactPayload {
 // but it doesn't guarantee that properties required by API are set
 func NewContactPayloadWithDefaults() *ContactPayload {
 	this := ContactPayload{}
-	var status ContactStatus = TRANSACTIONAL
+	var status ContactStatus = CONTACTSTATUS_TRANSACTIONAL
 	this.Status = &status
 	return &this
 }

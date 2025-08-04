@@ -47,9 +47,9 @@ type Contact struct {
 // will change when the set of required properties is changed
 func NewContact() *Contact {
 	this := Contact{}
-	var status ContactStatus = TRANSACTIONAL
+	var status ContactStatus = CONTACTSTATUS_TRANSACTIONAL
 	this.Status = &status
-	var source ContactSource = DELIVERY_API
+	var source ContactSource = CONTACTSOURCE_DELIVERY_API
 	this.Source = &source
 	return &this
 }
@@ -59,9 +59,9 @@ func NewContact() *Contact {
 // but it doesn't guarantee that properties required by API are set
 func NewContactWithDefaults() *Contact {
 	this := Contact{}
-	var status ContactStatus = TRANSACTIONAL
+	var status ContactStatus = CONTACTSTATUS_TRANSACTIONAL
 	this.Status = &status
-	var source ContactSource = DELIVERY_API
+	var source ContactSource = CONTACTSOURCE_DELIVERY_API
 	this.Source = &source
 	return &this
 }

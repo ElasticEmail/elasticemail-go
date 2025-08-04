@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CertificateStatus** | Pointer to [**CertificateValidationStatus**](CertificateValidationStatus.md) |  | [optional] [default to ERROR_OCCURED]
+**CertificateStatus** | Pointer to [**CertificateValidationStatus**](CertificateValidationStatus.md) |  | [optional] [default to CERTIFICATEVALIDATIONSTATUS_ERROR_OCCURED]
 **VERP** | Pointer to **bool** |  | [optional] 
 **CustomBouncesDomain** | Pointer to **string** |  | [optional] 
 **IsCustomBouncesDomainDefault** | Pointer to **bool** |  | [optional] 

@@ -34,7 +34,7 @@ type ConsentData struct {
 // will change when the set of required properties is changed
 func NewConsentData() *ConsentData {
 	this := ConsentData{}
-	var consentTracking ConsentTracking = UNKNOWN
+	var consentTracking ConsentTracking = CONSENTTRACKING_UNKNOWN
 	this.ConsentTracking = &consentTracking
 	return &this
 }
@@ -44,7 +44,7 @@ func NewConsentData() *ConsentData {
 // but it doesn't guarantee that properties required by API are set
 func NewConsentDataWithDefaults() *ConsentData {
 	this := ConsentData{}
-	var consentTracking ConsentTracking = UNKNOWN
+	var consentTracking ConsentTracking = CONSENTTRACKING_UNKNOWN
 	this.ConsentTracking = &consentTracking
 	return &this
 }

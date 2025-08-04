@@ -32,7 +32,7 @@ type DomainUpdatePayload struct {
 // will change when the set of required properties is changed
 func NewDomainUpdatePayload() *DomainUpdatePayload {
 	this := DomainUpdatePayload{}
-	var certificateStatus CertificateValidationStatus = ERROR_OCCURED
+	var certificateStatus CertificateValidationStatus = CERTIFICATEVALIDATIONSTATUS_ERROR_OCCURED
 	this.CertificateStatus = &certificateStatus
 	return &this
 }
@@ -42,7 +42,7 @@ func NewDomainUpdatePayload() *DomainUpdatePayload {
 // but it doesn't guarantee that properties required by API are set
 func NewDomainUpdatePayloadWithDefaults() *DomainUpdatePayload {
 	this := DomainUpdatePayload{}
-	var certificateStatus CertificateValidationStatus = ERROR_OCCURED
+	var certificateStatus CertificateValidationStatus = CERTIFICATEVALIDATIONSTATUS_ERROR_OCCURED
 	this.CertificateStatus = &certificateStatus
 	return &this
 }

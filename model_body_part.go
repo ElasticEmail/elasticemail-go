@@ -46,7 +46,7 @@ func NewBodyPart(contentType BodyContentType) *BodyPart {
 // but it doesn't guarantee that properties required by API are set
 func NewBodyPartWithDefaults() *BodyPart {
 	this := BodyPart{}
-	var contentType BodyContentType = HTML
+	var contentType BodyContentType = BODYCONTENTTYPE_HTML
 	this.ContentType = contentType
 	return &this
 }

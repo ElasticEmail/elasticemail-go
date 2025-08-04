@@ -39,9 +39,9 @@ type Template struct {
 // will change when the set of required properties is changed
 func NewTemplate() *Template {
 	this := Template{}
-	var templateType TemplateType = RAW_HTML
+	var templateType TemplateType = TEMPLATETYPE_RAW_HTML
 	this.TemplateType = &templateType
-	var templateScope TemplateScope = PERSONAL
+	var templateScope TemplateScope = TEMPLATESCOPE_PERSONAL
 	this.TemplateScope = &templateScope
 	return &this
 }
@@ -51,9 +51,9 @@ func NewTemplate() *Template {
 // but it doesn't guarantee that properties required by API are set
 func NewTemplateWithDefaults() *Template {
 	this := Template{}
-	var templateType TemplateType = RAW_HTML
+	var templateType TemplateType = TEMPLATETYPE_RAW_HTML
 	this.TemplateType = &templateType
-	var templateScope TemplateScope = PERSONAL
+	var templateScope TemplateScope = TEMPLATESCOPE_PERSONAL
 	this.TemplateScope = &templateScope
 	return &this
 }

@@ -21,9 +21,9 @@ type DeliveryOptimizationType string
 
 // List of DeliveryOptimizationType
 const (
-	NONE DeliveryOptimizationType = "None"
-	TO_ENGAGED_FIRST DeliveryOptimizationType = "ToEngagedFirst"
-	BY_OPEN_TIME DeliveryOptimizationType = "ByOpenTime"
+	DELIVERYOPTIMIZATIONTYPE_NONE DeliveryOptimizationType = "None"
+	DELIVERYOPTIMIZATIONTYPE_TO_ENGAGED_FIRST DeliveryOptimizationType = "ToEngagedFirst"
+	DELIVERYOPTIMIZATIONTYPE_BY_OPEN_TIME DeliveryOptimizationType = "ByOpenTime"
 )
 
 // All allowed values of DeliveryOptimizationType enum

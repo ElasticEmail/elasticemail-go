@@ -40,7 +40,7 @@ type _TemplatePayload TemplatePayload
 func NewTemplatePayload(name string) *TemplatePayload {
 	this := TemplatePayload{}
 	this.Name = name
-	var templateScope TemplateScope = PERSONAL
+	var templateScope TemplateScope = TEMPLATESCOPE_PERSONAL
 	this.TemplateScope = &templateScope
 	return &this
 }
@@ -50,7 +50,7 @@ func NewTemplatePayload(name string) *TemplatePayload {
 // but it doesn't guarantee that properties required by API are set
 func NewTemplatePayloadWithDefaults() *TemplatePayload {
 	this := TemplatePayload{}
-	var templateScope TemplateScope = PERSONAL
+	var templateScope TemplateScope = TEMPLATESCOPE_PERSONAL
 	this.TemplateScope = &templateScope
 	return &this
 }

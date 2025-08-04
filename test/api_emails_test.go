@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/radzawee/elasticemail-go"
+	openapiclient "github.com/elasticemail/elasticemail-go"
 )
 
 func Test_ElasticEmail_EmailsAPIService(t *testing.T) {

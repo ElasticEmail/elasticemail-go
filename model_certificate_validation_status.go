@@ -21,10 +21,10 @@ type CertificateValidationStatus string
 
 // List of CertificateValidationStatus
 const (
-	ERROR_OCCURED CertificateValidationStatus = "ErrorOccured"
-	CERT_NOT_SET CertificateValidationStatus = "CertNotSet"
-	VALID CertificateValidationStatus = "Valid"
-	NOT_VALID CertificateValidationStatus = "NotValid"
+	CERTIFICATEVALIDATIONSTATUS_ERROR_OCCURED CertificateValidationStatus = "ErrorOccured"
+	CERTIFICATEVALIDATIONSTATUS_CERT_NOT_SET CertificateValidationStatus = "CertNotSet"
+	CERTIFICATEVALIDATIONSTATUS_VALID CertificateValidationStatus = "Valid"
+	CERTIFICATEVALIDATIONSTATUS_NOT_VALID CertificateValidationStatus = "NotValid"
 )
 
 // All allowed values of CertificateValidationStatus enum

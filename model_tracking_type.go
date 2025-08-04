@@ -21,12 +21,12 @@ type TrackingType string
 
 // List of TrackingType
 const (
-	NONE TrackingType = "None"
-	DELETE TrackingType = "Delete"
-	HTTP TrackingType = "Http"
-	EXTERNAL_HTTPS TrackingType = "ExternalHttps"
-	INTERNAL_CERT_HTTPS TrackingType = "InternalCertHttps"
-	LETS_ENCRYPT_CERT TrackingType = "LetsEncryptCert"
+	TRACKINGTYPE_NONE TrackingType = "None"
+	TRACKINGTYPE_DELETE TrackingType = "Delete"
+	TRACKINGTYPE_HTTP TrackingType = "Http"
+	TRACKINGTYPE_EXTERNAL_HTTPS TrackingType = "ExternalHttps"
+	TRACKINGTYPE_INTERNAL_CERT_HTTPS TrackingType = "InternalCertHttps"
+	TRACKINGTYPE_LETS_ENCRYPT_CERT TrackingType = "LetsEncryptCert"
 )
 
 // All allowed values of TrackingType enum

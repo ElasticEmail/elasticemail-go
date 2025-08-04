@@ -39,7 +39,7 @@ type Options struct {
 // will change when the set of required properties is changed
 func NewOptions() *Options {
 	this := Options{}
-	var encoding EncodingType = USER_PROVIDED
+	var encoding EncodingType = ENCODINGTYPE_USER_PROVIDED
 	this.Encoding = &encoding
 	return &this
 }
@@ -49,7 +49,7 @@ func NewOptions() *Options {
 // but it doesn't guarantee that properties required by API are set
 func NewOptionsWithDefaults() *Options {
 	this := Options{}
-	var encoding EncodingType = USER_PROVIDED
+	var encoding EncodingType = ENCODINGTYPE_USER_PROVIDED
 	this.Encoding = &encoding
 	return &this
 }
