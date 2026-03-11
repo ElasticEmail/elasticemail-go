@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **ChannelName** | Pointer to **string** | Name of selected channel. | [optional] 
 **MessageCategory** | Pointer to [**MessageCategory**](MessageCategory.md) |  | [optional] [default to MESSAGECATEGORY_UNKNOWN]
 **NextTryOn** | Pointer to **NullableTime** | Date of next try | [optional] 
-**Message** | Pointer to **string** | Content of message, HTML encoded | [optional] 
+**Message** | Pointer to **string** | Error message if sending has failed (FailedAttempt or Bounce) | [optional] 
 **IPAddress** | Pointer to **string** | IP which this email was sent through | [optional] 
 **PoolName** | Pointer to **string** | Name of an IP pool this email was sent through | [optional] 
 

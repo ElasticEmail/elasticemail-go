@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target='_blank' href='https://app.elasticemail.com/marketing/settings/new/manage-api'>here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target='_blank' href='https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme'>here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -28,6 +28,7 @@ type Campaign struct {
 	Name string `json:"Name"`
 	Status *CampaignStatus `json:"Status,omitempty"`
 	Recipients CampaignRecipient `json:"Recipients"`
+	ExcludedRecipients *CampaignRecipient `json:"ExcludedRecipients,omitempty"`
 	Options *CampaignOptions `json:"Options,omitempty"`
 }
 
@@ -168,6 +169,38 @@ func (o *Campaign) SetRecipients(v CampaignRecipient) {
 	o.Recipients = v
 }
 
+// GetExcludedRecipients returns the ExcludedRecipients field value if set, zero value otherwise.
+func (o *Campaign) GetExcludedRecipients() CampaignRecipient {
+	if o == nil || IsNil(o.ExcludedRecipients) {
+		var ret CampaignRecipient
+		return ret
+	}
+	return *o.ExcludedRecipients
+}
+
+// GetExcludedRecipientsOk returns a tuple with the ExcludedRecipients field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetExcludedRecipientsOk() (*CampaignRecipient, bool) {
+	if o == nil || IsNil(o.ExcludedRecipients) {
+		return nil, false
+	}
+	return o.ExcludedRecipients, true
+}
+
+// HasExcludedRecipients returns a boolean if a field has been set.
+func (o *Campaign) HasExcludedRecipients() bool {
+	if o != nil && !IsNil(o.ExcludedRecipients) {
+		return true
+	}
+
+	return false
+}
+
+// SetExcludedRecipients gets a reference to the given CampaignRecipient and assigns it to the ExcludedRecipients field.
+func (o *Campaign) SetExcludedRecipients(v CampaignRecipient) {
+	o.ExcludedRecipients = &v
+}
+
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *Campaign) GetOptions() CampaignOptions {
 	if o == nil || IsNil(o.Options) {
@@ -218,6 +251,9 @@ func (o Campaign) ToMap() (map[string]interface{}, error) {
 		toSerialize["Status"] = o.Status
 	}
 	toSerialize["Recipients"] = o.Recipients
+	if !IsNil(o.ExcludedRecipients) {
+		toSerialize["ExcludedRecipients"] = o.ExcludedRecipients
+	}
 	if !IsNil(o.Options) {
 		toSerialize["Options"] = o.Options
 	}

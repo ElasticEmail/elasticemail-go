@@ -7,11 +7,10 @@ info:
     \ API call is established on which specific request type (GET, POST, PUT, DELETE)\
     \ will be used.\r\n\r\nThe API has a limit of 20 concurrent connections and a\
     \ hard timeout of 600 seconds per request.\r\n\r\nTo start using this API, you\
-    \ will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\"\
-    >here</a>). Remember to keep it safe. Required access levels are listed in the\
-    \ given request’s description.\r\n\r\nDownloadable library clients can be found\
-    \ in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\"\
-    >here</a>"
+    \ will need your Access Token (available <a target='_blank' href='https://app.elasticemail.com/marketing/settings/new/manage-api'>here</a>).\
+    \ Remember to keep it safe. Required access levels are listed in the given request’\
+    s description.\r\n\r\nDownloadable library clients can be found in our Github\
+    \ repository <a target='_blank' href='https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme'>here</a>"
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
@@ -101,7 +100,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/Campaign"
+                  $ref: '#/components/schemas/Campaign'
                 type: array
           description: OK
       summary: Load Campaigns
@@ -114,7 +113,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Campaign"
+              $ref: '#/components/schemas/Campaign'
         description: JSON representation of a campaign
         required: true
       responses:
@@ -122,7 +121,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Campaign"
+                $ref: '#/components/schemas/Campaign'
           description: Created
       summary: Add Campaign
       tags:
@@ -169,7 +168,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Campaign"
+                $ref: '#/components/schemas/Campaign'
           description: OK
       summary: Load Campaign
       tags:
@@ -193,7 +192,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Campaign"
+              $ref: '#/components/schemas/Campaign'
         description: JSON representation of a campaign
         required: true
       responses:
@@ -201,7 +200,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Campaign"
+                $ref: '#/components/schemas/Campaign'
           description: OK
       summary: Update Campaign
       tags:
@@ -261,7 +260,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/Contact"
+                  $ref: '#/components/schemas/Contact'
                 type: array
           description: OK
       summary: Load Contacts
@@ -290,7 +289,7 @@ paths:
           application/json:
             schema:
               items:
-                $ref: "#/components/schemas/ContactPayload"
+                $ref: '#/components/schemas/ContactPayload'
               type: array
         required: true
       responses:
@@ -299,7 +298,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/Contact"
+                  $ref: '#/components/schemas/Contact'
                 type: array
           description: OK
       summary: Add Contact
@@ -348,7 +347,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Contact"
+                $ref: '#/components/schemas/Contact'
           description: OK
       summary: Load Contact
       tags:
@@ -373,14 +372,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ContactUpdatePayload"
+              $ref: '#/components/schemas/ContactUpdatePayload'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Contact"
+                $ref: '#/components/schemas/Contact'
           description: OK
       summary: Update Contact
       tags:
@@ -393,7 +392,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EmailsPayload"
+              $ref: '#/components/schemas/EmailsPayload'
         description: "Provide either rule or a list of emails, not both."
         required: true
       responses:
@@ -414,7 +413,7 @@ paths:
         name: fileFormat
         required: false
         schema:
-          $ref: "#/components/schemas/ExportFileFormats"
+          $ref: '#/components/schemas/ExportFileFormats'
         style: form
       - description: Query used for filtering.
         explode: true
@@ -447,7 +446,7 @@ paths:
         name: compressionFormat
         required: false
         schema:
-          $ref: "#/components/schemas/CompressionFormat"
+          $ref: '#/components/schemas/CompressionFormat'
         style: form
       - description: Name of your file including extension.
         explode: true
@@ -465,7 +464,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ExportLink"
+                $ref: '#/components/schemas/ExportLink'
           description: Accepted
       summary: Export Contacts
       tags:
@@ -492,7 +491,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ExportStatus"
+                $ref: '#/components/schemas/ExportStatus'
           description: OK
       summary: Check Export Status
       tags:
@@ -536,7 +535,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: "#/components/schemas/contactsImportPost_request"
+              $ref: '#/components/schemas/contactsImportPost_request'
         description: "File in CSV format with columns to upload as Contact fields.\
           \ Required columns: Email. Suggested columns: AllowUnsubscribe, Status,\
           \ ConsentDate, ConsentIP, ConsentTracking."
@@ -558,7 +557,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/DomainDetail"
+                  $ref: '#/components/schemas/DomainDetail'
                 type: array
           description: OK
       summary: Load Domains
@@ -571,7 +570,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/DomainPayload"
+              $ref: '#/components/schemas/DomainPayload'
         description: Domain to add
         required: true
       responses:
@@ -579,7 +578,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DomainDetail"
+                $ref: '#/components/schemas/DomainDetail'
           description: Created
       summary: Add Domain
       tags:
@@ -626,7 +625,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DomainData"
+                $ref: '#/components/schemas/DomainData'
           description: OK
       summary: Load Domain
       tags:
@@ -649,7 +648,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/DomainUpdatePayload"
+              $ref: '#/components/schemas/DomainUpdatePayload'
         description: Updated Domain resource
         required: true
       responses:
@@ -657,7 +656,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DomainDetail"
+                $ref: '#/components/schemas/DomainDetail'
           description: OK
       summary: Update Domain
       tags:
@@ -724,7 +723,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DomainData"
+                $ref: '#/components/schemas/DomainData'
           description: OK
       summary: Verify Domain
       tags:
@@ -750,7 +749,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DomainDetail"
+                $ref: '#/components/schemas/DomainDetail'
           description: OK
       summary: Set Default
       tags:
@@ -763,7 +762,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EmailMessageData"
+              $ref: '#/components/schemas/EmailMessageData'
         description: Email data
         required: true
       responses:
@@ -771,7 +770,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/EmailSend"
+                $ref: '#/components/schemas/EmailSend'
           description: OK
       summary: Send Bulk Emails
       tags:
@@ -797,7 +796,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/EmailData"
+                $ref: '#/components/schemas/EmailData'
           description: OK
       summary: View Email
       tags:
@@ -933,7 +932,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/EmailJobStatus"
+                $ref: '#/components/schemas/EmailJobStatus'
           description: OK
       summary: Get Status
       tags:
@@ -953,7 +952,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/MergeEmailPayload"
+              $ref: '#/components/schemas/MergeEmailPayload'
         description: Email data
         required: true
       responses:
@@ -961,7 +960,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/EmailSend"
+                $ref: '#/components/schemas/EmailSend'
           description: OK
       summary: Send Bulk Emails CSV
       tags:
@@ -975,7 +974,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EmailTransactionalMessageData"
+              $ref: '#/components/schemas/EmailTransactionalMessageData'
         description: Email data
         required: true
       responses:
@@ -983,7 +982,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/EmailSend"
+                $ref: '#/components/schemas/EmailSend'
           description: OK
       summary: Send Transactional Email
       tags:
@@ -1002,7 +1001,7 @@ paths:
         schema:
           description: array
           items:
-            $ref: "#/components/schemas/EventType"
+            $ref: '#/components/schemas/EventType'
           type: array
         style: form
       - description: Starting date for search in YYYY-MM-DDThh:mm:ss format.
@@ -1032,7 +1031,7 @@ paths:
         name: orderBy
         required: false
         schema:
-          $ref: "#/components/schemas/EventsOrderBy"
+          $ref: '#/components/schemas/EventsOrderBy'
         style: form
       - description: How many items to load. Maximum for this request is 1000 items
         explode: true
@@ -1061,7 +1060,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/RecipientEvent"
+                  $ref: '#/components/schemas/RecipientEvent'
                 type: array
           description: OK
       summary: Load Events
@@ -1111,7 +1110,7 @@ paths:
         name: orderBy
         required: false
         schema:
-          $ref: "#/components/schemas/EventsOrderBy"
+          $ref: '#/components/schemas/EventsOrderBy'
         style: form
       - description: Maximum number of returned items.
         explode: true
@@ -1141,7 +1140,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/RecipientEvent"
+                  $ref: '#/components/schemas/RecipientEvent'
                 type: array
           description: OK
       summary: Load Email Events
@@ -1172,7 +1171,7 @@ paths:
         schema:
           description: array
           items:
-            $ref: "#/components/schemas/EventType"
+            $ref: '#/components/schemas/EventType'
           type: array
         style: form
       - description: Starting date for search in YYYY-MM-DDThh:mm:ss format.
@@ -1202,7 +1201,7 @@ paths:
         name: orderBy
         required: false
         schema:
-          $ref: "#/components/schemas/EventsOrderBy"
+          $ref: '#/components/schemas/EventsOrderBy'
         style: form
       - description: How many items to load. Maximum for this request is 1000 items
         explode: true
@@ -1231,7 +1230,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/RecipientEvent"
+                  $ref: '#/components/schemas/RecipientEvent'
                 type: array
           description: OK
       summary: Load Channel Events
@@ -1262,7 +1261,7 @@ paths:
         schema:
           description: array
           items:
-            $ref: "#/components/schemas/EventType"
+            $ref: '#/components/schemas/EventType'
           type: array
         style: form
       - description: Starting date for search in YYYY-MM-DDThh:mm:ss format.
@@ -1293,7 +1292,7 @@ paths:
         name: fileFormat
         required: false
         schema:
-          $ref: "#/components/schemas/ExportFileFormats"
+          $ref: '#/components/schemas/ExportFileFormats'
         style: form
       - description: FileResponse compression format. None or Zip.
         explode: true
@@ -1301,7 +1300,7 @@ paths:
         name: compressionFormat
         required: false
         schema:
-          $ref: "#/components/schemas/CompressionFormat"
+          $ref: '#/components/schemas/CompressionFormat'
         style: form
       - description: Name of your file including extension.
         explode: true
@@ -1319,7 +1318,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ExportLink"
+                $ref: '#/components/schemas/ExportLink'
           description: Accepted
       summary: Export Channel Events
       tags:
@@ -1346,7 +1345,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ExportStatus"
+                $ref: '#/components/schemas/ExportStatus'
           description: OK
       summary: Check Channel Export Status
       tags:
@@ -1365,7 +1364,7 @@ paths:
         schema:
           description: array
           items:
-            $ref: "#/components/schemas/EventType"
+            $ref: '#/components/schemas/EventType'
           type: array
         style: form
       - description: Starting date for search in YYYY-MM-DDThh:mm:ss format.
@@ -1396,7 +1395,7 @@ paths:
         name: fileFormat
         required: false
         schema:
-          $ref: "#/components/schemas/ExportFileFormats"
+          $ref: '#/components/schemas/ExportFileFormats'
         style: form
       - description: FileResponse compression format. None or Zip.
         explode: true
@@ -1404,7 +1403,7 @@ paths:
         name: compressionFormat
         required: false
         schema:
-          $ref: "#/components/schemas/CompressionFormat"
+          $ref: '#/components/schemas/CompressionFormat'
         style: form
       - description: Name of your file including extension.
         explode: true
@@ -1422,7 +1421,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ExportLink"
+                $ref: '#/components/schemas/ExportLink'
           description: Accepted
       summary: Export Events
       tags:
@@ -1449,7 +1448,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ExportStatus"
+                $ref: '#/components/schemas/ExportStatus'
           description: OK
       summary: Check Export Status
       tags:
@@ -1488,7 +1487,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/FileInfo"
+                  $ref: '#/components/schemas/FileInfo'
                 type: array
           description: OK
       summary: List Files
@@ -1514,14 +1513,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/FilePayload"
+              $ref: '#/components/schemas/FilePayload'
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/FileInfo"
+                $ref: '#/components/schemas/FileInfo'
           description: Created
       summary: Upload File
       tags:
@@ -1596,7 +1595,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/FileInfo"
+                $ref: '#/components/schemas/FileInfo'
           description: OK
       summary: Load File Details
       tags:
@@ -1611,7 +1610,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/InboundRoute"
+                  $ref: '#/components/schemas/InboundRoute'
                 type: array
           description: OK
       summary: Get Routes
@@ -1624,14 +1623,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/InboundPayload"
+              $ref: '#/components/schemas/InboundPayload'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/InboundRoute"
+                $ref: '#/components/schemas/InboundRoute'
           description: OK
       summary: Create Route
       tags:
@@ -1676,7 +1675,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/InboundRoute"
+                $ref: '#/components/schemas/InboundRoute'
           description: OK
       summary: Get Route
       tags:
@@ -1698,14 +1697,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/InboundPayload"
+              $ref: '#/components/schemas/InboundPayload'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/InboundRoute"
+                $ref: '#/components/schemas/InboundRoute'
           description: OK
       summary: Update Route
       tags:
@@ -1719,7 +1718,7 @@ paths:
           application/json:
             schema:
               items:
-                $ref: "#/components/schemas/SortOrderItem"
+                $ref: '#/components/schemas/SortOrderItem'
               type: array
         description: Change the ordering of inbound routes for when matching the inbound
         required: true
@@ -1729,7 +1728,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/InboundRoute"
+                  $ref: '#/components/schemas/InboundRoute'
                 type: array
           description: OK
       summary: Update Sorting
@@ -1768,7 +1767,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/ContactsList"
+                  $ref: '#/components/schemas/ContactsList'
                 type: array
           description: OK
       summary: Load Lists
@@ -1781,14 +1780,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ListPayload"
+              $ref: '#/components/schemas/ListPayload'
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ContactsList"
+                $ref: '#/components/schemas/ContactsList'
           description: Created
       summary: Add List
       tags:
@@ -1837,7 +1836,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/Contact"
+                  $ref: '#/components/schemas/Contact'
                 type: array
           description: OK
       summary: Load Contacts in List
@@ -1887,7 +1886,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ContactsList"
+                $ref: '#/components/schemas/ContactsList'
           description: OK
       summary: Load List
       tags:
@@ -1911,14 +1910,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ListUpdatePayload"
+              $ref: '#/components/schemas/ListUpdatePayload'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ContactsList"
+                $ref: '#/components/schemas/ContactsList'
           description: OK
       summary: Update List
       tags:
@@ -1944,7 +1943,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EmailsPayload"
+              $ref: '#/components/schemas/EmailsPayload'
         description: "Provide either rule or a list of emails, not both."
         required: true
       responses:
@@ -1952,7 +1951,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ContactsList"
+                $ref: '#/components/schemas/ContactsList'
           description: OK
       summary: Add Contacts to List
       tags:
@@ -1978,7 +1977,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EmailsPayload"
+              $ref: '#/components/schemas/EmailsPayload'
         description: "Provide either rule or a list of emails, not both."
         required: true
       responses:
@@ -2008,7 +2007,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/ApiKey"
+                  $ref: '#/components/schemas/ApiKey'
                 type: array
           description: OK
       summary: List ApiKeys
@@ -2021,14 +2020,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ApiKeyPayload"
+              $ref: '#/components/schemas/ApiKeyPayload'
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/NewApiKey"
+                $ref: '#/components/schemas/NewApiKey'
           description: Created
       summary: Add ApiKey
       tags:
@@ -2093,7 +2092,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ApiKey"
+                $ref: '#/components/schemas/ApiKey'
           description: OK
       summary: Load ApiKey
       tags:
@@ -2116,14 +2115,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ApiKeyPayload"
+              $ref: '#/components/schemas/ApiKeyPayload'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ApiKey"
+                $ref: '#/components/schemas/ApiKey'
           description: OK
       summary: Update ApiKey
       tags:
@@ -2150,7 +2149,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/SmtpCredentials"
+                  $ref: '#/components/schemas/SmtpCredentials'
                 type: array
           description: OK
       summary: List SMTP Credentials
@@ -2163,14 +2162,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SmtpCredentialsPayload"
+              $ref: '#/components/schemas/SmtpCredentialsPayload'
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/NewSmtpCredentials"
+                $ref: '#/components/schemas/NewSmtpCredentials'
           description: Created
       summary: Add SMTP Credential
       tags:
@@ -2237,7 +2236,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SmtpCredentials"
+                $ref: '#/components/schemas/SmtpCredentials'
           description: OK
       summary: Load SMTP Credential
       tags:
@@ -2261,14 +2260,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SmtpCredentialsPayload"
+              $ref: '#/components/schemas/SmtpCredentialsPayload'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SmtpCredentials"
+                $ref: '#/components/schemas/SmtpCredentials'
           description: OK
       summary: Update SMTP Credential
       tags:
@@ -2307,7 +2306,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/Segment"
+                  $ref: '#/components/schemas/Segment'
                 type: array
           description: OK
       summary: Load Segments
@@ -2321,14 +2320,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SegmentPayload"
+              $ref: '#/components/schemas/SegmentPayload'
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Segment"
+                $ref: '#/components/schemas/Segment'
           description: Created
       summary: Add Segment
       tags:
@@ -2376,7 +2375,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Segment"
+                $ref: '#/components/schemas/Segment'
           description: OK
       summary: Load Segment
       tags:
@@ -2401,14 +2400,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SegmentPayload"
+              $ref: '#/components/schemas/SegmentPayload'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Segment"
+                $ref: '#/components/schemas/Segment'
           description: OK
       summary: Update Segment
       tags:
@@ -2444,7 +2443,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/LogStatusSummary"
+                $ref: '#/components/schemas/LogStatusSummary'
           description: OK
       summary: Load Statistics
       tags:
@@ -2483,7 +2482,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/ChannelLogStatusSummary"
+                  $ref: '#/components/schemas/ChannelLogStatusSummary'
                 type: array
           description: OK
       summary: Load Campaigns Stats
@@ -2510,7 +2509,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ChannelLogStatusSummary"
+                $ref: '#/components/schemas/ChannelLogStatusSummary'
           description: OK
       summary: Load Campaign Stats
       tags:
@@ -2549,7 +2548,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/ChannelLogStatusSummary"
+                  $ref: '#/components/schemas/ChannelLogStatusSummary'
                 type: array
           description: OK
       summary: Load Channels Stats
@@ -2575,7 +2574,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ChannelLogStatusSummary"
+                $ref: '#/components/schemas/ChannelLogStatusSummary'
           description: OK
       summary: Load Channel Stats
       tags:
@@ -2614,7 +2613,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/SubAccountInfo"
+                  $ref: '#/components/schemas/SubAccountInfo'
                 type: array
           description: OK
       summary: Load SubAccounts
@@ -2629,14 +2628,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SubaccountPayload"
+              $ref: '#/components/schemas/SubaccountPayload'
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SubAccountInfo"
+                $ref: '#/components/schemas/SubAccountInfo'
           description: Created
       summary: Add SubAccount
       tags:
@@ -2685,7 +2684,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SubAccountInfo"
+                $ref: '#/components/schemas/SubAccountInfo'
           description: OK
       summary: Load SubAccount
       tags:
@@ -2711,7 +2710,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SubaccountEmailCreditsPayload"
+              $ref: '#/components/schemas/SubaccountEmailCreditsPayload'
         description: Amount of email credits to add or subtract from the current SubAccount
           email credits pool (positive or negative value)
         required: true
@@ -2739,7 +2738,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SubaccountEmailSettings"
+              $ref: '#/components/schemas/SubaccountEmailSettings'
         description: Updated Email Settings
         required: true
       responses:
@@ -2747,7 +2746,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SubaccountEmailSettings"
+                $ref: '#/components/schemas/SubaccountEmailSettings'
           description: Created
       summary: Update SubAccount Email Settings
       tags:
@@ -2786,7 +2785,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/Suppression"
+                  $ref: '#/components/schemas/Suppression'
                 type: array
           description: OK
       summary: Get Suppressions
@@ -2835,7 +2834,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Suppression"
+                $ref: '#/components/schemas/Suppression'
           description: OK
       summary: Get Suppression
       tags:
@@ -2885,7 +2884,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/Suppression"
+                  $ref: '#/components/schemas/Suppression'
                 type: array
           description: OK
       summary: Get Bounce List
@@ -2910,7 +2909,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/Suppression"
+                  $ref: '#/components/schemas/Suppression'
                 type: array
           description: Created
       summary: Add Bounces
@@ -2924,7 +2923,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: "#/components/schemas/contactsImportPost_request"
+              $ref: '#/components/schemas/contactsImportPost_request'
         description: Emails to add as bounces.
         required: true
       responses:
@@ -2978,7 +2977,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/Suppression"
+                  $ref: '#/components/schemas/Suppression'
                 type: array
           description: OK
       summary: Get Complaints List
@@ -3003,7 +3002,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/Suppression"
+                  $ref: '#/components/schemas/Suppression'
                 type: array
           description: Created
       summary: Add Complaints
@@ -3017,7 +3016,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: "#/components/schemas/contactsImportPost_request"
+              $ref: '#/components/schemas/contactsImportPost_request'
         description: Emails to add as complaints.
         required: true
       responses:
@@ -3071,7 +3070,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/Suppression"
+                  $ref: '#/components/schemas/Suppression'
                 type: array
           description: OK
       summary: Get Unsubscribes List
@@ -3096,7 +3095,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/Suppression"
+                  $ref: '#/components/schemas/Suppression'
                 type: array
           description: Created
       summary: Add Unsubscribes
@@ -3110,7 +3109,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: "#/components/schemas/contactsImportPost_request"
+              $ref: '#/components/schemas/contactsImportPost_request'
         description: Emails to add as unsubscribes.
         required: true
       responses:
@@ -3133,7 +3132,7 @@ paths:
         schema:
           description: array
           items:
-            $ref: "#/components/schemas/TemplateScope"
+            $ref: '#/components/schemas/TemplateScope'
           type: array
         style: form
       - description: Return templates with specified type only
@@ -3144,7 +3143,7 @@ paths:
         schema:
           description: array
           items:
-            $ref: "#/components/schemas/TemplateType"
+            $ref: '#/components/schemas/TemplateType'
           type: array
         style: form
       - description: Maximum number of returned items.
@@ -3175,7 +3174,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/Template"
+                  $ref: '#/components/schemas/Template'
                 type: array
           description: OK
       summary: Load Templates
@@ -3188,14 +3187,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/TemplatePayload"
+              $ref: '#/components/schemas/TemplatePayload'
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Template"
+                $ref: '#/components/schemas/Template'
           description: Template
       summary: Add Template
       tags:
@@ -3244,7 +3243,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Template"
+                $ref: '#/components/schemas/Template'
           description: Serialized template
       summary: Load Template
       tags:
@@ -3269,14 +3268,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/TemplatePayload"
+              $ref: '#/components/schemas/TemplatePayload'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Template"
+                $ref: '#/components/schemas/Template'
           description: OK
       summary: Update Template
       tags:
@@ -3315,7 +3314,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/EmailValidationResult"
+                  $ref: '#/components/schemas/EmailValidationResult'
                 type: array
           description: OK
       summary: Get Emails Verification Results
@@ -3362,7 +3361,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/EmailValidationResult"
+                $ref: '#/components/schemas/EmailValidationResult'
           description: OK
       summary: Get Email Verification Result
       tags:
@@ -3387,7 +3386,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/EmailValidationResult"
+                $ref: '#/components/schemas/EmailValidationResult'
           description: OK
       summary: Verify Email
       tags:
@@ -3402,7 +3401,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: "#/components/schemas/contactsImportPost_request"
+              $ref: '#/components/schemas/contactsImportPost_request'
         description: Uploaded file
         required: true
       responses:
@@ -3410,7 +3409,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/VerificationFileResult"
+                $ref: '#/components/schemas/VerificationFileResult'
           description: OK
       summary: Upload File with Emails
       tags:
@@ -3479,7 +3478,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/VerificationFileResultDetails"
+                $ref: '#/components/schemas/VerificationFileResultDetails'
           description: OK
       summary: Get Detailed File Verification Result
       tags:
@@ -3544,7 +3543,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/VerificationFileResult"
+                  $ref: '#/components/schemas/VerificationFileResult'
                 type: array
           description: OK
       summary: Get Files Verification Results
@@ -3642,7 +3641,7 @@ components:
         AccessLevel:
           description: Access level or permission to be assigned to this ApiKey.
           items:
-            $ref: "#/components/schemas/AccessLevel"
+            $ref: '#/components/schemas/AccessLevel'
           type: array
         Name:
           description: Name of the ApiKey.
@@ -3691,7 +3690,7 @@ components:
         AccessLevel:
           description: Access level or permission to be assigned to this ApiKey.
           items:
-            $ref: "#/components/schemas/AccessLevel"
+            $ref: '#/components/schemas/AccessLevel'
           type: array
         Expires:
           description: Date this ApiKey expires.
@@ -3731,7 +3730,7 @@ components:
         Charset: Charset
       properties:
         ContentType:
-          $ref: "#/components/schemas/BodyContentType"
+          $ref: '#/components/schemas/BodyContentType'
         Content:
           description: Actual content of the body part
           format: string
@@ -3789,24 +3788,33 @@ components:
             Medium: Medium
             Content: Content
             Source: Source
+        ExcludedRecipients:
+          SegmentNames:
+          - SegmentNames
+          - SegmentNames
+          ListNames:
+          - ListNames
+          - ListNames
         Name: Name
       properties:
         Content:
           description: Campaign's email content. Provide multiple items to send an
             A/X Split Campaign
           items:
-            $ref: "#/components/schemas/CampaignTemplate"
+            $ref: '#/components/schemas/CampaignTemplate'
           type: array
         Name:
           description: Campaign name
           format: string
           type: string
         Status:
-          $ref: "#/components/schemas/CampaignStatus"
+          $ref: '#/components/schemas/CampaignStatus'
         Recipients:
-          $ref: "#/components/schemas/CampaignRecipient"
+          $ref: '#/components/schemas/CampaignRecipient'
+        ExcludedRecipients:
+          $ref: '#/components/schemas/CampaignRecipient'
         Options:
-          $ref: "#/components/schemas/CampaignOptions"
+          $ref: '#/components/schemas/CampaignOptions'
       required:
       - Name
       - Recipients
@@ -3825,7 +3833,7 @@ components:
           OptimizePeriodMinutes: 30
       properties:
         DeliveryOptimization:
-          $ref: "#/components/schemas/DeliveryOptimizationType"
+          $ref: '#/components/schemas/DeliveryOptimizationType'
         TrackOpens:
           description: "Should the opens be tracked? If no value has been provided,\
             \ Account's default setting will be used."
@@ -3855,7 +3863,7 @@ components:
           format: int32
           type: integer
         SplitOptions:
-          $ref: "#/components/schemas/SplitOptions"
+          $ref: '#/components/schemas/SplitOptions'
       type: object
     CampaignRecipient:
       description: A set of lists and segments names to read recipients from
@@ -3944,7 +3952,7 @@ components:
             type: string
           type: array
         Utm:
-          $ref: "#/components/schemas/Utm"
+          $ref: '#/components/schemas/Utm'
       required:
       - From
       type: object
@@ -4070,7 +4078,7 @@ components:
           nullable: true
           type: string
         ConsentTracking:
-          $ref: "#/components/schemas/ConsentTracking"
+          $ref: '#/components/schemas/ConsentTracking'
       type: object
     ConsentTracking:
       default: Unknown
@@ -4087,6 +4095,7 @@ components:
           city: New York
           age: "34"
         Email: mail@example.com
+        SourceInfo: SourceInfo
         StatusChangeDate: 2000-01-23T04:56:07.000+00:00
         Consent:
           ConsentTracking: Unknown
@@ -4116,7 +4125,7 @@ components:
           format: string
           type: string
         Status:
-          $ref: "#/components/schemas/ContactStatus"
+          $ref: '#/components/schemas/ContactStatus'
         FirstName:
           description: First name.
           example: Fred
@@ -4137,9 +4146,12 @@ components:
             age: "34"
           type: object
         Consent:
-          $ref: "#/components/schemas/ConsentData"
+          $ref: '#/components/schemas/ConsentData'
         Source:
-          $ref: "#/components/schemas/ContactSource"
+          $ref: '#/components/schemas/ContactSource'
+        SourceInfo:
+          format: string
+          type: string
         DateAdded:
           description: Date of creation in YYYY-MM-DDThh:ii:ss format
           format: date-time
@@ -4155,7 +4167,7 @@ components:
           nullable: true
           type: string
         Activity:
-          $ref: "#/components/schemas/ContactActivity"
+          $ref: '#/components/schemas/ContactActivity'
       type: object
     ContactActivity:
       example:
@@ -4250,7 +4262,7 @@ components:
           format: string
           type: string
         Status:
-          $ref: "#/components/schemas/ContactStatus"
+          $ref: '#/components/schemas/ContactStatus'
         FirstName:
           description: First name.
           example: Fred
@@ -4271,7 +4283,7 @@ components:
             age: "34"
           type: object
         Consent:
-          $ref: "#/components/schemas/ConsentData"
+          $ref: '#/components/schemas/ConsentData'
       required:
       - Email
       type: object
@@ -4402,16 +4414,16 @@ components:
           format: boolean
           type: boolean
         Type:
-          $ref: "#/components/schemas/TrackingType"
+          $ref: '#/components/schemas/TrackingType'
         TrackingStatus:
-          $ref: "#/components/schemas/TrackingValidationStatus"
+          $ref: '#/components/schemas/TrackingValidationStatus'
         CertificateStatus:
-          $ref: "#/components/schemas/CertificateValidationStatus"
+          $ref: '#/components/schemas/CertificateValidationStatus'
         CertificateValidationError:
           format: string
           type: string
         TrackingTypeUserRequest:
-          $ref: "#/components/schemas/TrackingType"
+          $ref: '#/components/schemas/TrackingType'
         VERP:
           format: boolean
           type: boolean
@@ -4425,7 +4437,7 @@ components:
           format: boolean
           type: boolean
         Ownership:
-          $ref: "#/components/schemas/DomainOwner"
+          $ref: '#/components/schemas/DomainOwner'
       type: object
     DomainDetail:
       description: "Domain data, with information about domain records."
@@ -4487,16 +4499,16 @@ components:
           format: boolean
           type: boolean
         Type:
-          $ref: "#/components/schemas/TrackingType"
+          $ref: '#/components/schemas/TrackingType'
         TrackingStatus:
-          $ref: "#/components/schemas/TrackingValidationStatus"
+          $ref: '#/components/schemas/TrackingValidationStatus'
         CertificateStatus:
-          $ref: "#/components/schemas/CertificateValidationStatus"
+          $ref: '#/components/schemas/CertificateValidationStatus'
         CertificateValidationError:
           format: string
           type: string
         TrackingTypeUserRequest:
-          $ref: "#/components/schemas/TrackingType"
+          $ref: '#/components/schemas/TrackingType'
         VERP:
           format: boolean
           type: boolean
@@ -4510,7 +4522,7 @@ components:
           format: boolean
           type: boolean
         Ownership:
-          $ref: "#/components/schemas/DomainOwner"
+          $ref: '#/components/schemas/DomainOwner'
       type: object
     DomainOwner:
       default: Current
@@ -4540,7 +4552,7 @@ components:
         CustomBouncesDomain: CustomBouncesDomain
       properties:
         CertificateStatus:
-          $ref: "#/components/schemas/CertificateValidationStatus"
+          $ref: '#/components/schemas/CertificateValidationStatus'
         VERP:
           format: boolean
           type: boolean
@@ -4594,7 +4606,7 @@ components:
           description: "List of e-mail body parts, with user-provided MIME types (text/html,\
             \ text/plain etc)"
           items:
-            $ref: "#/components/schemas/BodyPart"
+            $ref: '#/components/schemas/BodyPart'
           type: array
         Merge:
           additionalProperties:
@@ -4609,7 +4621,7 @@ components:
         Attachments:
           description: Attachments provided by sending binary data
           items:
-            $ref: "#/components/schemas/MessageAttachment"
+            $ref: '#/components/schemas/MessageAttachment'
           type: array
         Headers:
           additionalProperties:
@@ -4660,7 +4672,7 @@ components:
             type: string
           type: array
         Utm:
-          $ref: "#/components/schemas/Utm"
+          $ref: '#/components/schemas/Utm'
       required:
       - From
       type: object
@@ -4697,14 +4709,14 @@ components:
           DateAdded: 2000-01-23T04:56:07.000+00:00
       properties:
         Preview:
-          $ref: "#/components/schemas/EmailView"
+          $ref: '#/components/schemas/EmailView'
         Attachments:
           description: Attachments sent with the email
           items:
-            $ref: "#/components/schemas/FileInfo"
+            $ref: '#/components/schemas/FileInfo'
           type: array
         Status:
-          $ref: "#/components/schemas/EmailStatus"
+          $ref: '#/components/schemas/EmailStatus'
       type: object
     EmailJobFailedStatus:
       example:
@@ -4785,7 +4797,7 @@ components:
           type: integer
         Failed:
           items:
-            $ref: "#/components/schemas/EmailJobFailedStatus"
+            $ref: '#/components/schemas/EmailJobFailedStatus'
           type: array
         FailedCount:
           description: Total emails failed.
@@ -4934,12 +4946,12 @@ components:
         Recipients:
           description: List of recipients
           items:
-            $ref: "#/components/schemas/EmailRecipient"
+            $ref: '#/components/schemas/EmailRecipient'
           type: array
         Content:
-          $ref: "#/components/schemas/EmailContent"
+          $ref: '#/components/schemas/EmailContent'
         Options:
-          $ref: "#/components/schemas/Options"
+          $ref: '#/components/schemas/Options'
       required:
       - Content
       - Recipients
@@ -5046,7 +5058,7 @@ components:
           format: date-time
           type: string
         Status:
-          $ref: "#/components/schemas/LogJobStatus"
+          $ref: '#/components/schemas/LogJobStatus'
         StatusName:
           description: Name of email's status
           format: string
@@ -5083,7 +5095,7 @@ components:
           format: string
           type: string
         ErrorCategory:
-          $ref: "#/components/schemas/MessageCategoryEnum"
+          $ref: '#/components/schemas/MessageCategoryEnum'
       type: object
     EmailTransactionalMessageData:
       description: Email data
@@ -5143,11 +5155,11 @@ components:
             Source: Source
       properties:
         Recipients:
-          $ref: "#/components/schemas/TransactionalRecipient"
+          $ref: '#/components/schemas/TransactionalRecipient'
         Content:
-          $ref: "#/components/schemas/EmailContent"
+          $ref: '#/components/schemas/EmailContent'
         Options:
-          $ref: "#/components/schemas/Options"
+          $ref: '#/components/schemas/Options'
       required:
       - Content
       - Recipients
@@ -5200,13 +5212,13 @@ components:
           format: date-time
           type: string
         Result:
-          $ref: "#/components/schemas/EmailValidationStatus"
+          $ref: '#/components/schemas/EmailValidationStatus'
         PredictedScore:
           description: Predicted score
           format: single
           type: number
         PredictedStatus:
-          $ref: "#/components/schemas/EmailPredictedValidationStatus"
+          $ref: '#/components/schemas/EmailPredictedValidationStatus'
       type: object
     EmailValidationStatus:
       default: None
@@ -5391,9 +5403,9 @@ components:
           format: string
           type: string
         FilterType:
-          $ref: "#/components/schemas/InboundRouteFilterType"
+          $ref: '#/components/schemas/InboundRouteFilterType'
         ActionType:
-          $ref: "#/components/schemas/InboundRouteActionType"
+          $ref: '#/components/schemas/InboundRouteActionType'
         EmailAddress:
           description: Email to forward the inbound to
           format: string
@@ -5426,13 +5438,13 @@ components:
           format: string
           type: string
         FilterType:
-          $ref: "#/components/schemas/InboundRouteFilterType"
+          $ref: '#/components/schemas/InboundRouteFilterType'
         Filter:
           description: Filter of the inbound data
           format: string
           type: string
         ActionType:
-          $ref: "#/components/schemas/InboundRouteActionType"
+          $ref: '#/components/schemas/InboundRouteActionType'
         ActionParameter:
           description: URL address or Email to notify about the inbound
           format: string
@@ -5679,11 +5691,11 @@ components:
             Source: Source
       properties:
         MergeFile:
-          $ref: "#/components/schemas/MessageAttachment"
+          $ref: '#/components/schemas/MessageAttachment'
         Content:
-          $ref: "#/components/schemas/EmailContent"
+          $ref: '#/components/schemas/EmailContent'
         Options:
-          $ref: "#/components/schemas/Options"
+          $ref: '#/components/schemas/Options'
       required:
       - Content
       - MergeFile
@@ -5780,7 +5792,7 @@ components:
         AccessLevel:
           description: Access level or permission to be assigned to this ApiKey.
           items:
-            $ref: "#/components/schemas/AccessLevel"
+            $ref: '#/components/schemas/AccessLevel'
           type: array
         Name:
           description: Name of the ApiKey.
@@ -5827,7 +5839,7 @@ components:
           format: string
           type: string
         AccessLevel:
-          $ref: "#/components/schemas/AccessLevel"
+          $ref: '#/components/schemas/AccessLevel'
         Name:
           description: Name of the key.
           format: string
@@ -5883,7 +5895,7 @@ components:
           format: string
           type: string
         Encoding:
-          $ref: "#/components/schemas/EncodingType"
+          $ref: '#/components/schemas/EncodingType'
         TrackOpens:
           description: "Should the opens be tracked? If no value has been provided,\
             \ Account's default setting will be used."
@@ -5904,7 +5916,7 @@ components:
       example:
         EventDate: 2000-01-23T04:56:07.000+00:00
         NextTryOn: 2000-01-23T04:56:07.000+00:00
-        Message: Lorem ipsum
+        Message: Message
         EventType: Submission
         MsgID: ABCDE_9RPhSWiaJq_ab1g1
         Subject: Hello!
@@ -5942,7 +5954,7 @@ components:
           format: string
           type: string
         EventType:
-          $ref: "#/components/schemas/EventType"
+          $ref: '#/components/schemas/EventType'
         EventDate:
           description: Creation date
           format: date-time
@@ -5953,15 +5965,14 @@ components:
           format: string
           type: string
         MessageCategory:
-          $ref: "#/components/schemas/MessageCategory"
+          $ref: '#/components/schemas/MessageCategory'
         NextTryOn:
           description: Date of next try
           format: date-time
           nullable: true
           type: string
         Message:
-          description: "Content of message, HTML encoded"
-          example: Lorem ipsum
+          description: Error message if sending has failed (FailedAttempt or Bounce)
           format: string
           type: string
         IPAddress:
@@ -6019,7 +6030,7 @@ components:
         Name: Name
       properties:
         AccessLevel:
-          $ref: "#/components/schemas/AccessLevel"
+          $ref: '#/components/schemas/AccessLevel'
         Name:
           description: Name of the key.
           format: string
@@ -6114,7 +6125,7 @@ components:
         OptimizePeriodMinutes: 30
       properties:
         OptimizeFor:
-          $ref: "#/components/schemas/SplitOptimizationType"
+          $ref: '#/components/schemas/SplitOptimizationType'
         OptimizePeriodMinutes:
           description: For how long should the results be measured until determining
             the winner template (content)
@@ -6275,7 +6286,7 @@ components:
           format: string
           type: string
         Settings:
-          $ref: "#/components/schemas/SubaccountSettingsInfo"
+          $ref: '#/components/schemas/SubaccountSettingsInfo'
         LastActivity:
           description: Date of last activity on Account
           format: date-time
@@ -6296,7 +6307,7 @@ components:
           format: double
           type: number
         Status:
-          $ref: "#/components/schemas/AccountStatusEnum"
+          $ref: '#/components/schemas/AccountStatusEnum'
         ContactsCount:
           description: How many contacts this SubAccount has stored
           format: int32
@@ -6335,7 +6346,7 @@ components:
           format: boolean
           type: boolean
         Settings:
-          $ref: "#/components/schemas/SubaccountSettingsInfoPayload"
+          $ref: '#/components/schemas/SubaccountSettingsInfoPayload'
       required:
       - Email
       - Password
@@ -6354,7 +6365,7 @@ components:
           EnablePrivateIPPurchase: true
       properties:
         Email:
-          $ref: "#/components/schemas/SubaccountEmailSettings"
+          $ref: '#/components/schemas/SubaccountEmailSettings'
       type: object
     SubaccountSettingsInfoPayload:
       description: SubAccount settings
@@ -6369,7 +6380,7 @@ components:
           EnablePrivateIPPurchase: true
       properties:
         Email:
-          $ref: "#/components/schemas/SubaccountEmailSettingsPayload"
+          $ref: '#/components/schemas/SubaccountEmailSettingsPayload'
       type: object
     Suppression:
       description: Suppression - Email returning Hard Bounces
@@ -6418,7 +6429,7 @@ components:
         Name: Name
       properties:
         TemplateType:
-          $ref: "#/components/schemas/TemplateType"
+          $ref: '#/components/schemas/TemplateType'
         Name:
           description: Template name
           format: string
@@ -6435,10 +6446,10 @@ components:
         Body:
           description: Email content of this template
           items:
-            $ref: "#/components/schemas/BodyPart"
+            $ref: '#/components/schemas/BodyPart'
           type: array
         TemplateScope:
-          $ref: "#/components/schemas/TemplateScope"
+          $ref: '#/components/schemas/TemplateScope'
       type: object
     TemplatePayload:
       description: New template object
@@ -6466,10 +6477,10 @@ components:
         Body:
           description: Email content of this template
           items:
-            $ref: "#/components/schemas/BodyPart"
+            $ref: '#/components/schemas/BodyPart'
           type: array
         TemplateScope:
-          $ref: "#/components/schemas/TemplateScope"
+          $ref: '#/components/schemas/TemplateScope'
       required:
       - Name
       type: object
@@ -6598,9 +6609,9 @@ components:
           format: string
           type: string
         VerificationStatus:
-          $ref: "#/components/schemas/VerificationStatus"
+          $ref: '#/components/schemas/VerificationStatus'
         FileUploadResult:
-          $ref: "#/components/schemas/FileUploadResult"
+          $ref: '#/components/schemas/FileUploadResult'
         DateAdded:
           description: Date of creation in YYYY-MM-DDThh:ii:ss format
           format: date-time
@@ -6648,7 +6659,7 @@ components:
         VerificationResult:
           description: Verification result's details
           items:
-            $ref: "#/components/schemas/EmailValidationResult"
+            $ref: '#/components/schemas/EmailValidationResult'
           type: array
         VerificationID:
           description: Identifier of this verification result
@@ -6659,9 +6670,9 @@ components:
           format: string
           type: string
         VerificationStatus:
-          $ref: "#/components/schemas/VerificationStatus"
+          $ref: '#/components/schemas/VerificationStatus'
         FileUploadResult:
-          $ref: "#/components/schemas/FileUploadResult"
+          $ref: '#/components/schemas/FileUploadResult'
         DateAdded:
           description: Date of creation in YYYY-MM-DDThh:ii:ss format
           format: date-time

@@ -1,7 +1,7 @@
 /*
 Elastic Email REST API
 
-This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target=\"_blank\" href=\"https://app.elasticemail.com/marketing/settings/new/manage-api\">here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target=\"_blank\" href=\"https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme\">here</a>
+This API is based on the REST API architecture, allowing the user to easily manage their data with this resource-based approach.    Every API call is established on which specific request type (GET, POST, PUT, DELETE) will be used.    The API has a limit of 20 concurrent connections and a hard timeout of 600 seconds per request.    To start using this API, you will need your Access Token (available <a target='_blank' href='https://app.elasticemail.com/marketing/settings/new/manage-api'>here</a>). Remember to keep it safe. Required access levels are listed in the given request’s description.    Downloadable library clients can be found in our Github repository <a target='_blank' href='https://github.com/ElasticEmail?tab=repositories&q=%22rest+api%22+in%3Areadme'>here</a>
 
 API version: 4.0.0
 Contact: support@elasticemail.com
@@ -32,6 +32,7 @@ type Contact struct {
 	CustomFields *map[string]string `json:"CustomFields,omitempty"`
 	Consent *ConsentData `json:"Consent,omitempty"`
 	Source *ContactSource `json:"Source,omitempty"`
+	SourceInfo *string `json:"SourceInfo,omitempty"`
 	// Date of creation in YYYY-MM-DDThh:ii:ss format
 	DateAdded *time.Time `json:"DateAdded,omitempty"`
 	// Last change date
@@ -290,6 +291,38 @@ func (o *Contact) SetSource(v ContactSource) {
 	o.Source = &v
 }
 
+// GetSourceInfo returns the SourceInfo field value if set, zero value otherwise.
+func (o *Contact) GetSourceInfo() string {
+	if o == nil || IsNil(o.SourceInfo) {
+		var ret string
+		return ret
+	}
+	return *o.SourceInfo
+}
+
+// GetSourceInfoOk returns a tuple with the SourceInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Contact) GetSourceInfoOk() (*string, bool) {
+	if o == nil || IsNil(o.SourceInfo) {
+		return nil, false
+	}
+	return o.SourceInfo, true
+}
+
+// HasSourceInfo returns a boolean if a field has been set.
+func (o *Contact) HasSourceInfo() bool {
+	if o != nil && !IsNil(o.SourceInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetSourceInfo gets a reference to the given string and assigns it to the SourceInfo field.
+func (o *Contact) SetSourceInfo(v string) {
+	o.SourceInfo = &v
+}
+
 // GetDateAdded returns the DateAdded field value if set, zero value otherwise.
 func (o *Contact) GetDateAdded() time.Time {
 	if o == nil || IsNil(o.DateAdded) {
@@ -468,6 +501,9 @@ func (o Contact) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Source) {
 		toSerialize["Source"] = o.Source
+	}
+	if !IsNil(o.SourceInfo) {
+		toSerialize["SourceInfo"] = o.SourceInfo
 	}
 	if !IsNil(o.DateAdded) {
 		toSerialize["DateAdded"] = o.DateAdded

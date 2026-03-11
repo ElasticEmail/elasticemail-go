@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **CustomFields** | Pointer to **map[string]string** | A key-value collection of custom contact fields which can be used in the system. | [optional] 
 **Consent** | Pointer to [**ConsentData**](ConsentData.md) |  | [optional] 
 **Source** | Pointer to [**ContactSource**](ContactSource.md) |  | [optional] [default to CONTACTSOURCE_DELIVERY_API]
+**SourceInfo** | Pointer to **string** |  | [optional] 
 **DateAdded** | Pointer to **time.Time** | Date of creation in YYYY-MM-DDThh:ii:ss format | [optional] 
 **DateUpdated** | Pointer to **NullableTime** | Last change date | [optional] 
 **StatusChangeDate** | Pointer to **NullableTime** | Date of last status change. | [optional] 
@@ -209,6 +210,31 @@ SetSource sets Source field to given value.
 `func (o *Contact) HasSource() bool`
 
 HasSource returns a boolean if a field has been set.
+
+### GetSourceInfo
+
+`func (o *Contact) GetSourceInfo() string`
+
+GetSourceInfo returns the SourceInfo field if non-nil, zero value otherwise.
+
+### GetSourceInfoOk
+
+`func (o *Contact) GetSourceInfoOk() (*string, bool)`
+
+GetSourceInfoOk returns a tuple with the SourceInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSourceInfo
+
+`func (o *Contact) SetSourceInfo(v string)`
+
+SetSourceInfo sets SourceInfo field to given value.
+
+### HasSourceInfo
+
+`func (o *Contact) HasSourceInfo() bool`
+
+HasSourceInfo returns a boolean if a field has been set.
 
 ### GetDateAdded
 

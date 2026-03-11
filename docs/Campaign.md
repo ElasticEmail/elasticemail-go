@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Name** | **string** | Campaign name | 
 **Status** | Pointer to [**CampaignStatus**](CampaignStatus.md) |  | [optional] [default to CAMPAIGNSTATUS_DELETED]
 **Recipients** | [**CampaignRecipient**](CampaignRecipient.md) |  | 
+**ExcludedRecipients** | Pointer to [**CampaignRecipient**](CampaignRecipient.md) |  | [optional] 
 **Options** | Pointer to [**CampaignOptions**](CampaignOptions.md) |  | [optional] 
 
 ## Methods
@@ -118,6 +119,31 @@ and a boolean to check if the value has been set.
 
 SetRecipients sets Recipients field to given value.
 
+
+### GetExcludedRecipients
+
+`func (o *Campaign) GetExcludedRecipients() CampaignRecipient`
+
+GetExcludedRecipients returns the ExcludedRecipients field if non-nil, zero value otherwise.
+
+### GetExcludedRecipientsOk
+
+`func (o *Campaign) GetExcludedRecipientsOk() (*CampaignRecipient, bool)`
+
+GetExcludedRecipientsOk returns a tuple with the ExcludedRecipients field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExcludedRecipients
+
+`func (o *Campaign) SetExcludedRecipients(v CampaignRecipient)`
+
+SetExcludedRecipients sets ExcludedRecipients field to given value.
+
+### HasExcludedRecipients
+
+`func (o *Campaign) HasExcludedRecipients() bool`
+
+HasExcludedRecipients returns a boolean if a field has been set.
 
 ### GetOptions
 
