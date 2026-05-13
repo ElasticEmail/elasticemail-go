@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **TriggerFrequency** | Pointer to **float64** | How often (in minutes) to send the campaign | [optional] 
 **TriggerCount** | Pointer to **int32** | How many times send the campaign | [optional] 
 **SplitOptions** | Pointer to [**SplitOptions**](SplitOptions.md) |  | [optional] 
+**SendAtLocalTime** | Pointer to **NullableBool** | Send email at local time of contact. | [optional] 
 
 ## Methods
 
@@ -236,6 +237,41 @@ SetSplitOptions sets SplitOptions field to given value.
 
 HasSplitOptions returns a boolean if a field has been set.
 
+### GetSendAtLocalTime
+
+`func (o *CampaignOptions) GetSendAtLocalTime() bool`
+
+GetSendAtLocalTime returns the SendAtLocalTime field if non-nil, zero value otherwise.
+
+### GetSendAtLocalTimeOk
+
+`func (o *CampaignOptions) GetSendAtLocalTimeOk() (*bool, bool)`
+
+GetSendAtLocalTimeOk returns a tuple with the SendAtLocalTime field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSendAtLocalTime
+
+`func (o *CampaignOptions) SetSendAtLocalTime(v bool)`
+
+SetSendAtLocalTime sets SendAtLocalTime field to given value.
+
+### HasSendAtLocalTime
+
+`func (o *CampaignOptions) HasSendAtLocalTime() bool`
+
+HasSendAtLocalTime returns a boolean if a field has been set.
+
+### SetSendAtLocalTimeNil
+
+`func (o *CampaignOptions) SetSendAtLocalTimeNil(b bool)`
+
+ SetSendAtLocalTimeNil sets the value for SendAtLocalTime to be an explicit nil
+
+### UnsetSendAtLocalTime
+`func (o *CampaignOptions) UnsetSendAtLocalTime()`
+
+UnsetSendAtLocalTime ensures that no value is present for SendAtLocalTime, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

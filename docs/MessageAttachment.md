@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **BinaryContent** | **string** | File&#39;s content as byte array (or a Base64 string) | 
 **Name** | **string** | Display name of the file | 
 **ContentType** | Pointer to **string** | MIME content type | [optional] 
-**Size** | Pointer to **int32** | Size of your attachment (in bytes). | [optional] 
+**Size** | Pointer to **int32** | Size of the attachement in B | [optional] 
 
 ## Methods
 

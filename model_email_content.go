@@ -36,7 +36,7 @@ type EmailContent struct {
 	EnvelopeFrom *string `json:"EnvelopeFrom,omitempty"`
 	// Your e-mail with an optional name (e.g.: John Doe <email@domain.com>)
 	From string `json:"From"`
-	// To what address should the recipients reply to (e.g. John Doe <email@domain.com>)
+	// To what addresses should the recipients reply to (e.g. John Doe <email@domain.com>)
 	ReplyTo *string `json:"ReplyTo,omitempty"`
 	// Default subject of email.
 	Subject *string `json:"Subject,omitempty"`

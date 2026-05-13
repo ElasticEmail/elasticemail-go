@@ -79,6 +79,8 @@ type APIClient struct {
 	TemplatesAPI *TemplatesAPIService
 
 	VerificationsAPI *VerificationsAPIService
+
+	WebhookAPI *WebhookAPIService
 }
 
 type service struct {
@@ -112,6 +114,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.SuppressionsAPI = (*SuppressionsAPIService)(&c.common)
 	c.TemplatesAPI = (*TemplatesAPIService)(&c.common)
 	c.VerificationsAPI = (*VerificationsAPIService)(&c.common)
+	c.WebhookAPI = (*WebhookAPIService)(&c.common)
 
 	return c
 }

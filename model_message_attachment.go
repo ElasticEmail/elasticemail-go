@@ -28,7 +28,7 @@ type MessageAttachment struct {
 	Name string `json:"Name"`
 	// MIME content type
 	ContentType *string `json:"ContentType,omitempty"`
-	// Size of your attachment (in bytes).
+	// Size of the attachement in B
 	Size *int32 `json:"Size,omitempty"`
 }
 

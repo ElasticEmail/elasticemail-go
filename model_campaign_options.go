@@ -33,6 +33,8 @@ type CampaignOptions struct {
 	// How many times send the campaign
 	TriggerCount *int32 `json:"TriggerCount,omitempty"`
 	SplitOptions *SplitOptions `json:"SplitOptions,omitempty"`
+	// Send email at local time of contact.
+	SendAtLocalTime NullableBool `json:"SendAtLocalTime,omitempty"`
 }
 
 // NewCampaignOptions instantiates a new CampaignOptions object
@@ -310,6 +312,48 @@ func (o *CampaignOptions) SetSplitOptions(v SplitOptions) {
 	o.SplitOptions = &v
 }
 
+// GetSendAtLocalTime returns the SendAtLocalTime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CampaignOptions) GetSendAtLocalTime() bool {
+	if o == nil || IsNil(o.SendAtLocalTime.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.SendAtLocalTime.Get()
+}
+
+// GetSendAtLocalTimeOk returns a tuple with the SendAtLocalTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CampaignOptions) GetSendAtLocalTimeOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SendAtLocalTime.Get(), o.SendAtLocalTime.IsSet()
+}
+
+// HasSendAtLocalTime returns a boolean if a field has been set.
+func (o *CampaignOptions) HasSendAtLocalTime() bool {
+	if o != nil && o.SendAtLocalTime.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSendAtLocalTime gets a reference to the given NullableBool and assigns it to the SendAtLocalTime field.
+func (o *CampaignOptions) SetSendAtLocalTime(v bool) {
+	o.SendAtLocalTime.Set(&v)
+}
+// SetSendAtLocalTimeNil sets the value for SendAtLocalTime to be an explicit nil
+func (o *CampaignOptions) SetSendAtLocalTimeNil() {
+	o.SendAtLocalTime.Set(nil)
+}
+
+// UnsetSendAtLocalTime ensures that no value is present for SendAtLocalTime, not even an explicit nil
+func (o *CampaignOptions) UnsetSendAtLocalTime() {
+	o.SendAtLocalTime.Unset()
+}
+
 func (o CampaignOptions) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -340,6 +384,9 @@ func (o CampaignOptions) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.SplitOptions) {
 		toSerialize["SplitOptions"] = o.SplitOptions
+	}
+	if o.SendAtLocalTime.IsSet() {
+		toSerialize["SendAtLocalTime"] = o.SendAtLocalTime.Get()
 	}
 	return toSerialize, nil
 }

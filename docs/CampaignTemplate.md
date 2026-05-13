@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Poolname** | Pointer to **string** | Name of your custom IP Pool to be used in the sending process | [optional] 
 **From** | **string** | Your e-mail with an optional name (e.g.: John Doe &lt;email@domain.com&gt;) | 
-**ReplyTo** | Pointer to **string** | To what address should the recipients reply to (e.g. John Doe &lt;email@domain.com&gt;) | [optional] 
+**ReplyTo** | Pointer to **string** | To what addresses should the recipients reply to (e.g. John Doe &lt;email@domain.com&gt;) | [optional] 
 **Subject** | Pointer to **string** | Default subject of email. | [optional] 
 **TemplateName** | Pointer to **string** | Name of template. | [optional] 
 **AttachFiles** | Pointer to **[]string** | Names of previously uploaded files that should be sent as downloadable attachments | [optional] 
