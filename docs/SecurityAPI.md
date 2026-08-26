@@ -109,7 +109,7 @@ import (
 
 func main() {
 	name := "name_example" // string | Name of the ApiKey
-	subaccount := "subaccount_example" // string | Email of the subaccount of which ApiKey should be loaded (optional)
+	subaccount := "subaccount_example" // string | Email of the subaccount of which ApiKey should be loaded. The default API key created for the subaccount has a 48-hour expiration period. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -139,7 +139,7 @@ Other parameters are passed through a pointer to a apiSecurityApikeysByNameGetRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **subaccount** | **string** | Email of the subaccount of which ApiKey should be loaded | 
+ **subaccount** | **string** | Email of the subaccount of which ApiKey should be loaded. The default API key created for the subaccount has a 48-hour expiration period. | 
 
 ### Return type
 
@@ -252,7 +252,7 @@ import (
 )
 
 func main() {
-	subaccount := "subaccount_example" // string | Email of the subaccount of which ApiKeys should be loaded (optional)
+	subaccount := "subaccount_example" // string | Email of the subaccount of which ApiKeys should be loaded. The default API key created for the subaccount has a 48-hour expiration period. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -277,7 +277,7 @@ Other parameters are passed through a pointer to a apiSecurityApikeysGetRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subaccount** | **string** | Email of the subaccount of which ApiKeys should be loaded | 
+ **subaccount** | **string** | Email of the subaccount of which ApiKeys should be loaded. The default API key created for the subaccount has a 48-hour expiration period. | 
 
 ### Return type
 

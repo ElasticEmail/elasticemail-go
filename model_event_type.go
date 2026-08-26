@@ -23,24 +23,30 @@ type EventType string
 const (
 	EVENTTYPE_SUBMISSION EventType = "Submission"
 	EVENTTYPE_FAILED_ATTEMPT EventType = "FailedAttempt"
-	EVENTTYPE_BOUNCE EventType = "Bounce"
+	EVENTTYPE_ERROR EventType = "Error"
 	EVENTTYPE_SENT EventType = "Sent"
 	EVENTTYPE_OPEN EventType = "Open"
 	EVENTTYPE_CLICK EventType = "Click"
 	EVENTTYPE_UNSUBSCRIBE EventType = "Unsubscribe"
 	EVENTTYPE_COMPLAINT EventType = "Complaint"
+	EVENTTYPE_BOUNCE EventType = "Bounce"
+	EVENTTYPE_TRANSACTIONAL_UNSUBSCRIBE EventType = "TransactionalUnsubscribe"
+	EVENTTYPE_SUPPRESS EventType = "Suppress"
 )
 
 // All allowed values of EventType enum
 var AllowedEventTypeEnumValues = []EventType{
 	"Submission",
 	"FailedAttempt",
-	"Bounce",
+	"Error",
 	"Sent",
 	"Open",
 	"Click",
 	"Unsubscribe",
 	"Complaint",
+	"Bounce",
+	"TransactionalUnsubscribe",
+	"Suppress",
 }
 
 func (v *EventType) UnmarshalJSON(src []byte) error {

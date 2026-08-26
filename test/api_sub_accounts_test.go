@@ -22,6 +22,20 @@ func Test_ElasticEmail_SubAccountsAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test SubAccountsAPIService SubaccountsByEmailApikeyGet", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var email string
+
+		resp, httpRes, err := apiClient.SubAccountsAPI.SubaccountsByEmailApikeyGet(context.Background(), email).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test SubAccountsAPIService SubaccountsByEmailCreditsPatch", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

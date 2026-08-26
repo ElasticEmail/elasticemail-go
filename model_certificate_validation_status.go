@@ -25,6 +25,7 @@ const (
 	CERTIFICATEVALIDATIONSTATUS_CERT_NOT_SET CertificateValidationStatus = "CertNotSet"
 	CERTIFICATEVALIDATIONSTATUS_VALID CertificateValidationStatus = "Valid"
 	CERTIFICATEVALIDATIONSTATUS_NOT_VALID CertificateValidationStatus = "NotValid"
+	CERTIFICATEVALIDATIONSTATUS_IN_PROGRESS CertificateValidationStatus = "InProgress"
 )
 
 // All allowed values of CertificateValidationStatus enum
@@ -33,6 +34,7 @@ var AllowedCertificateValidationStatusEnumValues = []CertificateValidationStatus
 	"CertNotSet",
 	"Valid",
 	"NotValid",
+	"InProgress",
 }
 
 func (v *CertificateValidationStatus) UnmarshalJSON(src []byte) error {

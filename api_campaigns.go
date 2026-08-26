@@ -24,6 +24,122 @@ import (
 // CampaignsAPIService CampaignsAPI service
 type CampaignsAPIService service
 
+type CampaignsAPICampaignsAutomationByNameTriggerPostRequest struct {
+	ctx context.Context
+	ApiService *CampaignsAPIService
+	name string
+	contactEmail *string
+}
+
+func (r CampaignsAPICampaignsAutomationByNameTriggerPostRequest) ContactEmail(contactEmail string) CampaignsAPICampaignsAutomationByNameTriggerPostRequest {
+	r.contactEmail = &contactEmail
+	return r
+}
+
+func (r CampaignsAPICampaignsAutomationByNameTriggerPostRequest) Execute() (*http.Response, error) {
+	return r.ApiService.CampaignsAutomationByNameTriggerPostExecute(r)
+}
+
+/*
+CampaignsAutomationByNameTriggerPost Trigger Automation for Contact
+
+Manually trigger an Automation for a contact. Required Access Level: ModifyAutomations
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param name
+ @return CampaignsAPICampaignsAutomationByNameTriggerPostRequest
+*/
+func (a *CampaignsAPIService) CampaignsAutomationByNameTriggerPost(ctx context.Context, name string) CampaignsAPICampaignsAutomationByNameTriggerPostRequest {
+	return CampaignsAPICampaignsAutomationByNameTriggerPostRequest{
+		ApiService: a,
+		ctx: ctx,
+		name: name,
+	}
+}
+
+// Execute executes the request
+func (a *CampaignsAPIService) CampaignsAutomationByNameTriggerPostExecute(r CampaignsAPICampaignsAutomationByNameTriggerPostRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignsAPIService.CampaignsAutomationByNameTriggerPost")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/campaigns/automation/{name}/trigger"
+	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.contactEmail == nil {
+		return nil, reportError("contactEmail is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "contactEmail", r.contactEmail, "form", "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apikey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-ElasticEmail-ApiKey"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type CampaignsAPICampaignsByNameDeleteRequest struct {
 	ctx context.Context
 	ApiService *CampaignsAPIService

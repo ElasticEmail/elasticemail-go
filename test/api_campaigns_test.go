@@ -22,6 +22,19 @@ func Test_ElasticEmail_CampaignsAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test CampaignsAPIService CampaignsAutomationByNameTriggerPost", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var name string
+
+		httpRes, err := apiClient.CampaignsAPI.CampaignsAutomationByNameTriggerPost(context.Background(), name).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test CampaignsAPIService CampaignsByNameDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

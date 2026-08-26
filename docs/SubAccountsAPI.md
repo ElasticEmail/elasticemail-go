@@ -4,6 +4,7 @@ All URIs are relative to *https://api.elasticemail.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**SubaccountsByEmailApikeyGet**](SubAccountsAPI.md#SubaccountsByEmailApikeyGet) | **Get** /subaccounts/{email}/apikey | Get SubAccount ApiKey
 [**SubaccountsByEmailCreditsPatch**](SubAccountsAPI.md#SubaccountsByEmailCreditsPatch) | **Patch** /subaccounts/{email}/credits | Add, Subtract Email Credits
 [**SubaccountsByEmailDelete**](SubAccountsAPI.md#SubaccountsByEmailDelete) | **Delete** /subaccounts/{email} | Delete SubAccount
 [**SubaccountsByEmailGet**](SubAccountsAPI.md#SubaccountsByEmailGet) | **Get** /subaccounts/{email} | Load SubAccount
@@ -11,6 +12,76 @@ Method | HTTP request | Description
 [**SubaccountsGet**](SubAccountsAPI.md#SubaccountsGet) | **Get** /subaccounts | Load SubAccounts
 [**SubaccountsPost**](SubAccountsAPI.md#SubaccountsPost) | **Post** /subaccounts | Add SubAccount
 
+
+
+## SubaccountsByEmailApikeyGet
+
+> string SubaccountsByEmailApikeyGet(ctx, email).Execute()
+
+Get SubAccount ApiKey
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
+)
+
+func main() {
+	email := "mail@example.com" // string | Email address of Sub-Account
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubAccountsAPI.SubaccountsByEmailApikeyGet(context.Background(), email).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubAccountsAPI.SubaccountsByEmailApikeyGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SubaccountsByEmailApikeyGet`: string
+	fmt.Fprintf(os.Stdout, "Response from `SubAccountsAPI.SubaccountsByEmailApikeyGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**email** | **string** | Email address of Sub-Account | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSubaccountsByEmailApikeyGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**string**
+
+### Authorization
+
+[apikey](../README.md#apikey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## SubaccountsByEmailCreditsPatch

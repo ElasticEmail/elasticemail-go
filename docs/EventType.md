@@ -7,7 +7,7 @@
 
 * `FAILED_ATTEMPT` (value: `"FailedAttempt"`)
 
-* `BOUNCE` (value: `"Bounce"`)
+* `ERROR` (value: `"Error"`)
 
 * `SENT` (value: `"Sent"`)
 
@@ -18,6 +18,12 @@
 * `UNSUBSCRIBE` (value: `"Unsubscribe"`)
 
 * `COMPLAINT` (value: `"Complaint"`)
+
+* `BOUNCE` (value: `"Bounce"`)
+
+* `TRANSACTIONAL_UNSUBSCRIBE` (value: `"TransactionalUnsubscribe"`)
+
+* `SUPPRESS` (value: `"Suppress"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

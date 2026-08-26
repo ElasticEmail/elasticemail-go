@@ -15,13 +15,16 @@ Name | Type | Description | Notes
 **Type** | Pointer to [**TrackingType**](TrackingType.md) |  | [optional] [default to TRACKINGTYPE_NONE]
 **TrackingStatus** | Pointer to [**TrackingValidationStatus**](TrackingValidationStatus.md) |  | [optional] [default to TRACKINGVALIDATIONSTATUS_VALIDATED]
 **CertificateStatus** | Pointer to [**CertificateValidationStatus**](CertificateValidationStatus.md) |  | [optional] [default to CERTIFICATEVALIDATIONSTATUS_ERROR_OCCURED]
+**CertificateExpiryDate** | Pointer to **NullableTime** |  | [optional] 
 **CertificateValidationError** | Pointer to **string** |  | [optional] 
 **TrackingTypeUserRequest** | Pointer to [**TrackingType**](TrackingType.md) |  | [optional] [default to TRACKINGTYPE_NONE]
 **VERP** | Pointer to **bool** |  | [optional] 
 **CustomBouncesDomain** | Pointer to **string** |  | [optional] 
 **IsCustomBouncesDomainDefault** | Pointer to **bool** |  | [optional] 
+**WasEverVerified** | Pointer to **bool** |  | [optional] 
 **IsMarkedForDeletion** | Pointer to **bool** |  | [optional] 
 **Ownership** | Pointer to [**DomainOwner**](DomainOwner.md) |  | [optional] [default to DOMAINOWNER_CURRENT]
+**DKIMRecord** | Pointer to [**DKIMRecord**](DKIMRecord.md) |  | [optional] 
 
 ## Methods
 
@@ -317,6 +320,41 @@ SetCertificateStatus sets CertificateStatus field to given value.
 
 HasCertificateStatus returns a boolean if a field has been set.
 
+### GetCertificateExpiryDate
+
+`func (o *DomainDetail) GetCertificateExpiryDate() time.Time`
+
+GetCertificateExpiryDate returns the CertificateExpiryDate field if non-nil, zero value otherwise.
+
+### GetCertificateExpiryDateOk
+
+`func (o *DomainDetail) GetCertificateExpiryDateOk() (*time.Time, bool)`
+
+GetCertificateExpiryDateOk returns a tuple with the CertificateExpiryDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificateExpiryDate
+
+`func (o *DomainDetail) SetCertificateExpiryDate(v time.Time)`
+
+SetCertificateExpiryDate sets CertificateExpiryDate field to given value.
+
+### HasCertificateExpiryDate
+
+`func (o *DomainDetail) HasCertificateExpiryDate() bool`
+
+HasCertificateExpiryDate returns a boolean if a field has been set.
+
+### SetCertificateExpiryDateNil
+
+`func (o *DomainDetail) SetCertificateExpiryDateNil(b bool)`
+
+ SetCertificateExpiryDateNil sets the value for CertificateExpiryDate to be an explicit nil
+
+### UnsetCertificateExpiryDate
+`func (o *DomainDetail) UnsetCertificateExpiryDate()`
+
+UnsetCertificateExpiryDate ensures that no value is present for CertificateExpiryDate, not even an explicit nil
 ### GetCertificateValidationError
 
 `func (o *DomainDetail) GetCertificateValidationError() string`
@@ -442,6 +480,31 @@ SetIsCustomBouncesDomainDefault sets IsCustomBouncesDomainDefault field to given
 
 HasIsCustomBouncesDomainDefault returns a boolean if a field has been set.
 
+### GetWasEverVerified
+
+`func (o *DomainDetail) GetWasEverVerified() bool`
+
+GetWasEverVerified returns the WasEverVerified field if non-nil, zero value otherwise.
+
+### GetWasEverVerifiedOk
+
+`func (o *DomainDetail) GetWasEverVerifiedOk() (*bool, bool)`
+
+GetWasEverVerifiedOk returns a tuple with the WasEverVerified field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWasEverVerified
+
+`func (o *DomainDetail) SetWasEverVerified(v bool)`
+
+SetWasEverVerified sets WasEverVerified field to given value.
+
+### HasWasEverVerified
+
+`func (o *DomainDetail) HasWasEverVerified() bool`
+
+HasWasEverVerified returns a boolean if a field has been set.
+
 ### GetIsMarkedForDeletion
 
 `func (o *DomainDetail) GetIsMarkedForDeletion() bool`
@@ -491,6 +554,31 @@ SetOwnership sets Ownership field to given value.
 `func (o *DomainDetail) HasOwnership() bool`
 
 HasOwnership returns a boolean if a field has been set.
+
+### GetDKIMRecord
+
+`func (o *DomainDetail) GetDKIMRecord() DKIMRecord`
+
+GetDKIMRecord returns the DKIMRecord field if non-nil, zero value otherwise.
+
+### GetDKIMRecordOk
+
+`func (o *DomainDetail) GetDKIMRecordOk() (*DKIMRecord, bool)`
+
+GetDKIMRecordOk returns a tuple with the DKIMRecord field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDKIMRecord
+
+`func (o *DomainDetail) SetDKIMRecord(v DKIMRecord)`
+
+SetDKIMRecord sets DKIMRecord field to given value.
+
+### HasDKIMRecord
+
+`func (o *DomainDetail) HasDKIMRecord() bool`
+
+HasDKIMRecord returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

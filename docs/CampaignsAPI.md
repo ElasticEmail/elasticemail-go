@@ -4,6 +4,7 @@ All URIs are relative to *https://api.elasticemail.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CampaignsAutomationByNameTriggerPost**](CampaignsAPI.md#CampaignsAutomationByNameTriggerPost) | **Post** /campaigns/automation/{name}/trigger | Trigger Automation for Contact
 [**CampaignsByNameDelete**](CampaignsAPI.md#CampaignsByNameDelete) | **Delete** /campaigns/{name} | Delete Campaign
 [**CampaignsByNameGet**](CampaignsAPI.md#CampaignsByNameGet) | **Get** /campaigns/{name} | Load Campaign
 [**CampaignsByNamePausePut**](CampaignsAPI.md#CampaignsByNamePausePut) | **Put** /campaigns/{name}/pause | Pause Campaign
@@ -11,6 +12,76 @@ Method | HTTP request | Description
 [**CampaignsGet**](CampaignsAPI.md#CampaignsGet) | **Get** /campaigns | Load Campaigns
 [**CampaignsPost**](CampaignsAPI.md#CampaignsPost) | **Post** /campaigns | Add Campaign
 
+
+
+## CampaignsAutomationByNameTriggerPost
+
+> CampaignsAutomationByNameTriggerPost(ctx, name).ContactEmail(contactEmail).Execute()
+
+Trigger Automation for Contact
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
+)
+
+func main() {
+	name := "name_example" // string | 
+	contactEmail := "contactEmail_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CampaignsAPI.CampaignsAutomationByNameTriggerPost(context.Background(), name).ContactEmail(contactEmail).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CampaignsAPI.CampaignsAutomationByNameTriggerPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**name** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCampaignsAutomationByNameTriggerPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **contactEmail** | **string** |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apikey](../README.md#apikey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CampaignsByNameDelete

@@ -24,6 +24,124 @@ import (
 // SubAccountsAPIService SubAccountsAPI service
 type SubAccountsAPIService service
 
+type SubAccountsAPISubaccountsByEmailApikeyGetRequest struct {
+	ctx context.Context
+	ApiService *SubAccountsAPIService
+	email string
+}
+
+func (r SubAccountsAPISubaccountsByEmailApikeyGetRequest) Execute() (string, *http.Response, error) {
+	return r.ApiService.SubaccountsByEmailApikeyGetExecute(r)
+}
+
+/*
+SubaccountsByEmailApikeyGet Get SubAccount ApiKey
+
+Returns API key token for the specified SubAccount.
+            The default API key created for the subaccount has a 48-hour expiration period. Required Access Level: ModifySubAccounts
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param email Email address of Sub-Account
+ @return SubAccountsAPISubaccountsByEmailApikeyGetRequest
+*/
+func (a *SubAccountsAPIService) SubaccountsByEmailApikeyGet(ctx context.Context, email string) SubAccountsAPISubaccountsByEmailApikeyGetRequest {
+	return SubAccountsAPISubaccountsByEmailApikeyGetRequest{
+		ApiService: a,
+		ctx: ctx,
+		email: email,
+	}
+}
+
+// Execute executes the request
+//  @return string
+func (a *SubAccountsAPIService) SubaccountsByEmailApikeyGetExecute(r SubAccountsAPISubaccountsByEmailApikeyGetRequest) (string, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  string
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubAccountsAPIService.SubaccountsByEmailApikeyGet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/subaccounts/{email}/apikey"
+	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(parameterValueToString(r.email, "email")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apikey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-ElasticEmail-ApiKey"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type SubAccountsAPISubaccountsByEmailCreditsPatchRequest struct {
 	ctx context.Context
 	ApiService *SubAccountsAPIService
@@ -645,7 +763,8 @@ func (r SubAccountsAPISubaccountsPostRequest) Execute() (*SubAccountInfo, *http.
 /*
 SubaccountsPost Add SubAccount
 
-Add a new SubAccount to your Account. To receive an access token for this SubAccount, make a POST security/apikeys request using the 'subaccount' parameter. Required Access Level: ModifySubAccounts
+Add a new SubAccount to your Account. To receive an access token for this SubAccount, make a POST security/apikeys request using the 'subaccount' parameter.
+            The default API key created for the subaccount has a 48-hour expiration period. Required Access Level: ModifySubAccounts
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return SubAccountsAPISubaccountsPostRequest

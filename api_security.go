@@ -147,7 +147,7 @@ type SecurityAPISecurityApikeysByNameGetRequest struct {
 	subaccount *string
 }
 
-// Email of the subaccount of which ApiKey should be loaded
+// Email of the subaccount of which ApiKey should be loaded. The default API key created for the subaccount has a 48-hour expiration period.
 func (r SecurityAPISecurityApikeysByNameGetRequest) Subaccount(subaccount string) SecurityAPISecurityApikeysByNameGetRequest {
 	r.subaccount = &subaccount
 	return r
@@ -401,7 +401,7 @@ type SecurityAPISecurityApikeysGetRequest struct {
 	subaccount *string
 }
 
-// Email of the subaccount of which ApiKeys should be loaded
+// Email of the subaccount of which ApiKeys should be loaded. The default API key created for the subaccount has a 48-hour expiration period.
 func (r SecurityAPISecurityApikeysGetRequest) Subaccount(subaccount string) SecurityAPISecurityApikeysGetRequest {
 	r.subaccount = &subaccount
 	return r

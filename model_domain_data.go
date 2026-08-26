@@ -13,6 +13,7 @@ package ElasticEmail
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the DomainData type satisfies the MappedNullable interface at compile time
@@ -40,13 +41,16 @@ type DomainData struct {
 	Type *TrackingType `json:"Type,omitempty"`
 	TrackingStatus *TrackingValidationStatus `json:"TrackingStatus,omitempty"`
 	CertificateStatus *CertificateValidationStatus `json:"CertificateStatus,omitempty"`
+	CertificateExpiryDate NullableTime `json:"CertificateExpiryDate,omitempty"`
 	CertificateValidationError *string `json:"CertificateValidationError,omitempty"`
 	TrackingTypeUserRequest *TrackingType `json:"TrackingTypeUserRequest,omitempty"`
 	VERP *bool `json:"VERP,omitempty"`
 	CustomBouncesDomain *string `json:"CustomBouncesDomain,omitempty"`
 	IsCustomBouncesDomainDefault *bool `json:"IsCustomBouncesDomainDefault,omitempty"`
+	WasEverVerified *bool `json:"WasEverVerified,omitempty"`
 	IsMarkedForDeletion *bool `json:"IsMarkedForDeletion,omitempty"`
 	Ownership *DomainOwner `json:"Ownership,omitempty"`
+	DKIMRecord *DKIMRecord `json:"DKIMRecord,omitempty"`
 }
 
 // NewDomainData instantiates a new DomainData object
@@ -470,6 +474,48 @@ func (o *DomainData) SetCertificateStatus(v CertificateValidationStatus) {
 	o.CertificateStatus = &v
 }
 
+// GetCertificateExpiryDate returns the CertificateExpiryDate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DomainData) GetCertificateExpiryDate() time.Time {
+	if o == nil || IsNil(o.CertificateExpiryDate.Get()) {
+		var ret time.Time
+		return ret
+	}
+	return *o.CertificateExpiryDate.Get()
+}
+
+// GetCertificateExpiryDateOk returns a tuple with the CertificateExpiryDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DomainData) GetCertificateExpiryDateOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CertificateExpiryDate.Get(), o.CertificateExpiryDate.IsSet()
+}
+
+// HasCertificateExpiryDate returns a boolean if a field has been set.
+func (o *DomainData) HasCertificateExpiryDate() bool {
+	if o != nil && o.CertificateExpiryDate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificateExpiryDate gets a reference to the given NullableTime and assigns it to the CertificateExpiryDate field.
+func (o *DomainData) SetCertificateExpiryDate(v time.Time) {
+	o.CertificateExpiryDate.Set(&v)
+}
+// SetCertificateExpiryDateNil sets the value for CertificateExpiryDate to be an explicit nil
+func (o *DomainData) SetCertificateExpiryDateNil() {
+	o.CertificateExpiryDate.Set(nil)
+}
+
+// UnsetCertificateExpiryDate ensures that no value is present for CertificateExpiryDate, not even an explicit nil
+func (o *DomainData) UnsetCertificateExpiryDate() {
+	o.CertificateExpiryDate.Unset()
+}
+
 // GetCertificateValidationError returns the CertificateValidationError field value if set, zero value otherwise.
 func (o *DomainData) GetCertificateValidationError() string {
 	if o == nil || IsNil(o.CertificateValidationError) {
@@ -630,6 +676,38 @@ func (o *DomainData) SetIsCustomBouncesDomainDefault(v bool) {
 	o.IsCustomBouncesDomainDefault = &v
 }
 
+// GetWasEverVerified returns the WasEverVerified field value if set, zero value otherwise.
+func (o *DomainData) GetWasEverVerified() bool {
+	if o == nil || IsNil(o.WasEverVerified) {
+		var ret bool
+		return ret
+	}
+	return *o.WasEverVerified
+}
+
+// GetWasEverVerifiedOk returns a tuple with the WasEverVerified field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainData) GetWasEverVerifiedOk() (*bool, bool) {
+	if o == nil || IsNil(o.WasEverVerified) {
+		return nil, false
+	}
+	return o.WasEverVerified, true
+}
+
+// HasWasEverVerified returns a boolean if a field has been set.
+func (o *DomainData) HasWasEverVerified() bool {
+	if o != nil && !IsNil(o.WasEverVerified) {
+		return true
+	}
+
+	return false
+}
+
+// SetWasEverVerified gets a reference to the given bool and assigns it to the WasEverVerified field.
+func (o *DomainData) SetWasEverVerified(v bool) {
+	o.WasEverVerified = &v
+}
+
 // GetIsMarkedForDeletion returns the IsMarkedForDeletion field value if set, zero value otherwise.
 func (o *DomainData) GetIsMarkedForDeletion() bool {
 	if o == nil || IsNil(o.IsMarkedForDeletion) {
@@ -694,6 +772,38 @@ func (o *DomainData) SetOwnership(v DomainOwner) {
 	o.Ownership = &v
 }
 
+// GetDKIMRecord returns the DKIMRecord field value if set, zero value otherwise.
+func (o *DomainData) GetDKIMRecord() DKIMRecord {
+	if o == nil || IsNil(o.DKIMRecord) {
+		var ret DKIMRecord
+		return ret
+	}
+	return *o.DKIMRecord
+}
+
+// GetDKIMRecordOk returns a tuple with the DKIMRecord field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DomainData) GetDKIMRecordOk() (*DKIMRecord, bool) {
+	if o == nil || IsNil(o.DKIMRecord) {
+		return nil, false
+	}
+	return o.DKIMRecord, true
+}
+
+// HasDKIMRecord returns a boolean if a field has been set.
+func (o *DomainData) HasDKIMRecord() bool {
+	if o != nil && !IsNil(o.DKIMRecord) {
+		return true
+	}
+
+	return false
+}
+
+// SetDKIMRecord gets a reference to the given DKIMRecord and assigns it to the DKIMRecord field.
+func (o *DomainData) SetDKIMRecord(v DKIMRecord) {
+	o.DKIMRecord = &v
+}
+
 func (o DomainData) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -740,6 +850,9 @@ func (o DomainData) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CertificateStatus) {
 		toSerialize["CertificateStatus"] = o.CertificateStatus
 	}
+	if o.CertificateExpiryDate.IsSet() {
+		toSerialize["CertificateExpiryDate"] = o.CertificateExpiryDate.Get()
+	}
 	if !IsNil(o.CertificateValidationError) {
 		toSerialize["CertificateValidationError"] = o.CertificateValidationError
 	}
@@ -755,11 +868,17 @@ func (o DomainData) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsCustomBouncesDomainDefault) {
 		toSerialize["IsCustomBouncesDomainDefault"] = o.IsCustomBouncesDomainDefault
 	}
+	if !IsNil(o.WasEverVerified) {
+		toSerialize["WasEverVerified"] = o.WasEverVerified
+	}
 	if !IsNil(o.IsMarkedForDeletion) {
 		toSerialize["IsMarkedForDeletion"] = o.IsMarkedForDeletion
 	}
 	if !IsNil(o.Ownership) {
 		toSerialize["Ownership"] = o.Ownership
+	}
+	if !IsNil(o.DKIMRecord) {
+		toSerialize["DKIMRecord"] = o.DKIMRecord
 	}
 	return toSerialize, nil
 }
