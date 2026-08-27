@@ -1,4 +1,4 @@
-module github.com/elasticemail/elasticemail-go
+module github.com/elasticemail/elasticemail-go/v4
 
 go 1.18
 
