@@ -36,7 +36,7 @@ The official Go client library for the [Elastic Email](https://elasticemail.com)
 - **Campaigns and automations.** Create, update, pause and trigger automations for a contact.
 - **Templates, files and attachments.** Manage templates and uploaded files.
 - **Domains.** Verify sending domains and check SPF, DKIM, tracking and certificate status.
-- **Webhooks and inbound routes.** Receive delivery events and route incoming mail.
+- **Webhooks and inbound routes.** Receive delivery events, optionally signed with HMAC-SHA256 and sent as JSON, and route incoming mail.
 - **Statistics, events and suppressions.** Track delivery, bounces, complaints and unsubscribes.
 - **Subaccounts and security.** Manage subaccounts and API keys.
 - **Idiomatic Go.** Every call takes a `context.Context`, uses a fluent request builder ending in `Execute()`, and has no third-party runtime dependencies.
@@ -166,6 +166,28 @@ The default client (`http.DefaultClient`) also honours the `HTTP_PROXY` and `HTT
 ### Pointer helpers
 
 Optional model fields are pointers. Use the setters (`SetSubject`, `SetMerge`, …) or the `Ptr*` helpers (`PtrString`, `PtrInt32`, `PtrBool`, `PtrTime`, …) to build values inline, and the `Get*` accessors to read them without nil checks.
+
+### Create a signed webhook
+
+Webhooks can sign every request with HMAC-SHA256 and send events as a `POST` with a JSON body. Both options are set when you create the webhook and can't be changed later. Webhooks created without them keep working as unsigned `GET` requests.
+
+```go
+payload := ElasticEmail.NewWebhookCreatePayload("my-webhook", "https://your-app.example.com/webhook")
+payload.SetNotificationForSent(true)
+payload.SetNotificationForOpened(true)
+payload.SetNotificationForClicked(true)
+payload.SetEnableSigning(true)
+payload.SetDeliveryMethod(ElasticEmail.WEBHOOKDELIVERYMETHOD_POST_JSON)
+
+created, _, err := client.WebhookAPI.WebhookPost(ctx).WebhookCreatePayload(*payload).Execute()
+if err != nil {
+	log.Fatal(err)
+}
+// Returned only now: store it, e.g. as ELASTICEMAIL_WEBHOOK_SECRET.
+fmt.Println(created.GetSigningSecret())
+```
+
+`SigningSecret` is returned only when the webhook is created and when you rotate it with `WebhookAPI.WebhookByPublicidSecretRotatePost`, so store it right away. Each signed request carries `X-ElasticEmail-Timestamp` and `X-ElasticEmail-Signature: v1=<hex>`, where the signature is `hex(HMAC-SHA256(secret, "{timestamp}\n{METHOD}\n{path and query}\n{raw body}"))`. Verify it against the raw body before you parse the JSON, reject timestamps more than 5 minutes old, and compare in constant time. The [webhooks guide](https://github.com/ElasticEmail/elasticemail-examples/blob/main/docs/webhooks.md) and the [examples repository](https://github.com/ElasticEmail/elasticemail-examples) have ready-made handlers.
 
 ## More examples
 
