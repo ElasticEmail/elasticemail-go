@@ -33,6 +33,9 @@ type WebhookCreatePayload struct {
 	NotificationForUnsubscribed *bool `json:"NotificationForUnsubscribed,omitempty"`
 	NotificationForAbuseReport *bool `json:"NotificationForAbuseReport,omitempty"`
 	NotificationForError *bool `json:"NotificationForError,omitempty"`
+	// Sign every request with HMAC-SHA256. Can be set only when the webhook is created. Default: false.
+	EnableSigning NullableBool `json:"EnableSigning,omitempty"`
+	DeliveryMethod *WebhookDeliveryMethod `json:"DeliveryMethod,omitempty"`
 }
 
 type _WebhookCreatePayload WebhookCreatePayload
@@ -45,6 +48,8 @@ func NewWebhookCreatePayload(name string, uRL string) *WebhookCreatePayload {
 	this := WebhookCreatePayload{}
 	this.Name = name
 	this.URL = uRL
+	var deliveryMethod WebhookDeliveryMethod = WEBHOOKDELIVERYMETHOD_GET
+	this.DeliveryMethod = &deliveryMethod
 	return &this
 }
 
@@ -53,6 +58,8 @@ func NewWebhookCreatePayload(name string, uRL string) *WebhookCreatePayload {
 // but it doesn't guarantee that properties required by API are set
 func NewWebhookCreatePayloadWithDefaults() *WebhookCreatePayload {
 	this := WebhookCreatePayload{}
+	var deliveryMethod WebhookDeliveryMethod = WEBHOOKDELIVERYMETHOD_GET
+	this.DeliveryMethod = &deliveryMethod
 	return &this
 }
 
@@ -328,6 +335,80 @@ func (o *WebhookCreatePayload) SetNotificationForError(v bool) {
 	o.NotificationForError = &v
 }
 
+// GetEnableSigning returns the EnableSigning field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebhookCreatePayload) GetEnableSigning() bool {
+	if o == nil || IsNil(o.EnableSigning.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.EnableSigning.Get()
+}
+
+// GetEnableSigningOk returns a tuple with the EnableSigning field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebhookCreatePayload) GetEnableSigningOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.EnableSigning.Get(), o.EnableSigning.IsSet()
+}
+
+// HasEnableSigning returns a boolean if a field has been set.
+func (o *WebhookCreatePayload) HasEnableSigning() bool {
+	if o != nil && o.EnableSigning.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableSigning gets a reference to the given NullableBool and assigns it to the EnableSigning field.
+func (o *WebhookCreatePayload) SetEnableSigning(v bool) {
+	o.EnableSigning.Set(&v)
+}
+// SetEnableSigningNil sets the value for EnableSigning to be an explicit nil
+func (o *WebhookCreatePayload) SetEnableSigningNil() {
+	o.EnableSigning.Set(nil)
+}
+
+// UnsetEnableSigning ensures that no value is present for EnableSigning, not even an explicit nil
+func (o *WebhookCreatePayload) UnsetEnableSigning() {
+	o.EnableSigning.Unset()
+}
+
+// GetDeliveryMethod returns the DeliveryMethod field value if set, zero value otherwise.
+func (o *WebhookCreatePayload) GetDeliveryMethod() WebhookDeliveryMethod {
+	if o == nil || IsNil(o.DeliveryMethod) {
+		var ret WebhookDeliveryMethod
+		return ret
+	}
+	return *o.DeliveryMethod
+}
+
+// GetDeliveryMethodOk returns a tuple with the DeliveryMethod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebhookCreatePayload) GetDeliveryMethodOk() (*WebhookDeliveryMethod, bool) {
+	if o == nil || IsNil(o.DeliveryMethod) {
+		return nil, false
+	}
+	return o.DeliveryMethod, true
+}
+
+// HasDeliveryMethod returns a boolean if a field has been set.
+func (o *WebhookCreatePayload) HasDeliveryMethod() bool {
+	if o != nil && !IsNil(o.DeliveryMethod) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeliveryMethod gets a reference to the given WebhookDeliveryMethod and assigns it to the DeliveryMethod field.
+func (o *WebhookCreatePayload) SetDeliveryMethod(v WebhookDeliveryMethod) {
+	o.DeliveryMethod = &v
+}
+
 func (o WebhookCreatePayload) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -360,6 +441,12 @@ func (o WebhookCreatePayload) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.NotificationForError) {
 		toSerialize["NotificationForError"] = o.NotificationForError
+	}
+	if o.EnableSigning.IsSet() {
+		toSerialize["EnableSigning"] = o.EnableSigning.Get()
+	}
+	if !IsNil(o.DeliveryMethod) {
+		toSerialize["DeliveryMethod"] = o.DeliveryMethod
 	}
 	return toSerialize, nil
 }

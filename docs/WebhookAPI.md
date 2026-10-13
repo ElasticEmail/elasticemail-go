@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**WebhookByPublicidDelete**](WebhookAPI.md#WebhookByPublicidDelete) | **Delete** /webhook/{publicid} | Delete Webhook
 [**WebhookByPublicidGet**](WebhookAPI.md#WebhookByPublicidGet) | **Get** /webhook/{publicid} | Load Webhook
 [**WebhookByPublicidPut**](WebhookAPI.md#WebhookByPublicidPut) | **Put** /webhook/{publicid} | Update Webhook
+[**WebhookByPublicidSecretRotatePost**](WebhookAPI.md#WebhookByPublicidSecretRotatePost) | **Post** /webhook/{publicid}/secret/rotate | Rotate Webhook Secret
 [**WebhookGet**](WebhookAPI.md#WebhookGet) | **Get** /webhook | Load Webhooks
 [**WebhookPost**](WebhookAPI.md#WebhookPost) | **Post** /webhook | Add Webhook
 
@@ -215,6 +216,76 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## WebhookByPublicidSecretRotatePost
+
+> Webhook WebhookByPublicidSecretRotatePost(ctx, publicid).Execute()
+
+Rotate Webhook Secret
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/elasticemail/elasticemail-go"
+)
+
+func main() {
+	publicid := "publicid_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WebhookAPI.WebhookByPublicidSecretRotatePost(context.Background(), publicid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WebhookAPI.WebhookByPublicidSecretRotatePost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `WebhookByPublicidSecretRotatePost`: Webhook
+	fmt.Fprintf(os.Stdout, "Response from `WebhookAPI.WebhookByPublicidSecretRotatePost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**publicid** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiWebhookByPublicidSecretRotatePostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**Webhook**](Webhook.md)
+
+### Authorization
+
+[apikey](../README.md#apikey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

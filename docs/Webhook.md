@@ -17,6 +17,9 @@ Name | Type | Description | Notes
 **NotificationForAbuseReport** | Pointer to **bool** |  | [optional] 
 **NotificationForError** | Pointer to **bool** |  | [optional] 
 **IsEnabled** | Pointer to **bool** |  | [optional] 
+**SigningEnabled** | Pointer to **bool** | Requests carry an HMAC-SHA256 signature. Chosen when the webhook is created and can&#39;t be changed. | [optional] 
+**DeliveryMethod** | Pointer to [**WebhookDeliveryMethod**](WebhookDeliveryMethod.md) |  | [optional] [default to WEBHOOKDELIVERYMETHOD_GET]
+**SigningSecret** | Pointer to **string** | Signing secret - returned only once, when a webhook is created with signing or its secret is rotated. Store it safely. | [optional] 
 
 ## Methods
 
@@ -381,6 +384,81 @@ SetIsEnabled sets IsEnabled field to given value.
 `func (o *Webhook) HasIsEnabled() bool`
 
 HasIsEnabled returns a boolean if a field has been set.
+
+### GetSigningEnabled
+
+`func (o *Webhook) GetSigningEnabled() bool`
+
+GetSigningEnabled returns the SigningEnabled field if non-nil, zero value otherwise.
+
+### GetSigningEnabledOk
+
+`func (o *Webhook) GetSigningEnabledOk() (*bool, bool)`
+
+GetSigningEnabledOk returns a tuple with the SigningEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSigningEnabled
+
+`func (o *Webhook) SetSigningEnabled(v bool)`
+
+SetSigningEnabled sets SigningEnabled field to given value.
+
+### HasSigningEnabled
+
+`func (o *Webhook) HasSigningEnabled() bool`
+
+HasSigningEnabled returns a boolean if a field has been set.
+
+### GetDeliveryMethod
+
+`func (o *Webhook) GetDeliveryMethod() WebhookDeliveryMethod`
+
+GetDeliveryMethod returns the DeliveryMethod field if non-nil, zero value otherwise.
+
+### GetDeliveryMethodOk
+
+`func (o *Webhook) GetDeliveryMethodOk() (*WebhookDeliveryMethod, bool)`
+
+GetDeliveryMethodOk returns a tuple with the DeliveryMethod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeliveryMethod
+
+`func (o *Webhook) SetDeliveryMethod(v WebhookDeliveryMethod)`
+
+SetDeliveryMethod sets DeliveryMethod field to given value.
+
+### HasDeliveryMethod
+
+`func (o *Webhook) HasDeliveryMethod() bool`
+
+HasDeliveryMethod returns a boolean if a field has been set.
+
+### GetSigningSecret
+
+`func (o *Webhook) GetSigningSecret() string`
+
+GetSigningSecret returns the SigningSecret field if non-nil, zero value otherwise.
+
+### GetSigningSecretOk
+
+`func (o *Webhook) GetSigningSecretOk() (*string, bool)`
+
+GetSigningSecretOk returns a tuple with the SigningSecret field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSigningSecret
+
+`func (o *Webhook) SetSigningSecret(v string)`
+
+SetSigningSecret sets SigningSecret field to given value.
+
+### HasSigningSecret
+
+`func (o *Webhook) HasSigningSecret() bool`
+
+HasSigningSecret returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

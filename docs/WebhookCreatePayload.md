@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **NotificationForUnsubscribed** | Pointer to **bool** |  | [optional] 
 **NotificationForAbuseReport** | Pointer to **bool** |  | [optional] 
 **NotificationForError** | Pointer to **bool** |  | [optional] 
+**EnableSigning** | Pointer to **NullableBool** | Sign every request with HMAC-SHA256. Can be set only when the webhook is created. Default: false. | [optional] 
+**DeliveryMethod** | Pointer to [**WebhookDeliveryMethod**](WebhookDeliveryMethod.md) |  | [optional] [default to WEBHOOKDELIVERYMETHOD_GET]
 
 ## Methods
 
@@ -247,6 +249,66 @@ SetNotificationForError sets NotificationForError field to given value.
 `func (o *WebhookCreatePayload) HasNotificationForError() bool`
 
 HasNotificationForError returns a boolean if a field has been set.
+
+### GetEnableSigning
+
+`func (o *WebhookCreatePayload) GetEnableSigning() bool`
+
+GetEnableSigning returns the EnableSigning field if non-nil, zero value otherwise.
+
+### GetEnableSigningOk
+
+`func (o *WebhookCreatePayload) GetEnableSigningOk() (*bool, bool)`
+
+GetEnableSigningOk returns a tuple with the EnableSigning field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnableSigning
+
+`func (o *WebhookCreatePayload) SetEnableSigning(v bool)`
+
+SetEnableSigning sets EnableSigning field to given value.
+
+### HasEnableSigning
+
+`func (o *WebhookCreatePayload) HasEnableSigning() bool`
+
+HasEnableSigning returns a boolean if a field has been set.
+
+### SetEnableSigningNil
+
+`func (o *WebhookCreatePayload) SetEnableSigningNil(b bool)`
+
+ SetEnableSigningNil sets the value for EnableSigning to be an explicit nil
+
+### UnsetEnableSigning
+`func (o *WebhookCreatePayload) UnsetEnableSigning()`
+
+UnsetEnableSigning ensures that no value is present for EnableSigning, not even an explicit nil
+### GetDeliveryMethod
+
+`func (o *WebhookCreatePayload) GetDeliveryMethod() WebhookDeliveryMethod`
+
+GetDeliveryMethod returns the DeliveryMethod field if non-nil, zero value otherwise.
+
+### GetDeliveryMethodOk
+
+`func (o *WebhookCreatePayload) GetDeliveryMethodOk() (*WebhookDeliveryMethod, bool)`
+
+GetDeliveryMethodOk returns a tuple with the DeliveryMethod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeliveryMethod
+
+`func (o *WebhookCreatePayload) SetDeliveryMethod(v WebhookDeliveryMethod)`
+
+SetDeliveryMethod sets DeliveryMethod field to given value.
+
+### HasDeliveryMethod
+
+`func (o *WebhookCreatePayload) HasDeliveryMethod() bool`
+
+HasDeliveryMethod returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

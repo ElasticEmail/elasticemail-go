@@ -39,6 +39,11 @@ type Webhook struct {
 	NotificationForAbuseReport *bool `json:"NotificationForAbuseReport,omitempty"`
 	NotificationForError *bool `json:"NotificationForError,omitempty"`
 	IsEnabled *bool `json:"IsEnabled,omitempty"`
+	// Requests carry an HMAC-SHA256 signature. Chosen when the webhook is created and can't be changed.
+	SigningEnabled *bool `json:"SigningEnabled,omitempty"`
+	DeliveryMethod *WebhookDeliveryMethod `json:"DeliveryMethod,omitempty"`
+	// Signing secret - returned only once, when a webhook is created with signing or its secret is rotated. Store it safely.
+	SigningSecret *string `json:"SigningSecret,omitempty"`
 }
 
 // NewWebhook instantiates a new Webhook object
@@ -47,6 +52,8 @@ type Webhook struct {
 // will change when the set of required properties is changed
 func NewWebhook() *Webhook {
 	this := Webhook{}
+	var deliveryMethod WebhookDeliveryMethod = WEBHOOKDELIVERYMETHOD_GET
+	this.DeliveryMethod = &deliveryMethod
 	return &this
 }
 
@@ -55,6 +62,8 @@ func NewWebhook() *Webhook {
 // but it doesn't guarantee that properties required by API are set
 func NewWebhookWithDefaults() *Webhook {
 	this := Webhook{}
+	var deliveryMethod WebhookDeliveryMethod = WEBHOOKDELIVERYMETHOD_GET
+	this.DeliveryMethod = &deliveryMethod
 	return &this
 }
 
@@ -494,6 +503,102 @@ func (o *Webhook) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
+// GetSigningEnabled returns the SigningEnabled field value if set, zero value otherwise.
+func (o *Webhook) GetSigningEnabled() bool {
+	if o == nil || IsNil(o.SigningEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.SigningEnabled
+}
+
+// GetSigningEnabledOk returns a tuple with the SigningEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Webhook) GetSigningEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.SigningEnabled) {
+		return nil, false
+	}
+	return o.SigningEnabled, true
+}
+
+// HasSigningEnabled returns a boolean if a field has been set.
+func (o *Webhook) HasSigningEnabled() bool {
+	if o != nil && !IsNil(o.SigningEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetSigningEnabled gets a reference to the given bool and assigns it to the SigningEnabled field.
+func (o *Webhook) SetSigningEnabled(v bool) {
+	o.SigningEnabled = &v
+}
+
+// GetDeliveryMethod returns the DeliveryMethod field value if set, zero value otherwise.
+func (o *Webhook) GetDeliveryMethod() WebhookDeliveryMethod {
+	if o == nil || IsNil(o.DeliveryMethod) {
+		var ret WebhookDeliveryMethod
+		return ret
+	}
+	return *o.DeliveryMethod
+}
+
+// GetDeliveryMethodOk returns a tuple with the DeliveryMethod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Webhook) GetDeliveryMethodOk() (*WebhookDeliveryMethod, bool) {
+	if o == nil || IsNil(o.DeliveryMethod) {
+		return nil, false
+	}
+	return o.DeliveryMethod, true
+}
+
+// HasDeliveryMethod returns a boolean if a field has been set.
+func (o *Webhook) HasDeliveryMethod() bool {
+	if o != nil && !IsNil(o.DeliveryMethod) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeliveryMethod gets a reference to the given WebhookDeliveryMethod and assigns it to the DeliveryMethod field.
+func (o *Webhook) SetDeliveryMethod(v WebhookDeliveryMethod) {
+	o.DeliveryMethod = &v
+}
+
+// GetSigningSecret returns the SigningSecret field value if set, zero value otherwise.
+func (o *Webhook) GetSigningSecret() string {
+	if o == nil || IsNil(o.SigningSecret) {
+		var ret string
+		return ret
+	}
+	return *o.SigningSecret
+}
+
+// GetSigningSecretOk returns a tuple with the SigningSecret field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Webhook) GetSigningSecretOk() (*string, bool) {
+	if o == nil || IsNil(o.SigningSecret) {
+		return nil, false
+	}
+	return o.SigningSecret, true
+}
+
+// HasSigningSecret returns a boolean if a field has been set.
+func (o *Webhook) HasSigningSecret() bool {
+	if o != nil && !IsNil(o.SigningSecret) {
+		return true
+	}
+
+	return false
+}
+
+// SetSigningSecret gets a reference to the given string and assigns it to the SigningSecret field.
+func (o *Webhook) SetSigningSecret(v string) {
+	o.SigningSecret = &v
+}
+
 func (o Webhook) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -542,6 +647,15 @@ func (o Webhook) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.IsEnabled) {
 		toSerialize["IsEnabled"] = o.IsEnabled
+	}
+	if !IsNil(o.SigningEnabled) {
+		toSerialize["SigningEnabled"] = o.SigningEnabled
+	}
+	if !IsNil(o.DeliveryMethod) {
+		toSerialize["DeliveryMethod"] = o.DeliveryMethod
+	}
+	if !IsNil(o.SigningSecret) {
+		toSerialize["SigningSecret"] = o.SigningSecret
 	}
 	return toSerialize, nil
 }
