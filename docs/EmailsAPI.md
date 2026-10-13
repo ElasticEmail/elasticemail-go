@@ -174,7 +174,7 @@ Name | Type | Description  | Notes
 
 ## EmailsMergefilePost
 
-> EmailSend EmailsMergefilePost(ctx).MergeEmailPayload(mergeEmailPayload).Execute()
+> EmailSend EmailsMergefilePost(ctx).MergeEmailPayload(mergeEmailPayload).IdempotencyKey(idempotencyKey).Execute()
 
 Send Bulk Emails CSV
 
@@ -194,10 +194,11 @@ import (
 
 func main() {
 	mergeEmailPayload := *openapiclient.NewMergeEmailPayload(*openapiclient.NewMessageAttachment(string(123), "Name_example"), *openapiclient.NewEmailContent("John Doe <email@domain.com>")) // MergeEmailPayload | Email data
+	idempotencyKey := "6f1c2a7e-3b4d-4e8f-9a1b-2c3d4e5f6a7b" // string | Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EmailsAPI.EmailsMergefilePost(context.Background()).MergeEmailPayload(mergeEmailPayload).Execute()
+	resp, r, err := apiClient.EmailsAPI.EmailsMergefilePost(context.Background()).MergeEmailPayload(mergeEmailPayload).IdempotencyKey(idempotencyKey).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EmailsAPI.EmailsMergefilePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -219,6 +220,7 @@ Other parameters are passed through a pointer to a apiEmailsMergefilePostRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **mergeEmailPayload** | [**MergeEmailPayload**](MergeEmailPayload.md) | Email data | 
+ **idempotencyKey** | **string** | Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request. | 
 
 ### Return type
 
@@ -240,7 +242,7 @@ Name | Type | Description  | Notes
 
 ## EmailsPost
 
-> EmailSend EmailsPost(ctx).EmailMessageData(emailMessageData).Execute()
+> EmailSend EmailsPost(ctx).EmailMessageData(emailMessageData).IdempotencyKey(idempotencyKey).Execute()
 
 Send Bulk Emails
 
@@ -260,10 +262,11 @@ import (
 
 func main() {
 	emailMessageData := *openapiclient.NewEmailMessageData([]openapiclient.EmailRecipient{*openapiclient.NewEmailRecipient("mail@example.com")}, *openapiclient.NewEmailContent("John Doe <email@domain.com>")) // EmailMessageData | Email data
+	idempotencyKey := "6f1c2a7e-3b4d-4e8f-9a1b-2c3d4e5f6a7b" // string | Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EmailsAPI.EmailsPost(context.Background()).EmailMessageData(emailMessageData).Execute()
+	resp, r, err := apiClient.EmailsAPI.EmailsPost(context.Background()).EmailMessageData(emailMessageData).IdempotencyKey(idempotencyKey).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EmailsAPI.EmailsPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -285,6 +288,7 @@ Other parameters are passed through a pointer to a apiEmailsPostRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **emailMessageData** | [**EmailMessageData**](EmailMessageData.md) | Email data | 
+ **idempotencyKey** | **string** | Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request. | 
 
 ### Return type
 
@@ -306,7 +310,7 @@ Name | Type | Description  | Notes
 
 ## EmailsTransactionalPost
 
-> EmailSend EmailsTransactionalPost(ctx).EmailTransactionalMessageData(emailTransactionalMessageData).Execute()
+> EmailSend EmailsTransactionalPost(ctx).EmailTransactionalMessageData(emailTransactionalMessageData).IdempotencyKey(idempotencyKey).Execute()
 
 Send Transactional Email
 
@@ -326,10 +330,11 @@ import (
 
 func main() {
 	emailTransactionalMessageData := *openapiclient.NewEmailTransactionalMessageData(*openapiclient.NewTransactionalRecipient([]string{"To_example"}), *openapiclient.NewEmailContent("John Doe <email@domain.com>")) // EmailTransactionalMessageData | Email data
+	idempotencyKey := "6f1c2a7e-3b4d-4e8f-9a1b-2c3d4e5f6a7b" // string | Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EmailsAPI.EmailsTransactionalPost(context.Background()).EmailTransactionalMessageData(emailTransactionalMessageData).Execute()
+	resp, r, err := apiClient.EmailsAPI.EmailsTransactionalPost(context.Background()).EmailTransactionalMessageData(emailTransactionalMessageData).IdempotencyKey(idempotencyKey).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EmailsAPI.EmailsTransactionalPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -351,6 +356,7 @@ Other parameters are passed through a pointer to a apiEmailsTransactionalPostReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **emailTransactionalMessageData** | [**EmailTransactionalMessageData**](EmailTransactionalMessageData.md) | Email data | 
+ **idempotencyKey** | **string** | Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request. | 
 
 ### Return type
 

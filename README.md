@@ -36,6 +36,7 @@ The official Go client library for the [Elastic Email](https://elasticemail.com)
 - **Campaigns and automations.** Create, update, pause and trigger automations for a contact.
 - **Templates, files and attachments.** Manage templates and uploaded files.
 - **Domains.** Verify sending domains and check SPF, DKIM, tracking and certificate status.
+- **Safe retries.** Pass an `Idempotency-Key` on email sends so a retried request is never sent or charged twice.
 - **Webhooks and inbound routes.** Receive delivery events, optionally signed with HMAC-SHA256 and sent as JSON, and route incoming mail.
 - **Statistics, events and suppressions.** Track delivery, bounces, complaints and unsubscribes.
 - **Subaccounts and security.** Manage subaccounts and API keys.
@@ -130,6 +131,27 @@ fmt.Printf("Sent. TransactionID: %s, MessageID: %s\n", result.GetTransactionID()
 ```
 
 The `from` address must use a domain you've [verified in your Elastic Email account](https://help.elasticemail.com/en/articles/4934400-how-to-verify-your-domain).
+
+### Retry a send safely (Idempotency-Key)
+
+Pass an idempotency key to make a send safe to retry after a timeout or a network error. If the first request already went through, the retry gets the stored response (same `TransactionID` and `MessageID`) with an `Idempotency-Replayed: true` header, and nothing is sent or charged twice.
+
+```go
+key := uuid.NewString() // github.com/google/uuid: one new key per logical send
+
+result, httpRes, err := client.EmailsAPI.EmailsTransactionalPost(ctx).
+	EmailTransactionalMessageData(*message).
+	IdempotencyKey(key).
+	Execute()
+if err != nil {
+	// Timeout or 5xx: retry with the same key and the same message.
+}
+if httpRes != nil && httpRes.Header.Get("Idempotency-Replayed") == "true" {
+	fmt.Println("Already sent earlier:", result.GetTransactionID())
+}
+```
+
+Reuse a key only to retry the same send, with the same message, within 24 hours; `EmailsPost` and `EmailsMergefilePost` take `IdempotencyKey` too. The same key with a different message returns `422`, a retry while the first request is still running returns `409`, and `503` means the key couldn't be checked, so wait for `Retry-After` and retry with the same key. Without a key, sends behave exactly as before.
 
 ### Send from a template with merge fields
 
@@ -457,7 +479,7 @@ The SDK follows the Elastic Email API v4 and uses [semantic import versioning](h
 <summary>Build details</summary>
 
 - API version: 4.0.0
-- SDK version: 4.3.0
+- SDK version: 4.4.0
 - Generator version: 7.11.0
 - Build package: `org.openapitools.codegen.languages.GoClientCodegen`
 

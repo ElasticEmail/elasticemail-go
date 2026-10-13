@@ -392,11 +392,18 @@ type EmailsAPIEmailsMergefilePostRequest struct {
 	ctx context.Context
 	ApiService *EmailsAPIService
 	mergeEmailPayload *MergeEmailPayload
+	idempotencyKey *string
 }
 
 // Email data
 func (r EmailsAPIEmailsMergefilePostRequest) MergeEmailPayload(mergeEmailPayload MergeEmailPayload) EmailsAPIEmailsMergefilePostRequest {
 	r.mergeEmailPayload = &mergeEmailPayload
+	return r
+}
+
+// Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.
+func (r EmailsAPIEmailsMergefilePostRequest) IdempotencyKey(idempotencyKey string) EmailsAPIEmailsMergefilePostRequest {
+	r.idempotencyKey = &idempotencyKey
 	return r
 }
 
@@ -468,6 +475,9 @@ func (a *EmailsAPIService) EmailsMergefilePostExecute(r EmailsAPIEmailsMergefile
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.idempotencyKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.mergeEmailPayload
 	if r.ctx != nil {
@@ -525,11 +535,18 @@ type EmailsAPIEmailsPostRequest struct {
 	ctx context.Context
 	ApiService *EmailsAPIService
 	emailMessageData *EmailMessageData
+	idempotencyKey *string
 }
 
 // Email data
 func (r EmailsAPIEmailsPostRequest) EmailMessageData(emailMessageData EmailMessageData) EmailsAPIEmailsPostRequest {
 	r.emailMessageData = &emailMessageData
+	return r
+}
+
+// Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.
+func (r EmailsAPIEmailsPostRequest) IdempotencyKey(idempotencyKey string) EmailsAPIEmailsPostRequest {
+	r.idempotencyKey = &idempotencyKey
 	return r
 }
 
@@ -593,6 +610,9 @@ func (a *EmailsAPIService) EmailsPostExecute(r EmailsAPIEmailsPostRequest) (*Ema
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.idempotencyKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
+	}
 	// body params
 	localVarPostBody = r.emailMessageData
 	if r.ctx != nil {
@@ -650,11 +670,18 @@ type EmailsAPIEmailsTransactionalPostRequest struct {
 	ctx context.Context
 	ApiService *EmailsAPIService
 	emailTransactionalMessageData *EmailTransactionalMessageData
+	idempotencyKey *string
 }
 
 // Email data
 func (r EmailsAPIEmailsTransactionalPostRequest) EmailTransactionalMessageData(emailTransactionalMessageData EmailTransactionalMessageData) EmailsAPIEmailsTransactionalPostRequest {
 	r.emailTransactionalMessageData = &emailTransactionalMessageData
+	return r
+}
+
+// Makes a retry of this request safe. A repeated request with the same key and the same body gets the stored response of the first one and is not executed again. Generate a new key, e.g. a UUID v4, for each request and reuse it only to retry that request. Keys are scoped to the account and kept for 24 hours after the first request.
+func (r EmailsAPIEmailsTransactionalPostRequest) IdempotencyKey(idempotencyKey string) EmailsAPIEmailsTransactionalPostRequest {
+	r.idempotencyKey = &idempotencyKey
 	return r
 }
 
@@ -717,6 +744,9 @@ func (a *EmailsAPIService) EmailsTransactionalPostExecute(r EmailsAPIEmailsTrans
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.idempotencyKey != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Idempotency-Key", r.idempotencyKey, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.emailTransactionalMessageData
