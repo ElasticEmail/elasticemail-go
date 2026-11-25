@@ -218,6 +218,37 @@ More complete, runnable samples are in the **[Elastic Email examples repository]
 - 🐹 [Go examples](https://github.com/ElasticEmail/elasticemail-examples/tree/main/go-elasticemail-examples) (plain `net/http`, Chi and Gin)
 - 📂 [All examples](https://github.com/ElasticEmail/elasticemail-examples)
 
+This repository also has one small program per API operation in [`examples/`](examples/README.md). Run one with `go run sendTransactionalEmails.go` from `examples/functions`.
+
+<details>
+<summary><strong>Snippets in this repository</strong></summary>
+
+Function ||
+------------ | -------------
+[addCampaign](examples/functions/addCampaign.go) | [readme](examples/functions/addCampaign.md)
+[addContacts](examples/functions/addContacts.go) | [readme](examples/functions/addContacts.md)
+[addList](examples/functions/addList.go) | [readme](examples/functions/addList.md)
+[addTemplate](examples/functions/addTemplate.go) | [readme](examples/functions/addTemplate.md)
+[deleteCampaign](examples/functions/deleteCampaign.go) | [readme](examples/functions/deleteCampaign.md)
+[deleteContact](examples/functions/deleteContact.go) | [readme](examples/functions/deleteContact.md)
+[deleteContacts](examples/functions/deleteContacts.go) | [readme](examples/functions/deleteContacts.md)
+[deleteList](examples/functions/deleteList.go) | [readme](examples/functions/deleteList.md)
+[deleteTemplate](examples/functions/deleteTemplate.go) | [readme](examples/functions/deleteTemplate.md)
+[exportContacts](examples/functions/exportContacts.go) | [readme](examples/functions/exportContacts.md)
+[loadCampaign](examples/functions/loadCampaign.go) | [readme](examples/functions/loadCampaign.md)
+[loadCampaignsStats](examples/functions/loadCampaignsStats.go) | [readme](examples/functions/loadCampaignsStats.md)
+[loadChannelsStats](examples/functions/loadChannelsStats.go) | [readme](examples/functions/loadChannelsStats.md)
+[loadList](examples/functions/loadList.go) | [readme](examples/functions/loadList.md)
+[loadStatistics](examples/functions/loadStatistics.go) | [readme](examples/functions/loadStatistics.md)
+[loadTemplate](examples/functions/loadTemplate.go) | [readme](examples/functions/loadTemplate.md)
+[sendBulkEmails](examples/functions/sendBulkEmails.go) | [readme](examples/functions/sendBulkEmails.md)
+[sendTransactionalEmails](examples/functions/sendTransactionalEmails.go) | [readme](examples/functions/sendTransactionalEmails.md)
+[sendTransactionalEmailsWithAttachment](examples/functions/sendTransactionalEmailsWithAttachment.go) | [readme](examples/functions/sendTransactionalEmailsWithAttachment.md)
+[updateCampaign](examples/functions/updateCampaign.go) | [readme](examples/functions/updateCampaign.md)
+[uploadContacts](examples/functions/uploadContacts.go) | [readme](examples/functions/uploadContacts.md)
+
+</details>
+
 ## Authentication
 
 | Scheme | Header | Used for |
