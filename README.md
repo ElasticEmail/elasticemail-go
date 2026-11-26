@@ -1,9 +1,12 @@
+<!-- BEGIN GENERATED:logo -->
 <div align="center">
 
 <img src=".github/ee-logo.png" alt="Elastic Email" width="96" />
+<!-- END GENERATED:logo -->
 
 # Elastic Email Go SDK
 
+<!-- BEGIN GENERATED:header -->
 The official Go client library for the [Elastic Email](https://elasticemail.com) REST API v4.
 
 [![Go module](https://img.shields.io/github/v/tag/ElasticEmail/elasticemail-go?logo=go&logoColor=white&label=Go&color=00ADD8)](https://pkg.go.dev/github.com/elasticemail/elasticemail-go/v4)
@@ -28,6 +31,7 @@ The official Go client library for the [Elastic Email](https://elasticemail.com)
 </div>
 
 ---
+<!-- END GENERATED:header -->
 
 ## Features
 
@@ -55,9 +59,11 @@ You'll also need an Elastic Email **API key**. You can create one in your [API s
 
 Add the [`github.com/elasticemail/elasticemail-go/v4`](https://pkg.go.dev/github.com/elasticemail/elasticemail-go/v4) module to your project:
 
+<!-- BEGIN GENERATED:install -->
 ```bash
 go get github.com/elasticemail/elasticemail-go/v4@latest
 ```
+<!-- END GENERATED:install -->
 
 Then import it. The package name is `ElasticEmail`:
 
@@ -260,12 +266,15 @@ Both are passed as entries in the `map[string]ElasticEmail.APIKey` stored under 
 
 ## API limits
 
+<!-- BEGIN GENERATED:api-limits -->
 - Up to **20 concurrent connections** per account. The API doesn't return `429`; a `5xx` under load means slow down and retry with backoff
 - A request with no response for about **50 seconds** fails with a gateway error (`5xx`)
 - Up to **50 recipients** per `POST /emails/transactional` and **1000 contacts or suppressions** per upload (`413` above that). For more recipients, send one bulk `POST /emails`
+<!-- END GENERATED:api-limits -->
 
 ## API reference
 
+<!-- BEGIN GENERATED:api-reference -->
 All URIs are relative to `https://api.elasticemail.com/v4`. The SDK covers **115 endpoints** across 16 API services, exposed as fields on `APIClient`: `CampaignsAPI`, `ContactsAPI`, `DomainsAPI`, `EmailsAPI`, `EventsAPI`, `FilesAPI`, `InboundRouteAPI`, `ListsAPI`, `SecurityAPI`, `SegmentsAPI`, `StatisticsAPI`, `SubAccountsAPI`, `SuppressionsAPI`, `TemplatesAPI`, `VerificationsAPI` and `WebhookAPI`.
 
 <details>
@@ -393,9 +402,11 @@ Class | Method | HTTP request | Description
 
 
 </details>
+<!-- END GENERATED:api-reference -->
 
 ## Models
 
+<!-- BEGIN GENERATED:models -->
 <details>
 <summary><strong>Show all 99 models</strong></summary>
 
@@ -502,9 +513,11 @@ Class | Method | HTTP request | Description
 
 
 </details>
+<!-- END GENERATED:models -->
 
 ## Versioning
 
+<!-- BEGIN GENERATED:versioning -->
 The SDK follows the Elastic Email API v4 and uses [semantic import versioning](https://go.dev/blog/v2-go-modules), so the major version is part of the module path (`/v4`). Available versions are listed on [pkg.go.dev](https://pkg.go.dev/github.com/elasticemail/elasticemail-go/v4?tab=versions) and in [GitHub Releases](https://github.com/ElasticEmail/elasticemail-go/releases).
 
 <details>
@@ -516,19 +529,23 @@ The SDK follows the Elastic Email API v4 and uses [semantic import versioning](h
 - Build package: `org.openapitools.codegen.languages.GoClientCodegen`
 
 </details>
+<!-- END GENERATED:versioning -->
 
 ## Contributing
 
-Contributions are welcome! Most of this SDK is generated from the [OpenAPI specification](api/openapi.yaml), so please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
+<!-- BEGIN GENERATED:contributing -->
+Contributions are welcome! Most of this SDK is generated from the Elastic Email OpenAPI specification, so please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
 - 🐛 [Report a bug](https://github.com/ElasticEmail/elasticemail-go/issues/new?template=bug_report.md)
 - 💡 [Request a feature](https://github.com/ElasticEmail/elasticemail-go/issues/new?template=feature_request.md)
 - 🔒 [Report a security issue](SECURITY.md)
 
 This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md).
+<!-- END GENERATED:contributing -->
 
 ## Support
 
+<!-- BEGIN GENERATED:support -->
 > [!IMPORTANT]
 > The fastest way to get help is the **chat widget on [elasticemail.com](https://elasticemail.com)**. Our support team can help with your account, sending, deliverability and API questions.
 
@@ -536,7 +553,10 @@ This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.
 - 📚 [API documentation](https://elasticemail.com/developers/api-documentation/rest-api)
 - 🧪 [Examples repository](https://github.com/ElasticEmail/elasticemail-examples)
 - 🐛 [GitHub issues](https://github.com/ElasticEmail/elasticemail-go/issues), for bugs in this SDK only
+<!-- END GENERATED:support -->
 
 ## License
 
+<!-- BEGIN GENERATED:license -->
 Released under the [MIT License](LICENSE). Copyright © 2021–2026 Elastic Email.
+<!-- END GENERATED:license -->

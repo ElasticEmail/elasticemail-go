@@ -31,6 +31,7 @@ func main() {
 			"apikey": {Key: apiKey},
 		})
 
+	// README:BEGIN quickstart
 	html := ElasticEmail.NewBodyPart(ElasticEmail.BODYCONTENTTYPE_HTML)
 	html.SetContent("<strong>Mail content.</strong>")
 	html.SetCharset("utf-8")
@@ -58,6 +59,7 @@ func main() {
 	}
 	fmt.Printf("Sent. TransactionID: %s, MessageID: %s, Idempotency-Key: %s\n",
 		result.GetTransactionID(), result.GetMessageID(), key)
+	// README:END quickstart
 }
 
 // fail prints the error returned by Elastic Email (or the network error) and exits.
